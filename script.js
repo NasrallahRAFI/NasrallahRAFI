@@ -1,60 +1,90 @@
-const form = document.getElementById('mqttForm');
+// script.js
+const usernameInput = document.getElementById('username');
+const passwordInput = document.getElementById('password');
+const connectBtn = document.getElementById('connect-btn');
+const disconnectBtn = document.getElementById('disconnect-btn');
 const status = document.getElementById('status');
+const errorDiv = document.getElementById('error');
 const messages = document.getElementById('messages');
 let client = null;
 
-form.addEventListener('submit', async (e) => {
-    e.preventDefault();
+// Hardcoded HiveMQ Cloud configuration
+const brokerUrl = 'wss://508205b2e19c4a7fad9828d3961d6424.s1.eu.hivemq.cloud:8884/mqtt';
+const topic = 'iot/data';
 
-    const brokerUrl = document.getElementById('brokerUrl').value;
-    const port = parseInt(document.getElementById('port').value);
-    const username = document.getElementById('username').value;
-    const password = document.getElementById('password').value;
+connectBtn.addEventListener('click', async () => {
+  const username = usernameInput.value.trim();
+  const password = passwordInput.value;
 
-    try {
-        status.textContent = 'Status: Connecting...';
+  // Clear previous error
+  errorDiv.classList.add('hidden');
+  errorDiv.textContent = '';
 
-        // Configure MQTT client
-        client = mqtt.connect(brokerUrl, {
-            port: port,
-            username: username,
-            password: password,
-            clientId: 'web_client_' + Math.random().toString(16).slice(3),
-            protocol: 'wss' // Use WebSocket Secure for browser compatibility
-        });
+  if (!username || !password) {
+    errorDiv.textContent = 'Please enter both username and password';
+    errorDiv.classList.remove('hidden');
+    return;
+  }
 
-        // Handle connection success
-        client.on('connect', () => {
-            status.textContent = 'Status: Connected to HiveMQ';
-            messages.textContent = 'Connected successfully! Subscribing to test/topic...';
-            client.subscribe('test/topic', (err) => {
-                if (!err) {
-                    messages.textContent += '\nSubscribed to test/topic';
-                    // Publish a test message
-                    client.publish('test/topic', 'Hello from the website!');
-                } else {
-                    messages.textContent += '\nError subscribing: ' + err;
-                }
-            });
-        });
+  try {
+    client = mqtt.connect(brokerUrl, {
+      username: username,
+      password: password,
+      clientId: 'iotclient_' + Math.random().toString(16).slice(3),
+    });
 
-        // Handle incoming messages
-        client.on('message', (topic, message) => {
-            messages.textContent += `\nReceived on ${topic}: ${message.toString()}`;
-        });
+    client.on('connect', () => {
+      status.textContent = 'Connected to IoT Server';
+      connectBtn.classList.add('hidden');
+      disconnectBtn.classList.remove('hidden');
+      client.subscribe(topic, (err) => {
+        if (!err) {
+          messages.innerHTML += `<li>Subscribed to IoT data feed</li>`;
+        } else {
+          errorDiv.textContent = `Error subscribing: ${err.message}`;
+          errorDiv.classList.remove('hidden');
+        }
+      });
+    });
 
-        // Handle errors
-        client.on('error', (err) => {
-            status.textContent = 'Status: Error - ' + err.message;
-            client.end();
-        });
+    client.on('message', (receivedTopic, message) => {
+      const msg = message.toString();
+      messages.innerHTML += `<li>${msg}</li>`;
+      messages.scrollTop = messages.scrollHeight;
+    });
 
-        // Handle disconnection
-        client.on('close', () => {
-            status.textContent = 'Status: Disconnected';
-        });
+    client.on('error', (err) => {
+      let errorMessage = err.message;
+      if (errorMessage.includes('Bad username or password') || errorMessage.includes('Connection refused')) {
+        errorMessage = 'Invalid username or password';
+      }
+      errorDiv.textContent = `Connection failed: ${errorMessage}`;
+      errorDiv.classList.remove('hidden');
+      status.textContent = 'Disconnected';
+      client.end();
+    });
 
-    } catch (err) {
-        status.textContent = 'Status: Connection failed - ' + err.message;
-    }
+    client.on('close', () => {
+      status.textContent = 'Disconnected';
+      connectBtn.classList.remove('hidden');
+      disconnectBtn.classList.add('hidden');
+      errorDiv.classList.add('hidden');
+      errorDiv.textContent = '';
+    });
+  } catch (err) {
+    errorDiv.textContent = `Connection failed: ${err.message}`;
+    errorDiv.classList.remove('hidden');
+    status.textContent = 'Disconnected';
+  }
+});
+
+disconnectBtn.addEventListener('click', () => {
+  if (client) {
+    client.end();
+    status.textContent = 'Disconnected';
+    connectBtn.classList.remove('hidden');
+    disconnectBtn.classList.add('hidden');
+    errorDiv.classList.add('hidden');
+    errorDiv.textContent = '';
+  }
 });
