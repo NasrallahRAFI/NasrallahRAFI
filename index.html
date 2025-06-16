@@ -1,77 +1,40 @@
-<script type="text/javascript">
-        var gk_isXlsx = false;
-        var gk_xlsxFileLookup = {};
-        var gk_fileData = {};
-        function filledCell(cell) {
-          return cell !== '' && cell != null;
-        }
-        function loadFileData(filename) {
-        if (gk_isXlsx && gk_xlsxFileLookup[filename]) {
-            try {
-                var workbook = XLSX.read(gk_fileData[filename], { type: 'base64' });
-                var firstSheetName = workbook.SheetNames[0];
-                var worksheet = workbook.Sheets[firstSheetName];
-
-                // Convert sheet to JSON to filter blank rows
-                var jsonData = XLSX.utils.sheet_to_json(worksheet, { header: 1, blankrows: false, defval: '' });
-                // Filter out blank rows (rows where all cells are empty, null, or undefined)
-                var filteredData = jsonData.filter(row => row.some(filledCell));
-
-                // Heuristic to find the header row by ignoring rows with fewer filled cells than the next row
-                var headerRowIndex = filteredData.findIndex((row, index) =>
-                  row.filter(filledCell).length >= filteredData[index + 1]?.filter(filledCell).length
-                );
-                // Fallback
-                if (headerRowIndex === -1 || headerRowIndex > 25) {
-                  headerRowIndex = 0;
-                }
-
-                // Convert filtered JSON back to CSV
-                var csv = XLSX.utils.aoa_to_sheet(filteredData.slice(headerRowIndex)); // Create a new sheet from filtered array of arrays
-                csv = XLSX.utils.sheet_to_csv(csv, { header: 1 });
-                return csv;
-            } catch (e) {
-                console.error(e);
-                return "";
-            }
-        }
-        return gk_fileData[filename] || "";
-        }
-        </script><!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HiveMQ MQTT Website</title>
-    <link rel="stylesheet" href="styles.css">
-    <script src="https://unpkg.com/mqtt@5.3.3/dist/mqtt.min.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>IoT Client Portal - HiveMQ</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="https://unpkg.com/mqtt@5.10.0/dist/mqtt.min.js"></script>
+  <script src="script.js" defer></script>
 </head>
 <body>
-    <header>
-        <h1>HiveMQ MQTT Connection</h1>
-        <p>Connect to a HiveMQ MQTT broker using your credentials.</p>
-    </header>
-    <main>
-        <section>
-            <h2>Connect to HiveMQ</h2>
-            <form id="mqttForm">
-                <label for="brokerUrl">Broker URL (e.g., wss://your-cluster.hivemq.cloud):</label>
-                <input type="text" id="brokerUrl" required>
-                <label for="port">Port (e.g., 8883):</label>
-                <input type="number" id="port" value="8883" required>
-                <label for="username">Username:</label>
-                <input type="text" id="username" required>
-                <label for="password">Password:</label>
-                <input type="password" id="password" required>
-                <button type="submit">Connect</button>
-            </form>
-            <p id="status">Status: Disconnected</p>
-            <div id="messages"></div>
-        </section>
-    </main>
-    <footer>
-        <p>© 2025 Your Name</p>
-    </footer>
-    <script src="script.js"></script>
+  <div class="container">
+    <h1>IoT Client Portal</h1>
+    
+    <!-- Connection Form -->
+    <div class="card">
+      <h2>Login to View IoT Data</h2>
+      <div class="form-group">
+        <label for="username">Username</label>
+        <input id="username" type="text" placeholder="Enter username">
+      </div>
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input id="password" type="password" placeholder="Enter password">
+      </div>
+      <button id="connect-btn" class="btn btn-primary">Connect</button>
+      <button id="disconnect-btn" class="btn btn-danger hidden">Disconnect</button>
+    </div>
+    
+    <!-- Status and Messages -->
+    <div class="card">
+      <h2>Status</h2>
+      <p id="status">Disconnected</p>
+      <div id="error" class="error hidden"></div>
+      <h2>IoT Messages</h2>
+      <ul id="messages"></ul>
+    </div>
+  </div>
 </body>
 </html>
