@@ -1,94 +1,149 @@
-function connectToBroker() {
-  const username = usernameInput.value.trim();
-  const password = passwordInput.value;
-  const brokerUrl = brokerInput.value.trim();
-  const topics = topicInput.value.trim().split(',').map(t => t.trim()).filter(t => t); // Split and clean topics
-
-  // Clear previous error
-  errorDiv.classList.add('hidden');
-  errorDiv.textContent = '';
-
-  if (!username || !password || !brokerUrl) {
-    showError('Please enter all required fields');
-    return;
-  }
-
-  if (!topics.length) {
-    showError('Please enter at least one topic');
-    return;
-  }
-
-  try {
-    if (typeof mqtt === 'undefined') {
-      showError('MQTT library not loaded');
-      return;
-    }
-
-    client = mqtt.connect(brokerUrl, {
-      username,
-      password,
-      clientId: 'iotclient_' + Math.random().toString(16).slice(3),
-      reconnectPeriod: 1000,
-      keepalive: 60,
-    });
-
-    client.on('connect', () => {
-      updateStatus('Connected to IoT Server', true);
-      connectBtn.classList.add('hidden');
-      disconnectBtn.classList.remove('hidden');
-      
-      // Subscribe to all specified topics
-      topics.forEach(topic => {
-        client.subscribe(topic, (err) => {
-          if (!err) {
-            messages.innerHTML += `<li>Subscribed to ${sanitizeHTML(topic)}</li>`;
-          } else {
-            showError(`Error subscribing to ${sanitizeHTML(topic)}: ${err.message}`);
-          }
-        });
-      });
-    });
-
-    client.on('reconnect', () => {
-      updateStatus('Reconnecting...', false);
-    });
-
-    client.on('message', (receivedTopic, message) => {
-      const msg = sanitizeHTML(message.toString());
-      // Include topic in message display
-      messages.innerHTML += `<li><strong>${sanitizeHTML(receivedTopic)}</strong>: ${msg}</li>`;
-      const storedMessages = JSON.parse(localStorage.getItem('iotMessages') || '[]');
-      storedMessages.push({ topic: receivedTopic, message: msg });
-      localStorage.setItem('iotMessages', JSON.stringify(storedMessages));
-      messages.scrollTop = messages.scrollHeight;
-    });
-
-    client.on('error', (err) => {
-      let errorMessage = err.message;
-      if (errorMessage.includes('Bad username or password') || errorMessage.includes('Connection refused')) {
-        errorMessage = 'Invalid username or password';
-      }
-      showError(`Connection failed: ${errorMessage}`);
-      updateStatus('Disconnected', false);
-      client.end();
-    });
-
-    client.on('close', () => {
-      updateStatus('Disconnected', false);
-      connectBtn.classList.remove('hidden');
-      disconnectBtn.classList.add('hidden');
-      errorDiv.classList.add('hidden');
-    });
-  } catch (err) {
-    showError(`Connection failed: ${err.message}`);
-    updateStatus('Disconnected', false);
-  }
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f5f5f5;
+    color: #333;
 }
 
-// Update stored messages loading to include topic
-window.addEventListener('load', () => {
-  const storedMessages = JSON.parse(localStorage.getItem('iotMessages') || '[]');
-  storedMessages.forEach(({ topic, message }) => {
-    messages.innerHTML += `<li><strong>${sanitizeHTML(topic)}</strong>: ${sanitizeHTML(message)}</li>`;
-  });
-});
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.hidden {
+    display: none;
+}
+
+/* Login Form Styles */
+#login-form {
+    background: white;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    max-width: 400px;
+    margin: 50px auto;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+.btn {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s;
+}
+
+.btn:hover {
+    background-color: #45a049;
+}
+
+.error-message {
+    color: #f44336;
+    margin-top: 15px;
+    padding: 10px;
+    border-radius: 4px;
+    background-color: #ffebee;
+}
+
+/* Supervisor Dashboard Styles */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #ddd;
+}
+
+.status {
+    padding: 5px 10px;
+    border-radius: 4px;
+    font-weight: bold;
+}
+
+.status-connected {
+    background-color: #4CAF50;
+    color: white;
+}
+
+.status-disconnected {
+    background-color: #f44336;
+    color: white;
+}
+
+.dashboard {
+    display: flex;
+    gap: 20px;
+}
+
+.topics-panel, .messages-panel {
+    flex: 1;
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.scrollable-list {
+    height: 400px;
+    overflow-y: auto;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 10px;
+    margin-bottom: 15px;
+}
+
+.subscription-controls, .message-controls {
+    display: flex;
+    gap: 10px;
+}
+
+.subscription-controls input, .message-controls input {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+/* Topic and Message Items */
+.topic-item, .message-item {
+    padding: 10px;
+    border-bottom: 1px solid #eee;
+    cursor: pointer;
+}
+
+.topic-item:hover, .message-item:hover {
+    background-color: #f9f9f9;
+}
+
+.message-item {
+    font-family: monospace;
+    white-space: pre-wrap;
+}
+
+.topic-item.active {
+    background-color: #e3f2fd;
+    font-weight: bold;
+}
