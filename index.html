@@ -5,8 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>IoT Client Portal - HiveMQ</title>
   <link rel="stylesheet" href="styles.css">
-  <script src="https://unpkg.com/mqtt@5.10.0/dist/mqtt.min.js"></script>
-  <script src="script.js" defer></script>
+  <script src="mqtt.min.js"></script>
+  <script src="config.js" type="module"></script>
+  <script src="script.js" type="module" defer></script>
 </head>
 <body>
   <div class="container">
@@ -15,24 +16,39 @@
     <!-- Connection Form -->
     <div class="card">
       <h2>Login to View IoT Data</h2>
-      <div class="form-group">
-        <label for="username">Username</label>
-        <input id="username" type="text" placeholder="Enter username">
-      </div>
-      <div class="form-group">
-        <label for="password">Password</label>
-        <input id="password" type="password" placeholder="Enter password">
-      </div>
-      <button id="connect-btn" class="btn btn-primary">Connect</button>
-      <button id="disconnect-btn" class="btn btn-danger hidden">Disconnect</button>
+      <form id="connect-form">
+        <div class="form-group">
+          <label for="broker">Broker URL</label>
+          <input id="broker" type="text" placeholder="Enter broker URL">
+        </div>
+        <div class="form-group">
+          <label for="topic">MQTT Topic</label>
+          <input id="topic" type="text" placeholder="Enter topic (e.g., iot/data)">
+        </div>
+        <div class="form-group">
+          <label for="username">Username</label>
+          <input id="username" type="text" placeholder="Enter username">
+        </div>
+        <div class="form-group">
+          <label for="password">Password</label>
+          <input id="password" type="password" placeholder="Enter password">
+        </div>
+        <button type="submit" id="connect-btn" class="btn btn-primary">Connect</button>
+        <button id="disconnect-btn" class="btn btn-danger hidden">Disconnect</button>
+      </form>
     </div>
     
     <!-- Status and Messages -->
     <div class="card">
       <h2>Status</h2>
-      <p id="status">Disconnected</p>
+      <p id="status" class="disconnected">Disconnected</p>
       <div id="error" class="error hidden"></div>
       <h2>IoT Messages</h2>
+      <div class="form-group">
+        <label for="filter">Filter Messages</label>
+        <input id="filter" type="text" placeholder="Filter messages">
+      </div>
+      <button id="clear-btn" class="btn btn-secondary">Clear Messages</button>
       <ul id="messages"></ul>
     </div>
   </div>
