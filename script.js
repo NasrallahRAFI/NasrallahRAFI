@@ -1,189 +1,240 @@
-import { DEFAULT_CONFIG } from './config.js';
+// HiveMQ Cloud connection details
+const HIVEMQ_BROKER = "508205b2e19c4a7fad9828d3961d6424.s1.eu.hivemq.cloud";
+const HIVEMQ_WS_PORT = 8884;
+const HIVEMQ_PORT = 8883;
 
+// Global MQTT client reference
+let client = null;
+let isConnected = false;
+
+// DOM elements
+const loginContainer = document.getElementById('login-container');
+const supervisorContainer = document.getElementById('supervisor-container');
 const usernameInput = document.getElementById('username');
 const passwordInput = document.getElementById('password');
-const brokerInput = document.getElementById('broker');
-const topicInput = document.getElementById('topic');
 const connectBtn = document.getElementById('connect-btn');
 const disconnectBtn = document.getElementById('disconnect-btn');
-const clearBtn = document.getElementById('clear-btn');
-const status = document.getElementById('status');
-const errorDiv = document.getElementById('error');
-const messages = document.getElementById('messages');
-const filterInput = document.getElementById('filter');
-const subscribedTopicsDiv = document.getElementById('subscribed-topics');
-let client = null;
-let subscribedTopics = [];
+const loginError = document.getElementById('login-error');
+const connectionStatus = document.getElementById('connection-status');
+const topicsList = document.getElementById('topics-list');
+const messagesContainer = document.getElementById('messages-container');
+const newTopicInput = document.getElementById('new-topic');
+const subscribeBtn = document.getElementById('subscribe-btn');
+const publishTopicInput = document.getElementById('publish-topic');
+const publishMessageInput = document.getElementById('publish-message');
+const publishBtn = document.getElementById('publish-btn');
 
-// Set default values
-brokerInput.value = DEFAULT_CONFIG.brokerUrl;
-topicInput.value = DEFAULT_CONFIG.defaultTopic;
-
-// Sanitize HTML to prevent XSS
-function sanitizeHTML(str) {
-  const div = document.createElement('div');
-  div.textContent = str;
-  return div.innerHTML;
+// Initialize the application
+function init() {
+    connectBtn.addEventListener('click', connectToHiveMQ);
+    disconnectBtn.addEventListener('click', disconnectFromHiveMQ);
+    subscribeBtn.addEventListener('click', subscribeToTopic);
+    publishBtn.addEventListener('click', publishMessage);
+    
+    // Load any saved credentials
+    const savedUsername = localStorage.getItem('mqtt_username');
+    const savedPassword = localStorage.getItem('mqtt_password');
+    
+    if (savedUsername) usernameInput.value = savedUsername;
+    if (savedPassword) passwordInput.value = savedPassword;
 }
 
-// Show error message
-function showError(message) {
-  errorDiv.textContent = message;
-  errorDiv.classList.remove('hidden');
-}
-
-// Update connection status
-function updateStatus(text, isConnected) {
-  status.textContent = text;
-  status.classList.toggle('connected', isConnected);
-  status.classList.toggle('disconnected', !isConnected);
-}
-
-// Update subscribed topics display
-function updateSubscribedTopics() {
-  subscribedTopicsDiv.innerHTML = subscribedTopics.length
-    ? `<p>Subscribed to: ${subscribedTopics.map(t => sanitizeHTML(t)).join(', ')}</p>`
-    : '<p>No active subscriptions</p>';
-}
-
-// Debounce function for filtering
-function debounce(fn, ms) {
-  let timeout;
-  return (...args) => {
-    clearTimeout(timeout);
-    timeout = setTimeout(() => fn(...args), ms);
-  };
-}
-
-// Validate MQTT topic
-function isValidTopic(topic) {
-  return /^[a-zA-Z0-9\/#+]+$/.test(topic) && !/\s/.test(topic);
-}
-
-// Connect to MQTT broker
-function connectToBroker() {
-  const username = usernameInput.value.trim();
-  const password = passwordInput.value;
-  const brokerUrl = brokerInput.value.trim();
-  const topics = topicInput.value.trim().split(',').map(t => t.trim()).filter(t => t && isValidTopic(t));
-
-  errorDiv.classList.add('hidden');
-  errorDiv.textContent = '';
-
-  if (!username || !password || !brokerUrl) {
-    showError('Please enter all required fields');
-    return;
-  }
-
-  if (!topics.length) {
-    showError('Please enter at least one valid topic (e.g., iot/data or iot/#)');
-    return;
-  }
-
-  try {
-    if (typeof mqtt === 'undefined') {
-      showError('MQTT library not loaded');
-      return;
+// Connect to HiveMQ
+function connectToHiveMQ() {
+    const username = usernameInput.value.trim();
+    const password = passwordInput.value.trim();
+    
+    if (!username || !password) {
+        showError("Please enter both username and password");
+        return;
     }
-
-    client = mqtt.connect(brokerUrl, {
-      username,
-      password,
-      clientId: 'iotclient_' + Math.random().toString(16).slice(3),
-      reconnectPeriod: 1000,
-      keepalive: 60,
-    });
-
-    client.on('connect', () => {
-      updateStatus('Connected to IoT Server', true);
-      connectBtn.classList.add('hidden');
-      disconnectBtn.classList.remove('hidden');
-      
-      subscribedTopics = topics;
-      topics.forEach(topic => {
-        client.subscribe(topic, (err) => {
-          if (!err) {
-            messages.innerHTML += `<li>Subscribed to ${sanitizeHTML(topic)}</li>`;
-          } else {
-            showError(`Error subscribing to ${sanitizeHTML(topic)}: ${err.message}`);
-          }
-        });
-      });
-      updateSubscribedTopics();
-    });
-
-    client.on('reconnect', () => {
-      updateStatus('Reconnecting...', false);
-    });
-
-    client.on('message', (receivedTopic, message) => {
-      const msg = sanitizeHTML(message.toString());
-      messages.innerHTML += `<li><strong>${sanitizeHTML(receivedTopic)}</strong>: ${msg}</li>`;
-      const storedMessages = JSON.parse(localStorage.getItem('iotMessages') || '[]');
-      storedMessages.push({ topic: receivedTopic, message: msg });
-      if (storedMessages.length > 100) storedMessages.shift(); // Limit to 100 messages
-      localStorage.setItem('iotMessages', JSON.stringify(storedMessages));
-      messages.scrollTop = messages.scrollHeight;
-    });
-
-    client.on('error', (err) => {
-      let errorMessage = err.message;
-      if (errorMessage.includes('Bad username or password') || errorMessage.includes('Connection refused')) {
-        errorMessage = 'Invalid username or password';
-      }
-      showError(`Connection failed: ${errorMessage}`);
-      updateStatus('Disconnected', false);
-      client.end();
-    });
-
-    client.on('close', () => {
-      updateStatus('Disconnected', false);
-      connectBtn.classList.remove('hidden');
-      disconnectBtn.classList.add('hidden');
-      errorDiv.classList.add('hidden');
-      subscribedTopics = [];
-      updateSubscribedTopics();
-    });
-  } catch (err) {
-    showError(`Connection failed: ${err.message}`);
-    updateStatus('Disconnected', false);
-  }
+    
+    // Save credentials for next time
+    localStorage.setItem('mqtt_username', username);
+    localStorage.setItem('mqtt_password', password);
+    
+    // Create MQTT client
+    const clientId = "webclient_" + Math.random().toString(16).substr(2, 8);
+    const wsEndpoint = `wss://${HIVEMQ_BROKER}:${HIVEMQ_WS_PORT}/mqtt`;
+    
+    client = new Paho.MQTT.Client(wsEndpoint, clientId);
+    
+    // Set callback handlers
+    client.onConnectionLost = onConnectionLost;
+    client.onMessageArrived = onMessageArrived;
+    
+    // Connect options
+    const connectOptions = {
+        userName: username,
+        password: password,
+        useSSL: true,
+        onSuccess: onConnect,
+        onFailure: onConnectFailure,
+        reconnect: true
+    };
+    
+    // Show connecting state
+    loginError.textContent = "";
+    connectBtn.disabled = true;
+    connectBtn.textContent = "Connecting...";
+    
+    // Connect the client
+    client.connect(connectOptions);
 }
 
-// Load stored messages
-window.addEventListener('load', () => {
-  const storedMessages = JSON.parse(localStorage.getItem('iotMessages') || '[]');
-  storedMessages.forEach(({ topic, message }) => {
-    messages.innerHTML += `<li><strong>${sanitizeHTML(topic)}</strong>: ${sanitizeHTML(message)}</li>`;
-  });
-});
+function onConnect() {
+    console.log("Connected to HiveMQ");
+    isConnected = true;
+    
+    // Update UI
+    loginContainer.classList.add('hidden');
+    supervisorContainer.classList.remove('hidden');
+    updateConnectionStatus(true);
+    
+    // Subscribe to default topics if needed
+    // subscribeToTopic("pump/status");
+}
 
-// Event Listeners
-document.getElementById('connect-form').addEventListener('submit', (e) => {
-  e.preventDefault();
-  connectToBroker();
-});
+function onConnectFailure(error) {
+    console.error("Connection failed:", error);
+    showError("Connection failed: " + error.errorMessage);
+    connectBtn.disabled = false;
+    connectBtn.textContent = "Connect";
+}
 
-disconnectBtn.addEventListener('click', () => {
-  if (client) {
-    client.end();
-    updateStatus('Disconnected', false);
-    connectBtn.classList.remove('hidden');
-    disconnectBtn.classList.add('hidden');
-    errorDiv.classList.add('hidden');
-    subscribedTopics = [];
-    updateSubscribedTopics();
-  }
-});
+function onConnectionLost(responseObject) {
+    if (responseObject.errorCode !== 0) {
+        console.error("Connection lost:", responseObject.errorMessage);
+    }
+    isConnected = false;
+    updateConnectionStatus(false);
+    
+    // Show login screen if we were connected
+    if (supervisorContainer.classList.contains('hidden') === false) {
+        supervisorContainer.classList.add('hidden');
+        loginContainer.classList.remove('hidden');
+        showError("Connection lost. Please reconnect.");
+    }
+    
+    connectBtn.disabled = false;
+    connectBtn.textContent = "Connect";
+}
 
-clearBtn.addEventListener('click', () => {
-  messages.innerHTML = '';
-  localStorage.removeItem('iotMessages');
-});
+function onMessageArrived(message) {
+    console.log("Message received:", message.destinationName, message.payloadString);
+    addMessageToUI(message.destinationName, message.payloadString);
+}
 
-filterInput.addEventListener('input', debounce((e) => {
-  const filter = e.target.value.toLowerCase();
-  Array.from(messages.children).forEach((li) => {
-    li.style.display = li.textContent.toLowerCase().includes(filter) ? '' : 'none';
-  });
-}, 300));
+function disconnectFromHiveMQ() {
+    if (client && isConnected) {
+        client.disconnect();
+    }
+    isConnected = false;
+    updateConnectionStatus(false);
+    supervisorContainer.classList.add('hidden');
+    loginContainer.classList.remove('hidden');
+}
+
+function subscribeToTopic() {
+    const topic = newTopicInput.value.trim();
+    
+    if (!topic) {
+        showError("Please enter a topic to subscribe");
+        return;
+    }
+    
+    if (!client || !isConnected) {
+        showError("Not connected to MQTT broker");
+        return;
+    }
+    
+    client.subscribe(topic, {
+        onSuccess: () => {
+            console.log("Subscribed to", topic);
+            addTopicToUI(topic);
+            newTopicInput.value = "";
+        },
+        onFailure: (error) => {
+            console.error("Subscription failed:", error);
+            showError("Failed to subscribe: " + error.errorMessage);
+        }
+    });
+}
+
+function publishMessage() {
+    const topic = publishTopicInput.value.trim();
+    const message = publishMessageInput.value.trim();
+    
+    if (!topic || !message) {
+        showError("Please enter both topic and message");
+        return;
+    }
+    
+    if (!client || !isConnected) {
+        showError("Not connected to MQTT broker");
+        return;
+    }
+    
+    const mqttMessage = new Paho.MQTT.Message(message);
+    mqttMessage.destinationName = topic;
+    
+    client.send(mqttMessage);
+    console.log("Message published to", topic);
+    
+    // Add to UI as outgoing message
+    addMessageToUI(topic, message, true);
+    
+    // Clear inputs
+    publishMessageInput.value = "";
+}
+
+// UI Helpers
+function showError(message) {
+    loginError.textContent = message;
+    setTimeout(() => {
+        loginError.textContent = "";
+    }, 5000);
+}
+
+function updateConnectionStatus(connected) {
+    if (connected) {
+        connectionStatus.textContent = "Connected";
+        connectionStatus.className = "status status-connected";
+    } else {
+        connectionStatus.textContent = "Disconnected";
+        connectionStatus.className = "status status-disconnected";
+    }
+}
+
+function addTopicToUI(topic) {
+    const topicElement = document.createElement('div');
+    topicElement.className = 'topic-item';
+    topicElement.textContent = topic;
+    topicElement.addEventListener('click', () => {
+        // Highlight selected topic
+        document.querySelectorAll('.topic-item').forEach(item => {
+            item.classList.remove('active');
+        });
+        topicElement.classList.add('active');
+    });
+    topicsList.appendChild(topicElement);
+}
+
+function addMessageToUI(topic, message, isOutgoing = false) {
+    const messageElement = document.createElement('div');
+    messageElement.className = 'message-item';
+    
+    const timestamp = new Date().toLocaleTimeString();
+    const direction = isOutgoing ? "OUT" : "IN";
+    
+    messageElement.innerHTML = `
+        <div><strong>${timestamp} [${direction}] ${topic}</strong></div>
+        <div>${message}</div>
+    `;
+    
+    messagesContainer.appendChild(messageElement);
+    messagesContainer.scrollTop = messagesContainer.scrollHeight;
+}
+
+// Initialize the app when DOM is loaded
+document.addEventListener('DOMContentLoaded', init);
