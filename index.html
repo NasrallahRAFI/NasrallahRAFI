@@ -22,8 +22,8 @@
           <input id="broker" type="text" placeholder="Enter broker URL">
         </div>
         <div class="form-group">
-          <label for="topic">MQTT Topic</label>
-          <input id="topic" type="text" placeholder="Enter topic (e.g., iot/data)">
+          <label for="topic">MQTT Topic(s)</label>
+          <input id="topic" type="text" placeholder="Enter topic(s) or pattern, e.g., iot/#,iot/data" value="iot/#">
         </div>
         <div class="form-group">
           <label for="username">Username</label>
@@ -42,6 +42,7 @@
     <div class="card">
       <h2>Status</h2>
       <p id="status" class="disconnected">Disconnected</p>
+      <div id="subscribed-topics"><p>No active subscriptions</p></div>
       <div id="error" class="error hidden"></div>
       <h2>IoT Messages</h2>
       <div class="form-group">
