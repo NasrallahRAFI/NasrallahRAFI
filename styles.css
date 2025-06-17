@@ -1,159 +1,144 @@
-import { DEFAULT_CONFIG } from './config.js';
-
-const usernameInput = document.getElementById('username');
-const passwordInput = document.getElementById('password');
-const brokerInput = document.getElementById('broker');
-const topicInput = document.getElementById('topic');
-const connectBtn = document.getElementById('connect-btn');
-const disconnectBtn = document.getElementById('disconnect-btn');
-const clearBtn = document.getElementById('clear-btn');
-const status = document.getElementById('status');
-const errorDiv = document.getElementById('error');
-const messages = document.getElementById('messages');
-const filterInput = document.getElementById('filter');
-let client = null;
-
-// Set default values
-brokerInput.value = DEFAULT_CONFIG.brokerUrl;
-topicInput.value = DEFAULT_CONFIG.defaultTopic;
-
-// Sanitize HTML to prevent XSS
-function sanitizeHTML(str) {
-  const div = document.createElement('div');
-  div.textContent = str;
-  return div.innerHTML;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
 }
 
-// Show error message
-function showError(message) {
-  errorDiv.textContent = message;
-  errorDiv.classList.remove('hidden');
+body {
+  background-color: #f0f2f5;
+  padding: 20px;
 }
 
-// Update connection status
-function updateStatus(text, isConnected) {
-  status.textContent = text;
-  status.classList.toggle('connected', isConnected);
-  status.classList.toggle('disconnected', !isConnected);
+.container {
+  max-width: 500px;
+  margin: 0 auto;
 }
 
-// Debounce function for filtering
-function debounce(fn, ms) {
-  let timeout;
-  return (...args) => {
-    clearTimeout(timeout);
-    timeout = setTimeout(() => fn(...args), ms);
-  };
+h1 {
+  text-align: center;
+  font-size: 2rem;
+  color: #333;
+  margin-bottom: 1.5rem;
 }
 
-// Connect to MQTT broker
-function connectToBroker() {
-  const username = usernameInput.value.trim();
-  const password = passwordInput.value;
-  const brokerUrl = brokerInput.value.trim();
-  const topic = topicInput.value.trim() || DEFAULT_CONFIG.defaultTopic;
+.card {
+  background: white;
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
 
-  // Clear previous error
-  errorDiv.classList.add('hidden');
-  errorDiv.textContent = '';
+h2 {
+  font-size: 1.25rem;
+  color: #333;
+  margin-bottom: 1rem;
+}
 
-  if (!username || !password || !brokerUrl) {
-    showError('Please enter all required fields');
-    return;
+.form-group {
+  margin-bottom: 1rem;
+}
+
+label {
+  display blo
+ck;
+  color: #555;
+  margin-bottom: 0.5rem;
+}
+
+input {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 1rem;
+}
+
+.btn {
+  width: 100%;
+  padding: 0.75rem;
+  border: none;
+  border-radius: 4px;
+  color: white;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  margin-bottom: 0.5rem;
+}
+
+.btn-primary {
+  background-color: #007bff;
+}
+
+.btn-primary:hover {
+  background-color: #0056b3;
+}
+
+.btn-danger {
+  background-color: #dc3545;
+}
+
+.btn-danger:hover {
+  background-color: #b02a37;
+}
+
+.btn-secondary {
+  background-color: #6c757d;
+}
+
+.btn-secondary:hover {
+  background-color: #5a6268;
+}
+
+.hidden {
+  display: none;
+}
+
+#status.connected {
+  color: #28a745;
+  font-weight: bold;
+}
+
+#status.disconnected {
+  color: #dc3545;
+  font-weight: bold;
+}
+
+p {
+  color: #555;
+}
+
+ul {
+  list-style-type: disc;
+  padding-left: 20px;
+  max-height: 200px;
+  overflow-y: auto;
+}
+
+li {
+  color: #333;
+  margin-bottom: 0.5rem;
+}
+
+.error {
+  color: #721c24;
+  background-color: #f8d7da;
+  padding: 0.75rem;
+  border-radius: 4px;
+  margin-top: 0.5rem;
+  border: 1px solid #f5c6cb;
+}
+
+@media (max-width: 600px) {
+  .container {
+    padding: 10px;
+    max-width: 100%;
   }
-
-  try {
-    if (typeof mqtt === 'undefined') {
-      showError('MQTT library not loaded');
-      return;
-    }
-
-    client = mqtt.connect(brokerUrl, {
-      username,
-      password,
-      clientId: 'iotclient_' + Math.random().toString(16).slice(3),
-      reconnectPeriod: 1000, // Auto-reconnect
-      keepalive: 60,
-    });
-
-    client.on('connect', () => {
-      updateStatus('Connected to IoT Server', true);
-      connectBtn.classList.add('hidden');
-      disconnectBtn.classList.remove('hidden');
-      client.subscribe(topic, (err) => {
-        if (!err) {
-          messages.innerHTML += `<li>Subscribed to ${sanitizeHTML(topic)}</li>`;
-        } else {
-          showError(`Error subscribing: ${err.message}`);
-        }
-      });
-    });
-
-    client.on('reconnect', () => {
-      updateStatus('Reconnecting...', false);
-    });
-
-    client.on('message', (receivedTopic, message) => {
-      const msg = sanitizeHTML(message.toString());
-      messages.innerHTML += `<li>${msg}</li>`;
-      const storedMessages = JSON.parse(localStorage.getItem('iotMessages') || '[]');
-      storedMessages.push(msg);
-      localStorage.setItem('iotMessages', JSON.stringify(storedMessages));
-      messages.scrollTop = messages.scrollHeight;
-    });
-
-    client.on('error', (err) => {
-      let errorMessage = err.message;
-      if (errorMessage.includes('Bad username or password') || errorMessage.includes('Connection refused')) {
-        errorMessage = 'Invalid username or password';
-      }
-      showError(`Connection failed: ${errorMessage}`);
-      updateStatus('Disconnected', false);
-      client.end();
-    });
-
-    client.on('close', () => {
-      updateStatus('Disconnected', false);
-      connectBtn.classList.remove('hidden');
-      disconnectBtn.classList.add('hidden');
-      errorDiv.classList.add('hidden');
-    });
-  } catch (err) {
-    showError(`Connection failed: ${err.message}`);
-    updateStatus('Disconnected', false);
+  h1 {
+    font-size: 1.5rem;
+  }
+  .card {
+    padding: 1rem;
   }
 }
-
-// Load stored messages
-window.addEventListener('load', () => {
-  const storedMessages = JSON.parse(localStorage.getItem('iotMessages') || '[]');
-  storedMessages.forEach(msg => messages.innerHTML += `<li>${sanitizeHTML(msg)}</li>`);
-});
-
-// Event Listeners
-document.getElementById('connect-form').addEventListener('submit', (e) => {
-  e.preventDefault();
-  connectToBroker();
-});
-
-disconnectBtn.addEventListener('click', () => {
-  if (client) {
-    client.end();
-    updateStatus('Disconnected', false);
-    connectBtn.classList.remove('hidden');
-    disconnectBtn.classList.add('hidden');
-    errorDiv.classList.add('hidden');
-  }
-});
-
-clearBtn.addEventListener('click', () => {
-  messages.innerHTML = '';
-  localStorage.removeItem('iotMessages');
-});
-
-filterInput.addEventListener('input', debounce((e) => {
-  const filter = e.target.value.toLowerCase();
-  Array.from(messages.children).forEach((li) => {
-    li.style.display = li.textContent.toLowerCase().includes(filter) ? '' : 'none';
-  });
-}, 300));
