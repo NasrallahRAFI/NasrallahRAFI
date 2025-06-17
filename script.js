@@ -11,7 +11,9 @@ const status = document.getElementById('status');
 const errorDiv = document.getElementById('error');
 const messages = document.getElementById('messages');
 const filterInput = document.getElementById('filter');
+const subscribedTopicsDiv = document.getElementById('subscribed-topics');
 let client = null;
+let subscribedTopics = [];
 
 // Set default values
 brokerInput.value = DEFAULT_CONFIG.brokerUrl;
@@ -37,6 +39,13 @@ function updateStatus(text, isConnected) {
   status.classList.toggle('disconnected', !isConnected);
 }
 
+// Update subscribed topics display
+function updateSubscribedTopics() {
+  subscribedTopicsDiv.innerHTML = subscribedTopics.length
+    ? `<p>Subscribed to: ${subscribedTopics.map(t => sanitizeHTML(t)).join(', ')}</p>`
+    : '<p>No active subscriptions</p>';
+}
+
 // Debounce function for filtering
 function debounce(fn, ms) {
   let timeout;
@@ -46,19 +55,28 @@ function debounce(fn, ms) {
   };
 }
 
+// Validate MQTT topic
+function isValidTopic(topic) {
+  return /^[a-zA-Z0-9\/#+]+$/.test(topic) && !/\s/.test(topic);
+}
+
 // Connect to MQTT broker
 function connectToBroker() {
   const username = usernameInput.value.trim();
   const password = passwordInput.value;
   const brokerUrl = brokerInput.value.trim();
-  const topic = topicInput.value.trim() || DEFAULT_CONFIG.defaultTopic;
+  const topics = topicInput.value.trim().split(',').map(t => t.trim()).filter(t => t && isValidTopic(t));
 
-  // Clear previous error
   errorDiv.classList.add('hidden');
   errorDiv.textContent = '';
 
   if (!username || !password || !brokerUrl) {
     showError('Please enter all required fields');
+    return;
+  }
+
+  if (!topics.length) {
+    showError('Please enter at least one valid topic (e.g., iot/data or iot/#)');
     return;
   }
 
@@ -72,7 +90,7 @@ function connectToBroker() {
       username,
       password,
       clientId: 'iotclient_' + Math.random().toString(16).slice(3),
-      reconnectPeriod: 1000, // Auto-reconnect
+      reconnectPeriod: 1000,
       keepalive: 60,
     });
 
@@ -80,13 +98,18 @@ function connectToBroker() {
       updateStatus('Connected to IoT Server', true);
       connectBtn.classList.add('hidden');
       disconnectBtn.classList.remove('hidden');
-      client.subscribe(topic, (err) => {
-        if (!err) {
-          messages.innerHTML += `<li>Subscribed to ${sanitizeHTML(topic)}</li>`;
-        } else {
-          showError(`Error subscribing: ${err.message}`);
-        }
+      
+      subscribedTopics = topics;
+      topics.forEach(topic => {
+        client.subscribe(topic, (err) => {
+          if (!err) {
+            messages.innerHTML += `<li>Subscribed to ${sanitizeHTML(topic)}</li>`;
+          } else {
+            showError(`Error subscribing to ${sanitizeHTML(topic)}: ${err.message}`);
+          }
+        });
       });
+      updateSubscribedTopics();
     });
 
     client.on('reconnect', () => {
@@ -95,9 +118,10 @@ function connectToBroker() {
 
     client.on('message', (receivedTopic, message) => {
       const msg = sanitizeHTML(message.toString());
-      messages.innerHTML += `<li>${msg}</li>`;
+      messages.innerHTML += `<li><strong>${sanitizeHTML(receivedTopic)}</strong>: ${msg}</li>`;
       const storedMessages = JSON.parse(localStorage.getItem('iotMessages') || '[]');
-      storedMessages.push(msg);
+      storedMessages.push({ topic: receivedTopic, message: msg });
+      if (storedMessages.length > 100) storedMessages.shift(); // Limit to 100 messages
       localStorage.setItem('iotMessages', JSON.stringify(storedMessages));
       messages.scrollTop = messages.scrollHeight;
     });
@@ -117,6 +141,8 @@ function connectToBroker() {
       connectBtn.classList.remove('hidden');
       disconnectBtn.classList.add('hidden');
       errorDiv.classList.add('hidden');
+      subscribedTopics = [];
+      updateSubscribedTopics();
     });
   } catch (err) {
     showError(`Connection failed: ${err.message}`);
@@ -127,7 +153,9 @@ function connectToBroker() {
 // Load stored messages
 window.addEventListener('load', () => {
   const storedMessages = JSON.parse(localStorage.getItem('iotMessages') || '[]');
-  storedMessages.forEach(msg => messages.innerHTML += `<li>${sanitizeHTML(msg)}</li>`);
+  storedMessages.forEach(({ topic, message }) => {
+    messages.innerHTML += `<li><strong>${sanitizeHTML(topic)}</strong>: ${sanitizeHTML(message)}</li>`;
+  });
 });
 
 // Event Listeners
@@ -143,6 +171,8 @@ disconnectBtn.addEventListener('click', () => {
     connectBtn.classList.remove('hidden');
     disconnectBtn.classList.add('hidden');
     errorDiv.classList.add('hidden');
+    subscribedTopics = [];
+    updateSubscribedTopics();
   }
 });
 
