@@ -1,57 +1,59 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>IoT Client Portal - HiveMQ</title>
-  <link rel="stylesheet" href="styles.css">
-  <script src="mqtt.min.js"></script>
-  <script src="config.js" type="module"></script>
-  <script src="script.js" type="module" defer></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pump State Supervisor</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <div class="container">
-    <h1>IoT Client Portal</h1>
-    
-    <!-- Connection Form -->
-    <div class="card">
-      <h2>Login to View IoT Data</h2>
-      <form id="connect-form">
-        <div class="form-group">
-          <label for="broker">Broker URL</label>
-          <input id="broker" type="text" placeholder="Enter broker URL">
+    <div id="login-container" class="container">
+        <h1>Pump State Supervisor</h1>
+        <div id="login-form">
+            <h2>Connect to HiveMQ</h2>
+            <div class="form-group">
+                <label for="username">Username:</label>
+                <input type="text" id="username" placeholder="Enter your username">
+            </div>
+            <div class="form-group">
+                <label for="password">Password:</label>
+                <input type="password" id="password" placeholder="Enter your password">
+            </div>
+            <button id="connect-btn" class="btn">Connect</button>
+            <div id="login-error" class="error-message"></div>
         </div>
-        <div class="form-group">
-          <label for="topic">MQTT Topic(s)</label>
-          <input id="topic" type="text" placeholder="Enter topic(s) or pattern, e.g., iot/#,iot/data" value="iot/#">
-        </div>
-        <div class="form-group">
-          <label for="username">Username</label>
-          <input id="username" type="text" placeholder="Enter username">
-        </div>
-        <div class="form-group">
-          <label for="password">Password</label>
-          <input id="password" type="password" placeholder="Enter password">
-        </div>
-        <button type="submit" id="connect-btn" class="btn btn-primary">Connect</button>
-        <button id="disconnect-btn" class="btn btn-danger hidden">Disconnect</button>
-      </form>
     </div>
-    
-    <!-- Status and Messages -->
-    <div class="card">
-      <h2>Status</h2>
-      <p id="status" class="disconnected">Disconnected</p>
-      <div id="subscribed-topics"><p>No active subscriptions</p></div>
-      <div id="error" class="error hidden"></div>
-      <h2>IoT Messages</h2>
-      <div class="form-group">
-        <label for="filter">Filter Messages</label>
-        <input id="filter" type="text" placeholder="Filter messages">
-      </div>
-      <button id="clear-btn" class="btn btn-secondary">Clear Messages</button>
-      <ul id="messages"></ul>
+
+    <div id="supervisor-container" class="container hidden">
+        <div class="header">
+            <h1>Pump State Dashboard</h1>
+            <div id="connection-status" class="status-disconnected">Disconnected</div>
+            <button id="disconnect-btn" class="btn">Disconnect</button>
+        </div>
+        
+        <div class="dashboard">
+            <div class="topics-panel">
+                <h2>Available Topics</h2>
+                <div id="topics-list" class="scrollable-list"></div>
+                <div class="subscription-controls">
+                    <input type="text" id="new-topic" placeholder="Enter topic to subscribe">
+                    <button id="subscribe-btn" class="btn">Subscribe</button>
+                </div>
+            </div>
+            
+            <div class="messages-panel">
+                <h2>Messages</h2>
+                <div id="messages-container" class="scrollable-list"></div>
+                <div class="message-controls">
+                    <input type="text" id="publish-topic" placeholder="Enter topic">
+                    <input type="text" id="publish-message" placeholder="Enter message">
+                    <button id="publish-btn" class="btn">Publish</button>
+                </div>
+            </div>
+        </div>
     </div>
-  </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/paho-mqtt/1.1.0/paho-mqtt.min.js"></script>
+    <script src="app.js"></script>
 </body>
 </html>
