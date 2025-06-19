@@ -1,80 +1,60 @@
-const HIVEMQ_BROKER = "508205b2e19c4a7fad9828d3961d6424.s1.eu.hivemq.cloud";
-const HIVEMQ_PORT = 8884;
-const TOPIC = "Test";
-let client = null;
+```javascript
+// MQTT client configuration
+const options = {
+    host: '508205b2e19c4a7fad9828d3961d6424.s1.eu.hivemq.cloud',
+    port: 8884,
+    protocol: 'wss',
+    clientId: 'mqttjs_' + Math.random().toString(16).substr(2, 8),
+    username: 'YOUR_USERNAME', // Replace with your HiveMQ Cloud username
+    password: 'YOUR_PASSWORD'  // Replace with your HiveMQ Cloud password
+};
 
-document.addEventListener('DOMContentLoaded', () => {
-    const loginForm = document.getElementById('login-form');
-    const loginContainer = document.getElementById('login-container');
-    const mainContainer = document.getElementById('main-container');
-    const errorMessage = document.getElementById('error-message');
-    const logoutBtn = document.getElementById('logout-btn');
-    const messagesDiv = document.getElementById('messages');
+// Initialize MQTT client
+const client = mqtt.connect(options);
 
-    loginForm.addEventListener('submit', function(e) {
-        e.preventDefault();
-        errorMessage.textContent = "";
-        const username = document.getElementById('username').value.trim();
-        const password = document.getElementById('password').value;
+// DOM elements
+const statusDiv = document.getElementById('status');
+const messagesDiv = document.getElementById('messages');
 
-        if (!username || !password) {
-            errorMessage.textContent = "Please enter both username and password.";
-            return;
+// Handle connection success
+client.on('connect', () => {
+    statusDiv.textContent = 'Connected to HiveMQ Cloud';
+    statusDiv.style.color = 'green';
+    // Subscribe to a topic (replace 'test/topic' with your topic)
+    client.subscribe('test/topic', (err) => {
+        if (!err) {
+            appendMessage('Subscribed to test/topic');
+        } else {
+            appendMessage('Subscription error: ' + err, true);
         }
-
-        // Connect MQTT
-        const clientId = "clientId_" + Math.random().toString(16).substr(2, 8);
-        client = new Paho.MQTT.Client(HIVEMQ_BROKER, Number(HIVEMQ_PORT), clientId);
-
-        client.onConnectionLost = function(responseObject) {
-            if (responseObject.errorCode !== 0) {
-                showError("Connection lost: " + responseObject.errorMessage);
-                showLogin();
-            }
-        };
-
-        client.onMessageArrived = function(message) {
-            messagesDiv.textContent += `[${message.destinationName}] ${message.payloadString}\n`;
-        };
-
-        client.connect({
-            useSSL: true,
-            userName: username,
-            password: password,
-            timeout: 5,
-            onSuccess: function() {
-                showMain();
-                messagesDiv.textContent = "";
-                client.subscribe(TOPIC, {qos: 0});
-            },
-            onFailure: function(err) {
-                showError("Login failed: " + (err.errorMessage || "Invalid credentials or network error."));
-            }
-        });
     });
-
-    logoutBtn.addEventListener('click', () => {
-        if (client && client.isConnected()) {
-            client.disconnect();
-        }
-        showLogin();
-    });
-
-    function showError(msg) {
-        errorMessage.textContent = msg;
-    }
-
-    function showMain() {
-        loginContainer.style.display = "none";
-        mainContainer.style.display = "block";
-    }
-
-    function showLogin() {
-        loginContainer.style.display = "block";
-        mainContainer.style.display = "none";
-        errorMessage.textContent = "";
-        document.getElementById('username').value = '';
-        document.getElementById('password').value = '';
-    }
 });
-        
+
+// Handle incoming messages
+client.on('message', (topic, message) => {
+    const msg = `Topic: ${topic} | Message: ${message.toString()}`;
+    appendMessage(msg);
+});
+
+// Handle errors
+client.on('error', (err) => {
+    statusDiv.textContent = 'Connection error: ' + err;
+    statusDiv.style.color = 'red';
+});
+
+// Handle connection close
+client.on('close', () => {
+    statusDiv.textContent = 'Disconnected from HiveMQ Cloud';
+    statusDiv.style.color = 'orange';
+});
+
+// Function to append messages to the UI
+function appendMessage(text, isError = false) {
+    const msgDiv = document.createElement('div');
+    msgDiv.className = 'message';
+    if (isError) msgDiv.className += ' error';
+    msgDiv.textContent = `[${new Date().toLocaleTimeString()}] ${text}`;
+    messagesDiv.appendChild(msgDiv);
+    messagesDiv.scrollTop = messagesDiv.scrollHeight;
+}
+```
