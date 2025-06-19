@@ -2,49 +2,28 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pump Monitoring Dashboard</title>
-    <link rel="stylesheet" href="styles.css">
-    <script src="https://unpkg.com/mqtt@5.0.2/dist/mqtt.min.js"></script>
+    <title>HiveMQ Test Login</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div id="login-container">
-        <h1>Pump Monitoring Login</h1>
+        <h2>Login to HiveMQ</h2>
         <form id="login-form">
-            <label for="username">Username:</label>
-            <input type="text" id="username" required>
-            <label for="password">Password:</label>
-            <input type="password" id="password" required>
+            <input type="text" id="username" placeholder="HiveMQ Username" required><br>
+            <input type="password" id="password" placeholder="HiveMQ Password" required><br>
             <button type="submit">Login</button>
-            <p id="error-message" class="error hidden"></p>
         </form>
+        <div id="error-message"></div>
     </div>
-    <div id="dashboard" class="hidden">
-        <h1>Pump Monitoring Dashboard</h1>
-        <div class="status-container">
-            <div class="status-card">
-                <h2>Pump State</h2>
-                <p id="pump-state">Waiting for data...</p>
-            </div>
-            <div class="status-card">
-                <h2>Water Tank Level</h2>
-                <p id="water-tank-level">Waiting for data...</p>
-            </div>
-            <div class="status-card">
-                <h2>Solar Inverter State</h2>
-                <p id="solar-inverter-state">Waiting for data...</p>
-            </div>
-            <div class="status-card">
-                <h2>Electricity Source</h2>
-                <p id="electricity-source">Waiting for data...</p>
-            </div>
-            <div class="status-card">
-                <h2>Solar Inverter Temperature</h2>
-                <p id="solar-inverter-temp">Waiting for data...</p>
-            </div>
-        </div>
-        <button id="logout">Logout</button>
+
+    <div id="main-container" style="display:none;">
+        <h2>Connected! Subscribed to topic: <code>Test</code></h2>
+        <div id="messages"></div>
+        <button id="logout-btn">Logout</button>
     </div>
-    <script src="script.js"></script>
+
+    <!-- Paho MQTT JS client -->
+    <script src="https://unpkg.com/paho-mqtt/mqttws31.min.js"></script>
+    <script src="app.js"></script>
 </body>
 </html>
