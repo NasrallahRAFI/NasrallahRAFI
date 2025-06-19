@@ -1,52 +1,41 @@
+```css
 body {
     font-family: Arial, sans-serif;
-    background: #f1f1f1;
-    margin: 0; padding: 0;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f4f4f4;
 }
 
-#login-container, #main-container {
-    max-width: 350px;
-    margin: 60px auto;
-    background: #fff;
-    padding: 30px 25px;
-    border-radius: 8px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+h1 {
     text-align: center;
+    color: #333;
 }
 
-input[type="text"], input[type="password"] {
-    width: 90%;
+#status {
+    margin: 20px 0;
     padding: 10px;
-    margin: 8px 0;
-    border: 1px solid #bbb;
-    border-radius: 4px;
-}
-
-button {
-    padding: 10px 18px;
-    background: #1d8fcb;
-    color: #fff;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    margin-top: 14px;
-}
-
-button:hover {
-    background: #155d82;
-}
-
-#error-message {
-    color: #e74c3c;
-    margin-top: 10px;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 5px;
 }
 
 #messages {
-    margin: 20px 0;
-    padding: 8px;
-    background: #f8f8f8;
-    border-radius: 4px;
-    min-height: 30px;
-    font-size: 15px;
-    color: #444;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    height: 300px;
+    overflow-y: auto;
+    margin-top: 10px;
 }
+
+.message {
+    padding: 5px;
+    border-bottom: 1px solid #eee;
+}
+
+.error {
+    color: red;
+}
+```
