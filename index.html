@@ -1,29 +1,20 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>HiveMQ Test Login</title>
-    <link rel="stylesheet" href="style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HiveMQ Cloud MQTT Interface</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div id="login-container">
-        <h2>Login to HiveMQ</h2>
-        <form id="login-form">
-            <input type="text" id="username" placeholder="HiveMQ Username" required><br>
-            <input type="password" id="password" placeholder="HiveMQ Password" required><br>
-            <button type="submit">Login</button>
-        </form>
-        <div id="error-message"></div>
-    </div>
+    <h1>HiveMQ Cloud MQTT Interface</h1>
+    <div id="status">Connecting to HiveMQ Cloud...</div>
+    <h2>Received Messages</h2>
+    <div id="messages"></div>
 
-    <div id="main-container" style="display:none;">
-        <h2>Connected! Subscribed to topic: <code>Test</code></h2>
-        <div id="messages"></div>
-        <button id="logout-btn">Logout</button>
-    </div>
-
-    <!-- Paho MQTT JS client -->
-    <script src="https://unpkg.com/paho-mqtt/mqttws31.min.js"></script>
-    <script src="app.js"></script>
+    <script src="https://unpkg.com/mqtt@5.10.1/dist/mqtt.min.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
+```
