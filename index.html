@@ -20,7 +20,7 @@
     <div id="messages"></div>
     <script src="https://unpkg.com/mqtt@5.10.1/dist/mqtt.min.js"></script>
     <script>
-        // Your JavaScript code goes here
+        // MQTT client configuration
         const options = {
             host: '508205b2e19c4a7fad9828d3961d6424.s1.eu.hivemq.cloud',
             port: 8884,
@@ -45,10 +45,10 @@
         });
         client.on('message', (topic, message) => {
             const msg = `Topic: ${topic} | Message: ${message.toString()}`;
-            0appendMessage(msg);
+            appendMessage(msg);
         });
         client.on('error', (err) => {
-            0statusDiv.textContent = 'Connection error: ' + err;
+            statusDiv.textContent = 'Connection error: ' + err;
             statusDiv.style.color = 'red';
         });
         client.on('close', () => {
