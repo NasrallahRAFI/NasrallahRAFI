@@ -5,8 +5,8 @@ const options = {
     port: 8884,
     protocol: 'wss',
     clientId: 'mqttjs_' + Math.random().toString(16).substr(2, 8),
-    username: 'YOUR_USERNAME', // Replace with your HiveMQ Cloud username
-    password: 'YOUR_PASSWORD'  // Replace with your HiveMQ Cloud password
+    username: 'Nasrallah', // Replace with your HiveMQ Cloud username
+    password: 'Nasrollah2003*'  // Replace with your HiveMQ Cloud password
 };
 
 // Initialize MQTT client
