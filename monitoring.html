@@ -26,7 +26,7 @@
         
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #f5f7fa;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
             color: var(--dark);
             line-height: 1.6;
         }
@@ -127,7 +127,7 @@
         /* Main Content Styles */
         .main-content {
             padding: 20px;
-            background-color: #f5f7fa;
+            background: linear-gradient(135deg, #f5f7fa 0%, #e0e6ed 100%);
         }
         
         .header {
@@ -136,47 +136,52 @@
             align-items: center;
             margin-bottom: 25px;
             padding-bottom: 15px;
-            border-bottom: 1px solid #e0e6ed;
+            border-bottom: 2px dashed var(--primary);
         }
         
         .page-title h1 {
-            font-size: 1.5rem;
+            font-size: 1.8rem;
             color: var(--dark);
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
         }
         
         .status-indicator {
             display: flex;
             align-items: center;
             background: rgba(46, 204, 113, 0.1);
-            padding: 8px 15px;
+            padding: 10px 15px;
             border-radius: 20px;
-            font-size: 0.85rem;
+            font-size: 0.9rem;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
         }
         
         .status-dot {
-            width: 10px;
-            height: 10px;
+            width: 12px;
+            height: 12px;
             border-radius: 50%;
             background-color: var(--success);
             margin-right: 8px;
             animation: pulse 2s infinite;
+            box-shadow: 0 0 5px var(--success);
         }
         
         .logout-btn {
             background: var(--danger);
             color: white;
             border: none;
-            padding: 8px 15px;
+            padding: 10px 20px;
             border-radius: 6px;
             cursor: pointer;
-            font-size: 0.85rem;
+            font-size: 0.9rem;
             transition: all 0.3s;
             display: flex;
             align-items: center;
+            border: 1px solid rgba(255, 255, 255, 0.2);
         }
         
         .logout-btn:hover {
             background: #c0392b;
+            transform: scale(1.05);
         }
         
         .logout-btn i {
@@ -186,22 +191,24 @@
         /* Dashboard Cards */
         .dashboard-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 20px;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 25px;
             margin-bottom: 30px;
         }
         
         .card {
             background: white;
-            border-radius: 10px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+            border-radius: 15px;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
             padding: 20px;
             transition: transform 0.3s, box-shadow 0.3s;
+            border: 2px solid var(--light);
+            overflow: hidden;
         }
         
         .card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            transform: translateY(-10px);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2);
         }
         
         .card-header {
@@ -209,22 +216,26 @@
             justify-content: space-between;
             align-items: center;
             margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 1px dashed var(--gray);
         }
         
         .card-title {
-            font-size: 1rem;
+            font-size: 1.2rem;
             font-weight: 600;
             color: var(--dark);
+            text-transform: uppercase;
         }
         
         .card-icon {
-            width: 40px;
-            height: 40px;
-            border-radius: 8px;
+            width: 50px;
+            height: 50px;
+            border-radius: 10px;
             display: flex;
             align-items: center;
             justify-content: center;
             color: white;
+            font-size: 1.5rem;
         }
         
         .icon-primary {
@@ -239,155 +250,109 @@
             background: linear-gradient(135deg, var(--warning), #e67e22);
         }
         
-        .icon-danger {
-            background: linear-gradient(135deg, var(--danger), #c0392b);
-        }
-        
         .card-value {
-            font-size: 1.8rem;
+            font-size: 2rem;
             font-weight: 700;
-            margin-bottom: 5px;
+            margin-bottom: 10px;
+            color: var(--dark);
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
         }
         
         .card-description {
-            font-size: 0.85rem;
+            font-size: 0.9rem;
             color: var(--gray);
+            font-style: italic;
         }
         
-        /* Energy Source Styles */
-        .energy-source-container {
+        /* Slider Styles */
+        .slider-container {
+            margin-top: 20px;
+        }
+        
+        .slider {
+            -webkit-appearance: none;
+            width: 100%;
+            height: 15px;
+            border-radius: 10px;
+            background: linear-gradient(to right, var(--danger), var(--warning), var(--success));
+            outline: none;
+            opacity: 0.7;
+            transition: opacity 0.2s;
+        }
+        
+        .slider:hover {
+            opacity: 1;
+        }
+        
+        .slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: white;
+            cursor: pointer;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+            border: 2px solid var(--primary);
+        }
+        
+        .slider::-moz-range-thumb {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: white;
+            cursor: pointer;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+            border: 2px solid var(--primary);
+        }
+        
+        /* LED Styles */
+        .led {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            margin-right: 10px;
+            background-color: var(--danger);
+            box-shadow: 0 0 10px rgba(231, 76, 60, 0.5);
+            display: inline-block;
+            vertical-align: middle;
+        }
+        
+        .led.on {
+            background-color: var(--success);
+            box-shadow: 0 0 10px rgba(46, 204, 113, 0.5);
+            animation: pulse 2s infinite;
+        }
+        
+        .led-legend {
+            font-size: 0.9rem;
+            color: var(--dark);
+            margin-left: 5px;
+        }
+        
+        /* Pump Control */
+        .pump-control {
             display: flex;
             flex-direction: column;
             gap: 15px;
             margin-top: 20px;
         }
         
-        .energy-source-option {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-        
-        .energy-led {
-            width: 20px;
-            height: 20px;
-            border-radius: 50%;
-            background-color: #ccc;
-            transition: all 0.3s;
-            position: relative;
-        }
-        
-        .energy-led.on {
-            box-shadow: 0 0 10px currentColor;
-        }
-        
-        .energy-led.battery {
-            background-color: var(--warning);
-            color: var(--warning);
-        }
-        
-        .energy-led.grid {
-            background-color: var(--danger);
-            color: var(--danger);
-        }
-        
-        .energy-label {
-            font-size: 0.9rem;
-            font-weight: 500;
-        }
-        
-        /* Level Indicators */
-        .level-indicator {
-            margin-top: 15px;
-        }
-        
-        .level-header {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 5px;
-        }
-        
-        .level-title {
-            font-size: 0.9rem;
-            font-weight: 500;
-            display: flex;
-            align-items: center;
-            gap: 5px;
-        }
-        
-        .level-value {
-            font-weight: 600;
-        }
-        
-        .progress-container {
-            height: 15px;
-            background: #e0e6ed;
-            border-radius: 8px;
-            overflow: hidden;
-            margin-bottom: 15px;
-            position: relative;
-        }
-        
-        .progress-bar {
-            height: 100%;
-            border-radius: 8px;
-            transition: width 0.5s ease;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .progress-bar::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(
-                to right,
-                rgba(255, 255, 255, 0.1) 0%,
-                rgba(255, 255, 255, 0.4) 50%,
-                rgba(255, 255, 255, 0.1) 100%
-            );
-            animation: shimmer 2s infinite;
-        }
-        
-        .progress-electricity {
-            background: linear-gradient(to right, #9b59b6, #8e44ad);
-        }
-        
-        .progress-battery {
-            background: linear-gradient(to right, #f39c12, #f1c40f);
-        }
-        
-        .progress-water {
-            background: linear-gradient(to right, #3498db, #2980b9);
-        }
-        
-        .progress-flow {
-            background: linear-gradient(to right, #1abc9c, #16a085);
-        }
-        
-        /* Pump Control */
-        .pump-control {
-            display: flex;
-            justify-content: space-between;
-            margin-top: 15px;
-        }
-        
         .pump-status {
             display: flex;
             align-items: center;
-            gap: 10px;
+            justify-content: center;
+            font-size: 1.1rem;
+            color: var(--dark);
         }
         
         .status-led {
             width: 20px;
             height: 20px;
             border-radius: 50%;
+            margin-right: 10px;
             background-color: var(--danger);
             box-shadow: 0 0 10px rgba(231, 76, 60, 0.5);
-            animation: pulse 2s infinite;
         }
         
         .status-led.on {
@@ -397,43 +362,45 @@
         
         .pump-actions {
             display: flex;
-            gap: 10px;
+            gap: 15px;
+            justify-content: center;
         }
         
         .btn {
-            padding: 8px 15px;
+            padding: 12px 25px;
             border: none;
-            border-radius: 6px;
-            font-size: 0.85rem;
-            font-weight: 500;
+            border-radius: 10px;
+            font-size: 1rem;
+            font-weight: 600;
             cursor: pointer;
             transition: all 0.3s;
             display: flex;
             align-items: center;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
         }
         
         .btn i {
-            margin-right: 5px;
+            margin-right: 8px;
         }
         
         .btn-success {
-            background: var(--success);
+            background: linear-gradient(135deg, var(--success), #27ae60);
             color: white;
         }
         
         .btn-success:hover {
-            background: #27ae60;
-            transform: scale(1.05);
+            background: linear-gradient(135deg, #27ae60, var(--success));
+            transform: scale(1.1);
         }
         
         .btn-danger {
-            background: var(--danger);
+            background: linear-gradient(135deg, var(--danger), #c0392b);
             color: white;
         }
         
         .btn-danger:hover {
-            background: #c0392b;
-            transform: scale(1.05);
+            background: linear-gradient(135deg, #c0392b, var(--danger));
+            transform: scale(1.1);
         }
         
         /* Animations */
@@ -443,21 +410,14 @@
             100% { opacity: 1; }
         }
         
-        @keyframes shimmer {
-            0% { transform: translateX(-100%); }
-            100% { transform: translateX(100%); }
-        }
-        
         /* Responsive */
         @media (max-width: 992px) {
             .dashboard-container {
                 grid-template-columns: 1fr;
             }
-            
             .sidebar {
                 display: none;
             }
-            
             .header {
                 flex-direction: column;
                 align-items: flex-start;
@@ -469,6 +429,9 @@
             .dashboard-grid {
                 grid-template-columns: 1fr;
             }
+            .pump-actions {
+                flex-direction: column;
+            }
         }
     </style>
 </head>
@@ -477,7 +440,7 @@
         <!-- Sidebar -->
         <aside class="sidebar">
             <div class="sidebar-header">
-                <h2>Solar Pump Monitoring</h2>
+                <h2>Solar Pump Monitoring 🌞💧</h2>
                 <p>Surveillance et contrôle</p>
             </div>
             
@@ -496,30 +459,6 @@
                         Tableau de bord
                     </a>
                 </li>
-                <li class="nav-item">
-                    <a href="#" class="nav-link">
-                        <i class="fas fa-battery-three-quarters"></i>
-                        Batterie
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="#" class="nav-link">
-                        <i class="fas fa-tint"></i>
-                        Réservoir d'eau
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="#" class="nav-link">
-                        <i class="fas fa-pump"></i>
-                        Pompe
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="#" class="nav-link">
-                        <i class="fas fa-history"></i>
-                        Historique
-                    </a>
-                </li>
             </ul>
         </aside>
         
@@ -527,7 +466,7 @@
         <main class="main-content">
             <div class="header">
                 <div class="page-title">
-                    <h1>Tableau de bord</h1>
+                    <h1>Tableau de bord ✨</h1>
                 </div>
                 
                 <div class="header-actions">
@@ -547,153 +486,89 @@
                 <!-- Electricity Produced Card -->
                 <div class="card">
                     <div class="card-header">
-                        <h3 class="card-title">
-                            <i class="fas fa-bolt" style="color: #9b59b6; margin-right: 8px;"></i>
-                            Électricité produite
-                        </h3>
-                        <div class="card-icon icon-primary">
-                            <i class="fas fa-solar-panel"></i>
+                        <h3 class="card-title">Électricité produite ⚡</h3>
+                        <div class="card-icon icon-success">
+                            <i class="fas fa-bolt"></i>
                         </div>
                     </div>
                     <div class="card-value" id="electricity-produced">0 W</div>
-                    <p class="card-description">Énergie générée par le système solaire</p>
-                    
-                    <div class="level-indicator">
-                        <div class="level-header">
-                            <span class="level-title">
-                                <i class="fas fa-chart-line" style="color: #9b59b6;"></i>
-                                Niveau de production
-                            </span>
-                            <span class="level-value" id="production-percent">0%</span>
-                        </div>
-                        <div class="progress-container">
-                            <div class="progress-bar progress-electricity" id="production-bar" style="width: 0%"></div>
-                        </div>
+                    <p class="card-description">Niveau de production 🌞</p>
+                    <div class="slider-container">
+                        <input type="range" min="0" max="100" value="0" class="slider" id="production-slider" disabled>
                     </div>
                 </div>
                 
                 <!-- Electricity Consumed Card -->
                 <div class="card">
                     <div class="card-header">
-                        <h3 class="card-title">
-                            <i class="fas fa-plug" style="color: #8e44ad; margin-right: 8px;"></i>
-                            Électricité consommée
-                        </h3>
-                        <div class="card-icon icon-danger">
-                            <i class="fas fa-bolt"></i>
+                        <h3 class="card-title">Électricité consommée 💡</h3>
+                        <div class="card-icon icon-warning">
+                            <i class="fas fa-lightbulb"></i>
                         </div>
                     </div>
                     <div class="card-value" id="electricity-consumed">0 W</div>
-                    <p class="card-description">Énergie utilisée par le système</p>
-                    
-                    <div class="level-indicator">
-                        <div class="level-header">
-                            <span class="level-title">
-                                <i class="fas fa-chart-bar" style="color: #8e44ad;"></i>
-                                Niveau de consommation
-                            </span>
-                            <span class="level-value" id="consumption-percent">0%</span>
-                        </div>
-                        <div class="progress-container">
-                            <div class="progress-bar progress-electricity" id="consumption-bar" style="width: 0%"></div>
-                        </div>
+                    <p class="card-description">Niveau de consommation 🚰</p>
+                    <div class="slider-container">
+                        <input type="range" min="0" max="100" value="0" class="slider" id="consumption-slider" disabled>
                     </div>
                 </div>
                 
                 <!-- Energy Source Card -->
                 <div class="card">
                     <div class="card-header">
-                        <h3 class="card-title">
-                            <i class="fas fa-power-off" style="color: #3498db; margin-right: 8px;"></i>
-                            Source d'énergie
-                        </h3>
-                        <div class="card-icon icon-warning">
-                            <i class="fas fa-plug-circle-bolt"></i>
+                        <h3 class="card-title">Source d'énergie 🌍</h3>
+                        <div class="card-icon icon-primary">
+                            <i class="fas fa-plug"></i>
                         </div>
                     </div>
-                    <div class="card-value" id="energy-source">--</div>
-                    <p class="card-description">Source d'énergie actuelle</p>
-                    
-                    <div class="energy-source-container">
-                        <div class="energy-source-option">
-                            <div class="energy-led battery" id="battery-led"></div>
-                            <span class="energy-label">Batterie</span>
-                        </div>
-                        <div class="energy-source-option">
-                            <div class="energy-led grid" id="grid-led"></div>
-                            <span class="energy-label">Réseau électrique</span>
-                        </div>
+                    <div class="card-value" id="energy-source">Solaire</div>
+                    <p class="card-description">Source actuelle 🎯</p>
+                    <div style="display: flex; align-items: center; margin-top: 20px;">
+                        <div class="led" id="battery-led"></div>
+                        <span class="led-legend">Batterie 🔋</span>
+                        <div class="led" id="grid-led" style="margin-left: 20px;"></div>
+                        <span class="led-legend">Grid 🏠</span>
                     </div>
                 </div>
                 
                 <!-- Battery Level Card -->
                 <div class="card">
                     <div class="card-header">
-                        <h3 class="card-title">
-                            <i class="fas fa-battery-three-quarters" style="color: #f39c12; margin-right: 8px;"></i>
-                            Niveau de batterie
-                        </h3>
+                        <h3 class="card-title">Niveau de batterie 🔋</h3>
                         <div class="card-icon icon-warning">
-                            <i class="fas fa-car-battery"></i>
+                            <i class="fas fa-battery-full"></i>
                         </div>
                     </div>
                     <div class="card-value" id="battery-value">0%</div>
-                    <p class="card-description">Charge actuelle de la batterie</p>
-                    
-                    <div class="level-indicator">
-                        <div class="progress-container">
-                            <div class="progress-bar progress-battery" id="battery-level" style="width: 0%"></div>
-                        </div>
-                        <div class="level-header">
-                            <span class="level-title">
-                                <i class="fas fa-battery-quarter" style="color: #f39c12;"></i>
-                                État
-                            </span>
-                            <span class="level-value" id="battery-status">Déchargé</span>
-                        </div>
+                    <p class="card-description">Charge actuelle 💪</p>
+                    <div class="slider-container">
+                        <input type="range" min="0" max="100" value="0" class="slider" id="battery-slider" disabled>
                     </div>
                 </div>
                 
                 <!-- Water Level Card -->
                 <div class="card">
                     <div class="card-header">
-                        <h3 class="card-title">
-                            <i class="fas fa-tint" style="color: #3498db; margin-right: 8px;"></i>
-                            Niveau d'eau
-                        </h3>
+                        <h3 class="card-title">Niveau d'eau 💧</h3>
                         <div class="card-icon icon-success">
-                            <i class="fas fa-water"></i>
+                            <i class="fas fa-tint"></i>
                         </div>
                     </div>
                     <div class="card-value" id="water-value">0%</div>
-                    <p class="card-description">Niveau actuel du réservoir</p>
-                    
-                    <div class="level-indicator">
-                        <div class="progress-container">
-                            <div class="progress-bar progress-water" id="water-level" style="width: 0%"></div>
-                        </div>
-                        <div class="level-header">
-                            <span class="level-title">
-                                <i class="fas fa-glass-water" style="color: #3498db;"></i>
-                                État
-                            </span>
-                            <span class="level-value" id="water-status">Vide</span>
-                        </div>
+                    <p class="card-description">Niveau du réservoir 🌊</p>
+                    <div class="slider-container">
+                        <input type="range" min="0" max="100" value="0" class="slider" id="water-slider" disabled>
                     </div>
                 </div>
                 
                 <!-- Pump Control Card -->
                 <div class="card">
                     <div class="card-header">
-                        <h3 class="card-title">
-                            <i class="fas fa-pump" style="color: #e74c3c; margin-right: 8px;"></i>
-                            Contrôle de la pompe
-                        </h3>
+                        <h3 class="card-title">Contrôle de la pompe 🚰</h3>
                         <div class="card-icon icon-danger">
-                            <i class="fas fa-fire-extinguisher"></i>
+                            <i class="fas fa-pump"></i>
                         </div>
                     </div>
-                    
                     <div class="pump-control">
                         <div class="pump-status">
                             <div class="status-led" id="pump-led"></div>
@@ -707,19 +582,8 @@
                                 <i class="fas fa-stop"></i> Arrêter
                             </button>
                         </div>
-                    </div>
-                    
-                    <div class="level-indicator" style="margin-top: 20px;">
-                        <div class="level-header">
-                            <span class="level-title">
-                                <i class="fas fa-water-ladder" style="color: #1abc9c;"></i>
-                                Débit d'eau
-                            </span>
-                            <span class="level-value" id="water-flow">0 L/min</span>
-                        </div>
-                        <div class="progress-container">
-                            <div class="progress-bar progress-flow" id="flow-level" style="width: 0%"></div>
-                        </div>
+                        <div class="card-value" id="water-flow">0 L/min</div>
+                        <p class="card-description">Débit d'eau 🌊</p>
                     </div>
                 </div>
             </div>
@@ -730,40 +594,38 @@
     <script>
         let client;
         const topics = [
-            'system/energy-source', 
-            'system/electricity-produced', 
-            'system/electricity-consumed', 
-            'battery/level', 
-            'water/level', 
+            'system/energy-source',
+            'system/electricity-produced',
+            'system/electricity-consumed',
+            'battery/level',
+            'water/level',
             'pump/state',
             'pump/flow-rate'
         ];
-        
+        const programs = [];
+
         // Initialize the dashboard
         function initDashboard() {
             const username = getParameter('username');
             if (username) {
                 document.getElementById('username-display').textContent = username;
                 document.getElementById('user-avatar').textContent = username.charAt(0).toUpperCase();
+                addLogEntry(`Session démarrée pour ${username} 🌟`, 'info');
+            } else {
+                window.location.href = 'login.html';
             }
-            
             connectToBroker();
         }
-        
+
         // Get URL parameter
         function getParameter(name) {
             const urlParams = new URLSearchParams(window.location.search);
             return urlParams.get(name);
         }
-        
+
         // Connect to MQTT broker
         function connectToBroker() {
             const username = getParameter('username');
-            if (!username) {
-                window.location.href = 'login.html';
-                return;
-            }
-            
             const options = {
                 host: '508205b2e19c4a7fad9828d3961d6424.s1.eu.hivemq.cloud',
                 port: 8884,
@@ -771,81 +633,72 @@
                 path: '/mqtt',
                 clientId: 'mqttjs_' + Math.random().toString(16).substr(2, 8),
                 username: username,
-                password: 'Nasrollah2003*' // In production, use a more secure method
+                password: 'Nasrollah2003*' // In production, use a secure method
             };
-            
-            updateConnectionStatus('Connexion en cours...', 'warning');
-            
+
+            updateConnectionStatus('Connexion en cours... ⏳', 'warning');
+
             client = mqtt.connect(options);
-            
+
             client.on('connect', () => {
-                updateConnectionStatus('Connecté', 'success');
+                updateConnectionStatus('Connecté ✅', 'success');
                 topics.forEach(topic => {
                     client.subscribe(topic);
+                    addLogEntry(`Abonné à ${topic} 📡`, 'info');
                 });
-                
-                // Request initial values
                 client.publish('system/request', 'status');
             });
-            
+
             client.on('message', (topic, message) => {
                 const msg = message.toString();
-                
+                addLogEntry(`Message reçu sur ${topic}: ${msg} 📩`, 'info');
+
                 switch (topic) {
                     case 'system/energy-source':
-                        updateEnergySource(msg);
+                        document.getElementById('energy-source').textContent = msg;
+                        updateEnergySource(msg.toLowerCase());
                         break;
-                        
                     case 'system/electricity-produced':
-                        document.getElementById('electricity-produced').textContent = msg + ' W';
-                        updateElectricity('production-bar', 'production-percent', parseInt(msg), 5000); // Assuming max 5000W
+                        updateElectricity('electricity-produced', 'production-slider', msg, 5000);
                         break;
-                        
                     case 'system/electricity-consumed':
-                        document.getElementById('electricity-consumed').textContent = msg + ' W';
-                        updateElectricity('consumption-bar', 'consumption-percent', parseInt(msg), 3000); // Assuming max 3000W
+                        updateElectricity('electricity-consumed', 'consumption-slider', msg, 3000);
                         break;
-                        
                     case 'battery/level':
-                        updateLevel('battery-value', 'battery-level', 'battery-status', msg);
+                        updateLevel('battery-value', 'battery-slider', 'battery-status', msg);
                         break;
-                        
                     case 'water/level':
-                        updateLevel('water-value', 'water-level', 'water-status', msg);
+                        updateLevel('water-value', 'water-slider', 'water-status', msg);
                         break;
-                        
                     case 'pump/state':
                         updatePumpState(msg);
                         break;
-                        
                     case 'pump/flow-rate':
                         document.getElementById('water-flow').textContent = msg + ' L/min';
-                        updateProgressBar('flow-level', parseInt(msg) / 20 * 100); // Assuming max 20L/min
+                        updateProgressBar('flow-level', parseInt(msg) / 20 * 100);
                         break;
                 }
             });
-            
+
             client.on('error', (err) => {
                 console.error('Connection error:', err);
-                updateConnectionStatus('Erreur de connexion', 'error');
+                updateConnectionStatus('Erreur de connexion ❌', 'error');
+                addLogEntry(`Erreur de connexion: ${err.message} ⚠️`, 'error');
             });
-            
+
             client.on('close', () => {
-                updateConnectionStatus('Déconnecté', 'error');
+                updateConnectionStatus('Déconnecté 🔴', 'error');
+                addLogEntry('Déconnecté du broker MQTT 🚫', 'error');
             });
         }
-        
+
         // Update connection status
         function updateConnectionStatus(text, type) {
             const statusElement = document.getElementById('connection-status');
             const dotElement = document.querySelector('.status-dot');
-            
             statusElement.textContent = text;
-            
-            // Reset classes
             dotElement.style.backgroundColor = '';
             statusElement.style.color = '';
-            
             switch (type) {
                 case 'success':
                     dotElement.style.backgroundColor = 'var(--success)';
@@ -861,89 +714,85 @@
                     break;
             }
         }
-        
-        // Update energy source
+
+        // Update electricity values and slider
+        function updateElectricity(valueId, sliderId, value, max) {
+            const val = Math.max(0, Math.min(parseInt(value) || 0, max));
+            const percentage = (val / max) * 100;
+            document.getElementById(valueId).textContent = val + ' W';
+            document.getElementById(sliderId).value = percentage;
+        }
+
+        // Update energy source LEDs
         function updateEnergySource(source) {
-            document.getElementById('energy-source').textContent = source;
             const batteryLed = document.getElementById('battery-led');
             const gridLed = document.getElementById('grid-led');
-            
-            // Reset all LEDs
-            batteryLed.classList.remove('on');
-            gridLed.classList.remove('on');
-            
-            if (source.toLowerCase().includes('battery')) {
+            batteryLed.className = 'led';
+            gridLed.className = 'led';
+            if (source.includes('battery')) {
                 batteryLed.classList.add('on');
-            } else if (source.toLowerCase().includes('grid')) {
+                gridLed.classList.remove('on');
+            } else if (source.includes('grid')) {
                 gridLed.classList.add('on');
+                batteryLed.classList.remove('on');
             }
         }
-        
-        // Update electricity values
-        function updateElectricity(barId, percentId, value, max) {
-            const percentage = Math.min(100, Math.round((value / max) * 100));
-            document.getElementById(percentId).textContent = percentage + '%';
-            document.getElementById(barId).style.width = percentage + '%';
-        }
-        
-        // Update level indicators
-        function updateLevel(valueId, barId, statusId, value) {
+
+        // Update level indicators and slider
+        function updateLevel(valueId, sliderId, statusId, value) {
             const val = Math.max(0, Math.min(100, parseInt(value) || 0));
             document.getElementById(valueId).textContent = val + '%';
-            document.getElementById(barId).style.width = val + '%';
-            
-            // Update status text
+            document.getElementById(sliderId).value = val;
             let status = '';
             if (val <= 20) status = 'Critique';
             else if (val <= 50) status = 'Bas';
             else if (val <= 80) status = 'Moyen';
             else status = 'Élevé';
-            
-            document.getElementById(statusId).textContent = status;
+            // Note: No statusId element exists in this updated layout, so this is commented out
+            // document.getElementById(statusId).textContent = status;
         }
-        
-        // Update progress bar
-        function updateProgressBar(id, percentage) {
-            const bar = document.getElementById(id);
-            const val = Math.max(0, Math.min(100, percentage));
-            bar.style.width = val + '%';
-        }
-        
+
         // Update pump state
         function updatePumpState(state) {
             const pumpLed = document.getElementById('pump-led');
             const pumpState = document.getElementById('pump-state');
-            
             pumpLed.className = 'status-led';
-            
             if (state.toLowerCase().includes('on')) {
                 pumpLed.classList.add('on');
-                pumpState.textContent = 'En marche';
+                pumpState.textContent = 'En marche 🌊';
+                addLogEntry('Pompe démarrée ✅', 'success');
             } else {
-                pumpState.textContent = 'Arrêtée';
+                pumpState.textContent = 'Arrêtée ⛔';
+                addLogEntry('Pompe arrêtée ⚠️', 'error');
             }
         }
-        
+
         // Send command to pump
         function sendCommand(command) {
             if (client) {
                 const topic = 'pump/control';
                 let payload = '';
-                
                 if (command === 'pump/start') {
                     payload = 'ON';
+                    addLogEntry('Commande envoyée: Démarrer la pompe 🚀', 'info');
                 } else if (command === 'pump/stop') {
                     payload = 'OFF';
+                    addLogEntry('Commande envoyée: Arrêter la pompe 🛑', 'info');
                 }
-                
                 client.publish(topic, payload);
             }
         }
-        
+
+        // Add log entry (placeholder, not fully implemented in UI yet)
+        function addLogEntry(message, type = 'info') {
+            console.log(`[${new Date().toLocaleTimeString('fr-FR', { hour: '2-digit', minute: '2-digit', second: '2-digit' })}] ${message} (${type})`);
+        }
+
         // Disconnect from broker
         function disconnect() {
             if (client) {
                 client.end();
+                addLogEntry('Déconnexion initiée 🔧', 'warning');
                 setTimeout(() => {
                     window.location.href = 'login.html';
                 }, 1000);
@@ -951,7 +800,7 @@
                 window.location.href = 'login.html';
             }
         }
-        
+
         // Initialize on page load
         window.onload = initDashboard;
     </script>
