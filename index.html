@@ -3,26 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Connexion - Solar Pump Monitoring</title>
+    <title>Solar Pump Monitoring</title>
     <style>
         body {
             font-family: 'Arial', sans-serif;
             max-width: 400px;
-            margin: 50px auto;
+            margin: 0 auto;
             padding: 20px;
-            background: linear-gradient(135deg, #f0f4f8, #e0e8f0);
-            color: #333;
+            background: #f0f4f8;
         }
         h1 {
             text-align: center;
             color: #2c3e50;
-            margin-bottom: 20px;
         }
         .login-form {
             background: #fff;
             padding: 20px;
             border-radius: 8px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
         }
         label {
             display: block;
@@ -39,19 +37,19 @@
         button {
             width: 100%;
             padding: 10px;
-            background-color: #2c3e50;
+            background: #2c3e50;
             color: #fff;
             border: none;
             border-radius: 4px;
             cursor: pointer;
         }
         button:hover {
-            background-color: #34495e;
+            background: #34495e;
         }
-        #status {
-            text-align: center;
-            margin-top: 10px;
+        #error {
             color: #e74c3c;
+            text-align: center;
+            display: none;
         }
     </style>
 </head>
@@ -59,24 +57,28 @@
     <h1>Solar Pump Monitoring</h1>
     <div class="login-form">
         <label for="username">Nom d'utilisateur :</label>
-        <input type="text" id="username" placeholder="Entrez le nom d'utilisateur">
+        <input type="text" id="username" placeholder="Entrez votre nom d'utilisateur">
         <label for="password">Mot de passe :</label>
-        <input type="password" id="password" placeholder="Entrez le mot de passe">
-        <button onclick="connect()">Connexion</button>
-        <div id="status"></div>
+        <input type="password" id="password" placeholder="Entrez votre mot de passe">
+        <button onclick="connect()">Se connecter</button>
+        <div id="error"></div>
     </div>
     <script src="https://unpkg.com/mqtt@5.10.1/dist/mqtt.min.js"></script>
     <script>
+        let client;
+
         function connect() {
             const username = document.getElementById('username').value;
             const password = document.getElementById('password').value;
-            const status = document.getElementById('status');
+            const errorDiv = document.getElementById('error');
 
             if (!username || !password) {
-                status.textContent = 'Veuillez entrer un nom d\'utilisateur et un mot de passe';
+                errorDiv.textContent = 'Veuillez entrer un nom d\'utilisateur et un mot de passe.';
+                errorDiv.style.display = 'block';
                 return;
             }
 
+            errorDiv.style.display = 'none';
             const options = {
                 host: '508205b2e19c4a7fad9828d3961d6424.s1.eu.hivemq.cloud',
                 port: 8884,
@@ -87,17 +89,16 @@
                 password: password
             };
 
-            status.textContent = 'Connexion en cours...';
-            const client = mqtt.connect(options);
+            client = mqtt.connect(options);
 
             client.on('connect', () => {
-                client.end();
                 window.location.href = `monitoring.html?username=${encodeURIComponent(username)}`;
             });
 
             client.on('error', (err) => {
-                status.textContent = 'Erreur : Nom d\'utilisateur ou mot de passe incorrect';
-                client.end();
+                errorDiv.textContent = 'Erreur : Identifiants incorrects ou problème de connexion.';
+                errorDiv.style.display = 'block';
+                if (client) client.end();
             });
         }
     </script>
