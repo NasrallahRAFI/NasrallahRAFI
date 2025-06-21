@@ -231,4 +231,262 @@
                     </div>
                     <div class="data-row">
                         <span class="data-label">Courant sortie panneau solaire :</span>
-                        <span class="data-value" id
+                        <span class="data-value" id="solar_out_current">N/A</span>
+                    </div>
+                    <div class="data-row">
+                        <span class="data-label">Tension batterie :</span>
+                        <span class="data-value" id="battery_voltage">N/A</span>
+                    </div>
+                    <div class="data-row">
+                        <span class="data-label">Courant batterie :</span>
+                        <span class="data-value" id="battery_current">N/A</span>
+                    </div>
+                    <div class="data-row">
+                        <span class="data-label">Niveau de charge batterie :</span>
+                        <span class="data-value" id="battery_level">N/A</span>
+                    </div>
+                    <div class="data-row">
+                        <span class="data-label">Courant charge/décharge batterie :</span>
+                        <span class="data-value" id="battery_charge_current">N/A</span>
+                    </div>
+                    <div class="data-row">
+                        <span class="data-label">Puissance générée panneaux :</span>
+                        <span class="data-value" id="solar_power">N/A</span>
+                    </div>
+                    <div class="data-row">
+                        <span class="data-label">Consommation pompe :</span>
+                        <span class="data-value" id="pump_consumption">N/A</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Section 2: Performances de la Pompe -->
+            <div class="section-card">
+                <div class="section-header" onclick="toggleSection(this)">
+                    <h2><i class="fas fa-tachometer-alt"></i> Performances de la Pompe</h2>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="section-content">
+                    <div class="data-row">
+                        <span class="data-label">Débit d'eau :</span>
+                        <span class="data-value" id="water_flow">N/A</span>
+                    </div>
+                    <div class="data-row">
+                        <span class="data-label">Pression d'eau :</span>
+                        <span class="data-value" id="water_pressure">N/A</span>
+                    </div>
+                    <div class="data-row">
+                        <span class="data-label">Température moteur :</span>
+                        <span class="data-value" id="motor_temp">N/A</span>
+                    </div>
+                    <div class="data-row">
+                        <span class="data-label">État de fonctionnement :</span>
+                        <span class="data-value" id="pump_state">N/A</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Section 3: Données Solaires et Environnementales -->
+            <div class="section-card">
+                <div class="section-header" onclick="toggleSection(this)">
+                    <h2><i class="fas fa-sun"></i> Données Solaires et Environnementales</h2>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="section-content">
+                    <div class="data-row">
+                        <span class="data-label">Ensoleillement :</span>
+                        <span class="data-value" id="solar_irradiance">N/A</span>
+                    </div>
+                    <div class="data-row">
+                        <span class="data-label">Température ambiante :</span>
+                        <span class="data-value" id="ambient_temp">N/A</span>
+                    </div>
+                    <div class="data-row">
+                        <span class="data-label">État panneaux solaires :</span>
+                        <span class="data-value" id="solar_panel_status">N/A</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Section 4: Surveillance du Réservoir -->
+            <div class="section-card">
+                <div class="section-header" onclick="toggleSection(this)">
+                    <h2><i class="fas fa-tint"></i> Surveillance du Réservoir</h2>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="section-content">
+                    <div class="data-row">
+                        <span class="data-label">Niveau d'eau :</span>
+                        <span class="data-value" id="water_level">N/A</span>
+                    </div>
+                    <div class="data-row">
+                        <span class="data-label">Qualité de l'eau :</span>
+                        <span class="data-value" id="water_quality">N/A</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Section 5: Maintenance et Sécurité -->
+            <div class="section-card">
+                <div class="section-header" onclick="toggleSection(this)">
+                    <h2><i class="fas fa-tools"></i> Maintenance et Sécurité</h2>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="section-content">
+                    <div class="data-row">
+                        <span class="data-label">Heures de fonctionnement :</span>
+                        <span class="data-value" id="operating_hours">N/A</span>
+                    </div>
+                    <div class="data-row">
+                        <span class="data-label">Alertes de panne :</span>
+                        <span class="data-value" id="failure_alerts">N/A</span>
+                    </div>
+                    <div class="data-row">
+                        <span class="data-label">État des connexions :</span>
+                        <span class="data-value" id="connection_status">N/A</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Section 6: Communication IoT -->
+            <div class="section-card">
+                <div class="section-header" onclick="toggleSection(this)">
+                    <h2><i class="fas fa-wifi"></i> Communication IoT</h2>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="section-content">
+                    <div class="data-row">
+                        <span class="data-label">État connexion réseau :</span>
+                        <span class="data-value" id="network_status">N/A</span>
+                    </div>
+                    <div class="data-row">
+                        <span class="data-label">Latence des données :</span>
+                        <span class="data-value" id="data_latency">N/A</span>
+                    </div>
+                    <div class="data-row">
+                        <span class="data-label">Statut mises à jour :</span>
+                        <span class="data-value" id="update_status">N/A</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Section 7: Efficacité Énergétique -->
+            <div class="section-card">
+                <div class="section-header" onclick="toggleSection(this)">
+                    <h2><i class="fas fa-chart-line"></i> Efficacité Énergétique</h2>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="section-content">
+                    <div class="data-row">
+                        <span class="data-label">Rendement du système :</span>
+                        <span class="data-value" id="system_efficiency">N/A</span>
+                    </div>
+                    <div class="data-row">
+                        <span class="data-label">Autonomie batterie :</span>
+                        <span class="data-value" id="battery_autonomy">N/A</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script src="https://unpkg.com/mqtt@5.10.1/dist/mqtt.min.js"></script>
+    <script>
+        let client;
+
+        // Rediriger vers index.html en cas d'actualisation si pas d'utilisateur
+        window.onbeforeunload = function() {
+            window.location.href = 'index.html';
+        };
+
+        // Récupérer le nom d'utilisateur depuis l'URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const username = urlParams.get('username');
+        if (username) {
+            document.getElementById('client-title').textContent = decodeURIComponent(username);
+        } else {
+            window.location.href = 'index.html';
+        }
+
+        // Connexion MQTT
+        const options = {
+            host: '508205b2e19c4a7fad9828d3961d6424.s1.eu.hivemq.cloud',
+            port: 8884,
+            protocol: 'wss',
+            path: '/mqtt',
+            clientId: 'mqttjs_' + Math.random().toString(16).substr(2, 8),
+            username: username,
+            password: 'Nasrollah2003*' // Remplacez par une logique sécurisée pour le mot de passe
+        };
+
+        client = mqtt.connect(options);
+
+        client.on('connect', () => {
+            const topics = [
+                'solar/in/voltage', 'solar/in/current', 'solar/out/voltage', 'solar/out/current',
+                'battery/voltage', 'battery/current', 'battery/level', 'battery/charge_current',
+                'solar/power', 'pump/consumption', 'water/flow', 'water/pressure', 'motor/temp',
+                'pump/state', 'solar/irradiance', 'ambient/temp', 'solar/panel/status', 'water/level',
+                'water/quality', 'operating/hours', 'failure/alerts', 'connection/status', 'network/status',
+                'data/latency', 'update/status', 'system/efficiency', 'battery/autonomy'
+            ];
+            topics.forEach(topic => client.subscribe(topic));
+        });
+
+        client.on('message', (topic, message) => {
+            const value = message.toString();
+            const element = document.getElementById(topic.replace('/', '_'));
+            if (element) {
+                element.textContent = value;
+                
+                // Ajout de couleurs pour certains états
+                if (topic === 'pump/state') {
+                    if (value.toLowerCase() === 'on') {
+                        element.innerHTML = '<span class="status-indicator status-online"></span>' + value;
+                    } else {
+                        element.innerHTML = '<span class="status-indicator status-offline"></span>' + value;
+                    }
+                }
+                
+                if (topic === 'network/status') {
+                    if (value.toLowerCase() === 'connected') {
+                        element.innerHTML = '<span class="status-indicator status-online"></span>' + value;
+                    } else {
+                        element.innerHTML = '<span class="status-indicator status-offline"></span>' + value;
+                    }
+                }
+            }
+        });
+
+        client.on('error', (err) => {
+            console.log('Erreur MQTT:', err);
+            window.location.href = 'index.html';
+        });
+
+        client.on('close', () => {
+            window.location.href = 'index.html';
+        });
+
+        function toggleSection(element) {
+            const content = element.parentElement.querySelector('.section-content');
+            const icon = element.querySelector('.fa-chevron-down');
+            
+            content.classList.toggle('active');
+            icon.classList.toggle('fa-rotate-180');
+        }
+
+        function logout() {
+            if (client) client.end();
+            window.location.href = 'index.html';
+        }
+        
+        // Ouvrir la première section par défaut
+        document.addEventListener('DOMContentLoaded', function() {
+            const firstSection = document.querySelector('.section-header');
+            if (firstSection) {
+                toggleSection(firstSection);
+            }
+        });
+    </script>
+</body>
+</html>
