@@ -236,7 +236,7 @@
     <script src="https://unpkg.com/mqtt@5.10.1/dist/mqtt.min.js"></script>
     <script>
         let client;
-        
+
         function toggleButtonState(loading) {
             const btnText = document.getElementById('btn-text');
             const btnSpinner = document.getElementById('btn-spinner');
@@ -308,7 +308,6 @@
             alert("Pour toute assistance, veuillez contacter le support technique au +123 456 7890 ou par email à support@solarpump.com");
         }
         
-        // Allow login on Enter key press
         document.addEventListener('keypress', function(e) {
             if (e.key === 'Enter') {
                 connect();
