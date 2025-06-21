@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>HiveMQ Cloud MQTT Interface</title>
     <style>
-        /* Existing CSS */
+        /* Existing CSS remains unchanged */
         body {
             font-family: 'Arial', sans-serif;
             max-width: 900px;
@@ -212,7 +212,7 @@
             width: 15px;
             height: 15px;
             border-radius: 50%;
-            background: #2ecc71; /* Default green */
+            background: #2ecc71;
             cursor: default;
         }
         .slider[value="0"]::-moz-range-thumb { background: #e74c3c; }
@@ -421,10 +421,11 @@
                 topicsSection.style.display = 'block';
                 document.querySelector('h1').textContent = `Client: ${username}`;
                 const topics = ['pump/state', 'pump/speed', 'reservoir/state', 'power/source', 'battery/state'];
+                const messageTopics = ['pump/speed', 'reservoir/state']; // Topics with message divs
                 topics.forEach(topic => {
                     client.subscribe(topic, (err) => {
                         if (!err) {
-                            if (topic !== 'pump/state' && topic !== 'power/source' && topic !== 'battery/state') {
+                            if (messageTopics.includes(topic)) {
                                 appendMessage(topic, 'Subscribed to ' + topic);
                             } else if (topic === 'pump/state') {
                                 statusDiv.textContent += ' | Subscribed to pump/state';
@@ -434,7 +435,12 @@
                                 statusDiv.textContent += ' | Subscribed to battery/state';
                             }
                         } else {
-                            appendMessage(topic, `Subscription error: ${err}`, true);
+                            if (messageTopics.includes(topic)) {
+                                appendMessage(topic, `Subscription error: ${err}`, true);
+                            } else {
+                                statusDiv.textContent += ` | Error subscribing to ${topic}: ${err}`;
+                                statusDiv.style.color = 'red';
+                            }
                         }
                     });
                 });
