@@ -3,20 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Monitoring Pompe Solaire</title>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <title>Solar Pump Monitoring - Connexion</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
             --primary: #3498db;
-            --primary-dark: #2980b9;
-            --secondary: #2ecc71;
+            --secondary: #2980b9;
+            --success: #2ecc71;
             --danger: #e74c3c;
-            --warning: #f39c12;
-            --dark: #2c3e50;
             --light: #ecf0f1;
+            --dark: #2c3e50;
             --gray: #95a5a6;
-            --white: #ffffff;
         }
         
         * {
@@ -26,558 +23,253 @@
         }
         
         body {
-            font-family: 'Roboto', sans-serif;
-            background: #f5f7fa;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
             color: var(--dark);
-            line-height: 1.6;
         }
         
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 20px;
+        .login-container {
+            width: 100%;
+            max-width: 420px;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            animation: fadeIn 0.5s ease-in-out;
         }
         
-        header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 20px 0;
-            margin-bottom: 30px;
-            border-bottom: 1px solid rgba(0,0,0,0.1);
+        .login-header {
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            color: white;
+            padding: 25px;
+            text-align: center;
+            position: relative;
         }
         
-        .header-info {
-            display: flex;
-            align-items: center;
+        .login-header h1 {
+            font-size: 1.8rem;
+            margin-bottom: 5px;
+        }
+        
+        .login-header p {
+            font-size: 0.9rem;
+            opacity: 0.9;
         }
         
         .logo {
-            width: 50px;
-            height: 50px;
-            margin-right: 15px;
-            background-color: var(--primary);
+            width: 60px;
+            height: 60px;
+            background: white;
             border-radius: 50%;
             display: flex;
-            align-items: center;
             justify-content: center;
-            color: white;
-            font-size: 1.5rem;
-        }
-        
-        h1 {
-            font-size: 1.8rem;
-            font-weight: 500;
-            color: var(--dark);
-        }
-        
-        .user-info {
-            display: flex;
             align-items: center;
+            margin: 0 auto 15px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
         }
         
-        .user-avatar {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            background-color: var(--primary);
-            color: white;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-right: 10px;
-            font-weight: bold;
-        }
-        
-        .status-indicator {
-            display: flex;
-            align-items: center;
-            margin-bottom: 20px;
-            padding: 10px 15px;
-            background-color: var(--white);
-            border-radius: 8px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-        }
-        
-        .status-dot {
-            width: 12px;
-            height: 12px;
-            border-radius: 50%;
-            margin-right: 10px;
-            background-color: var(--danger);
-        }
-        
-        .status-dot.connected {
-            background-color: var(--secondary);
-        }
-        
-        .dashboard {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 20px;
-            margin-bottom: 30px;
-        }
-        
-        .card {
-            background-color: var(--white);
-            border-radius: 10px;
-            padding: 20px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-        
-        .card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-        }
-        
-        .card-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 15px;
-            padding-bottom: 10px;
-            border-bottom: 1px solid rgba(0,0,0,0.05);
-        }
-        
-        .card-title {
-            font-size: 1.1rem;
-            font-weight: 500;
-            color: var(--dark);
-        }
-        
-        .card-icon {
+        .logo i {
             color: var(--primary);
-            font-size: 1.2rem;
+            font-size: 1.8rem;
         }
         
-        .metric {
-            font-size: 2rem;
-            font-weight: 300;
-            margin: 10px 0;
+        .login-form {
+            padding: 30px;
         }
         
-        .metric-label {
+        .form-group {
+            margin-bottom: 20px;
+            position: relative;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
             font-size: 0.9rem;
+        }
+        
+        .input-icon {
+            position: absolute;
+            left: 15px;
+            top: 40px;
             color: var(--gray);
         }
         
-        .progress-container {
-            margin-top: 15px;
+        .form-control {
+            width: 100%;
+            padding: 12px 15px 12px 40px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-size: 1rem;
+            transition: all 0.3s;
         }
         
-        .progress-label {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 5px;
-            font-size: 0.9rem;
-        }
-        
-        .progress-bar {
-            height: 8px;
-            background-color: var(--light);
-            border-radius: 4px;
-            overflow: hidden;
-        }
-        
-        .progress-fill {
-            height: 100%;
-            background: linear-gradient(90deg, var(--primary), var(--secondary));
-            border-radius: 4px;
-            transition: width 0.5s ease;
-        }
-        
-        .control-panel {
-            background-color: var(--white);
-            border-radius: 10px;
-            padding: 20px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
-            margin-bottom: 30px;
-        }
-        
-        .panel-header {
-            font-size: 1.2rem;
-            font-weight: 500;
-            margin-bottom: 20px;
-            display: flex;
-            align-items: center;
-        }
-        
-        .panel-header i {
-            margin-right: 10px;
-            color: var(--primary);
-        }
-        
-        .btn-group {
-            display: flex;
-            gap: 10px;
-            margin-top: 15px;
+        .form-control:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.2);
+            outline: none;
         }
         
         .btn {
-            padding: 10px 20px;
+            display: block;
+            width: 100%;
+            padding: 12px;
             border: none;
             border-radius: 6px;
-            font-weight: 500;
+            font-size: 1rem;
+            font-weight: 600;
             cursor: pointer;
-            transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
+            transition: all 0.3s;
         }
         
         .btn-primary {
-            background-color: var(--primary);
+            background: linear-gradient(to right, var(--primary), var(--secondary));
             color: white;
         }
         
         .btn-primary:hover {
-            background-color: var(--primary-dark);
+            background: linear-gradient(to right, var(--secondary), var(--primary));
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(41, 128, 185, 0.3);
         }
         
-        .btn-danger {
-            background-color: var(--danger);
-            color: white;
-        }
-        
-        .btn-danger:hover {
-            background-color: #c0392b;
-        }
-        
-        .btn-outline {
-            background-color: transparent;
-            border: 1px solid var(--gray);
-            color: var(--dark);
-        }
-        
-        .btn-outline:hover {
-            background-color: var(--light);
-        }
-        
-        .state-indicator {
-            display: flex;
-            align-items: center;
-            margin-bottom: 15px;
-        }
-        
-        .led {
-            width: 16px;
-            height: 16px;
-            border-radius: 50%;
-            margin-right: 10px;
-            position: relative;
-        }
-        
-        .led:after {
-            content: '';
-            position: absolute;
-            top: -2px;
-            left: -2px;
-            right: -2px;
-            bottom: -2px;
-            border-radius: 50%;
-            background: inherit;
-            filter: blur(2px);
-            opacity: 0.3;
-        }
-        
-        .led-red {
-            background-color: var(--danger);
-        }
-        
-        .led-green {
-            background-color: var(--secondary);
-        }
-        
-        .led-yellow {
-            background-color: var(--warning);
-        }
-        
-        .schedule-form {
-            display: flex;
-            gap: 10px;
+        .status-message {
             margin-top: 15px;
-        }
-        
-        .form-input {
-            flex: 1;
             padding: 10px;
-            border: 1px solid #ddd;
-            border-radius: 6px;
-            font-family: inherit;
-        }
-        
-        .schedule-list {
-            margin-top: 20px;
-        }
-        
-        .schedule-item {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 10px;
-            border-bottom: 1px solid rgba(0,0,0,0.05);
-        }
-        
-        .schedule-item:last-child {
-            border-bottom: none;
-        }
-        
-        .log-container {
-            background-color: var(--white);
-            border-radius: 10px;
-            padding: 20px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
-        }
-        
-        .log-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 15px;
-        }
-        
-        .log-content {
-            height: 200px;
-            overflow-y: auto;
-            padding: 10px;
-            background-color: #f9f9f9;
-            border-radius: 6px;
-            font-family: 'Courier New', monospace;
+            border-radius: 4px;
+            text-align: center;
             font-size: 0.9rem;
+            display: none;
         }
         
-        .log-entry {
-            margin-bottom: 5px;
-            padding-bottom: 5px;
-            border-bottom: 1px dashed #eee;
-        }
-        
-        .log-time {
-            color: var(--gray);
-            margin-right: 10px;
-        }
-        
-        .log-message {
-            color: var(--dark);
-        }
-        
-        .logout-btn {
-            display: flex;
-            align-items: center;
-            gap: 8px;
+        .error {
+            background-color: #fdecea;
             color: var(--danger);
-            background: none;
-            border: none;
-            cursor: pointer;
-            font-weight: 500;
+            display: block;
         }
         
-        @media (max-width: 768px) {
-            .dashboard {
-                grid-template-columns: 1fr;
+        .success {
+            background-color: #e8f5e9;
+            color: var(--success);
+            display: block;
+        }
+        
+        .footer-links {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 0.85rem;
+        }
+        
+        .footer-links a {
+            color: var(--primary);
+            text-decoration: none;
+        }
+        
+        .footer-links a:hover {
+            text-decoration: underline;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        @media (max-width: 480px) {
+            .login-container {
+                margin: 0 15px;
             }
             
-            .btn-group {
-                flex-direction: column;
+            .login-header {
+                padding: 20px;
             }
             
-            .schedule-form {
-                flex-direction: column;
+            .login-form {
+                padding: 20px;
             }
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <header>
-            <div class="header-info">
-                <div class="logo">
-                    <i class="fas fa-solar-panel"></i>
-                </div>
-                <h1>Monitoring Pompe Solaire</h1>
+    <div class="login-container">
+        <div class="login-header">
+            <div class="logo">
+                <i class="fas fa-solar-panel"></i>
             </div>
-            <div class="user-info">
-                <div class="user-avatar" id="user-avatar">U</div>
-                <button class="logout-btn" onclick="disconnect()">
-                    <i class="fas fa-sign-out-alt"></i>
-                    Déconnexion
-                </button>
-            </div>
-        </header>
-        
-        <div class="status-indicator">
-            <div class="status-dot" id="status-dot"></div>
-            <span id="status-text">Chargement...</span>
+            <h1>Solar Pump Monitoring</h1>
+            <p>Connectez-vous pour accéder au tableau de bord</p>
         </div>
         
-        <div class="dashboard">
-            <div class="card">
-                <div class="card-header">
-                    <div class="card-title">Source d'Énergie</div>
-                    <i class="fas fa-bolt card-icon"></i>
-                </div>
-                <div class="metric" id="energy-source">--</div>
-                <div class="metric-label">Source actuelle</div>
+        <div class="login-form">
+            <div class="form-group">
+                <label for="username">Nom d'utilisateur</label>
+                <i class="fas fa-user input-icon"></i>
+                <input type="text" id="username" class="form-control" placeholder="Entrez votre nom d'utilisateur" autocomplete="username">
             </div>
             
-            <div class="card">
-                <div class="card-header">
-                    <div class="card-title">Production Électrique</div>
-                    <i class="fas fa-sun card-icon"></i>
-                </div>
-                <div class="metric" id="electricity-produced">--</div>
-                <div class="metric-label">Aujourd'hui</div>
-                <div class="progress-container">
-                    <div class="progress-label">
-                        <span>0%</span>
-                        <span>100%</span>
-                    </div>
-                    <div class="progress-bar">
-                        <div class="progress-fill" id="production-progress" style="width: 0%"></div>
-                    </div>
-                </div>
+            <div class="form-group">
+                <label for="password">Mot de passe</label>
+                <i class="fas fa-lock input-icon"></i>
+                <input type="password" id="password" class="form-control" placeholder="Entrez votre mot de passe" autocomplete="current-password">
             </div>
             
-            <div class="card">
-                <div class="card-header">
-                    <div class="card-title">Consommation Électrique</div>
-                    <i class="fas fa-plug card-icon"></i>
-                </div>
-                <div class="metric" id="electricity-consumed">--</div>
-                <div class="metric-label">Aujourd'hui</div>
-                <div class="progress-container">
-                    <div class="progress-label">
-                        <span>0%</span>
-                        <span>100%</span>
-                    </div>
-                    <div class="progress-bar">
-                        <div class="progress-fill" id="consumption-progress" style="width: 0%"></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        
-        <div class="dashboard">
-            <div class="card">
-                <div class="card-header">
-                    <div class="card-title">Niveau de Batterie</div>
-                    <i class="fas fa-battery-three-quarters card-icon"></i>
-                </div>
-                <div class="metric" id="battery-value">--%</div>
-                <div class="metric-label">Charge actuelle</div>
-                <div class="progress-container">
-                    <div class="progress-label">
-                        <span>0%</span>
-                        <span>100%</span>
-                    </div>
-                    <div class="progress-bar">
-                        <div class="progress-fill" id="battery-progress" style="width: 0%"></div>
-                    </div>
-                </div>
-            </div>
+            <button id="connect-btn" class="btn btn-primary" onclick="connect()">
+                <span id="btn-text">Se connecter</span>
+                <span id="btn-spinner" style="display: none;">
+                    <i class="fas fa-spinner fa-spin"></i> Connexion...
+                </span>
+            </button>
             
-            <div class="card">
-                <div class="card-header">
-                    <div class="card-title">Niveau d'Eau</div>
-                    <i class="fas fa-tint card-icon"></i>
-                </div>
-                <div class="metric" id="water-value">--%</div>
-                <div class="metric-label">Réservoir principal</div>
-                <div class="progress-container">
-                    <div class="progress-label">
-                        <span>0%</span>
-                        <span>100%</span>
-                    </div>
-                    <div class="progress-bar">
-                        <div class="progress-fill" id="water-progress" style="width: 0%"></div>
-                    </div>
-                </div>
-            </div>
+            <div id="status-message" class="status-message"></div>
             
-            <div class="card">
-                <div class="card-header">
-                    <div class="card-title">État de la Pompe</div>
-                    <i class="fas fa-water card-icon"></i>
-                </div>
-                <div class="state-indicator">
-                    <div class="led led-red" id="pump-led"></div>
-                    <span id="pump-state">Arrêtée</span>
-                </div>
-                <div class="btn-group">
-                    <button class="btn btn-primary" onclick="sendCommand('pump/start')">
-                        <i class="fas fa-play"></i> Démarrer
-                    </button>
-                    <button class="btn btn-danger" onclick="sendCommand('pump/stop')">
-                        <i class="fas fa-stop"></i> Arrêter
-                    </button>
-                </div>
-            </div>
-        </div>
-        
-        <div class="control-panel">
-            <div class="panel-header">
-                <i class="far fa-clock"></i>
-                <span>Programmation</span>
-            </div>
-            <div class="schedule-form">
-                <input type="datetime-local" id="program-time" class="form-input">
-                <button class="btn btn-primary" onclick="addProgram()">
-                    <i class="fas fa-plus"></i> Ajouter
-                </button>
-            </div>
-            <div class="schedule-list" id="program-list">
-                <!-- Les programmes seront ajoutés ici -->
-            </div>
-        </div>
-        
-        <div class="log-container">
-            <div class="log-header">
-                <div class="panel-header">
-                    <i class="fas fa-history"></i>
-                    <span>Journal d'activité</span>
-                </div>
-                <button class="btn btn-outline" onclick="clearLog()">
-                    <i class="fas fa-trash"></i> Effacer
-                </button>
-            </div>
-            <div class="log-content" id="log">
-                <!-- Les entrées de log seront ajoutées ici -->
+            <div class="footer-links">
+                <a href="#" onclick="showForgotPassword()">Mot de passe oublié ?</a> • 
+                <a href="#" onclick="showHelp()">Aide</a>
             </div>
         </div>
     </div>
-
+    
     <script src="https://unpkg.com/mqtt@5.10.1/dist/mqtt.min.js"></script>
     <script>
         let client;
-        const topics = ['system/energy-source', 'system/electricity-produced', 'system/electricity-consumed', 'battery/level', 'water/level', 'pump/state'];
-        const programs = [];
-
-        function getParameter(name) {
-            const urlParams = new URLSearchParams(window.location.search);
-            return urlParams.get(name);
-        }
-
-        const username = getParameter('username');
-        if (username) {
-            document.getElementById('user-avatar').textContent = username.charAt(0).toUpperCase();
-        }
-
-        function updateStatus(connected) {
-            const dot = document.getElementById('status-dot');
-            const text = document.getElementById('status-text');
+        
+        function toggleButtonState(loading) {
+            const btnText = document.getElementById('btn-text');
+            const btnSpinner = document.getElementById('btn-spinner');
             
-            if (connected) {
-                dot.className = 'status-dot connected';
-                text.textContent = 'Connecté au système';
+            if (loading) {
+                btnText.style.display = 'none';
+                btnSpinner.style.display = 'inline';
+                document.getElementById('connect-btn').disabled = true;
             } else {
-                dot.className = 'status-dot';
-                text.textContent = 'Déconnecté';
+                btnText.style.display = 'inline';
+                btnSpinner.style.display = 'none';
+                document.getElementById('connect-btn').disabled = false;
             }
         }
-
+        
+        function showStatusMessage(message, isError = true) {
+            const statusDiv = document.getElementById('status-message');
+            statusDiv.textContent = message;
+            statusDiv.className = isError ? 'status-message error' : 'status-message success';
+        }
+        
         function connect() {
+            const username = document.getElementById('username').value.trim();
+            const password = document.getElementById('password').value.trim();
+            
+            if (!username || !password) {
+                showStatusMessage('Veuillez saisir un nom d\'utilisateur et un mot de passe');
+                return;
+            }
+            
+            toggleButtonState(true);
+            showStatusMessage('Connexion en cours...', false);
+            
             const options = {
                 host: '508205b2e19c4a7fad9828d3961d6424.s1.eu.hivemq.cloud',
                 port: 8884,
@@ -585,62 +277,43 @@
                 path: '/mqtt',
                 clientId: 'mqttjs_' + Math.random().toString(16).substr(2, 8),
                 username: username,
-                password: 'Nasrollah2003*' // À remplacer par une méthode sécurisée
+                password: password
             };
-
-            updateStatus(false);
+            
             client = mqtt.connect(options);
-
+            
             client.on('connect', () => {
-                updateStatus(true);
-                addLog('Connexion établie avec le serveur MQTT');
-                topics.forEach(topic => client.subscribe(topic));
+                showStatusMessage('Connexion réussie ! Redirection en cours...', false);
+                setTimeout(() => {
+                    window.location.href = `monitor.html?username=${encodeURIComponent(username)}`;
+                }, 1000);
             });
-
-            client.on('message', (topic, message) => {
-                const msg = message.toString();
-                addLog(`Message reçu [${topic}]: ${msg}`);
-                
-                switch (topic) {
-                    case 'system/energy-source':
-                        document.getElementById('energy-source').textContent = msg;
-                        break;
-                    case 'system/electricity-produced':
-                        document.getElementById('electricity-produced').textContent = msg + ' kWh';
-                        updateProgress('production-progress', parseInt(msg) || 0);
-                        break;
-                    case 'system/electricity-consumed':
-                        document.getElementById('electricity-consumed').textContent = msg + ' kWh';
-                        updateProgress('consumption-progress', parseInt(msg) || 0);
-                        break;
-                    case 'battery/level':
-                        updateLevel('battery-value', msg, 'battery-progress');
-                        break;
-                    case 'water/level':
-                        updateLevel('water-value', msg, 'water-progress');
-                        break;
-                    case 'pump/state':
-                        updatePumpState(msg);
-                        break;
-                }
-            });
-
+            
             client.on('error', (err) => {
-                addLog('Erreur de connexion: ' + err.message, 'error');
-                updateStatus(false);
+                console.error('Connection error:', err);
+                showStatusMessage('Erreur : Identifiants invalides ou problème de connexion');
+                toggleButtonState(false);
             });
-
+            
             client.on('close', () => {
-                addLog('Déconnecté du serveur MQTT');
-                updateStatus(false);
+                toggleButtonState(false);
             });
         }
-
-        function updateLevel(valueElement, value, progressElement) {
-            let val = Math.max(0, Math.min(100, parseInt(value) || 0));
-            document.getElementById(valueElement).textContent = val + '%';
-            updateProgress(progressElement, val);
+        
+        function showForgotPassword() {
+            alert("Veuillez contacter l'administrateur pour réinitialiser votre mot de passe.");
         }
-
-        function updateProgress(elementId, percent) {
-            const
+        
+        function showHelp() {
+            alert("Pour toute assistance, veuillez contacter le support technique au +123 456 7890 ou par email à support@solarpump.com");
+        }
+        
+        // Allow login on Enter key press
+        document.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                connect();
+            }
+        });
+    </script>
+</body>
+</html>
