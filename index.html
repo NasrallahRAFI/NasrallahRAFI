@@ -1,275 +1,85 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Solar Pump Monitoring - Connexion</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <title>Solar Pump Monitoring</title>
     <style>
-        :root {
-            --primary: #3498db;
-            --secondary: #2980b9;
-            --success: #2ecc71;
-            --danger: #e74c3c;
-            --light: #ecf0f1;
-            --dark: #2c3e50;
-            --gray: #95a5a6;
-        }
-        
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-        
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-            height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            color: var(--dark);
+            font-family: 'Arial', sans-serif;
+            max-width: 400px;
+            margin: 0 auto;
+            padding: 20px;
+            background: linear-gradient(135deg, #f0f4f8, #e0e8f0);
+            color: #333;
         }
-        
-        .login-container {
-            width: 100%;
-            max-width: 420px;
-            background: white;
-            border-radius: 12px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-            overflow: hidden;
-            animation: fadeIn 0.5s ease-in-out;
-        }
-        
-        .login-header {
-            background: linear-gradient(to right, var(--primary), var(--secondary));
-            color: white;
-            padding: 25px;
+        h1 {
             text-align: center;
-            position: relative;
-        }
-        
-        .login-header h1 {
-            font-size: 1.8rem;
-            margin-bottom: 5px;
-        }
-        
-        .login-header p {
-            font-size: 0.9rem;
-            opacity: 0.9;
-        }
-        
-        .logo {
-            width: 60px;
-            height: 60px;
-            background: white;
-            border-radius: 50%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            margin: 0 auto 15px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-        }
-        
-        .logo i {
-            color: var(--primary);
-            font-size: 1.8rem;
-        }
-        
-        .login-form {
-            padding: 30px;
-        }
-        
-        .form-group {
+            color: #2c3e50;
+            font-size: 2em;
             margin-bottom: 20px;
-            position: relative;
         }
-        
-        .form-group label {
+        #login-form {
+            padding: 20px;
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        label {
             display: block;
-            margin-bottom: 8px;
-            font-weight: 500;
-            font-size: 0.9rem;
+            margin: 10px 0 5px;
+            color: #2c3e50;
         }
-        
-        .input-icon {
-            position: absolute;
-            left: 15px;
-            top: 40px;
-            color: var(--gray);
-        }
-        
-        .form-control {
+        input {
             width: 100%;
-            padding: 12px 15px 12px 40px;
-            border: 1px solid #ddd;
-            border-radius: 6px;
-            font-size: 1rem;
-            transition: all 0.3s;
-        }
-        
-        .form-control:focus {
-            border-color: var(--primary);
-            box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.2);
-            outline: none;
-        }
-        
-        .btn {
-            display: block;
-            width: 100%;
-            padding: 12px;
-            border: none;
-            border-radius: 6px;
-            font-size: 1rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s;
-        }
-        
-        .btn-primary {
-            background: linear-gradient(to right, var(--primary), var(--secondary));
-            color: white;
-        }
-        
-        .btn-primary:hover {
-            background: linear-gradient(to right, var(--secondary), var(--primary));
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(41, 128, 185, 0.3);
-        }
-        
-        .status-message {
-            margin-top: 15px;
-            padding: 10px;
+            padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #dfe6e9;
             border-radius: 4px;
+        }
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #2c3e50;
+            color: #ffffff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #34495e;
+        }
+        #status {
+            margin-top: 10px;
             text-align: center;
-            font-size: 0.9rem;
-            display: none;
-        }
-        
-        .error {
-            background-color: #fdecea;
-            color: var(--danger);
-            display: block;
-        }
-        
-        .success {
-            background-color: #e8f5e9;
-            color: var(--success);
-            display: block;
-        }
-        
-        .footer-links {
-            text-align: center;
-            margin-top: 20px;
-            font-size: 0.85rem;
-        }
-        
-        .footer-links a {
-            color: var(--primary);
-            text-decoration: none;
-        }
-        
-        .footer-links a:hover {
-            text-decoration: underline;
-        }
-        
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        
-        @media (max-width: 480px) {
-            .login-container {
-                margin: 0 15px;
-            }
-            
-            .login-header {
-                padding: 20px;
-            }
-            
-            .login-form {
-                padding: 20px;
-            }
+            color: red;
         }
     </style>
 </head>
 <body>
-    <div class="login-container">
-        <div class="login-header">
-            <div class="logo">
-                <i class="fas fa-solar-panel"></i>
-            </div>
-            <h1>Solar Pump Monitoring</h1>
-            <p>Connectez-vous pour accéder au tableau de bord</p>
-        </div>
-        
-        <div class="login-form">
-            <div class="form-group">
-                <label for="username">Nom d'utilisateur</label>
-                <i class="fas fa-user input-icon"></i>
-                <input type="text" id="username" class="form-control" placeholder="Entrez votre nom d'utilisateur" autocomplete="username">
-            </div>
-            
-            <div class="form-group">
-                <label for="password">Mot de passe</label>
-                <i class="fas fa-lock input-icon"></i>
-                <input type="password" id="password" class="form-control" placeholder="Entrez votre mot de passe" autocomplete="current-password">
-            </div>
-            
-            <button id="connect-btn" class="btn btn-primary" onclick="connect()">
-                <span id="btn-text">Se connecter</span>
-                <span id="btn-spinner" style="display: none;">
-                    <i class="fas fa-spinner fa-spin"></i> Connexion...
-                </span>
-            </button>
-            
-            <div id="status-message" class="status-message"></div>
-            
-            <div class="footer-links">
-                <a href="#" onclick="showForgotPassword()">Mot de passe oublié ?</a> • 
-                <a href="#" onclick="showHelp()">Aide</a>
-            </div>
-        </div>
+    <h1>Solar Pump Monitoring</h1>
+    <div id="login-form">
+        <label for="username">Username:</label>
+        <input type="text" id="username" placeholder="Enter username">
+        <label for="password">Password:</label>
+        <input type="password" id="password" placeholder="Enter password">
+        <button onclick="connect()">Connect</button>
     </div>
-    
+    <div id="status"></div>
     <script src="https://unpkg.com/mqtt@5.10.1/dist/mqtt.min.js"></script>
     <script>
         let client;
-        
-        function toggleButtonState(loading) {
-            const btnText = document.getElementById('btn-text');
-            const btnSpinner = document.getElementById('btn-spinner');
-            
-            if (loading) {
-                btnText.style.display = 'none';
-                btnSpinner.style.display = 'inline';
-                document.getElementById('connect-btn').disabled = true;
-            } else {
-                btnText.style.display = 'inline';
-                btnSpinner.style.display = 'none';
-                document.getElementById('connect-btn').disabled = false;
-            }
-        }
-        
-        function showStatusMessage(message, isError = true) {
-            const statusDiv = document.getElementById('status-message');
-            statusDiv.textContent = message;
-            statusDiv.className = isError ? 'status-message error' : 'status-message success';
-        }
-        
+
         function connect() {
-            const username = document.getElementById('username').value.trim();
-            const password = document.getElementById('password').value.trim();
-            
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            const statusDiv = document.getElementById('status');
+
             if (!username || !password) {
-                showStatusMessage('Veuillez saisir un nom d\'utilisateur et un mot de passe');
+                statusDiv.textContent = 'Please enter both username and password';
                 return;
             }
-            
-            toggleButtonState(true);
-            showStatusMessage('Connexion en cours...', false);
-            
+
             const options = {
                 host: '508205b2e19c4a7fad9828d3961d6424.s1.eu.hivemq.cloud',
                 port: 8884,
@@ -279,41 +89,24 @@
                 username: username,
                 password: password
             };
-            
+
+            statusDiv.textContent = 'Connecting...';
             client = mqtt.connect(options);
-            
+
             client.on('connect', () => {
-                showStatusMessage('Connexion réussie ! Redirection en cours...', false);
-                setTimeout(() => {
-                    window.location.href = `monitor.html?username=${encodeURIComponent(username)}`;
-                }, 1000);
+                statusDiv.textContent = 'Connected successfully';
+                window.location.href = `monitor.html?username=${encodeURIComponent(username)}`;
             });
-            
+
             client.on('error', (err) => {
-                console.error('Connection error:', err);
-                showStatusMessage('Erreur : Identifiants invalides ou problème de connexion');
-                toggleButtonState(false);
+                console.log('Connection error:', err);
+                statusDiv.textContent = 'Error: Invalid username or password';
             });
-            
+
             client.on('close', () => {
-                toggleButtonState(false);
+                window.location.href = 'login.html';
             });
         }
-        
-        function showForgotPassword() {
-            alert("Veuillez contacter l'administrateur pour réinitialiser votre mot de passe.");
-        }
-        
-        function showHelp() {
-            alert("Pour toute assistance, veuillez contacter le support technique au +123 456 7890 ou par email à support@solarpump.com");
-        }
-        
-        // Allow login on Enter key press
-        document.addEventListener('keypress', function(e) {
-            if (e.key === 'Enter') {
-                connect();
-            }
-        });
     </script>
 </body>
 </html>
