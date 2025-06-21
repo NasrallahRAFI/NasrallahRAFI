@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Client Interface</title>
+    <title>HiveMQ Cloud MQTT Interface</title>
     <style>
         body {
             font-family: 'Arial', sans-serif;
@@ -110,7 +110,6 @@
 
         .slider-container {
             margin-top: 10px;
-            position: relative;
         }
 
         .slider-label {
@@ -138,21 +137,13 @@
             transition: background-color 0.3s;
         }
 
-        /* Hidden radio inputs for color states */
-        .color-state {
-            display: none;
-        }
-
-        .color-state#red:checked ~ .slider-container .slider::-webkit-slider-thumb {
-            background-color: #ff0000;
-        }
-
-        .color-state#orange:checked ~ .slider-container .slider::-webkit-slider-thumb {
-            background-color: #ffA500;
-        }
-
-        .color-state#green:checked ~ .slider-container .slider::-webkit-slider-thumb {
-            background-color: #00ff00;
+        .slider::-moz-range-thumb {
+            width: 15px;
+            height: 15px;
+            background: #2c3e50;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: background-color 0.3s;
         }
 
         .message {
@@ -198,7 +189,7 @@
     </style>
 </head>
 <body>
-    <h1>Client Interface</h1>
+    <h1>HiveMQ Cloud MQTT Interface</h1>
     <div id="login-form">
         <label for="username">Username:</label>
         <input type="text" id="username" placeholder="Enter username">
@@ -245,9 +236,6 @@
             <div class="topic-box">
                 <div class="topic-title">Battery State</div>
                 <div class="slider-container">
-                    <input type="radio" class="color-state" id="red" name="color">
-                    <input type="radio" class="color-state" id="orange" name="color">
-                    <input type="radio" class="color-state" id="green" name="color">
                     <div class="slider-label">Battery Level: <span id="battery-value">0%</span></div>
                     <input type="range" id="battery-slider" class="slider" min="0" max="100" value="0">
                 </div>
@@ -348,10 +336,7 @@
                 } else if (topic === 'battery/state') {
                     const slider = document.getElementById('battery-slider');
                     const valueSpan = document.getElementById('battery-value');
-                    const redRadio = document.getElementById('red');
-                    const orangeRadio = document.getElementById('orange');
-                    const greenRadio = document.getElementById('green');
-                    if (slider && valueSpan && redRadio && orangeRadio && greenRadio) {
+                    if (slider && valueSpan) {
                         let value = parseInt(msg) || 0;
                         if (isNaN(value)) {
                             const match = msg.match(/(\d+)%?/);
@@ -361,10 +346,15 @@
                         slider.value = value;
                         valueSpan.textContent = `${value}%`;
 
-                        // Update color based on value
-                        redRadio.checked = value < 40;
-                        orangeRadio.checked = value >= 40 && value < 70;
-                        greenRadio.checked = value >= 70;
+                        // Set slider thumb color based on value
+                        const thumb = slider.style;
+                        if (value < 40) {
+                            thumb.setProperty('--thumb-color', '#ff0000');
+                        } else if (value < 70) {
+                            thumb.setProperty('--thumb-color', '#ffA500');
+                        } else {
+                            thumb.setProperty('--thumb-color', '#00ff00');
+                        }
                     }
                 } else if (topic === 'pump/speed') {
                     const messagesDiv = document.getElementById('pump-speed-messages');
