@@ -148,4 +148,367 @@
         }
         
         .card-body.show {
-            padding
+            padding: 20px;
+            max-height: 1000px;
+        }
+        
+        .data-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .data-item:last-child {
+            border-bottom: none;
+        }
+        
+        .data-label {
+            font-weight: 500;
+            color: #7f8c8d;
+        }
+        
+        .data-value {
+            font-weight: 600;
+        }
+        
+        .status-indicator {
+            display: inline-block;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            margin-right: 5px;
+        }
+        
+        .status-online {
+            background: var(--success);
+        }
+        
+        .status-offline {
+            background: var(--danger);
+        }
+        
+        .status-warning {
+            background: var(--warning);
+        }
+        
+        .gauge-container {
+            margin-top: 15px;
+            background: #f8f9fa;
+            border-radius: var(--border-radius);
+            padding: 10px;
+        }
+        
+        .gauge {
+            height: 10px;
+            background: linear-gradient(to right, #e74c3c, #f39c12, #2ecc71);
+            border-radius: 5px;
+            margin-top: 5px;
+            overflow: hidden;
+        }
+        
+        .gauge-fill {
+            height: 100%;
+            background: var(--primary);
+            width: 65%;
+            border-radius: 5px;
+        }
+        
+        .quick-stats {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+        
+        .stat-card {
+            background: white;
+            border-radius: var(--border-radius);
+            padding: 20px;
+            box-shadow: var(--box-shadow);
+            text-align: center;
+            transition: var(--transition);
+        }
+        
+        .stat-card:hover {
+            transform: translateY(-3px);
+        }
+        
+        .stat-card i {
+            font-size: 2rem;
+            margin-bottom: 10px;
+            color: var(--primary);
+        }
+        
+        .stat-value {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin: 10px 0;
+            color: var(--secondary);
+        }
+        
+        .stat-label {
+            color: #7f8c8d;
+            font-size: 0.9rem;
+        }
+        
+        @media (max-width: 992px) {
+            .quick-stats {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .dashboard {
+                grid-template-columns: 1fr;
+            }
+            
+            .quick-stats {
+                grid-template-columns: 1fr;
+            }
+            
+            header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .user-info {
+                margin-top: 15px;
+                width: 100%;
+                justify-content: space-between;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="header-title">
+                <i class="fas fa-tachometer-alt"></i>
+                <h1 id="client-title">Surveillance du système</h1>
+            </div>
+            <div class="user-info">
+                <span id="welcome-message">Bienvenue, Nasrallah</span>
+                <button class="logout-btn" onclick="logout()">
+                    <i class="fas fa-sign-out-alt"></i> Déconnexion
+                </button>
+            </div>
+        </header>
+        
+        <div class="quick-stats">
+            <div class="stat-card">
+                <i class="fas fa-bolt"></i>
+                <div class="stat-value">1.2 kW</div>
+                <div class="stat-label">Puissance générée</div>
+            </div>
+            <div class="stat-card">
+                <i class="fas fa-tint"></i>
+                <div class="stat-value">45 L/min</div>
+                <div class="stat-label">Débit d'eau</div>
+            </div>
+            <div class="stat-card">
+                <i class="fas fa-battery-three-quarters"></i>
+                <div class="stat-value">78%</div>
+                <div class="stat-label">Niveau batterie</div>
+            </div>
+            <div class="stat-card">
+                <i class="fas fa-thermometer-half"></i>
+                <div class="stat-value">32°C</div>
+                <div class="stat-label">Température</div>
+            </div>
+        </div>
+        
+        <div class="dashboard">
+            <div class="card">
+                <div class="card-header" onclick="toggleCard(this)">
+                    <h3><i class="fas fa-bolt"></i> Données Électriques</h3>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="card-body">
+                    <div class="data-item">
+                        <span class="data-label">Tension panneau solaire</span>
+                        <span class="data-value">48.2 V</span>
+                    </div>
+                    <div class="data-item">
+                        <span class="data-label">Courant panneau solaire</span>
+                        <span class="data-value">12.5 A</span>
+                    </div>
+                    <div class="data-item">
+                        <span class="data-label">Tension batterie</span>
+                        <span class="data-value">24.8 V</span>
+                    </div>
+                    <div class="data-item">
+                        <span class="data-label">Courant batterie</span>
+                        <span class="data-value">5.3 A</span>
+                    </div>
+                    <div class="data-item">
+                        <span class="data-label">Puissance générée</span>
+                        <span class="data-value">1.2 kW</span>
+                    </div>
+                    <div class="gauge-container">
+                        <div class="data-label">Niveau de charge batterie</div>
+                        <div class="gauge">
+                            <div class="gauge-fill" style="width: 78%"></div>
+                        </div>
+                        <div class="data-value">78%</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="card">
+                <div class="card-header" onclick="toggleCard(this)">
+                    <h3><i class="fas fa-tint"></i> Performances de la Pompe</h3>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="card-body">
+                    <div class="data-item">
+                        <span class="data-label">Débit d'eau</span>
+                        <span class="data-value">45 L/min</span>
+                    </div>
+                    <div class="data-item">
+                        <span class="data-label">Pression d'eau</span>
+                        <span class="data-value">2.8 bar</span>
+                    </div>
+                    <div class="data-item">
+                        <span class="data-label">Température moteur</span>
+                        <span class="data-value">42°C <span class="status-indicator status-warning"></span></span>
+                    </div>
+                    <div class="data-item">
+                        <span class="data-label">État</span>
+                        <span class="data-value"><span class="status-indicator status-online"></span> En fonctionnement</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="card">
+                <div class="card-header" onclick="toggleCard(this)">
+                    <h3><i class="fas fa-sun"></i> Données Solaires</h3>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="card-body">
+                    <div class="data-item">
+                        <span class="data-label">Ensoleillement</span>
+                        <span class="data-value">850 W/m²</span>
+                    </div>
+                    <div class="data-item">
+                        <span class="data-label">Température ambiante</span>
+                        <span class="data-value">32°C</span>
+                    </div>
+                    <div class="data-item">
+                        <span class="data-label">État panneaux</span>
+                        <span class="data-value"><span class="status-indicator status-online"></span> Optimal</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="card">
+                <div class="card-header" onclick="toggleCard(this)">
+                    <h3><i class="fas fa-water"></i> Réservoir d'Eau</h3>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="card-body">
+                    <div class="data-item">
+                        <span class="data-label">Niveau d'eau</span>
+                        <span class="data-value">65%</span>
+                    </div>
+                    <div class="gauge-container">
+                        <div class="data-label">Niveau du réservoir</div>
+                        <div class="gauge">
+                            <div class="gauge-fill" style="width: 65%"></div>
+                        </div>
+                        <div class="data-value">65%</div>
+                    </div>
+                    <div class="data-item">
+                        <span class="data-label">pH de l'eau</span>
+                        <span class="data-value">7.2</span>
+                    </div>
+                    <div class="data-item">
+                        <span class="data-label">Turbidité</span>
+                        <span class="data-value">2.1 NTU</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="card">
+                <div class="card-header" onclick="toggleCard(this)">
+                    <h3><i class="fas fa-tools"></i> Maintenance</h3>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="card-body">
+                    <div class="data-item">
+                        <span class="data-label">Heures de fonctionnement</span>
+                        <span class="data-value">1,248 h</span>
+                    </div>
+                    <div class="data-item">
+                        <span class="data-label">Dernière maintenance</span>
+                        <span class="data-value">15 jours</span>
+                    </div>
+                    <div class="data-item">
+                        <span class="data-label">Alertes actives</span>
+                        <span class="data-value"><span class="status-indicator status-warning"></span> Température moteur élevée</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="card">
+                <div class="card-header" onclick="toggleCard(this)">
+                    <h3><i class="fas fa-network-wired"></i> Communication IoT</h3>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="card-body">
+                    <div class="data-item">
+                        <span class="data-label">État connexion</span>
+                        <span class="data-value"><span class="status-indicator status-online"></span> Connecté</span>
+                    </div>
+                    <div class="data-item">
+                        <span class="data-label">Latence</span>
+                        <span class="data-value">120 ms</span>
+                    </div>
+                    <div class="data-item">
+                        <span class="data-label">Dernière mise à jour</span>
+                        <span class="data-value">2 min</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        // Set dynamic title based on URL parameter
+        const urlParams = new URLSearchParams(window.location.search);
+        const username = urlParams.get('username');
+        
+        if (username) {
+            document.getElementById('client-title').textContent = `Surveillance du système - ${decodeURIComponent(username)}`;
+            document.getElementById('welcome-message').textContent = `Bienvenue, ${decodeURIComponent(username)}`;
+        } else {
+            window.location.href = 'login.html';
+        }
+        
+        // Toggle card visibility
+        function toggleCard(element) {
+            const cardBody = element.nextElementSibling;
+            element.classList.toggle('active');
+            
+            if (cardBody.classList.contains('show')) {
+                cardBody.classList.remove('show');
+            } else {
+                cardBody.classList.add('show');
+            }
+        }
+        
+        // Open first card by default
+        document.addEventListener('DOMContentLoaded', function() {
+            const firstCardHeader = document.querySelector('.card-header');
+            if (firstCardHeader) {
+                toggleCard(firstCardHeader);
+            }
+        });
+        
+        // Logout function
+        function logout() {
+            window.location.href = 'login.html';
+        }
+    </script>
+</body>
+</html>
