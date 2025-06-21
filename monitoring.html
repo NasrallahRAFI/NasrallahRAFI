@@ -1,179 +1,558 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Client Monitoring</title>
+    <title>Monitoring Pompe Solaire</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        body {
-            font-family: 'Arial', sans-serif;
-            max-width: 900px;
-            margin: 0 auto;
-            padding: 20px;
-            background: linear-gradient(135deg, #f0f4f8, #e0e8f0);
-            color: #333;
+        :root {
+            --primary: #3498db;
+            --primary-dark: #2980b9;
+            --secondary: #2ecc71;
+            --danger: #e74c3c;
+            --warning: #f39c12;
+            --dark: #2c3e50;
+            --light: #ecf0f1;
+            --gray: #95a5a6;
+            --white: #ffffff;
         }
-        h1 {
-            text-align: center;
-            color: #2c3e50;
-            font-size: 2em;
-            margin-bottom: 20px;
-        }
-        #welcome {
-            text-align: center;
-            margin-bottom: 20px;
-            color: #2c3e50;
-        }
-        .section {
-            background-color: #ffffff;
-            border-radius: 8px;
-            padding: 15px;
-            margin-bottom: 10px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-            transition: max-height 0.3s ease;
-            overflow: hidden;
-        }
-        .section-title {
-            font-weight: bold;
-            cursor: pointer;
-            padding: 10px;
-            background-color: #ecf0f1;
-            border-radius: 5px;
-        }
-        .section-content {
-            padding: 10px;
-        }
-        .collapsed {
-            max-height: 0;
+        
+        * {
+            box-sizing: border-box;
+            margin: 0;
             padding: 0;
         }
-        .expanded {
-            max-height: 500px; /* Adjust based on content */
+        
+        body {
+            font-family: 'Roboto', sans-serif;
+            background: #f5f7fa;
+            color: var(--dark);
+            line-height: 1.6;
         }
-        .topic-row {
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
             display: flex;
             justify-content: space-between;
-            margin: 5px 0;
+            align-items: center;
+            padding: 20px 0;
+            margin-bottom: 30px;
+            border-bottom: 1px solid rgba(0,0,0,0.1);
         }
-        .led {
-            width: 20px;
-            height: 20px;
+        
+        .header-info {
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo {
+            width: 50px;
+            height: 50px;
+            margin-right: 15px;
+            background-color: var(--primary);
             border-radius: 50%;
-            background-color: #ccc;
-            transition: background-color 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
         }
-        .green-led.on { background-color: #00ff00; }
-        .red-led.on { background-color: #ff0000; }
-        .slider {
-            width: 100%;
-            height: 20px;
-            -webkit-appearance: none;
-            background: #dfe6e9;
+        
+        h1 {
+            font-size: 1.8rem;
+            font-weight: 500;
+            color: var(--dark);
+        }
+        
+        .user-info {
+            display: flex;
+            align-items: center;
+        }
+        
+        .user-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: var(--primary);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 10px;
+            font-weight: bold;
+        }
+        
+        .status-indicator {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+            padding: 10px 15px;
+            background-color: var(--white);
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+        
+        .status-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            margin-right: 10px;
+            background-color: var(--danger);
+        }
+        
+        .status-dot.connected {
+            background-color: var(--secondary);
+        }
+        
+        .dashboard {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .card {
+            background-color: var(--white);
             border-radius: 10px;
-            outline: none;
-            pointer-events: none;
+            padding: 20px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
-        .slider::-webkit-slider-thumb {
-            -webkit-appearance: none;
-            width: 15px;
-            height: 15px;
-            border-radius: 50%;
-            cursor: default;
+        
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
         }
-        .slider[value="0"]::-webkit-slider-thumb { background: #e74c3c; }
-        .slider[value="30"]::-webkit-slider-thumb,
-        .slider[value="31"]::-webkit-slider-thumb { background: #f39c12; }
-        .slider[value="60"]::-webkit-slider-thumb,
-        .slider[value="61"]::-webkit-slider-thumb { background: #2ecc71; }
-        .slider::-moz-range-thumb {
-            width: 15px;
-            height: 15px;
-            border-radius: 50%;
-            background: #2ecc71;
-            cursor: default;
+        
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid rgba(0,0,0,0.05);
         }
-        .slider[value="0"]::-moz-range-thumb { background: #e74c3c; }
-        .slider[value="30"]::-moz-range-thumb,
-        .slider[value="31"]::-moz-range-thumb { background: #f39c12; }
-        .slider[value="60"]::-moz-range-thumb,
-        .slider[value="61"]::-moz-range-thumb { background: #2ecc71; }
-        button {
-            padding: 5px 10px;
-            margin: 5px;
-            background-color: #2c3e50;
-            color: #ffffff;
-            border: none;
+        
+        .card-title {
+            font-size: 1.1rem;
+            font-weight: 500;
+            color: var(--dark);
+        }
+        
+        .card-icon {
+            color: var(--primary);
+            font-size: 1.2rem;
+        }
+        
+        .metric {
+            font-size: 2rem;
+            font-weight: 300;
+            margin: 10px 0;
+        }
+        
+        .metric-label {
+            font-size: 0.9rem;
+            color: var(--gray);
+        }
+        
+        .progress-container {
+            margin-top: 15px;
+        }
+        
+        .progress-label {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 5px;
+            font-size: 0.9rem;
+        }
+        
+        .progress-bar {
+            height: 8px;
+            background-color: var(--light);
             border-radius: 4px;
+            overflow: hidden;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            border-radius: 4px;
+            transition: width 0.5s ease;
+        }
+        
+        .control-panel {
+            background-color: var(--white);
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            margin-bottom: 30px;
+        }
+        
+        .panel-header {
+            font-size: 1.2rem;
+            font-weight: 500;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .panel-header i {
+            margin-right: 10px;
+            color: var(--primary);
+        }
+        
+        .btn-group {
+            display: flex;
+            gap: 10px;
+            margin-top: 15px;
+        }
+        
+        .btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 6px;
+            font-weight: 500;
             cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
         }
-        button:hover {
-            background-color: #34495e;
+        
+        .btn-primary {
+            background-color: var(--primary);
+            color: white;
         }
-        #log {
-            height: 150px;
-            overflow-y: auto;
-            border: 1px solid #dfe6e9;
+        
+        .btn-primary:hover {
+            background-color: var(--primary-dark);
+        }
+        
+        .btn-danger {
+            background-color: var(--danger);
+            color: white;
+        }
+        
+        .btn-danger:hover {
+            background-color: #c0392b;
+        }
+        
+        .btn-outline {
+            background-color: transparent;
+            border: 1px solid var(--gray);
+            color: var(--dark);
+        }
+        
+        .btn-outline:hover {
+            background-color: var(--light);
+        }
+        
+        .state-indicator {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        
+        .led {
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            margin-right: 10px;
+            position: relative;
+        }
+        
+        .led:after {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            border-radius: 50%;
+            background: inherit;
+            filter: blur(2px);
+            opacity: 0.3;
+        }
+        
+        .led-red {
+            background-color: var(--danger);
+        }
+        
+        .led-green {
+            background-color: var(--secondary);
+        }
+        
+        .led-yellow {
+            background-color: var(--warning);
+        }
+        
+        .schedule-form {
+            display: flex;
+            gap: 10px;
+            margin-top: 15px;
+        }
+        
+        .form-input {
+            flex: 1;
             padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-family: inherit;
         }
+        
+        .schedule-list {
+            margin-top: 20px;
+        }
+        
+        .schedule-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px;
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+        }
+        
+        .schedule-item:last-child {
+            border-bottom: none;
+        }
+        
+        .log-container {
+            background-color: var(--white);
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        }
+        
+        .log-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        
+        .log-content {
+            height: 200px;
+            overflow-y: auto;
+            padding: 10px;
+            background-color: #f9f9f9;
+            border-radius: 6px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+        }
+        
         .log-entry {
-            margin: 5px 0;
-            color: #7f8c8d;
+            margin-bottom: 5px;
+            padding-bottom: 5px;
+            border-bottom: 1px dashed #eee;
+        }
+        
+        .log-time {
+            color: var(--gray);
+            margin-right: 10px;
+        }
+        
+        .log-message {
+            color: var(--dark);
+        }
+        
+        .logout-btn {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--danger);
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-weight: 500;
+        }
+        
+        @media (max-width: 768px) {
+            .dashboard {
+                grid-template-columns: 1fr;
+            }
+            
+            .btn-group {
+                flex-direction: column;
+            }
+            
+            .schedule-form {
+                flex-direction: column;
+            }
         }
     </style>
 </head>
 <body>
-    <h1 id="client-title">Client Monitoring</h1>
-    <div id="welcome"></div>
-    <div id="status">Not Connected</div>
-    <div class="section">
-        <div class="section-title" onclick="toggleSection('system')">Etat de System</div>
-        <div id="system-content" class="section-content collapsed">
-            <div class="topic-row"><span>Source d'energie:</span><span id="energy-source">N/A</span></div>
-            <div class="topic-row"><span>Electricité produite:</span><span id="electricity-produced">N/A</span></div>
-            <div class="topic-row"><span>Electricité consommé:</span><span id="electricity-consumed">N/A</span></div>
+    <div class="container">
+        <header>
+            <div class="header-info">
+                <div class="logo">
+                    <i class="fas fa-solar-panel"></i>
+                </div>
+                <h1>Monitoring Pompe Solaire</h1>
+            </div>
+            <div class="user-info">
+                <div class="user-avatar" id="user-avatar">U</div>
+                <button class="logout-btn" onclick="disconnect()">
+                    <i class="fas fa-sign-out-alt"></i>
+                    Déconnexion
+                </button>
+            </div>
+        </header>
+        
+        <div class="status-indicator">
+            <div class="status-dot" id="status-dot"></div>
+            <span id="status-text">Chargement...</span>
+        </div>
+        
+        <div class="dashboard">
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-title">Source d'Énergie</div>
+                    <i class="fas fa-bolt card-icon"></i>
+                </div>
+                <div class="metric" id="energy-source">--</div>
+                <div class="metric-label">Source actuelle</div>
+            </div>
+            
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-title">Production Électrique</div>
+                    <i class="fas fa-sun card-icon"></i>
+                </div>
+                <div class="metric" id="electricity-produced">--</div>
+                <div class="metric-label">Aujourd'hui</div>
+                <div class="progress-container">
+                    <div class="progress-label">
+                        <span>0%</span>
+                        <span>100%</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="production-progress" style="width: 0%"></div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-title">Consommation Électrique</div>
+                    <i class="fas fa-plug card-icon"></i>
+                </div>
+                <div class="metric" id="electricity-consumed">--</div>
+                <div class="metric-label">Aujourd'hui</div>
+                <div class="progress-container">
+                    <div class="progress-label">
+                        <span>0%</span>
+                        <span>100%</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="consumption-progress" style="width: 0%"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="dashboard">
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-title">Niveau de Batterie</div>
+                    <i class="fas fa-battery-three-quarters card-icon"></i>
+                </div>
+                <div class="metric" id="battery-value">--%</div>
+                <div class="metric-label">Charge actuelle</div>
+                <div class="progress-container">
+                    <div class="progress-label">
+                        <span>0%</span>
+                        <span>100%</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="battery-progress" style="width: 0%"></div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-title">Niveau d'Eau</div>
+                    <i class="fas fa-tint card-icon"></i>
+                </div>
+                <div class="metric" id="water-value">--%</div>
+                <div class="metric-label">Réservoir principal</div>
+                <div class="progress-container">
+                    <div class="progress-label">
+                        <span>0%</span>
+                        <span>100%</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="water-progress" style="width: 0%"></div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-title">État de la Pompe</div>
+                    <i class="fas fa-water card-icon"></i>
+                </div>
+                <div class="state-indicator">
+                    <div class="led led-red" id="pump-led"></div>
+                    <span id="pump-state">Arrêtée</span>
+                </div>
+                <div class="btn-group">
+                    <button class="btn btn-primary" onclick="sendCommand('pump/start')">
+                        <i class="fas fa-play"></i> Démarrer
+                    </button>
+                    <button class="btn btn-danger" onclick="sendCommand('pump/stop')">
+                        <i class="fas fa-stop"></i> Arrêter
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <div class="control-panel">
+            <div class="panel-header">
+                <i class="far fa-clock"></i>
+                <span>Programmation</span>
+            </div>
+            <div class="schedule-form">
+                <input type="datetime-local" id="program-time" class="form-input">
+                <button class="btn btn-primary" onclick="addProgram()">
+                    <i class="fas fa-plus"></i> Ajouter
+                </button>
+            </div>
+            <div class="schedule-list" id="program-list">
+                <!-- Les programmes seront ajoutés ici -->
+            </div>
+        </div>
+        
+        <div class="log-container">
+            <div class="log-header">
+                <div class="panel-header">
+                    <i class="fas fa-history"></i>
+                    <span>Journal d'activité</span>
+                </div>
+                <button class="btn btn-outline" onclick="clearLog()">
+                    <i class="fas fa-trash"></i> Effacer
+                </button>
+            </div>
+            <div class="log-content" id="log">
+                <!-- Les entrées de log seront ajoutées ici -->
+            </div>
         </div>
     </div>
-    <div class="section">
-        <div class="section-title" onclick="toggleSection('levels')">Niveau de Batterie & Eau</div>
-        <div id="levels-content" class="section-content collapsed">
-            <div class="topic-row"><span>Niveau de Batterie:</span><input type="range" id="battery-level" class="slider" min="0" max="100" value="0"><span id="battery-value">0%</span></div>
-            <div class="topic-row"><span>Niveau d'eau (Reservoir):</span><input type="range" id="water-level" class="slider" min="0" max="100" value="0"><span id="water-value">0%</span></div>
-        </div>
-    </div>
-    <div class="section">
-        <div class="section-title" onclick="toggleSection('pump')">Control de Pompe</div>
-        <div id="pump-content" class="section-content collapsed">
-            <div class="topic-row"><span>Etat de Pompe:</span><div id="pump-led" class="led red-led"></div></div>
-            <button onclick="sendCommand('pump/start')">Démarrer</button>
-            <button onclick="sendCommand('pump/stop')">Arrêter</button>
-        </div>
-    </div>
-    <div class="section">
-        <div class="section-title" onclick="toggleSection('program')">Programmation</div>
-        <div id="program-content" class="section-content collapsed">
-            <input type="datetime-local" id="program-time">
-            <button onclick="addProgram()">Ajouter Programme</button>
-            <ul id="program-list"></ul>
-        </div>
-    </div>
-    <div class="section">
-        <div class="section-title" onclick="toggleSection('log')">Log des Informations</div>
-        <div id="log-content" class="section-content collapsed">
-            <div id="log"></div>
-        </div>
-    </div>
-    <button onclick="disconnect()">Déconnexion</button>
+
     <script src="https://unpkg.com/mqtt@5.10.1/dist/mqtt.min.js"></script>
     <script>
         let client;
         const topics = ['system/energy-source', 'system/electricity-produced', 'system/electricity-consumed', 'battery/level', 'water/level', 'pump/state'];
         const programs = [];
-
-        function toggleSection(sectionId) {
-            const content = document.getElementById(`${sectionId}-content`);
-            content.classList.toggle('collapsed');
-            content.classList.toggle('expanded');
-        }
 
         function getParameter(name) {
             const urlParams = new URLSearchParams(window.location.search);
@@ -182,12 +561,23 @@
 
         const username = getParameter('username');
         if (username) {
-            document.getElementById('client-title').textContent = `Client: ${username}`;
-            document.getElementById('welcome').textContent = `Bienvenue ${username} (Client)`;
+            document.getElementById('user-avatar').textContent = username.charAt(0).toUpperCase();
+        }
+
+        function updateStatus(connected) {
+            const dot = document.getElementById('status-dot');
+            const text = document.getElementById('status-text');
+            
+            if (connected) {
+                dot.className = 'status-dot connected';
+                text.textContent = 'Connecté au système';
+            } else {
+                dot.className = 'status-dot';
+                text.textContent = 'Déconnecté';
+            }
         }
 
         function connect() {
-            const statusDiv = document.getElementById('status');
             const options = {
                 host: '508205b2e19c4a7fad9828d3961d6424.s1.eu.hivemq.cloud',
                 port: 8884,
@@ -195,102 +585,177 @@
                 path: '/mqtt',
                 clientId: 'mqttjs_' + Math.random().toString(16).substr(2, 8),
                 username: username,
-                password: 'Nasrollah2003*' // Replace with actual password or fetch securely
+                password: 'Nasrollah2003*' // À remplacer par une méthode sécurisée
             };
 
-            statusDiv.textContent = 'Connecting...';
+            updateStatus(false);
             client = mqtt.connect(options);
 
             client.on('connect', () => {
-                statusDiv.textContent = 'Connected to HiveMQ Cloud';
-                statusDiv.style.color = 'green';
+                updateStatus(true);
+                addLog('Connexion établie avec le serveur MQTT');
                 topics.forEach(topic => client.subscribe(topic));
-                setInterval(logStatus, 60000); // Log every minute
             });
 
             client.on('message', (topic, message) => {
                 const msg = message.toString();
+                addLog(`Message reçu [${topic}]: ${msg}`);
+                
                 switch (topic) {
                     case 'system/energy-source':
                         document.getElementById('energy-source').textContent = msg;
                         break;
                     case 'system/electricity-produced':
-                        document.getElementById('electricity-produced').textContent = msg;
+                        document.getElementById('electricity-produced').textContent = msg + ' kWh';
+                        updateProgress('production-progress', parseInt(msg) || 0);
                         break;
                     case 'system/electricity-consumed':
-                        document.getElementById('electricity-consumed').textContent = msg;
+                        document.getElementById('electricity-consumed').textContent = msg + ' kWh';
+                        updateProgress('consumption-progress', parseInt(msg) || 0);
                         break;
                     case 'battery/level':
-                        updateLevel('battery-level', msg, 'battery-value');
+                        updateLevel('battery-value', msg, 'battery-progress');
                         break;
                     case 'water/level':
-                        updateLevel('water-level', msg, 'water-value');
+                        updateLevel('water-value', msg, 'water-progress');
                         break;
                     case 'pump/state':
-                        const pumpLed = document.getElementById('pump-led');
-                        pumpLed.classList.remove('on');
-                        if (msg.toLowerCase().includes('on')) pumpLed.classList.add('on', 'green-led');
-                        else pumpLed.classList.add('on', 'red-led');
+                        updatePumpState(msg);
                         break;
                 }
             });
 
             client.on('error', (err) => {
-                console.log('Connection error:', err);
-                statusDiv.textContent = 'Error: Connection failed';
-                statusDiv.style.color = 'red';
-                window.location.href = 'login.html';
+                addLog('Erreur de connexion: ' + err.message, 'error');
+                updateStatus(false);
             });
 
             client.on('close', () => {
-                window.location.href = 'login.html';
+                addLog('Déconnecté du serveur MQTT');
+                updateStatus(false);
             });
         }
 
-        function updateLevel(elementId, value, displayId) {
-            const slider = document.getElementById(elementId);
-            const display = document.getElementById(displayId);
+        function updateLevel(valueElement, value, progressElement) {
             let val = Math.max(0, Math.min(100, parseInt(value) || 0));
-            slider.value = val;
-            display.textContent = `${val}%`;
+            document.getElementById(valueElement).textContent = val + '%';
+            updateProgress(progressElement, val);
+        }
+
+        function updateProgress(elementId, percent) {
+            const clamped = Math.max(0, Math.min(100, percent));
+            document.getElementById(elementId).style.width = clamped + '%';
+            
+            // Changer la couleur en fonction du niveau
+            const element = document.getElementById(elementId);
+            element.style.background = 
+                clamped < 30 ? 'linear-gradient(90deg, #e74c3c, #f39c12)' :
+                clamped < 60 ? 'linear-gradient(90deg, #f39c12, #f1c40f)' :
+                'linear-gradient(90deg, #2ecc71, #27ae60)';
+        }
+
+        function updatePumpState(state) {
+            const led = document.getElementById('pump-led');
+            const stateText = document.getElementById('pump-state');
+            
+            led.className = 'led';
+            if (state.toLowerCase().includes('on')) {
+                led.classList.add('led-green');
+                stateText.textContent = 'En marche';
+            } else {
+                led.classList.add('led-red');
+                stateText.textContent = 'Arrêtée';
+            }
         }
 
         function sendCommand(command) {
             if (client) {
                 const topic = `pump/control`;
                 let payload = '';
-                if (command === 'pump/start') payload = 'ON';
-                else if (command === 'pump/stop') payload = 'OFF';
+                if (command === 'pump/start') {
+                    payload = 'ON';
+                    addLog('Commande envoyée: Démarrer la pompe');
+                } else if (command === 'pump/stop') {
+                    payload = 'OFF';
+                    addLog('Commande envoyée: Arrêter la pompe');
+                }
                 client.publish(topic, payload);
             }
         }
 
         function addProgram() {
-            const time = document.getElementById('program-time').value;
+            const timeInput = document.getElementById('program-time');
+            const time = timeInput.value;
             if (time) {
                 programs.push(time);
                 const list = document.getElementById('program-list');
-                const li = document.createElement('li');
-                li.textContent = time;
-                list.appendChild(li);
-                document.getElementById('program-time').value = '';
+                const item = document.createElement('div');
+                item.className = 'schedule-item';
+                
+                const timeText = document.createElement('span');
+                timeText.textContent = new Date(time).toLocaleString();
+                
+                const deleteBtn = document.createElement('button');
+                deleteBtn.className = 'btn btn-outline';
+                deleteBtn.innerHTML = '<i class="fas fa-trash"></i>';
+                deleteBtn.onclick = function() {
+                    list.removeChild(item);
+                    const index = programs.indexOf(time);
+                    if (index > -1) {
+                        programs.splice(index, 1);
+                    }
+                };
+                
+                item.appendChild(timeText);
+                item.appendChild(deleteBtn);
+                list.appendChild(item);
+                
+                timeInput.value = '';
+                addLog('Programme ajouté: ' + time);
             }
         }
 
-        function logStatus() {
+        function addLog(message, type = 'info') {
             const logDiv = document.getElementById('log');
             const entry = document.createElement('div');
             entry.className = 'log-entry';
-            entry.textContent = `[${new Date().toLocaleTimeString()}] Logged status`;
+            
+            const timeSpan = document.createElement('span');
+            timeSpan.className = 'log-time';
+            timeSpan.textContent = new Date().toLocaleTimeString();
+            
+            const msgSpan = document.createElement('span');
+            msgSpan.className = 'log-message';
+            msgSpan.textContent = message;
+            
+            if (type === 'error') {
+                msgSpan.style.color = 'var(--danger)';
+            } else if (type === 'warning') {
+                msgSpan.style.color = 'var(--warning)';
+            }
+            
+            entry.appendChild(timeSpan);
+            entry.appendChild(msgSpan);
             logDiv.appendChild(entry);
             logDiv.scrollTop = logDiv.scrollHeight;
         }
 
-        function disconnect() {
-            if (client) client.end();
+        function clearLog() {
+            document.getElementById('log').innerHTML = '';
+            addLog('Journal effacé');
         }
 
-        // Connect on page load
+        function disconnect() {
+            if (client) {
+                client.end();
+                addLog('Déconnexion initiée');
+            }
+            setTimeout(() => {
+                window.location.href = 'login.html';
+            }, 1000);
+        }
+
+        // Connexion au chargement de la page
         window.onload = connect;
     </script>
 </body>
