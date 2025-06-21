@@ -3,470 +3,96 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HiveMQ Cloud MQTT Interface</title>
+    <title>Solar Pump Monitoring</title>
     <style>
-        /* Existing CSS remains unchanged */
         body {
             font-family: 'Arial', sans-serif;
-            max-width: 900px;
+            max-width: 400px;
             margin: 0 auto;
             padding: 20px;
-            background: linear-gradient(135deg, #f0f4f8, #e0e8f0);
-            color: #333;
+            background: #f0f4f8;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
         }
-
         h1 {
             text-align: center;
             color: #2c3e50;
-            font-size: 2em;
             margin-bottom: 20px;
-            text-transform: uppercase;
-            letter-spacing: 2px;
         }
-
-        #login-form {
-            margin: 20px 0;
+        .login-form {
+            background: #fff;
             padding: 20px;
-            background-color: #ffffff;
-            border: 1px solid #dfe6e9;
             border-radius: 8px;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
         }
-
-        #topics-section {
-            display: none;
-            margin-top: 20px;
-        }
-
-        #status {
-            margin: 20px 0;
-            padding: 15px;
-            background-color: #ffffff;
-            border: 1px solid #dfe6e9;
-            border-radius: 8px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-            font-size: 0.9em;
-            color: #2c3e50;
-        }
-
-        .topic-container {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 25px;
-        }
-
-        .topic-box {
-            background-color: #ffffff;
-            border: 1px solid #dfe6e9;
-            border-radius: 8px;
-            padding: 15px;
-            height: 220px;
-            overflow-y: auto;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-            transition: box-shadow 0.3s;
-        }
-
-        .topic-box:hover {
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
-        }
-
-        .topic-title {
-            font-weight: bold;
-            margin-bottom: 10px;
-            color: #2c3e50;
-            font-size: 1.1em;
-            text-transform: capitalize;
-        }
-
-        .led-container {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-            margin-top: 10px;
-            align-items: flex-start;
-        }
-
-        .led-item {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .led {
-            width: 20px;
-            height: 20px;
-            border-radius: 50%;
-            display: inline-block;
-            background-color: #ccc;
-            transition: background-color 0.3s;
-        }
-
-        .green-led.on {
-            background-color: #00ff00;
-        }
-
-        .red-led.on {
-            background-color: #ff0000;
-        }
-
-        .slider-container {
-            margin-top: 10px;
-        }
-
-        .slider-label {
-            font-weight: bold;
-            margin-bottom: 5px;
-            color: #2c3e50;
-        }
-
-        .slider {
-            width: 100%;
-            height: 20px;
-            -webkit-appearance: none;
-            background: #dfe6e9;
-            border-radius: 10px;
-            outline: none;
-            pointer-events: none;
-        }
-
-        .slider::-webkit-slider-thumb {
-            -webkit-appearance: none;
-            width: 15px;
-            height: 15px;
-            border-radius: 50%;
-            cursor: default;
-        }
-
-        .slider[value="0"]:not(:active)::-webkit-slider-thumb {
-            background: #e74c3c;
-        }
-
-        .slider[value="40"]:not(:active)::-webkit-slider-thumb,
-        .slider[value="41"]:not(:active)::-webkit-slider-thumb,
-        .slider[value="42"]:not(:active)::-webkit-slider-thumb,
-        .slider[value="43"]:not(:active)::-webkit-slider-thumb,
-        .slider[value="44"]:not(:active)::-webkit-slider-thumb,
-        .slider[value="45"]:not(:active)::-webkit-slider-thumb,
-        .slider[value="46"]:not(:active)::-webkit-slider-thumb,
-        .slider[value="47"]:not(:active)::-webkit-slider-thumb,
-        .slider[value="48"]:not(:active)::-webkit-slider-thumb,
-        .slider[value="49"]:not(:active)::-webkit-slider-thumb,
-        .slider[value="50"]:not(:active)::-webkit-slider-thumb,
-        .slider[value="51"]:not(:active)::-webkit-slider-thumb,
-        .slider[value="52"]:not(:active)::-webkit-slider-thumb,
-        .slider[value="53"]:not(:active)::-webkit-slider-thumb,
-        .slider[value="54"]:not(:active)::-webkit-slider-thumb,
-        .slider[value="55"]:not(:active)::-webkit-slider-thumb,
-        .slider[value="56"]:not(:active)::-webkit-slider-thumb,
-        .slider[value="57"]:not(:active)::-webkit-slider-thumb,
-        .slider[value="58"]:not(:active)::-webkit-slider-thumb,
-        .slider[value="59"]:not(:active)::-webkit-slider-thumb,
-        .slider[value="60"]:not(:active)::-webkit-slider-thumb,
-        .slider[value="61"]:not(:active)::-webkit-slider-thumb,
-        .slider[value="62"]:not(:active)::-webkit-slider-thumb,
-        .slider[value="63"]:not(:active)::-webkit-slider-thumb,
-        .slider[value="64"]:not(:active)::-webkit-slider-thumb,
-        .slider[value="65"]:not(:active)::-webkit-slider-thumb,
-        .slider[value="66"]:not(:active)::-webkit-slider-thumb,
-        .slider[value="67"]:not(:active)::-webkit-slider-thumb,
-        .slider[value="68"]:not(:active)::-webkit-slider-thumb,
-        .slider[value="69"]:not(:active)::-webkit-slider-thumb,
-        .slider[value="70"]:not(:active)::-webkit-slider-thumb {
-            background: #f39c12;
-        }
-
-        .slider[value="71"]:not(:active)::-webkit-slider-thumb,
-        .slider[value="72"]:not(:active)::-webkit-slider-thumb,
-        .slider[value="73"]:not(:active)::-webkit-slider-thumb,
-        .slider[value="74"]:not(:active)::-webkit-slider-thumb,
-        .slider[value="75"]:not(:active)::-webkit-slider-thumb,
-        .slider[value="76"]:not(:active)::-webkit-slider-thumb,
-        .slider[value="77"]:not(:active)::-webkit-slider-thumb,
-        .slider[value="78"]:not(:active)::-webkit-slider-thumb,
-        .slider[value="79"]:not(:active)::-webkit-slider-thumb,
-        .slider[value="80"]:not(:active)::-webkit-slider-thumb,
-        .slider[value="81"]:not(:active)::-webkit-slider-thumb,
-        .slider[value="82"]:not(:active)::-webkit-slider-thumb,
-        .slider[value="83"]:not(:active)::-webkit-slider-thumb,
-        .slider[value="84"]:not(:active)::-webkit-slider-thumb,
-        .slider[value="85"]:not(:active)::-webkit-slider-thumb,
-        .slider[value="86"]:not(:active)::-webkit-slider-thumb,
-        .slider[value="87"]:not(:active)::-webkit-slider-thumb,
-        .slider[value="88"]:not(:active)::-webkit-slider-thumb,
-        .slider[value="89"]:not(:active)::-webkit-slider-thumb,
-        .slider[value="90"]:not(:active)::-webkit-slider-thumb,
-        .slider[value="91"]:not(:active)::-webkit-slider-thumb,
-        .slider[value="92"]:not(:active)::-webkit-slider-thumb,
-        .slider[value="93"]:not(:active)::-webkit-slider-thumb,
-        .slider[value="94"]:not(:active)::-webkit-slider-thumb,
-        .slider[value="95"]:not(:active)::-webkit-slider-thumb,
-        .slider[value="96"]:not(:active)::-webkit-slider-thumb,
-        .slider[value="97"]:not(:active)::-webkit-slider-thumb,
-        .slider[value="98"]:not(:active)::-webkit-slider-thumb,
-        .slider[value="99"]:not(:active)::-webkit-slider-thumb,
-        .slider[value="100"]:not(:active)::-webkit-slider-thumb {
-            background: #2ecc71;
-        }
-
-        .slider::-moz-range-thumb {
-            width: 15px;
-            height: 15px;
-            border-radius: 50%;
-            background: #2ecc71;
-            cursor: default;
-        }
-        .slider[value="0"]::-moz-range-thumb { background: #e74c3c; }
-        .slider[value="40"]::-moz-range-thumb,
-        .slider[value="41"]::-moz-range-thumb,
-        .slider[value="42"]::-moz-range-thumb,
-        .slider[value="43"]::-moz-range-thumb,
-        .slider[value="44"]::-moz-range-thumb,
-        .slider[value="45"]::-moz-range-thumb,
-        .slider[value="46"]::-moz-range-thumb,
-        .slider[value="47"]::-moz-range-thumb,
-        .slider[value="48"]::-moz-range-thumb,
-        .slider[value="49"]::-moz-range-thumb,
-        .slider[value="50"]::-moz-range-thumb,
-        .slider[value="51"]::-moz-range-thumb,
-        .slider[value="52"]::-moz-range-thumb,
-        .slider[value="53"]::-moz-range-thumb,
-        .slider[value="54"]::-moz-range-thumb,
-        .slider[value="55"]::-moz-range-thumb,
-        .slider[value="56"]::-moz-range-thumb,
-        .slider[value="57"]::-moz-range-thumb,
-        .slider[value="58"]::-moz-range-thumb,
-        .slider[value="59"]::-moz-range-thumb,
-        .slider[value="60"]::-moz-range-thumb,
-        .slider[value="61"]::-moz-range-thumb,
-        .slider[value="62"]::-moz-range-thumb,
-        .slider[value="63"]::-moz-range-thumb,
-        .slider[value="64"]::-moz-range-thumb,
-        .slider[value="65"]::-moz-range-thumb,
-        .slider[value="66"]::-moz-range-thumb,
-        .slider[value="67"]::-moz-range-thumb,
-        .slider[value="68"]::-moz-range-thumb,
-        .slider[value="69"]::-moz-range-thumb,
-        .slider[value="70"]::-moz-range-thumb { background: #f39c12; }
-        .slider[value="71"]::-moz-range-thumb,
-        .slider[value="72"]::-moz-range-thumb,
-        .slider[value="73"]::-moz-range-thumb,
-        .slider[value="74"]::-moz-range-thumb,
-        .slider[value="75"]::-moz-range-thumb,
-        .slider[value="76"]::-moz-range-thumb,
-        .slider[value="77"]::-moz-range-thumb,
-        .slider[value="78"]::-moz-range-thumb,
-        .slider[value="79"]::-moz-range-thumb,
-        .slider[value="80"]::-moz-range-thumb,
-        .slider[value="81"]::-moz-range-thumb,
-        .slider[value="82"]::-moz-range-thumb,
-        .slider[value="83"]::-moz-range-thumb,
-        .slider[value="84"]::-moz-range-thumb,
-        .slider[value="85"]::-moz-range-thumb,
-        .slider[value="86"]::-moz-range-thumb,
-        .slider[value="87"]::-moz-range-thumb,
-        .slider[value="88"]::-moz-range-thumb,
-        .slider[value="89"]::-moz-range-thumb,
-        .slider[value="90"]::-moz-range-thumb,
-        .slider[value="91"]::-moz-range-thumb,
-        .slider[value="92"]::-moz-range-thumb,
-        .slider[value="93"]::-moz-range-thumb,
-        .slider[value="94"]::-moz-range-thumb,
-        .slider[value="95"]::-moz-range-thumb,
-        .slider[value="96"]::-moz-range-thumb,
-        .slider[value="97"]::-moz-range-thumb,
-        .slider[value="98"]::-moz-range-thumb,
-        .slider[value="99"]::-moz-range-thumb,
-        .slider[value="100"]::-moz-range-thumb { background: #2ecc71; }
-
-        .message {
-            padding: 5px;
-            border-bottom: 1px solid #eee;
-            font-size: 0.9em;
-            color: #7f8c8d;
-            display: flex;
-            justify-content: space-between;
-        }
-
-        .error {
-            color: #e74c3c;
-        }
-
         label {
             display: block;
             margin: 10px 0 5px;
             color: #2c3e50;
         }
-
         input {
             width: 100%;
             padding: 8px;
             margin-bottom: 10px;
             border: 1px solid #dfe6e9;
             border-radius: 4px;
-            box-sizing: border-box;
         }
-
         button {
-            padding: 10px 20px;
-            background-color: #2c3e50;
-            color: #ffffff;
+            width: 100%;
+            padding: 10px;
+            background: #2c3e50;
+            color: #fff;
             border: none;
             border-radius: 4px;
             cursor: pointer;
-            font-weight: bold;
-            transition: background-color 0.3s;
         }
-
         button:hover {
-            background-color: #34495e;
+            background: #34495e;
+        }
+        #status {
+            text-align: center;
+            color: #e74c3c;
+            margin-top: 10px;
+            display: none;
         }
     </style>
 </head>
 <body>
-    <h1>HiveMQ Cloud MQTT Interface</h1>
-    <div id="login-form">
+    <div class="login-form">
+        <h1>Solar Pump Monitoring</h1>
         <label for="username">Username:</label>
         <input type="text" id="username" placeholder="Enter username">
         <label for="password">Password:</label>
         <input type="password" id="password" placeholder="Enter password">
-        <button onclick="connect()">Connect</button>
+        <button onclick="login()">Login</button>
+        <div id="status"></div>
     </div>
-    <div id="topics-section">
-        <div id="status">Not Connected</div>
-        <div class="topic-container">
-            <div class="topic-box">
-                <div class="topic-title">Pump State</div>
-                <div class="led-container">
-                    <div class="led-item">
-                        <div id="green-led" class="led green-led"></div><span>Pump On</span>
-                    </div>
-                    <div class="led-item">
-                        <div id="red-led" class="led red-led"></div><span>Pump Off</span>
-                    </div>
-                </div>
-            </div>
-            <div class="topic-box">
-                <div class="topic-title">Motor Speed</div>
-                <div id="pump-speed-messages" class="messages">-- RPM</div>
-            </div>
-            <div class="topic-box">
-                <div class="topic-title">Reservoir State</div>
-                <div id="reservoir-state-messages" class="messages"></div>
-            </div>
-            <div class="topic-box">
-                <div class="topic-title">Power Source</div>
-                <div class="led-container">
-                    <div class="led-item">
-                        <div id="grid-led" class="led green-led"></div><span>From Grid</span>
-                    </div>
-                    <div class="led-item">
-                        <div id="solar-led" class="led green-led"></div><span>From Solar Panel</span>
-                    </div>
-                    <div class="led-item">
-                        <div id="battery-led" class="led green-led"></div><span>From Battery</span>
-                    </div>
-                </div>
-            </div>
-            <div class="topic-box">
-                <div class="topic-title">Battery State</div>
-                <div class="slider-container">
-                    <div class="slider-label">Battery Level: <span id="battery-value">0%</span></div>
-                    <input type="range" id="battery-slider" class="slider" min="0" max="100" value="0">
-                </div>
-            </div>
-        </div>
-    </div>
-    <script src="https://unpkg.com/mqtt@5.10.1/dist/mqtt.min.js"></script>
     <script>
-        let client;
-
-        function connect() {
+        function login() {
             const username = document.getElementById('username').value;
             const password = document.getElementById('password').value;
-            const statusDiv = document.getElementById('status');
-            const loginForm = document.getElementById('login-form');
-            const topicsSection = document.getElementById('topics-section');
+            const status = document.getElementById('status');
 
             if (!username || !password) {
-                statusDiv.textContent = 'Please enter both username and password';
-                statusDiv.style.color = 'red';
+                status.textContent = 'Please enter both username and password';
+                status.style.display = 'block';
                 return;
             }
 
-            const options = {
-                host: '508205b2e19c4a7fad9828d3961d6424.s1.eu.hivemq.cloud',
-                port: 8884,
-                protocol: 'wss',
-                path: '/mqtt',
-                clientId: 'mqttjs_' + Math.random().toString(16).substr(2, 8),
-                username: username,
-                password: password
-            };
+            // Simple in-memory authentication (replace with real backend/MQTT auth later)
+            const validUsers = [
+                { username: 'Nasrallah', password: 'Nasrollah2003*' },
+                { username: 'admin', password: 'admin123' }
+            ];
 
-            statusDiv.textContent = 'Connecting to HiveMQ Cloud...';
-            statusDiv.style.color = 'black';
-
-            client = mqtt.connect(options);
-
-            client.on('error', (err) => {
-                console.log('Connection error:', err);
-                statusDiv.textContent = 'Error: Invalid username or password or connection issue';
-                statusDiv.style.color = 'red';
-            });
-
-            client.on('connect', () => {
-                statusDiv.textContent = 'Connected to HiveMQ Cloud';
-                statusDiv.style.color = 'green';
-                loginForm.style.display = 'none';
-                topicsSection.style.display = 'block';
-                document.querySelector('h1').textContent = `Client: ${username}`;
-                const topics = ['pump/state', 'pump/speed', 'reservoir/state', 'power/source', 'battery/state'];
-                const messageTopics = ['pump/speed', 'reservoir/state']; // Topics with message divs
-                topics.forEach(topic => {
-                    client.subscribe(topic, (err) => {
-                        if (!err) {
-                            if (messageTopics.includes(topic)) {
-                                appendMessage(topic, 'Subscribed to ' + topic);
-                            } else if (topic === 'pump/state') {
-                                statusDiv.textContent += ' | Subscribed to pump/state';
-                            } else if (topic === 'power/source') {
-                                statusDiv.textContent += ' | Subscribed to power/source';
-                            } else if (topic === 'battery/state') {
-                                statusDiv.textContent += ' | Subscribed to battery/state';
-                            }
-                        } else {
-                            if (messageTopics.includes(topic)) {
-                                appendMessage(topic, `Subscription error: ${err}`, true);
-                            } else {
-                                statusDiv.textContent += ` | Error subscribing to ${topic}: ${err}`;
-                                statusDiv.style.color = 'red';
-                            }
-                        }
-                    });
-                });
-            });
-
-            client.on('close', () => {
-                statusDiv.textContent = 'Disconnected from HiveMQ Cloud';
-                statusDiv.style.color = 'orange';
-            });
-
-            if (client) {
-                client.end();
-            }
-        }
-
-        function appendMessage(topic, text, isError = false) {
-            const messagesDiv = document.getElementById(`${topic.replace('/', '-')}-messages`);
-            if (messagesDiv) {
-                const msgDiv = document.createElement('div');
-                msgDiv.className = 'message';
-                if (isError) msgDiv.className += ' error';
-                msgDiv.textContent = `[${new Date().toLocaleTimeString()}] ${text}`;
-                messagesDiv.appendChild(msgDiv);
-                messagesDiv.scrollTop = messagesDiv.scrollHeight;
+            const user = validUsers.find(u => u.username === username && u.password === password);
+            if (user) {
+                window.location.href = `monitoring.html?username=${encodeURIComponent(username)}`;
             } else {
-                console.warn(`Messages div not found for topic: ${topic}`);
+                status.textContent = 'Invalid username or password';
+                status.style.display = 'block';
             }
         }
     </script>
