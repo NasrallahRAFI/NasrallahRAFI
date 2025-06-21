@@ -285,7 +285,7 @@
             client.on('connect', () => {
                 showStatusMessage('Connexion réussie ! Redirection en cours...', false);
                 setTimeout(() => {
-                    window.location.href = `monitor.html?username=${encodeURIComponent(username)}`;
+                    window.location.href = `monitoring.html?username=${encodeURIComponent(username)}`;
                 }, 1000);
             });
             
