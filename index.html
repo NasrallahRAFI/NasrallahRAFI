@@ -1,178 +1,71 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Solar Pump Monitoring - Connexion</title>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <title>Solar Pump Monitoring</title>
     <style>
-        :root {
-            --primary-color: #3498db;
-            --secondary-color: #2980b9;
-            --dark-color: #2c3e50;
-            --light-color: #ecf0f1;
-            --danger-color: #e74c3c;
-            --success-color: #2ecc71;
-        }
-        
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-        
         body {
-            font-family: 'Roboto', sans-serif;
-            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-            height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
+            font-family: 'Arial', sans-serif;
+            max-width: 400px;
+            margin: 0 auto;
             padding: 20px;
+            background: linear-gradient(135deg, #f0f4f8, #e0e8f0);
+            color: #333;
         }
-        
-        .login-container {
-            width: 100%;
-            max-width: 450px;
-            background: white;
-            border-radius: 16px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-            overflow: hidden;
-            animation: fadeIn 0.5s ease-in-out;
-        }
-        
-        .login-header {
-            background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
-            color: white;
-            padding: 30px;
+        h1 {
             text-align: center;
-        }
-        
-        .login-header h1 {
-            font-weight: 500;
-            margin-bottom: 10px;
-            font-size: 28px;
-        }
-        
-        .login-header p {
-            opacity: 0.9;
-            font-weight: 300;
-        }
-        
-        .login-form {
-            padding: 30px;
-        }
-        
-        .form-group {
+            color: #2c3e50;
+            font-size: 2em;
             margin-bottom: 20px;
-            position: relative;
         }
-        
-        .form-group label {
-            display: block;
-            margin-bottom: 8px;
-            font-weight: 500;
-            color: var(--dark-color);
-        }
-        
-        .form-control {
-            width: 100%;
-            padding: 12px 15px 12px 40px;
-            border: 1px solid #ddd;
+        #login-form {
+            padding: 20px;
+            background-color: #ffffff;
             border-radius: 8px;
-            font-size: 16px;
-            transition: all 0.3s;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
         }
-        
-        .form-control:focus {
-            border-color: var(--primary-color);
-            box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.2);
-            outline: none;
-        }
-        
-        .form-icon {
-            position: absolute;
-            left: 15px;
-            top: 38px;
-            color: #95a5a6;
-        }
-        
-        .btn {
+        label {
             display: block;
+            margin: 10px 0 5px;
+            color: #2c3e50;
+        }
+        input {
             width: 100%;
-            padding: 14px;
-            background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
-            color: white;
-            border: none;
-            border-radius: 8px;
-            font-size: 16px;
-            font-weight: 500;
-            cursor: pointer;
-            transition: all 0.3s;
+            padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #dfe6e9;
+            border-radius: 4px;
         }
-        
-        .btn:hover {
-            background: linear-gradient(to right, var(--secondary-color), var(--primary-color));
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-        }
-        
-        #error {
-            color: var(--danger-color);
-            text-align: center;
-            margin-top: 20px;
+        button {
+            width: 100%;
             padding: 10px;
-            border-radius: 8px;
-            background-color: rgba(231, 76, 60, 0.1);
-            display: none;
+            background-color: #2c3e50;
+            color: #ffffff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
         }
-        
-        .footer-text {
+        button:hover {
+            background-color: #34495e;
+        }
+        #status {
+            margin-top: 10px;
             text-align: center;
-            margin-top: 20px;
-            color: #7f8c8d;
-            font-size: 14px;
-        }
-        
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        
-        @media (max-width: 480px) {
-            .login-container {
-                border-radius: 10px;
-            }
-            
-            .login-header, .login-form {
-                padding: 20px;
-            }
+            color: red;
         }
     </style>
 </head>
 <body>
-    <div class="login-container">
-        <div class="login-header">
-            <h1>Solar Pump Monitoring</h1>
-            <p>Connectez-vous pour accéder au tableau de bord</p>
-        </div>
-        <div class="login-form">
-            <div class="form-group">
-                <label for="username">Nom d'utilisateur</label>
-                <i class="fas fa-user form-icon"></i>
-                <input type="text" id="username" class="form-control" placeholder="Entrez votre nom d'utilisateur">
-            </div>
-            <div class="form-group">
-                <label for="password">Mot de passe</label>
-                <i class="fas fa-lock form-icon"></i>
-                <input type="password" id="password" class="form-control" placeholder="Entrez votre mot de passe">
-            </div>
-            <button class="btn" onclick="connect()">Se connecter</button>
-            <div id="error"></div>
-            <p class="footer-text">© 2023 Solar Pump Monitoring System</p>
-        </div>
+    <h1>Solar Pump Monitoring</h1>
+    <div id="login-form">
+        <label for="username">Username:</label>
+        <input type="text" id="username" placeholder="Enter username">
+        <label for="password">Password:</label>
+        <input type="password" id="password" placeholder="Enter password">
+        <button onclick="connect()">Connect</button>
     </div>
+    <div id="status"></div>
     <script src="https://unpkg.com/mqtt@5.10.1/dist/mqtt.min.js"></script>
     <script>
         let client;
@@ -180,15 +73,13 @@
         function connect() {
             const username = document.getElementById('username').value;
             const password = document.getElementById('password').value;
-            const errorDiv = document.getElementById('error');
+            const statusDiv = document.getElementById('status');
 
             if (!username || !password) {
-                errorDiv.textContent = 'Veuillez entrer un nom d\'utilisateur et un mot de passe.';
-                errorDiv.style.display = 'block';
+                statusDiv.textContent = 'Please enter both username and password';
                 return;
             }
 
-            errorDiv.style.display = 'none';
             const options = {
                 host: '508205b2e19c4a7fad9828d3961d6424.s1.eu.hivemq.cloud',
                 port: 8884,
@@ -199,16 +90,21 @@
                 password: password
             };
 
+            statusDiv.textContent = 'Connecting...';
             client = mqtt.connect(options);
 
             client.on('connect', () => {
-                window.location.href = `monitoring.html?username=${encodeURIComponent(username)}`;
+                statusDiv.textContent = 'Connected successfully';
+                window.location.href = `monitor.html?username=${encodeURIComponent(username)}`;
             });
 
             client.on('error', (err) => {
-                errorDiv.textContent = 'Erreur : Identifiants incorrects ou problème de connexion.';
-                errorDiv.style.display = 'block';
-                if (client) client.end();
+                console.log('Connection error:', err);
+                statusDiv.textContent = 'Error: Invalid username or password';
+            });
+
+            client.on('close', () => {
+                window.location.href = 'login.html';
             });
         }
     </script>
