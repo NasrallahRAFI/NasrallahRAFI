@@ -1,16 +1,16 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Monitoring Interface</title>
+    <title>Client Monitoring</title>
     <style>
         body {
             font-family: 'Arial', sans-serif;
             max-width: 900px;
             margin: 0 auto;
             padding: 20px;
-            background: #f0f4f8;
+            background: linear-gradient(135deg, #f0f4f8, #e0e8f0);
             color: #333;
         }
         h1 {
@@ -19,86 +19,126 @@
             margin-bottom: 20px;
         }
         .section {
-            margin-bottom: 10px;
-            background: #fff;
+            background-color: #ffffff;
             border-radius: 8px;
+            margin-bottom: 15px;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
             overflow: hidden;
         }
         .section-title {
             padding: 10px;
-            background: #2c3e50;
-            color: #fff;
+            background-color: #2c3e50;
+            color: #ffffff;
             cursor: pointer;
-            user-select: none;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .section-title:hover {
+            background-color: #34495e;
         }
         .section-content {
-            padding: 10px;
+            padding: 15px;
             display: none;
-            height: 0;
-            transition: height 0.3s ease;
         }
-        .section-content.active {
+        .section-content.show {
             display: block;
-            height: auto;
         }
-        #status {
-            text-align: center;
-            color: #e74c3c;
-            margin-top: 10px;
-            display: none;
+        .data-item {
+            margin: 10px 0;
+            padding: 5px;
+            border-bottom: 1px solid #dfe6e9;
+        }
+        .data-item span {
+            font-weight: bold;
         }
     </style>
 </head>
 <body>
-    <h1 id="client-title">Client: [Username]</h1>
-    <div id="status"></div>
+    <h1 id="client-title"></h1>
     <div class="section">
-        <div class="section-title" onclick="toggleSection('general')">General</div>
-        <div id="general-content" class="section-content">
-            <!-- Content will be added later -->
+        <div class="section-title" onclick="toggleSection(this)">Données Électriques</div>
+        <div class="section-content">
+            <div class="data-item"><span>Tension et courant (entrée/sortie panneau solaire) :</span> N/A</div>
+            <div class="data-item"><span>Tension et courant (batterie) :</span> N/A</div>
+            <div class="data-item"><span>Tension et courant (pompe) :</span> N/A</div>
+            <div class="data-item"><span>Puissance générée par les panneaux solaires :</span> N/A</div>
+            <div class="data-item"><span>État de la batterie (niveau de charge) :</span> N/A</div>
+            <div class="data-item"><span>État de la batterie (tension) :</span> N/A</div>
+            <div class="data-item"><span>État de la batterie (courant de charge/décharge) :</span> N/A</div>
+            <div class="data-item"><span>Consommation électrique de la pompe :</span> N/A</div>
         </div>
     </div>
     <div class="section">
-        <div class="section-title" onclick="toggleSection('network')">Network</div>
-        <div id="network-content" class="section-content">
-            <!-- Content will be added later -->
+        <div class="section-title" onclick="toggleSection(this)">Performances de la Pompe</div>
+        <div class="section-content">
+            <div class="data-item"><span>Débit d'eau :</span> N/A</div>
+            <div class="data-item"><span>Pression d'eau :</span> N/A</div>
+            <div class="data-item"><span>Température du moteur :</span> N/A</div>
+            <div class="data-item"><span>État de fonctionnement :</span> N/A</div>
         </div>
     </div>
     <div class="section">
-        <div class="section-title" onclick="toggleSection('solar-variator')">Solar Variator</div>
-        <div id="solar-variator-content" class="section-content">
-            <!-- Content will be added later -->
+        <div class="section-title" onclick="toggleSection(this)">Données Solaires et Environnementales</div>
+        <div class="section-content">
+            <div class="data-item"><span>Ensoleillement :</span> N/A</div>
+            <div class="data-item"><span>Température ambiante :</span> N/A</div>
+            <div class="data-item"><span>État des panneaux solaires :</span> N/A</div>
         </div>
     </div>
     <div class="section">
-        <div class="section-title" onclick="toggleSection('pump')">Pump</div>
-        <div id="pump-content" class="section-content">
-            <!-- Content will be added later -->
+        <div class="section-title" onclick="toggleSection(this)">Surveillance du Réservoir/Stockage d'Eau</div>
+        <div class="section-content">
+            <div class="data-item"><span>Niveau d'eau :</span> N/A</div>
+            <div class="data-item"><span>Qualité de l'eau (pH) :</span> N/A</div>
+            <div class="data-item"><span>Qualité de l'eau (turbidité) :</span> N/A</div>
         </div>
     </div>
     <div class="section">
-        <div class="section-title" onclick="toggleSection('reservoir')">Reservoir</div>
-        <div id="reservoir-content" class="section-content">
-            <!-- Content will be added later -->
+        <div class="section-title" onclick="toggleSection(this)">Données de Maintenance et Sécurité</div>
+        <div class="section-content">
+            <div class="data-item"><span>Heures de fonctionnement :</span> N/A</div>
+            <div class="data-item"><span>Alertes de panne :</span> N/A</div>
+            <div class="data-item"><span>État des connexions :</span> N/A</div>
+        </div>
+    </div>
+    <div class="section">
+        <div class="section-title" onclick="toggleSection(this)">Données de Communication IoT</div>
+        <div class="section-content">
+            <div class="data-item"><span>État de la connexion réseau :</span> N/A</div>
+            <div class="data-item"><span>Latence des données :</span> N/A</div>
+            <div class="data-item"><span>Statut des mises à jour logicielles :</span> N/A</div>
+        </div>
+    </div>
+    <div class="section">
+        <div class="section-title" onclick="toggleSection(this)">Données Énergétiques et Efficacité</div>
+        <div class="section-content">
+            <div class="data-item"><span>Rendement du système :</span> N/A</div>
+            <div class="data-item"><span>Autonomie de la batterie :</span> N/A</div>
+        </div>
+    </div>
+    <div class="section">
+        <div class="section-title" onclick="toggleSection(this)">Outils de Supervision Recommandés</div>
+        <div class="section-content">
+            <div class="data-item"><span>Tableaux de bord IoT :</span> Grafana, ThingsBoard, Node-RED</div>
+            <div class="data-item"><span>Alertes :</span> SMS/Email en cas d'anomalie</div>
+            <div class="data-item"><span>Historique des données :</span> Analyse des performances</div>
         </div>
     </div>
     <script>
-        // Set dynamic title from URL parameter
+        // Set dynamic title based on URL parameter
         const urlParams = new URLSearchParams(window.location.search);
         const username = urlParams.get('username');
         if (username) {
-            document.getElementById('client-title').textContent = `Client: ${decodeURIComponent(username)}`;
+            document.getElementById('client-title').textContent = `Client : ${decodeURIComponent(username)}`;
         } else {
-            document.getElementById('status').textContent = 'No username provided';
-            document.getElementById('status').style.display = 'block';
+            window.location.href = 'login.html';
         }
 
         // Toggle section visibility
-        function toggleSection(sectionId) {
-            const content = document.getElementById(`${sectionId}-content`);
-            const isActive = content.classList.contains('active');
-            content.classList.toggle('active', !isActive);
+        function toggleSection(element) {
+            const content = element.nextElementSibling;
+            content.classList.toggle('show');
         }
     </script>
 </body>
