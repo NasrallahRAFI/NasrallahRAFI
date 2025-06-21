@@ -58,17 +58,33 @@
         button:hover {
             background-color: #34495e;
         }
+        #status {
+            text-align: center;
+            margin-top: 10px;
+            color: #e74c3c;
+        }
     </style>
 </head>
 <body>
     <h1 id="client-title">Solar Pump Monitoring</h1>
+    <div id="status"></div>
     <button onclick="disconnect()">Déconnexion</button>
     <div id="sections"></div>
     <script src="https://unpkg.com/mqtt@5.10.1/dist/mqtt.min.js"></script>
     <script>
         const urlParams = new URLSearchParams(window.location.search);
         const username = urlParams.get('username');
-        if (username) document.getElementById('client-title').textContent = `Client : ${username}`;
+        const statusDiv = document.getElementById('status');
+        const sectionsDiv = document.getElementById('sections');
+
+        if (!username) {
+            statusDiv.textContent = 'Erreur : Nom d\'utilisateur non trouvé. Redirection nécessaire.';
+            setTimeout(() => window.location.href = 'login.html', 2000);
+            throw new Error('Username parameter missing');
+        }
+
+        document.getElementById('client-title').textContent = `Client : ${username}`;
+        statusDiv.textContent = 'Connexion en cours...';
 
         const client = mqtt.connect({
             host: '508205b2e19c4a7fad9828d3961d6424.s1.eu.hivemq.cloud',
@@ -77,7 +93,7 @@
             path: '/mqtt',
             clientId: 'mqttjs_' + Math.random().toString(16).substr(2, 8),
             username: username,
-            password: 'YOUR_PASSWORD' // Replace with actual password or fetch dynamically
+            password: 'Nasrollah2003*' // Remplacez par le mot de passe correct ou sécurisez-le
         });
 
         const sections = {
@@ -126,6 +142,9 @@
         };
 
         client.on('connect', () => {
+            console.log('Connecté au serveur MQTT');
+            statusDiv.textContent = 'Connecté avec succès';
+            statusDiv.style.color = 'green';
             Object.keys(sections).forEach(sectionTitle => {
                 const section = document.createElement('div');
                 section.className = 'section';
@@ -136,19 +155,29 @@
                     topicDiv.className = 'topic';
                     topicDiv.innerHTML = `<span class="topic-name">${item.label}</span><span class="topic-value" id="${item.topic.replace(/\//g, '-')}-value">--</span>`;
                     content.appendChild(topicDiv);
-                    client.subscribe(item.topic);
+                    client.subscribe(item.topic, (err) => {
+                        if (err) {
+                            console.error(`Erreur d'abonnement à ${item.topic}:`, err);
+                            document.getElementById(`${item.topic.replace(/\//g, '-')}-value`).textContent = 'Erreur';
+                        } else {
+                            console.log(`Abonné à ${item.topic}`);
+                        }
+                    });
                 });
-                document.getElementById('sections').appendChild(section);
+                sectionsDiv.appendChild(section);
             });
         });
 
         client.on('message', (topic, message) => {
+            console.log(`Message reçu sur ${topic}: ${message}`);
             const valueSpan = document.getElementById(`${topic.replace(/\//g, '-')}-value`);
             if (valueSpan) valueSpan.textContent = message.toString();
         });
 
         client.on('error', (err) => {
             console.error('Erreur de connexion:', err);
+            statusDiv.textContent = 'Erreur de connexion au serveur';
+            statusDiv.style.color = 'red';
         });
 
         function disconnect() {
