@@ -566,7 +566,7 @@
         <main class="main-content">
             <div class="header">
                 <div class="page-title">
-                    <h1>Tableau de bord</h1>
+                    <h1 id="page-title">Tableau de bord</h1>
                 </div>
                 
                 <div class="header-actions">
@@ -749,12 +749,14 @@
         // Initialize the dashboard
         function initDashboard() {
             const username = getParameter('username');
-            if (username) {
-                document.getElementById('username-display').textContent = username;
-                document.getElementById('user-avatar').textContent = username.charAt(0).toUpperCase();
-                addLogEntry(`Session démarrée pour ${username}`, 'info');
+            if (!username) {
+                window.location.href = 'login.html';
+                return;
             }
-            
+            document.getElementById('username-display').textContent = username;
+            document.getElementById('user-avatar').textContent = username.charAt(0).toUpperCase();
+            document.getElementById('page-title').textContent = `Client: ${username}`;
+            addLogEntry(`Session démarrée pour ${username}`, 'info');
             connectToBroker();
         }
         
@@ -767,11 +769,6 @@
         // Connect to MQTT broker
         function connectToBroker() {
             const username = getParameter('username');
-            if (!username) {
-                window.location.href = 'login.html';
-                return;
-            }
-            
             const options = {
                 host: '508205b2e19c4a7fad9828d3961d6424.s1.eu.hivemq.cloud',
                 port: 8884,
@@ -779,22 +776,18 @@
                 path: '/mqtt',
                 clientId: 'mqttjs_' + Math.random().toString(16).substr(2, 8),
                 username: username,
-                password: 'Nasrollah2003*' // In production, use a more secure method
+                password: 'Nasrollah2003*' // In production, use a secure method
             };
             
             updateConnectionStatus('Connexion en cours...', 'warning');
-            
             client = mqtt.connect(options);
             
             client.on('connect', () => {
                 updateConnectionStatus('Connecté', 'success');
-                topics.forEach(topic => {
-                    client.subscribe(topic);
-                    addLogEntry(`Abonné à ${topic}`, 'info');
-                });
-                
-                // Request initial values
-                client.publish('system/request', 'status');
+                topics.forEach(topic => client.subscribe(topic));
+                addLogEntry('Connecté au broker MQTT', 'success');
+                client.publish('system/request', 'status'); // Request initial values
+                setInterval(logStatus, 60000); // Log every minute
             });
             
             client.on('message', (topic, message) => {
@@ -805,32 +798,26 @@
                     case 'system/energy-source':
                         document.getElementById('energy-source').textContent = msg;
                         break;
-                        
                     case 'system/electricity-produced':
                         document.getElementById('electricity-produced').textContent = msg + ' W';
-                        updateProgressBar('production-bar', parseInt(msg) / 5000 * 100); // Assuming max 5000W
+                        updateProgressBar('production-bar', parseInt(msg) / 5000 * 100); // Max 5000W
                         break;
-                        
                     case 'system/electricity-consumed':
                         document.getElementById('electricity-consumed').textContent = msg + ' W';
-                        updateProgressBar('consumption-bar', parseInt(msg) / 3000 * 100); // Assuming max 3000W
+                        updateProgressBar('consumption-bar', parseInt(msg) / 3000 * 100); // Max 3000W
                         break;
-                        
                     case 'battery/level':
                         updateLevel('battery-value', 'battery-level', 'battery-status', msg);
                         break;
-                        
                     case 'water/level':
                         updateLevel('water-value', 'water-level', 'water-status', msg);
                         break;
-                        
                     case 'pump/state':
                         updatePumpState(msg);
                         break;
-                        
                     case 'pump/flow-rate':
                         document.getElementById('water-flow').textContent = msg + ' L/min';
-                        updateProgressBar('flow-level', parseInt(msg) / 20 * 100); // Assuming max 20L/min
+                        updateProgressBar('flow-level', parseInt(msg) / 20 * 100); // Max 20L/min
                         break;
                 }
             });
@@ -844,6 +831,7 @@
             client.on('close', () => {
                 updateConnectionStatus('Déconnecté', 'error');
                 addLogEntry('Déconnecté du broker MQTT', 'error');
+                window.location.href = 'login.html';
             });
         }
         
@@ -853,8 +841,6 @@
             const dotElement = document.querySelector('.status-dot');
             
             statusElement.textContent = text;
-            
-            // Reset classes
             dotElement.style.backgroundColor = '';
             statusElement.style.color = '';
             
@@ -880,7 +866,6 @@
             document.getElementById(valueId).textContent = val + '%';
             document.getElementById(barId).style.width = val + '%';
             
-            // Update status text
             let status = '';
             if (val <= 20) status = 'Critique';
             else if (val <= 50) status = 'Bas';
@@ -895,8 +880,6 @@
             const bar = document.getElementById(id);
             const val = Math.max(0, Math.min(100, percentage));
             bar.style.width = val + '%';
-            
-            // Update color based on value
             if (val < 30) bar.style.background = 'var(--danger)';
             else if (val < 60) bar.style.background = 'var(--warning)';
             else bar.style.background = 'var(--success)';
@@ -908,7 +891,6 @@
             const pumpState = document.getElementById('pump-state');
             
             pumpLed.className = 'status-led';
-            
             if (state.toLowerCase().includes('on')) {
                 pumpLed.classList.add('on');
                 pumpState.textContent = 'En marche';
@@ -924,7 +906,6 @@
             if (client) {
                 const topic = 'pump/control';
                 let payload = '';
-                
                 if (command === 'pump/start') {
                     payload = 'ON';
                     addLogEntry('Commande envoyée: Démarrer la pompe', 'info');
@@ -932,7 +913,6 @@
                     payload = 'OFF';
                     addLogEntry('Commande envoyée: Arrêter la pompe', 'info');
                 }
-                
                 client.publish(topic, payload);
             }
         }
@@ -947,7 +927,6 @@
                 const list = document.getElementById('program-list');
                 const li = document.createElement('li');
                 li.className = 'program-item';
-                
                 li.innerHTML = `
                     <span class="program-time">${formatProgramTime(time)}</span>
                     <div class="program-actions">
@@ -955,7 +934,6 @@
                         <i class="fas fa-trash" onclick="removeProgram(${programs.length - 1})"></i>
                     </div>
                 `;
-                
                 list.appendChild(li);
                 timeInput.value = '';
                 addLogEntry(`Programme ajouté: ${formatProgramTime(time)}`, 'success');
@@ -992,11 +970,9 @@
         function renderProgramList() {
             const list = document.getElementById('program-list');
             list.innerHTML = '';
-            
             programs.forEach((program, index) => {
                 const li = document.createElement('li');
                 li.className = 'program-item';
-                
                 li.innerHTML = `
                     <span class="program-time">${formatProgramTime(program)}</span>
                     <div class="program-actions">
@@ -1004,48 +980,8 @@
                         <i class="fas fa-trash" onclick="removeProgram(${index})"></i>
                     </div>
                 `;
-                
                 list.appendChild(li);
             });
         }
         
         // Add log entry
-        function addLogEntry(message, type = 'info') {
-            const logContainer = document.getElementById('log-container');
-            const entry = document.createElement('div');
-            entry.className = 'log-entry';
-            
-            const now = new Date();
-            const timeString = now.toLocaleTimeString('fr-FR', {
-                hour: '2-digit',
-                minute: '2-digit',
-                second: '2-digit'
-            });
-            
-            entry.innerHTML = `
-                <span class="log-time">${timeString}</span>
-                <span class="log-message log-${type}">${message}</span>
-            `;
-            
-            logContainer.appendChild(entry);
-            logContainer.scrollTop = logContainer.scrollHeight;
-        }
-        
-        // Disconnect from broker
-        function disconnect() {
-            if (client) {
-                client.end();
-                addLogEntry('Déconnexion initiée', 'warning');
-                setTimeout(() => {
-                    window.location.href = 'login.html';
-                }, 1000);
-            } else {
-                window.location.href = 'login.html';
-            }
-        }
-        
-        // Initialize on page load
-        window.onload = initDashboard;
-    </script>
-</body>
-</html>
