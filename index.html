@@ -60,6 +60,35 @@
             margin-bottom: 5px;
         }
 
+        .led-container {
+            display: flex;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .led {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            display: inline-block;
+        }
+
+        .green-led {
+            background-color: #gray;
+        }
+
+        .green-led.on {
+            background-color: #00ff00;
+        }
+
+        .red-led {
+            background-color: #gray;
+        }
+
+        .red-led.on {
+            background-color: #ff0000;
+        }
+
         .message {
             padding: 5px;
             border-bottom: 1px solid #eee;
@@ -108,7 +137,10 @@
         <div class="topic-container">
             <div class="topic-box">
                 <div class="topic-title">Pump State</div>
-                <div id="pump-state-messages" class="messages"></div>
+                <div class="led-container">
+                    <div id="green-led" class="led green-led"></div>
+                    <div id="red-led" class="led red-led"></div>
+                </div>
             </div>
             <div class="topic-box">
                 <div class="topic-title">Pump Speed</div>
@@ -182,7 +214,20 @@
             });
 
             client.on('message', (topic, message) => {
-                appendMessage(topic, `Message: ${message.toString()}`);
+                const msg = message.toString().toLowerCase();
+                if (topic === 'pump/state') {
+                    const greenLed = document.getElementById('green-led');
+                    const redLed = document.getElementById('red-led');
+                    greenLed.classList.remove('on');
+                    redLed.classList.remove('on');
+                    if (msg === 'on') {
+                        greenLed.classList.add('on');
+                    } else if (msg === 'off') {
+                        redLed.classList.add('on');
+                    }
+                } else {
+                    appendMessage(topic, `Message: ${message.toString()}`);
+                }
             });
 
             client.on('error', (err) => {
