@@ -18,6 +18,20 @@
             color: #333;
         }
 
+        #login-form {
+            margin: 20px 0;
+            padding: 10px;
+            background-color: #fff;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            display: block;
+        }
+
+        #topics-section {
+            display: none;
+            margin-top: 20px;
+        }
+
         #status {
             margin: 20px 0;
             padding: 10px;
@@ -26,14 +40,24 @@
             border-radius: 5px;
         }
 
-        #messages {
+        .topic-container {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+
+        .topic-box {
             background-color: #fff;
             border: 1px solid #ccc;
             border-radius: 5px;
             padding: 10px;
-            height: 300px;
+            height: 200px;
             overflow-y: auto;
-            margin-top: 10px;
+        }
+
+        .topic-title {
+            font-weight: bold;
+            margin-bottom: 5px;
         }
 
         .message {
@@ -44,52 +68,136 @@
         .error {
             color: red;
         }
+
+        label {
+            display: block;
+            margin: 10px 0 5px;
+        }
+
+        input {
+            width: 100%;
+            padding: 5px;
+            margin-bottom: 10px;
+        }
+
+        button {
+            padding: 5px 10px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
     </style>
 </head>
 <body>
     <h1>HiveMQ Cloud MQTT Interface</h1>
-    <div id="status">Connecting to HiveMQ Cloud...</div>
-    <h2>Received Messages</h2>
-    <div id="messages"></div>
+    <div id="login-form">
+        <label for="username">Username:</label>
+        <input type="text" id="username" placeholder="Enter username">
+        <label for="password">Password:</label>
+        <input type="password" id="password" placeholder="Enter password">
+        <button onclick="connect()">Connect</button>
+    </div>
+    <div id="topics-section">
+        <div id="status">Not Connected</div>
+        <div class="topic-container">
+            <div class="topic-box">
+                <div class="topic-title">Pump State</div>
+                <div id="pump-state-messages" class="messages"></div>
+            </div>
+            <div class="topic-box">
+                <div class="topic-title">Pump Speed</div>
+                <div id="pump-speed-messages" class="messages"></div>
+            </div>
+            <div class="topic-box">
+                <div class="topic-title">Reservoir State</div>
+                <div id="reservoir-state-messages" class="messages"></div>
+            </div>
+            <div class="topic-box">
+                <div class="topic-title">Power Source</div>
+                <div id="power-source-messages" class="messages"></div>
+            </div>
+            <div class="topic-box">
+                <div class="topic-title">Battery State</div>
+                <div id="battery-state-messages" class="messages"></div>
+            </div>
+        </div>
+    </div>
     <script src="https://unpkg.com/mqtt@5.10.1/dist/mqtt.min.js"></script>
     <script>
-        // MQTT client configuration
-        const options = {
-            host: '508205b2e19c4a7fad9828d3961d6424.s1.eu.hivemq.cloud',
-            port: 8884,
-            protocol: 'wss',
-            path: '/mqtt', // Added to specify the MQTT WebSocket endpoint
-            clientId: 'mqttjs_' + Math.random().toString(16).substr(2, 8),
-            username: 'Nasrallah',
-            password: 'Nasrollah2003*'
-        };
-        const client = mqtt.connect(options);
-        const statusDiv = document.getElementById('status');
-        const messagesDiv = document.getElementById('messages');
-        client.on('connect', () => {
-            statusDiv.textContent = 'Connected to HiveMQ Cloud';
-            statusDiv.style.color = 'green';
-            client.subscribe('test/topic', (err) => {
-                if (!err) {
-                    appendMessage('Subscribed to test/topic');
-                } else {
-                    appendMessage('Subscription error: ' + err, true);
-                }
+        let client;
+
+        function connect() {
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            const statusDiv = document.getElementById('status');
+            const loginForm = document.getElementById('login-form');
+            const topicsSection = document.getElementById('topics-section');
+
+            if (!username || !password) {
+                statusDiv.textContent = 'Please enter both username and password';
+                statusDiv.style.color = 'red';
+                return;
+            }
+
+            const options = {
+                host: '508205b2e19c4a7fad9828d3961d6424.s1.eu.hivemq.cloud',
+                port: 8884,
+                protocol: 'wss',
+                path: '/mqtt',
+                clientId: 'mqttjs_' + Math.random().toString(16).substr(2, 8),
+                username: username,
+                password: password
+            };
+
+            statusDiv.textContent = 'Connecting to HiveMQ Cloud...';
+            statusDiv.style.color = 'black';
+
+            if (client) {
+                client.end();
+            }
+
+            client = mqtt.connect(options);
+
+            client.on('connect', () => {
+                statusDiv.textContent = 'Connected to HiveMQ Cloud';
+                statusDiv.style.color = 'green';
+                loginForm.style.display = 'none';
+                topicsSection.style.display = 'block';
+                const topics = ['pump/state', 'pump/speed', 'reservoir/state', 'power/source', 'battery/state'];
+                topics.forEach(topic => {
+                    client.subscribe(topic, (err) => {
+                        if (!err) {
+                            appendMessage(topic, 'Subscribed to ' + topic);
+                        } else {
+                            appendMessage(topic, 'Subscription error: ' + err, true);
+                        }
+                    });
+                });
             });
-        });
-        client.on('message', (topic, message) => {
-            const msg = `Topic: ${topic} | Message: ${message.toString()}`;
-            appendMessage(msg);
-        });
-        client.on('error', (err) => {
-            statusDiv.textContent = 'Connection error: ' + err;
-            statusDiv.style.color = 'red';
-        });
-        client.on('close', () => {
-            statusDiv.textContent = 'Disconnected from HiveMQ Cloud';
-            statusDiv.style.color = 'orange';
-        });
-        function appendMessage(text, isError = false) {
+
+            client.on('message', (topic, message) => {
+                appendMessage(topic, `Message: ${message.toString()}`);
+            });
+
+            client.on('error', (err) => {
+                statusDiv.textContent = 'Connection error: ' + err;
+                statusDiv.style.color = 'red';
+            });
+
+            client.on('close', () => {
+                statusDiv.textContent = 'Disconnected from HiveMQ Cloud';
+                statusDiv.style.color = 'orange';
+            });
+        }
+
+        function appendMessage(topic, text, isError = false) {
+            const messagesDiv = document.getElementById(`${topic.replace('/', '-')}-messages`);
             const msgDiv = document.createElement('div');
             msgDiv.className = 'message';
             if (isError) msgDiv.className += ' error';
