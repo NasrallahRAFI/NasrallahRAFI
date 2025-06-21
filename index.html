@@ -6,6 +6,7 @@
     <title>Solar Pump Monitoring</title>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/paho-mqtt/1.1.0/paho-mqtt.min.js"></script>
     <style>
         :root {
             --primary: #3498db;
@@ -45,34 +46,16 @@
             transition: transform 0.3s ease;
         }
         
-        .login-container:hover {
-            transform: translateY(-5px);
-        }
-        
         .login-header {
             background: var(--secondary);
             color: white;
             padding: 25px;
             text-align: center;
-            position: relative;
         }
         
         .login-header h1 {
             font-size: 1.8rem;
             margin-bottom: 5px;
-        }
-        
-        .login-header p {
-            font-size: 0.9rem;
-            opacity: 0.8;
-        }
-        
-        .login-header i {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            font-size: 2.5rem;
-            opacity: 0.1;
         }
         
         .login-form {
@@ -93,24 +76,11 @@
         
         .form-control {
             width: 100%;
-            padding: 12px 15px 12px 40px;
+            padding: 12px 15px;
             border: 2px solid #e0e0e0;
             border-radius: var(--border-radius);
             font-size: 1rem;
             transition: all 0.3s;
-        }
-        
-        .form-control:focus {
-            border-color: var(--primary);
-            outline: none;
-            box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.2);
-        }
-        
-        .form-icon {
-            position: absolute;
-            left: 15px;
-            top: 38px;
-            color: #95a5a6;
         }
         
         .btn {
@@ -145,93 +115,102 @@
             color: var(--danger);
             display: block;
         }
-        
-        .footer-text {
-            text-align: center;
-            margin-top: 20px;
-            font-size: 0.8rem;
-            color: #7f8c8d;
-        }
-        
-        @media (max-width: 480px) {
-            .login-container {
-                margin: 0 15px;
-            }
-            
-            .login-header h1 {
-                font-size: 1.5rem;
-            }
-        }
     </style>
 </head>
 <body>
     <div class="login-container">
         <div class="login-header">
-            <i class="fas fa-solar-panel"></i>
             <h1>Solar Pump Monitoring</h1>
-            <p>Accédez à votre système de surveillance</p>
+            <p>Connexion au serveur HiveMQ</p>
         </div>
         
         <div class="login-form">
             <div class="form-group">
-                <label for="username">Nom d'utilisateur</label>
-                <i class="fas fa-user form-icon"></i>
-                <input type="text" id="username" class="form-control" placeholder="Entrez votre nom d'utilisateur">
+                <label for="username">Nom d'utilisateur HiveMQ</label>
+                <input type="text" id="username" class="form-control" placeholder="Votre username HiveMQ">
             </div>
             
             <div class="form-group">
-                <label for="password">Mot de passe</label>
-                <i class="fas fa-lock form-icon"></i>
-                <input type="password" id="password" class="form-control" placeholder="Entrez votre mot de passe">
+                <label for="password">Mot de passe HiveMQ</label>
+                <input type="password" id="password" class="form-control" placeholder="Votre mot de passe HiveMQ">
             </div>
             
-            <button class="btn" onclick="login()">
+            <button class="btn" onclick="connectToHiveMQ()">
                 <i class="fas fa-sign-in-alt"></i> Se connecter
             </button>
             
             <div id="status" class="status-message"></div>
-            
-            <p class="footer-text">Système de surveillance des pompes solaires © 2023</p>
         </div>
     </div>
     
     <script>
-        function login() {
-            const username = document.getElementById('username').value;
+        let mqttClient = null;
+        
+        function connectToHiveMQ() {
+            const username = document.getElementById('username').value.trim();
             const password = document.getElementById('password').value;
             const status = document.getElementById('status');
             
-            // Reset status
             status.className = 'status-message';
             status.textContent = '';
             
             if (!username || !password) {
-                status.textContent = 'Veuillez entrer un nom d\'utilisateur et un mot de passe';
+                status.textContent = 'Veuillez entrer vos identifiants HiveMQ';
                 status.classList.add('error');
                 return;
             }
             
-            // Simulated authentication (replace with real backend check)
-            const validUsers = { 'nasrallah': 'Nasrollah2003*' };
-            
-            // Simulate API call delay
-            status.textContent = 'Connexion en cours...';
+            status.textContent = 'Connexion au serveur HiveMQ...';
             status.style.display = 'block';
             
-            setTimeout(() => {
-                if (validUsers[username] && validUsers[username] === password) {
-                    window.location.href = `monitoring.html?username=${encodeURIComponent(username)}`;
-                } else {
-                    status.textContent = 'Identifiants incorrects. Veuillez réessayer.';
-                    status.classList.add('error');
-                }
-            }, 800);
+            // Configuration du client MQTT
+            const host = "508205b2e19c4a7fad9828d3961d6424.s1.eu.hivemq.cloud";
+            const port = 8884;
+            const clientId = "webclient_" + Math.random().toString(16).substr(2, 8);
+            
+            mqttClient = new Paho.MQTT.Client(host, port, clientId);
+            
+            // Options de connexion
+            const options = {
+                userName: username,
+                password: password,
+                useSSL: true,
+                onSuccess: onConnect,
+                onFailure: onFailure
+            };
+            
+            mqttClient.onConnectionLost = onConnectionLost;
+            mqttClient.onMessageArrived = onMessageArrived;
+            
+            // Connecter le client
+            mqttClient.connect(options);
         }
         
-        // Allow login on Enter key press
+        function onConnect() {
+            // Redirection vers la page de monitoring après connexion réussie
+            window.location.href = "monitoring.html";
+        }
+        
+        function onFailure(message) {
+            const status = document.getElementById('status');
+            status.textContent = 'Échec de connexion: ' + message.errorMessage;
+            status.classList.add('error');
+            console.error("Connection failed:", message);
+        }
+        
+        function onConnectionLost(responseObject) {
+            if (responseObject.errorCode !== 0) {
+                console.log("Connection lost:", responseObject.errorMessage);
+            }
+        }
+        
+        function onMessageArrived(message) {
+            console.log("Message received:", message.destinationName, message.payloadString);
+        }
+        
         document.addEventListener('keypress', function(e) {
             if (e.key === 'Enter') {
-                login();
+                connectToHiveMQ();
             }
         });
     </script>
