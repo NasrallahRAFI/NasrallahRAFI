@@ -7,10 +7,9 @@
     <style>
         body {
             font-family: 'Arial', sans-serif;
-            max-width: 1000px;
-            margin: 20px auto;
+            margin: 0;
             padding: 20px;
-            background: linear-gradient(135deg, #f0f4f8, #e0e8f0);
+            background: #f0f4f8;
             color: #333;
         }
         h1 {
@@ -22,167 +21,181 @@
             background: #fff;
             margin-bottom: 10px;
             border-radius: 8px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
             overflow: hidden;
+            transition: max-height 0.3s ease;
         }
         .section-title {
             padding: 10px;
             background: #2c3e50;
             color: #fff;
             cursor: pointer;
-            user-select: none;
         }
         .section-content {
             padding: 10px;
             display: none;
         }
-        .topic {
-            margin: 5px 0;
+        .section-content.active {
+            display: block;
+        }
+        .topic-row {
             display: flex;
             justify-content: space-between;
+            margin: 5px 0;
         }
-        .topic-name {
+        .topic-label {
             font-weight: bold;
         }
         .topic-value {
             color: #2c3e50;
         }
-        button {
-            padding: 5px 10px;
-            background-color: #2c3e50;
+        button#logout {
+            padding: 10px 20px;
+            background: #e74c3c;
             color: #fff;
             border: none;
             border-radius: 4px;
             cursor: pointer;
+            margin-top: 20px;
         }
-        button:hover {
-            background-color: #34495e;
-        }
-        #status {
-            text-align: center;
-            margin-top: 10px;
-            color: #e74c3c;
+        button#logout:hover {
+            background: #c0392b;
         }
     </style>
 </head>
 <body>
-    <h1 id="client-title">Solar Pump Monitoring</h1>
-    <div id="status"></div>
-    <button onclick="disconnect()">Déconnexion</button>
-    <div id="sections"></div>
+    <h1 id="client-title"></h1>
+    <div id="sections-container">
+        <div class="section">
+            <div class="section-title" onclick="toggleSection(this)">1. Données Électriques</div>
+            <div class="section-content">
+                <div class="topic-row"><span class="topic-label">Tension entrée panneau solaire :</span><span class="topic-value" id="solar_in_voltage">N/A</span></div>
+                <div class="topic-row"><span class="topic-label">Courant entrée panneau solaire :</span><span class="topic-value" id="solar_in_current">N/A</span></div>
+                <div class="topic-row"><span class="topic-label">Tension sortie panneau solaire :</span><span class="topic-value" id="solar_out_voltage">N/A</span></div>
+                <div class="topic-row"><span class="topic-label">Courant sortie panneau solaire :</span><span class="topic-value" id="solar_out_current">N/A</span></div>
+                <div class="topic-row"><span class="topic-label">Tension batterie :</span><span class="topic-value" id="battery_voltage">N/A</span></div>
+                <div class="topic-row"><span class="topic-label">Courant batterie :</span><span class="topic-value" id="battery_current">N/A</span></div>
+                <div class="topic-row"><span class="topic-label">Niveau de charge batterie :</span><span class="topic-value" id="battery_level">N/A</span></div>
+                <div class="topic-row"><span class="topic-label">Courant charge/décharge batterie :</span><span class="topic-value" id="battery_charge_current">N/A</span></div>
+                <div class="topic-row"><span class="topic-label">Puissance générée panneaux :</span><span class="topic-value" id="solar_power">N/A</span></div>
+                <div class="topic-row"><span class="topic-label">Consommation pompe :</span><span class="topic-value" id="pump_consumption">N/A</span></div>
+            </div>
+        </div>
+        <div class="section">
+            <div class="section-title" onclick="toggleSection(this)">2. Performances de la Pompe</div>
+            <div class="section-content">
+                <div class="topic-row"><span class="topic-label">Débit d'eau :</span><span class="topic-value" id="water_flow">N/A</span></div>
+                <div class="topic-row"><span class="topic-label">Pression d'eau :</span><span class="topic-value" id="water_pressure">N/A</span></div>
+                <div class="topic-row"><span class="topic-label">Température moteur :</span><span class="topic-value" id="motor_temp">N/A</span></div>
+                <div class="topic-row"><span class="topic-label">État de fonctionnement :</span><span class="topic-value" id="pump_state">N/A</span></div>
+            </div>
+        </div>
+        <div class="section">
+            <div class="section-title" onclick="toggleSection(this)">3. Données Solaires et Environnementales</div>
+            <div class="section-content">
+                <div class="topic-row"><span class="topic-label">Ensoleillement :</span><span class="topic-value" id="solar_irradiance">N/A</span></div>
+                <div class="topic-row"><span class="topic-label">Température ambiante :</span><span class="topic-value" id="ambient_temp">N/A</span></div>
+                <div class="topic-row"><span class="topic-label">État panneaux solaires :</span><span class="topic-value" id="solar_panel_status">N/A</span></div>
+            </div>
+        </div>
+        <div class="section">
+            <div class="section-title" onclick="toggleSection(this)">4. Surveillance du Réservoir/Stockage d'Eau</div>
+            <div class="section-content">
+                <div class="topic-row"><span class="topic-label">Niveau d'eau :</span><span class="topic-value" id="water_level">N/A</span></div>
+                <div class="topic-row"><span class="topic-label">Qualité de l'eau :</span><span class="topic-value" id="water_quality">N/A</span></div>
+            </div>
+        </div>
+        <div class="section">
+            <div class="section-title" onclick="toggleSection(this)">5. Données de Maintenance et Sécurité</div>
+            <div class="section-content">
+                <div class="topic-row"><span class="topic-label">Heures de fonctionnement :</span><span class="topic-value" id="operating_hours">N/A</span></div>
+                <div class="topic-row"><span class="topic-label">Alertes de panne :</span><span class="topic-value" id="failure_alerts">N/A</span></div>
+                <div class="topic-row"><span class="topic-label">État des connexions :</span><span class="topic-value" id="connection_status">N/A</span></div>
+            </div>
+        </div>
+        <div class="section">
+            <div class="section-title" onclick="toggleSection(this)">6. Données de Communication IoT</div>
+            <div class="section-content">
+                <div class="topic-row"><span class="topic-label">État connexion réseau :</span><span class="topic-value" id="network_status">N/A</span></div>
+                <div class="topic-row"><span class="topic-label">Latence des données :</span><span class="topic-value" id="data_latency">N/A</span></div>
+                <div class="topic-row"><span class="topic-label">Statut mises à jour :</span><span class="topic-value" id="update_status">N/A</span></div>
+            </div>
+        </div>
+        <div class="section">
+            <div class="section-title" onclick="toggleSection(this)">7. Données Énergétiques et Efficacité</div>
+            <div class="section-content">
+                <div class="topic-row"><span class="topic-label">Rendement du système :</span><span class="topic-value" id="system_efficiency">N/A</span></div>
+                <div class="topic-row"><span class="topic-label">Autonomie batterie :</span><span class="topic-value" id="battery_autonomy">N/A</span></div>
+            </div>
+        </div>
+    </div>
+    <button id="logout" onclick="logout()">Déconnexion</button>
     <script src="https://unpkg.com/mqtt@5.10.1/dist/mqtt.min.js"></script>
     <script>
+        let client;
+
+        // Rediriger vers index.html en cas d'actualisation si pas d'utilisateur
+        window.onbeforeunload = function() {
+            window.location.href = 'index.html';
+        };
+
+        // Récupérer le nom d'utilisateur depuis l'URL
         const urlParams = new URLSearchParams(window.location.search);
         const username = urlParams.get('username');
-        const statusDiv = document.getElementById('status');
-        const sectionsDiv = document.getElementById('sections');
-
-        if (!username) {
-            statusDiv.textContent = 'Erreur : Nom d\'utilisateur non trouvé. Redirection nécessaire.';
-            setTimeout(() => window.location.href = 'login.html', 2000);
-            throw new Error('Username parameter missing');
+        if (username) {
+            document.getElementById('client-title').textContent = `Client : ${decodeURIComponent(username)}`;
+        } else {
+            window.location.href = 'index.html';
         }
 
-        document.getElementById('client-title').textContent = `Client : ${username}`;
-        statusDiv.textContent = 'Connexion en cours...';
-
-        const client = mqtt.connect({
+        // Connexion MQTT
+        const options = {
             host: '508205b2e19c4a7fad9828d3961d6424.s1.eu.hivemq.cloud',
             port: 8884,
             protocol: 'wss',
             path: '/mqtt',
             clientId: 'mqttjs_' + Math.random().toString(16).substr(2, 8),
             username: username,
-            password: 'Nasrollah2003*' // Remplacez par le mot de passe correct ou sécurisez-le
-        });
-
-        const sections = {
-            'Données Électriques': [
-                { topic: 'solar/panel/input/voltage', label: 'Tension entrée panneau solaire (V)' },
-                { topic: 'solar/panel/input/current', label: 'Courant entrée panneau solaire (A)' },
-                { topic: 'solar/panel/output/voltage', label: 'Tension sortie panneau solaire (V)' },
-                { topic: 'solar/panel/output/current', label: 'Courant sortie panneau solaire (A)' },
-                { topic: 'battery/charge/level', label: 'Niveau de charge batterie (%)' },
-                { topic: 'battery/voltage', label: 'Tension batterie (V)' },
-                { topic: 'battery/charge/current', label: 'Courant de charge batterie (A)' },
-                { topic: 'battery/discharge/current', label: 'Courant de décharge batterie (A)' },
-                { topic: 'pump/power/consumption', label: 'Consommation électrique pompe (W)' },
-                { topic: 'solar/panel/power/generated', label: 'Puissance générée panneaux solaires (W)' }
-            ],
-            'Performances de la Pompe': [
-                { topic: 'pump/flow/rate', label: 'Débit d\'eau (L/min)' },
-                { topic: 'pump/pressure', label: 'Pression d\'eau (bar)' },
-                { topic: 'pump/motor/temperature', label: 'Température moteur (°C)' },
-                { topic: 'pump/status', label: 'État de fonctionnement' }
-            ],
-            'Données Solaires et Environnementales': [
-                { topic: 'solar/irradiance', label: 'Ensoleillement (W/m²)' },
-                { topic: 'environment/temperature', label: 'Température ambiante (°C)' },
-                { topic: 'solar/panel/status', label: 'État des panneaux solaires' }
-            ],
-            'Surveillance du Réservoir/Stockage d\'Eau': [
-                { topic: 'reservoir/level', label: 'Niveau d\'eau (%)' },
-                { topic: 'water/quality/ph', label: 'pH de l\'eau' },
-                { topic: 'water/quality/turbidity', label: 'Turbidité de l\'eau (NTU)' }
-            ],
-            'Données de Maintenance et Sécurité': [
-                { topic: 'pump/operating/hours', label: 'Heures de fonctionnement (h)' },
-                { topic: 'alerts/failure', label: 'Alertes de panne' },
-                { topic: 'connections/status', label: 'État des connexions' }
-            ],
-            'Données de Communication IoT': [
-                { topic: 'network/status', label: 'État de la connexion réseau' },
-                { topic: 'network/latency', label: 'Latence des données (ms)' },
-                { topic: 'software/update/status', label: 'Statut des mises à jour logicielles' }
-            ],
-            'Données Énergétiques et Efficacité': [
-                { topic: 'system/efficiency', label: 'Rendement du système (%)' },
-                { topic: 'battery/autonomy', label: 'Autonomie batterie (h)' }
-            ]
+            password: 'Nasrollah2003*' // Remplacez par une logique sécurisée pour le mot de passe
         };
 
+        client = mqtt.connect(options);
+
         client.on('connect', () => {
-            console.log('Connecté au serveur MQTT');
-            statusDiv.textContent = 'Connecté avec succès';
-            statusDiv.style.color = 'green';
-            Object.keys(sections).forEach(sectionTitle => {
-                const section = document.createElement('div');
-                section.className = 'section';
-                section.innerHTML = `<div class="section-title" onclick="this.nextElementSibling.style.display = this.nextElementSibling.style.display === 'block' ? 'none' : 'block';">${sectionTitle}</div><div class="section-content"></div>`;
-                const content = section.querySelector('.section-content');
-                sections[sectionTitle].forEach(item => {
-                    const topicDiv = document.createElement('div');
-                    topicDiv.className = 'topic';
-                    topicDiv.innerHTML = `<span class="topic-name">${item.label}</span><span class="topic-value" id="${item.topic.replace(/\//g, '-')}-value">--</span>`;
-                    content.appendChild(topicDiv);
-                    client.subscribe(item.topic, (err) => {
-                        if (err) {
-                            console.error(`Erreur d'abonnement à ${item.topic}:`, err);
-                            document.getElementById(`${item.topic.replace(/\//g, '-')}-value`).textContent = 'Erreur';
-                        } else {
-                            console.log(`Abonné à ${item.topic}`);
-                        }
-                    });
-                });
-                sectionsDiv.appendChild(section);
-            });
+            const topics = [
+                'solar/in/voltage', 'solar/in/current', 'solar/out/voltage', 'solar/out/current',
+                'battery/voltage', 'battery/current', 'battery/level', 'battery/charge_current',
+                'solar/power', 'pump/consumption', 'water/flow', 'water/pressure', 'motor/temp',
+                'pump/state', 'solar/irradiance', 'ambient/temp', 'solar/panel/status', 'water/level',
+                'water/quality', 'operating/hours', 'failure/alerts', 'connection/status', 'network/status',
+                'data/latency', 'update/status', 'system/efficiency', 'battery/autonomy'
+            ];
+            topics.forEach(topic => client.subscribe(topic));
         });
 
         client.on('message', (topic, message) => {
-            console.log(`Message reçu sur ${topic}: ${message}`);
-            const valueSpan = document.getElementById(`${topic.replace(/\//g, '-')}-value`);
-            if (valueSpan) valueSpan.textContent = message.toString();
+            const value = message.toString();
+            const element = document.getElementById(topic.replace('/', '_'));
+            if (element) element.textContent = value;
         });
 
         client.on('error', (err) => {
-            console.error('Erreur de connexion:', err);
-            statusDiv.textContent = 'Erreur de connexion au serveur';
-            statusDiv.style.color = 'red';
+            console.log('Erreur MQTT:', err);
+            window.location.href = 'index.html';
         });
 
-        function disconnect() {
-            client.end();
-            window.location.href = 'login.html';
+        client.on('close', () => {
+            window.location.href = 'index.html';
+        });
+
+        function toggleSection(element) {
+            const content = element.nextElementSibling;
+            content.classList.toggle('active');
+        }
+
+        function logout() {
+            if (client) client.end();
+            window.location.href = 'index.html';
         }
     </script>
 </body>
