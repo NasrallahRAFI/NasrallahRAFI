@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Monitoring Interface</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            background: #f0f4f8;
+            color: #333;
+        }
+        h1 {
+            text-align: center;
+            color: #2c3e50;
+            margin-bottom: 20px;
+        }
+        .section {
+            margin-bottom: 10px;
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+        .section-title {
+            padding: 10px;
+            background: #2c3e50;
+            color: #fff;
+            cursor: pointer;
+            user-select: none;
+        }
+        .section-content {
+            padding: 10px;
+            display: none;
+            height: 0;
+            transition: height 0.3s ease;
+        }
+        .section-content.active {
+            display: block;
+            height: auto;
+        }
+        #status {
+            text-align: center;
+            color: #e74c3c;
+            margin-top: 10px;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <h1 id="client-title">Client: [Username]</h1>
+    <div id="status"></div>
+    <div class="section">
+        <div class="section-title" onclick="toggleSection('general')">General</div>
+        <div id="general-content" class="section-content">
+            <!-- Content will be added later -->
+        </div>
+    </div>
+    <div class="section">
+        <div class="section-title" onclick="toggleSection('network')">Network</div>
+        <div id="network-content" class="section-content">
+            <!-- Content will be added later -->
+        </div>
+    </div>
+    <div class="section">
+        <div class="section-title" onclick="toggleSection('solar-variator')">Solar Variator</div>
+        <div id="solar-variator-content" class="section-content">
+            <!-- Content will be added later -->
+        </div>
+    </div>
+    <div class="section">
+        <div class="section-title" onclick="toggleSection('pump')">Pump</div>
+        <div id="pump-content" class="section-content">
+            <!-- Content will be added later -->
+        </div>
+    </div>
+    <div class="section">
+        <div class="section-title" onclick="toggleSection('reservoir')">Reservoir</div>
+        <div id="reservoir-content" class="section-content">
+            <!-- Content will be added later -->
+        </div>
+    </div>
+    <script>
+        // Set dynamic title from URL parameter
+        const urlParams = new URLSearchParams(window.location.search);
+        const username = urlParams.get('username');
+        if (username) {
+            document.getElementById('client-title').textContent = `Client: ${decodeURIComponent(username)}`;
+        } else {
+            document.getElementById('status').textContent = 'No username provided';
+            document.getElementById('status').style.display = 'block';
+        }
+
+        // Toggle section visibility
+        function toggleSection(sectionId) {
+            const content = document.getElementById(`${sectionId}-content`);
+            const isActive = content.classList.contains('active');
+            content.classList.toggle('active', !isActive);
+        }
+    </script>
+</body>
+</html>
