@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,7 +10,7 @@
             max-width: 400px;
             margin: 0 auto;
             padding: 20px;
-            background: #f0f4f8;
+            background: linear-gradient(135deg, #f0f4f8, #e0e8f0);
             display: flex;
             justify-content: center;
             align-items: center;
@@ -21,11 +21,12 @@
             color: #2c3e50;
             margin-bottom: 20px;
         }
-        .login-form {
-            background: #fff;
+        #login-form {
+            background-color: #ffffff;
             padding: 20px;
             border-radius: 8px;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            width: 100%;
         }
         label {
             display: block;
@@ -38,35 +39,36 @@
             margin-bottom: 10px;
             border: 1px solid #dfe6e9;
             border-radius: 4px;
+            box-sizing: border-box;
         }
         button {
             width: 100%;
             padding: 10px;
-            background: #2c3e50;
-            color: #fff;
+            background-color: #2c3e50;
+            color: #ffffff;
             border: none;
             border-radius: 4px;
             cursor: pointer;
+            font-weight: bold;
         }
         button:hover {
-            background: #34495e;
+            background-color: #34495e;
         }
         #status {
             text-align: center;
-            color: #e74c3c;
             margin-top: 10px;
-            display: none;
+            color: #e74c3c;
         }
     </style>
 </head>
 <body>
-    <div class="login-form">
-        <h1>Solar Pump Monitoring</h1>
-        <label for="username">Username:</label>
-        <input type="text" id="username" placeholder="Enter username">
-        <label for="password">Password:</label>
-        <input type="password" id="password" placeholder="Enter password">
-        <button onclick="login()">Login</button>
+    <h1>Solar Pump Monitoring</h1>
+    <div id="login-form">
+        <label for="username">Nom d'utilisateur :</label>
+        <input type="text" id="username" placeholder="Entrez le nom d'utilisateur">
+        <label for="password">Mot de passe :</label>
+        <input type="password" id="password" placeholder="Entrez le mot de passe">
+        <button onclick="login()">Se connecter</button>
         <div id="status"></div>
     </div>
     <script>
@@ -76,23 +78,16 @@
             const status = document.getElementById('status');
 
             if (!username || !password) {
-                status.textContent = 'Please enter both username and password';
-                status.style.display = 'block';
+                status.textContent = 'Veuillez entrer un nom d\'utilisateur et un mot de passe';
                 return;
             }
 
-            // Simple in-memory authentication (replace with real backend/MQTT auth later)
-            const validUsers = [
-                { username: 'Nasrallah', password: 'Nasrollah2003*' },
-                { username: 'admin', password: 'admin123' }
-            ];
-
-            const user = validUsers.find(u => u.username === username && u.password === password);
-            if (user) {
+            // Simulated authentication (replace with real backend check)
+            const validUsers = { 'nasrallah': 'Nasrollah2003*' };
+            if (validUsers[username] && validUsers[username] === password) {
                 window.location.href = `monitoring.html?username=${encodeURIComponent(username)}`;
             } else {
-                status.textContent = 'Invalid username or password';
-                status.style.display = 'block';
+                status.textContent = 'Nom d\'utilisateur ou mot de passe incorrect';
             }
         }
     </script>
