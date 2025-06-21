@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HiveMQ Cloud MQTT Interface</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f4f4f4;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+
+        #status {
+            margin: 20px 0;
+            padding: 10px;
+            background-color: #fff;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        #messages {
+            background-color: #fff;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 10px;
+            height: 300px;
+            overflow-y: auto;
+            margin-top: 10px;
+        }
+
+        .message {
+            padding: 5px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .error {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <h1>HiveMQ Cloud MQTT Interface</h1>
+    <div id="status">Connecting to HiveMQ Cloud...</div>
+    <h2>Received Messages</h2>
+    <div id="messages"></div>
+    <script src="https://unpkg.com/mqtt@5.10.1/dist/mqtt.min.js"></script>
+    <script>
+        // MQTT client configuration
+        const options = {
+            host: '508205b2e19c4a7fad9828d3961d6424.s1.eu.hivemq.cloud',
+            port: 8884,
+            protocol: 'wss',
+            path: '/mqtt', // Added to specify the MQTT WebSocket endpoint
+            clientId: 'mqttjs_' + Math.random().toString(16).substr(2, 8),
+            username: 'Nasrallah',
+            password: 'Nasrollah2003*'
+        };
+        const client = mqtt.connect(options);
+        const statusDiv = document.getElementById('status');
+        const messagesDiv = document.getElementById('messages');
+        client.on('connect', () => {
+            statusDiv.textContent = 'Connected to HiveMQ Cloud';
+            statusDiv.style.color = 'green';
+            client.subscribe('test/topic', (err) => {
+                if (!err) {
+                    appendMessage('Subscribed to test/topic');
+                } else {
+                    appendMessage('Subscription error: ' + err, true);
+                }
+            });
+        });
+        client.on('message', (topic, message) => {
+            const msg = `Topic: ${topic} | Message: ${message.toString()}`;
+            appendMessage(msg);
+        });
+        client.on('error', (err) => {
+            statusDiv.textContent = 'Connection error: ' + err;
+            statusDiv.style.color = 'red';
+        });
+        client.on('close', () => {
+            statusDiv.textContent = 'Disconnected from HiveMQ Cloud';
+            statusDiv.style.color = 'orange';
+        });
+        function appendMessage(text, isError = false) {
+            const msgDiv = document.createElement('div');
+            msgDiv.className = 'message';
+            if (isError) msgDiv.className += ' error';
+            msgDiv.textContent = `[${new Date().toLocaleTimeString()}] ${text}`;
+            messagesDiv.appendChild(msgDiv);
+            messagesDiv.scrollTop = messagesDiv.scrollHeight;
+        }
+    </script>
+</body>
+</html>
