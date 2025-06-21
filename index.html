@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>HiveMQ Cloud MQTT Interface</title>
     <style>
+        /* Existing CSS */
         body {
             font-family: 'Arial', sans-serif;
             max-width: 900px;
@@ -207,6 +208,76 @@
             background: #2ecc71;
         }
 
+        .slider::-moz-range-thumb {
+            width: 15px;
+            height: 15px;
+            border-radius: 50%;
+            background: #2ecc71; /* Default green */
+            cursor: default;
+        }
+        .slider[value="0"]::-moz-range-thumb { background: #e74c3c; }
+        .slider[value="40"]::-moz-range-thumb,
+        .slider[value="41"]::-moz-range-thumb,
+        .slider[value="42"]::-moz-range-thumb,
+        .slider[value="43"]::-moz-range-thumb,
+        .slider[value="44"]::-moz-range-thumb,
+        .slider[value="45"]::-moz-range-thumb,
+        .slider[value="46"]::-moz-range-thumb,
+        .slider[value="47"]::-moz-range-thumb,
+        .slider[value="48"]::-moz-range-thumb,
+        .slider[value="49"]::-moz-range-thumb,
+        .slider[value="50"]::-moz-range-thumb,
+        .slider[value="51"]::-moz-range-thumb,
+        .slider[value="52"]::-moz-range-thumb,
+        .slider[value="53"]::-moz-range-thumb,
+        .slider[value="54"]::-moz-range-thumb,
+        .slider[value="55"]::-moz-range-thumb,
+        .slider[value="56"]::-moz-range-thumb,
+        .slider[value="57"]::-moz-range-thumb,
+        .slider[value="58"]::-moz-range-thumb,
+        .slider[value="59"]::-moz-range-thumb,
+        .slider[value="60"]::-moz-range-thumb,
+        .slider[value="61"]::-moz-range-thumb,
+        .slider[value="62"]::-moz-range-thumb,
+        .slider[value="63"]::-moz-range-thumb,
+        .slider[value="64"]::-moz-range-thumb,
+        .slider[value="65"]::-moz-range-thumb,
+        .slider[value="66"]::-moz-range-thumb,
+        .slider[value="67"]::-moz-range-thumb,
+        .slider[value="68"]::-moz-range-thumb,
+        .slider[value="69"]::-moz-range-thumb,
+        .slider[value="70"]::-moz-range-thumb { background: #f39c12; }
+        .slider[value="71"]::-moz-range-thumb,
+        .slider[value="72"]::-moz-range-thumb,
+        .slider[value="73"]::-moz-range-thumb,
+        .slider[value="74"]::-moz-range-thumb,
+        .slider[value="75"]::-moz-range-thumb,
+        .slider[value="76"]::-moz-range-thumb,
+        .slider[value="77"]::-moz-range-thumb,
+        .slider[value="78"]::-moz-range-thumb,
+        .slider[value="79"]::-moz-range-thumb,
+        .slider[value="80"]::-moz-range-thumb,
+        .slider[value="81"]::-moz-range-thumb,
+        .slider[value="82"]::-moz-range-thumb,
+        .slider[value="83"]::-moz-range-thumb,
+        .slider[value="84"]::-moz-range-thumb,
+        .slider[value="85"]::-moz-range-thumb,
+        .slider[value="86"]::-moz-range-thumb,
+        .slider[value="87"]::-moz-range-thumb,
+        .slider[value="88"]::-moz-range-thumb,
+        .slider[value="89"]::-moz-range-thumb,
+        .slider[value="90"]::-moz-range-thumb,
+        .slider[value="91"]::-moz-range-thumb,
+        .slider[value="92"]::-moz-range-thumb,
+        .slider[value="93"]::-moz-range-thumb,
+        .slider[value="94"]::-moz-range-thumb,
+        .slider[value="95"]::-moz-range-thumb,
+        .slider[value="96"]::-moz-range-thumb,
+        .slider[value="97"]::-moz-range-thumb,
+        .slider[value="98"]::-moz-range-thumb,
+        .slider[value="99"]::-moz-range-thumb,
+        .slider[value="100"]::-moz-range-thumb { background: #2ecc71; }
+
         .message {
             padding: 5px;
             border-bottom: 1px solid #eee;
@@ -335,11 +406,13 @@
             statusDiv.textContent = 'Connecting to HiveMQ Cloud...';
             statusDiv.style.color = 'black';
 
-            if (client) {
-                client.end();
-            }
-
             client = mqtt.connect(options);
+
+            client.on('error', (err) => {
+                console.log('Connection error:', err);
+                statusDiv.textContent = 'Error: Invalid username or password or connection issue';
+                statusDiv.style.color = 'red';
+            });
 
             client.on('connect', () => {
                 statusDiv.textContent = 'Connected to HiveMQ Cloud';
@@ -361,21 +434,20 @@
                                 statusDiv.textContent += ' | Subscribed to battery/state';
                             }
                         } else {
-                            appendMessage(topic, 'Subscription error: ' + err, true);
+                            appendMessage(topic, `Subscription error: ${err}`, true);
                         }
                     });
                 });
-            });
-
-            client.on('error', (err) => {
-                statusDiv.textContent = 'Error: Invalid username or password';
-                statusDiv.style.color = 'red';
             });
 
             client.on('close', () => {
                 statusDiv.textContent = 'Disconnected from HiveMQ Cloud';
                 statusDiv.style.color = 'orange';
             });
+
+            if (client) {
+                client.end();
+            }
         }
 
         function appendMessage(topic, text, isError = false) {
@@ -387,6 +459,8 @@
                 msgDiv.textContent = `[${new Date().toLocaleTimeString()}] ${text}`;
                 messagesDiv.appendChild(msgDiv);
                 messagesDiv.scrollTop = messagesDiv.scrollHeight;
+            } else {
+                console.warn(`Messages div not found for topic: ${topic}`);
             }
         }
     </script>
