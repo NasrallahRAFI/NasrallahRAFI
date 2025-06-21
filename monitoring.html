@@ -160,6 +160,12 @@
             color: #7f8c8d;
         }
         
+        .unit {
+            color: #95a5a6;
+            font-size: 0.9em;
+            margin-left: 3px;
+        }
+        
         .status-indicator {
             display: inline-block;
             width: 10px;
@@ -219,43 +225,43 @@
                 <div class="section-content">
                     <div class="data-row">
                         <span class="data-label">Tension entrée panneau solaire :</span>
-                        <span class="data-value" id="solar_in_voltage">N/A</span>
+                        <span class="data-value"><span id="solar_in_voltage">N/A</span> <span class="unit">V</span></span>
                     </div>
                     <div class="data-row">
                         <span class="data-label">Courant entrée panneau solaire :</span>
-                        <span class="data-value" id="solar_in_current">N/A</span>
+                        <span class="data-value"><span id="solar_in_current">N/A</span> <span class="unit">A</span></span>
                     </div>
                     <div class="data-row">
                         <span class="data-label">Tension sortie panneau solaire :</span>
-                        <span class="data-value" id="solar_out_voltage">N/A</span>
+                        <span class="data-value"><span id="solar_out_voltage">N/A</span> <span class="unit">V</span></span>
                     </div>
                     <div class="data-row">
                         <span class="data-label">Courant sortie panneau solaire :</span>
-                        <span class="data-value" id="solar_out_current">N/A</span>
+                        <span class="data-value"><span id="solar_out_current">N/A</span> <span class="unit">A</span></span>
                     </div>
                     <div class="data-row">
                         <span class="data-label">Tension batterie :</span>
-                        <span class="data-value" id="battery_voltage">N/A</span>
+                        <span class="data-value"><span id="battery_voltage">N/A</span> <span class="unit">V</span></span>
                     </div>
                     <div class="data-row">
                         <span class="data-label">Courant batterie :</span>
-                        <span class="data-value" id="battery_current">N/A</span>
+                        <span class="data-value"><span id="battery_current">N/A</span> <span class="unit">A</span></span>
                     </div>
                     <div class="data-row">
                         <span class="data-label">Niveau de charge batterie :</span>
-                        <span class="data-value" id="battery_level">N/A</span>
+                        <span class="data-value"><span id="battery_level">N/A</span> <span class="unit">%</span></span>
                     </div>
                     <div class="data-row">
                         <span class="data-label">Courant charge/décharge batterie :</span>
-                        <span class="data-value" id="battery_charge_current">N/A</span>
+                        <span class="data-value"><span id="battery_charge_current">N/A</span> <span class="unit">A</span></span>
                     </div>
                     <div class="data-row">
                         <span class="data-label">Puissance générée panneaux :</span>
-                        <span class="data-value" id="solar_power">N/A</span>
+                        <span class="data-value"><span id="solar_power">N/A</span> <span class="unit">W</span></span>
                     </div>
                     <div class="data-row">
                         <span class="data-label">Consommation pompe :</span>
-                        <span class="data-value" id="pump_consumption">N/A</span>
+                        <span class="data-value"><span id="pump_consumption">N/A</span> <span class="unit">W</span></span>
                     </div>
                 </div>
             </div>
@@ -269,15 +275,15 @@
                 <div class="section-content">
                     <div class="data-row">
                         <span class="data-label">Débit d'eau :</span>
-                        <span class="data-value" id="water_flow">N/A</span>
+                        <span class="data-value"><span id="water_flow">N/A</span> <span class="unit">L/min</span></span>
                     </div>
                     <div class="data-row">
                         <span class="data-label">Pression d'eau :</span>
-                        <span class="data-value" id="water_pressure">N/A</span>
+                        <span class="data-value"><span id="water_pressure">N/A</span> <span class="unit">bar</span></span>
                     </div>
                     <div class="data-row">
                         <span class="data-label">Température moteur :</span>
-                        <span class="data-value" id="motor_temp">N/A</span>
+                        <span class="data-value"><span id="motor_temp">N/A</span> <span class="unit">°C</span></span>
                     </div>
                     <div class="data-row">
                         <span class="data-label">État de fonctionnement :</span>
@@ -295,11 +301,11 @@
                 <div class="section-content">
                     <div class="data-row">
                         <span class="data-label">Ensoleillement :</span>
-                        <span class="data-value" id="solar_irradiance">N/A</span>
+                        <span class="data-value"><span id="solar_irradiance">N/A</span> <span class="unit">W/m²</span></span>
                     </div>
                     <div class="data-row">
                         <span class="data-label">Température ambiante :</span>
-                        <span class="data-value" id="ambient_temp">N/A</span>
+                        <span class="data-value"><span id="ambient_temp">N/A</span> <span class="unit">°C</span></span>
                     </div>
                     <div class="data-row">
                         <span class="data-label">État panneaux solaires :</span>
@@ -317,7 +323,7 @@
                 <div class="section-content">
                     <div class="data-row">
                         <span class="data-label">Niveau d'eau :</span>
-                        <span class="data-value" id="water_level">N/A</span>
+                        <span class="data-value"><span id="water_level">N/A</span> <span class="unit">%</span></span>
                     </div>
                     <div class="data-row">
                         <span class="data-label">Qualité de l'eau :</span>
@@ -335,7 +341,7 @@
                 <div class="section-content">
                     <div class="data-row">
                         <span class="data-label">Heures de fonctionnement :</span>
-                        <span class="data-value" id="operating_hours">N/A</span>
+                        <span class="data-value"><span id="operating_hours">N/A</span> <span class="unit">h</span></span>
                     </div>
                     <div class="data-row">
                         <span class="data-label">Alertes de panne :</span>
@@ -361,7 +367,7 @@
                     </div>
                     <div class="data-row">
                         <span class="data-label">Latence des données :</span>
-                        <span class="data-value" id="data_latency">N/A</span>
+                        <span class="data-value"><span id="data_latency">N/A</span> <span class="unit">ms</span></span>
                     </div>
                     <div class="data-row">
                         <span class="data-label">Statut mises à jour :</span>
@@ -379,11 +385,11 @@
                 <div class="section-content">
                     <div class="data-row">
                         <span class="data-label">Rendement du système :</span>
-                        <span class="data-value" id="system_efficiency">N/A</span>
+                        <span class="data-value"><span id="system_efficiency">N/A</span> <span class="unit">%</span></span>
                     </div>
                     <div class="data-row">
                         <span class="data-label">Autonomie batterie :</span>
-                        <span class="data-value" id="battery_autonomy">N/A</span>
+                        <span class="data-value"><span id="battery_autonomy">N/A</span> <span class="unit">h</span></span>
                     </div>
                 </div>
             </div>
