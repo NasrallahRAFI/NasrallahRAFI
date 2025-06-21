@@ -125,25 +125,86 @@
             background: #dfe6e9;
             border-radius: 10px;
             outline: none;
+            pointer-events: none;
         }
 
         .slider::-webkit-slider-thumb {
             -webkit-appearance: none;
             width: 15px;
             height: 15px;
-            background: #2c3e50;
             border-radius: 50%;
-            cursor: pointer;
-            transition: background-color 0.3s;
+            cursor: default;
         }
 
-        .slider::-moz-range-thumb {
-            width: 15px;
-            height: 15px;
-            background: #2c3e50;
-            border-radius: 50%;
-            cursor: pointer;
-            transition: background-color 0.3s;
+        .slider[value="0"]:not(:active)::-webkit-slider-thumb {
+            background: #e74c3c;
+        }
+
+        .slider[value="40"]:not(:active)::-webkit-slider-thumb,
+        .slider[value="41"]:not(:active)::-webkit-slider-thumb,
+        .slider[value="42"]:not(:active)::-webkit-slider-thumb,
+        .slider[value="43"]:not(:active)::-webkit-slider-thumb,
+        .slider[value="44"]:not(:active)::-webkit-slider-thumb,
+        .slider[value="45"]:not(:active)::-webkit-slider-thumb,
+        .slider[value="46"]:not(:active)::-webkit-slider-thumb,
+        .slider[value="47"]:not(:active)::-webkit-slider-thumb,
+        .slider[value="48"]:not(:active)::-webkit-slider-thumb,
+        .slider[value="49"]:not(:active)::-webkit-slider-thumb,
+        .slider[value="50"]:not(:active)::-webkit-slider-thumb,
+        .slider[value="51"]:not(:active)::-webkit-slider-thumb,
+        .slider[value="52"]:not(:active)::-webkit-slider-thumb,
+        .slider[value="53"]:not(:active)::-webkit-slider-thumb,
+        .slider[value="54"]:not(:active)::-webkit-slider-thumb,
+        .slider[value="55"]:not(:active)::-webkit-slider-thumb,
+        .slider[value="56"]:not(:active)::-webkit-slider-thumb,
+        .slider[value="57"]:not(:active)::-webkit-slider-thumb,
+        .slider[value="58"]:not(:active)::-webkit-slider-thumb,
+        .slider[value="59"]:not(:active)::-webkit-slider-thumb,
+        .slider[value="60"]:not(:active)::-webkit-slider-thumb,
+        .slider[value="61"]:not(:active)::-webkit-slider-thumb,
+        .slider[value="62"]:not(:active)::-webkit-slider-thumb,
+        .slider[value="63"]:not(:active)::-webkit-slider-thumb,
+        .slider[value="64"]:not(:active)::-webkit-slider-thumb,
+        .slider[value="65"]:not(:active)::-webkit-slider-thumb,
+        .slider[value="66"]:not(:active)::-webkit-slider-thumb,
+        .slider[value="67"]:not(:active)::-webkit-slider-thumb,
+        .slider[value="68"]:not(:active)::-webkit-slider-thumb,
+        .slider[value="69"]:not(:active)::-webkit-slider-thumb,
+        .slider[value="70"]:not(:active)::-webkit-slider-thumb {
+            background: #f39c12;
+        }
+
+        .slider[value="71"]:not(:active)::-webkit-slider-thumb,
+        .slider[value="72"]:not(:active)::-webkit-slider-thumb,
+        .slider[value="73"]:not(:active)::-webkit-slider-thumb,
+        .slider[value="74"]:not(:active)::-webkit-slider-thumb,
+        .slider[value="75"]:not(:active)::-webkit-slider-thumb,
+        .slider[value="76"]:not(:active)::-webkit-slider-thumb,
+        .slider[value="77"]:not(:active)::-webkit-slider-thumb,
+        .slider[value="78"]:not(:active)::-webkit-slider-thumb,
+        .slider[value="79"]:not(:active)::-webkit-slider-thumb,
+        .slider[value="80"]:not(:active)::-webkit-slider-thumb,
+        .slider[value="81"]:not(:active)::-webkit-slider-thumb,
+        .slider[value="82"]:not(:active)::-webkit-slider-thumb,
+        .slider[value="83"]:not(:active)::-webkit-slider-thumb,
+        .slider[value="84"]:not(:active)::-webkit-slider-thumb,
+        .slider[value="85"]:not(:active)::-webkit-slider-thumb,
+        .slider[value="86"]:not(:active)::-webkit-slider-thumb,
+        .slider[value="87"]:not(:active)::-webkit-slider-thumb,
+        .slider[value="88"]:not(:active)::-webkit-slider-thumb,
+        .slider[value="89"]:not(:active)::-webkit-slider-thumb,
+        .slider[value="90"]:not(:active)::-webkit-slider-thumb,
+        .slider[value="91"]:not(:active)::-webkit-slider-thumb,
+        .slider[value="92"]:not(:active)::-webkit-slider-thumb,
+        .slider[value="93"]:not(:active)::-webkit-slider-thumb,
+        .slider[value="94"]:not(:active)::-webkit-slider-thumb,
+        .slider[value="95"]:not(:active)::-webkit-slider-thumb,
+        .slider[value="96"]:not(:active)::-webkit-slider-thumb,
+        .slider[value="97"]:not(:active)::-webkit-slider-thumb,
+        .slider[value="98"]:not(:active)::-webkit-slider-thumb,
+        .slider[value="99"]:not(:active)::-webkit-slider-thumb,
+        .slider[value="100"]:not(:active)::-webkit-slider-thumb {
+            background: #2ecc71;
         }
 
         .message {
@@ -151,6 +212,8 @@
             border-bottom: 1px solid #eee;
             font-size: 0.9em;
             color: #7f8c8d;
+            display: flex;
+            justify-content: space-between;
         }
 
         .error {
@@ -213,7 +276,7 @@
             </div>
             <div class="topic-box">
                 <div class="topic-title">Motor Speed</div>
-                <div id="pump-speed-messages" class="messages"></div>
+                <div id="pump-speed-messages" class="messages">-- RPM</div>
             </div>
             <div class="topic-box">
                 <div class="topic-title">Reservoir State</div>
@@ -283,6 +346,7 @@
                 statusDiv.style.color = 'green';
                 loginForm.style.display = 'none';
                 topicsSection.style.display = 'block';
+                document.querySelector('h1').textContent = `Client: ${username}`;
                 const topics = ['pump/state', 'pump/speed', 'reservoir/state', 'power/source', 'battery/state'];
                 topics.forEach(topic => {
                     client.subscribe(topic, (err) => {
@@ -303,76 +367,8 @@
                 });
             });
 
-            client.on('message', (topic, message) => {
-                const msg = message.toString().toLowerCase();
-                if (topic === 'pump/state') {
-                    const greenLed = document.getElementById('green-led');
-                    const redLed = document.getElementById('red-led');
-                    if (greenLed && redLed) {
-                        greenLed.classList.remove('on');
-                        redLed.classList.remove('on');
-                        if (msg.includes('on')) {
-                            greenLed.classList.add('on');
-                        } else if (msg.includes('off')) {
-                            redLed.classList.add('on');
-                        }
-                    }
-                } else if (topic === 'power/source') {
-                    const gridLed = document.getElementById('grid-led');
-                    const solarLed = document.getElementById('solar-led');
-                    const batteryLed = document.getElementById('battery-led');
-                    if (gridLed && solarLed && batteryLed) {
-                        gridLed.classList.remove('on');
-                        solarLed.classList.remove('on');
-                        batteryLed.classList.remove('on');
-                        if (msg.includes('grid')) {
-                            gridLed.classList.add('on');
-                        } else if (msg.includes('solar')) {
-                            solarLed.classList.add('on');
-                        } else if (msg.includes('battery')) {
-                            batteryLed.classList.add('on');
-                        }
-                    }
-                } else if (topic === 'battery/state') {
-                    const slider = document.getElementById('battery-slider');
-                    const valueSpan = document.getElementById('battery-value');
-                    if (slider && valueSpan) {
-                        let value = parseInt(msg) || 0;
-                        if (isNaN(value)) {
-                            const match = msg.match(/(\d+)%?/);
-                            value = match ? parseInt(match[1]) : 0;
-                        }
-                        value = Math.max(0, Math.min(100, value));
-                        slider.value = value;
-                        valueSpan.textContent = `${value}%`;
-
-                        // Set slider thumb color based on value
-                        const thumb = slider.style;
-                        if (value < 40) {
-                            thumb.setProperty('--thumb-color', '#ff0000');
-                        } else if (value < 70) {
-                            thumb.setProperty('--thumb-color', '#ffA500');
-                        } else {
-                            thumb.setProperty('--thumb-color', '#00ff00');
-                        }
-                    }
-                } else if (topic === 'pump/speed') {
-                    const messagesDiv = document.getElementById('pump-speed-messages');
-                    if (messagesDiv) {
-                        let value = parseInt(msg) || 0;
-                        if (isNaN(value)) {
-                            const match = msg.match(/(\d+)/);
-                            value = match ? parseInt(match[1]) : 0;
-                        }
-                        appendMessage(topic, `Speed: ${value} RPM`);
-                    }
-                } else {
-                    appendMessage(topic, `Message: ${message.toString()}`);
-                }
-            });
-
             client.on('error', (err) => {
-                statusDiv.textContent = 'Connection error: ' + err;
+                statusDiv.textContent = 'Error: Invalid username or password';
                 statusDiv.style.color = 'red';
             });
 
