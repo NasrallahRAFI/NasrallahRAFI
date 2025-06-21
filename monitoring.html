@@ -79,7 +79,6 @@
             background: white;
             color: var(--primary);
             display: flex;
-            align-items: center;
             justify-content: center;
             margin-right: 10px;
             font-weight: bold;
@@ -97,6 +96,7 @@
         
         .nav-menu {
             list-style: none;
+            padding: 0;
             padding: 0 10px;
         }
         
@@ -108,7 +108,7 @@
             display: flex;
             align-items: center;
             padding: 12px 15px;
-            color: white;
+            color: #fff;
             text-decoration: none;
             border-radius: 6px;
             transition: all 0.3s;
@@ -497,6 +497,14 @@
                 grid-template-columns: 1fr;
             }
         }
+
+        /* Section Styles */
+        .section {
+            display: none;
+        }
+        .section.active {
+            display: block;
+        }
     </style>
 </head>
 <body>
@@ -518,43 +526,43 @@
             
             <ul class="nav-menu">
                 <li class="nav-item">
-                    <a href="#" class="nav-link active">
+                    <a href="#" class="nav-link active" onclick="showSection('dashboard')">
                         <i class="fas fa-tachometer-alt"></i>
                         Tableau de bord
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="#" class="nav-link">
+                    <a href="#" class="nav-link" onclick="showSection('battery')">
                         <i class="fas fa-battery-three-quarters"></i>
                         Batterie
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="#" class="nav-link">
+                    <a href="#" class="nav-link" onclick="showSection('water')">
                         <i class="fas fa-tint"></i>
                         Réservoir d'eau
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="#" class="nav-link">
+                    <a href="#" class="nav-link" onclick="showSection('pump')">
                         <i class="fas fa-pump"></i>
                         Pompe
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="#" class="nav-link">
+                    <a href="#" class="nav-link" onclick="showSection('programming')">
                         <i class="fas fa-calendar-alt"></i>
                         Programmation
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="#" class="nav-link">
+                    <a href="#" class="nav-link" onclick="showSection('history')">
                         <i class="fas fa-history"></i>
                         Historique
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="#" class="nav-link">
+                    <a href="#" class="nav-link" onclick="showSection('settings')">
                         <i class="fas fa-cog"></i>
                         Paramètres
                     </a>
@@ -566,7 +574,7 @@
         <main class="main-content">
             <div class="header">
                 <div class="page-title">
-                    <h1>Tableau de bord</h1>
+                    <h1 id="page-title">Tableau de bord</h1>
                 </div>
                 
                 <div class="header-actions">
@@ -581,154 +589,190 @@
                 </div>
             </div>
             
-            <!-- Dashboard Cards -->
-            <div class="dashboard-grid">
-                <!-- System Status Card -->
+            <!-- Dashboard Section -->
+            <section id="dashboard" class="section active">
+                <div class="dashboard-grid">
+                    <!-- System Status Card -->
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 class="card-title">État du système</h3>
+                            <div class="card-icon icon-primary">
+                                <i class="fas fa-solar-panel"></i>
+                            </div>
+                        </div>
+                        <div class="card-value" id="energy-source">Solaire</div>
+                        <p class="card-description">Source d'énergie actuelle</p>
+                        
+                        <div class="level-indicator">
+                            <div class="level-header">
+                                <span class="level-title">Électricité produite</span>
+                                <span class="level-value" id="electricity-produced">0 W</span>
+                            </div>
+                            <div class="progress-container">
+                                <div class="progress-bar" id="production-bar" style="width: 0%"></div>
+                            </div>
+                        </div>
+                        
+                        <div class="level-indicator">
+                            <div class="level-header">
+                                <span class="level-title">Électricité consommée</span>
+                                <span class="level-value" id="electricity-consumed">0 W</span>
+                            </div>
+                            <div class="progress-container">
+                                <div class="progress-bar" id="consumption-bar" style="width: 0%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Battery Section -->
+            <section id="battery" class="section">
+                <div class="dashboard-grid">
+                    <!-- Battery Level Card -->
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 class="card-title">Niveau de batterie</h3>
+                            <div class="card-icon icon-warning">
+                                <i class="fas fa-battery-three-quarters"></i>
+                            </div>
+                        </div>
+                        <div class="card-value" id="battery-value">0%</div>
+                        <p class="card-description">Charge actuelle de la batterie</p>
+                        
+                        <div class="level-indicator">
+                            <div class="progress-container">
+                                <div class="progress-bar progress-battery" id="battery-level" style="width: 0%"></div>
+                            </div>
+                            <div class="level-header">
+                                <span class="level-title">État</span>
+                                <span class="level-value" id="battery-status">Déchargé</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Water Tank Section -->
+            <section id="water" class="section">
+                <div class="dashboard-grid">
+                    <!-- Water Level Card -->
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 class="card-title">Niveau d'eau</h3>
+                            <div class="card-icon icon-success">
+                                <i class="fas fa-tint"></i>
+                            </div>
+                        </div>
+                        <div class="card-value" id="water-value">0%</div>
+                        <p class="card-description">Niveau actuel du réservoir</p>
+                        
+                        <div class="level-indicator">
+                            <div class="progress-container">
+                                <div class="progress-bar progress-water" id="water-level" style="width: 0%"></div>
+                            </div>
+                            <div class="level-header">
+                                <span class="level-title">État</span>
+                                <span class="level-value" id="water-status">Vide</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Pump Section -->
+            <section id="pump" class="section">
+                <div class="dashboard-grid">
+                    <!-- Pump Control Card -->
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 class="card-title">Contrôle de la pompe</h3>
+                            <div class="card-icon icon-danger">
+                                <i class="fas fa-pump"></i>
+                            </div>
+                        </div>
+                        
+                        <div class="pump-control">
+                            <div class="pump-status">
+                                <div class="status-led" id="pump-led"></div>
+                                <span id="pump-state">Arrêtée</span>
+                            </div>
+                            <div class="pump-actions">
+                                <button class="btn btn-success" onclick="sendCommand('pump/start')">
+                                    <i class="fas fa-play"></i> Démarrer
+                                </button>
+                                <button class="btn btn-danger" onclick="sendCommand('pump/stop')">
+                                    <i class="fas fa-stop"></i> Arrêter
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <div class="level-indicator" style="margin-top: 20px;">
+                            <div class="level-header">
+                                <span class="level-title">Débit d'eau</span>
+                                <span class="level-value" id="water-flow">0 L/min</span>
+                            </div>
+                            <div class="progress-container">
+                                <div class="progress-bar progress-water" id="flow-level" style="width: 0%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Programming Section -->
+            <section id="programming" class="section">
+                <!-- Program Section -->
+                <div class="card" style="margin-bottom: 20px;">
+                    <div class="card-header">
+                        <h3 class="card-title">Programmation</h3>
+                        <div class="card-icon">
+                            <i class="fas fa-calendar-alt"></i>
+                        </div>
+                    </div>
+                    
+                    <div class="program-form">
+                        <input type="datetime-local" id="program-time" class="program-input">
+                        <button class="btn btn-primary" onclick="addProgram()">
+                            <i class="fas fa-plus"></i> Ajouter
+                        </button>
+                    </div>
+                    
+                    <ul class="program-list" id="program-list">
+                        <!-- Program items will be added here -->
+                    </ul>
+                </div>
+            </section>
+
+            <!-- History Section -->
+            <section id="history" class="section">
+                <!-- Log Section -->
                 <div class="card">
                     <div class="card-header">
-                        <h3 class="card-title">État du système</h3>
-                        <div class="card-icon icon-primary">
-                            <i class="fas fa-solar-panel"></i>
-                        </div>
-                    </div>
-                    <div class="card-value" id="energy-source">Solaire</div>
-                    <p class="card-description">Source d'énergie actuelle</p>
-                    
-                    <div class="level-indicator">
-                        <div class="level-header">
-                            <span class="level-title">Électricité produite</span>
-                            <span class="level-value" id="electricity-produced">0 W</span>
-                        </div>
-                        <div class="progress-container">
-                            <div class="progress-bar" id="production-bar" style="width: 0%"></div>
+                        <h3 class="card-title">Journal des événements</h3>
+                        <div class="card-icon">
+                            <i class="fas fa-history"></i>
                         </div>
                     </div>
                     
-                    <div class="level-indicator">
-                        <div class="level-header">
-                            <span class="level-title">Électricité consommée</span>
-                            <span class="level-value" id="electricity-consumed">0 W</span>
-                        </div>
-                        <div class="progress-container">
-                            <div class="progress-bar" id="consumption-bar" style="width: 0%"></div>
-                        </div>
+                    <div class="log-container" id="log-container">
+                        <!-- Log entries will be added here -->
                     </div>
                 </div>
-                
-                <!-- Battery Level Card -->
+            </section>
+
+            <!-- Settings Section (Placeholder) -->
+            <section id="settings" class="section">
                 <div class="card">
                     <div class="card-header">
-                        <h3 class="card-title">Niveau de batterie</h3>
-                        <div class="card-icon icon-warning">
-                            <i class="fas fa-battery-three-quarters"></i>
+                        <h3 class="card-title">Paramètres</h3>
+                        <div class="card-icon">
+                            <i class="fas fa-cog"></i>
                         </div>
                     </div>
-                    <div class="card-value" id="battery-value">0%</div>
-                    <p class="card-description">Charge actuelle de la batterie</p>
-                    
-                    <div class="level-indicator">
-                        <div class="progress-container">
-                            <div class="progress-bar progress-battery" id="battery-level" style="width: 0%"></div>
-                        </div>
-                        <div class="level-header">
-                            <span class="level-title">État</span>
-                            <span class="level-value" id="battery-status">Déchargé</span>
-                        </div>
-                    </div>
+                    <p>Paramètres à implémenter.</p>
                 </div>
-                
-                <!-- Water Level Card -->
-                <div class="card">
-                    <div class="card-header">
-                        <h3 class="card-title">Niveau d'eau</h3>
-                        <div class="card-icon icon-success">
-                            <i class="fas fa-tint"></i>
-                        </div>
-                    </div>
-                    <div class="card-value" id="water-value">0%</div>
-                    <p class="card-description">Niveau actuel du réservoir</p>
-                    
-                    <div class="level-indicator">
-                        <div class="progress-container">
-                            <div class="progress-bar progress-water" id="water-level" style="width: 0%"></div>
-                        </div>
-                        <div class="level-header">
-                            <span class="level-title">État</span>
-                            <span class="level-value" id="water-status">Vide</span>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Pump Control Card -->
-                <div class="card">
-                    <div class="card-header">
-                        <h3 class="card-title">Contrôle de la pompe</h3>
-                        <div class="card-icon icon-danger">
-                            <i class="fas fa-pump"></i>
-                        </div>
-                    </div>
-                    
-                    <div class="pump-control">
-                        <div class="pump-status">
-                            <div class="status-led" id="pump-led"></div>
-                            <span id="pump-state">Arrêtée</span>
-                        </div>
-                        <div class="pump-actions">
-                            <button class="btn btn-success" onclick="sendCommand('pump/start')">
-                                <i class="fas fa-play"></i> Démarrer
-                            </button>
-                            <button class="btn btn-danger" onclick="sendCommand('pump/stop')">
-                                <i class="fas fa-stop"></i> Arrêter
-                            </button>
-                        </div>
-                    </div>
-                    
-                    <div class="level-indicator" style="margin-top: 20px;">
-                        <div class="level-header">
-                            <span class="level-title">Débit d'eau</span>
-                            <span class="level-value" id="water-flow">0 L/min</span>
-                        </div>
-                        <div class="progress-container">
-                            <div class="progress-bar progress-water" id="flow-level" style="width: 0%"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Program Section -->
-            <div class="card" style="margin-bottom: 20px;">
-                <div class="card-header">
-                    <h3 class="card-title">Programmation</h3>
-                    <div class="card-icon">
-                        <i class="fas fa-calendar-alt"></i>
-                    </div>
-                </div>
-                
-                <div class="program-form">
-                    <input type="datetime-local" id="program-time" class="program-input">
-                    <button class="btn btn-primary" onclick="addProgram()">
-                        <i class="fas fa-plus"></i> Ajouter
-                    </button>
-                </div>
-                
-                <ul class="program-list" id="program-list">
-                    <!-- Program items will be added here -->
-                </ul>
-            </div>
-            
-            <!-- Log Section -->
-            <div class="card">
-                <div class="card-header">
-                    <h3 class="card-title">Journal des événements</h3>
-                    <div class="card-icon">
-                        <i class="fas fa-history"></i>
-                    </div>
-                </div>
-                
-                <div class="log-container" id="log-container">
-                    <!-- Log entries will be added here -->
-                </div>
-            </div>
+            </section>
         </main>
     </div>
     
@@ -756,12 +800,42 @@
             }
             
             connectToBroker();
+            showSection('dashboard'); // Show dashboard by default
         }
         
         // Get URL parameter
         function getParameter(name) {
             const urlParams = new URLSearchParams(window.location.search);
             return urlParams.get(name);
+        }
+        
+        // Show specific section
+        function showSection(sectionId) {
+            // Hide all sections
+            document.querySelectorAll('.section').forEach(section => {
+                section.classList.remove('active');
+            });
+            
+            // Show selected section
+            document.getElementById(sectionId).classList.add('active');
+            
+            // Update page title
+            const titles = {
+                'dashboard': 'Tableau de bord',
+                'battery': 'Batterie',
+                'water': 'Réservoir d\'eau',
+                'pump': 'Pompe',
+                'programming': 'Programmation',
+                'history': 'Historique',
+                'settings': 'Paramètres'
+            };
+            document.getElementById('page-title').textContent = titles[sectionId];
+            
+            // Update active nav link
+            document.querySelectorAll('.nav-link').forEach(link => {
+                link.classList.remove('active');
+            });
+            document.querySelector(`.nav-link[onclick="showSection('${sectionId}')"]`).classList.add('active');
         }
         
         // Connect to MQTT broker
