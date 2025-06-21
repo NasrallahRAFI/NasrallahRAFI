@@ -71,8 +71,8 @@
             height: 20px;
             border-radius: 50%;
             display: inline-block;
-            background-color: #ccc; /* Default gray color */
-            transition: background-color 0.3s; /* Smooth transition for visual feedback */
+            background-color: #ccc;
+            transition: background-color 0.3s;
         }
 
         .green-led.on {
@@ -199,7 +199,11 @@
                 topics.forEach(topic => {
                     client.subscribe(topic, (err) => {
                         if (!err) {
-                            appendMessage(topic, 'Subscribed to ' + topic);
+                            if (topic !== 'pump/state') {
+                                appendMessage(topic, 'Subscribed to ' + topic);
+                            } else {
+                                statusDiv.textContent += ' | Subscribed to pump/state';
+                            }
                         } else {
                             appendMessage(topic, 'Subscription error: ' + err, true);
                         }
@@ -212,12 +216,14 @@
                 if (topic === 'pump/state') {
                     const greenLed = document.getElementById('green-led');
                     const redLed = document.getElementById('red-led');
-                    greenLed.classList.remove('on');
-                    redLed.classList.remove('on');
-                    if (msg.includes('on')) {
-                        greenLed.classList.add('on');
-                    } else if (msg.includes('off')) {
-                        redLed.classList.add('on');
+                    if (greenLed && redLed) {
+                        greenLed.classList.remove('on');
+                        redLed.classList.remove('on');
+                        if (msg.includes('on')) {
+                            greenLed.classList.add('on');
+                        } else if (msg.includes('off')) {
+                            redLed.classList.add('on');
+                        }
                     }
                 } else {
                     appendMessage(topic, `Message: ${message.toString()}`);
@@ -237,12 +243,14 @@
 
         function appendMessage(topic, text, isError = false) {
             const messagesDiv = document.getElementById(`${topic.replace('/', '-')}-messages`);
-            const msgDiv = document.createElement('div');
-            msgDiv.className = 'message';
-            if (isError) msgDiv.className += ' error';
-            msgDiv.textContent = `[${new Date().toLocaleTimeString()}] ${text}`;
-            messagesDiv.appendChild(msgDiv);
-            messagesDiv.scrollTop = messagesDiv.scrollHeight;
+            if (messagesDiv) {
+                const msgDiv = document.createElement('div');
+                msgDiv.className = 'message';
+                if (isError) msgDiv.className += ' error';
+                msgDiv.textContent = `[${new Date().toLocaleTimeString()}] ${text}`;
+                messagesDiv.appendChild(msgDiv);
+                messagesDiv.scrollTop = messagesDiv.scrollHeight;
+            }
         }
     </script>
 </body>
