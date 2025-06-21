@@ -83,6 +83,20 @@
             background-color: #ff0000;
         }
 
+        .slider-container {
+            margin-top: 10px;
+        }
+
+        .slider-label {
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .slider {
+            width: 100%;
+            height: 20px;
+        }
+
         .message {
             padding: 5px;
             border-bottom: 1px solid #eee;
@@ -146,11 +160,18 @@
             </div>
             <div class="topic-box">
                 <div class="topic-title">Power Source</div>
-                <div id="power-source-messages" class="messages"></div>
+                <div class="led-container">
+                    <div id="grid-led" class="led green-led" title="Grid"></div>
+                    <div id="solar-led" class="led green-led" title="Solar Panel"></div>
+                    <div id="battery-led" class="led green-led" title="Battery"></div>
+                </div>
             </div>
             <div class="topic-box">
                 <div class="topic-title">Battery State</div>
-                <div id="battery-state-messages" class="messages"></div>
+                <div class="slider-container">
+                    <div class="slider-label">Battery Level: <span id="battery-value">0%</span></div>
+                    <input type="range" id="battery-slider" class="slider" min="0" max="100" value="0">
+                </div>
             </div>
         </div>
     </div>
@@ -199,10 +220,14 @@
                 topics.forEach(topic => {
                     client.subscribe(topic, (err) => {
                         if (!err) {
-                            if (topic !== 'pump/state') {
+                            if (topic !== 'pump/state' && topic !== 'power/source' && topic !== 'battery/state') {
                                 appendMessage(topic, 'Subscribed to ' + topic);
-                            } else {
+                            } else if (topic === 'pump/state') {
                                 statusDiv.textContent += ' | Subscribed to pump/state';
+                            } else if (topic === 'power/source') {
+                                statusDiv.textContent += ' | Subscribed to power/source';
+                            } else if (topic === 'battery/state') {
+                                statusDiv.textContent += ' | Subscribed to battery/state';
                             }
                         } else {
                             appendMessage(topic, 'Subscription error: ' + err, true);
@@ -224,6 +249,36 @@
                         } else if (msg.includes('off')) {
                             redLed.classList.add('on');
                         }
+                    }
+                } else if (topic === 'power/source') {
+                    const gridLed = document.getElementById('grid-led');
+                    const solarLed = document.getElementById('solar-led');
+                    const batteryLed = document.getElementById('battery-led');
+                    if (gridLed && solarLed && batteryLed) {
+                        gridLed.classList.remove('on');
+                        solarLed.classList.remove('on');
+                        batteryLed.classList.remove('on');
+                        if (msg.includes('grid')) {
+                            gridLed.classList.add('on');
+                        } else if (msg.includes('solar')) {
+                            solarLed.classList.add('on');
+                        } else if (msg.includes('battery')) {
+                            batteryLed.classList.add('on');
+                        }
+                    }
+                } else if (topic === 'battery/state') {
+                    const slider = document.getElementById('battery-slider');
+                    const valueSpan = document.getElementById('battery-value');
+                    if (slider && valueSpan) {
+                        let value = parseInt(msg) || 0; // Try to parse the message as an integer
+                        if (isNaN(value)) {
+                            // If parsing fails, look for a percentage (e.g., "80%" -> 80)
+                            const match = msg.match(/(\d+)%?/);
+                            value = match ? parseInt(match[1]) : 0;
+                        }
+                        value = Math.max(0, Math.min(100, value)); // Clamp value between 0 and 100
+                        slider.value = value;
+                        valueSpan.textContent = `${value}%`;
                     }
                 } else {
                     appendMessage(topic, `Message: ${message.toString()}`);
