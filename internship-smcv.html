@@ -43,13 +43,28 @@
         .text-en {
             font-size: 1.05rem; /* Slightly larger text for main content */
         }
-        /* Ensure images are responsive and fit their container */
+        /* --- IMAGE OPTIMIZATION --- */
         .responsive-img {
             width: 100%;
-            height: auto;
+            height: auto; /* Default auto height */
             border-radius: 0.5rem; /* rounded-lg */
-            object-fit: cover;
-            aspect-ratio: 16 / 9; /* Typical aspect ratio for charts/screenshots */
+            object-fit: contain; /* Ensures the whole image is visible */
+        }
+        /* Specific optimization for HMI screenshots in the grid (Section 1) */
+        #section-1 .responsive-img {
+             height: 100%; /* Force height to fill grid item */
+             object-fit: cover; /* Crop slightly to cover the area */
+             aspect-ratio: 4 / 3; /* Aspect ratio common for screens */
+        }
+        /* Specific optimization for the large mechanical design image (Section 2) */
+        #section-2 .responsive-img {
+             aspect-ratio: 16 / 9;
+             object-fit: cover;
+        }
+        /* Specific optimization for thermal plots (Section 3) */
+        #section-3 .responsive-img {
+             aspect-ratio: 16 / 9;
+             object-fit: contain; /* Contain is better for plots/charts */
         }
     </style>
 </head>
@@ -128,19 +143,19 @@
                 <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
                     <!-- Images for Section 1 (HMI Screenshots) -->
                     <div>
-                        <img src="Main page HMI - Mold Injection Machine.png" alt="Main page HMI - Mold Injection Machine" class="responsive-img aspect-[4/3] h-auto">
+                        <img src="Main page HMI - Mold Injection Machine.png" alt="Main page HMI - Mold Injection Machine" class="responsive-img">
                         <p class="text-xs text-center text-gray-500 dark:text-gray-400 mt-1">Main page HMI - Mold Injection Machine</p>
                     </div>
                     <div>
-                        <img src="Manual control page HMI - Mold Injection Machine.png" alt="Manual control page HMI - Mold Injection Machine" class="responsive-img aspect-[4/3] h-auto">
+                        <img src="Manual control page HMI - Mold Injection Machine.png" alt="Manual control page HMI - Mold Injection Machine" class="responsive-img">
                         <p class="text-xs text-center text-gray-500 dark:text-gray-400 mt-1">Manual control page HMI - Mold Injection Machine</p>
                     </div>
                     <div>
-                        <img src="Confuguration page part 1 HMI - Mold Injection Machine.png" alt="Configuration page part 1 HMI - Mold Injection Machine" class="responsive-img aspect-[4/3] h-auto">
+                        <img src="Confuguration page part 1 HMI - Mold Injection Machine.png" alt="Configuration page part 1 HMI - Mold Injection Machine" class="responsive-img">
                         <p class="text-xs text-center text-gray-500 dark:text-gray-400 mt-1">Configuration page part 1 HMI - Mold Injection Machine</p>
                     </div>
                     <div>
-                        <img src="Confuguration page part 2 HMI - Mold Injection Machine.png" alt="Configuration page part 2 HMI - Mold Injection Machine" class="responsive-img aspect-[4/3] h-auto">
+                        <img src="Confuguration page part 2 HMI - Mold Injection Machine.png" alt="Configuration page part 2 HMI - Mold Injection Machine" class="responsive-img">
                         <p class="text-xs text-center text-gray-500 dark:text-gray-400 mt-1">Configuration page part 2 HMI - Mold Injection Machine</p>
                     </div>
                 </div>
@@ -247,19 +262,19 @@
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <!-- Image 1: HMI Screen -->
                     <div>
-                        <img src="HMI nut insertion press.png" alt="HMI nut insertion press screenshot" class="responsive-img aspect-[4/3] h-auto">
+                        <img src="HMI nut insertion press.png" alt="HMI nut insertion press screenshot" class="responsive-img">
                         <p class="text-xs text-center text-gray-500 dark:text-gray-400 mt-1">HMI nut insertion press</p>
                     </div>
                     <!-- Image 2: Thermal Plot 1 -->
                     <div>
-                        <img src="Evolution of nut temperature based on the heating source.png" alt="Thermal plot of nut temperature based on heating source" class="responsive-img aspect-[4/3] h-auto">
+                        <img src="Evolution of nut temperature based on the heating source.png" alt="Thermal plot of nut temperature based on heating source" class="responsive-img">
                         <p class="text-xs text-center text-gray-500 dark:text-gray-400 mt-1">Evolution of nut temperature based on the heating source</p>
                     </div>
                 </div>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4 max-w-sm mx-auto">
                     <!-- Image 3: Thermal Plot 2 (Centered for odd number) -->
                     <div class="col-span-1 md:col-span-2 mx-auto w-full md:w-3/4">
-                        <img src="Evolution of nut temperature in cool down phase based on Initial temperature.png" alt="Thermal plot of nut temperature in cool down phase" class="responsive-img aspect-[4/3] h-auto">
+                        <img src="Evolution of nut temperature in cool down phase based on Initial temperature.png" alt="Thermal plot of nut temperature in cool down phase" class="responsive-img">
                         <p class="text-xs text-center text-gray-500 dark:text-gray-400 mt-1">Evolution of nut temperature in cool down phase based on Initial temperature</p>
                     </div>
                 </div>
