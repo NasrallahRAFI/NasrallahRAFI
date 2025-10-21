@@ -36,36 +36,42 @@
             transform: translateY(-5px);
             box-shadow: 0 10px 15px rgba(59, 130, 246, 0.3); /* Blue shadow on hover */
         }
-        /* Dark mode styles (set by JS, but defined here for reference) */
+        /* Dark mode styles */
         .dark .bg-gray-100 { background-color: #1f2937 !important; }
         .dark .text-gray-800 { color: #f3f4f6 !important; }
         .dark .bg-white { background-color: #111827 !important; }
         .dark .border-gray-200 { border-color: #374151 !important; }
         .dark .shadow-lg { box-shadow: 0 10px 15px rgba(0, 0, 0, 0.5); }
 
-        /* Timeline styling */
+        /* Timeline styling for Experience/Internships */
         .timeline-item {
             position: relative;
         }
         .timeline-item::before {
             content: '';
             position: absolute;
-            left: -20px;
+            left: -20px; /* Adjust based on dot size */
             top: 0;
             bottom: 0;
             width: 2px;
             background-color: var(--primary-color);
+            z-index: 5;
         }
         .timeline-dot {
             position: absolute;
-            left: -24px;
+            left: -24px; /* Centered around the line */
             top: 4px;
             width: 10px;
             height: 10px;
             border-radius: 50%;
             background-color: var(--primary-color);
             z-index: 10;
+            border: 3px solid #fff; /* White border for contrast */
         }
+        .dark .timeline-dot {
+            border-color: #1f2937; /* Dark background color */
+        }
+        /* Adjust positioning for larger screens */
         @media (min-width: 640px) {
             .timeline-item::before {
                 left: -28px;
@@ -74,13 +80,12 @@
                 left: -32px;
             }
         }
-
     </style>
 </head>
 <body class="bg-gray-100 text-gray-800 transition-colors duration-300">
 
     <!-- Header & Navigation -->
-    <header class="sticky top-0 z-50 bg-white shadow-md dark:bg-gray-900 dark:shadow-xl transition-colors duration-300">
+    <header class="sticky top-0 z-50 bg-white/90 backdrop-blur-sm shadow-md dark:bg-gray-900/90 dark:shadow-xl transition-colors duration-300">
         <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
             <!-- Logo/Name -->
             <a href="#hero" class="text-2xl font-bold text-gray-900 dark:text-white hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
@@ -133,10 +138,10 @@
                 <h2 class="text-xl sm:text-2xl text-blue-600 dark:text-blue-400 font-semibold mb-8">
                     Final-Year Engineering Student | Electrical & Industrial Systems Control
                 </h2>
-                <div class="flex justify-center space-x-6 text-gray-600 dark:text-gray-400">
-                    <span class="flex items-center space-x-1"><i data-lucide="map-pin" class="w-5 h-5"></i><span>Mohammedia, Morocco</span></span>
-                    <span class="flex items-center space-x-1"><i data-lucide="phone" class="w-5 h-5"></i><span>+212 671114377</span></span>
-                    <span class="flex items-center space-x-1"><i data-lucide="mail" class="w-5 h-5"></i><a href="mailto:nasrollahrafi@gmail.com" class="hover:text-blue-500">nasrollahrafi@gmail.com</a></span>
+                <div class="flex flex-wrap justify-center space-x-6 text-gray-600 dark:text-gray-400">
+                    <span class="flex items-center space-x-1 mb-2"><i data-lucide="map-pin" class="w-5 h-5"></i><span>Mohammedia, Morocco</span></span>
+                    <span class="flex items-center space-x-1 mb-2"><i data-lucide="phone" class="w-5 h-5"></i><span>+212 671114377</span></span>
+                    <span class="flex items-center space-x-1 mb-2"><i data-lucide="mail" class="w-5 h-5"></i><a href="mailto:nasrollahrafi@gmail.com" class="hover:text-blue-500">nasrollahrafi@gmail.com</a></span>
                 </div>
                 <a href="#projects" class="mt-10 inline-block bg-blue-600 text-white font-semibold py-3 px-8 rounded-full text-lg shadow-lg hover:bg-blue-700 transition-transform transform hover:scale-105">
                     View Key Projects <i data-lucide="arrow-right" class="w-5 h-5 inline-block ml-2"></i>
@@ -155,33 +160,34 @@
                 </p>
             </section>
             
-            <!-- Experience / Internships Section -->
+            <!-- Experience / Internships & Education Section (Grid Layout) -->
             <section id="experience">
                 <h2 class="text-3xl font-bold text-gray-900 dark:text-white mb-8 border-b-2 border-blue-500 pb-2 flex items-center space-x-2">
                     <i data-lucide="briefcase" class="w-7 h-7 text-blue-500"></i><span>Internships & Education</span>
                 </h2>
 
-                <div class="grid md:grid-cols-2 gap-8">
-                    <!-- Internships Timeline -->
+                <div class="grid md:grid-cols-2 gap-10 bg-white p-8 rounded-xl shadow-lg dark:bg-gray-800 dark:shadow-xl">
+                    <!-- Column 1: Internships Timeline -->
                     <div>
-                        <h3 class="text-2xl font-semibold text-gray-900 dark:text-white mb-4">Professional Experience</h3>
+                        <h3 class="text-2xl font-semibold text-gray-900 dark:text-white mb-6">Professional Experience</h3>
                         <div class="space-y-8 pl-8 sm:pl-10 relative">
-                            <!-- Internship 1 (Updated with Details Button) -->
+                            <!-- Internship 1 (SMCV) -->
                             <div class="timeline-item">
                                 <div class="timeline-dot"></div>
                                 <h4 class="font-bold text-xl text-blue-600 dark:text-blue-400">PFA Internship - SMCV</h4>
                                 <p class="text-sm font-medium text-gray-500 dark:text-gray-400 mb-2">July 2025 – September 2025</p>
-                                <p class="text-gray-700 dark:text-gray-300 font-semibold mb-3">Industrial Automation Project (PLC/HMI)</p>
+                                <p class="text-gray-700 dark:text-gray-300 font-semibold mb-3">Industrial Automation (PLC/HMI), Mechanical Design</p>
                                 <ul class="list-disc ml-5 mt-2 space-y-1 text-gray-700 dark:text-gray-300 text-sm">
-                                    <li>Programmed Siemens PLC using TIA Portal.</li>
-                                    <li>Implemented HMI interfaces for machine operation and monitoring.</li>
+                                    <li>**Injection Molding Machine (Haitian Mars III 2000):** Programmed Siemens PLC using TIA Portal, and implemented HMI interfaces for machine operation and monitoring.</li>
+                                    <li>**Mechanical Arm – Nut Insertion:** Designed and modeled the assembly in 3D CAD.</li>
+                                    <li>**Automatic Hot-Press – Nut Insertion & Auto-Feed:** Designed and analyzed mechanical and thermal components, sized actuators, pre-actuators, and sensors, and programmed Siemens PLC and developed HMI interfaces.</li>
                                 </ul>
                                 <a href="internship-smcv.html" target="_blank" class="mt-3 inline-flex items-center text-xs font-semibold px-3 py-1 bg-blue-500 text-white rounded-full hover:bg-blue-600 transition-colors shadow-md">
                                     View Details 
                                     <i data-lucide="arrow-up-right" class="w-3 h-3 ml-1"></i>
                                 </a>
                             </div>
-                            <!-- Internship 2 -->
+                            <!-- Internship 2 (ONEE) -->
                             <div class="timeline-item">
                                 <div class="timeline-dot"></div>
                                 <h4 class="font-bold text-xl text-blue-600 dark:text-blue-400">Internship - ONEE</h4>
@@ -194,9 +200,9 @@
                         </div>
                     </div>
 
-                    <!-- Education -->
+                    <!-- Column 2: Education -->
                     <div>
-                        <h3 class="text-2xl font-semibold text-gray-900 dark:text-white mb-4">Academic Background</h3>
+                        <h3 class="text-2xl font-semibold text-gray-900 dark:text-white mb-6">Academic Background</h3>
                         <div class="space-y-6">
                             <!-- Education 1 -->
                             <div class="p-4 bg-gray-50 dark:bg-gray-700 rounded-lg border border-gray-200 dark:border-gray-600">
@@ -261,7 +267,7 @@
                     <!-- Project Card: Power Electronics -->
                     <div class="project-card bg-white dark:bg-gray-800 p-6 rounded-xl shadow-lg border border-gray-200 dark:border-gray-700">
                         <div class="flex items-center space-x-3 mb-4">
-                            <i data-lucide="lightning-charge" class="w-8 h-8 text-blue-600"></i>
+                            <i data-lucide="battery-charging" class="w-8 h-8 text-blue-600"></i>
                             <h3 class="text-xl font-bold text-gray-900 dark:text-white">Power Electronics</h3>
                         </div>
                         <p class="text-gray-600 dark:text-gray-400 font-medium mb-3">Simulation and Implementation</p>
@@ -311,7 +317,6 @@
                     <div class="skill-group p-6 bg-white dark:bg-gray-800 rounded-xl shadow-lg border border-gray-200 dark:border-gray-700">
                         <h3 class="text-2xl font-bold text-blue-600 dark:text-blue-400 mb-4 flex items-center space-x-2"><i data-lucide="globe" class="w-6 h-6"></i><span>Languages</span></h3>
                         <ul class="list-disc ml-5 text-gray-700 dark:text-gray-300 space-y-1 text-sm">
-                            <!-- Updated the English entry to be a clickable link to the PDF certificate -->
                             <li>
                                 <a href="EF SET Certificate RAFI Nasrallah.pdf" target="_blank" class="text-blue-600 dark:text-blue-400 hover:text-blue-500 hover:underline cursor-pointer flex items-center space-x-1">
                                     <span>**English:** C2 - EF Standard English Test</span>
@@ -335,7 +340,6 @@
                 <a href="mailto:nasrollahrafi@gmail.com" class="text-gray-400 hover:text-blue-500 transition-colors" aria-label="Email">
                     <i data-lucide="mail" class="w-6 h-6"></i>
                 </a>
-                <!-- You can add LinkedIn/GitHub here -->
                 <a href="#" class="text-gray-400 hover:text-blue-500 transition-colors" aria-label="LinkedIn">
                     <i data-lucide="linkedin" class="w-6 h-6"></i>
                 </a>
