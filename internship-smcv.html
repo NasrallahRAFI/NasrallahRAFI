@@ -23,7 +23,7 @@
         }
         /* Style for image/diagram placeholder */
         .placeholder {
-            height: 200px;
+            height: 100px;
             background-color: #e5e7eb;
             color: #6b7280;
             display: flex;
@@ -31,6 +31,14 @@
             justify-content: center;
             font-weight: 600;
             border: 2px dashed #9ca3af;
+            font-size: 0.8rem;
+            text-align: center;
+            padding: 0.5rem;
+        }
+        .dark .placeholder {
+            background-color: #374151; /* Darker gray background */
+            color: #d1d5db; /* Lighter gray text */
+            border-color: #4b5563;
         }
         .text-en {
             font-size: 1.05rem; /* Slightly larger text for main content */
@@ -62,62 +70,65 @@
                     **Company:** SMCV (Société Marocaine des Compteurs) | **Duration:** July 2025 – September 2025
                 </p>
                 <div class="mt-4 flex flex-wrap gap-2">
-                    <span class="bg-gray-200 text-gray-700 text-xs font-medium px-3 py-1 rounded-full dark:bg-gray-700 dark:text-gray-300">#PLC</span>
-                    <span class="bg-gray-200 text-gray-700 text-xs font-medium px-3 py-1 rounded-full dark:bg-gray-700 dark:text-gray-300">#MechanicalDesign</span>
-                    <span class="bg-gray-200 text-gray-700 text-xs font-medium px-3 py-1 rounded-full dark:bg-gray-700 dark:text-gray-300">#ITMaintenance</span>
+                    <span class="bg-gray-200 text-gray-700 text-xs font-medium px-3 py-1 rounded-full dark:bg-gray-700 dark:text-gray-300">#TIA_Portal_V19</span>
+                    <span class="bg-gray-200 text-gray-700 text-xs font-medium px-3 py-1 rounded-full dark:bg-gray-700 dark:text-gray-300">#S7-1200</span>
+                    <span class="bg-gray-200 text-gray-700 text-xs font-medium px-3 py-1 rounded-full dark:bg-gray-700 dark:text-gray-300">#Mechatronics</span>
                 </div>
             </div>
 
             <hr class="border-gray-200 dark:border-gray-700">
 
-            <!-- Objectifs du Projet (Project Goals) - Now in English -->
+            <!-- Core Objectives -->
             <div>
                 <h3 class="text-2xl font-bold text-blue-600 dark:text-blue-400 mb-4 flex items-center space-x-2">
                     <i data-lucide="target" class="w-6 h-6"></i><span>Core Objectives</span>
                 </h3>
                 <p class="text-gray-700 dark:text-gray-300 leading-relaxed text-en">
-                    This project aimed to consolidate skills in automation, mechatronic design, and industrial IT, while providing concrete solutions to operational issues encountered at the SMCV workshop.
+                    This project aimed to consolidate skills in **automation**, **mechatronic design**, and **industrial IT**, while providing concrete solutions to operational issues encountered at the SMCV workshop.
                 </p>
-                <ul class="mt-4 space-y-2 text-gray-700 dark:text-gray-300 text-en">
-                    <li class="flex items-start">
-                        <i data-lucide="cpu" class="w-5 h-5 text-blue-500 mr-3 mt-1 flex-shrink-0"></i>
-                        <p>**Automation and Supervision:** Development of PLC and HMI programs for the automation and supervision of industrial machines, specifically plastic injection machines and insertion presses.</p>
-                    </li>
-                    <li class="flex items-start">
-                        <i data-lucide="layout-grid" class="w-5 h-5 text-blue-500 mr-3 mt-1 flex-shrink-0"></i>
-                        <p>**Mechatronic Design:** Conception and 3D modeling of mechatronic devices, such as a nut insertion arm and a custom-designed pneumatic press.</p>
-                    </li>
-                    <li class="flex items-start">
-                        <i data-lucide="hard-drive" class="w-5 h-5 text-blue-500 mr-3 mt-1 flex-shrink-0"></i>
-                        <p>**IT Maintenance:** Performing IT maintenance, including operating system repair and configuration, as well as installing specialized industrial software.</p>
-                    </li>
-                </ul>
-                <!-- Link to the Report PDF (File name remains in French) -->
+                <!-- Link to the Report PDF (File name remains as specified by user) -->
                 <a href="Rapport de stage d’ingénieur RAFI Nasrallah vf.pdf" target="_blank" class="mt-5 inline-flex items-center font-semibold px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors shadow-md text-sm">
-                    <i data-lucide="file-text" class="w-4 h-4 mr-2"></i> Download Full Report (PDF)
+                    <i data-lucide="file-text" class="w-4 h-4 mr-2"></i> Download Full Internship Report (PDF)
                 </a>
             </div>
 
             <hr class="border-gray-200 dark:border-gray-700">
 
-            <!-- Section 1 : PLC and HMI Programming for the Plastic Injection Machine -->
+            <!-- SECTION 1: PLC and HMI Programming for the Plastic Injection Machine -->
             <div id="section-1">
                 <h3 class="text-2xl font-bold text-blue-600 dark:text-blue-400 mb-4 flex items-center space-x-2">
                     <i data-lucide="code" class="w-6 h-6"></i><span>1. PLC and HMI Programming</span>
                 </h3>
                 <p class="text-gray-700 dark:text-gray-300 leading-relaxed text-en mb-4">
-                    **Objective:** Optimize the injection cycle and improve the visualization of the machine status for operators.
+                    **Project Focus:** Development of the full functional cycle and advanced control features for the injection machine, emphasizing safety and operational flexibility.
                 </p>
-                <h4 class="font-bold text-lg text-gray-900 dark:text-white mb-2">Content to include in this section:</h4>
-                <ul class="list-disc ml-5 text-sm text-gray-700 dark:text-gray-300 space-y-1">
-                    <li>**Tools:** Siemens TIA Portal (mention the version if possible), PLC S7-1500 (or S7-300/400 if used).</li>
-                    <li>**PLC Achievements:** Describe the key functional blocks (e.g., safety sequence management, temperature control, alarm handling).</li>
-                    <li>**HMI Achievements:** Detail the screens developed (e.g., supervision screen, diagnostics/alarms screen, recipe interface). Mention the impact on ergonomics.</li>
-                    <li>**Key Results:** Quantify the improvement (e.g., cycle time reduction, number of alarms managed, system reliability).</li>
-                </ul>
+                <div class="p-4 bg-gray-50 dark:bg-gray-700 rounded-lg mb-6">
+                    <h4 class="font-bold text-lg text-gray-900 dark:text-white mb-2">Technical Details:</h4>
+                    <ul class="list-disc ml-5 text-sm text-gray-700 dark:text-gray-300 space-y-1">
+                        <li>**Hardware/Software:** Siemens **TIA Portal V19** used to program a **S7-1200 PLC**.</li>
+                        <li>**Core Achievement (Functional Cycle):** Implemented the full machine cycle logic, incorporating essential **safety features** (Emergency Stop, pressure limit detection, material presence detection, etc.).</li>
+                        <li>**Advanced Control:** Developed and implemented a **PID control loop** for precise temperature regulation.</li>
+                        <li>**Modularity and HMI Interfacing:** The code is **fully modular**. HMI communications allow operators to **modify all critical parameters** (temperature setpoint, injection time, maintaining time, cooling time, etc.) in real-time.</li>
+                        <li>**State Visualization:** The HMI provides clear **visible representation** of the current state of the cycle (e.g., mold opening, mold closing, cooling).</li>
+                    </ul>
+                </div>
+
+                <!-- HMI PICTURES AREA -->
+                <h4 class="font-bold text-lg text-gray-900 dark:text-white mb-4 flex items-center space-x-2">
+                    <i data-lucide="monitor" class="w-5 h-5"></i><span>HMI Screenshots & Visuals</span>
+                </h4>
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                    <!-- Replace these placeholders with <img> tags linking to your actual images -->
+                    <div class="placeholder rounded-lg">Main page HMI - Mold Injection Machine</div>
+                    <div class="placeholder rounded-lg">Manual control page HMI - Mold Injection Machine</div>
+                    <div class="placeholder rounded-lg">Confuguration page part 1 HMI - Mold Injection Machine</div>
+                    <div class="placeholder rounded-lg">Confuguration page part 2 HMI - Mold Injection Machine</div>
+                </div>
             </div>
 
-            <!-- Section 2: Design of the Mechanical Nut Insertion Arm -->
+            <hr class="border-gray-200 dark:border-gray-700">
+
+            <!-- SECTION 2: Design of the Mechanical Nut Insertion Arm -->
             <div id="section-2">
                 <h3 class="text-2xl font-bold text-blue-600 dark:text-blue-400 mb-4 flex items-center space-x-2">
                     <i data-lucide="box-select" class="w-6 h-6"></i><span>2. Mechanical Insertion Arm Design</span>
@@ -127,14 +138,16 @@
                 </p>
                 <h4 class="font-bold text-lg text-gray-900 dark:text-white mb-2">Content to include in this section:</h4>
                 <ul class="list-disc ml-5 text-sm text-gray-700 dark:text-gray-300 space-y-1">
-                    <li>**Tools:** Autodesk Inventor (or AutoCAD 3D).</li>
+                    <li>**Tools:** Specify your CAO software (e.g., Autodesk Inventor, SolidWorks).</li>
                     <li>**Methodology:** Describe the design steps (functional analysis, material selection, stress/dimension calculations).</li>
-                    <li>**Design:** Explain the design innovations (e.g., solution for nut gripping/positioning, guiding system).</li>
+                    <li>**Design:** Explain the innovations of the design (e.g., solution for nut gripping/positioning, guiding system).</li>
                     <li>**Visualization:** Integrate images of the 3D model or technical drawings (via placeholders).</li>
                 </ul>
             </div>
 
-            <!-- Section 3: Design and Programming of a Nut Insertion Press -->
+            <hr class="border-gray-200 dark:border-gray-700">
+
+            <!-- SECTION 3: Design and Programming of a Nut Insertion Press -->
             <div id="section-3">
                 <h3 class="text-2xl font-bold text-blue-600 dark:text-blue-400 mb-4 flex items-center space-x-2">
                     <i data-lucide="settings-2" class="w-6 h-6"></i><span>3. Nut Insertion Press Design and Programming</span>
@@ -148,6 +161,23 @@
                     <li>**Programming:** Focus on the safety logic and the press sequence (e.g., nut presence verification, interlock with the mechanical arm).</li>
                     <li>**Standards:** Mention if the design or programming complies with specific industrial standards.</li>
                     <li>**Challenges:** Explain a technical challenge you solved (e.g., maintaining constant insertion force).</li>
+                </ul>
+            </div>
+
+            <hr class="border-gray-200 dark:border-gray-700">
+
+            <!-- IT Maintenance (Minor Section) -->
+            <div id="section-4">
+                <h3 class="text-2xl font-bold text-blue-600 dark:text-blue-400 mb-4 flex items-center space-x-2">
+                    <i data-lucide="pc-case" class="w-6 h-6"></i><span>4. Industrial IT Maintenance</span>
+                </h3>
+                <p class="text-gray-700 dark:text-gray-300 leading-relaxed text-en mb-4">
+                    This parallel mission involved providing essential IT support to ensure the smooth operation of production machinery and engineering workstations.
+                </p>
+                <h4 class="font-bold text-lg text-gray-900 dark:text-white mb-2">Key Tasks:</h4>
+                <ul class="list-disc ml-5 text-sm text-gray-700 dark:text-gray-300 space-y-1">
+                    <li>Repaired and configured operating systems on dedicated engineering PCs.</li>
+                    <li>Installed and validated specialized industrial software (e.g., CAD/CAM, proprietary diagnostic tools).</li>
                 </ul>
             </div>
 
