@@ -3,134 +3,383 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rafi Nasrallah - Engineering Portfolio</title>
+    <title>Rafi Nasrallah | Engineering Portfolio</title>
+    <!-- Load Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- Load Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
     <style>
-        /* Custom Scrollbar for Aesthetics */
+        :root {
+            --primary-color: #3b82f6; /* Tailwind Blue 500 */
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            transition: background-color 0.3s, color 0.3s;
+        }
+        /* Custom scroll behavior for smooth navigation */
+        html {
+            scroll-behavior: smooth;
+        }
+        /* Custom scrollbar for aesthetics */
         ::-webkit-scrollbar {
             width: 8px;
         }
-        ::-webkit-scrollbar-track {
-            background: #f1f1f1;
-        }
         ::-webkit-scrollbar-thumb {
-            background: #4f46e5;
+            background-color: var(--primary-color);
             border-radius: 4px;
         }
-        ::-webkit-scrollbar-thumb:hover {
-            background: #4338ca;
+        .project-card, .skill-group {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
-        /* Inter Font */
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: #f9fafb;
-            color: #1f2937;
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px rgba(59, 130, 246, 0.3); /* Blue shadow on hover */
         }
-        /* Custom animation for skill bars */
-        @keyframes fillSkill {
-            from { width: 0; }
+        /* Dark mode styles (set by JS, but defined here for reference) */
+        .dark .bg-gray-100 { background-color: #1f2937 !important; }
+        .dark .text-gray-800 { color: #f3f4f6 !important; }
+        .dark .bg-white { background-color: #111827 !important; }
+        .dark .border-gray-200 { border-color: #374151 !important; }
+        .dark .shadow-lg { box-shadow: 0 10px 15px rgba(0, 0, 0, 0.5); }
+
+        /* Timeline styling */
+        .timeline-item {
+            position: relative;
         }
-        .skill-bar-fill {
-            animation: fillSkill 1.5s ease-out forwards;
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -20px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background-color: var(--primary-color);
         }
-    </style>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        'primary-blue': '#4f46e5',
-                        'secondary-gray': '#6b7280',
-                        'light-bg': '#f3f4f6',
-                    },
-                    boxShadow: {
-                        'custom-light': '0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -2px rgba(0, 0, 0, 0.05)',
-                        'custom-hover': '0 10px 15px -3px rgba(79, 70, 229, 0.1), 0 4px 6px -4px rgba(79, 70, 229, 0.05)',
-                    }
-                }
+        .timeline-dot {
+            position: absolute;
+            left: -24px;
+            top: 4px;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background-color: var(--primary-color);
+            z-index: 10;
+        }
+        @media (min-width: 640px) {
+            .timeline-item::before {
+                left: -28px;
+            }
+            .timeline-dot {
+                left: -32px;
             }
         }
-    </script>
-</head>
 
-<body class="antialiased">
+    </style>
+</head>
+<body class="bg-gray-100 text-gray-800 transition-colors duration-300">
 
     <!-- Header & Navigation -->
-    <header class="bg-white shadow-md sticky top-0 z-50">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
-            <div class="text-xl font-bold text-primary-blue">
-                RAFI <span class="text-secondary-gray">NASRALLAH</span>
-            </div>
-            <nav class="hidden md:flex space-x-6 text-secondary-gray font-medium">
-                <a href="#about" class="hover:text-primary-blue transition duration-150">About</a>
-                <a href="#education" class="hover:text-primary-blue transition duration-150">Education</a>
-                <a href="#projects" class="hover:text-primary-blue transition duration-150">Projects</a>
-                <a href="#skills" class="hover:text-primary-blue transition duration-150">Skills</a>
-                <a href="#contact" class="hover:text-primary-blue transition duration-150">Contact</a>
+    <header class="sticky top-0 z-50 bg-white shadow-md dark:bg-gray-900 dark:shadow-xl transition-colors duration-300">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
+            <!-- Logo/Name -->
+            <a href="#hero" class="text-2xl font-bold text-gray-900 dark:text-white hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
+                Rafi Nasrallah
+            </a>
+
+            <!-- Desktop Navigation -->
+            <nav class="hidden md:flex space-x-8">
+                <a href="#about" class="text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 font-medium transition-colors">About</a>
+                <a href="#experience" class="text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 font-medium transition-colors">Experience</a>
+                <a href="#projects" class="text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 font-medium transition-colors">Projects</a>
+                <a href="#skills" class="text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 font-medium transition-colors">Skills</a>
             </nav>
-            <button id="mobile-menu-button" class="md:hidden text-secondary-gray hover:text-primary-blue focus:outline-none">
-                <i class="fas fa-bars text-xl"></i>
-            </button>
+            
+            <!-- Dynamic Elements: Dark Mode Toggle and Mobile Menu -->
+            <div class="flex items-center space-x-4">
+                <button id="dark-mode-toggle" class="p-2 rounded-full text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors" aria-label="Toggle Dark Mode">
+                    <i data-lucide="sun" class="w-6 h-6 dark:hidden"></i>
+                    <i data-lucide="moon" class="w-6 h-6 hidden dark:block"></i>
+                </button>
+                <button id="mobile-menu-button" class="md:hidden p-2 rounded-lg text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors" aria-label="Open Menu">
+                    <i data-lucide="menu" class="w-6 h-6"></i>
+                </button>
+            </div>
         </div>
-        <!-- Mobile Menu -->
-        <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-gray-100">
-            <a href="#about" class="block py-2 px-4 text-sm hover:bg-light-bg transition duration-150">About</a>
-            <a href="#education" class="block py-2 px-4 text-sm hover:bg-light-bg transition duration-150">Education</a>
-            <a href="#projects" class="block py-2 px-4 text-sm hover:bg-light-bg transition duration-150">Projects</a>
-            <a href="#skills" class="block py-2 px-4 text-sm hover:bg-light-bg transition duration-150">Skills</a>
-            <a href="#contact" class="block py-2 px-4 text-sm hover:bg-light-bg transition duration-150">Contact</a>
+
+        <!-- Mobile Menu (Hidden by default) -->
+        <div id="mobile-menu" class="hidden md:hidden absolute w-full bg-white dark:bg-gray-900 shadow-lg border-t border-gray-200 dark:border-gray-700">
+            <nav class="flex flex-col p-4 space-y-2">
+                <a href="#about" class="block py-2 px-3 text-gray-700 dark:text-gray-200 hover:bg-blue-50 dark:hover:bg-gray-800 rounded-lg transition-colors">About</a>
+                <a href="#experience" class="block py-2 px-3 text-gray-700 dark:text-gray-200 hover:bg-blue-50 dark:hover:bg-gray-800 rounded-lg transition-colors">Experience</a>
+                <a href="#projects" class="block py-2 px-3 text-gray-700 dark:text-gray-200 hover:bg-blue-50 dark:hover:bg-gray-800 rounded-lg transition-colors">Projects</a>
+                <a href="#skills" class="block py-2 px-3 text-gray-700 dark:text-gray-200 hover:bg-blue-50 dark:hover:bg-gray-800 rounded-lg transition-colors">Skills</a>
+            </nav>
         </div>
     </header>
 
-    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <main class="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
 
-        <!-- Hero Section (Updated with Vision & CTA) -->
-        <section id="about" class="mb-16 text-center md:text-left pt-10">
-            <div class="grid md:grid-cols-3 gap-8 items-center">
-                <div class="md:col-span-2">
-                    <h1 class="text-4xl sm:text-5xl font-extrabold text-gray-900 leading-tight mb-4">
-                        <span class="text-primary-blue">RAFI NASRALLAH</span>
-                    </h1>
-                    <h2 class="text-2xl sm:text-3xl font-semibold text-secondary-gray mb-4">
-                        Electrical Engineering & Industrial Control Student
-                    </h2>
-                    <p class="text-lg text-gray-700 max-w-2xl mx-auto md:mx-0 mb-6">
-                        My passion lies in integrating hardware and software to create efficient industrial solutions. I am driven by the challenge of designing robust automation systems, from **PID control loops** to full **PLC-HMI architectures**, focusing on continuous process improvement in manufacturing and energy.
-                    </p>
-                    <!-- PFE Call to Action -->
-                    <div class="bg-indigo-50 border-l-4 border-primary-blue p-4 rounded-lg shadow-md mb-8">
-                        <p class="font-bold text-gray-800">
-                            <i class="fas fa-search mr-2 text-primary-blue"></i>
-                            Currently seeking a PFE Internship (Industrial Automation/Control)
-                        </p>
-                        <p class="text-sm text-secondary-gray mt-1">
-                            Ready to contribute expertise in TIA Portal, HMI development, and embedded systems.
-                        </p>
-                    </div>
-
-                    <div class="mt-4 space-x-4">
-                        <a href="#projects" class="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-lg shadow-md text-white bg-primary-blue hover:bg-indigo-700 transition duration-300 transform hover:scale-105">
-                            View Projects
-                        </a>
-                        <a href="#contact" class="inline-flex items-center px-6 py-3 border border-primary-blue text-base font-medium rounded-lg text-primary-blue bg-white hover:bg-light-bg transition duration-300 transform hover:scale-105">
-                            <i class="fas fa-envelope mr-2"></i>
-                            Inquire about PFE
-                        </a>
-                    </div>
+        <!-- Hero Section -->
+        <section id="hero" class="py-16 md:py-24 text-center">
+            <div class="max-w-4xl mx-auto">
+                <!-- Placeholder for image/avatar -->
+                <div class="mx-auto w-32 h-32 bg-gray-300 dark:bg-gray-700 rounded-full mb-6 flex items-center justify-center overflow-hidden border-4 border-blue-500">
+                    <i data-lucide="user" class="w-16 h-16 text-gray-600 dark:text-gray-400"></i>
                 </div>
-                <div class="md:col-span-1 flex justify-center md:justify-end">
-                    <!-- Placeholder for image, as we cannot display user-uploaded images directly -->
-                    <div class="w-48 h-48 bg-gray-200 rounded-full flex items-center justify-center text-4xl text-gray-500 border-4 border-primary-blue shadow-lg">
-                        <i class="fas fa-user-tie"></i>
-                    </div>
+                <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-gray-900 dark:text-white mb-4 leading-tight">
+                    Rafi Nasrallah
+                </h1>
+                <h2 class="text-xl sm:text-2xl text-blue-600 dark:text-blue-400 font-semibold mb-8">
+                    Final-Year Engineering Student | Electrical & Industrial Systems Control
+                </h2>
+                <div class="flex justify-center space-x-6 text-gray-600 dark:text-gray-400">
+                    <span class="flex items-center space-x-1"><i data-lucide="map-pin" class="w-5 h-5"></i><span>Mohammedia, Morocco</span></span>
+                    <span class="flex items-center space-x-1"><i data-lucide="phone" class="w-5 h-5"></i><span>+212 671114377</span></span>
+                    <span class="flex items-center space-x-1"><i data-lucide="mail" class="w-5 h-5"></i><a href="mailto:nasrollahrafi@gmail.com" class="hover:text-blue-500">nasrollahrafi@gmail.com</a></span>
                 </div>
+                <a href="#projects" class="mt-10 inline-block bg-blue-600 text-white font-semibold py-3 px-8 rounded-full text-lg shadow-lg hover:bg-blue-700 transition-transform transform hover:scale-105">
+                    View Key Projects <i data-lucide="arrow-right" class="w-5 h-5 inline-block ml-2"></i>
+                </a>
             </div>
         </section>
 
-        <!-- Education Section (NEW) -->
-        <section id="education" class="mb-20">
-            <h3 class="text-3xl font-bold text-gray-900 mb-10 border-b-2 border-primary-blue pb-2 text-center">Academic Background</h3>
+        <div class="space-y-16">
+            <!-- About Section -->
+            <section id="about" class="bg-white p-8 rounded-xl shadow-lg dark:bg-gray-800 dark:shadow-xl">
+                <h2 class="text-3xl font-bold text-gray-900 dark:text-white mb-6 border-b-2 border-blue-500 pb-2 flex items-center space-x-2">
+                    <i data-lucide="user-check" class="w-7 h-7 text-blue-500"></i><span>About Me</span>
+                </h2>
+                <p class="text-lg text-gray-700 dark:text-gray-300 leading-relaxed">
+                    Motivated final-year engineering student in Electrical and Industrial Systems Control, looking for a challenging internship opportunity to develop hands-on experience in automation, control systems, and industrial engineering. My academic background is complemented by practical experience in HMI interfaces, PLC programming (Siemens TIA Portal), and 3D CAD modeling.
+                </p>
+            </section>
             
-            <div class
+            <!-- Experience / Internships Section -->
+            <section id="experience">
+                <h2 class="text-3xl font-bold text-gray-900 dark:text-white mb-8 border-b-2 border-blue-500 pb-2 flex items-center space-x-2">
+                    <i data-lucide="briefcase" class="w-7 h-7 text-blue-500"></i><span>Internships & Education</span>
+                </h2>
+
+                <div class="grid md:grid-cols-2 gap-8">
+                    <!-- Internships Timeline -->
+                    <div>
+                        <h3 class="text-2xl font-semibold text-gray-900 dark:text-white mb-4">Professional Experience</h3>
+                        <div class="space-y-8 pl-8 sm:pl-10 relative">
+                            <!-- Internship 1 -->
+                            <div class="timeline-item">
+                                <div class="timeline-dot"></div>
+                                <h4 class="font-bold text-xl text-blue-600 dark:text-blue-400">PFA Internship - SMCV</h4>
+                                <p class="text-sm font-medium text-gray-500 dark:text-gray-400 mb-2">July 2025 – September 2025</p>
+                                <p class="text-gray-700 dark:text-gray-300 font-semibold">Industrial Automation Project (PLC/HMI)</p>
+                                <ul class="list-disc ml-5 mt-2 space-y-1 text-gray-700 dark:text-gray-300 text-sm">
+                                    <li>Programmed Siemens PLC using TIA Portal.</li>
+                                    <li>Implemented HMI interfaces for machine operation and monitoring.</li>
+                                </ul>
+                            </div>
+                            <!-- Internship 2 -->
+                            <div class="timeline-item">
+                                <div class="timeline-dot"></div>
+                                <h4 class="font-bold text-xl text-blue-600 dark:text-blue-400">Internship - ONEE</h4>
+                                <p class="text-sm font-medium text-gray-500 dark:text-gray-400 mb-2">July 2024 – August 2024</p>
+                                <p class="text-gray-700 dark:text-gray-300 font-semibold">National Office of Electricity and Water</p>
+                                <ul class="list-disc ml-5 mt-2 space-y-1 text-gray-700 dark:text-gray-300 text-sm">
+                                    <li>Analyzed Siemens protection relays in operation and prepared testing protocols.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Education -->
+                    <div>
+                        <h3 class="text-2xl font-semibold text-gray-900 dark:text-white mb-4">Academic Background</h3>
+                        <div class="space-y-6">
+                            <!-- Education 1 -->
+                            <div class="p-4 bg-gray-50 dark:bg-gray-700 rounded-lg border border-gray-200 dark:border-gray-600">
+                                <p class="text-sm font-medium text-blue-600 dark:text-blue-400 float-right">2023 - 2026</p>
+                                <h4 class="font-bold text-lg">Engineering Degree Program</h4>
+                                <p class="text-gray-700 dark:text-gray-300">ENSET Mohammedia</p>
+                                <p class="text-sm text-gray-500 dark:text-gray-400">Electrical Engineering and Industrial Systems Control</p>
+                            </div>
+                            <!-- Education 2 -->
+                            <div class="p-4 bg-gray-50 dark:bg-gray-700 rounded-lg border border-gray-200 dark:border-gray-600">
+                                <p class="text-sm font-medium text-blue-600 dark:text-blue-400 float-right">2022 - 2023</p>
+                                <h4 class="font-bold text-lg">Licence in Physical Sciences</h4>
+                                <p class="text-gray-700 dark:text-gray-300">Faculty of Sciences Ben M'sik, Casablanca</p>
+                                <p class="text-sm text-gray-500 dark:text-gray-400">Electronics Specialization</p>
+                            </div>
+                            <!-- Education 3 -->
+                            <div class="p-4 bg-gray-50 dark:bg-gray-700 rounded-lg border border-gray-200 dark:border-gray-600">
+                                <p class="text-sm font-medium text-blue-600 dark:text-blue-400 float-right">2019 - 2020</p>
+                                <h4 class="font-bold text-lg">Baccalaureate in Science and Technology</h4>
+                                <p class="text-gray-700 dark:text-gray-300">Technical High School, Mohammedia</p>
+                                <p class="text-sm text-gray-500 dark:text-gray-400">Electrical Specialization</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Projects Section -->
+            <section id="projects">
+                <h2 class="text-3xl font-bold text-gray-900 dark:text-white mb-8 border-b-2 border-blue-500 pb-2 flex items-center space-x-2">
+                    <i data-lucide="rocket" class="w-7 h-7 text-blue-500"></i><span>Key Projects</span>
+                </h2>
+
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    
+                    <!-- Project Card: Industrial -->
+                    <div class="project-card bg-white dark:bg-gray-800 p-6 rounded-xl shadow-lg border border-gray-200 dark:border-gray-700">
+                        <div class="flex items-center space-x-3 mb-4">
+                            <i data-lucide="factory" class="w-8 h-8 text-blue-600"></i>
+                            <h3 class="text-xl font-bold text-gray-900 dark:text-white">Industrial Systems</h3>
+                        </div>
+                        <p class="text-gray-600 dark:text-gray-400 font-medium mb-3">Space Profile Conveyor</p>
+                        <ul class="list-disc ml-5 text-sm text-gray-700 dark:text-gray-300 space-y-1">
+                            <li>Control and supervision.</li>
+                            <li>Plastic Shredder - Mechanical design and analysis.</li>
+                        </ul>
+                    </div>
+
+                    <!-- Project Card: Embedded -->
+                    <div class="project-card bg-white dark:bg-gray-800 p-6 rounded-xl shadow-lg border border-gray-200 dark:border-gray-700">
+                        <div class="flex items-center space-x-3 mb-4">
+                            <i data-lucide="cpu" class="w-8 h-8 text-blue-600"></i>
+                            <h3 class="text-xl font-bold text-gray-900 dark:text-white">Embedded Systems</h3>
+                        </div>
+                        <p class="text-gray-600 dark:text-gray-400 font-medium mb-3">Remote Solar Pump Control</p>
+                        <ul class="list-disc ml-5 text-sm text-gray-700 dark:text-gray-300 space-y-1">
+                            <li>IoT & Cloud-based monitoring.</li>
+                            <li>Arduino Weather Station - Development and programming.</li>
+                        </ul>
+                    </div>
+
+                    <!-- Project Card: Power Electronics -->
+                    <div class="project-card bg-white dark:bg-gray-800 p-6 rounded-xl shadow-lg border border-gray-200 dark:border-gray-700">
+                        <div class="flex items-center space-x-3 mb-4">
+                            <i data-lucide="lightning-charge" class="w-8 h-8 text-blue-600"></i>
+                            <h3 class="text-xl font-bold text-gray-900 dark:text-white">Power Electronics</h3>
+                        </div>
+                        <p class="text-gray-600 dark:text-gray-400 font-medium mb-3">Simulation and Implementation</p>
+                        <ul class="list-disc ml-5 text-sm text-gray-700 dark:text-gray-300 space-y-1">
+                            <li>Single-Phase Inverter - PWM control.</li>
+                            <li>Single-Phase Full-Wave Rectifier.</li>
+                            <li>Renewable Energy Projects (Wind Turbine).</li>
+                        </ul>
+                    </div>
+
+                </div>
+            </section>
+
+            <!-- Skills Section -->
+            <section id="skills">
+                <h2 class="text-3xl font-bold text-gray-900 dark:text-white mb-8 border-b-2 border-blue-500 pb-2 flex items-center space-x-2">
+                    <i data-lucide="wrench" class="w-7 h-7 text-blue-500"></i><span>Skills and Tools</span>
+                </h2>
+
+                <div class="grid md:grid-cols-3 gap-8">
+                    
+                    <!-- Software Group -->
+                    <div class="skill-group p-6 bg-white dark:bg-gray-800 rounded-xl shadow-lg border border-gray-200 dark:border-gray-700">
+                        <h3 class="text-2xl font-bold text-blue-600 dark:text-blue-400 mb-4 flex items-center space-x-2"><i data-lucide="monitor" class="w-6 h-6"></i><span>Software</span></h3>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="bg-blue-100 text-blue-800 text-sm font-medium px-3 py-1.5 rounded-full dark:bg-blue-900 dark:text-blue-300">AutoCAD 2D/3D</span>
+                            <span class="bg-blue-100 text-blue-800 text-sm font-medium px-3 py-1.5 rounded-full dark:bg-blue-900 dark:text-blue-300">MATLAB/Simulink</span>
+                            <span class="bg-blue-100 text-blue-800 text-sm font-medium px-3 py-1.5 rounded-full dark:bg-blue-900 dark:text-blue-300">TIA Portal</span>
+                            <span class="bg-blue-100 text-blue-800 text-sm font-medium px-3 py-1.5 rounded-full dark:bg-blue-900 dark:text-blue-300">Proteus</span>
+                            <span class="bg-blue-100 text-blue-800 text-sm font-medium px-3 py-1.5 rounded-full dark:bg-blue-900 dark:text-blue-300">Autodesk Inventor</span>
+                            <span class="bg-blue-100 text-blue-800 text-sm font-medium px-3 py-1.5 rounded-full dark:bg-blue-900 dark:text-blue-300">PLCnext Engineer</span>
+                        </div>
+                    </div>
+
+                    <!-- Technical Skills Group -->
+                    <div class="skill-group p-6 bg-white dark:bg-gray-800 rounded-xl shadow-lg border border-gray-200 dark:border-gray-700">
+                        <h3 class="text-2xl font-bold text-blue-600 dark:text-blue-400 mb-4 flex items-center space-x-2"><i data-lucide="hammer" class="w-6 h-6"></i><span>Technical Expertise</span></h3>
+                        <ul class="list-disc ml-5 text-gray-700 dark:text-gray-300 space-y-1 text-sm">
+                            <li>Electrical Design: Circuit design and analysis</li>
+                            <li>Mechanical Design: 3D modeling and mechanical conception</li>
+                            <li>Automation: PLC programming and HMI development</li>
+                            <li>Additive Manufacturing: 3D printing of functional parts</li>
+                        </ul>
+                    </div>
+
+                    <!-- Languages Group -->
+                    <div class="skill-group p-6 bg-white dark:bg-gray-800 rounded-xl shadow-lg border border-gray-200 dark:border-gray-700">
+                        <h3 class="text-2xl font-bold text-blue-600 dark:text-blue-400 mb-4 flex items-center space-x-2"><i data-lucide="globe" class="w-6 h-6"></i><span>Languages</span></h3>
+                        <ul class="list-disc ml-5 text-gray-700 dark:text-gray-300 space-y-1 text-sm">
+                            <li>**English:** C2 - EF Standard English Test</li>
+                            <li>**French:** B2 - Upper-Intermediate</li>
+                            <li>**Arabic:** Native</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 dark:bg-black text-white py-8 mt-16">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <p class="text-sm">&copy; 2025 Rafi Nasrallah | Electrical & Industrial Systems Control</p>
+            <div class="mt-4 flex justify-center space-x-4">
+                <a href="mailto:nasrollahrafi@gmail.com" class="text-gray-400 hover:text-blue-500 transition-colors" aria-label="Email">
+                    <i data-lucide="mail" class="w-6 h-6"></i>
+                </a>
+                <!-- You can add LinkedIn/GitHub here -->
+                <a href="#" class="text-gray-400 hover:text-blue-500 transition-colors" aria-label="LinkedIn">
+                    <i data-lucide="linkedin" class="w-6 h-6"></i>
+                </a>
+                <a href="#" class="text-gray-400 hover:text-blue-500 transition-colors" aria-label="GitHub">
+                    <i data-lucide="github" class="w-6 h-6"></i>
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript for Interactivity -->
+    <script>
+        // Initialize Lucide Icons
+        lucide.createIcons();
+
+        // 1. Dark Mode Toggle
+        const darkModeToggle = document.getElementById('dark-mode-toggle');
+        const html = document.documentElement;
+
+        // Check for local storage preference or default to system preference
+        if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            html.classList.add('dark');
+        } else {
+            html.classList.remove('dark');
+        }
+
+        darkModeToggle.addEventListener('click', () => {
+            if (html.classList.contains('dark')) {
+                html.classList.remove('dark');
+                localStorage.theme = 'light';
+            } else {
+                html.classList.add('dark');
+                localStorage.theme = 'dark';
+            }
+            // Re-render icons after mode change to ensure the correct one is visible
+            lucide.createIcons();
+        });
+
+        // 2. Mobile Menu Toggle
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // 3. Close mobile menu on link click (for smooth scrolling)
+        document.querySelectorAll('#mobile-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+        
+    </script>
+</body>
+</html>
 
