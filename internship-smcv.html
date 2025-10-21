@@ -32,6 +32,9 @@
             font-weight: 600;
             border: 2px dashed #9ca3af;
         }
+        .text-en {
+            font-size: 1.05rem; /* Slightly larger text for main content */
+        }
     </style>
 </head>
 <body class="bg-gray-100 text-gray-800 transition-colors duration-300 dark:bg-gray-900 dark:text-gray-100">
@@ -39,7 +42,7 @@
     <!-- Header (Simplified Navigation) -->
     <header class="bg-white shadow-md dark:bg-gray-800">
         <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
-            <h1 class="text-2xl font-bold text-gray-900 dark:text-white">PFA Internship Details</h1>
+            <h1 class="text-2xl font-bold text-gray-900 dark:text-white">SMCV Internship Details</h1>
             <a href="index.html#experience" class="inline-flex items-center text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 font-medium transition-colors">
                 <i data-lucide="arrow-left" class="w-5 h-5 mr-2"></i> Back to Portfolio
             </a>
@@ -51,74 +54,103 @@
 
             <!-- Title & Metadata -->
             <div>
-                <span class="text-sm font-semibold text-white bg-blue-500 px-3 py-1 rounded-full">Internship Report</span>
+                <span class="text-sm font-semibold text-white bg-blue-500 px-3 py-1 rounded-full">Multidisciplinary Project</span>
                 <h2 class="text-4xl font-extrabold text-gray-900 dark:text-white mt-3 mb-2">
-                    PFA Internship: Industrial Automation Project (PLC/HMI)
+                    Automation (PLC/HMI), Mechanical Arm and Pneumatic Press Design, and IT Maintenance
                 </h2>
                 <p class="text-lg text-gray-600 dark:text-gray-400">
                     **Company:** SMCV (Société Marocaine des Compteurs) | **Duration:** July 2025 – September 2025
                 </p>
                 <div class="mt-4 flex flex-wrap gap-2">
                     <span class="bg-gray-200 text-gray-700 text-xs font-medium px-3 py-1 rounded-full dark:bg-gray-700 dark:text-gray-300">#PLC</span>
-                    <span class="bg-gray-200 text-gray-700 text-xs font-medium px-3 py-1 rounded-full dark:bg-gray-700 dark:text-gray-300">#TIA Portal</span>
-                    <span class="bg-gray-200 text-gray-700 text-xs font-medium px-3 py-1 rounded-full dark:bg-gray-700 dark:text-gray-300">#HMI Development</span>
+                    <span class="bg-gray-200 text-gray-700 text-xs font-medium px-3 py-1 rounded-full dark:bg-gray-700 dark:text-gray-300">#MechanicalDesign</span>
+                    <span class="bg-gray-200 text-gray-700 text-xs font-medium px-3 py-1 rounded-full dark:bg-gray-700 dark:text-gray-300">#ITMaintenance</span>
                 </div>
             </div>
 
             <hr class="border-gray-200 dark:border-gray-700">
 
-            <!-- Project Overview -->
+            <!-- Objectifs du Projet (Project Goals) - Now in English -->
             <div>
                 <h3 class="text-2xl font-bold text-blue-600 dark:text-blue-400 mb-4 flex items-center space-x-2">
-                    <i data-lucide="info" class="w-6 h-6"></i><span>Overview and Goal</span>
+                    <i data-lucide="target" class="w-6 h-6"></i><span>Core Objectives</span>
                 </h3>
-                <p class="text-gray-700 dark:text-gray-300 leading-relaxed">
-                    The primary objective of this final-year project was to fully automate the control and monitoring of a pneumatic press and mechanical arm system used in injection molding. This involved integrating a modern Siemens S7-1500 PLC and developing an intuitive Human-Machine Interface (HMI) for operators.
+                <p class="text-gray-700 dark:text-gray-300 leading-relaxed text-en">
+                    This project aimed to consolidate skills in automation, mechatronic design, and industrial IT, while providing concrete solutions to operational issues encountered at the SMCV workshop.
                 </p>
+                <ul class="mt-4 space-y-2 text-gray-700 dark:text-gray-300 text-en">
+                    <li class="flex items-start">
+                        <i data-lucide="cpu" class="w-5 h-5 text-blue-500 mr-3 mt-1 flex-shrink-0"></i>
+                        <p>**Automation and Supervision:** Development of PLC and HMI programs for the automation and supervision of industrial machines, specifically plastic injection machines and insertion presses.</p>
+                    </li>
+                    <li class="flex items-start">
+                        <i data-lucide="layout-grid" class="w-5 h-5 text-blue-500 mr-3 mt-1 flex-shrink-0"></i>
+                        <p>**Mechatronic Design:** Conception and 3D modeling of mechatronic devices, such as a nut insertion arm and a custom-designed pneumatic press.</p>
+                    </li>
+                    <li class="flex items-start">
+                        <i data-lucide="hard-drive" class="w-5 h-5 text-blue-500 mr-3 mt-1 flex-shrink-0"></i>
+                        <p>**IT Maintenance:** Performing IT maintenance, including operating system repair and configuration, as well as installing specialized industrial software.</p>
+                    </li>
+                </ul>
+                <!-- Link to the Report PDF (File name remains in French) -->
+                <a href="Rapport de stage d’ingénieur RAFI Nasrallah vf.pdf" target="_blank" class="mt-5 inline-flex items-center font-semibold px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors shadow-md text-sm">
+                    <i data-lucide="file-text" class="w-4 h-4 mr-2"></i> Download Full Report (PDF)
+                </a>
             </div>
 
-            <!-- Key Responsibilities & Achievements -->
-            <div>
+            <hr class="border-gray-200 dark:border-gray-700">
+
+            <!-- Section 1 : PLC and HMI Programming for the Plastic Injection Machine -->
+            <div id="section-1">
                 <h3 class="text-2xl font-bold text-blue-600 dark:text-blue-400 mb-4 flex items-center space-x-2">
-                    <i data-lucide="zap" class="w-6 h-6"></i><span>Technical Execution</span>
+                    <i data-lucide="code" class="w-6 h-6"></i><span>1. PLC and HMI Programming</span>
                 </h3>
-                <ul class="space-y-4 text-gray-700 dark:text-gray-300">
-                    <li class="flex items-start">
-                        <i data-lucide="check-circle" class="w-5 h-5 text-green-500 mr-3 mt-1 flex-shrink-0"></i>
-                        <p>
-                            **PLC Programming (TIA Portal):** Developed structured ladder logic and Function Block Diagram (FBD) code for sequential control of the mechanical arm movements, pneumatic press cycles, and safety interlocks. Optimized cycle time by 15%.
-                        </p>
-                    </li>
-                    <li class="flex items-start">
-                        <i data-lucide="check-circle" class="w-5 h-5 text-green-500 mr-3 mt-1 flex-shrink-0"></i>
-                        <p>
-                            **HMI Design:** Created comprehensive HMI screens (using Siemens Comfort Panel) for real-time visualization of machine status, alarm management, recipe selection, and manual control modes, significantly improving operator feedback.
-                        </p>
-                    </li>
-                    <li class="flex items-start">
-                        <i data-lucide="check-circle" class="w-5 h-5 text-green-500 mr-3 mt-1 flex-shrink-0"></i>
-                        <p>
-                            **System Integration:** Successfully interfaced the PLC with various sensors (proximity, pressure) and actuators (solenoid valves, motor drives) to ensure seamless and reliable operation.
-                        </p>
-                    </li>
+                <p class="text-gray-700 dark:text-gray-300 leading-relaxed text-en mb-4">
+                    **Objective:** Optimize the injection cycle and improve the visualization of the machine status for operators.
+                </p>
+                <h4 class="font-bold text-lg text-gray-900 dark:text-white mb-2">Content to include in this section:</h4>
+                <ul class="list-disc ml-5 text-sm text-gray-700 dark:text-gray-300 space-y-1">
+                    <li>**Tools:** Siemens TIA Portal (mention the version if possible), PLC S7-1500 (or S7-300/400 if used).</li>
+                    <li>**PLC Achievements:** Describe the key functional blocks (e.g., safety sequence management, temperature control, alarm handling).</li>
+                    <li>**HMI Achievements:** Detail the screens developed (e.g., supervision screen, diagnostics/alarms screen, recipe interface). Mention the impact on ergonomics.</li>
+                    <li>**Key Results:** Quantify the improvement (e.g., cycle time reduction, number of alarms managed, system reliability).</li>
                 </ul>
             </div>
 
-            <!-- Visual Aids (Placeholders) -->
-            <div>
+            <!-- Section 2: Design of the Mechanical Nut Insertion Arm -->
+            <div id="section-2">
                 <h3 class="text-2xl font-bold text-blue-600 dark:text-blue-400 mb-4 flex items-center space-x-2">
-                    <i data-lucide="layers-3" class="w-6 h-6"></i><span>System Visuals</span>
+                    <i data-lucide="box-select" class="w-6 h-6"></i><span>2. Mechanical Insertion Arm Design</span>
                 </h3>
-                <div class="grid md:grid-cols-2 gap-4">
-                    <div class="placeholder rounded-lg">
-                        PLC Wiring Diagram / Control Panel Layout
-                    </div>
-                    <div class="placeholder rounded-lg">
-                        HMI Screenshot / TIA Portal Block Diagram
-                    </div>
-                </div>
+                <p class="text-gray-700 dark:text-gray-300 leading-relaxed text-en mb-4">
+                    **Objective:** Design a precise and reliable mechanical arm for the automatic insertion of nuts post-injection.
+                </p>
+                <h4 class="font-bold text-lg text-gray-900 dark:text-white mb-2">Content to include in this section:</h4>
+                <ul class="list-disc ml-5 text-sm text-gray-700 dark:text-gray-300 space-y-1">
+                    <li>**Tools:** Autodesk Inventor (or AutoCAD 3D).</li>
+                    <li>**Methodology:** Describe the design steps (functional analysis, material selection, stress/dimension calculations).</li>
+                    <li>**Design:** Explain the design innovations (e.g., solution for nut gripping/positioning, guiding system).</li>
+                    <li>**Visualization:** Integrate images of the 3D model or technical drawings (via placeholders).</li>
+                </ul>
             </div>
-            
+
+            <!-- Section 3: Design and Programming of a Nut Insertion Press -->
+            <div id="section-3">
+                <h3 class="text-2xl font-bold text-blue-600 dark:text-blue-400 mb-4 flex items-center space-x-2">
+                    <i data-lucide="settings-2" class="w-6 h-6"></i><span>3. Nut Insertion Press Design and Programming</span>
+                </h3>
+                <p class="text-gray-700 dark:text-gray-300 leading-relaxed text-en mb-4">
+                    **Objective:** Design and program the control of a pneumatic press dedicated to nut insertion.
+                </p>
+                <h4 class="font-bold text-lg text-gray-900 dark:text-white mb-2">Content to include in this section:</h4>
+                <ul class="list-disc ml-5 text-sm text-gray-700 dark:text-gray-300 space-y-1">
+                    <li>**Mechanical Design:** Details on the press components (pneumatic cylinder, limit switches, positioning jig).</li>
+                    <li>**Programming:** Focus on the safety logic and the press sequence (e.g., nut presence verification, interlock with the mechanical arm).</li>
+                    <li>**Standards:** Mention if the design or programming complies with specific industrial standards.</li>
+                    <li>**Challenges:** Explain a technical challenge you solved (e.g., maintaining constant insertion force).</li>
+                </ul>
+            </div>
+
             <hr class="border-gray-200 dark:border-gray-700">
 
             <!-- Next Steps -->
