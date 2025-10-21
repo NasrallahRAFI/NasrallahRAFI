@@ -95,6 +95,7 @@
             <!-- Desktop Navigation -->
             <nav class="hidden md:flex space-x-8">
                 <a href="#about" class="text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 font-medium transition-colors">About</a>
+                <a href="#interest" class="text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 font-medium transition-colors">Interest</a>
                 <a href="#experience" class="text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 font-medium transition-colors">Experience</a>
                 <a href="#projects" class="text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 font-medium transition-colors">Projects</a>
                 <a href="#skills" class="text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 font-medium transition-colors">Skills</a>
@@ -116,6 +117,7 @@
         <div id="mobile-menu" class="hidden md:hidden absolute w-full bg-white dark:bg-gray-900 shadow-lg border-t border-gray-200 dark:border-gray-700">
             <nav class="flex flex-col p-4 space-y-2">
                 <a href="#about" class="block py-2 px-3 text-gray-700 dark:text-gray-200 hover:bg-blue-50 dark:hover:bg-gray-800 rounded-lg transition-colors">About</a>
+                <a href="#interest" class="block py-2 px-3 text-gray-700 dark:text-gray-200 hover:bg-blue-50 dark:hover:bg-gray-800 rounded-lg transition-colors">Interest</a>
                 <a href="#experience" class="block py-2 px-3 text-gray-700 dark:text-gray-200 hover:bg-blue-50 dark:hover:bg-gray-800 rounded-lg transition-colors">Experience</a>
                 <a href="#projects" class="block py-2 px-3 text-gray-700 dark:text-gray-200 hover:bg-blue-50 dark:hover:bg-gray-800 rounded-lg transition-colors">Projects</a>
                 <a href="#skills" class="block py-2 px-3 text-gray-700 dark:text-gray-200 hover:bg-blue-50 dark:hover:bg-gray-800 rounded-lg transition-colors">Skills</a>
@@ -154,9 +156,33 @@
             <section id="about" class="bg-white p-8 rounded-xl shadow-lg dark:bg-gray-800 dark:shadow-xl">
                 <h2 class="text-3xl font-bold text-gray-900 dark:text-white mb-6 border-b-2 border-blue-500 pb-2 flex items-center space-x-2">
                     <i data-lucide="user-check" class="w-7 h-7 text-blue-500"></i><span>About Me</span>
-                </h2
+                </h2>
                 <p class="text-lg text-gray-700 dark:text-gray-300 leading-relaxed">
                     Motivated final-year engineering student in Electrical and Industrial Systems Control, looking for a challenging internship opportunity to develop hands-on experience in automation, control systems, and industrial engineering. My academic background is complemented by practical experience in HMI interfaces, PLC programming (Siemens TIA Portal), and 3D CAD modeling.
+                </p>
+            </section>
+            
+            <!-- Center of Interest Section (NEW) -->
+            <section id="interest" class="bg-white p-8 rounded-xl shadow-lg dark:bg-gray-800 dark:shadow-xl">
+                <h2 class="text-3xl font-bold text-gray-900 dark:text-white mb-6 border-b-2 border-blue-500 pb-2 flex items-center space-x-2">
+                    <i data-lucide="heart" class="w-7 h-7 text-red-500"></i><span>Center of Interest</span>
+                </h2>
+                <div class="flex flex-wrap gap-4 justify-center md:justify-start">
+                    <div class="p-3 bg-blue-100 rounded-lg shadow-md dark:bg-blue-900/50 flex items-center space-x-2">
+                        <i data-lucide="robot" class="w-6 h-6 text-blue-700 dark:text-blue-300"></i>
+                        <span class="font-semibold text-blue-800 dark:text-blue-200">Industrial Automation</span>
+                    </div>
+                    <div class="p-3 bg-blue-100 rounded-lg shadow-md dark:bg-blue-900/50 flex items-center space-x-2">
+                        <i data-lucide="zap" class="w-6 h-6 text-blue-700 dark:text-blue-300"></i>
+                        <span class="font-semibold text-blue-800 dark:text-blue-200">Electronic Design</span>
+                    </div>
+                    <div class="p-3 bg-blue-100 rounded-lg shadow-md dark:bg-blue-900/50 flex items-center space-x-2">
+                        <i data-lucide="hard-hat" class="w-6 h-6 text-blue-700 dark:text-blue-300"></i>
+                        <span class="font-semibold text-blue-800 dark:text-blue-200">Mechanical Design</span>
+                    </div>
+                </div>
+                <p class="text-lg text-gray-700 dark:text-gray-300 leading-relaxed mt-4">
+                    My core interest lies at the intersection of **mechatronics**, where I thrive on integrating PLC-based **automation** systems, precise **electronic circuit design**, and robust **mechanical conception** to build efficient industrial solutions.
                 </p>
             </section>
             
@@ -230,7 +256,7 @@
                 </div>
             </section>
 
-            <!-- Projects Section (Updated) -->
+            <!-- Projects Section -->
             <section id="projects">
                 <h2 class="text-3xl font-bold text-gray-900 dark:text-white mb-8 border-b-2 border-blue-500 pb-2 flex items-center space-x-2">
                     <i data-lucide="rocket" class="w-7 h-7 text-blue-500"></i><span>Key Projects</span>
