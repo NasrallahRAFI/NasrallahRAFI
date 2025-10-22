@@ -126,6 +126,41 @@
             position: relative;
             z-index: 10;
         }
+        
+        /* --- Origami Folding Animation Styles (Center of Interest) --- */
+        .origami-panel {
+            perspective: 1000px; /* Needed for 3D effect */
+            height: 250px; /* Define height for the container */
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 2rem auto;
+        }
+
+        .origami-content {
+            width: 90%;
+            max-width: 600px;
+            height: 100%;
+            position: relative;
+            transform-style: preserve-3d;
+            transition: transform 1s ease-in-out;
+            transform: rotateY(0deg); /* Initial state */
+        }
+
+        /* Animation Keyframes: The panel folds open */
+        @keyframes foldOpen {
+            0% { transform: rotateY(180deg); opacity: 0; }
+            100% { transform: rotateY(0deg); opacity: 1; }
+        }
+        
+        /* Apply fold animation once when the element appears */
+        .folded {
+            transform: rotateY(180deg);
+            opacity: 0;
+            animation: foldOpen 1.5s cubic-bezier(0.68, -0.55, 0.27, 1.55) forwards;
+        }
+
     </style>
 </head>
 <body class="bg-gray-100 text-gray-800 transition-colors duration-300">
