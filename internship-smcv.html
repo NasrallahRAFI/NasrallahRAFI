@@ -32,18 +32,29 @@
             border-radius: 0.5rem;
             object-fit: contain;
         }
-        #section-1 .responsive-img {
-             height: 100%;
-             object-fit: cover;
-             aspect-ratio: 4 / 3;
+        .siprotec-img {
+            aspect-ratio: 16 / 9;
+            object-fit: cover;
         }
-        #section-2 img, #section-3 img {
-             object-fit: contain; /* Contain is best for plots/charts */
+        /* Specific optimization for HMI screenshots in the grid (Section 1) */
+        #section-1 .responsive-img {
+             height: 100%; /* Force height to fill grid item */
+             object-fit: cover; /* Crop slightly to cover the area */
+             aspect-ratio: 4 / 3; /* Aspect ratio common for screens */
+        }
+        /* Specific optimization for the large mechanical design image (Section 2) */
+        #section-2 .responsive-img {
              aspect-ratio: 16 / 9;
+             object-fit: cover;
+        }
+        /* Specific optimization for thermal plots (Section 3) */
+        #section-3 .responsive-img {
+             aspect-ratio: 16 / 9;
+             object-fit: contain; /* Contain is better for plots/charts */
         }
         /* Custom styling for the embedded evaluation sheet */
         .evaluation-sheet {
-            max-width: 600px;
+            max-width: 500px; /* Smaller for this evaluation */
             margin: 0 auto;
             border: 1px solid #ddd;
             padding: 1rem;
@@ -64,7 +75,7 @@
 <div class="max-w-4xl mx-auto bg-white p-8 rounded-xl shadow-lg dark:bg-gray-800 dark:shadow-xl space-y-12">
 <!-- Title & Metadata -->
 <div>
-<span class="text-sm font-semibold text-white bg-cyan-600 px-3 py-1 rounded-full">Multidisciplinary Project</span>
+<span class="text-sm font-semibold text-white bg-cyan-600 px-3 py-1 rounded-full">Final Project Stage</span>
 <h2 class="text-4xl font-extrabold text-gray-900 dark:text-white mt-3 mb-2">
 Automation (PLC/HMI), Mechanical Arm and Pneumatic Press Design, and IT Maintenance
 </h2>
@@ -83,13 +94,10 @@ Automation (PLC/HMI), Mechanical Arm and Pneumatic Press Design, and IT Maintena
 <h3 class="text-2xl font-bold text-cyan-600 dark:text-cyan-400 mb-4 flex items-center space-x-2">
 <i data-lucide="target" class="w-6 h-6"></i><span>Core Objectives</span>
 </h3>
-<p class="text-gray-700 dark:text-gray-300 leading-relaxed text-lg">
+<p class="text-gray-700 dark:text-gray-300 leading-relaxed text-lg mb-3">
 This project aimed to consolidate skills in <strong>automation</strong>, <strong>mechatronic design</strong>, and <strong>industrial IT</strong>, while providing concrete solutions to operational issues encountered at the SMCV workshop.
 </p>
-<!-- Link to the Report PDF (File name remains as specified by user) -->
-<a href="Rapport de stage d’ingénieur RAFI Nasrallah vf.pdf" target="_blank" class="mt-5 inline-flex items-center font-semibold px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors shadow-md text-sm">
-<i data-lucide="file-text" class="w-4 h-4 mr-2"></i> Download Full Internship Report (PDF)
-</a>
+<!-- Note: Report links removed as requested -->
 </div>
 <hr class="border-gray-200 dark:border-gray-700">
 <!-- SECTION 1: PLC and HMI Programming for the Plastic Injection Machine -->
@@ -98,16 +106,15 @@ This project aimed to consolidate skills in <strong>automation</strong>, <strong
 <i data-lucide="code" class="w-6 h-6"></i><span>1. PLC and HMI Programming</span>
 </h3>
 <p class="text-gray-700 dark:text-gray-300 leading-relaxed text-lg mb-4">
-<strong>Project Focus:</strong> Development of the full functional cycle and advanced control features for the injection machine, emphasizing safety and operational flexibility.
+<strong>Project Focus:</strong> Development of the full functional cycle and advanced control features for the Injection Molding Machine (Haitian Mars III 2000), emphasizing safety and operational flexibility.
 </p>
 <div class="p-4 bg-gray-50 dark:bg-gray-700 rounded-lg mb-6">
-<h4 class="font-bold text-lg text-gray-900 dark:text-white mb-2">Technical Details:</h4>
+<h4 class="font-bold text-lg text-gray-900 dark:text-white mb-2">Technical Details (S7-1200 / TIA Portal V19):</h4>
 <ul class="list-disc ml-5 text-sm text-gray-700 dark:text-gray-300 space-y-1">
-<li><strong>Hardware/Software:</strong> Siemens <strong>TIA Portal V19</strong> used to program a <strong>S7-1200 PLC</strong>.</li>
-<li><strong>Core Achievement (Functional Cycle):</strong> Implemented the full machine cycle logic, incorporating essential <strong>safety features</strong> (Emergency Stop, pressure limit detection, material presence detection, etc.).</li>
+<li><strong>Core Achievement (Functional Cycle):</strong> Implemented the full machine cycle logic, incorporating essential <strong>safety features</strong> (Emergency Stop, pressure limit detection, material presence detection).</li>
 <li><strong>Advanced Control:</strong> Developed and implemented a <strong>PID control loop</strong> for precise temperature regulation.</li>
-<li><strong>Modularity and HMI Interfacing:</strong> The code is <strong>fully modular</strong>. HMI communications allow operators to <strong>modify all critical parameters</strong> (temperature setpoint, injection time, maintaining time, cooling time, etc.) in real-time.</li>
-<li><strong>State Visualization:</strong> The HMI provides clear <strong>visible representation</strong> of the current state of the cycle (e.g., mold opening, mold closing, cooling).</li>
+<li><strong>Modularity and HMI Interfacing:</strong> The code is <strong>fully modular</strong>. HMI communications allow operators to modify all critical parameters (temperature setpoint, injection time, maintaining time, cooling time, etc.).</li>
+<li><strong>State Visualization:</strong> The HMI provides clear visible representation of the current state of the cycle (e.g., mold opening, mold closing, cooling).</li>
 </ul>
 </div>
 <!-- HMI PICTURES AREA -->
@@ -153,30 +160,20 @@ This project aimed to consolidate skills in <strong>automation</strong>, <strong
 </ul>
 </div>
 <p class="text-gray-700 dark:text-gray-300 leading-relaxed text-lg mb-4">
-<strong>Objective:</strong> The goal of this phase was to design a manual insertion arm capable of executing this task reliably, repeatedly, and seamlessly integrated into the production cycle, thereby ensuring consistent quality and improving workshop productivity.
+<strong>Objective:</strong> The goal of this phase was to design a manual insertion arm capable of executing this task reliably, repeatedly, and seamlessly integrated into the production cycle, thereby ensuring consistent quality and improving workshop productivity. (Tool used: <strong>Autodesk Inventor</strong>).
 </p>
 <!-- VISUALS AND DOCUMENTATION -->
-<h4 class="font-semibold text-lg text-gray-900 dark:text-white mb-4 mt-6 flex items-center space-x-2">
-<i data-lucide="camera" class="w-5 h-5"></i><span>Visuals and Documentation</span>
+<h4 class="font-semibold text-base text-gray-900 dark:text-white mb-4 mt-6 flex items-center space-x-2">
+<i data-lucide="camera" class="w-4 h-4"></i><span>Visuals</span>
 </h4>
-<!-- Image Placeholder for Section 2 -->
+<!-- Image for Section 2 -->
 <div class="mb-6">
 <img src="Mechanical design of the mechanical arm for nut insertion.png" alt="Mechanical design of the mechanical arm for nut insertion - Autodesk Inventor" class="responsive-img h-auto aspect-[16/9] mb-2">
 <p class="text-xs text-center text-gray-500 dark:text-gray-400 mt-1">Figure 2.1: 3D Model of the Nut Insertion Arm (Autodesk Inventor).</p>
 </div>
-<!-- PDF Links -->
-<div class="space-y-3 mb-8">
-<p class="text-sm font-semibold text-gray-900 dark:text-white">Related Technical Documents (Autodesk Inventor):</p>
-<a href="Plan 2D Ecrou Insert.pdf" target="_blank" class="flex items-center text-sm font-semibold text-cyan-600 hover:text-cyan-700 dark:text-cyan-400 dark:hover:text-cyan-500 transition-colors">
-<i data-lucide="file-text" class="w-4 h-4 mr-2"></i> 2D Nut Insert Plan (PDF)
-</a>
-<a href="Proposition SMCV 1 Bra mecanique.pdf" target="_blank" class="flex items-center text-sm font-semibold text-cyan-600 hover:text-cyan-700 dark:text-cyan-400 dark:hover:text-cyan-500 transition-colors">
-<i data-lucide="file-text" class="w-4 h-4 mr-2"></i> SMCV Proposal 1 Mechanical Arm (PDF)
-</a>
-</div>
-<!-- RESULTS AND DECISION -->
-<div class="p-5 bg-cyan-50 dark:bg-cyan-900/50 rounded-lg mb-6 border-l-4 border-cyan-500">
-<h4 class="font-bold text-lg text-cyan-700 dark:text-cyan-300 mb-2 flex items-center space-x-2">
+<!-- RESULTS AND DECISION (Moved to appear after Visuals) -->
+<div class="p-5 bg-blue-50 dark:bg-blue-900/50 rounded-lg mb-6 border-l-4 border-blue-500">
+<h4 class="font-bold text-lg text-blue-700 dark:text-blue-300 mb-2 flex items-center space-x-2">
 <i data-lucide="arrow-right-circle" class="w-5 h-5"></i><span>Results and Next Step Decision</span>
 </h4>
 <p class="text-sm text-gray-700 dark:text-gray-300 leading-relaxed mb-3">
@@ -209,16 +206,9 @@ However, this solution presented a major limitation: <strong>insertion remained 
 </ul>
 </div>
 <!-- VISUALS AND DOCUMENTATION -->
-<h4 class="font-semibold text-lg text-gray-900 dark:text-white mb-4 mt-6 flex items-center space-x-2">
-<i data-lucide="camera" class="w-5 h-5"></i><span>Visuals and Documentation</span>
+<h4 class="font-semibold text-base text-gray-900 dark:text-white mb-4 mt-6 flex items-center space-x-2">
+<i data-lucide="camera" class="w-4 h-4"></i><span>Visuals</span>
 </h4>
-<!-- Document Link -->
-<div class="space-y-3 mb-6">
-<p class="text-sm font-semibold text-gray-900 dark:text-white">Related Technical Documents:</p>
-<a href="Proposition SMCV 2 Presse d'insert des écrous.pdf" target="_blank" class="flex items-center text-sm font-semibold text-cyan-600 hover:text-cyan-700 dark:text-cyan-400 dark:hover:text-cyan-500 transition-colors">
-<i data-lucide="file-text" class="w-4 h-4 mr-2"></i> SMCV Proposal 2 Nut Insertion Press (2D Plan PDF)
-</a>
-</div>
 <!-- Image Placeholders (Now using <img> tags) -->
 <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
 <!-- Image 1: HMI Screen -->
@@ -264,8 +254,8 @@ Configuration workstations were experiencing significant instability, including 
 </ul>
 </div>
 <!-- Results and Decision -->
-<div class="p-5 bg-cyan-50 dark:bg-cyan-900/50 rounded-lg mb-6 border-l-4 border-cyan-500">
-<h4 class="font-bold text-lg text-cyan-700 dark:text-cyan-300 mb-2 flex items-center space-x-2">
+<div class="p-5 bg-blue-50 dark:bg-blue-900/50 rounded-lg mb-6 border-l-4 border-blue-500">
+<h4 class="font-bold text-lg text-blue-700 dark:text-blue-300 mb-2 flex items-center space-x-2">
 <i data-lucide="award" class="w-5 h-5"></i><span>Results and Standardization Decision</span>
 </h4>
 <p class="text-sm text-gray-700 dark:text-gray-300 leading-relaxed mb-3">
@@ -326,30 +316,27 @@ Several paths can be considered following this internship:
 </div>
 </div>
 <hr class="border-gray-200 dark:border-gray-700">
-
-<!-- NEW SECTION: SUPERVISOR EVALUATION -->
+<!-- SUPERVISOR EVALUATION -->
 <div id="evaluation">
     <h3 class="text-2xl font-bold text-red-600 dark:text-red-400 mb-4 flex items-center space-x-2">
         <i data-lucide="star" class="w-6 h-6"></i><span>Supervisor's Evaluation (20/20)</span>
     </h3>
     
     <div class="evaluation-summary bg-red-50 dark:bg-red-900/50 p-4 rounded-lg border-l-4 border-red-500 mb-6">
-        <h4 class="font-bold text-lg text-red-700 dark:text-red-300 mb-2">Key Remarks (Translated):</h4>
+        <h4 class="font-bold text-lg text-red-700 dark:text-red-300 mb-2">Overall Remarks:</h4>
         <p class="text-base italic text-gray-700 dark:text-gray-300 leading-relaxed">
-            "**Serious work, punctuality, and respect for instructions** (Travail sérieux, ponctualité et respect des consignes)."
+            "Travail sérieux, ponctualité et respect des consignes." (Serious work, punctuality, and respect for instructions.)
         </p>
     </div>
 
     <h4 class="font-semibold text-lg text-gray-900 dark:text-white mb-4 mt-6">Full Evaluation Sheet:</h4>
-    <div class="rounded-lg overflow-hidden shadow-xl">
-        <img src="SMCV_Supervisor_Evaluation.jpg" alt="Supervisor's Detailed Evaluation of SMCV Internship Performance" class="responsive-img evaluation-sheet">
+    <div class="rounded-lg overflow-hidden shadow-xl evaluation-sheet">
+        <img src="image_1b7362.jpg" alt="Supervisor's Detailed Evaluation of SMCV Internship Performance (20/20)" class="responsive-img">
     </div>
     <p class="text-xs text-center text-gray-500 dark:text-gray-400 mt-2">
-        Evaluation Sheet from Mr. B. Fergane, SMCV Internship Supervisor.
+        Evaluation Sheet from Mr. B. Houssani, SMCV Internship Supervisor.
     </p>
 </div>
-<!-- END NEW SECTION -->
-
 <hr class="border-gray-200 dark:border-gray-700">
 <!-- Final Return Link -->
 <div class="text-center pt-4">
