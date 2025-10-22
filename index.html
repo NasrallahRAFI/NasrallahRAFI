@@ -81,6 +81,28 @@
                 left: -32px;
             }
         }
+
+        /* --- ANIMATION STYLES: Dynamic Gradient Pulse --- */
+        @keyframes gradientPulse {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .animated-hero {
+            /* Define initial state of the background gradient */
+            background-size: 400% 400%;
+            /* Apply the animation */
+            animation: gradientPulse 40s ease infinite; /* 40 seconds duration, infinite loop */
+        }
+        .light .animated-hero {
+             /* Light mode gradient setup */
+             background-image: linear-gradient(-45deg, #eff6ff, #ffffff, #e0f2f1); /* Subtle white-cyan-white blend */
+        }
+        .dark .animated-hero {
+            /* Dark mode gradient setup */
+            background-image: linear-gradient(-45deg, #1e293b, #0f172a, #1e293b); /* Subtle dark slate blend */
+        }
     </style>
 </head>
 <body class="bg-gray-100 text-gray-800 transition-colors duration-300">
@@ -131,7 +153,7 @@
     <main class="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
 
         <!-- Hero Section -->
-        <section id="hero" class="py-16 md:py-24 text-center bg-gradient-to-br from-cyan-50 to-white dark:from-gray-900 dark:to-gray-800 rounded-xl shadow-xl">
+        <section id="hero" class="py-16 md:py-24 text-center animated-hero rounded-xl shadow-xl">
             <div class="max-w-4xl mx-auto">
                 <!-- Profile Image -->
                 <div class="mx-auto w-36 h-36 rounded-full mb-6 overflow-hidden border-4 border-cyan-500 shadow-2xl">
@@ -161,7 +183,7 @@
                     <i data-lucide="user-check" class="w-7 h-7 text-cyan-500"></i><span>About Me</span>
                 </h2>
                 <p class="text-lg text-gray-700 dark:text-gray-300 leading-relaxed">
-                    Motivated final-year engineering student in Electrical and Industrial Systems Control, looking for a challenging internship opportunity to develop hands-on experience in <strong>automation</strong>, <strong>control systems</strong>, and **industrial engineering**. My academic background is complemented by practical experience in **HMI interfaces**, **PLC programming** (Siemens TIA Portal), and **3D CAD modeling**.
+                    Motivated final-year engineering student in Electrical and Industrial Systems Control, looking for a challenging internship opportunity to develop hands-on experience in <strong>automation</strong>, <strong>control systems</strong>, and <strong>industrial engineering</strong>. My academic background is complemented by practical experience in **HMI interfaces**, **PLC programming** (Siemens TIA Portal), and **3D CAD modeling**.
                 </p>
             </section>
             
@@ -302,7 +324,7 @@
                                 <i data-lucide="wind" class="w-6 h-6 text-cyan-500"></i><span>Renewable Energy Projects</span>
                             </h3>
                             <ul class="list-disc ml-5 text-gray-700 dark:text-gray-300 space-y-2 text-base">
-                                <li><strong>Single-Phase Micro Wind Turbine</strong> – Comprehensive system modeling and simulation using **MATLAB/Simulink**. Applied **Nonlinear Control (Backstepping)** and Park's Transformation for stabilization of the isolated power system (PMSM, DC Bus, Battery Storage, SPWM Inverter).</li>
+                                <li><strong>Single-Phase Micro Wind Turbine</strong> – Comprehensive system modeling and simulation using <strong>MATLAB/Simulink</strong>. Applied <strong>Nonlinear Control (Backstepping)</strong> and Park's Transformation for stabilization of the isolated power system (PMSM, DC Bus, Battery Storage, SPWM Inverter).</li>
                             </ul>
                         </div>
                     </div>
