@@ -67,30 +67,65 @@
             .timeline-dot { left: -32px; }
         }
 
-        /* --- Combined Sequential Animation (3 Animations, 10s each = 30s cycle) --- */
-        @keyframes combinedAnimation {
-            /* 0s - 10s: Flow/Movement (Background Position/Size Shift) */
-            0% { background-position: 0% 0%; background-size: 400% 400%; filter: brightness(1.0); }
-            10% { background-position: 15% 5%; }
-            33% { background-position: 30% 10%; background-size: 400% 400%; filter: brightness(1.0); } 
+        /* --- KEYFRAME ANIMATIONS --- */
 
-            /* 33s - 66s: Gradient Pulse/Color Shift (Background Position Shift) */
-            40% { background-position: 50% 50%; }
-            55% { background-position: 70% 30%; }
-            66% { background-position: 100% 0%; background-size: 400% 400%; filter: brightness(1.0); } 
-
-            /* 66s - 100s: Subtle Scale/Geometric (Brightness/Filter Effect) */
-            75% { background-size: 450% 450%; filter: brightness(1.08); }
-            90% { background-size: 350% 350%; filter: brightness(0.95); }
-            100% { background-position: 0% 0%; background-size: 400% 400%; filter: brightness(1.0); } 
+        /* 1. Gradient Pulse/Color Shift (Main Background) */
+        @keyframes pulseShift {
+            0%, 100% { background-position: 0% 50%; filter: brightness(1.0); }
+            33% { background-position: 100% 50%; filter: brightness(1.05); } /* Pulse 1 */
+            66% { background-position: 0% 50%; filter: brightness(0.95); }  /* Pulse 2 */
+        }
+        
+        /* 2. Flow/Movement (Applied to ::after pseudo-element) */
+        @keyframes subtleFlow {
+            0% { transform: translate(0, 0) scale(1); }
+            33% { transform: translate(10%, -10%) scale(1.1); }
+            66% { transform: translate(-10%, 10%) scale(0.9); }
+            100% { transform: translate(0, 0) scale(1); }
         }
 
+        /* 3. Sequential Layer Control (Controls opacity/visibility of effects) */
+        @keyframes layerControl {
+            /* 0s - 10s: Flow (subtleFlow layer visible) */
+            0% { opacity: 1; }
+            10% { opacity: 1; } 
+            10.1% { opacity: 0; }
+            33% { opacity: 0; }
+            
+            /* 33s - 66s: Pulse (base layer dominant) */
+            33.1% { opacity: 0; } /* Flow layer remains invisible */
+            66% { opacity: 0; }
+            
+            /* 66s - 100s: Scale/Geometric (both layers fade) */
+            66.1% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+
+        /* --- HERO SECTION STYLING --- */
         .animated-hero {
-            animation: combinedAnimation 30s ease-in-out infinite;
             position: relative;
             overflow: hidden;
             z-index: 1; 
-            background-size: 400% 400%;
+            
+            /* Base Animation: Pulse (Runs constantly in the background) */
+            animation: pulseShift 30s ease-in-out infinite;
+            background-size: 200% 200%; /* Needed for background-position shifting */
+        }
+
+        .animated-hero::after {
+            content: '';
+            position: absolute;
+            top: -10%; 
+            left: -10%;
+            width: 120%; 
+            height: 120%;
+            z-index: -1; /* Behind content, over base background */
+            background-image: radial-gradient(circle at 50% 50%, rgba(6, 182, 212, 0.1), transparent 50%); /* Cyan glow/flow source */
+            
+            /* Flow Animation: Layer 1 */
+            animation: 
+                subtleFlow 30s ease-in-out infinite,
+                layerControl 30s steps(1, end) infinite; /* Controls when this flow layer is visible */
         }
 
         .light .animated-hero {
@@ -184,7 +219,7 @@
                     <i data-lucide="user-check" class="w-7 h-7 text-cyan-500"></i><span>About Me</span>
                 </h2>
                 <p class="text-lg text-gray-700 dark:text-gray-300 leading-relaxed">
-                    Motivated final-year engineering student in Electrical and Industrial Systems Control, looking for a challenging internship opportunity to develop hands-on experience in <strong>automation</strong>, <strong>control systems</strong>, and <strong>industrial engineering</strong>. My academic background is complemented by practical experience in <strong>HMI interfaces</strong>, **PLC programming** (Siemens TIA Portal), and **3D CAD modeling**.
+                    Motivated final-year engineering student in Electrical and Industrial Systems Control, looking for a challenging internship opportunity to develop hands-on experience in <strong>automation</strong>, <strong>control systems</strong>, and <strong>industrial engineering</strong>. My academic background is complemented by practical experience in <strong>HMI interfaces</strong>, <strong>PLC programming</strong> (Siemens TIA Portal), and <strong>3D CAD modeling</strong>.
                 </p>
             </section>
             
@@ -469,7 +504,7 @@
                     </div>
                 </div>
                 <p class="text-lg text-gray-700 dark:text-gray-300 leading-relaxed mt-4">
-                    My core interest lies at the intersection of **mechatronics**, where I thrive on integrating PLC-based **automation** systems, precise **electronic circuit design**, and robust **mechanical conception** to build efficient industrial solutions.
+                    My core interest lies at the intersection of <strong>mechatronics</strong>, where I thrive on integrating PLC-based <strong>automation</strong> systems, precise <strong>electronic circuit design</strong>, and robust <strong>mechanical conception</strong> to build efficient industrial solutions.
                 </p>
             </section>
         </div>
