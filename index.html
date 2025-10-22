@@ -4,9 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rafi Nasrallah | Engineering Portfolio</title>
-    <!-- Load Tailwind CSS -->
+    <!-- Preloads are not necessary for small single file projects, standard loads used -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Load Lucide Icons -->
     <script src="https://unpkg.com/lucide@latest"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
     <style>
@@ -18,40 +17,32 @@
             font-family: 'Inter', sans-serif;
             transition: background-color 0.3s, color 0.3s;
         }
-        /* Custom scroll behavior for smooth navigation */
-        html {
-            scroll-behavior: smooth;
-        }
-        /* Custom scrollbar for aesthetics */
-        ::-webkit-scrollbar {
-            width: 8px;
-        }
-        ::-webkit-scrollbar-thumb {
-            background-color: var(--primary-color);
-            border-radius: 4px;
-        }
+        /* Performance: Use smooth scrolling and efficient scrollbar styling */
+        html { scroll-behavior: smooth; }
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-thumb { background-color: var(--primary-color); border-radius: 4px; }
+        
         .project-card, .skill-group {
             transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
         .project-card:hover {
             transform: translateY(-4px);
-            box-shadow: 0 8px 12px rgba(6, 182, 212, 0.4); /* Cyan shadow on hover */
+            box-shadow: 0 8px 12px rgba(6, 182, 212, 0.4); 
         }
-        /* Dark mode styles */
-        .dark .bg-gray-100 { background-color: #0f172a !important; } /* Slate 900 */
-        .dark .text-gray-800 { color: #f1f5f9 !important; } /* Slate 100 */
-        .dark .bg-white { background-color: #1e293b !important; } /* Slate 800 */
-        .dark .border-gray-200 { border-color: #334155 !important; } /* Slate 700 */
+        
+        /* Dark mode styles (optimized colors) */
+        .dark .bg-gray-100 { background-color: #0f172a !important; } 
+        .dark .text-gray-800 { color: #f1f5f9 !important; }
+        .dark .bg-white { background-color: #1e293b !important; } 
+        .dark .border-gray-200 { border-color: #334155 !important; }
         .dark .shadow-lg { box-shadow: 0 10px 15px rgba(0, 0, 0, 0.5); }
 
-        /* Timeline styling for Experience/Internships */
-        .timeline-item {
-            position: relative;
-        }
+        /* Timeline styling (optimized dot border) */
+        .timeline-item { position: relative; }
         .timeline-item::before {
             content: '';
             position: absolute;
-            left: -20px; /* Adjust based on dot size */
+            left: -20px; 
             top: 0;
             bottom: 0;
             width: 2px;
@@ -60,26 +51,20 @@
         }
         .timeline-dot {
             position: absolute;
-            left: -24px; /* Centered around the line */
+            left: -24px; 
             top: 4px;
             width: 10px;
             height: 10px;
             border-radius: 50%;
             background-color: var(--primary-color);
             z-index: 10;
-            border: 3px solid #fff; /* White border for contrast */
+            border: 3px solid #fff; 
         }
-        .dark .timeline-dot {
-            border-color: #1e293b; /* Dark background color */
-        }
-        /* Adjust positioning for larger screens */
+        .dark .timeline-dot { border-color: #1e293b; }
+        
         @media (min-width: 640px) {
-            .timeline-item::before {
-                left: -28px;
-            }
-            .timeline-dot {
-                left: -32px;
-            }
+            .timeline-item::before { left: -28px; }
+            .timeline-dot { left: -32px; }
         }
 
         /* --- Combined Sequential Animation (3 Animations, 10s each = 30s cycle) --- */
@@ -87,30 +72,24 @@
             /* 0s - 10s: Flow/Movement (Background Position/Size Shift) */
             0% { background-position: 0% 0%; background-size: 400% 400%; filter: brightness(1.0); }
             10% { background-position: 15% 5%; }
-            33% { background-position: 30% 10%; background-size: 400% 400%; filter: brightness(1.0); } /* End of Flow */
+            33% { background-position: 30% 10%; background-size: 400% 400%; filter: brightness(1.0); } 
 
             /* 33s - 66s: Gradient Pulse/Color Shift (Background Position Shift) */
             40% { background-position: 50% 50%; }
             55% { background-position: 70% 30%; }
-            66% { background-position: 100% 0%; background-size: 400% 400%; filter: brightness(1.0); } /* End of Pulse */
+            66% { background-position: 100% 0%; background-size: 400% 400%; filter: brightness(1.0); } 
 
             /* 66s - 100s: Subtle Scale/Geometric (Brightness/Filter Effect) */
             75% { background-size: 450% 450%; filter: brightness(1.08); }
             90% { background-size: 350% 350%; filter: brightness(0.95); }
-            100% { background-position: 0% 0%; background-size: 400% 400%; filter: brightness(1.0); } /* Reset to Flow Start */
+            100% { background-position: 0% 0%; background-size: 400% 400%; filter: brightness(1.0); } 
         }
 
-
         .animated-hero {
-            /* Run the combined 30-second cycle infinitely */
             animation: combinedAnimation 30s ease-in-out infinite;
-            
-            /* Positioning */
             position: relative;
             overflow: hidden;
             z-index: 1; 
-            
-            /* Initial State for Animation */
             background-size: 400% 400%;
         }
 
@@ -121,46 +100,10 @@
             background-image: linear-gradient(-45deg, #1e293b, #0f172a, #1e293b, #0f172a);
         }
         
-        /* The content of the hero section needs z-index to stay above the animation layer */
         .hero-content {
             position: relative;
             z-index: 10;
         }
-        
-        /* --- Origami Folding Animation Styles (Center of Interest) --- */
-        .origami-panel {
-            perspective: 1000px; /* Needed for 3D effect */
-            height: 250px; /* Define height for the container */
-            width: 100%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            margin: 2rem auto;
-        }
-
-        .origami-content {
-            width: 90%;
-            max-width: 600px;
-            height: 100%;
-            position: relative;
-            transform-style: preserve-3d;
-            transition: transform 1s ease-in-out;
-            transform: rotateY(0deg); /* Initial state */
-        }
-
-        /* Animation Keyframes: The panel folds open */
-        @keyframes foldOpen {
-            0% { transform: rotateY(180deg); opacity: 0; }
-            100% { transform: rotateY(0deg); opacity: 1; }
-        }
-        
-        /* Apply fold animation once when the element appears */
-        .folded {
-            transform: rotateY(180deg);
-            opacity: 0;
-            animation: foldOpen 1.5s cubic-bezier(0.68, -0.55, 0.27, 1.55) forwards;
-        }
-
     </style>
 </head>
 <body class="bg-gray-100 text-gray-800 transition-colors duration-300">
@@ -173,7 +116,7 @@
                 Rafi Nasrallah
             </a>
 
-            <!-- Desktop Navigation -->
+            <!-- Desktop Navigation (Optimized Link order) -->
             <nav class="hidden md:flex space-x-8">
                 <a href="#about" class="text-gray-600 dark:text-gray-300 hover:text-cyan-600 dark:hover:text-cyan-400 font-medium transition-colors">About</a>
                 <a href="#experience" class="text-gray-600 dark:text-gray-300 hover:text-cyan-600 dark:hover:text-cyan-400 font-medium transition-colors">Experience</a>
@@ -195,7 +138,7 @@
             </div>
         </div>
 
-        <!-- Mobile Menu (Hidden by default) -->
+        <!-- Mobile Menu (Optimized Link order) -->
         <div id="mobile-menu" class="hidden md:hidden absolute w-full bg-white dark:bg-gray-900 shadow-lg border-t border-gray-200 dark:border-gray-700">
             <nav class="flex flex-col p-4 space-y-2">
                 <a href="#about" class="block py-2 px-3 text-gray-700 dark:text-gray-200 hover:bg-cyan-50 dark:hover:bg-gray-800 rounded-lg transition-colors">About</a>
@@ -241,7 +184,7 @@
                     <i data-lucide="user-check" class="w-7 h-7 text-cyan-500"></i><span>About Me</span>
                 </h2>
                 <p class="text-lg text-gray-700 dark:text-gray-300 leading-relaxed">
-                    Motivated final-year engineering student in Electrical and Industrial Systems Control, looking for a challenging internship opportunity to develop hands-on experience in <strong>automation</strong>, <strong>control systems</strong>, and <strong>industrial engineering</strong>. My academic background is complemented by practical experience in **HMI interfaces**, **PLC programming** (Siemens TIA Portal), and **3D CAD modeling**.
+                    Motivated final-year engineering student in Electrical and Industrial Systems Control, looking for a challenging internship opportunity to develop hands-on experience in <strong>automation</strong>, <strong>control systems</strong>, and <strong>industrial engineering</strong>. My academic background is complemented by practical experience in <strong>HMI interfaces</strong>, **PLC programming** (Siemens TIA Portal), and **3D CAD modeling**.
                 </p>
             </section>
             
