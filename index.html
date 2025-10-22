@@ -92,43 +92,60 @@
         /* --- 2. Background Flow (Directional Movement/Subtle Flow) --- */
         @keyframes flowMove {
             0% { transform: translate(0, 0); }
-            100% { transform: translate(100px, 50px); }
+            100% { transform: translate(150px, 75px); } /* Increased movement */
         }
         
         /* --- 3. Subtle Scale/Breath (Geometric/Sine Wave) --- */
         @keyframes subtleScale {
             0% { filter: brightness(1.0); }
-            50% { filter: brightness(1.05); }
+            50% { filter: brightness(1.08); } /* Increased brightness pulse */
             100% { filter: brightness(1.0); }
         }
 
 
         .animated-hero {
-            /* Combine Animations for multi-layered effect */
+            /* Combine Gradient Pulse and Subtle Scale on the main element */
             animation: 
                 gradientPulse 40s ease infinite,
-                flowMove 60s linear infinite alternate,
                 subtleScale 20s ease-in-out infinite;
+            
+            /* Positioning for Pseudo-element */
+            position: relative;
+            overflow: hidden;
+            z-index: 1; /* Ensure content is above animation layer */
             
             /* Background Size for GradientPulse */
             background-size: 400% 400%;
+        }
 
-            /* Positioning for FlowMove */
-            position: relative;
-            overflow: hidden;
-            z-index: 1; /* Ensure content is above animation */
+        /* Pseudo-element for FlowMove animation */
+        .animated-hero::before {
+            content: '';
+            position: absolute;
+            top: -100px; /* Cover slightly outside the bounds */
+            left: -100px;
+            width: 200%; /* Larger than container */
+            height: 200%;
+            opacity: 0.1; /* Very faint */
+            
+            /* Geometric/Flowing Pattern: Used for the flowMove keyframe */
+            background: radial-gradient(circle, var(--accent-color) 10%, transparent 15%) 0 0 / 100px 100px,
+                        radial-gradient(circle, var(--primary-color) 10%, transparent 15%) 50px 50px / 100px 100px;
+            
+            z-index: 2; /* Between background and content */
+
+            /* Apply FlowMove animation */
+            animation: flowMove 60s linear infinite alternate;
         }
 
         .light .animated-hero {
-             /* Light mode gradient setup */
-             background-image: linear-gradient(-45deg, #eff6ff, #ffffff, #e0f2f1); /* Subtle white-cyan-white blend */
+             background-image: linear-gradient(-45deg, #eff6ff, #ffffff, #e0f2f1);
         }
         .dark .animated-hero {
-            /* Dark mode gradient setup */
-            background-image: linear-gradient(-45deg, #1e293b, #0f172a, #1e293b); /* Subtle dark slate blend */
+            background-image: linear-gradient(-45deg, #1e293b, #0f172a, #1e293b);
         }
         
-        /* The content of the hero section needs z-index to stay above the gradient flow */
+        /* The content of the hero section needs z-index to stay above the animation layer */
         .hero-content {
             position: relative;
             z-index: 10;
