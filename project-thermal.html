@@ -3,141 +3,95 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Transient Thermal Analysis for Process Optimization | Rafi Nasrallah</title> 
+    <title>Transient Thermal Analysis for Process Optimization | Rafi Nasrallah</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/lucide@latest"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
+    <!-- Link to external style.css if it exists, otherwise styles are embedded -->
     <link rel="stylesheet" href="style.css"> 
     
     <style>
-        /* Specific styles for this page */
-        .table-responsive {
-            display: block;
-            width: 100%;
-            overflow-x: auto;
-            -webkit-overflow-scrolling: touch;
-            border-radius: 0.5rem; /* Added rounding */
-            border: 1px solid #e5e7eb; /* Added border */
-            box-shadow: 0 1px 3px rgba(0,0,0,0.05); /* Subtle shadow */
+        /* Add specific styles for this redesigned page */
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6; /* Improved readability */
         }
-        .dark .table-responsive {
-             border-color: #374151;
-        }
-        .table-responsive table {
-            width: 100%;
-            min-width: 600px; 
-            border-collapse: collapse;
-        }
-        .table-responsive th, .table-responsive td {
-            border: none; /* Remove internal borders */
-            border-bottom: 1px solid #e5e7eb; /* Use bottom borders for separation */
-            padding: 1rem 1.25rem; /* Increased padding */
-            text-align: center;
-            vertical-align: middle;
-        }
-         .table-responsive th {
-             background-color: #f9fafb; /* Lighter header background */
-             font-weight: 600; /* Bolder header text */
-             color: #374151; /* Darker header text */
-         }
-        .table-responsive tr:last-child td {
-             border-bottom: none; /* Remove bottom border for last row */
-        }
-        .dark .table-responsive th, .dark .table-responsive td {
-             border-color: #374151; 
-        }
-        .dark .table-responsive th {
-            background-color: #374151;
-            color: #d1d5db;
-        }
-        .dark .bg-gray-50 { background-color: #374151 !important; }
+        .dark .bg-gray-50 { background-color: #1f2937 !important; } /* Consistent dark card bg */
+        .dark .bg-white { background-color: #111827 !important; }
+        .dark .border-gray-200 { border-color: #374155 !important; }
+         .dark .text-gray-800 { color: #f1f5f9 !important; }
+         .dark .text-gray-600 { color: #9ca3af !important; }
+         .dark .text-gray-700 { color: #cbd5e1 !important; }
+         .dark .text-gray-900 { color: #ffffff !important; }
 
-        .project-image {
-             border-radius: 0.5rem; 
-             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+        .content-section {
+            padding-top: 2.5rem; /* 40px */
+            padding-bottom: 2.5rem; /* 40px */
+            border-bottom: 1px solid #e5e7eb; /* Subtle separator */
+        }
+        .dark .content-section {
+            border-color: #374155;
+        }
+        .content-section:last-child {
+            border-bottom: none; /* No border for the last section */
+        }
+
+        .highlight-box {
+            background-color: #f3f4f6; /* Light gray background */
+            border-left: 4px solid var(--primary-color, #06b6d4); /* Use primary color */
+            padding: 1rem 1.5rem;
+            border-radius: 0.375rem; /* rounded-md */
+            margin-bottom: 1.5rem; /* Space below box */
+        }
+        .dark .highlight-box {
+            background-color: #1f2937; /* Darker background */
+            border-color: var(--primary-color, #22d3ee); /* Brighter accent in dark mode */
+        }
+
+        .gallery-image {
+             border-radius: 0.5rem; /* rounded-lg */
+             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05); 
              border: 1px solid #e5e7eb; 
              object-fit: contain; 
-             background-color: #ffffff; /* White background for image contrast */
-             display: block; /* Ensure images behave like blocks */
-             margin-left: auto;
-             margin-right: auto;
+             background-color: #ffffff; 
+             aspect-ratio: 16 / 10; /* Consistent aspect ratio */
+             width: 100%;
+             height: auto;
         }
-        .dark .project-image {
-            border-color: #4b5563;
-            background-color: #1f2937; 
-        }
-        
-        .img-placeholder {
-            min-height: 150px; 
-            background-color: #f3f4f6; /* Lighter placeholder */
-            color: #9ca3af; /* Lighter text */
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 500; /* Less bold */
-            border: 2px dashed #d1d5db; /* Lighter dash */
-            font-size: 0.8rem;
-            text-align: center;
-            padding: 1rem;
-            border-radius: 0.5rem;
-        }
-        .dark .img-placeholder {
-            background-color: #374151;
-            color: #9ca3af;
-            border-color: #4b5563;
-        }
-        
-        mjx-container[jax="SVG"][display="false"] {
-            display: inline-block !important;
-            margin: 0 0.15em; 
-            vertical-align: baseline;
-        }
-        
-        /* Custom section divider */
-        .section-divider {
-            border-bottom: 1px solid #e5e7eb; /* Lighter divider */
-        }
-        .dark .section-divider {
-             border-color: #374151;
-        }
+         .dark .gallery-image {
+             border-color: #374155;
+             background-color: #1f2937;
+         }
 
-        /* Improved heading styles */
-        h2 { margin-bottom: 1rem !important; } /* Consistent bottom margin for main title */
-        h3 { margin-bottom: 1.75rem !important; } /* Increased space below section titles */
-        h4 { margin-bottom: 1rem !important; } /* Consistent space below sub-titles */
+        /* MathJax styling */
+        mjx-container[jax="SVG"][display="false"] {
+            display: inline-block !important; margin: 0 0.15em; vertical-align: baseline;
+        }
+        
+        /* Responsive table */
+         .table-responsive { display: block; width: 100%; overflow-x: auto; -webkit-overflow-scrolling: touch; border-radius: 0.5rem; border: 1px solid #e5e7eb; box-shadow: 0 1px 3px rgba(0,0,0,0.05); margin-top: 1.5rem; margin-bottom: 1.5rem; }
+        .dark .table-responsive { border-color: #374155; }
+        .table-responsive table { width: 100%; min-width: 500px; border-collapse: collapse; }
+        .table-responsive th, .table-responsive td { border: none; border-bottom: 1px solid #e5e7eb; padding: 0.75rem 1rem; text-align: center; vertical-align: middle; }
+        .table-responsive th { background-color: #f9fafb; font-weight: 600; color: #374151; font-size: 0.875rem; }
+        .table-responsive tr:last-child td { border-bottom: none; }
+        .dark .table-responsive th, .dark .table-responsive td { border-color: #374155; }
+        .dark .table-responsive th { background-color: #1f2937; color: #d1d5db; }
+
 
     </style>
     
-    <!-- ADD MATHJAX Configuration -->
-    <script>
-      window.MathJax = {
-        tex: {
-          inlineMath: [['$', '$'], ['\\(', '\\)']], 
-          displayMath: [['$$', '$$'], ['\\[', '\\]']], 
-          processEscapes: true
-        },
-        svg: {
-          fontCache: 'global' 
-        },
-        options: {
-          skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'], 
-          ignoreHtmlClass: 'tex2jax_ignore', 
-          processHtmlClass: 'tex2jax_process' 
-        }
-      };
-    </script>
-    <!-- Load MathJax -->
-    <script type="text/javascript" id="MathJax-script" async
-      src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js">
-    </script>
+    <!-- MathJax Configuration -->
+     <script> window.MathJax = { tex: { inlineMath: [['$', '$']], displayMath: [['$$', '$$']], processEscapes: true }, svg: { fontCache: 'global' }, options: { skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'], ignoreHtmlClass: 'tex2jax_ignore', processHtmlClass: 'tex2jax_process' } }; </script>
+     <script type="text/javascript" id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
 
 </head>
-<body class="bg-gray-50 text-gray-800 transition-colors duration-300 dark:bg-gray-900 dark:text-gray-100">
+<body class="bg-gray-100 text-gray-800 transition-colors duration-300 dark:bg-gray-900 dark:text-gray-100">
 
     <!-- Header -->
     <header class="bg-white/90 backdrop-blur-sm shadow-sm dark:bg-gray-900/90 dark:shadow-lg sticky top-0 z-50">
         <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-3 flex justify-between items-center">
-            <h1 class="text-lg md:text-xl font-semibold text-gray-800 dark:text-white truncate">Thermal Analysis: LCM vs FEA Study</h1> 
+            <h1 class="text-lg md:text-xl font-semibold text-gray-800 dark:text-white truncate">Thermal Analysis: LCM vs FEA</h1> 
             <a href="index.html#projects" class="inline-flex items-center text-cyan-600 dark:text-cyan-400 hover:text-cyan-700 dark:hover:text-cyan-300 font-medium transition-colors text-xs sm:text-sm whitespace-nowrap">
                 <i data-lucide="arrow-left" class="w-4 h-4 mr-1"></i> Back to Portfolio
             </a>
@@ -145,107 +99,109 @@
     </header>
 
     <main class="container mx-auto px-4 sm:px-6 lg:px-8 py-10 md:py-16">
-        <div class="max-w-5xl mx-auto bg-white p-6 md:p-10 rounded-lg shadow-md dark:bg-gray-800 dark:shadow-xl space-y-10 md:space-y-14">
+        <article class="max-w-4xl mx-auto bg-white p-6 md:p-10 rounded-lg shadow-md dark:bg-gray-800 dark:shadow-xl">
 
-            <!-- 1. Header & Initial Impact -->
-            <section class="text-center section-divider pb-10">
-                <span class="text-xs font-semibold text-white bg-cyan-600 px-3 py-1 rounded-full uppercase tracking-wider">Self-Initiated Study</span>
-                <h2 class="text-3xl md:text-4xl font-extrabold text-gray-900 dark:text-white mt-5 mb-4 leading-tight">
-                    Transient Thermal Analysis for Process Optimization: A Comparative Study of Lumped Capacitance Modeling and Finite Element Simulation for Automated Hot Nut Insertion in Polycarbonate Components
+            <!-- 1. Clear Identification -->
+            <section class="content-section text-center">
+                 <span class="text-xs font-semibold text-white bg-cyan-600 px-3 py-1 rounded-full uppercase tracking-wider mb-4 inline-block">Self-Initiated Study</span>
+                <h2 class="text-3xl md:text-4xl font-extrabold text-gray-900 dark:text-white mb-3 leading-tight">
+                    Transient Thermal Analysis for Process Optimization: A Comparative Study of Lumped Capacitance Modeling and Finite Element Simulation
                 </h2>
-                <p class="text-base font-medium text-gray-600 dark:text-gray-400 mb-8">
-                    Rafi NASRALAH, ENSET Mohammedia <br>
-                    <span class="text-xs italic">(Based on Internship Experience at SMCV)</span>
+                 <p class="text-lg font-medium text-gray-700 dark:text-gray-300 mb-2">
+                    Automated Hot Nut Insertion in Polycarbonate Components
                 </p>
-                                
-                <div class="max-w-3xl mx-auto p-4 bg-yellow-50 dark:bg-yellow-900/40 rounded-md border-l-4 border-yellow-400 text-left shadow-sm mb-10">
-                    <h3 class="font-semibold text-base text-gray-900 dark:text-white mb-2 flex items-center space-x-2">
-                        <i data-lucide="alert-triangle" class="w-5 h-5 text-yellow-500"></i><span>Initial Challenge</span>
-                    </h3>
-                    <p class="text-sm text-gray-700 dark:text-gray-200 leading-relaxed">
-                        Automating the hot nut insertion process faced hurdles due to an uncertain optimal cycle time ($t_{\text{cycle}}$) and the risk of polycarbonate thermal damage. The initial theoretical estimate, based on simplifying assumptions, required validation. This study aimed to replace the estimate with high-fidelity simulation data for <strong>process reliability</strong> and <strong>optimization</strong>.
-                    </p>
-                </div>
-                 <!-- Link to the Full Report -->
-                 <a href="Thermal_Analysis_Full_Report.pdf" target="_blank" class="inline-flex items-center font-semibold px-5 py-2.5 bg-red-600 text-white rounded-md hover:bg-red-700 transition-colors shadow-md text-sm">
+                <p class="text-base font-medium text-gray-600 dark:text-gray-400 mb-6">
+                    Rafi NASRALAH, ENSET Mohammedia 
+                    <span class="text-xs block italic">(Building on SMCV Internship Experience)</span>
+                </p>
+                 <!-- Report Link moved to the top -->
+                 <a href="Thermal_Analysis_Full_Report.pdf" target="_blank" class="inline-flex items-center font-semibold px-5 py-2.5 bg-red-600 text-white rounded-md hover:bg-red-700 transition-colors shadow-sm text-sm">
                     <i data-lucide="file-text" class="w-4 h-4 mr-2"></i> Download Full Study Report (PDF)
                  </a>
             </section>
 
-            <!-- 2. The Validation Narrative: Theory vs. Reality -->
-            <section class="section-divider pb-10">
-                <h3 class="text-2xl md:text-3xl font-bold text-cyan-600 dark:text-cyan-400 mb-8 flex items-center space-x-3">
-                     <i data-lucide="flask-conical" class="w-7 h-7"></i><span>Objective: Validating Heating Time</span>
-                </h3>
-                 <p class="text-gray-700 dark:text-gray-300 leading-relaxed mb-12 text-base">
-                    The primary objective was to quantify the accuracy of the initial $\mathbf{4.22\text{ s}}$ theoretical heating time derived from the <strong>Lumped Capacitance Method (LCM)</strong>. This involved using high-fidelity <strong>Finite Element Analysis (FEA)</strong> to simulate transient thermal behavior realistically, establishing a precise, validated heating duration to reach the target $170^\circ\text{C}$, and enabling a reliable control strategy.
+             <!-- 2. The Core Problem -->
+             <section class="content-section">
+                 <h3 class="text-xl md:text-2xl font-bold text-gray-900 dark:text-white mb-4 flex items-center space-x-2">
+                     <i data-lucide="alert-circle" class="w-6 h-6 text-yellow-500"></i><span>The Core Problem</span>
+                 </h3>
+                 <div class="highlight-box">
+                    <p class="text-base text-gray-700 dark:text-gray-200 leading-relaxed">
+                        The drive to automate the hot nut insertion process was significantly challenged by uncertainty around the optimal heating cycle time ($t_{\text{cycle}}$). An inaccurate estimate risked either <strong>incomplete heating</strong> (poor joint quality) or <strong>overheating</strong> (thermal damage to the polycarbonate casing). The initial theoretical calculation needed rigorous validation.
+                    </p>
+                 </div>
+             </section>
+
+            <!-- 3. Study Objective -->
+            <section class="content-section">
+                 <h3 class="text-xl md:text-2xl font-bold text-gray-900 dark:text-white mb-4 flex items-center space-x-2">
+                    <i data-lucide="target" class="w-6 h-6 text-cyan-500"></i><span>Study Objective</span>
+                 </h3>
+                 <p class="text-base text-gray-700 dark:text-gray-300 leading-relaxed">
+                    This study aimed to <strong>validate the initial theoretical heating time</strong> ($4.22\text{ s}$) derived from the Lumped Capacitance Method (LCM). The goal was to replace this estimate with a precise value obtained through high-fidelity <strong>Finite Element Analysis (FEA)</strong>, thereby enabling a reliable control strategy and paving the way for process optimization. The target temperature for successful insertion was $170^\circ\text{C}$.
                 </p>
+            </section>
 
-                <div class="grid md:grid-cols-3 gap-8 items-start">
-                    <!-- A. The Design & LCM Flaw -->
-                    <div class="space-y-4">
-                        <h4 class="font-semibold text-lg text-gray-800 dark:text-gray-100 text-center">A. The LCM Flaw</h4>
-                         <img src="Mesh_Refinement_Comparison_a.png" alt="Mesh Refinement Comparison" class="project-image w-full max-w-xs mx-auto">
-                        <p class="text-sm text-gray-600 dark:text-gray-400 leading-relaxed text-center">
-                             The LCM calculation relied on a single, estimated $h_{\text{eff}}$ and ignored crucial <strong>3D geometry</strong> (grooves, stack). This led to an inaccurate $t_{\text{LCM}}$ of $\mathbf{4.22 \text{ s}}$.
+            <!-- 4. The Comparative Analysis -->
+            <section class="content-section">
+                 <h3 class="text-xl md:text-2xl font-bold text-gray-900 dark:text-white mb-6 flex items-center space-x-2">
+                    <i data-lucide="scale" class="w-6 h-6 text-cyan-500"></i><span>Comparative Analysis: Theory vs. Simulation</span>
+                 </h3>
+                <div class="grid md:grid-cols-2 gap-8 mb-6">
+                    <div>
+                        <h4 class="font-semibold text-lg mb-2">Method 1: Lumped Capacitance Model (LCM)</h4>
+                        <p class="text-sm text-gray-700 dark:text-gray-300 leading-relaxed mb-3">
+                            A simplified theoretical approach assuming uniform internal temperature. Relied on an estimated effective heat transfer coefficient ($h_{\text{eff}}$) and neglected 3D geometry (nut grooves, stacking effects).
                         </p>
+                        <p class="text-base font-semibold">Result: $t_{\text{LCM}} = 4.22\text{ s}$</p>
                     </div>
-
-                    <!-- B. The Comparison -->
-                     <div class="space-y-4">
-                         <h4 class="font-semibold text-lg text-gray-800 dark:text-gray-100 text-center">B. The Comparison: LCM vs. FEA</h4>
-                         <img src="Comparative_Heating_Curves.png" alt="Comparative Heating Curves" class="project-image w-full">
-                        <p class="text-sm text-gray-600 dark:text-gray-400 leading-relaxed text-center">
-                            Heating curves reveal the discrepancy: the validated ANSYS FEA model shows significantly faster heating, reaching target $\approx$ <strong>28.7% quicker</strong> than predicted.
+                     <div>
+                        <h4 class="font-semibold text-lg mb-2">Method 2: Finite Element Analysis (FEA)</h4>
+                        <p class="text-sm text-gray-700 dark:text-gray-300 leading-relaxed mb-3">
+                            A high-fidelity numerical simulation (ANSYS Mechanical) accounting for transient heat transfer, actual 3D geometry, material properties, and contact thermal resistance between nuts.
                         </p>
+                        <p class="text-base font-semibold text-green-600 dark:text-green-400">Result: $t_{\text{ANSYS}} = \mathbf{3.28\text{ s}}$</p>
                     </div>
-
-                    <!-- C. The Physical Cause -->
-                    <div class="space-y-4">
-                         <h4 class="font-semibold text-lg text-gray-800 dark:text-gray-100 text-center">C. The Physical Cause</h4>
-                         <img src="Nut_Stack_Heat_Flux.png" alt="Nut Stack Heat Flux Vectors" class="project-image w-full max-w-xs mx-auto">
-                        <p class="text-sm text-gray-600 dark:text-gray-400 leading-relaxed text-center">
-                             FEA identifies the reason: significant <strong>axial heat conduction</strong> between nuts acts as a secondary heat path, accelerating the process beyond LCM's convective assumptions.
-                        </p>
-                    </div>
+                </div>
+                 <div class="highlight-box border-yellow-400 bg-yellow-50 dark:bg-yellow-900/40">
+                    <h4 class="font-semibold text-lg mb-2 text-gray-900 dark:text-white">Key Finding: The Discrepancy</h4>
+                    <p class="text-sm text-gray-700 dark:text-gray-200 leading-relaxed">
+                       The FEA revealed significantly faster heating ($\approx$ <strong>28.7% quicker</strong>) than the LCM predicted. Analysis of heat flux vectors (see gallery) confirmed that <strong>axial heat conduction</strong> between stacked nuts provided a major secondary heat path, a factor ignored by the simplified LCM.
+                    </p>
                 </div>
             </section>
 
-             <!-- Supporting Visuals Gallery -->
-            <section class="section-divider pb-10">
-                <h3 class="text-2xl md:text-3xl font-bold text-cyan-600 dark:text-cyan-400 mb-8 flex items-center space-x-3">
-                    <i data-lucide="image" class="w-7 h-7"></i><span>Supporting Visuals Gallery</span>
+             <!-- 5. Visual Evidence (Gallery) -->
+            <section class="content-section">
+                <h3 class="text-xl md:text-2xl font-bold text-gray-900 dark:text-white mb-6 flex items-center space-x-2">
+                    <i data-lucide="image" class="w-6 h-6 text-cyan-500"></i><span>Visual Evidence Gallery</span>
                 </h3>
                 <div class="grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-6">
-                    <img src="Final_Temperature_Distribution_Nut_Stack.png" alt="Temperature Distribution" class="project-image w-full h-auto">
-                    <img src="Comparative_Heating_Curves.png" alt="Heating Curves Comparison" class="project-image w-full h-auto">
-                    <img src="Mesh_Refinement_Comparison_a.png" alt="Mesh Comparison" class="project-image w-full h-auto">
-                    <img src="Nut_Stack_Heat_Flux.png" alt="Heat Flux Vectors" class="project-image w-full h-auto">
-                    
-                    <div class="img-placeholder">Gallery Image 5 Placeholder</div>
-                    <div class="img-placeholder">Gallery Image 6 Placeholder</div>
+                    <!-- Use web-friendly names derived from the composite image -->
+                    <img src="comparative_heating_curves.jpg" alt="Comparative Heating Curves (LCM vs FEA)" class="gallery-image">
+                    <img src="final_temp_distribution_nut_stack.jpg" alt="Final Temperature Distribution" class="gallery-image">
+                    <img src="nut_stack_heat_flux.jpg" alt="Nut Stack Heat Flux Vectors" class="gallery-image">
+                    <img src="mesh_refinement_comparison_a.jpg" alt="Mesh Refinement Comparison" class="gallery-image">
+                    <img src="temperature_probe_view_1.jpg" alt="Temperature Probe View" class="gallery-image">
+                    <img src="transient_cooling_ambient.jpg" alt="Transient Cooling Curves" class="gallery-image">
+                    <!-- Add more placeholders if needed -->
+                     <!-- <div class="img-placeholder">Add more visuals here</div> -->
                 </div>
             </section>
 
-
-            <!-- 3. Final Conclusion and Engineering Impact -->
-            <section>
-                 <h3 class="text-2xl md:text-3xl font-bold text-cyan-600 dark:text-cyan-400 mb-8 flex items-center space-x-3">
-                     <i data-lucide="check-check" class="w-7 h-7"></i><span>Conclusion & Engineering Impact</span>
+             <!-- 6. Quantified Results Summary -->
+            <section class="content-section">
+                <h3 class="text-xl md:text-2xl font-bold text-gray-900 dark:text-white mb-6 flex items-center space-x-2">
+                    <i data-lucide="table" class="w-6 h-6 text-cyan-500"></i><span>Quantified Results Summary</span>
                 </h3>
-                 <p class="text-gray-700 dark:text-gray-300 leading-relaxed text-base mb-10">
-                    High-fidelity FEA conclusively demonstrated the initial theoretical heating time estimate was highly conservative. This finding unlocked a significant opportunity for <strong>process optimization</strong> via a much faster, validated cycle time.
-                </p>
-
-                 <!-- Comparison Table -->
-                <div class="mb-12 table-responsive">
+                 <div class="table-responsive">
                     <table>
                         <thead>
                             <tr>
                                 <th>Parameter</th>
-                                <th>$t_{\text{LCM}}$ (Theoretical Estimate)</th>
-                                <th>$t_{\text{ANSYS}}$ (Validated Numerical Data)</th>
-                                <th class="text-red-600 dark:text-red-400">Discrepancy (Error of LCM)</th>
+                                <th>$t_{\text{LCM}}$ (Theoretical)</th>
+                                <th>$t_{\text{ANSYS}}$ (Validated FEA)</th>
+                                <th class="text-red-600 dark:text-red-400">Error of LCM</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -258,23 +214,60 @@
                         </tbody>
                     </table>
                 </div>
+            </section>
 
-                <!-- Final Engineering Strategy -->
-                <div class="p-6 bg-cyan-50 dark:bg-cyan-900/40 rounded-lg mb-10 border-l-4 border-cyan-500 shadow-sm">
-                    <h4 class="font-semibold text-lg text-cyan-800 dark:text-cyan-200 mb-4 flex items-center space-x-2">
-                        <i data-lucide="settings-2" class="w-5 h-5"></i><span>Final Engineering Strategy</span>
-                    </h4>
-                    <ul class="list-disc ml-5 text-sm text-gray-700 dark:text-gray-200 space-y-2 leading-relaxed">
-                        <li><strong>Productivity Gain:</strong> The validated heating time ($\mathbf{3.28\text{ s}}$) is substantially faster than the production cadence ($\mathbf{15-30\text{ s}}$). The heating step is confirmed <strong>not</strong> the process bottleneck, enabling focus on optimizing other cycle stages.</li>
-                        <li><strong>Simplified Control & Safety:</strong> Polycarbonate thermal damage is effectively managed by limiting source temperature ($T_{\infty} = 180^\circ\text{C}$). The analysis guarantees nut thermal stability well within cycle time, simplifying control logic and ensuring material integrity without complex time-based cutoffs.</li>
+             <!-- 7. Engineering Impact & Final Strategy -->
+            <section class="content-section">
+                 <h3 class="text-xl md:text-2xl font-bold text-gray-900 dark:text-white mb-6 flex items-center space-x-2">
+                    <i data-lucide="settings-2" class="w-6 h-6 text-cyan-500"></i><span>Engineering Impact & Final Strategy</span>
+                 </h3>
+                 <div class="highlight-box border-green-500 bg-green-50 dark:bg-green-900/40">
+                    <ul class="list-none space-y-3">
+                        <li class="flex items-start">
+                             <i data-lucide="check-circle" class="w-5 h-5 text-green-600 dark:text-green-400 mr-2 mt-1 flex-shrink-0"></i>
+                             <div>
+                                <strong class="text-green-700 dark:text-green-300">Productivity Gain:</strong> The validated heating time ($\mathbf{3.28\text{ s}}$) is substantially faster than the overall production cadence ($\mathbf{15-30\text{ s}}$), confirming heating is <strong>not</strong> the process bottleneck.
+                             </div>
+                        </li>
+                         <li class="flex items-start">
+                             <i data-lucide="check-circle" class="w-5 h-5 text-green-600 dark:text-green-400 mr-2 mt-1 flex-shrink-0"></i>
+                            <div>
+                                <strong class="text-green-700 dark:text-green-300">Simplified Control & Safety:</strong> Thermal damage risk is mitigated by simply limiting the source temperature ($T_{\infty} = 180^\circ\text{C}$). The analysis ensures the nut reaches thermal stability safely within the required cycle time, eliminating the need for complex, time-based heating controls.
+                            </div>
+                        </li>
                     </ul>
                 </div>
+            </section>
+            
+            <!-- 8. Next Steps / Future Work -->
+            <section class="content-section">
+                 <h3 class="text-xl md:text-2xl font-bold text-gray-900 dark:text-white mb-6 flex items-center space-x-2">
+                    <i data-lucide="arrow-right-circle" class="w-6 h-6 text-cyan-500"></i><span>Next Steps: Thermomechanical Analysis</span>
+                 </h3>
+                 <div class="highlight-box">
+                    <p class="text-base text-gray-700 dark:text-gray-200 leading-relaxed">
+                        With the thermal profile validated, the next crucial phase involves a <strong>Coupled Thermomechanical Analysis</strong>. Using the final temperature distribution from this study ($T$ at $3.28\text{ s}$) as the initial condition, this analysis will simulate the physical insertion process. The goals are to determine the optimal <strong>Insertion Force ($F_{\text{insert}}$)</strong> required and to predict the final <strong>Joint Integrity</strong> (pull-out strength), considering polycarbonate viscoplasticity and large deformation mechanics.
+                    </p>
+                     <p class="text-sm italic text-gray-500 dark:text-gray-400 mt-3">
+                         (Planned Tools: Ansys Mechanical - Structural Analysis Module)
+                    </p>
+                 </div>
+            </section>
 
-                 <!-- Future Work -->
-                <div class="p-6 bg-gray-100 dark:bg-gray-700 rounded-lg shadow-sm">
-                     <h4 class="font-semibold text-lg text-gray-900 dark:text-white mb-3 flex items-center space-x-2">
-                         <i data-lucide="arrow-right-circle" class="w-5 h-5"></i><span>Future Work (The Next Step)</span>
-                    </h4>
-                    <p class="text-sm text-gray-700 dark:text-gray-200 leading-relaxed">
-                        With thermal behavior characterized, the next critical step involves determining the <strong>Required Insertion Force ($F_{\text{insert}}$)</strong> and
+            <!-- 9. Navigation -->
+            <section class="text-center pt-6">
+                <a href="index.html#projects" class="inline-flex items-center font-semibold text-cyan-600 dark:text-cyan-400 hover:text-cyan-700 dark:hover:text-cyan-500 transition-colors">
+                    <i data-lucide="arrow-left" class="w-4 h-4 mr-2"></i> Return to Main Portfolio
+                </a>
+            </section>
+
+        </article>
+    </main>
+
+    <!-- Script to initialize Lucide icons -->
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+</html>
 
