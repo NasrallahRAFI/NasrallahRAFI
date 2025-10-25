@@ -63,9 +63,12 @@
              background-color: #1f2937;
          }
 
-        /* MathJax styling */
+        /* MathJax styling - Ensure proper inline display */
         mjx-container[jax="SVG"][display="false"] {
-            display: inline-block !important; margin: 0 0.15em; vertical-align: baseline;
+            display: inline-block !important; 
+            margin: 0 0.1em; /* Minimal spacing */
+            vertical-align: baseline;
+            line-height: 1; /* Prevent extra line height */
         }
         
         /* Responsive table */
@@ -80,9 +83,36 @@
 
     </style>
     
-    <!-- MathJax Configuration -->
-     <script> window.MathJax = { tex: { inlineMath: [['$', '$']], displayMath: [['$$', '$$']], processEscapes: true }, svg: { fontCache: 'global' }, options: { skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'], ignoreHtmlClass: 'tex2jax_ignore', processHtmlClass: 'tex2jax_process' } }; </script>
-     <script type="text/javascript" id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+    <!-- MathJax Configuration - Corrected for better rendering -->
+     <script>
+       window.MathJax = {
+         tex: {
+           inlineMath: [['$', '$'], ['\\(', '\\)']],
+           displayMath: [['$$', '$$'], ['\\[', '\\]']],
+           processEscapes: true,
+           tags: 'ams', // Optional: for equation numbering
+           macros: { // Define common macros if needed
+             degreeC: "{^\\circ\\text{C}}" 
+           }
+         },
+         svg: {
+           fontCache: 'global'
+         },
+         options: {
+           ignoreHtmlClass: 'tex2jax_ignore',
+           processHtmlClass: 'tex2jax_process'
+         },
+         startup: {
+            ready: () => {
+              MathJax.startup.defaultReady();
+              // Optional: You can add code here to run after MathJax is fully loaded
+            }
+         }
+       };
+     </script>
+     <script type="text/javascript" id="MathJax-script" async
+       src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js">
+     </script>
 
 </head>
 <body class="bg-gray-100 text-gray-800 transition-colors duration-300 dark:bg-gray-900 dark:text-gray-100">
@@ -119,35 +149,35 @@
                  </a>
             </section>
 
-             <!-- 2. The Core Problem (Updated Text) -->
+             <!-- 2. The Core Problem (Corrected Notation) -->
              <section class="content-section">
                  <h3 class="text-xl md:text-2xl font-bold text-gray-900 dark:text-white mb-4 flex items-center space-x-2">
                      <i data-lucide="alert-circle" class="w-6 h-6 text-yellow-500"></i><span>The Core Problem</span>
                  </h3>
                  <div class="highlight-box">
                     <p class="text-base text-gray-700 dark:text-gray-200 leading-relaxed">
-                        The core problem this self-initiated research addresses is the <strong>quantifiable uncertainty</strong> of the hot-insertion process cycle time and the associated risk of <strong>thermal damage</strong> to the polycarbonate component. The fundamental question being answered is: "What is the true, validated time required for the brass insert nut to reach the optimal insertion temperature of $170^\circ\text{C}$ while stacked in the automated feeder?" This required replacing the simplistic, unreliable theoretical estimate with a high-fidelity numerical prediction to ensure process efficiency and structural integrity, without relying on estimated heat transfer coefficients or ignoring the crucial nut-to-nut thermal behavior.
+                        The core problem this self-initiated research addresses is the <strong>quantifiable uncertainty</strong> of the hot-insertion process cycle time and the associated risk of <strong>thermal damage</strong> to the polycarbonate component. The fundamental question being answered is: "What is the true, validated time required for the brass insert nut to reach the optimal insertion temperature of $170\degreeC$ while stacked in the automated feeder?" This required replacing the simplistic, unreliable theoretical estimate with a high-fidelity numerical prediction to ensure process efficiency and structural integrity, without relying on estimated heat transfer coefficients or ignoring the crucial nut-to-nut thermal behavior.
                     </p>
                  </div>
              </section>
 
-            <!-- 3. Study Objective (Updated Text) -->
+            <!-- 3. Study Objective (Corrected Notation) -->
             <section class="content-section">
                  <h3 class="text-xl md:text-2xl font-bold text-gray-900 dark:text-white mb-4 flex items-center space-x-2">
                     <i data-lucide="target" class="w-6 h-6 text-cyan-500"></i><span>Study Objective</span>
                  </h3>
                  <p class="text-base text-gray-700 dark:text-gray-300 leading-relaxed mb-4">
-                    The primary objective of this exploration is to determine the <strong>true, validated time</strong> required for the brass insert nut to reach the optimal insertion temperature ($\mathbf{170^\circ C}$) while stacked in the automated feeder, thereby directly refining the design of the Automatic Hot-Insertion Press.
+                    The primary objective of this exploration is to determine the <strong>true, validated time</strong> required for the brass insert nut to reach the optimal insertion temperature ($\mathbf{170\degreeC}$) while stacked in the automated feeder, thereby directly refining the design of the Automatic Hot-Insertion Press.
                 </p>
                  <h4 class="font-semibold text-lg mb-2">Sub-Objectives:</h4>
                  <ul class="list-disc ml-6 text-base text-gray-700 dark:text-gray-300 space-y-1">
                      <li><strong>Quantify Analytical Flaw:</strong> Mathematically derive the heating curve using the Lumped Capacitance Model (LCM) to establish a theoretical $t_{\text{LCM}}$.</li>
                      <li><strong>Model Real-World Physics:</strong> Develop a high-fidelity Transient Thermal FEA model in ANSYS that explicitly accounts for the <strong>3D geometry</strong> (grooves), the nut stack, and <strong>contact physics</strong> (air gap, radiation), eliminating the uncertainty of the estimated coefficient $h_{\text{eff}}$.</li>
-                     <li><strong>Validate and Optimize:</strong> Compare the numerical heating curve ($\mathbf{t_{\text{ANSYS}}}$) against the theoretical curve ($t_{\text{LCM}}$) to quantify the error and establish the final, validated minimum heating time necessary for production cadence.</li>
+                     <li><strong>Validate and Optimize:</strong> Compare the numerical heating curve ($t_{\text{ANSYS}}$) against the theoretical curve ($t_{\text{LCM}}$) to quantify the error and establish the final, validated minimum heating time necessary for production cadence.</li>
                  </ul>
             </section>
 
-            <!-- 4. The Comparative Analysis -->
+            <!-- 4. The Comparative Analysis (Corrected Notation) -->
             <section class="content-section">
                  <h3 class="text-xl md:text-2xl font-bold text-gray-900 dark:text-white mb-6 flex items-center space-x-2">
                     <i data-lucide="scale" class="w-6 h-6 text-cyan-500"></i><span>Comparative Analysis: Theory vs. Simulation</span>
@@ -176,14 +206,13 @@
                 </div>
             </section>
 
-             <!-- 5. Visual Evidence (Gallery - Updated grid layout) -->
+             <!-- 5. Visual Evidence (Gallery - 2 cols) -->
             <section class="content-section">
                 <h3 class="text-xl md:text-2xl font-bold text-gray-900 dark:text-white mb-6 flex items-center space-x-2">
                     <i data-lucide="image" class="w-6 h-6 text-cyan-500"></i><span>Visual Evidence Gallery</span>
                 </h3>
-                <!-- Changed grid-cols-3 to grid-cols-2 -->
                 <div class="grid grid-cols-2 gap-4 md:gap-6"> 
-                    <!-- Images using exact filenames -->
+                    <!-- Images using exact filenames and corrected extensions -->
                     <img src="3D_model_of_heating_color_and_adapting_cylinder.jpg" alt="" class="gallery-image">
                     <img src="Comparative_Heating_Curves.jpg" alt="" class="gallery-image">
                     <img src="Final_Temperature_Distribution_Nut_Stack.jpg" alt="" class="gallery-image">
@@ -202,7 +231,7 @@
                 </div>
             </section>
 
-             <!-- 6. Quantified Results Summary -->
+             <!-- 6. Quantified Results Summary (Corrected Notation) -->
             <section class="content-section">
                 <h3 class="text-xl md:text-2xl font-bold text-gray-900 dark:text-white mb-6 flex items-center space-x-2">
                     <i data-lucide="table" class="w-6 h-6 text-cyan-500"></i><span>Quantified Results Summary</span>
@@ -219,7 +248,7 @@
                         </thead>
                         <tbody>
                             <tr>
-                                <td class="font-medium">Time to Reach $170^\circ\text{C}$</td>
+                                <td class="font-medium">Time to Reach $170\degreeC$</td>
                                 <td>$4.22\text{ s}$</td>
                                 <td class="font-bold text-xl text-green-600 dark:text-green-400">$\mathbf{3.28\text{ s}}$</td>
                                 <td class="font-medium text-red-600 dark:text-red-400">+28.7% (Overestimated)</td>
@@ -229,7 +258,7 @@
                 </div>
             </section>
 
-             <!-- 7. Engineering Impact & Final Strategy -->
+             <!-- 7. Engineering Impact & Final Strategy (Corrected Notation) -->
             <section class="content-section">
                  <h3 class="text-xl md:text-2xl font-bold text-gray-900 dark:text-white mb-6 flex items-center space-x-2">
                     <i data-lucide="settings-2" class="w-6 h-6 text-cyan-500"></i><span>Engineering Impact & Final Strategy</span>
@@ -242,7 +271,7 @@
                         <li class="flex items-start">
                              <i data-lucide="check-circle" class="w-5 h-5 text-green-600 dark:text-green-400 mr-3 mt-1 flex-shrink-0"></i>
                              <div>
-                                <strong class="text-green-700 dark:text-green-300 block mb-1">Process Cadence Validation:</strong> The target insertion cycle time is between 15 and 30 seconds. The validated heating time required to reach $170^\circ\text{C}$ is only $\mathbf{3.28}$ seconds. Since $\mathbf{3.28\text{ s} \ll 15\text{ s}}$, the heating process is confirmed <strong>not</strong> to be the bottleneck. This allows the control logic (PLC) to abandon a complex "time-based heating" routine.
+                                <strong class="text-green-700 dark:text-green-300 block mb-1">Process Cadence Validation:</strong> The target insertion cycle time is between 15 and 30 seconds. The validated heating time required to reach $170\degreeC$ is only $\mathbf{3.28}$ seconds. Since $\mathbf{3.28\text{ s} \ll 15\text{ s}}$, the heating process is confirmed <strong>not</strong> to be the bottleneck. This allows the control logic (PLC) to abandon a complex "time-based heating" routine.
                              </div>
                         </li>
                          <li class="flex items-start">
@@ -251,7 +280,7 @@
                                 <strong class="text-green-700 dark:text-green-300 block mb-1">Simplified & Reliable Control Strategy:</strong> A simpler, more robust strategy can be implemented:
                                 <ol class="list-decimal ml-5 mt-1 text-sm">
                                     <li><strong>Guaranteed Heating:</strong> The heating element is simply kept ON as long as the machine is operating. The nuts will reach and maintain their equilibrium temperature well before the press is ready for insertion.</li>
-                                    <li><strong>Thermal Damage Control:</strong> Safety shifts entirely to limiting the source temperature ($T_{\infty}$) itself. By setting $T_{\infty} = 180^\circ\text{C}$, we ensure the nut stabilizes just under the critical degradation temperature of the polycarbonate, eliminating the risk of thermal damage through excessive time exposure.</li>
+                                    <li><strong>Thermal Damage Control:</strong> Safety shifts entirely to limiting the source temperature ($T_{\infty}$) itself. By setting $T_{\infty} = 180\degreeC$, we ensure the nut stabilizes just under the critical degradation temperature of the polycarbonate, eliminating the risk of thermal damage through excessive time exposure.</li>
                                 </ol>
                             </div>
                         </li>
@@ -262,7 +291,7 @@
                  </p>
             </section>
             
-            <!-- 8. Recommendations and Future Work -->
+            <!-- 8. Recommendations and Future Work (Corrected Notation) -->
             <section class="content-section">
                  <h3 class="text-xl md:text-2xl font-bold text-gray-900 dark:text-white mb-6 flex items-center space-x-2">
                     <i data-lucide="arrow-right-circle" class="w-6 h-6 text-cyan-500"></i><span>Recommendations and Future Work</span>
