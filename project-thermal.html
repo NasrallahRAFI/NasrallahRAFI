@@ -55,7 +55,10 @@
              object-fit: contain; 
              background-color: #ffffff; 
              aspect-ratio: 16 / 10; 
-             width: 100%;
+             width: 100%; /* Ensure image takes full width in single column */
+             max-width: 600px; /* Optional: Limit max width for very large screens */
+             margin-left: auto; /* Center image within the column */
+             margin-right: auto; /* Center image within the column */
              height: auto;
         }
          .dark .gallery-image {
@@ -206,12 +209,13 @@
                 </div>
             </section>
 
-             <!-- 5. Visual Evidence (Gallery - 2 cols) -->
+             <!-- 5. Visual Evidence (Gallery - Updated to grid-cols-1) -->
             <section class="content-section">
                 <h3 class="text-xl md:text-2xl font-bold text-gray-900 dark:text-white mb-6 flex items-center space-x-2">
                     <i data-lucide="image" class="w-6 h-6 text-cyan-500"></i><span>Visual Evidence Gallery</span>
                 </h3>
-                <div class="grid grid-cols-2 gap-4 md:gap-6"> 
+                <!-- Changed grid-cols-2 to grid-cols-1 -->
+                <div class="grid grid-cols-1 gap-6 md:gap-8"> 
                     <!-- Images using exact filenames and corrected extensions -->
                     <img src="3D_model_of_heating_color_and_adapting_cylinder.jpg" alt="" class="gallery-image">
                     <img src="Comparative_Heating_Curves.jpg" alt="" class="gallery-image">
@@ -227,7 +231,6 @@
                     <img src="Temperature_result_view_1.jpg" alt="" class="gallery-image">
                     <img src="Total_Heat_Flux_View_1.jpg" alt="" class="gallery-image">
                     <img src="Transient_Cooling_of_Insert_Nut_in_Ambient_Air.jpg" alt="" class="gallery-image">
-                    <!-- The last row will have 2 images -->
                 </div>
             </section>
 
