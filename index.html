@@ -4,13 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rafi Nasrallah | Engineering Portfolio</title>
-    <!-- Load Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Link to external style.css -->
+    <link rel="stylesheet" href="style.css"> 
+    <!-- Load Lucide Icons -->
     <script src="https://unpkg.com/lucide@latest"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
-    
-    <!-- LINK TO EXTERNAL STYLESHEET (style.css must be in the same folder) -->
-    <link rel="stylesheet" href="style.css">
     
 </head>
 <body class="bg-gray-100 text-gray-800 transition-colors duration-300">
@@ -141,6 +139,23 @@
                                     <i data-lucide="arrow-up-right" class="w-3 h-3 ml-1"></i>
                                 </a>
                             </div>
+                            <!-- NEW Apprenticeship (RAFI ROBOTIQUE) -->
+                             <div class="timeline-item">
+                                <div class="timeline-dot"></div>
+                                <h4 class="font-bold text-xl text-cyan-600 dark:text-cyan-400">Apprenticeship - RAFI ROBOTIQUE ET MACHINNERIE</h4>
+                                <p class="text-sm font-medium text-gray-500 dark:text-gray-400 mb-2">2020 – 2023 (3 Years)</p>
+                                <p class="text-gray-700 dark:text-gray-300 font-semibold mb-3">Mechanical Repair, CNC Machining, Robotics & Automation</p>
+                                <ul class="list-disc ml-5 mt-2 space-y-1 text-gray-700 dark:text-gray-300 text-sm">
+                                    <li>Performed mechanical repair on Sharmaann Horizontal Boring Machine.</li>
+                                    <li>Contributed to the design and fabrication of 5-Axis Welding Robots.</li>
+                                    <li>Conducted repair of CNC Lathe Machine (Geminis – Longofer).</li>
+                                    <li>Reprogrammed Spring Assembly Machine (Matissar).</li>
+                                </ul>
+                                <a href="apprenticeship-rafi.html" target="_blank" class="mt-3 inline-flex items-center text-xs font-semibold px-3 py-1 bg-cyan-600 text-white rounded-full hover:bg-cyan-700 transition-colors shadow-md">
+                                    View Details 
+                                    <i data-lucide="arrow-up-right" class="w-3 h-3 ml-1"></i>
+                                </a>
+                            </div>
                         </div>
                     </div>
 
@@ -213,34 +228,44 @@
                         </div>
                     </div>
 
-                    <!-- Column 2: Power Electronics & Advanced Analysis -->
+                    <!-- Column 2: Power Electronics & Renewable Energy -->
                     <div>
                         <div class="mb-8">
                             <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-3 flex items-center space-x-2">
-                                <i data-lucide="battery-charging" class="w-6 h-6 text-cyan-500"></i><span>Power Electronics & Renewable Energy</span>
+                                <i data-lucide="battery-charging" class="w-6 h-6 text-cyan-500"></i><span>Power Electronics Projects</span>
                             </h3>
                             <p class="text-sm italic text-gray-500 dark:text-gray-400 mb-2">(Simulation and Implementation)</p>
                             <ul class="list-disc ml-5 text-gray-700 dark:text-gray-300 space-y-2 text-base">
                                 <li><strong>Single-Phase Inverter</strong> – Implemented <strong>PWM control</strong> strategies.</li>
                                 <li><strong>Single-Phase Full-Wave Rectifier</strong>.</li>
                                 <li><strong>Step up converter</strong> design and analysis.</li>
+                            </ul>
+                        </div>
+
+                        <div>
+                            <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-3 flex items-center space-x-2">
+                                <i data-lucide="wind" class="w-6 h-6 text-cyan-500"></i><span>Renewable Energy Projects</span>
+                            </h3>
+                            <ul class="list-disc ml-5 text-gray-700 dark:text-gray-300 space-y-2 text-base">
                                 <li><strong>Single-Phase Micro Wind Turbine</strong> – Comprehensive system modeling and simulation using <strong>MATLAB/Simulink</strong>. Applied <strong>Nonlinear Control (Backstepping)</strong> and Park's Transformation for stabilization of the isolated power system (PMSM, DC Bus, Battery Storage, SPWM Inverter).</li>
                             </ul>
                         </div>
-                         <!-- Advanced Analysis Project -->
-                        <div>
-                            <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-3 flex items-center space-x-2">
-                                <i data-lucide="thermometer" class="w-6 h-6 text-cyan-500"></i><span>Advanced Analysis</span>
+                         <!-- NEW Advanced Analysis Sub-Section -->
+                        <div class="mt-8">
+                             <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-3 flex items-center space-x-2">
+                                 <i data-lucide="thermometer-sun" class="w-6 h-6 text-cyan-500"></i><span>Advanced Analysis & Simulation</span>
                             </h3>
-                            <p class="text-gray-600 dark:text-gray-400 font-medium mb-3">Transient Thermal Analysis for Process Optimization</p>
-                            <ul class="list-disc ml-5 text-sm text-gray-700 dark:text-gray-300 space-y-1">
-                                <li>Comparative Study of Lumped Capacitance Modeling and Finite Element Simulation for Automated Hot Nut Insertion in Polycarbonate Components.</li>
-                                <li class="text-xs italic mt-1">Software: Fusion 360, Inventor, Ansys Mechanical, MATLAB.</li>
+                             <ul class="list-disc ml-5 text-gray-700 dark:text-gray-300 space-y-2 text-base">
+                                 <li>
+                                     <strong>Transient Thermal Analysis for Process Optimization:</strong> Comparative Study (LCM vs. FEA) for Automated Hot Nut Insertion. 
+                                     <p class="text-xs italic text-gray-500 dark:text-gray-400 mt-1">
+                                         Software: ANSYS Mechanical, Fusion 360, MATLAB, Autodesk Inventor.
+                                     </p>
+                                     <a href="project-thermal.html" target="_blank" class="mt-1 inline-flex items-center text-xs font-semibold px-2 py-0.5 bg-cyan-600 text-white rounded-full hover:bg-cyan-700 transition-colors shadow-sm">
+                                         View Study Details <i data-lucide="arrow-up-right" class="w-2.5 h-2.5 ml-1"></i>
+                                     </a>
+                                </li>
                             </ul>
-                            <a href="project-thermal.html" target="_blank" class="mt-3 inline-flex items-center text-xs font-semibold px-3 py-1 bg-cyan-600 text-white rounded-full hover:bg-cyan-700 transition-colors shadow-md">
-                                View Details 
-                                <i data-lucide="arrow-up-right" class="w-3 h-3 ml-1"></i>
-                            </a>
                         </div>
                     </div>
                 </div>
@@ -268,9 +293,11 @@
                             <span class="bg-purple-100 text-purple-800 text-sm font-medium px-3 py-1.5 rounded-full dark:bg-purple-900 dark:text-purple-300">PyTorch</span>
                             <span class="bg-purple-100 text-purple-800 text-sm font-medium px-3 py-1.5 rounded-full dark:bg-purple-900 dark:text-purple-300">Google Colab</span>
                             
-                            <!-- CAD/Mechanical/Other -->
+                            <!-- CAD/Mechanical/Simulation -->
                             <span class="bg-cyan-100 text-cyan-800 text-sm font-medium px-3 py-1.5 rounded-full dark:bg-cyan-900 dark:text-cyan-300">AutoCAD 2D/3D</span>
                             <span class="bg-cyan-100 text-cyan-800 text-sm font-medium px-3 py-1.5 rounded-full dark:bg-cyan-900 dark:text-cyan-300">Autodesk Inventor</span>
+                            <span class="bg-cyan-100 text-cyan-800 text-sm font-medium px-3 py-1.5 rounded-full dark:bg-cyan-900 dark:text-cyan-300">Fusion 360</span>
+                            <span class="bg-cyan-100 text-cyan-800 text-sm font-medium px-3 py-1.5 rounded-full dark:bg-cyan-900 dark:text-cyan-300">ANSYS Mechanical</span>
                             <span class="bg-cyan-100 text-cyan-800 text-sm font-medium px-3 py-1.5 rounded-full dark:bg-cyan-900 dark:text-cyan-300">ProNest</span>
                             <span class="bg-cyan-100 text-cyan-800 text-sm font-medium px-3 py-1.5 rounded-full dark:bg-cyan-900 dark:text-cyan-300">Mach3 CNC</span>
                         </div>
@@ -287,6 +314,46 @@
                             <li class="mt-2"><strong>Machine Learning Fundamentals:</strong> Practical experience with core algorithms (Linear Regression, K-NN) and model evaluation.</li>
                             <li><strong>Deep Learning & Frameworks:</strong> Built Feed-Forward Neural Networks, trained models using PyTorch, and utilized Google Colab environment.</li>
                         </ul>
+                         <!-- Current Development Focus Sub-Section -->
+                        <div class="mt-6 border-t border-gray-200 dark:border-gray-700 pt-4">
+                             <h4 id="dev-focus" class="text-lg font-bold text-cyan-700 dark:text-cyan-300 mb-3 flex items-center space-x-2">
+                                <i data-lucide="lightbulb" class="w-5 h-5"></i><span>Ongoing Projects & Development Focus</span>
+                             </h4>
+                             <div class="space-y-4">
+                                <!-- Project 1: Lean Automation -->
+                                <div class="border-l-4 border-cyan-500 pl-3 py-2 bg-gray-50 dark:bg-gray-700 rounded-r-lg">
+                                    <h5 class="text-base font-bold text-gray-900 dark:text-white mb-1">Lean Optimization of Post-Injection Flow Automation</h5>
+                                    <p class="text-xs text-cyan-600 dark:text-cyan-400 mb-2 italic">
+                                        (Post-Internship Project inspired by SMCV industrial challenges)
+                                    </p>
+                                    <p class="text-xs text-gray-700 dark:text-gray-300 mb-1">
+                                        <strong>Scope:</strong> Applying Lean principles to optimize assembly flow and developing automation logic.
+                                    </p>
+                                    <p class="text-xs text-gray-700 dark:text-gray-300 mb-1">
+                                        <strong>Skills:</strong> Lean Manufacturing, Process Mapping, PLC Logic Optimization.
+                                    </p>
+                                    <p class="text-xs text-gray-700 dark:text-gray-300">
+                                        <strong>Software:</strong> TIA Portal, VSM tools.
+                                    </p>
+                                </div>
+                                <!-- Project 2: Advanced Thermal Simulation -->
+                                <div class="border-l-4 border-cyan-500 pl-3 py-2 bg-gray-50 dark:bg-gray-700 rounded-r-lg">
+                                    <h5 class="text-base font-bold text-gray-900 dark:text-white mb-1">Advanced Thermal Simulation for Hot Insertion</h5>
+                                     <p class="text-xs text-cyan-600 dark:text-cyan-400 mb-2 italic">
+                                        (Post-Internship Project inspired by SMCV thermal constraints)
+                                    </p>
+                                    <p class="text-xs text-gray-700 dark:text-gray-300 mb-1">
+                                         <strong>Scope:</strong> Reinforcing theoretical Lumped Model with FEA for static and transient temperature.
+                                    </p>
+                                    <p class="text-xs text-gray-700 dark:text-gray-300 mb-1">
+                                         <strong>Skills:</strong> FEA, Transient Heat Transfer, Thermal Modeling.
+                                    </p>
+                                    <p class="text-xs text-gray-700 dark:text-gray-300">
+                                         <strong>Software:</strong> Fusion 360 (Static), Ansys Mechanical (Transient).
+                                    </p>
+                                </div>
+                            </div>
+                         </div>
                     </div>
 
                     <!-- Languages Group -->
@@ -305,65 +372,8 @@
                     </div>
                 </div>
             </section>
-
-            <!-- Current Development Focus Section -->
-            <section id="dev-focus">
-                <h2 class="text-3xl font-bold text-gray-900 dark:text-white mb-8 border-b-2 border-cyan-500 pb-2 flex items-center space-x-2">
-                    <i data-lucide="zap" class="w-7 h-7 text-cyan-500"></i><span>Current Projects & Development Focus</span>
-                </h2>
-                <div class="grid md:grid-cols-2 gap-8 p-8 bg-white rounded-xl shadow-lg dark:bg-gray-800 dark:shadow-xl shadow-inner">
-                    
-                    <!-- Project 1: Lean Automation -->
-                    <div class="border-l-4 border-cyan-500 p-4 bg-gray-50 dark:bg-gray-700 rounded-lg">
-                        <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-2">Lean Optimization of Post-Injection Flow Automation</h3>
-                        <p class="text-xs text-cyan-600 dark:text-cyan-400 mb-3 italic">
-                            (Post-Internship Project inspired by SMCV industrial challenges)
-                        </p>
-                        <hr class="border-gray-300 dark:border-gray-600 mb-3">
-                        <div class="space-y-3">
-                            <p class="text-sm text-gray-700 dark:text-gray-300">
-                                <strong>Project Scope:</strong> Applying Lean Manufacturing principles (VSM) to optimize the manual post-injection assembly flow and developing automation logic to implement the new efficient process.
-                            </p>
-                            <div class="flex items-center space-x-2">
-                                <i data-lucide="atom" class="w-5 h-5 text-cyan-500"></i>
-                                <span class="font-semibold text-sm">Skills Focused:</span>
-                                <span class="text-xs text-gray-700 dark:text-gray-300">Lean Manufacturing, Process Mapping, PLC Logic Optimization.</span>
-                            </div>
-                            <div class="flex items-center space-x-2">
-                                <i data-lucide="code" class="w-5 h-5 text-cyan-500"></i>
-                                <span class="font-semibold text-sm">Software Focused:</span>
-                                <span class="text-xs text-gray-700 dark:text-gray-300">TIA Portal, Value Stream Mapping tools.</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Project 2: Advanced Thermal Simulation -->
-                    <div class="border-l-4 border-cyan-500 p-4 bg-gray-50 dark:bg-gray-700 rounded-lg">
-                        <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-2">Advanced Thermal Simulation for Hot Insertion Process</h3>
-                        <p class="text-xs text-cyan-600 dark:text-cyan-400 mb-3 italic">
-                            (Post-Internship Project inspired by SMCV thermal constraints)
-                        </p>
-                        <hr class="border-gray-300 dark:border-gray-600 mb-3">
-                        <div class="space-y-3">
-                            <p class="text-sm text-gray-700 dark:text-gray-300">
-                                <strong>Project Scope:</strong> Reinforcing theoretical Lumped Model calculations for the inserted nut by performing static and transient temperature simulations in advanced FEA environments.
-                            </p>
-                            <div class="flex items-center space-x-2">
-                                <i data-lucide="atom" class="w-5 h-5 text-cyan-500"></i>
-                                <span class="font-semibold text-sm">Skills Focused:</span>
-                                <span class="text-xs text-gray-700 dark:text-gray-300">Finite Element Analysis (FEA), Transient Heat Transfer, Thermal Modeling.</span>
-                            </div>
-                            <div class="flex items-center space-x-2">
-                                <i data-lucide="code" class="w-5 h-5 text-cyan-500"></i>
-                                <span class="font-semibold text-sm">Software Focused:</span>
-                                <span class="text-xs text-gray-700 dark:text-gray-300">Fusion 360 (Static Sim), Ansys Mechanical (Transient Sim).</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
             
-            <!-- Center of Interest Section (MOVED to last position) -->
+            <!-- Center of Interest Section -->
             <section id="interest" class="bg-white p-8 rounded-xl shadow-lg dark:bg-gray-800 dark:shadow-xl shadow-inner">
                 <h2 class="text-3xl font-bold text-gray-900 dark:text-white mb-6 border-b-2 border-cyan-500 pb-2 flex items-center space-x-2">
                     <i data-lucide="heart" class="w-7 h-7 text-red-500"></i><span>Center of Interest</span>
@@ -431,7 +441,7 @@
                 html.classList.add('dark');
                 localStorage.theme = 'dark';
             }
-            // Re-render icons after mode change to ensure the correct one is visible
+            // Re-render icons after mode change
             lucide.createIcons();
         });
 
@@ -443,7 +453,7 @@
             mobileMenu.classList.toggle('hidden');
         });
 
-        // 3. Close mobile menu on link click (for smooth scrolling)
+        // 3. Close mobile menu on link click
         document.querySelectorAll('#mobile-menu a').forEach(link => {
             link.addEventListener('click', () => {
                 mobileMenu.classList.add('hidden');
@@ -453,3 +463,4 @@
     </script>
 </body>
 </html>
+
