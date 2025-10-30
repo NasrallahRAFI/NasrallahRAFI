@@ -4,105 +4,23 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rafi Nasrallah | Engineering Portfolio</title>
+    
     <!-- Load Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
+    
     <!-- Load Lucide Icons -->
     <script src="https://unpkg.com/lucide@latest"></script>
+    
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
     
-    <!-- EMBEDDED STYLES -->
-    <style>
-        :root {
-            --primary-color: #06b6d4; /* Tailwind Cyan 600 */
-            --accent-color: #22d3ee; /* Tailwind Cyan 400 */
-        }
-        body {
-            font-family: 'Inter', sans-serif;
-            transition: background-color 0.3s, color 0.3s;
-        }
-        html { scroll-behavior: smooth; }
-        ::-webkit-scrollbar { width: 8px; }
-        ::-webkit-scrollbar-thumb { background-color: var(--primary-color); border-radius: 4px; }
-        
-        .project-card, .skill-group {
-            transition: transform 0.2s ease-out, box-shadow 0.2s ease-out;
-        }
-        .project-card:hover, .skill-group:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 8px 16px rgba(6, 182, 212, 0.2); 
-        }
-        
-        /* Dark mode styles (optimized colors) */
-        .dark .bg-slate-100 { background-color: #0f172a !important; } /* Use Slate for dark bg */
-        .dark .text-slate-800 { color: #f1f5f9 !important; }
-        .dark .bg-white { background-color: #1e293b !important; } 
-        .dark .border-slate-200 { border-color: #334155 !important; }
-        .dark .shadow-lg { box-shadow: 0 10px 15px rgba(0, 0, 0, 0.4); }
-        .dark .text-slate-600 { color: #94a3b8 !important; }
-        .dark .text-slate-700 { color: #cbd5e1 !important; }
-        .dark .text-slate-900 { color: #f8fafc !important; }
-        .dark .bg-slate-50 { background-color: #334155 !important; } 
-
-        /* Timeline styling */
-        .timeline-item { position: relative; }
-        .timeline-item::before {
-            content: '';
-            position: absolute;
-            left: -20px; 
-            top: 4px; /* Align with dot center */
-            bottom: -4px; /* Extend slightly below last item */
-            width: 2px;
-            background-color: var(--primary-color);
-            z-index: 5;
-        }
-        /* Style last item's line */
-         .timeline-item:last-child::before {
-             bottom: calc(100% - 14px); /* Stop line at the dot */
-         }
-
-        .timeline-dot {
-            position: absolute;
-            left: -24px; 
-            top: 4px;
-            width: 10px;
-            height: 10px;
-            border-radius: 50%;
-            background-color: var(--primary-color);
-            z-index: 10;
-            border: 2px solid #fff; /* Adjusted border */
-        }
-        .dark .timeline-dot { border-color: #1e293b; }
-        
-        @media (min-width: 640px) {
-            .timeline-item::before { left: -28px; }
-            .timeline-dot { left: -32px; }
-        }
-
-        /* Simplified Background Animation Keyframes */
-        @keyframes subtleGradientShift {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
-
-        /* Apply simplified animation to Hero */
-        .animated-hero-background {
-            background: linear-gradient(-45deg, #e0f2f7, #ffffff, #cffafe, #a5f3fc); /* Light mode gradient */
-            background-size: 300% 300%;
-            animation: subtleGradientShift 25s ease infinite; /* Slower, smoother cycle */
-        }
-        .dark .animated-hero-background {
-            background: linear-gradient(-45deg, #1e293b, #0f172a, #1e3a8a, #0f172a); /* Dark mode gradient */
-            background-size: 300% 300%;
-            animation: subtleGradientShift 25s ease infinite;
-        }
-
-    </style>
+    <!-- Link to the main external style.css -->
+    <link rel="stylesheet" href="style.css"> 
+    
 </head>
 <body class="bg-slate-100 text-slate-800 transition-colors duration-300">
 
     <!-- Header & Navigation -->
-    <header class="sticky top-0 z-50 bg-white/80 backdrop-blur-md shadow-sm dark:bg-slate-900/80 dark:shadow-lg transition-colors duration-300">
+    <header class="sticky top-0 z-50 bg-white/90 backdrop-blur-md shadow-sm dark:bg-slate-900/90 dark:shadow-lg transition-colors duration-300">
         <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
             <!-- Logo/Name -->
             <a href="#hero" class="text-2xl font-bold text-slate-900 dark:text-white hover:text-cyan-600 dark:hover:text-cyan-400 transition-colors">
@@ -147,8 +65,8 @@
     <main class="container mx-auto px-4 sm:px-6 lg:px-8 py-10 md:py-16">
 
         <!-- Hero Section -->
-        <section id="hero" class="py-16 md:py-24 text-center rounded-xl shadow-lg overflow-hidden animated-hero-background relative">
-             <!-- Removed complex ::after overlay for simplicity -->
+        <section id="hero" class="py-16 md:py-24 text-center rounded-xl shadow-xl overflow-hidden animated-hero-background relative">
+            <div class="hero-overlay-flow"></div> <!-- ::after pseudo-element target -->
             <div class="max-w-4xl mx-auto relative z-10 px-4">
                 <!-- Profile Image -->
                 <div class="mx-auto w-32 h-32 md:w-36 md:h-36 rounded-full mb-6 overflow-hidden border-4 border-cyan-500 shadow-xl bg-white dark:bg-slate-800">
@@ -217,10 +135,10 @@
                                 <p class="text-sm sm:text-base text-slate-700 dark:text-slate-300 font-semibold">Power System Protection Dept.</p>
                                 <p class="text-xs italic text-slate-500 dark:text-slate-400 mb-2">Tools: OMICRON Test Universe, SIPROTEC</p>
                                 <ul class="list-disc ml-5 space-y-1 text-slate-700 dark:text-slate-300 text-xs sm:text-sm">
-                                    <li>Analyzed Siemens protection relays in operation.</li>
-                                    <li>Developed testing protocols.</li>
-                                    <li>Executed protocol verification & validation.</li>
-                                    <li>Developed technical documentation.</li>
+                                    <li><strong>Conducted operational analysis</strong> of installed Siemens protection relays.</li>
+                                    <li><strong>Developed a comprehensive testing protocol</strong> for system verification.</li>
+                                    <li><strong>Executed verification and validation procedures</strong> for the testing protocol.</li>
+                                    <li><strong>Developed and finalized comprehensive technical documentation</strong> for compliance records.</li>
                                 </ul>
                                 <a href="internship-onee.html" target="_blank" class="mt-2.5 inline-flex items-center text-xs font-semibold px-3 py-1 bg-cyan-600 text-white rounded-full hover:bg-cyan-700 transition-colors shadow-sm">
                                     View Details <i data-lucide="arrow-up-right" class="w-3 h-3 ml-1"></i>
@@ -285,6 +203,7 @@
                 </h2>
 
                 <div class="grid md:grid-cols-2 gap-8 p-6 md:p-8 bg-white rounded-xl shadow-md dark:bg-slate-800 dark:shadow-lg">
+                    
                     <!-- Column 1 -->
                     <div class="space-y-6">
                         <div>
@@ -304,6 +223,22 @@
                                 <li><strong>Arduino L-C Meter:</strong> Simulation & construction.</li>
                                 <li><strong>Arduino Weather Station:</strong> Development & programming.</li>
                                 <li><strong>Remote Solar Pump Control:</strong> IoT & Cloud monitoring.</li>
+                            </ul>
+                        </div>
+                        <div class="pt-4 border-t border-slate-200 dark:border-slate-700">
+                             <h3 class="text-lg md:text-xl font-bold text-slate-900 dark:text-white mb-2 flex items-center space-x-2">
+                                 <i data-lucide="thermometer-sun" class="w-5 h-5 text-cyan-500"></i><span>Advanced Analysis</span>
+                            </h3>
+                             <ul class="list-disc ml-5 text-slate-700 dark:text-slate-300 space-y-1 text-sm md:text-base">
+                                 <li>
+                                     <strong>Transient Thermal Analysis:</strong> Comparative Study (LCM vs. FEA) for Hot Nut Insertion. 
+                                     <p class="text-xs italic text-slate-500 dark:text-slate-400 mt-1">
+                                         Tools: ANSYS, Fusion 360, MATLAB, Inventor.
+                                     </p>
+                                     <a href="project-thermal.html" target="_blank" class="mt-1 inline-flex items-center text-xs font-semibold px-2 py-0.5 bg-cyan-600 text-white rounded-full hover:bg-cyan-700 transition-colors shadow-sm">
+                                         View Study <i data-lucide="arrow-up-right" class="w-2.5 h-2.5 ml-1"></i>
+                                     </a>
+                                </li>
                             </ul>
                         </div>
                     </div>
@@ -330,15 +265,15 @@
                         </div>
                         <div class="pt-4 border-t border-slate-200 dark:border-slate-700">
                              <h3 class="text-lg md:text-xl font-bold text-slate-900 dark:text-white mb-2 flex items-center space-x-2">
-                                 <i data-lucide="thermometer-sun" class="w-5 h-5 text-cyan-500"></i><span>Advanced Analysis</span>
+                                 <i data-lucide="satellite" class="w-5 h-5 text-cyan-500"></i><span>Advanced Control & Systems</span>
                             </h3>
                              <ul class="list-disc ml-5 text-slate-700 dark:text-slate-300 space-y-1 text-sm md:text-base">
                                  <li>
-                                     <strong>Transient Thermal Analysis:</strong> Comparative Study (LCM vs. FEA) for Hot Nut Insertion. 
+                                     <strong>Luenberger-Based Rendezvous Control:</strong> Autopilot design (Observer + Controller) for orbital rendezvous using only angle data.
                                      <p class="text-xs italic text-slate-500 dark:text-slate-400 mt-1">
-                                         Tools: ANSYS, Fusion 360, MATLAB, Inventor.
+                                         Tools: MATLAB/Simulink, State-Space, Luenberger Observer.
                                      </p>
-                                     <a href="project-thermal.html" target="_blank" class="mt-1 inline-flex items-center text-xs font-semibold px-2 py-0.5 bg-cyan-600 text-white rounded-full hover:bg-cyan-700 transition-colors shadow-sm">
+                                     <a href="project-rendezvous.html" target="_blank" class="mt-1 inline-flex items-center text-xs font-semibold px-2 py-0.5 bg-cyan-600 text-white rounded-full hover:bg-cyan-700 transition-colors shadow-sm">
                                          View Study <i data-lucide="arrow-up-right" class="w-2.5 h-2.5 ml-1"></i>
                                      </a>
                                 </li>
@@ -406,7 +341,8 @@
                  <h2 class="text-2xl md:text-3xl font-bold text-slate-900 dark:text-white mb-5 border-b-2 border-cyan-500 pb-2 flex items-center space-x-2">
                      <i data-lucide="lightbulb" class="w-6 h-6 md:w-7 md:h-7 text-cyan-500"></i><span>Ongoing Projects & Development Focus</span>
                  </h2>
-                 <div class="grid md:grid-cols-2 gap-6">
+                 <div class="grid md:grid-cols-1 lg:grid-cols-2 gap-6">
+                     
                      <!-- Project 1: Lean Automation -->
                     <div class="border-l-4 border-cyan-500 pl-4 py-3 bg-slate-50 dark:bg-slate-700 rounded-r-md">
                         <h4 class="text-base font-semibold text-slate-900 dark:text-white mb-1">Lean Optimization of Post-Injection Flow</h4>
@@ -414,13 +350,23 @@
                         <p class="text-xs text-slate-700 dark:text-slate-300 mb-1"><strong>Scope:</strong> Applying Lean principles (VSM) & developing automation logic.</p>
                         <p class="text-xs text-slate-600 dark:text-slate-400"><strong>Skills:</strong> Lean Mfg, Process Mapping, PLC Logic Opt. | <strong>Tools:</strong> TIA Portal, VSM</p>
                     </div>
-                     <!-- Project 2: Advanced Thermal Simulation -->
+
+                    <!-- Project 2: 6-DOF Rendezvous -->
                     <div class="border-l-4 border-cyan-500 pl-4 py-3 bg-slate-50 dark:bg-slate-700 rounded-r-md">
-                        <h4 class="text-base font-semibold text-slate-900 dark:text-white mb-1">Advanced Thermal Simulation for Hot Insertion</h4>
-                        <p class="text-xs text-cyan-600 dark:text-cyan-400 mb-2 italic">(Inspired by SMCV Internship)</p>
-                        <p class="text-xs text-slate-700 dark:text-slate-300 mb-1"><strong>Scope:</strong> Reinforcing Lumped Model with FEA (Static & Transient).</p>
-                        <p class="text-xs text-slate-600 dark:text-slate-400"><strong>Skills:</strong> FEA, Transient Heat Transfer, Modeling | <strong>Tools:</strong> Fusion 360, Ansys Mech.</p>
+                        <h4 class="text-base font-semibold text-slate-900 dark:text-white mb-1">6-DOF Non-Linear Rendezvous Control (GNC)</h4>
+                        <p class="text-xs text-cyan-600 dark:text-cyan-400 mb-2 italic">(Self-initiated study based on Luenberger Control project)</p>
+                        <p class="text-xs text-slate-700 dark:text-slate-300 mb-1"><strong>Scope:</strong> Extend 2D linear model to full 6-DOF non-linear dynamics (13-state vector).</p>
+                        <p class="text-xs text-slate-600 dark:text-slate-400"><strong>Skills:</strong> Non-Linear Dynamics, EKF/UKF, Sensor Fusion, 6-DOF Control. | <strong>Tools:</strong> MATLAB/Simulink</p>
                     </div>
+
+                    <!-- Project 3: Thermomechanical -->
+                    <div class="border-l-4 border-cyan-500 pl-4 py-3 bg-slate-50 dark:bg-slate-700 rounded-r-md lg:col-span-2">
+                        <h4 class="text-base font-semibold text-slate-900 dark:text-white mb-1">Thermomechanical Simulation & DOE for Hot Insertion</h4>
+                        <p class="text-xs text-cyan-600 dark:text-cyan-400 mb-2 italic">(Self-initiated study based on SMCV Internship)</p>
+                        <p class="text-xs text-slate-700 dark:text-slate-300 mb-1"><strong>Scope:</strong> Find optimal insertion conditions (Nut Temp, Force, Hole Diameter) using Design of Experiments (DOE).</p>
+                        <p class="text-xs text-slate-600 dark:text-slate-400"><strong>Skills:</strong> Coupled-Field FEA, Viscoplasticity, Non-Linear Contact, DOE. | <strong>Tools:</strong> ANSYS Mechanical</p>
+                    </div>
+
                 </div>
              </section>
             
@@ -479,13 +425,15 @@
         function applyTheme(isDark) {
             if (isDark) {
                 html.classList.add('dark');
-                body.classList.remove('bg-gray-100', 'text-gray-800'); // Use generic Tailwind names
-                body.classList.add('bg-slate-100', 'text-slate-800'); // Use specific names for consistency
+                // Remove light mode classes and add dark mode classes
+                body.classList.remove('bg-gray-100', 'text-gray-800');
+                body.classList.add('bg-slate-100', 'text-slate-800'); // Note: These are Tailwind class names, not direct styles
                 localStorage.theme = 'dark';
             } else {
                 html.classList.remove('dark');
+                // Remove dark mode classes and add light mode classes
                  body.classList.remove('bg-slate-100', 'text-slate-800');
-                 body.classList.add('bg-gray-100', 'text-gray-800'); // Back to original light
+                 body.classList.add('bg-gray-100', 'text-gray-800'); // Original light theme
                 localStorage.theme = 'light';
             }
              lucide.createIcons(); // Re-render icons after mode change
