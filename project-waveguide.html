@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Waveguide TE10 Mode Analysis | Rafi Nasrallah</title>
+    
+    <!-- Load Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Load Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    
+    <!-- Load MathJax for LaTeX Rendering -->
+    <script>
+        MathJax = {
+          tex: {
+            inlineMath: [['$', '$'], ['\\(', '\\)']],
+            displayMath: [['$$', '$$'], ['\\[', '\\]']],
+            processEscapes: true,
+            tags: 'ams',
+            macros: {
+                 epsr: "{\\epsilon_r}",
+                 fc: "{f_c}",
+                 Zte: "{Z_{\\text{TE}}}"
+            }
+          },
+          svg: {
+            fontCache: 'global'
+          }
+        };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display.swap" rel="stylesheet">
+    
+    <!-- Link to the main external style.css -->
+    <link rel="stylesheet" href="style.css"> 
+    
+    <style>
+        /* Specific styles for this page */
+        body { font-family: 'Inter', sans-serif; line-height: 1.6; }
+
+        .content-section {
+             padding-top: 1.5rem;
+             padding-bottom: 1.5rem;
+             border-bottom: 1px solid #e5e7eb; /* slate-200 */
+        }
+        .content-section:last-child { border-bottom: none; }
+
+        /* Gallery Image Style */
+        .gallery-image {
+             border-radius: 0.5rem; 
+             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05); 
+             border: 1px solid #e5e7eb; 
+             object-fit: contain; /* Use contain for graphs/plots */
+             background-color: #ffffff; 
+             aspect-ratio: 16 / 10; 
+             width: 100%;
+             height: auto;
+             padding: 0.5rem; /* Add padding for graphs */
+        }
+         
+        /* Milestone Styling */
+        .milestone-card {
+            border: 1px solid #e5e7eb;
+            background-color: #fafafa;
+            border-radius: 0.5rem;
+            padding: 1rem;
+            transition: all 0.2s ease-in-out;
+        }
+        .milestone-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+        }
+    </style>
+</head>
+<body class="bg-slate-100 text-slate-800">
+
+    <!-- Header -->
+    <header class="sticky top-0 z-50 bg-white/90 backdrop-blur-md shadow-sm">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-3 flex justify-between items-center">
+            <h1 class="text-base sm:text-lg md:text-xl font-semibold text-slate-800 truncate">
+                HFSS Waveguide Analysis
+            </h1> 
+            <a href="index.html#projects" class="inline-flex items-center text-cyan-600 hover:text-cyan-700 font-medium transition-colors text-xs sm:text-sm whitespace-nowrap">
+                <i data-lucide="arrow-left" class="w-4 h-4 mr-1"></i> Back to Portfolio
+            </a>
+        </div>
+    </header>
+
+    <main class="container mx-auto px-4 sm:px-6 lg:px-8 py-10 md:py-16">
+        <article class="max-w-4xl mx-auto bg-white p-6 md:p-10 rounded-lg shadow-xl">
+
+            <!-- 1. Title, Date, Report -->
+            <section class="content-section text-center pb-6">
+                 <span class="text-xs font-semibold text-white bg-cyan-600 px-3 py-1 rounded-full uppercase tracking-wider mb-4 inline-block">
+                     High-Frequency (RF) Simulation
+                 </span>
+                <h2 class="text-2xl md:text-4xl font-extrabold text-slate-900 mb-3 leading-tight">
+                    ANALYSIS OF TE10 MODE PROPAGATION IN AN AIR-FILLED VS. A DIELECTRICALLY-FILLED (ALUMINA) RECTANGULAR WAVEGUIDE
+                </h2>
+                 <p class="text-base font-medium text-slate-500">
+                     Project Completion Date: November 9, 2025
+                 </p>
+                 <!-- UPDATED PDF FILENAME -->
+                 <a href="ANALYSIS_OF_TE10_MODE_PROPAGATION.pdf" target="_blank" class="mt-5 inline-flex items-center font-semibold px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors shadow-md text-sm">
+                    <i data-lucide="file-text" class="w-4 h-4 mr-2"></i> Download Full Report (PDF)
+                </a>
+            </section>
+
+            <!-- 2. Skills, Software, Domain -->
+             <section class="content-section">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-center md:text-left">
+                    <div>
+                        <h4 class="font-semibold text-cyan-600">Domain</h4>
+                        <p class="text-sm text-slate-700">High-Frequency (RF) Engineering, Microwave Theory, Electromagnetics</p>
+                    </div>
+                     <div>
+                        <h4 class="font-semibold text-cyan-600">Skills Implemented</h4>
+                        <p class="text-sm text-slate-700">HFSS Simulation, 3D EM Modeling, S-Parameter Analysis, Cutoff Frequency Calculation, E-Field Visualization</p>
+                    </div>
+                     <div>
+                        <h4 class="font-semibold text-cyan-600">Software Used</h4>
+                        <p class="text-sm text-slate-700">ANSYS Electronics (HFSS)</p>
+                    </div>
+                </div>
+             </section>
+
+            <!-- 3. Objective -->
+            <section class="content-section">
+                 <h3 class="text-xl md:text-2xl font-bold text-slate-900 mb-4 flex items-center space-x-2">
+                     <i data-lucide="target" class="w-6 h-6 text-cyan-500"></i><span>Objective</span>
+                 </h3>
+                 <p class="text-base text-slate-700 leading-relaxed">
+                    The goal was to conduct a quantitative comparison of $TE_{10}$ mode propagation in a standard WR-90 waveguide vs. one 100% filled with 96% Alumina. This analysis, performed using the Ansys HFSS solver, aimed to validate electromagnetic theory and quantify the trade-offs of dielectric loading for RF applications.
+                 </p>
+            </section>
+            
+            <!-- 4. Milestones -->
+            <section class="content-section">
+                 <h3 class="text-xl md:text-2xl font-bold text-slate-900 mb-6 flex items-center space-x-2">
+                     <i data-lucide="check-check" class="w-6 h-6 text-cyan-500"></i><span>Project Milestones</span>
+                 </h3>
+                <ul class="list-decimal ml-5 text-slate-700 space-y-2 text-base">
+                    <li>Modeled and validated both air-filled and alumina-filled configurations against their theoretical formulas.</li>
+                    <li>Determined and compared the $TE_{10}$ cutoff frequency for each guide.</li>
+                    <li>Visualized and analyzed the E-field and H-field concentration differences.</li>
+                    <li>Compared the guided wavelength at 10 GHz.</li>
+                    <li>Quantified the insertion loss (attenuation) from the alumina's loss tangent.</li>
+                </ul>
+            </section>
+
+            <!-- 5. Results (Gallery) -->
+            <section class="content-section">
+                <h3 class="text-xl md:text-2xl font-bold text-slate-900 mb-6 flex items-center space-x-2">
+                    <i data-lucide="image" class="w-6 h-6 text-cyan-500"></i><span>Results (Simulation Gallery)</span>
+                </h3>
+                
+                <!-- UPDATED: Restructured gallery with new filenames and no figcaptions -->
+                <div class="space-y-8">
+                    
+                    <!-- Theme 1: Air-Filled Results -->
+                    <div>
+                        <h4 class="text-lg font-semibold text-slate-800 mb-4 border-b border-slate-200 pb-2">Air-Filled Waveguide Results</h4>
+                        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                            <img src="S_parameter_plot_Air.jpg" alt="S-Parameter Plot for Air-Filled Waveguide" class="gallery-image">
+                            <img src="Vector_Pointing_Air.jpg" alt="Poynting Vector for Air-Filled Waveguide" class="gallery-image">
+                            <img src="Air_E_Mag_Animation.gif" alt="E-Field Magnitude Animation - Air" class="gallery-image bg-slate-100">
+                            <img src="Air_E_Vector_Animation.gif" alt="E-Field Vector Animation - Air" class="gallery-image bg-slate-100">
+                            <img src="Air_H_Mag_Animation_SideView.gif" alt="H-Field Magnitude Animation Side View - Air" class="gallery-image bg-slate-100">
+                            <img src="Air_H_Mag_Animation_TopView.gif" alt="H-Field Magnitude Animation Top View - Air" class="gallery-image bg-slate-100">
+                            <img src="Air_H_Vector_Animation.gif" alt="H-Field Vector Animation - Air" class="gallery-image bg-slate-100">
+                            <img src="Air_Jsurf_Mag_Animation.gif" alt="Surface Current Animation - Air" class="gallery-image bg-slate-100">
+                        </div>
+                    </div>
+
+                    <!-- Theme 2: Alumina-Filled Results -->
+                    <div>
+                        <h4 class="text-lg font-semibold text-slate-800 mb-4 border-b border-slate-200 pb-2">Dielectrically-Filled (Alumina) Waveguide Results</h4>
+                        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                            <img src="S_Parameter_Plot_Alumina.jpg" alt="S-Parameter Plot for Alumina-Filled Waveguide" class="gallery-image">
+                            <img src="S_Parameter_Plot_2_Alumina.jpg" alt="S-Parameter Plot 2 for Alumina-Filled Waveguide" class="gallery-image">
+                            <img src="Vector_Pointing_Alumina.jpg" alt="Poynting Vector for Alumina-Filled Waveguide" class="gallery-image">
+                            <img src="Alumina_E_Mag_Animation.gif" alt="E-Field Magnitude Animation - Alumina" class="gallery-image bg-slate-100">
+                            <img src="Alumina_E_Vector_Animation.gif" alt="E-Field Vector Animation - Alumina" class="gallery-image bg-slate-100">
+                            <img src="Alumina_H_Mag_Animation.gif" alt="H-Field Magnitude Animation - Alumina" class="gallery-image bg-slate-100">
+                            <img src="Alumina_H_Vector_Animation.gif" alt="H-Field Vector Animation - Alumina" class="gallery-image bg-slate-100">
+                            <img src="Alumina_J_Surface_Mag_Animation.gif" alt="Surface Current Animation - Alumina" class="gallery-image bg-slate-100">
+                            <img src="Alumina_J_vol_Mag_Animation.gif" alt="Volume Current Animation - Alumina" class="gallery-image bg-slate-100">
+                            <img src="Alumina_J_vol_top_view_Mag_Animation.gif" alt="Volume Current Top View Animation - Alumina" class="gallery-image bg-slate-100">
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 6. Conclusion -->
+            <section class="content-section">
+                 <h3 class="text-xl md:text-2xl font-bold text-slate-900 mb-4 flex items-center space-x-2">
+                     <i data-lucide="award" class="w-6 h-6 text-cyan-500"></i><span>Conclusion</span>
+                 </h3>
+                 <p class="text-base text-slate-700 leading-relaxed mb-4">
+                    This study successfully met all project milestones. The key findings, which directly answer the objectives, are:
+                 </p>
+                 <ol class="list-decimal ml-5 text-slate-700 space-y-2 text-sm">
+                    <li>
+                        <strong>Cutoff Frequency (Milestone 2):</strong> The alumina drastically lowered the cutoff frequency
+                        from 6.56 GHz to a value which aligns with the theoretical prediction of 2.19 GHz.
+                    </li>
+                    <li>
+                        <strong>Field Concentration (Milestone 3):</strong> The E-field and H-field visualizations
+                        confirmed that the fields were highly concentrated within the high-permittivity alumina,
+                        resulting in higher field magnitudes for the same 1W input power.
+                    </li>
+                    <li>
+                        <strong>Guided Wavelength (Milestone 4):</strong> The high permittivity "compressed" the guided
+                        wavelength.
+                    </li>
+                     <li>
+                        <strong>Insertion Loss (Milestone 5):</strong> The alumina's non-zero loss tangent introduced
+                        measurable, frequency-dependent attenuation. This dielectric loss was clearly
+                        quantified, showing a loss of ~0.26 dB to ~0.72 dB, which was
+                        absent in the ideal air model.
+                    </li>
+                 </ol>
+            </section>
+
+             <!-- 7. Future Work -->
+            <section class="content-section">
+                 <h3 class="text-xl md:text-2xl font-bold text-slate-900 mb-4 flex items-center space-x-2">
+                     <i data-lucide="git-branch-plus" class="w-6 h-6 text-cyan-500"></i><span>Future Work</span>
+                 </h3>
+                 <p class="text-base text-slate-700 leading-relaxed">
+                    This study established a strong baseline for the two extreme cases (0% and 100% dielectric fill).
+                    A logical and valuable next step would be to investigate the original objective of a **partially-filled
+                    waveguide**. Such a study would involve simulating the guide with a dielectric slab of varying
+                    thickness or position. The goal would be to analyze the trade-offs and find a potential "sweet spot"
+                    that achieves significant miniaturization and wavelength compression while minimizing the
+                    insertion loss introduced by the dielectric.
+                 </p>
+            </section>
+
+            <!-- Final Navigation -->
+            <section class="text-center pt-6">
+                <a href="index.html#projects" class="inline-flex items-center font-semibold text-cyan-600 hover:text-cyan-700 transition-colors">
+                    <i data-lucide="arrow-left" class="w-4 h-4 mr-2"></i> Return to Main Portfolio
+                </a>
+            </section>
+
+        </article>
+    </main>
+
+    <!-- Script to initialize Lucide icons -->
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+</html>
