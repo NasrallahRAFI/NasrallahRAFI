@@ -4,24 +4,37 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rafi Nasrallah | Engineering Portfolio</title>
-    
     <!-- Load Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-    
     <!-- Load Lucide Icons -->
     <script src="https://unpkg.com/lucide@latest"></script>
-    
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
     
-    <!-- Embedded Styles for Single-File Sleek Light Mode -->
+    <!-- ADDED: MathJax for LaTeX Rendering -->
+    <script>
+        MathJax = {
+          tex: {
+            inlineMath: [['$', '$'], ['\\(', '\\)']],
+            displayMath: [['$$', '$$'], ['\\[', '\\]']],
+            processEscapes: true
+          },
+          svg: {
+            fontCache: 'global'
+          }
+        };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+
     <style>
+        /* All styles are embedded here for a single-file deployment.
+           No external style.css is needed for this file.
+        */
         :root {
             --primary-color: #06b6d4; /* Tailwind Cyan 600 */
             --accent-color: #22d3ee; /* Tailwind Cyan 400 */
         }
         body {
             font-family: 'Inter', sans-serif;
-            transition: background-color 0.3s, color 0.3s;
             background-color: #f1f5f9; /* slate-100 */
             color: #1e293b; /* slate-800 */
         }
@@ -32,11 +45,11 @@
         .project-card, .skill-group {
             transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
-        .project-card:hover {
+        .project-card:hover, .skill-group:hover {
             transform: translateY(-4px);
             box-shadow: 0 8px 12px rgba(6, 182, 212, 0.4); 
         }
-        
+
         /* Timeline styling */
         .timeline-item { position: relative; }
         .timeline-item::before {
@@ -58,7 +71,7 @@
             border-radius: 50%;
             background-color: var(--primary-color);
             z-index: 10;
-            border: 3px solid #ffffff; /* Use light bg color */
+            border: 3px solid #fff; /* Light mode border */
         }
         
         @media (min-width: 640px) {
@@ -66,27 +79,54 @@
             .timeline-dot { left: -32px; }
         }
 
-        /* --- Simplified Hero Animation (Light Mode Only) --- */
+        /* --- KEYFRAME ANIMATIONS --- */
         @keyframes pulseShift {
-            0%, 100% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
+            0%, 100% { background-position: 0% 50%; filter: brightness(1.0); }
+            33% { background-position: 100% 50%; filter: brightness(1.05); } 
+            66% { background-position: 0% 50%; filter: brightness(0.95); } 
         }
         
+        @keyframes subtleFlow {
+            0% { transform: translate(0%, 0%) scale(1.0); }
+            25% { transform: translate(5%, -5%) scale(1.05); }
+            50% { transform: translate(0%, 0%) scale(1.1); }
+            75% { transform: translate(-5%, 5%) scale(1.05); }
+            100% { transform: translate(0%, 0%) scale(1.0); }
+        }
+
+        /* --- HERO SECTION STYLING --- */
         .animated-hero-background {
-            background-image: linear-gradient(-45deg, #e0f7fa, #ffffff, #f0fdfa, #ffffff);
-            background-size: 200% 200%;
-            animation: pulseShift 30s ease-in-out infinite;
+            position: relative;
+            overflow: hidden;
+            z-index: 1; 
+            animation: pulseShift 45s ease-in-out infinite;
+            background-size: 200% 200%; 
+            background-image: linear-gradient(-45deg, #eff6ff, #ffffff, #e0f2f1, #e0f8f1);
+        }
+
+        .hero-overlay-flow {
+            content: '';
+            position: absolute;
+            top: -10%; 
+            left: -10%;
+            width: 120%; 
+            height: 120%;
+            z-index: -1; 
+            background-image: radial-gradient(circle at 50% 50%, rgba(6, 182, 212, 0.1), transparent 50%);
+            animation: subtleFlow 30s cubic-bezier(0.4, 0, 0.6, 1) infinite;
         }
         
-        /* Remove the flow overlay as it was complex and dark-mode dependent */
-        .hero-overlay-flow { display: none; } 
-        
+        .hero-content {
+            position: relative;
+            z-index: 10;
+        }
+
     </style>
 </head>
 <body class="bg-slate-100 text-slate-800">
 
     <!-- Header & Navigation -->
-    <header class="sticky top-0 z-50 bg-white/90 backdrop-blur-md shadow-sm">
+    <header class="sticky top-0 z-50 bg-white/90 backdrop-blur-sm shadow-md transition-colors duration-300">
         <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
             <!-- Logo/Name -->
             <a href="#hero" class="text-2xl font-bold text-slate-900 hover:text-cyan-600 transition-colors">
@@ -94,7 +134,7 @@
             </a>
 
             <!-- Desktop Navigation -->
-            <nav class="hidden md:flex space-x-6 lg:space-x-8">
+            <nav class="hidden md:flex space-x-8">
                 <a href="#about" class="text-slate-600 hover:text-cyan-600 font-medium transition-colors">About</a>
                 <a href="#experience" class="text-slate-600 hover:text-cyan-600 font-medium transition-colors">Experience</a>
                 <a href="#projects" class="text-slate-600 hover:text-cyan-600 font-medium transition-colors">Projects</a>
@@ -104,299 +144,352 @@
             </nav>
             
             <!-- Mobile Menu Button -->
-            <div class="flex items-center space-x-3">
-                <button id="mobile-menu-button" class="md:hidden p-2 rounded-lg text-slate-500 hover:bg-slate-100 transition-colors" aria-label="Open Menu">
+            <div class="flex items-center space-x-4">
+                <button id="mobile-menu-button" class="md:hidden p-2 rounded-lg text-slate-600 hover:bg-slate-100 transition-colors" aria-label="Open Menu">
                     <i data-lucide="menu" class="w-6 h-6"></i>
                 </button>
             </div>
         </div>
 
-        <!-- Mobile Menu -->
+        <!-- Mobile Menu (Hidden by default) -->
         <div id="mobile-menu" class="hidden md:hidden absolute w-full bg-white shadow-lg border-t border-slate-200">
-            <nav class="flex flex-col p-4 space-y-1">
-                <a href="#about" class="block py-2 px-3 text-slate-700 hover:bg-cyan-50 rounded-md transition-colors">About</a>
-                <a href="#experience" class="block py-2 px-3 text-slate-700 hover:bg-cyan-50 rounded-md transition-colors">Experience</a>
-                <a href="#projects" class="block py-2 px-3 text-slate-700 hover:bg-cyan-50 rounded-md transition-colors">Projects</a>
-                <a href="#skills" class="block py-2 px-3 text-slate-700 hover:bg-cyan-50 rounded-md transition-colors">Skills</a>
-                <a href="#dev-focus" class="block py-2 px-3 text-slate-700 hover:bg-cyan-50 rounded-md transition-colors">Development</a>
-                <a href="#interest" class="block py-2 px-3 text-slate-700 hover:bg-cyan-50 rounded-md transition-colors">Interest</a>
+            <nav class="flex flex-col p-4 space-y-2">
+                <a href="#about" class="block py-2 px-3 text-slate-700 hover:bg-cyan-50 rounded-lg transition-colors">About</a>
+                <a href="#experience" class="block py-2 px-3 text-slate-700 hover:bg-cyan-50 rounded-lg transition-colors">Experience</a>
+                <a href="#projects" class="block py-2 px-3 text-slate-700 hover:bg-cyan-50 rounded-lg transition-colors">Projects</a>
+                <a href="#skills" class="block py-2 px-3 text-slate-700 hover:bg-cyan-50 rounded-lg transition-colors">Skills</a>
+                <a href="#dev-focus" class="block py-2 px-3 text-slate-700 hover:bg-cyan-50 rounded-lg transition-colors">Development</a>
+                <a href="#interest" class="block py-2 px-3 text-slate-700 hover:bg-cyan-50 rounded-lg transition-colors">Interest</a>
             </nav>
         </div>
     </header>
 
-    <main class="container mx-auto px-4 sm:px-6 lg:px-8 py-10 md:py-16">
+    <main class="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
 
         <!-- Hero Section -->
-        <section id="hero" class="py-16 md:py-24 text-center rounded-xl shadow-xl overflow-hidden animated-hero-background relative">
-            <!-- Removed overlay -->
-            <div class="max-w-4xl mx-auto relative z-10 px-4">
+        <section id="hero" class="py-16 md:py-24 text-center animated-hero-background rounded-xl shadow-xl">
+            <!-- This div is the overlay for the flow animation -->
+            <div class="hero-overlay-flow"></div>
+            
+            <div class="max-w-4xl mx-auto hero-content">
                 <!-- Profile Image -->
-                <div class="mx-auto w-32 h-32 md:w-36 md:h-36 rounded-full mb-6 overflow-hidden border-4 border-cyan-500 shadow-xl bg-white">
+                <div class="mx-auto w-36 h-36 rounded-full mb-6 overflow-hidden border-4 border-cyan-500 shadow-2xl">
                     <img src="Profile picture.png" alt="Rafi Nasrallah Profile Picture" class="w-full h-full object-cover">
                 </div>
-                <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-slate-900 mb-3 leading-tight">
+                <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-slate-900 mb-4 leading-tight">
                     Rafi Nasrallah
                 </h1>
-                <h2 class="text-lg sm:text-xl md:text-2xl text-cyan-700 font-semibold mb-6">
+                <h2 class="text-xl sm:text-2xl text-cyan-700 font-semibold mb-8">
                     Final-Year Engineering Student | Electrical & Industrial Systems Control
                 </h2>
-                <div class="flex flex-wrap justify-center items-center gap-x-6 gap-y-2 text-sm sm:text-base text-slate-600">
-                    <span class="flex items-center space-x-1.5"><i data-lucide="map-pin" class="w-4 h-4"></i><span>Mohammedia, Morocco</span></span>
-                    <span class="flex items-center space-x-1.5"><i data-lucide="phone" class="w-4 h-4"></i><span>+212 671114377</span></span>
-                    <span class="flex items-center space-x-1.5"><i data-lucide="mail" class="w-4 h-4"></i><a href="mailto:nasrollahrafi@gmail.com" class="hover:text-cyan-500 transition-colors">nasrollahrafi@gmail.com</a></span>
+                <div class="flex flex-wrap justify-center gap-x-6 gap-y-2 text-slate-600">
+                    <span class="flex items-center space-x-1"><i data-lucide="map-pin" class="w-5 h-5"></i><span>Mohammedia, Morocco</span></span>
+                    <span class="flex items-center space-x-1"><i data-lucide="phone" class="w-5 h-5"></i><span>+212 671114377</span></span>
+                    <span class="flex items-center space-x-1"><i data-lucide="mail" class="w-5 h-5"></i><a href="mailto:nasrollahrafi@gmail.com" class="hover:text-cyan-500">nasrollahrafi@gmail.com</a></span>
                 </div>
-                <a href="#projects" class="mt-8 inline-block bg-cyan-600 text-white font-semibold py-3 px-8 rounded-full text-base sm:text-lg shadow-lg hover:bg-cyan-700 transition-transform transform hover:scale-105 duration-200">
-                    View Key Projects <i data-lucide="arrow-right" class="w-5 h-5 inline-block ml-1.5 relative top-[-1px]"></i>
+                <a href="#projects" class="mt-10 inline-block bg-cyan-600 text-white font-semibold py-3 px-8 rounded-full text-lg shadow-xl hover:bg-cyan-700 transition-transform transform hover:scale-105">
+                    View Key Projects <i data-lucide="arrow-right" class="w-5 h-5 inline-block ml-2"></i>
                 </a>
             </div>
         </section>
 
         <div class="space-y-16 mt-16">
             <!-- About Section -->
-            <section id="about" class="bg-white p-6 md:p-8 rounded-xl shadow-md">
-                <h2 class="text-2xl md:text-3xl font-bold text-slate-900 mb-5 border-b-2 border-cyan-500 pb-2 flex items-center space-x-2">
-                    <i data-lucide="user-check" class="w-6 h-6 md:w-7 md:h-7 text-cyan-500"></i><span>About Me</span>
+            <section id="about" class="bg-white p-8 rounded-xl shadow-lg shadow-cyan-100/50">
+                <h2 class="text-3xl font-bold text-slate-900 mb-6 border-b-2 border-cyan-500 pb-2 flex items-center space-x-2">
+                    <i data-lucide="user-check" class="w-7 h-7 text-cyan-500"></i><span>About Me</span>
                 </h2>
-                <p class="text-base md:text-lg text-slate-700 leading-relaxed">
-                    Motivated final-year engineering student in Electrical and Industrial Systems Control, seeking a challenging internship to apply and expand hands-on experience in <strong>automation</strong>, <strong>control systems</strong>, and <strong>industrial engineering</strong>. My academic foundation is strongly complemented by practical experience with <strong>HMI interfaces</strong>, <strong>PLC programming</strong> (Siemens TIA Portal), and <strong>3D CAD modeling</strong> (Autodesk Inventor, Fusion 360).
+                <p class="text-lg text-slate-700 leading-relaxed">
+                    Motivated final-year engineering student in Electrical and Industrial Systems Control, looking for a challenging internship opportunity to develop hands-on experience in <strong>automation</strong>, <strong>control systems</strong>, and <strong>industrial engineering</strong>. My academic background is complemented by practical experience in <strong>HMI interfaces</strong>, <strong>PLC programming</strong> (Siemens TIA Portal), and <strong>3D CAD modeling</strong>.
                 </p>
             </section>
             
-            <!-- Experience / Internships & Education Section -->
+            <!-- Experience / Internships & Education Section (Grid Layout) -->
             <section id="experience">
-                <h2 class="text-2xl md:text-3xl font-bold text-slate-900 mb-6 border-b-2 border-cyan-500 pb-2 flex items-center space-x-2">
-                    <i data-lucide="briefcase" class="w-6 h-6 md:w-7 md:h-7 text-cyan-500"></i><span>Experience & Education</span>
+                <h2 class="text-3xl font-bold text-slate-900 mb-8 border-b-2 border-cyan-500 pb-2 flex items-center space-x-2">
+                    <i data-lucide="briefcase" class="w-7 h-7 text-cyan-500"></i><span>Internships & Education</span>
                 </h2>
 
-                <div class="grid md:grid-cols-5 gap-8 lg:gap-12 bg-white p-6 md:p-8 rounded-xl shadow-md">
-                    <!-- Column 1: Internships Timeline (Takes 3/5 width on md+) -->
-                    <div class="md:col-span-3">
-                        <h3 class="text-xl md:text-2xl font-semibold text-slate-900 mb-6">Professional Experience</h3>
+                <div class="grid md:grid-cols-2 gap-10 bg-white p-8 rounded-xl shadow-lg shadow-cyan-100/50">
+                    <!-- Column 1: Internships Timeline (REORDERED: Oldest to Youngest) -->
+                    <div>
+                        <h3 class="text-2xl font-semibold text-slate-900 mb-6">Professional Experience</h3>
                         <div class="space-y-8 pl-8 sm:pl-10 relative">
-                             <!-- Apprenticeship -->
-                             <div class="timeline-item">
-                                <div class="timeline-dot"></div>
-                                <h4 class="font-bold text-lg md:text-xl text-cyan-600">Apprenticeship - Rafi Robotiques et Machineries</h4>
-                                <p class="text-xs sm:text-sm font-medium text-slate-500 mb-2">2020 – 2023 (3 Years)</p>
-                                <p class="text-sm sm:text-base text-slate-700 font-semibold">Mechanical Repair, CNC, Robotics</p>
-                                <ul class="list-disc ml-5 space-y-1 text-slate-700 text-xs sm:text-sm">
-                                    <li>Repaired Sharmaann Boring Machine (Component Mfg.).</li>
-                                    <li>Designed & Fabricated 5-Axis Welding Robots.</li>
-                                    <li>Repaired CNC Lathe (Siemens Sinumerik/Simodrive).</li>
-                                    <li>Reprogrammed Spring Assembly Machine (PLC).</li>
-                                </ul>
-                                <a href="apprenticeship-rafi.html" target="_blank" class="mt-2.5 inline-flex items-center text-xs font-semibold px-3 py-1 bg-cyan-600 text-white rounded-full hover:bg-cyan-700 transition-colors shadow-sm">
-                                    View Details <i data-lucide="arrow-up-right" class="w-3 h-3 ml-1"></i>
-                                </a>
-                            </div>
-                            <!-- SMCV -->
+
+                            <!-- Apprenticeship (RAFI) -->
                             <div class="timeline-item">
                                 <div class="timeline-dot"></div>
-                                <h4 class="font-bold text-lg md:text-xl text-cyan-600">PFA Internship - SMCV</h4>
-                                <p class="text-xs sm:text-sm font-medium text-slate-500 mb-2">July 2025 – Sep 2025</p>
-                                <p class="text-sm sm:text-base text-slate-700 font-semibold mb-2">Automation & Mechanical Design</p>
-                                <p class="text-xs italic text-slate-500 mb-2">Tools: TIA Portal, Autodesk Inventor</p>
-                                <ul class="list-disc ml-5 space-y-1 text-slate-700 text-xs sm:text-sm">
-                                    <li>Programmed Siemens PLC & HMI for Injection Molding Machine.</li>
-                                    <li>Designed Mechanical Arm for Nut Insertion (3D CAD).</li>
-                                    <li>Engineered Automatic Hot-Press (Design, Analysis, PLC/HMI).</li>
+                                <h4 class="font-bold text-xl text-cyan-600">Apprenticeship - Rafi Robotiques et Machineries</h4>
+                                <p class="text-sm font-medium text-slate-500 mb-2">2020 – 2023 (3 Years)</p>
+                                <p class="text-slate-700 font-semibold mb-3">Mechanical Repair, CNC & Robotics</p>
+                                <ul class="list-disc ml-5 mt-2 space-y-1 text-slate-700 text-sm">
+                                    <li>Mechanical repair of Sharmaann horizontal boring machine.</li>
+                                    <li>Design and fabrication of 5-axis welding robots.</li>
+                                    <li>Repair and reprogramming of CNC Lathe Machine (Siemens Sinumerik 840D).</li>
+                                    <li>Reprogramming of Spring Assembly Machine (Matissar).</li>
                                 </ul>
-                                <a href="internship-smcv.html" target="_blank" class="mt-2.5 inline-flex items-center text-xs font-semibold px-3 py-1 bg-cyan-600 text-white rounded-full hover:bg-cyan-700 transition-colors shadow-sm">
-                                    View Details <i data-lucide="arrow-up-right" class="w-3 h-3 ml-1"></i>
+                                <a href="apprenticeship-rafi.html" target="_blank" class="mt-3 inline-flex items-center text-xs font-semibold px-3 py-1 bg-cyan-600 text-white rounded-full hover:bg-cyan-700 transition-colors shadow-md">
+                                    View Details 
+                                    <i data-lucide="arrow-up-right" class="w-3 h-3 ml-1"></i>
                                 </a>
                             </div>
-                            <!-- ONEE -->
+
+                            <!-- Internship 2 (ONEE) -->
                             <div class="timeline-item">
                                 <div class="timeline-dot"></div>
-                                <h4 class="font-bold text-lg md:text-xl text-cyan-600">Internship - ONEE</h4>
-                                <p class="text-xs sm:text-sm font-medium text-slate-500 mb-2">July 2024 – Aug 2024</p>
-                                <p class="text-sm sm:text-base text-slate-700 font-semibold">Power System Protection Dept.</p>
-                                <p class="text-xs italic text-slate-500 mb-2">Tools: OMICRON Test Universe, SIPROTEC</p>
-                                <ul class="list-disc ml-5 space-y-1 text-slate-700 text-xs sm:text-sm">
+                                <h4 class="font-bold text-xl text-cyan-600">Internship - ONEE</h4>
+                                <p class="text-sm font-medium text-slate-500 mb-2">July 2024 – August 2024</p>
+                                <p class="text-slate-700 font-semibold">National Office of Electricity and Water</p>
+                                <p class="text-sm italic text-slate-600 mb-2">Software Used: OMICRON Test Universe, SIPROTEC Tools</p>
+                                <ul class="list-disc ml-5 mt-2 space-y-1 text-slate-700 text-sm">
                                     <li><strong>Conducted operational analysis</strong> of installed Siemens protection relays.</li>
                                     <li><strong>Developed a comprehensive testing protocol</strong> for system verification.</li>
                                     <li><strong>Executed verification and validation procedures</strong> for the testing protocol.</li>
                                     <li><strong>Developed and finalized comprehensive technical documentation</strong> for compliance records.</li>
                                 </ul>
-                                <a href="internship-onee.html" target="_blank" class="mt-2.5 inline-flex items-center text-xs font-semibold px-3 py-1 bg-cyan-600 text-white rounded-full hover:bg-cyan-700 transition-colors shadow-sm">
-                                    View Details <i data-lucide="arrow-up-right" class="w-3 h-3 ml-1"></i>
+                                <a href="internship-onee.html" target="_blank" class="mt-3 inline-flex items-center text-xs font-semibold px-3 py-1 bg-cyan-600 text-white rounded-full hover:bg-cyan-700 transition-colors shadow-md">
+                                    View Details 
+                                    <i data-lucide="arrow-up-right" class="w-3 h-3 ml-1"></i>
                                 </a>
                             </div>
+
+                            <!-- Internship 1 (SMCV) -->
+                            <div class="timeline-item">
+                                <div class="timeline-dot"></div>
+                                <h4 class="font-bold text-xl text-cyan-600">PFA Internship - SMCV</h4>
+                                <p class="text-sm font-medium text-slate-500 mb-2">July 2025 – September 2025</p>
+                                <p class="text-slate-700 font-semibold mb-3">Industrial Automation (PLC/HMI), Mechanical Design</p>
+                                <p class="text-sm italic text-slate-600 mb-2">Software Used: TIA Portal, Autodesk Inventor</p>
+                                <ul class="list-disc ml-5 mt-2 space-y-1 text-slate-700 text-sm">
+                                    <li><strong>Injection Molding Machine:</strong> Programmed Siemens PLC (TIA Portal) and implemented HMI interfaces.</li>
+                                    <li><strong>Mechanical Arm:</strong> Designed and modeled the assembly in 3D CAD.</li>
+                                    <li><strong>Automatic Hot-Press:</strong> Designed/analyzed mechanical and thermal components, sized actuators, and programmed PLC/HMI.</li>
+                                </ul>
+                                <a href="internship-smcv.html" target="_blank" class="mt-3 inline-flex items-center text-xs font-semibold px-3 py-1 bg-cyan-600 text-white rounded-full hover:bg-cyan-700 transition-colors shadow-md">
+                                    View Details 
+                                    <i data-lucide="arrow-up-right" class="w-3 h-3 ml-1"></i>
+                                </a>
+                            </div>
+
                         </div>
                     </div>
 
-                    <!-- Column 2: Education (Takes 2/5 width on md+) -->
-                    <div class="md:col-span-2">
-                        <h3 class="text-xl md:text-2xl font-semibold text-slate-900 mb-6">Academic Background</h3>
-                        <div class="space-y-4">
-                            <!-- Education Entry Template -->
-                            <div class="p-3 bg-slate-50 rounded-md border border-slate-200">
-                                <p class="text-xs font-medium text-cyan-600 float-right">2023 - 2026</p>
-                                <h4 class="font-semibold text-sm md:text-base">Engineering Degree Program</h4>
-                                <p class="text-xs text-slate-600">ENSET Mohammedia</p>
-                                <p class="text-xs text-slate-500">Electrical Engineering & Industrial Systems Control</p>
+                    <!-- Column 2: Education -->
+                    <div>
+                        <h3 class="text-2xl font-semibold text-slate-900 mb-6">Academic Background</h3>
+                        <div class="space-y-6">
+                            <!-- Education 1: Engineering Degree -->
+                            <div class="p-4 bg-slate-50 rounded-lg border border-slate-200">
+                                <p class="text-sm font-medium text-cyan-600 float-right">2023 - 2026</p>
+                                <h4 class="font-bold text-lg">Engineering Degree Program</h4>
+                                <p class="text-slate-700">ENSET Mohammedia</p>
+                                <p class="text-sm text-slate-500">Electrical Engineering and Industrial Systems Control</p>
                             </div>
-                             <div class="p-3 bg-slate-50 rounded-md border border-slate-200">
-                                <p class="text-xs font-medium text-cyan-600 float-right">2022 - 2023</p>
-                                <h4 class="font-semibold text-sm md:text-base">Licence in Physical Sciences</h4>
-                                <p class="text-xs text-slate-600">Faculty of Sciences Ben M'sik, Casablanca</p>
-                                <p class="text-xs text-slate-500">Electronics Specialization</p>
+                            <!-- Education 2: Licence -->
+                            <div class="p-4 bg-slate-50 rounded-lg border border-slate-200">
+                                <p class="text-sm font-medium text-cyan-600 float-right">2022 - 2023</p>
+                                <h4 class="font-bold text-lg">Licence in Physical Sciences</h4>
+                                <p class="text-slate-700">Faculty of Sciences Ben M'sik, Casablanca</p>
+                                <p class="text-sm text-slate-500">Electronics Specialization</p>
                             </div>
-                             <div class="p-3 bg-slate-50 rounded-md border border-slate-200">
-                                <p class="text-xs font-medium text-cyan-600 float-right">2020 - 2022</p>
-                                <h4 class="font-semibold text-sm md:text-base">DEUG in Physical Sciences</h4>
-                                <p class="text-xs text-slate-600">Faculty of Sciences Ben M'sik, Casablanca</p>
+                            <!-- Education 3: DEUG -->
+                            <div class="p-4 bg-slate-50 rounded-lg border border-slate-200">
+                                <p class="text-sm font-medium text-cyan-600 float-right">2020 - 2022</p>
+                                <h4 class="font-bold text-lg">DEUG in Physical Sciences</h4>
+                                <p class="text-slate-700">Faculty of Sciences Ben M'sik, Casablanca</p>
+                                <p class="text-sm text-slate-500">General Physics and Chemistry</p>
                             </div>
-                           <div class="p-3 bg-slate-50 rounded-md border border-slate-200">
-                                <p class="text-xs font-medium text-cyan-600 float-right">2019 - 2020</p>
-                                <h4 class="font-semibold text-sm md:text-base">Baccalaureate in Science & Technology</h4>
-                                <p class="text-xs text-slate-600">Technical High School, Mohammedia</p>
-                                <p class="text-xs text-slate-500">Electrical Specialization</p>
+                            <!-- Education 4: Baccalaureate -->
+                            <div class="p-4 bg-slate-50 rounded-lg border border-slate-200">
+                                <p class="text-sm font-medium text-cyan-600 float-right">2019 - 2020</p>
+                                <h4 class="font-bold text-lg">Baccalaureate in Science and Technology</h4>
+                                <p class="text-slate-700">Technical High School, Mohammedia</p>
+                                <p class="text-sm text-slate-500">Electrical Specialization</p>
                             </div>
                         </div>
                     </div>
                 </div>
             </section>
 
-            <!-- Projects Section -->
+            <!-- REFACTORED Projects Section -->
             <section id="projects">
-                <h2 class="text-2xl md:text-3xl font-bold text-slate-900 mb-6 border-b-2 border-cyan-500 pb-2 flex items-center space-x-2">
-                    <i data-lucide="rocket" class="w-6 h-6 md:w-7 md:h-7 text-cyan-500"></i><span>Key Projects</span>
+                <h2 class="text-3xl font-bold text-slate-900 mb-8 border-b-2 border-cyan-500 pb-2 flex items-center space-x-2">
+                    <i data-lucide="rocket" class="w-7 h-7 text-cyan-500"></i><span>Key Projects</span>
                 </h2>
 
-                <div class="grid md:grid-cols-2 gap-8 p-6 md:p-8 bg-white rounded-xl shadow-md">
-                    
-                    <!-- Column 1 -->
-                    <div class="space-y-6">
+                <!-- Single grid for all projects, prioritized as requested -->
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+
+                    <!-- 1. Waveguide Project -->
+                    <div class="project-card bg-white p-6 rounded-xl shadow-lg border border-slate-200 flex flex-col justify-between">
                         <div>
-                            <h3 class="text-lg md:text-xl font-bold text-slate-900 mb-2 flex items-center space-x-2">
-                                <i data-lucide="factory" class="w-5 h-5 text-cyan-500"></i><span>Industrial Projects</span>
-                            </h3>
-                            <ul class="list-disc ml-5 text-slate-700 space-y-1 text-sm md:text-base">
-                                <li><strong>Speed Profile Conveyor:</strong> PLCnext control, Modbus RTU, HMI dev.</li>
-                                <li><strong>Plastic Shredder:</strong> Full 3D CAD design & electrical integration.</li>
-                            </ul>
+                            <div class="flex items-center space-x-3 mb-4">
+                                <i data-lucide="radio-tower" class="w-8 h-8 text-cyan-600"></i>
+                                <h4 class="text-xl font-bold text-slate-900">Rectangular Waveguide (TE10) Analysis</h4>
+                            </div>
+                            <p class="text-sm text-slate-600 mb-3">
+                                Analyzed $TE_{10}$ mode propagation in air-filled vs. alumina-filled waveguides using <strong>ANSYS HFSS</strong>. Compared cutoff frequency, field concentration, and insertion loss.
+                            </p>
                         </div>
+                        <a href="project-waveguide.html" target="_blank" class="text-sm font-semibold text-cyan-600 hover:text-cyan-700 transition-colors mt-4">View Details <i data-lucide="arrow-right" class="w-4 h-4 inline-block"></i></a>
+                    </div>
+
+                    <!-- 2. Thermal Analysis Project -->
+                    <div class="project-card bg-white p-6 rounded-xl shadow-lg border border-slate-200 flex flex-col justify-between">
                         <div>
-                            <h3 class="text-lg md:text-xl font-bold text-slate-900 mb-2 flex items-center space-x-2">
-                                <i data-lucide="cpu" class="w-5 h-5 text-cyan-500"></i><span>Embedded Systems</span>
-                            </h3>
-                            <ul class="list-disc ml-5 text-slate-700 space-y-1 text-sm md:text-base">
-                                <li><strong>Arduino L-C Meter:</strong> Simulation & construction.</li>
-                                <li><strong>Arduino Weather Station:</strong> Development & programming.</li>
-                                <li><strong>Remote Solar Pump Control:</strong> IoT & Cloud monitoring.</li>
-                            </ul>
+                            <div class="flex items-center space-x-3 mb-4">
+                                <i data-lucide="thermometer-sun" class="w-8 h-8 text-cyan-600"></i>
+                                <h4 class="text-xl font-bold text-slate-900">Transient Thermal Analysis (FEA vs. LCM)</h4>
+                            </div>
+                            <p class="text-sm text-slate-600 mb-3">
+                                Conducted a comparative study of Lumped Capacitance Modeling vs. FEA (ANSYS, Fusion 360) to validate the cycle time for automated hot nut insertion in polycarbonate.
+                            </p>
                         </div>
-                         <div>
-                            <h3 class="text-lg md:text-xl font-bold text-slate-900 mb-2 flex items-center space-x-2">
-                                <i data-lucide="battery-charging" class="w-5 h-5 text-cyan-500"></i><span>Power Electronics</span>
-                            </h3>
-                            <p class="text-xs italic text-slate-500 mb-1">(Simulation & Implementation)</p>
-                            <ul class="list-disc ml-5 text-slate-700 space-y-1 text-sm md:text-base">
-                                <li>Single-Phase Inverter (PWM control).</li>
-                                <li>Single-Phase Full-Wave Rectifier.</li>
-                                <li>Step up converter.</li>
-                            </ul>
-                        </div>
+                        <a href="project-thermal.html" target="_blank" class="text-sm font-semibold text-cyan-600 hover:text-cyan-700 transition-colors mt-4">View Details <i data-lucide="arrow-right" class="w-4 h-4 inline-block"></i></a>
+                    </div>
+
+                    <!-- 3. Luenberger Project -->
+                    <div class="project-card bg-white p-6 rounded-xl shadow-lg border border-slate-200 flex flex-col justify-between">
                         <div>
-                            <h3 class="text-lg md:text-xl font-bold text-slate-900 mb-2 flex items-center space-x-2">
-                                <i data-lucide="wind" class="w-5 h-5 text-cyan-500"></i><span>Renewable Energy</span>
-                            </h3>
-                            <ul class="list-disc ml-5 text-slate-700 space-y-1 text-sm md:text-base">
-                                <li><strong>Micro Wind Turbine:</strong> Nonlinear control (Backstepping) study & MATLAB/Simulink simulation for isolated PMSM system.</li>
+                            <div class="flex items-center space-x-3 mb-4">
+                                <i data-lucide="orbit" class="w-8 h-8 text-cyan-600"></i>
+                                <h4 class="text-xl font-bold text-slate-900">Luenberger-Based Rendezvous Control</h4>
+                            </div>
+                            <p class="text-sm text-slate-600 mb-3">
+                                Designed a full autopilot system (Luenberger Observer + State-Feedback Controller) to achieve orbital rendezvous using only angle-data ($y=\theta$), overcoming numerical instability via system normalization.
+                            </p>
+                        </div>
+                        <a href="project-rendezvous.html" target="_blank" class="text-sm font-semibold text-cyan-600 hover:text-cyan-700 transition-colors mt-4">View Details <i data-lucide="arrow-right" class="w-4 h-4 inline-block"></i></a>
+                    </div>
+
+                    <!-- 4. Speed Profile Conveyor -->
+                    <div class="project-card bg-white p-6 rounded-xl shadow-lg border border-slate-200 flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center space-x-3 mb-4">
+                                <i data-lucide="factory" class="w-8 h-8 text-cyan-600"></i>
+                                <h4 class="text-xl font-bold text-slate-900">Speed Profile Conveyor</h4>
+                            </div>
+                            <ul class="list-disc ml-5 text-sm space-y-1 mt-1 text-slate-600">
+                                <li><strong>Automation:</strong> Developed automation code on <strong>PLCnext Engineer</strong> (Phoenix Contact).</li>
+                                <li><strong>Communication:</strong> Implemented <strong>Modbus RTU</strong> communication between PLC and VFD.</li>
+                                <li><strong>HMI:</strong> Designed the HMI for system supervision and control.</li>
                             </ul>
                         </div>
                     </div>
-                    <!-- Column 2 -->
-                    <div class="space-y-6">
-                         
-                        <div class="pt-0"> 
-                             <h3 class="text-lg md:text-xl font-bold text-slate-900 mb-2 flex items-center space-x-2">
-                                 <i data-lucide="thermometer-sun" class="w-5 h-5 text-cyan-500"></i><span>Advanced Analysis</span>
-                            </h3>
-                             <ul class="list-disc ml-5 text-slate-700 space-y-1 text-sm md:text-base">
-                                 <li>
-                                     <strong>Transient Thermal Analysis:</strong> Comparative Study (LCM vs. FEA) for Hot Nut Insertion. 
-                                     <p class="text-xs italic text-slate-500 mt-1">
-                                         Tools: ANSYS, Fusion 360, MATLAB, Inventor.
-                                     </p>
-                                     <a href="project-thermal.html" target="_blank" class="mt-1 inline-flex items-center text-xs font-semibold px-2 py-0.5 bg-cyan-600 text-white rounded-full hover:bg-cyan-700 transition-colors shadow-sm">
-                                         View Study <i data-lucide="arrow-up-right" class="w-2.5 h-2.5 ml-1"></i>
-                                     </a>
-                                </li>
-                            </ul>
-                        </div>
-                         <div class="pt-4 border-t border-slate-200">
-                             <h3 class="text-lg md:text-xl font-bold text-slate-900 mb-2 flex items-center space-x-2">
-                                 <i data-lucide="satellite" class="w-5 h-5 text-cyan-500"></i><span>Advanced Control & Systems</span>
-                            </h3>
-                             <ul class="list-disc ml-5 text-slate-700 space-y-1 text-sm md:text-base">
-                                 <li>
-                                     <strong>Luenberger-Based Rendezvous Control:</strong> Autopilot design (Observer + Controller) for orbital rendezvous using only angle data.
-                                     <p class="text-xs italic text-slate-500 mt-1">
-                                         Tools: MATLAB/Simulink, State-Space, Luenberger Observer.
-                                     </p>
-                                     <a href="project-rendezvous.html" target="_blank" class="mt-1 inline-flex items-center text-xs font-semibold px-2 py-0.5 bg-cyan-600 text-white rounded-full hover:bg-cyan-700 transition-colors shadow-sm">
-                                         View Study <i data-lucide="arrow-up-right" class="w-2.5 h-2.5 ml-1"></i>
-                                     </a>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="pt-4 border-t border-slate-200">
-                             <h3 class="text-lg md:text-xl font-bold text-slate-900 mb-2 flex items-center space-x-2">
-                                 <i data-lucide="radio-tower" class="w-5 h-5 text-cyan-500"></i><span>High-Frequency Simulation</span>
-                            </h3>
-                             <ul class="list-disc ml-5 text-slate-700 space-y-1 text-sm md:text-base">
-                                 <li>
-                                     <strong>Waveguide TE10 Mode Analysis:</strong> Comparative simulation of air-filled vs. dielectric-filled (Alumina) rectangular waveguide.
-                                     <p class="text-xs italic text-slate-500 mt-1">
-                                         Tools: ANSYS Electronics (HFSS), Microwave Theory.
-                                     </p>
-                                     <a href="project-waveguide.html" target="_blank" class="mt-1 inline-flex items-center text-xs font-semibold px-2 py-0.5 bg-cyan-600 text-white rounded-full hover:bg-cyan-700 transition-colors shadow-sm">
-                                         View Study <i data-lucide="arrow-up-right" class="w-2.5 h-2.5 ml-1"></i>
-                                     </a>
-                                </li>
+
+                    <!-- 5. Plastic Shredder -->
+                    <div class="project-card bg-white p-6 rounded-xl shadow-lg border border-slate-200 flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center space-x-3 mb-4">
+                                <i data-lucide="hard-hat" class="w-8 h-8 text-cyan-600"></i>
+                                <h4 class="text-xl font-bold text-slate-900">Plastic Shredder</h4>
+                            </div>
+                             <ul class="list-disc ml-5 text-sm space-y-1 mt-1 text-slate-600">
+                                <li><strong>3D Design:</strong> Completed full CAD modeling using <strong>Autodesk Inventor</strong>.</li>
+                                <li><strong>Dimensioning:</strong> Performed dimensioning of motorization and transmission systems (power calculations, component selection).</li>
                             </ul>
                         </div>
                     </div>
-                </div>
+
+                    <!-- 6. Remote Solar Pump (IoT) -->
+                    <div class="project-card bg-white p-6 rounded-xl shadow-lg border border-slate-200 flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center space-x-3 mb-4">
+                                <i data-lucide="wifi" class="w-8 h-8 text-cyan-600"></i>
+                                <h4 class="text-xl font-bold text-slate-900">Remote Solar Pump Control (IoT)</h4>
+                            </div>
+                            <ul class="list-disc ml-5 text-sm space-y-1 mt-1 text-slate-600">
+                                <li><strong>IoT Dev:</strong> Programmed <strong>ESP32</strong> control unit for data acquisition and pump actuation.</li>
+                                <li><strong>Cloud:</strong> Established <strong>MQTT</strong> communication via HiveMQ broker.</li>
+                                <li><strong>Supervision:</strong> Designed a web HMI for remote monitoring and control.</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- 7. Micro Wind Turbine -->
+                    <div class="project-card bg-white p-6 rounded-xl shadow-lg border border-slate-200 flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center space-x-3 mb-4">
+                                <i data-lucide="wind" class="w-8 h-8 text-cyan-600"></i>
+                                <h4 class="text-xl font-bold text-slate-900">Micro Wind Turbine Control</h4>
+                            </div>
+                            <ul class="list-disc ml-5 text-sm space-y-1 mt-1 text-slate-600">
+                                <li><strong>Modeling:</strong> Performed full dynamic system modeling.</li>
+                                <li><strong>Control:</strong> Designed a <strong>Nonlinear Control (Backstepping)</strong> law.</li>
+                                <li><strong>Simulation:</strong> Validated performance for an isolated PMSM system using <strong>MATLAB/Simulink</strong>.</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- 8. Power Electronics -->
+                    <div class="project-card bg-white p-6 rounded-xl shadow-lg border border-slate-200 flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center space-x-3 mb-4">
+                                <i data-lucide="battery-charging" class="w-8 h-8 text-cyan-600"></i>
+                                <h4 class="text-xl font-bold text-slate-900">Power Electronics (Sim & Hardware)</h4>
+                            </div>
+                            <ul class="list-disc ml-5 text-sm space-y-1 mt-1 text-slate-600">
+                                <li><strong>SPWM Inverter:</strong> Modeled H-Bridge (MOSFETs, IR2110 driver) and analog SPWM generation circuit in <strong>Proteus</strong>.</li>
+                                <li><strong>Regulated Boost Converter:</strong> Designed, simulated (Proteus), and built hardware with voltage regulation loop.</li>
+                                <li><strong>Full-Wave Rectifier:</strong> Hardware build and <strong>Proteus</strong> simulation with capacitive filtering.</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- 9. Arduino L-C Meter -->
+                    <div class="project-card bg-white p-6 rounded-xl shadow-lg border border-slate-200 flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center space-x-3 mb-4">
+                                <i data-lucide="cpu" class="w-8 h-8 text-cyan-600"></i>
+                                <h4 class="text-xl font-bold text-slate-900">Arduino L-C Meter</h4>
+                            </div>
+                            <ul class="list-disc ml-5 text-sm space-y-1 mt-1 text-slate-600">
+                                <li>Simulation (Proteus) and hardware construction.</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                </div> <!-- End of new grid -->
             </section>
+
 
             <!-- Skills Section -->
             <section id="skills">
-                <h2 class="text-2xl md:text-3xl font-bold text-slate-900 mb-6 border-b-2 border-cyan-500 pb-2 flex items-center space-x-2">
-                    <i data-lucide="wrench" class="w-6 h-6 md:w-7 md:h-7 text-cyan-500"></i><span>Skills and Tools</span>
+                <h2 class="text-3xl font-bold text-slate-900 mb-8 border-b-2 border-cyan-500 pb-2 flex items-center space-x-2">
+                    <i data-lucide="wrench" class="w-7 h-7 text-cyan-500"></i><span>Skills and Tools</span>
                 </h2>
 
-                <div class="grid md:grid-cols-3 gap-6">
-                    <!-- Software -->
-                    <div class="skill-group p-5 bg-white rounded-lg shadow-md border border-slate-200">
-                        <h3 class="text-lg md:text-xl font-bold text-cyan-600 mb-3 flex items-center space-x-2"><i data-lucide="monitor" class="w-5 h-5"></i><span>Software Proficiencies</span></h3>
-                        <div class="flex flex-wrap gap-1.5">
+                <div class="grid md:grid-cols-3 gap-8">
+                    
+                    <!-- Software Group -->
+                    <div class="skill-group p-6 bg-white rounded-xl shadow-lg border border-slate-200">
+                        <h3 class="text-2xl font-bold text-cyan-600 mb-4 flex items-center space-x-2"><i data-lucide="monitor" class="w-6 h-6"></i><span>Software Proficiencies</span></h3>
+                        <div class="flex flex-wrap gap-2">
                             <!-- Electrical/Automation -->
-                            <span class="bg-cyan-100 text-cyan-800 text-xs font-medium px-2.5 py-1 rounded-full">TIA Portal</span>
-                            <span class="bg-cyan-100 text-cyan-800 text-xs font-medium px-2.5 py-1 rounded-full">Proteus</span>
-                            <span class="bg-cyan-100 text-cyan-800 text-xs font-medium px-2.5 py-1 rounded-full">MATLAB/Simulink</span>
-                            <span class="bg-cyan-100 text-cyan-800 text-xs font-medium px-2.5 py-1 rounded-full">PLCnext Eng.</span>
+                            <span class="bg-cyan-100 text-cyan-800 text-sm font-medium px-3 py-1.5 rounded-full">TIA Portal</span>
+                            <span class="bg-cyan-100 text-cyan-800 text-sm font-medium px-3 py-1.5 rounded-full">Proteus</span>
+                            <span class="bg-cyan-100 text-cyan-800 text-sm font-medium px-3 py-1.5 rounded-full">MATLAB/Simulink</span>
+                            <span class="bg-cyan-100 text-cyan-800 text-sm font-medium px-3 py-1.5 rounded-full">PLCnext Eng.</span>
+                            <span class="bg-cyan-100 text-cyan-800 text-sm font-medium px-3 py-1.5 rounded-full">ANSYS HFSS</span>
+                            <span class="bg-cyan-100 text-cyan-800 text-sm font-medium px-3 py-1.5 rounded-full">ANSYS Mech.</span>
                             
                             <!-- Machine Learning / Computing -->
-                            <span class="bg-purple-100 text-purple-800 text-xs font-medium px-2.5 py-1 rounded-full">PyTorch</span>
-                            <span class="bg-purple-100 text-purple-800 text-xs font-medium px-2.5 py-1 rounded-full">Google Colab</span>
+                            <span class="bg-purple-100 text-purple-800 text-sm font-medium px-3 py-1.5 rounded-full">PyTorch</span>
+                            <span class="bg-purple-100 text-purple-800 text-sm font-medium px-3 py-1.5 rounded-full">Google Colab</span>
                             
                             <!-- CAD/Mechanical/Other -->
-                            <span class="bg-cyan-100 text-cyan-800 text-xs font-medium px-2.5 py-1 rounded-full">AutoCAD</span>
-                            <span class="bg-cyan-100 text-cyan-800 text-xs font-medium px-2.5 py-1 rounded-full">Inventor</span>
-                            <span class="bg-cyan-100 text-cyan-800 text-xs font-medium px-2.5 py-1 rounded-full">Fusion 360</span>
-                            <span class="bg-cyan-100 text-cyan-800 text-xs font-medium px-2.5 py-1 rounded-full">ANSYS Mech.</span>
-                            <span class="bg-cyan-100 text-cyan-800 text-xs font-medium px-2.5 py-1 rounded-full">ANSYS HFSS</span>
-                            <span class="bg-cyan-100 text-cyan-800 text-xs font-medium px-2.5 py-1 rounded-full">ProNest</span>
-                            <span class="bg-cyan-100 text-cyan-800 text-xs font-medium px-2.5 py-1 rounded-full">Mach3 CNC</span>
+                            <span class="bg-cyan-100 text-cyan-800 text-sm font-medium px-3 py-1.5 rounded-full">AutoCAD</span>
+                            <span class="bg-cyan-100 text-cyan-800 text-sm font-medium px-3 py-1.5 rounded-full">Inventor</span>
+                            <span class="bg-cyan-100 text-cyan-800 text-sm font-medium px-3 py-1.5 rounded-full">Fusion 360</span>
+                            <span class="bg-cyan-100 text-cyan-800 text-sm font-medium px-3 py-1.5 rounded-full">ProNest</span>
+                            <span class="bg-cyan-100 text-cyan-800 text-sm font-medium px-3 py-1.5 rounded-full">Mach3 CNC</span>
                         </div>
                     </div>
-                    <!-- Technical Expertise -->
-                    <div class="skill-group p-5 bg-white rounded-lg shadow-md border border-slate-200">
-                        <h3 class="text-lg md:text-xl font-bold text-cyan-600 mb-3 flex items-center space-x-2"><i data-lucide="hammer" class="w-5 h-5"></i><span>Technical Expertise</span></h3>
-                        <ul class="list-disc ml-5 text-slate-700 space-y-1 text-xs sm:text-sm">
+
+                    <!-- Technical Skills Group -->
+                    <div class="skill-group p-6 bg-white rounded-xl shadow-lg border border-slate-200">
+                        <h3 class="text-2xl font-bold text-cyan-600 mb-4 flex items-center space-x-2"><i data-lucide="hammer" class="w-6 h-6"></i><span>Technical Expertise</span></h3>
+                        <ul class="list-disc ml-5 text-slate-700 space-y-1.5 text-sm">
                             <li>Electrical Design & Analysis</li>
                             <li>Mechanical Design (3D Modeling)</li>
                             <li>Automation (PLC/HMI Dev.)</li>
@@ -406,73 +499,138 @@
                             <li>Deep Learning (PyTorch, FFNNs)</li>
                         </ul>
                     </div>
-                     <!-- Languages -->
-                    <div class="skill-group p-5 bg-white rounded-lg shadow-md border border-slate-200">
-                        <h3 class="text-lg md:text-xl font-bold text-cyan-600 mb-3 flex items-center space-x-2"><i data-lucide="globe" class="w-5 h-5"></i><span>Languages</span></h3>
-                        <ul class="list-disc ml-5 text-slate-700 space-y-1 text-xs sm:text-sm">
+
+                    <!-- Languages Group -->
+                    <div class="skill-group p-6 bg-white rounded-xl shadow-lg border border-slate-200">
+                        <h3 class="text-2xl font-bold text-cyan-600 mb-4 flex items-center space-x-2"><i data-lucide="globe" class="w-6 h-6"></i><span>Languages</span></h3>
+                        <ul class="list-disc ml-5 text-slate-700 space-y-1.5 text-sm">
                             <li>
-                                <a href="EF SET Certificate RAFI Nasrallah.pdf" target="_blank" class="text-cyan-600 hover:text-cyan-500 hover:underline inline-flex items-center space-x-1">
-                                    <span><strong>English:</strong> C2 (EF SET)</span> <i data-lucide="file-text" class="w-3 h-3"></i>
+                                <a href="EF SET Certificate RAFI Nasrallah.pdf" target="_blank" class="text-cyan-600 hover:text-cyan-500 hover:underline cursor-pointer flex items-center space-x-1">
+                                    <span><strong>English:</strong> C2 - EF Standard English Test</span>
+                                    <i data-lucide="file-text" class="w-4 h-4"></i>
                                 </a>
                             </li>
-                            <li><strong>French:</strong> B2 (Upper-Intermediate)</li>
+                            <li><strong>French:</strong> B2 - Upper-Intermediate</li>
                             <li><strong>Arabic:</strong> Native</li>
                         </ul>
                     </div>
                 </div>
             </section>
             
-            <!-- Current Development Focus -->
-             <section id="dev-focus" class="bg-white p-6 md:p-8 rounded-xl shadow-md">
-                 <h2 class="text-2xl md:text-3xl font-bold text-slate-900 mb-5 border-b-2 border-cyan-500 pb-2 flex items-center space-x-2">
-                     <i data-lucide="lightbulb" class="w-6 h-6 md:w-7 md:h-7 text-cyan-500"></i><span>Ongoing Projects & Development Focus</span>
-                 </h2>
-                 <div class="grid md:grid-cols-1 lg:grid-cols-2 gap-6">
-                     
-                     <!-- Project 1: Lean Automation -->
-                    <div class="border-l-4 border-cyan-500 pl-4 py-3 bg-slate-50 rounded-r-md">
-                        <h4 class="text-base font-semibold text-slate-900 mb-1">Lean Optimization of Post-Injection Flow</h4>
-                        <p class="text-xs text-cyan-600 mb-2 italic">(Inspired by SMCV Internship)</p>
-                        <p class="text-xs text-slate-700 mb-1"><strong>Scope:</strong> Applying Lean principles (VSM) & developing automation logic.</p>
-                        <p class="text-xs text-slate-600"><strong>Skills:</strong> Lean Mfg, Process Mapping, PLC Logic Opt. | <strong>Tools:</strong> TIA Portal, VSM</p>
+            <!-- Current Development Focus Section -->
+            <section id="dev-focus">
+                <h2 class="text-3xl font-bold text-slate-900 mb-8 border-b-2 border-cyan-500 pb-2 flex items-center space-x-2">
+                    <i data-lucide="zap" class="w-7 h-7 text-cyan-500"></i><span>Ongoing Projects & Development Focus</span>
+                </h2>
+                <div class="grid md:grid-cols-2 gap-8 p-8 bg-white rounded-xl shadow-lg shadow-cyan-100/50">
+                    
+                    <!-- Project 1: Lean Automation -->
+                    <div class="border-l-4 border-cyan-500 p-4 bg-slate-50 rounded-lg">
+                        <h3 class="text-xl font-bold text-slate-900 mb-2">Lean Optimization of Post-Injection Flow Automation</h3>
+                        <p class="text-xs text-cyan-600 mb-3 italic">
+                            (Post-Internship Project inspired by SMCV industrial challenges)
+                        </p>
+                        <hr class="border-slate-300 mb-3">
+                        <div class="space-y-3">
+                            <p class="text-sm text-slate-700">
+                                <strong>Project Scope:</strong> Applying Lean Manufacturing principles (VSM) to optimize the manual post-injection assembly flow and developing automation logic to implement the new efficient process.
+                            </p>
+                            <div class="flex items-start space-x-2">
+                                <i data-lucide="atom" class="w-5 h-5 text-cyan-500 mt-0.5 flex-shrink-0"></i>
+                                <div>
+                                    <span class="font-semibold text-sm">Skills Focused:</span>
+                                    <span class="text-xs text-slate-700"> Lean Manufacturing, Process Mapping, PLC Logic Optimization.</span>
+                                </div>
+                            </div>
+                            <div class="flex items-start space-x-2">
+                                <i data-lucide="code" class="w-5 h-5 text-cyan-500 mt-0.5 flex-shrink-0"></i>
+                                <div>
+                                    <span class="font-semibold text-sm">Software Focused:</span>
+                                    <span class="text-xs text-slate-700"> TIA Portal, Value Stream Mapping tools.</span>
+                                </div>
+                            </div>
+                        </div>
                     </div>
 
                     <!-- Project 2: 6-DOF Rendezvous -->
-                    <div class="border-l-4 border-cyan-500 pl-4 py-3 bg-slate-50 rounded-r-md">
-                        <h4 class="text-base font-semibold text-slate-900 mb-1">6-DOF Non-Linear Rendezvous Control (GNC)</h4>
-                        <p class="text-xs text-cyan-600 mb-2 italic">(Self-initiated study based on Luenberger Control project)</p>
-                        <p class="text-xs text-slate-700 mb-1"><strong>Scope:</strong> Extend 2D linear model to full 6-DOF non-linear dynamics (13-state vector).</p>
-                        <p class="text-xs text-slate-600"><strong>Skills:</strong> Non-Linear Dynamics, EKF/UKF, Sensor Fusion, 6-DOF Control. | <strong>Tools:</strong> MATLAB/Simulink</p>
+                    <div class="border-l-4 border-cyan-500 p-4 bg-slate-50 rounded-lg">
+                        <h3 class="text-xl font-bold text-slate-900 mb-2">6-DOF Non-Linear Orbital Rendezvous Control (GNC)</h3>
+                        <p class="text-xs text-cyan-600 mb-3 italic">
+                            (Future work from Luenberger project, moving from linear theory to non-linear reality)
+                        </p>
+                        <hr class="border-slate-300 mb-3">
+                        <div class="space-y-3">
+                            <p class="text-sm text-slate-700">
+                                <strong>Project Scope:</strong> Replacing the linear 4-state model with a full 13-state non-linear 6-DOF dynamic model. Designing a 6-DOF controller (3 forces, 3 torques) and a non-linear estimator (EKF/UKF) to fuse sensor data (Camera + LiDAR).
+                            </p>
+                            <div class="flex items-start space-x-2">
+                                <i data-lucide="atom" class="w-5 h-5 text-cyan-500 mt-0.5 flex-shrink-0"></i>
+                                <div>
+                                    <span class="font-semibold text-sm">Skills Focused:</span>
+                                    <span class="text-xs text-slate-700"> Non-Linear Control, 6-DOF Dynamics, State Estimation (EKF/UKF), Sensor Fusion.</span>
+                                </div>
+                            </div>
+                            <div class="flex items-start space-x-2">
+                                <i data-lucide="code" class="w-5 h-5 text-cyan-500 mt-0.5 flex-shrink-0"></i>
+                                <div>
+                                    <span class="font-semibold text-sm">Software Focused:</span>
+                                    <span class="text-xs text-slate-700"> MATLAB/Simulink, Python (Sim).</span>
+                                </div>
+                            </div>
+                        </div>
                     </div>
 
-                    <!-- Project 3: Thermomechanical -->
-                    <div class="border-l-4 border-cyan-500 pl-4 py-3 bg-slate-50 rounded-r-md lg:col-span-2">
-                        <h4 class="text-base font-semibold text-slate-900 mb-1">Thermomechanical Simulation & DOE for Hot Insertion</h4>
-                        <p class="text-xs text-cyan-600 mb-2 italic">(Self-initiated study based on SMCV Internship)</p>
-                        <p class="text-xs text-slate-700 mb-1"><strong>Scope:</strong> Find optimal insertion conditions (Nut Temp, Force, Hole Diameter) using Design of Experiments (DOE).</p>
-                        <p class="text-xs text-slate-600"><strong>Skills:</strong> Coupled-Field FEA, Viscoplasticity, Non-Linear Contact, DOE. | <strong>Tools:</strong> ANSYS Mechanical</p>
+                    <!-- Project 3: Thermomechanical DOE -->
+                    <div class="border-l-4 border-cyan-500 p-4 bg-slate-50 rounded-lg col-span-1 md:col-span-2">
+                        <h3 class="text-xl font-bold text-slate-900 mb-2">Thermomechanical Simulation (DOE) for Hot Insertion</h3>
+                        <p class="text-xs text-cyan-600 mb-3 italic">
+                            (Future work from Thermal Analysis project, moving from thermal to structural)
+                        </sр>
+                        <hr class="border-slate-300 mb-3">
+                        <div class="space-y-3">
+                            <p class="text-sm text-slate-700">
+                                <strong>Project Scope:</strong> Conducting a Design of Experiments (DOE) to find the optimal process window. This involves a coupled Thermal-Structural (Thermomechanical) simulation to model the viscoplastic deformation of polycarbonate and resulting residual stress, optimizing for joint pull-out strength.
+                            </p>
+                            <div class="flex items-start space-x-2">
+                                <i data-lucide="atom" class="w-5 h-5 text-cyan-500 mt-0.5 flex-shrink-0"></i>
+                                <div>
+                                    <span class="font-semibold text-sm">Skills Focused:</span>
+                                    <span class="text-xs text-slate-700"> Design of Experiments (DOE), Coupled-Field FEA, Non-Linear Material Science (Viscoplasticity), Contact Mechanics.</span>
+                                </div>
+                            </div>
+                            <div class="flex items-start space-x-2">
+                                <i data-lucide="code" class="w-5 h-5 text-cyan-500 mt-0.5 flex-shrink-0"></i>
+                                <div>
+                                    <span class="font-semibold text-sm">Software Focused:</span>
+                                    <span class="text-xs text-slate-700"> ANSYS Mechanical (Workbench).</span>
+                                </div>
+                            </div>
+                        </div>
                     </div>
 
                 </div>
-             </section>
+            </section>
             
-            <!-- Center of Interest -->
-            <section id="interest" class="bg-white p-6 md:p-8 rounded-xl shadow-md">
-                <h2 class="text-2xl md:text-3xl font-bold text-slate-900 mb-5 border-b-2 border-cyan-500 pb-2 flex items-center space-x-2">
-                    <i data-lucide="heart" class="w-6 h-6 md:w-7 md:h-7 text-red-500"></i><span>Center of Interest</span>
+            <!-- Center of Interest Section -->
+            <section id="interest" class="bg-white p-8 rounded-xl shadow-lg shadow-cyan-100/50">
+                <h2 class="text-3xl font-bold text-slate-900 mb-6 border-b-2 border-cyan-500 pb-2 flex items-center space-x-2">
+                    <i data-lucide="heart" class="w-7 h-7 text-red-500"></i><span>Center of Interest</span>
                 </h2>
-                <div class="flex flex-wrap gap-3 mb-4">
-                    <span class="inline-flex items-center space-x-1.5 bg-cyan-100 text-cyan-800 text-sm font-medium px-3 py-1 rounded-full">
-                        <i data-lucide="robot" class="w-4 h-4"></i><span>Industrial Automation</span>
-                    </span>
-                     <span class="inline-flex items-center space-x-1.5 bg-cyan-100 text-cyan-800 text-sm font-medium px-3 py-1 rounded-full">
-                        <i data-lucide="zap" class="w-4 h-4"></i><span>Electronic Design</span>
-                    </span>
-                     <span class="inline-flex items-center space-x-1.5 bg-cyan-100 text-cyan-800 text-sm font-medium px-3 py-1 rounded-full">
-                        <i data-lucide="hard-hat" class="w-4 h-4"></i><span>Mechanical Design</span>
-                    </span>
+                <div class="flex flex-wrap gap-4 justify-center md:justify-start">
+                    <div class="p-3 bg-cyan-100 rounded-lg shadow-md flex items-center space-x-2">
+                        <i data-lucide="robot" class="w-6 h-6 text-cyan-700"></i>
+                        <span class="font-semibold text-cyan-800">Industrial Automation</span>
+                    </div>
+                    <div class="p-3 bg-cyan-100 rounded-lg shadow-md flex items-center space-x-2">
+                        <i data-lucide="zap" class="w-6 h-6 text-cyan-700"></i>
+                        <span class="font-semibold text-cyan-800">Electronic Design</span>
+                    </div>
+                    <div class="p-3 bg-cyan-100 rounded-lg shadow-md flex items-center space-x-2">
+                        <i data-lucide="hard-hat" class="w-6 h-6 text-cyan-700"></i>
+                        <span class="font-semibold text-cyan-800">Mechanical Design</span>
+                    </div>
                 </div>
-                <p class="text-base md:text-lg text-slate-700 leading-relaxed">
+                <p class="text-lg text-slate-700 leading-relaxed mt-4">
                     My core interest lies at the intersection of <strong>mechatronics</strong>, where I thrive on integrating PLC-based <strong>automation</strong> systems, precise <strong>electronic circuit design</strong>, and robust <strong>mechanical conception</strong> to build efficient industrial solutions.
                 </p>
             </section>
@@ -482,22 +640,22 @@
     <!-- Footer -->
     <footer class="bg-slate-900 text-white py-8 mt-16">
         <div class="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <p class="text-xs sm:text-sm text-slate-400">&copy; 2025 Rafi Nasrallah | Electrical & Industrial Systems Control</p>
-            <div class="mt-4 flex justify-center space-x-5">
-                <a href="mailto:nasrollahrafi@gmail.com" class="text-slate-400 hover:text-cyan-400 transition-colors" aria-label="Email">
-                    <i data-lucide="mail" class="w-5 h-5"></i>
+            <p class="text-sm">&copy; 2025 Rafi Nasrallah | Electrical & Industrial Systems Control</p>
+            <div class="mt-4 flex justify-center space-x-4">
+                <a href="mailto:nasrollahrafi@gmail.com" class="text-slate-400 hover:text-cyan-500 transition-colors" aria-label="Email">
+                    <i data-lucide="mail" class="w-6 h-6"></i>
                 </a>
-                <a href="https://www.linkedin.com/in/nasrollah-rafi-4834862a2" target="_blank" class="text-slate-400 hover:text-cyan-400 transition-colors" aria-label="LinkedIn">
-                    <i data-lucide="linkedin" class="w-5 h-5"></i>
+                <a href="https://www.linkedin.com/in/nasrallah-rafi-4834862a2" target="_blank" class="text-slate-400 hover:text-cyan-500 transition-colors" aria-label="LinkedIn">
+                    <i data-lucide="linkedin" class="w-6 h-6"></i>
                 </a>
-                <a href="httpsG://github.com/NasrallahRAFI/NasrallahRAFI" target="_blank" class="text-slate-400 hover:text-cyan-400 transition-colors" aria-label="GitHub">
-                    <i data-lucide="github" class="w-5 h-5"></i>
+                <a href="#" class="text-slate-400 hover:text-cyan-500 transition-colors" aria-label="GitHub">
+                    <i data-lucide="github" class="w-6 h-6"></i>
                 </a>
             </div>
         </div>
     </footer>
 
-    <!-- JavaScript for Interactivity -->
+    <!-- JavaScript for Interactivity (Embedded) -->
     <script>
         // Initialize Lucide Icons
         lucide.createIcons();
@@ -510,7 +668,7 @@
             mobileMenu.classList.toggle('hidden');
         });
 
-        // 2. Close mobile menu on link click
+        // 2. Close mobile menu on link click (for smooth scrolling)
         document.querySelectorAll('#mobile-menu a').forEach(link => {
             link.addEventListener('click', () => {
                 mobileMenu.classList.add('hidden');
