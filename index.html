@@ -263,7 +263,7 @@
                                 <ul class="list-disc ml-5 mt-2 space-y-1 text-slate-700 text-sm">
                                     <li><strong>Injection Molding Machine:</strong> Programmed Siemens PLC (TIA Portal) and implemented HMI interfaces.</li>
                                     <li><strong>Mechanical Arm:</strong> Designed and modeled the assembly in 3D CAD.</li>
-                                    <li><strong>Automatic Hot-Press:</strong> Designed/analyzed mechanical and thermal components, sized actuators, and programmed PLC/HMI.</li>
+                                    <li><strong>Automatic Hot-Press:</strong> Designed/analysed mechanical and thermal components, sized actuators, and programmed PLC/HMI.</li>
                                 </ul>
                                 <a href="internship-smcv.html" target="_blank" class="mt-3 inline-flex items-center text-xs font-semibold px-3 py-1 bg-cyan-600 text-white rounded-full hover:bg-cyan-700 transition-colors shadow-md">
                                     View Details 
@@ -473,76 +473,48 @@
                     <i data-lucide="wrench" class="w-7 h-7 text-cyan-500"></i><span>Skills and Tools</span>
                 </h2>
 
-                <!-- NEW LAYOUT: 2-column grid on large screens, stacking the shorter cards -->
-                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
+                <!-- NEW LAYOUT: Single column grid, stacking the cards for best ergonomics -->
+                <div class="grid grid-cols-1 gap-8">
                     
-                    <!-- Column 1: Technical Expertise and Languages -->
-                    <div class="lg:col-span-1 space-y-8 order-2 lg:order-1">
+                    <!-- 1. Technical Skills Group (FIXED: A|B, C|D layout) -->
+                    <div class="skill-group p-6 bg-white rounded-xl shadow-lg border border-slate-200">
+                        <h3 class="text-2xl font-bold text-cyan-600 mb-4 flex items-center space-x-2"><i data-lucide="hammer" class="w-6 h-6"></i><span>Technical Expertise</span></h3>
                         
-                        <!-- 1. Technical Skills Group -->
-                        <div class="skill-group p-6 bg-white rounded-xl shadow-lg border border-slate-200">
-                            <h3 class="text-2xl font-bold text-cyan-600 mb-4 flex items-center space-x-2"><i data-lucide="hammer" class="w-6 h-6"></i><span>Technical Expertise</span></h3>
-                            
-                            <!-- Fixed to maximize space and distribute items evenly (4 on left, 3 on right) -->
-                            <div class="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-2 text-slate-700 text-sm">
-                                <div class="flex items-center">
-                                    <i data-lucide="check" class="w-4 h-4 text-cyan-600 mr-2 flex-shrink-0"></i>
-                                    <span class="font-medium">Electrical Design & Analysis</span>
-                                </div>
-                                <div class="flex items-center">
-                                    <i data-lucide="check" class="w-4 h-4 text-cyan-600 mr-2 flex-shrink-0"></i>
-                                    <span class="font-medium">High-Frequency (HFSS) Simulation</span>
-                                </div>
-                                <div class="flex items-center">
-                                    <i data-lucide="check" class="w-4 h-4 text-cyan-600 mr-2 flex-shrink-0"></i>
-                                    <span class="font-medium">Mechanical Design (3D Modeling)</span>
-                                </div>
-                                 <div class="flex items-center">
-                                    <i data-lucide="check" class="w-4 h-4 text-cyan-600 mr-2 flex-shrink-0"></i>
-                                    <span class="font-medium">Advanced Control Theory</span>
-                                </div>
-                                <div class="flex items-center">
-                                    <i data-lucide="check" class="w-4 h-4 text-cyan-600 mr-2 flex-shrink-0"></i>
-                                    <span>Automation (PLC/HMI Dev.)</span>
-                                </div>
-                                <div class="flex items-center">
-                                    <i data-lucide="check" class="w-4 h-4 text-cyan-600 mr-2 flex-shrink-0"></i>
-                                    <span>Machine Learning Fundamentals</span>
-                                </div>
-                                <div class="flex items-center">
-                                    <i data-lucide="check" class="w-4 h-4 text-cyan-600 mr-2 flex-shrink-0"></i>
-                                    <span>Deep Learning (PyTorch, FFNNs)</span>
-                                </div>
+                        <!-- Fixed to maximize space and distribute items evenly (4 on left, 3 on right) -->
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-2 text-slate-700 text-sm">
+                            <div class="flex items-center">
+                                <i data-lucide="check" class="w-4 h-4 text-cyan-600 mr-2 flex-shrink-0"></i>
+                                <span class="font-medium">Electrical Design & Analysis</span>
+                            </div>
+                            <div class="flex items-center">
+                                <i data-lucide="check" class="w-4 h-4 text-cyan-600 mr-2 flex-shrink-0"></i>
+                                <span class="font-medium">High-Frequency (HFSS) Simulation</span>
+                            </div>
+                            <div class="flex items-center">
+                                <i data-lucide="check" class="w-4 h-4 text-cyan-600 mr-2 flex-shrink-0"></i>
+                                <span class="font-medium">Mechanical Design (3D Modeling)</span>
+                            </div>
+                             <div class="flex items-center">
+                                <i data-lucide="check" class="w-4 h-4 text-cyan-600 mr-2 flex-shrink-0"></i>
+                                <span class="font-medium">Advanced Control Theory</span>
+                            </div>
+                            <div class="flex items-center">
+                                <i data-lucide="check" class="w-4 h-4 text-cyan-600 mr-2 flex-shrink-0"></i>
+                                <span>Automation (PLC/HMI Dev.)</span>
+                            </div>
+                            <div class="flex items-center">
+                                <i data-lucide="check" class="w-4 h-4 text-cyan-600 mr-2 flex-shrink-0"></i>
+                                <span>Machine Learning Fundamentals</span>
+                            </div>
+                            <div class="flex items-center">
+                                <i data-lucide="check" class="w-4 h-4 text-cyan-600 mr-2 flex-shrink-0"></i>
+                                <span>Deep Learning (PyTorch, FFNNs)</span>
                             </div>
                         </div>
+                    </div>
 
-                        <!-- 2. Languages Group -->
-                        <div class="skill-group p-6 bg-white rounded-xl shadow-lg border border-slate-200">
-                            <h3 class="text-2xl font-bold text-cyan-600 mb-4 flex items-center space-x-2"><i data-lucide="globe" class="w-6 h-6"></i><span>Languages</span></h3>
-                            <!-- UPDATED: sm:flex-row and sm:justify-around for A|B|C layout -->
-                            <div class="space-y-2 sm:space-y-0 sm:flex sm:flex-row sm:justify-around text-slate-700 text-sm">
-                                <div class="flex items-center">
-                                    <i data-lucide="check" class="w-4 h-4 text-cyan-600 mr-2 flex-shrink-0"></i>
-                                    <a href="EF SET Certificate RAFI Nasrallah.pdf" target="_blank" class="text-cyan-600 hover:text-cyan-500 hover:underline cursor-pointer flex items-center space-x-1">
-                                        <span><strong>English:</strong> C2 - EF Standard English Test</span>
-                                        <i data-lucide="file-text" class="w-4 h-4"></i>
-                                    </a>
-                                </div>
-                                 <div class="flex items-center">
-                                    <i data-lucide="check" class="w-4 h-4 text-cyan-600 mr-2 flex-shrink-0"></i>
-                                    <span><strong>French:</strong> B2 - Upper-Intermediate</span>
-                                </div>
-                                 <div class="flex items-center">
-                                    <i data-lucide="check" class="w-4 h-4 text-cyan-600 mr-2 flex-shrink-0"></i>
-                                    <span><strong>Arabic:</strong> Native</span>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div> <!-- End of column 2 wrapper -->
-                    
-                    <!-- Column 2: Software Proficiencies (The tall one, moved to the left on desktop) -->
-                    <div class="skill-group p-6 bg-white rounded-xl shadow-lg border border-slate-200 order-1 lg:order-2">
+                    <!-- 2. Software Group (UPDATED with 2-col layout) -->
+                    <div class="skill-group p-6 bg-white rounded-xl shadow-lg border border-slate-200">
                         <h3 class="text-2xl font-bold text-cyan-600 mb-4 flex items-center space-x-2"><i data-lucide="monitor" class="w-6 h-6"></i><span>Software Proficiencies</span></h3>
                         
                         <!-- UPDATED: 2-column grid inside the card for optimal space usage -->
@@ -592,7 +564,29 @@
                         </div>
                     </div>
 
-                </div> <!-- End of new 2-column grid -->
+                    <!-- 3. Languages Group -->
+                    <div class="skill-group p-6 bg-white rounded-xl shadow-lg border border-slate-200">
+                        <h3 class="text-2xl font-bold text-cyan-600 mb-4 flex items-center space-x-2"><i data-lucide="globe" class="w-6 h-6"></i><span>Languages</span></h3>
+                        <!-- UPDATED: sm:flex-row and sm:justify-around for A|B|C layout -->
+                        <div class="space-y-2 sm:space-y-0 sm:flex sm:flex-row sm:justify-around text-slate-700 text-sm">
+                            <div class="flex items-center">
+                                <i data-lucide="check" class="w-4 h-4 text-cyan-600 mr-2 flex-shrink-0"></i>
+                                <a href="EF SET Certificate RAFI Nasrallah.pdf" target="_blank" class="text-cyan-600 hover:text-cyan-500 hover:underline cursor-pointer flex items-center space-x-1">
+                                    <span class="font-medium">English:</strong> C2 - EF Standard English Test</span>
+                                    <i data-lucide="file-text" class="w-4 h-4"></i>
+                                </a>
+                            </div>
+                             <div class="flex items-center">
+                                <i data-lucide="check" class="w-4 h-4 text-cyan-600 mr-2 flex-shrink-0"></i>
+                                <span class="font-medium">French:</strong> B2 - Upper-Intermediate</span>
+                            </div>
+                             <div class="flex items-center">
+                                <i data-lucide="check" class="w-4 h-4 text-cyan-600 mr-2 flex-shrink-0"></i>
+                                <span class="font-medium">Arabic:</strong> Native</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </section>
             
             <!-- Current Development Focus Section -->
