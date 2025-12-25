@@ -38,7 +38,7 @@
             font-family: 'Inter', sans-serif;
             background-color: #f8fafc; /* slate-50 */
             color: #1e293b; /* slate-800 */
-            overflow-x: hidden; /* Prevent horizontal scroll from animations */
+            overflow-x: hidden;
         }
 
         /* Custom Scrollbar */
@@ -83,11 +83,6 @@
             100% { transform: translateY(0px); }
         }
 
-        @keyframes pulse-glow {
-            0%, 100% { box-shadow: 0 0 15px rgba(6, 182, 212, 0.2); }
-            50% { box-shadow: 0 0 30px rgba(6, 182, 212, 0.5); }
-        }
-
         @keyframes gradient-bg {
             0% { background-position: 0% 50%; }
             50% { background-position: 100% 50%; }
@@ -109,6 +104,28 @@
             backdrop-filter: blur(12px);
             -webkit-backdrop-filter: blur(12px);
             border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        /* Details Button Style */
+        .details-btn {
+            display: inline-flex;
+            align-items: center;
+            padding: 0.5rem 1rem;
+            background-color: #fff;
+            color: #0891b2; /* Cyan 700 */
+            border: 1px solid #cffafe;
+            border-radius: 9999px;
+            font-size: 0.875rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+        .details-btn:hover {
+            background-color: #06b6d4; /* Cyan 600 */
+            color: white;
+            transform: translateX(5px);
+            box-shadow: 0 4px 10px rgba(6, 182, 212, 0.3);
+            border-color: #06b6d4;
         }
 
     </style>
@@ -196,7 +213,7 @@
                     <span>About Me</span>
                 </h2>
                 <p class="text-lg text-slate-700 leading-relaxed">
-                    Aspiring Electrical Engineer driven by curiosity and a passion for technical challenges. Currently seeking a stimulating <span class="font-semibold text-cyan-700">6-month End-of-Studies Internship (Capstone Project)</span>, I aim to leverage my adaptability and eagerness to learn to contribute to your innovative projects. My background combines rigorous theoretical knowledge with hands-on industrial automation experience.
+                    Aspiring Electrical Engineer driven by curiosity and a passion for technical challenges. Currently seeking a stimulating <span class="font-semibold text-cyan-700">6-month End-of-Studies Internship (Capstone Project)</span>, I aim to leverage my adaptability and eagerness to learn to contribute to your innovative projects.
                 </p>
             </div>
         </section>
@@ -217,10 +234,13 @@
                             <span class="text-xs font-bold uppercase tracking-wider text-cyan-600 bg-cyan-50 px-2 py-1 rounded mb-2 inline-block">2020 – 2023</span>
                             <h4 class="font-bold text-xl text-slate-900">Apprenticeship - Rafi Robotiques</h4>
                             <p class="text-slate-600 font-medium mb-3">Mechanical Repair, CNC & Robotics</p>
-                            <ul class="list-disc ml-4 space-y-2 text-slate-600 text-sm marker:text-cyan-400">
-                                <li>Repair of Sharmaann horizontal boring machine & CNC Lathe (Siemens 840D).</li>
+                            <ul class="list-disc ml-4 mb-4 space-y-2 text-slate-600 text-sm marker:text-cyan-400">
+                                <li>Repair of Sharmaann horizontal boring machine & CNC Lathe.</li>
                                 <li>Design and fabrication of 5-axis welding robots.</li>
                             </ul>
+                            <a href="apprenticeship-rafi.html" target="_blank" class="details-btn">
+                                View Details <i data-lucide="external-link" class="w-4 h-4 ml-2"></i>
+                            </a>
                         </div>
 
                         <div class="timeline-item pb-10" data-aos="fade-left" data-aos-delay="200">
@@ -228,10 +248,13 @@
                             <span class="text-xs font-bold uppercase tracking-wider text-cyan-600 bg-cyan-50 px-2 py-1 rounded mb-2 inline-block">July 2024 – Aug 2024</span>
                             <h4 class="font-bold text-xl text-slate-900">Internship - ONEE</h4>
                             <p class="text-slate-600 font-medium mb-3">Protection Systems Analysis</p>
-                            <ul class="list-disc ml-4 space-y-2 text-slate-600 text-sm marker:text-cyan-400">
+                            <ul class="list-disc ml-4 mb-4 space-y-2 text-slate-600 text-sm marker:text-cyan-400">
                                 <li>Operational analysis of Siemens protection relays using <strong>OMICRON</strong>.</li>
                                 <li>Developed testing protocols and validation procedures.</li>
                             </ul>
+                            <a href="internship-onee.html" target="_blank" class="details-btn">
+                                View Details <i data-lucide="external-link" class="w-4 h-4 ml-2"></i>
+                            </a>
                         </div>
 
                         <div class="timeline-item pb-4" data-aos="fade-left" data-aos-delay="300">
@@ -239,10 +262,13 @@
                             <span class="text-xs font-bold uppercase tracking-wider text-cyan-600 bg-cyan-50 px-2 py-1 rounded mb-2 inline-block">July 2025 – Sept 2025</span>
                             <h4 class="font-bold text-xl text-slate-900">PFA Internship - SMCV</h4>
                             <p class="text-slate-600 font-medium mb-3">Industrial Automation & Design</p>
-                            <ul class="list-disc ml-4 space-y-2 text-slate-600 text-sm marker:text-cyan-400">
+                            <ul class="list-disc ml-4 mb-4 space-y-2 text-slate-600 text-sm marker:text-cyan-400">
                                 <li><strong>PLC/HMI:</strong> Programmed Siemens TIA Portal for Injection Molding.</li>
                                 <li><strong>Mechanical:</strong> Designed Automatic Hot-Press (Thermal/Actuators).</li>
                             </ul>
+                             <a href="internship-smcv.html" target="_blank" class="details-btn">
+                                View Details <i data-lucide="external-link" class="w-4 h-4 ml-2"></i>
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -299,9 +325,11 @@
                     <p class="text-sm text-slate-600 mb-4 flex-grow">
                         Analyzed $TE_{10}$ mode in air vs. alumina-filled waveguides using <strong>ANSYS HFSS</strong>. Compared cutoff frequencies and field concentrations.
                     </p>
-                    <a href="#" class="inline-flex items-center text-sm font-semibold text-cyan-600 hover:text-cyan-800 transition-colors">
-                        Read Case Study <i data-lucide="arrow-right" class="w-4 h-4 ml-1"></i>
-                    </a>
+                    <div class="mt-auto pt-4 border-t border-slate-100">
+                        <a href="project-waveguide.html" target="_blank" class="details-btn w-full justify-center">
+                            View Project <i data-lucide="arrow-right" class="w-4 h-4 ml-2"></i>
+                        </a>
+                    </div>
                 </div>
 
                 <div class="project-card bg-white p-6 rounded-2xl shadow-lg border border-slate-100 flex flex-col h-full" data-aos="fade-up" data-aos-delay="200">
@@ -312,9 +340,11 @@
                     <p class="text-sm text-slate-600 mb-4 flex-grow">
                         Comparative study of Lumped Capacitance vs. FEA (ANSYS, Fusion 360) to validate cycle times for hot nut insertion in polycarbonate.
                     </p>
-                    <a href="#" class="inline-flex items-center text-sm font-semibold text-cyan-600 hover:text-cyan-800 transition-colors">
-                        Read Case Study <i data-lucide="arrow-right" class="w-4 h-4 ml-1"></i>
-                    </a>
+                     <div class="mt-auto pt-4 border-t border-slate-100">
+                        <a href="project-thermal.html" target="_blank" class="details-btn w-full justify-center">
+                            View Project <i data-lucide="arrow-right" class="w-4 h-4 ml-2"></i>
+                        </a>
+                    </div>
                 </div>
 
                 <div class="project-card bg-white p-6 rounded-2xl shadow-lg border border-slate-100 flex flex-col h-full" data-aos="fade-up" data-aos-delay="300">
@@ -325,9 +355,11 @@
                     <p class="text-sm text-slate-600 mb-4 flex-grow">
                         Designed autopilot for orbital rendezvous using Luenberger Observer + State-Feedback, overcoming numerical instability via normalization.
                     </p>
-                    <a href="#" class="inline-flex items-center text-sm font-semibold text-cyan-600 hover:text-cyan-800 transition-colors">
-                        Read Case Study <i data-lucide="arrow-right" class="w-4 h-4 ml-1"></i>
-                    </a>
+                     <div class="mt-auto pt-4 border-t border-slate-100">
+                        <a href="project-rendezvous.html" target="_blank" class="details-btn w-full justify-center">
+                            View Project <i data-lucide="arrow-right" class="w-4 h-4 ml-2"></i>
+                        </a>
+                    </div>
                 </div>
 
                 <div class="project-card bg-white p-6 rounded-2xl shadow-lg border border-slate-100 flex flex-col h-full" data-aos="fade-up" data-aos-delay="400">
@@ -338,6 +370,9 @@
                     <p class="text-sm text-slate-600 mb-4 flex-grow">
                         Complete sizing and code compliance for a Pumping Station electrical system using <strong>Caneco BT</strong> and <strong>ETAP</strong>.
                     </p>
+                    <div class="mt-auto pt-4 border-t border-slate-100 opacity-50 cursor-not-allowed">
+                        <span class="text-xs text-slate-400 font-semibold flex items-center justify-center">Confidential Project</span>
+                    </div>
                 </div>
 
                 <div class="project-card bg-white p-6 rounded-2xl shadow-lg border border-slate-100 flex flex-col h-full" data-aos="fade-up" data-aos-delay="500">
@@ -406,7 +441,10 @@
                     </h3>
                     <div class="space-y-3">
                          <div class="flex justify-between items-center text-sm">
-                            <span>English (C2 - EF SET)</span>
+                            <a href="EF SET Certificate RAFI Nasrallah.pdf" target="_blank" class="flex items-center hover:text-cyan-600 transition-colors">
+                                <span>English (C2 - EF SET)</span>
+                                <i data-lucide="external-link" class="w-3 h-3 ml-1 text-slate-400"></i>
+                            </a>
                             <div class="w-20 bg-slate-200 rounded-full h-1.5"><div class="bg-purple-500 h-1.5 rounded-full" style="width: 100%"></div></div>
                          </div>
                          <div class="flex justify-between items-center text-sm">
