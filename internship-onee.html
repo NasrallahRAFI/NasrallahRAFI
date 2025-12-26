@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,175 +10,195 @@
     <!-- Load Lucide Icons -->
     <script src="https://unpkg.com/lucide@latest"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
+    <!-- Link to external style.css -->
+    <link rel="stylesheet" href="style.css">
     <style>
-        :root {
-            --primary-color: #06b6d4; /* Tailwind Cyan 600 */
-        }
-        body {
-            font-family: 'Inter', sans-serif;
-            transition: background-color 0.4s, color 0.4s;
-        }
-        html {
-            scroll-behavior: smooth;
-        }
-        .dark .bg-gray-100 { background-color: #0f172a !important; }
-        .dark .text-gray-800 { color: #e2e8f0 !important; }
-        .dark .bg-white { background-color: #1e293b !important; }
-        .dark .border-gray-200 { border-color: #334155 !important; }
-
-        /* --- IMAGE OPTIMIZATION --- */
-        .responsive-img {
-            width: 100%;
-            height: auto;
-            border-radius: 0.5rem;
-            object-fit: contain;
-        }
         .siprotec-img {
             aspect-ratio: 16 / 9;
             object-fit: cover;
         }
-        /* Custom styling for the embedded evaluation sheet */
-        .evaluation-sheet {
-            max-width: 500px; /* Smaller for this evaluation */
-            margin: 0 auto;
-            border: 1px solid #ddd;
-            padding: 1rem;
-        }
     </style>
 </head>
-<body class="bg-gray-100 text-gray-800 transition-colors duration-300 dark:bg-gray-900 dark:text-gray-100">
-<!-- Header (Simplified Navigation) -->
-<header class="bg-white shadow-md dark:bg-gray-800">
-<div class="container mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
-<h1 class="text-2xl font-bold text-gray-900 dark:text-white">ONEE Internship Details</h1>
-<a href="index.html#experience" class="inline-flex items-center text-cyan-600 dark:text-cyan-400 hover:text-cyan-700 dark:hover:text-cyan-300 font-medium transition-colors">
-<i data-lucide="arrow-left" class="w-5 h-5 mr-2"></i> Back to Portfolio
-</a>
-</div>
-</header>
-<main class="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
-<div class="max-w-4xl mx-auto bg-white p-8 rounded-xl shadow-lg dark:bg-gray-800 dark:shadow-xl space-y-12">
-<!-- Title & Metadata -->
-<div>
-<span class="text-sm font-semibold text-white bg-cyan-600 px-3 py-1 rounded-full">Initiation Stage</span>
-<h2 class="text-4xl font-extrabold text-gray-900 dark:text-white mt-3 mb-2">
-Digital Protection Relay Test Procedure Elaboration
-</h2>
-<p class="text-lg text-gray-600 dark:text-gray-400">
-<strong>Company:</strong> ONEE-BE (Mohammedia Thermal Power Plant) | <strong>Duration:</strong> July 2024 – August 2024
-</p>
-<div class="mt-4 flex flex-wrap gap-2">
-<span class="bg-gray-200 text-gray-700 text-xs font-medium px-3 py-1 rounded-full dark:bg-gray-700 dark:text-gray-300">#SIPROTEC</span>
-<span class="bg-gray-200 text-gray-700 text-xs font-medium px-3 py-1 rounded-full dark:bg-gray-700 dark:text-gray-300">#SubstationTesting</span>
-<span class="bg-gray-200 text-gray-700 text-xs font-medium px-3 py-1 rounded-full dark:bg-gray-700 dark:text-gray-300">#ElectricalProtection</span>
-</div>
-</div>
-<hr class="border-gray-200 dark:border-gray-700">
-<!-- Core Objectives -->
-<div>
-<h3 class="text-2xl font-bold text-cyan-600 dark:text-cyan-400 mb-4 flex items-center space-x-2">
-<i data-lucide="target" class="w-6 h-6"></i><span>Core Objectives</span>
-</h3>
-<p class="text-gray-700 dark:text-gray-300 leading-relaxed text-lg mb-3">
-The primary goal was to elaborate a formal, structured testing procedure for the Siemens **SIPROTEC digital protection relays** installed on the thermal power plant's alternator and transformers. This involved bridging theoretical knowledge of electrical protection with hands-on application using professional testing equipment.
-</p>
-<!-- Note: Removed the Report and Attestation links here as requested -->
-</div>
-<hr class="border-gray-200 dark:border-gray-700">
-<!-- SECTION 1: Main Technical Themes -->
-<div id="themes">
-<h3 class="text-2xl font-bold text-cyan-600 dark:text-cyan-400 mb-4 flex items-center space-x-2">
-<i data-lucide="activity" class="w-6 h-6"></i><span>Main Themes & Execution</span>
-</h3>
-<div class="p-4 bg-gray-50 dark:bg-gray-700 rounded-lg mb-6">
-<h4 class="font-bold text-lg text-gray-900 dark:text-white mb-2">Key Areas of Focus:</h4>
-<ul class="list-disc ml-5 text-sm text-gray-700 dark:text-gray-300 space-y-2">
-<li><strong>Relay Configuration Analysis:</strong> Detailed study of Siemens SIPROTEC 7UT6x family relays and their specific protective functions (e.g., Differential 87G, Overcurrent 51G, Stator Earth Fault 64G).</li>
-<li><strong>Test Protocol Development:</strong> Creation of step-by-step procedures to verify the trip settings, pickup times, and overall logic of each protective function.</li>
-<li><strong>Hands-on Testing:</strong> Practical application of test protocols using the **OMICRON CMC Test Universe** to simulate fault conditions and measure the relay response time.</li>
-<li><strong>Critical Equipment Verification:</strong> Focused on protection schemes for the main **Alternator** and **Step-Up Transformers** (Generator/Unit Protection).</li>
-</ul>
-</div>
-</div>
-<hr class="border-gray-200 dark:border-gray-700">
-<!-- SECTION 2: Results & Conclusion -->
-<div id="results">
-<h3 class="text-2xl font-bold text-cyan-600 dark:text-cyan-400 mb-4 flex items-center space-x-2">
-<i data-lucide="zap" class="w-6 h-6"></i><span>Results and Takeaways</span>
-</h3>
-<div class="p-5 bg-cyan-50 dark:bg-cyan-900/50 rounded-lg mb-6 border-l-4 border-cyan-500">
-<h4 class="font-bold text-lg text-cyan-700 dark:text-cyan-300 mb-2 flex items-center space-x-2">
-<i data-lucide="check-square" class="w-5 h-5"></i><span>Achieved Outcomes</span>
-</h4>
-<p class="text-sm text-gray-700 dark:text-gray-300 leading-relaxed mb-3">
-The project successfully delivered a robust, documented test procedure, ensuring the protection settings met the required grid standards. This experience provided practical mastery of high-voltage power system protection and diagnostic tools.
-</p>
-<ul class="list-disc ml-5 text-sm text-gray-700 dark:text-gray-300 space-y-1">
-<li>Validated the entire protection chain from CT/VT secondary terminals through the relay logic to the trip outputs.</li>
-<li>Gained proficiency in the **Omicron Test Universe** suite (Quick CMC, Ramping, State Sequencer).</li>
-<li>Developed a deep appreciation for the strategic role of protection relays in ensuring the reliability and safety of a major power plant.</li>
-</ul>
-</div>
-</div>
-<hr class="border-gray-200 dark:border-gray-700">
-<!-- SECTION 3: Visuals & Evaluation -->
-<div id="visuals">
-<h3 class="text-2xl font-bold text-cyan-600 dark:text-cyan-400 mb-4 flex items-center space-x-2">
-<i data-lucide="camera" class="w-6 h-6"></i><span>Visuals & Evaluation</span>
-</h3>
 
-<h4 class="font-semibold text-lg text-gray-900 dark:text-white mb-4">On-Site Work & SIPROTEC Relays:</h4>
-<div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
-    <!-- Image 1: Placeholder for SIPROTEC Testing -->
-    <div>
-        <img src="siprotec_testing_view1.jpg" alt="Rafi Nasrallah working on Siemens SIPROTEC relay testing." class="responsive-img siprotec-img">
-        <p class="text-xs text-center text-gray-500 dark:text-gray-400 mt-1">Working on the SIPROTEC protection relay panel.</p>
-    </div>
-    <!-- Image 2: Placeholder for SIPROTEC Testing -->
-    <div>
-        <img src="siprotec_testing_view2.jpg" alt="Setup of the OMICRON CMC kit for electrical protection testing." class="responsive-img siprotec-img">
-        <p class="text-xs text-center text-gray-500 dark:text-gray-400 mt-1">OMCIORN CMC test kit setup in the electrical workshop.</p>
-    </div>
-</div>
+<body class="antialiased selection:bg-cyan-500 selection:text-white">
 
-<hr class="border-gray-200 dark:border-gray-700">
+    <!-- Header -->
+    <header class="sticky top-0 z-50 glass transition-colors duration-300">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
+            <h1
+                class="text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 to-cyan-200 truncate">
+                ONEE Internship Details</h1>
+            <a href="index.html#experience"
+                class="inline-flex items-center text-slate-300 hover:text-cyan-400 font-medium transition-colors text-sm">
+                <i data-lucide="arrow-left" class="w-4 h-4 mr-2"></i> Back to Portfolio
+            </a>
+        </div>
+    </header>
 
-<!-- SUPERVISOR EVALUATION -->
-<div id="evaluation">
-    <h3 class="text-2xl font-bold text-red-600 dark:text-red-400 mb-4 flex items-center space-x-2">
-        <i data-lucide="star" class="w-6 h-6"></i><span>Supervisor's Evaluation (18.5/20)</span>
-    </h3>
-    
-    <div class="evaluation-summary bg-red-50 dark:bg-red-900/50 p-4 rounded-lg border-l-4 border-red-500 mb-6">
-        <h4 class="font-bold text-lg text-red-700 dark:text-red-300 mb-2">Overall Remarks:</h4>
-        <!-- CORRECTED: Changed "Très bon élément" to "Bon élément" -->
-        <p class="text-base italic text-gray-700 dark:text-gray-300 leading-relaxed">
-            "Bon élément" (Good element). The overall grade awarded was <strong>18.5/20</strong>.
-        </p>
-    </div>
+    <main class="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <article class="max-w-4xl mx-auto glass p-8 md:p-12 rounded-2xl relative overflow-hidden">
+            <!-- Background Blob -->
+            <div
+                class="absolute top-0 right-0 w-96 h-96 bg-cyan-500/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 pointer-events-none">
+            </div>
 
-    <h4 class="font-semibold text-lg text-gray-900 dark:text-white mb-4 mt-6">Full Evaluation Sheet:</h4>
-    <div class="rounded-lg overflow-hidden shadow-xl evaluation-sheet">
-        <img src="Evaluation de stage d'initiation ONEE.jpg" alt="Supervisor's Detailed Evaluation of ONEE Internship Performance" class="responsive-img">
-    </div>
-    <p class="text-xs text-center text-gray-500 dark:text-gray-400 mt-2">
-        Evaluation Sheet from Mr. M. Mouzouri, ONEE Internship Supervisor.
-    </p>
-</div>
-</div>
+            <!-- Title & Metadata -->
+            <section class="content-section text-center relative z-10">
+                <span
+                    class="text-xs font-bold text-white bg-cyan-600/80 px-4 py-1.5 rounded-full uppercase tracking-wider mb-6 inline-block shadow-lg shadow-cyan-500/20">Internship</span>
+                <h2 class="text-3xl md:text-5xl font-extrabold text-white mb-4 leading-tight">
+                    Digital Protection Relay Test Procedure Elaboration
+                </h2>
+                <p class="text-lg text-slate-300 mb-4">
+                    <strong>Company:</strong> ONEE-BE (Mohammedia Thermal Power Plant) | <strong>Duration:</strong> July
+                    2024 – August 2024
+                </p>
+                <div class="flex flex-wrap justify-center gap-2">
+                    <span
+                        class="bg-slate-800 text-cyan-400 text-xs font-medium px-3 py-1 rounded-full border border-slate-700">#SIPROTEC</span>
+                    <span
+                        class="bg-slate-800 text-cyan-400 text-xs font-medium px-3 py-1 rounded-full border border-slate-700">#SubstationTesting</span>
+                    <span
+                        class="bg-slate-800 text-cyan-400 text-xs font-medium px-3 py-1 rounded-full border border-slate-700">#ElectricalProtection</span>
+                </div>
+            </section>
 
-<hr class="border-gray-200 dark:border-gray-700">
-<!-- Final Return Link -->
-<div class="text-center pt-4">
-<a href="index.html#experience" class="inline-flex items-center font-semibold text-cyan-600 dark:text-cyan-400 hover:text-cyan-700 dark:hover:text-cyan-500 transition-colors">
-<i data-lucide="arrow-left" class="w-4 h-4 mr-2"></i> Return to Main Portfolio
-</a>
-</div>
-</div>
-</main>
-<!-- Script to initialize Lucide icons -->
-<script>
-    lucide.createIcons();
-</script>
+            <!-- Core Objectives -->
+            <section class="content-section relative z-10">
+                <h3 class="text-2xl font-bold text-white mb-6 flex items-center space-x-3">
+                    <div class="p-2 bg-cyan-500/10 rounded-lg">
+                        <i data-lucide="target" class="w-6 h-6 text-cyan-400"></i>
+                    </div>
+                    <span>Core Objectives</span>
+                </h3>
+                <p class="text-lg text-slate-300 leading-relaxed">
+                    The primary goal was to elaborate a formal, structured testing procedure for the Siemens **SIPROTEC
+                    digital protection relays** installed on the thermal power plant's alternator and transformers. This
+                    involved bridging theoretical knowledge of electrical protection with hands-on application using
+                    professional testing equipment.
+                </p>
+            </section>
+
+            <!-- SECTION 1: Main Technical Themes -->
+            <section class="content-section relative z-10">
+                <h3 class="text-2xl font-bold text-white mb-6 flex items-center space-x-3">
+                    <div class="p-2 bg-cyan-500/10 rounded-lg">
+                        <i data-lucide="activity" class="w-6 h-6 text-cyan-400"></i>
+                    </div>
+                    <span>Main Themes & Execution</span>
+                </h3>
+                <div class="bg-slate-800/50 p-6 rounded-xl border border-slate-700/50">
+                    <h4 class="font-bold text-lg text-white mb-4">Key Areas of Focus:</h4>
+                    <ul class="list-disc ml-5 text-sm text-slate-300 space-y-3">
+                        <li><strong>Relay Configuration Analysis:</strong> Detailed study of Siemens SIPROTEC 7UT6x
+                            family relays and their specific protective functions (e.g., Differential 87G, Overcurrent
+                            51G, Stator Earth Fault 64G).</li>
+                        <li><strong>Test Protocol Development:</strong> Creation of step-by-step procedures to verify
+                            the trip settings, pickup times, and overall logic of each protective function.</li>
+                        <li><strong>Hands-on Testing:</strong> Practical application of test protocols using the
+                            **OMICRON CMC Test Universe** to simulate fault conditions and measure the relay response
+                            time.</li>
+                        <li><strong>Critical Equipment Verification:</strong> Focused on protection schemes for the main
+                            **Alternator** and **Step-Up Transformers** (Generator/Unit Protection).</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- SECTION 2: Results & Conclusion -->
+            <section class="content-section relative z-10">
+                <h3 class="text-2xl font-bold text-white mb-6 flex items-center space-x-3">
+                    <div class="p-2 bg-cyan-500/10 rounded-lg">
+                        <i data-lucide="zap" class="w-6 h-6 text-cyan-400"></i>
+                    </div>
+                    <span>Results and Takeaways</span>
+                </h3>
+                <div class="bg-cyan-900/20 p-6 rounded-xl border-l-4 border-cyan-500">
+                    <h4 class="font-bold text-lg text-cyan-400 mb-3 flex items-center space-x-2">
+                        <i data-lucide="check-square" class="w-5 h-5"></i><span>Achieved Outcomes</span>
+                    </h4>
+                    <p class="text-sm text-slate-300 leading-relaxed mb-3">
+                        The project successfully delivered a robust, documented test procedure, ensuring the protection
+                        settings met the required grid standards. This experience provided practical mastery of
+                        high-voltage power system protection and diagnostic tools.
+                    </p>
+                    <ul class="list-disc ml-5 text-sm text-slate-300 space-y-1">
+                        <li>Validated the entire protection chain from CT/VT secondary terminals through the relay logic
+                            to the trip outputs.</li>
+                        <li>Gained proficiency in the **Omicron Test Universe** suite (Quick CMC, Ramping, State
+                            Sequencer).</li>
+                        <li>Developed a deep appreciation for the strategic role of protection relays in ensuring the
+                            reliability and safety of a major power plant.</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- SECTION 3: Visuals & Evaluation -->
+            <section class="content-section relative z-10">
+                <h3 class="text-2xl font-bold text-white mb-6 flex items-center space-x-3">
+                    <div class="p-2 bg-cyan-500/10 rounded-lg">
+                        <i data-lucide="camera" class="w-6 h-6 text-cyan-400"></i>
+                    </div>
+                    <span>Visuals & Evaluation</span>
+                </h3>
+
+                <h4 class="font-semibold text-lg text-white mb-4">On-Site Work & SIPROTEC Relays:</h4>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+                    <!-- Image 1 -->
+                    <div>
+                        <img src="siprotec_testing_view1.jpg"
+                            alt="Rafi Nasrallah working on Siemens SIPROTEC relay testing."
+                            class="gallery-image siprotec-img">
+                        <p class="text-xs text-center text-slate-400 mt-2">Working on the SIPROTEC protection relay
+                            panel.</p>
+                    </div>
+                    <!-- Image 2 -->
+                    <div>
+                        <img src="siprotec_testing_view2.jpg"
+                            alt="Setup of the OMICRON CMC kit for electrical protection testing."
+                            class="gallery-image siprotec-img">
+                        <p class="text-xs text-center text-slate-400 mt-2">OMICRON CMC test kit setup in the electrical
+                            workshop.</p>
+                    </div>
+                </div>
+
+                <!-- SUPERVISOR EVALUATION -->
+                <div id="evaluation">
+                    <h3 class="text-xl font-bold text-red-400 mb-4 flex items-center space-x-2">
+                        <i data-lucide="star" class="w-6 h-6"></i><span>Supervisor's Evaluation (18.5/20)</span>
+                    </h3>
+
+                    <div class="bg-red-900/30 p-4 rounded-lg border-l-4 border-red-500 mb-6">
+                        <h4 class="font-bold text-lg text-red-300 mb-2">Overall Remarks:</h4>
+                        <p class="text-base italic text-slate-300 leading-relaxed">
+                            "Bon élément" (Good element). The overall grade awarded was <strong>18.5/20</strong>.
+                        </p>
+                    </div>
+
+                    <h4 class="font-semibold text-lg text-white mb-4 mt-6">Full Evaluation Sheet:</h4>
+                    <div class="rounded-lg overflow-hidden shadow-xl max-w-xl mx-auto border border-slate-700">
+                        <img src="Evaluation de stage d'initiation ONEE.jpg"
+                            alt="Supervisor's Detailed Evaluation of ONEE Internship Performance" class="w-full h-auto">
+                    </div>
+                    <p class="text-xs text-center text-slate-500 mt-2">
+                        Evaluation Sheet from Mr. M. Mouzouri, ONEE Internship Supervisor.
+                    </p>
+                </div>
+            </section>
+
+            <!-- Final Return Link -->
+            <section class="text-center pt-8 relative z-10">
+                <a href="index.html#experience"
+                    class="inline-flex items-center font-bold text-white bg-gradient-to-r from-cyan-600 to-blue-600 py-3 px-8 rounded-full shadow-lg hover:shadow-cyan-500/30 hover:-translate-y-1 transition-all">
+                    <i data-lucide="arrow-left" class="w-5 h-5 mr-2"></i> Return to Main Portfolio
+                </a>
+            </section>
+        </article>
+    </main>
+
+    <!-- Script to initialize Lucide icons -->
+    <script>
+        lucide.createIcons();
+    </script>
 </body>
+
 </html>
