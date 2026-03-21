@@ -9,7 +9,9 @@
     <script src="https://unpkg.com/lucide@latest"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
     <!-- Link to external style.css -->
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="css/style.css">
+    <!-- Theme Switcher Script -->
+    <script src="js/theme.js"></script>
 
     <style>
         .highlight-box {
@@ -99,7 +101,6 @@
     <script type="text/javascript" id="MathJax-script" async
         src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js">
         </script>
-
 </head>
 
 <body class="antialiased selection:bg-cyan-500 selection:text-white">
@@ -110,10 +111,14 @@
             <h1
                 class="text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 to-cyan-200 truncate">
                 Thermal Analysis: LCM vs FEA</h1>
-            <a href="index.html#projects"
-                class="inline-flex items-center text-slate-300 hover:text-cyan-400 font-medium transition-colors text-sm">
-                <i data-lucide="arrow-left" class="w-4 h-4 mr-1"></i> Back to Portfolio
-            </a>
+            <div class="flex items-center space-x-6"><button aria-label="Toggle Theme" onclick="toggleTheme()" class="text-slate-300 hover:text-cyan-400 transition-colors">
+                    <i id="theme-toggle-icon" data-lucide="layers" class="w-5 h-5"></i>
+                </button>
+                <a href="index.html#projects"
+                    class="inline-flex items-center text-slate-300 hover:text-cyan-400 font-medium transition-colors text-sm">
+                    <i data-lucide="arrow-left" class="w-4 h-4 mr-1"></i> Back to Portfolio
+                </a>
+            </div>
         </div>
     </header>
 
@@ -141,7 +146,7 @@
                     <span class="text-xs block italic mt-1">(Building on SMCV Internship Experience)</span>
                 </p>
                 <!-- Report Link -->
-                <a href="Thermal_Analysis_Full_Report.pdf" target="_blank"
+                <a href="assets/pdf/Thermal_Analysis_Full_Report.pdf" target="_blank"
                     class="inline-flex items-center font-bold px-6 py-3 bg-red-600 text-white rounded-full hover:bg-red-700 transition-colors shadow-lg hover:shadow-red-500/30 text-sm">
                     <i data-lucide="file-text" class="w-5 h-5 mr-2"></i> Download Full Study Report (PDF)
                 </a>
@@ -240,12 +245,12 @@
                     <span>Visual Evidence Gallery</span>
                 </h3>
                 <div class="grid grid-cols-1 gap-8">
-                    <img src="3D_model_of_heating_color_and_adapting_cylinder.jpg" alt="3D Model" class="gallery-image">
-                    <img src="Comparative_Heating_Curves.jpg" alt="Heating Curves" class="gallery-image">
-                    <img src="Final_Temperature_Distribution_Nut_Stack.jpg" alt="Final Temp Distribution"
+                    <img src="assets/img/3D_model_of_heating_color_and_adapting_cylinder.jpg" alt="3D Model" class="gallery-image">
+                    <img src="assets/img/Comparative_Heating_Curves.jpg" alt="Heating Curves" class="gallery-image">
+                    <img src="assets/img/Final_Temperature_Distribution_Nut_Stack.jpg" alt="Final Temp Distribution"
                         class="gallery-image">
-                    <img src="Heating_Cycle_Sensitivity_Analysis.jpg" alt="Sensitivity Analysis" class="gallery-image">
-                    <img src="Nut_Stack_Heat_Flux.jpg" alt="Heat Flux" class="gallery-image">
+                    <img src="assets/img/Heating_Cycle_Sensitivity_Analysis.jpg" alt="Sensitivity Analysis" class="gallery-image">
+                    <img src="assets/img/Nut_Stack_Heat_Flux.jpg" alt="Heat Flux" class="gallery-image">
                 </div>
             </section>
 

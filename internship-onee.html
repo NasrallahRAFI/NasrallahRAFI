@@ -11,7 +11,9 @@
     <script src="https://unpkg.com/lucide@latest"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
     <!-- Link to external style.css -->
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="css/style.css">
+    <!-- Theme Switcher Script -->
+    <script src="js/theme.js"></script>
     <style>
         .siprotec-img {
             aspect-ratio: 16 / 9;
@@ -28,10 +30,14 @@
             <h1
                 class="text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 to-cyan-200 truncate">
                 ONEE Internship Details</h1>
-            <a href="index.html#experience"
-                class="inline-flex items-center text-slate-300 hover:text-cyan-400 font-medium transition-colors text-sm">
-                <i data-lucide="arrow-left" class="w-4 h-4 mr-2"></i> Back to Portfolio
-            </a>
+            <div class="flex items-center space-x-6"><button aria-label="Toggle Theme" onclick="toggleTheme()" class="text-slate-300 hover:text-cyan-400 transition-colors">
+                    <i id="theme-toggle-icon" data-lucide="layers" class="w-5 h-5"></i>
+                </button>
+                <a href="index.html#experience"
+                    class="inline-flex items-center text-slate-300 hover:text-cyan-400 font-medium transition-colors text-sm">
+                    <i data-lucide="arrow-left" class="w-4 h-4 mr-2"></i> Back to Portfolio
+                </a>
+            </div>
         </div>
     </header>
 
@@ -45,7 +51,8 @@
             <!-- Title & Metadata -->
             <section class="content-section text-center relative z-10">
                 <span
-                    class="text-xs font-bold text-white bg-cyan-600/80 px-4 py-1.5 rounded-full uppercase tracking-wider mb-6 inline-block shadow-lg shadow-cyan-500/20">Internship</span>
+                    class="text-xs font-bold text-white bg-cyan-600/80 px-4 py-1.5 rounded-full uppercase tracking-wider mb-6 inline-block shadow-lg shadow-cyan-500/20">Initiation
+                    Stage</span>
                 <h2 class="text-3xl md:text-5xl font-extrabold text-white mb-4 leading-tight">
                     Digital Protection Relay Test Procedure Elaboration
                 </h2>
@@ -145,7 +152,7 @@
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
                     <!-- Image 1 -->
                     <div>
-                        <img src="siprotec_testing_view1.jpg"
+                        <img src="assets/img/siprotec_testing_view1.jpg"
                             alt="Rafi Nasrallah working on Siemens SIPROTEC relay testing."
                             class="gallery-image siprotec-img">
                         <p class="text-xs text-center text-slate-400 mt-2">Working on the SIPROTEC protection relay
@@ -153,7 +160,7 @@
                     </div>
                     <!-- Image 2 -->
                     <div>
-                        <img src="siprotec_testing_view2.jpg"
+                        <img src="assets/img/siprotec_testing_view2.jpg"
                             alt="Setup of the OMICRON CMC kit for electrical protection testing."
                             class="gallery-image siprotec-img">
                         <p class="text-xs text-center text-slate-400 mt-2">OMICRON CMC test kit setup in the electrical
@@ -170,13 +177,15 @@
                     <div class="bg-red-900/30 p-4 rounded-lg border-l-4 border-red-500 mb-6">
                         <h4 class="font-bold text-lg text-red-300 mb-2">Overall Remarks:</h4>
                         <p class="text-base italic text-slate-300 leading-relaxed">
-                            "Bon élément" (Good element). The overall grade awarded was <strong>18.5/20</strong>.
+                            "Good asset."
+                            <br><span class="text-sm text-slate-400 font-normal">(Original: "Bon élément")</span>
+                            <br>The overall grade awarded was <strong>18.5/20</strong>.
                         </p>
                     </div>
 
                     <h4 class="font-semibold text-lg text-white mb-4 mt-6">Full Evaluation Sheet:</h4>
                     <div class="rounded-lg overflow-hidden shadow-xl max-w-xl mx-auto border border-slate-700">
-                        <img src="Evaluation de stage d'initiation ONEE.jpg"
+                        <img src="assets/img/Evaluation de stage d'initiation ONEE.jpg"
                             alt="Supervisor's Detailed Evaluation of ONEE Internship Performance" class="w-full h-auto">
                     </div>
                     <p class="text-xs text-center text-slate-500 mt-2">

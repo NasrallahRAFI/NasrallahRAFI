@@ -1,0 +1,669 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Diagramme de Gantt — PFE Emove Vehicles</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg-primary: #080a10;
+    --bg-secondary: #0f1219;
+    --bg-card: #161a26;
+    --bg-hover: #1c2133;
+    --bg-elevated: #1e2330;
+    --text-primary: #eaecf2;
+    --text-secondary: #8b93a8;
+    --text-muted: #4f5670;
+    --border: #1e2335;
+    --border-light: rgba(255,255,255,0.03);
+    --accent-green: #34d399;
+    --accent-green-dim: rgba(52,211,153,0.15);
+    --accent-blue: #60a5fa;
+    --accent-blue-dim: rgba(96,165,250,0.12);
+    --accent-orange: #fb923c;
+    --accent-orange-dim: rgba(251,146,60,0.1);
+    --accent-red: #f87171;
+    --accent-purple: #a78bfa;
+    --accent-purple-dim: rgba(167,139,250,0.1);
+    --accent-cyan: #22d3ee;
+    --today-line: #f87171;
+    --weekend-bg: rgba(255,255,255,0.012);
+    --phase-1-from: #059669; --phase-1-to: #34d399;
+    --phase-2-from: #2563eb; --phase-2-to: #60a5fa;
+    --phase-3-from: #ea580c; --phase-3-to: #fb923c;
+    --redac-from: #7c3aed; --redac-to: #a78bfa;
+    --row-height: 36px;
+    --sub-row-height: 32px;
+    --label-width: 480px;
+    --glass-bg: rgba(22,26,38,0.75);
+    --glass-border: rgba(255,255,255,0.06);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: 'Inter', -apple-system, sans-serif;
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+  ::-webkit-scrollbar { width: 8px; height: 8px; }
+  ::-webkit-scrollbar-track { background: var(--bg-primary); border-radius: 4px; }
+  ::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, rgba(96,165,250,0.3), rgba(167,139,250,0.3));
+    border-radius: 4px; border: 2px solid var(--bg-primary);
+  }
+  ::-webkit-scrollbar-thumb:hover { background: linear-gradient(180deg, rgba(96,165,250,0.5), rgba(167,139,250,0.5)); }
+  ::-webkit-scrollbar-corner { background: var(--bg-primary); }
+
+  .header {
+    padding: 30px 44px 24px;
+    background: linear-gradient(180deg, rgba(96,165,250,0.06) 0%, rgba(167,139,250,0.03) 40%, transparent 100%);
+    border-bottom: 1px solid var(--border);
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 20px;
+  }
+  .header::before {
+    content: ''; position: absolute; top: -80px; right: -40px;
+    width: 300px; height: 300px; border-radius: 50%;
+    background: radial-gradient(circle, rgba(96,165,250,0.06), transparent 70%);
+    pointer-events: none;
+  }
+  .header h1 {
+    font-size: 24px; font-weight: 900; letter-spacing: -0.8px;
+    background: linear-gradient(135deg, #60a5fa 0%, #a78bfa 40%, #fb923c 80%, #f87171 100%);
+    background-size: 200% 200%;
+    -webkit-background-clip: text; background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: gradientShift 8s ease-in-out infinite;
+    position: relative; z-index: 1;
+  }
+  @keyframes gradientShift {
+    0%, 100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+  }
+  .header .subtitle {
+    font-size: 13px; color: var(--text-muted); margin-top: 8px;
+    font-weight: 500; letter-spacing: 0.3px; position: relative; z-index: 1;
+    display: flex; gap: 12px; align-items: center;
+  }
+  .header-right {
+    display: flex; flex-direction: column; align-items: flex-end; position: relative; z-index: 2;
+  }
+  .user-name-big {
+    font-size: 38px; font-weight: 900; letter-spacing: -1.5px;
+    background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple), var(--accent-cyan));
+    -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
+  }
+  .btn-back {
+    display: flex; align-items: center; gap: 8px;
+    background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08);
+    padding: 7px 14px; border-radius: 8px; color: var(--text-secondary);
+    font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px;
+    cursor: pointer; transition: all 0.2s; text-decoration: none; margin-bottom: 8px;
+    backdrop-filter: blur(10px);
+  }
+  .btn-back:hover {
+    background: rgba(96,165,250,0.1); border-color: rgba(96,165,250,0.4);
+    color: var(--text-primary); transform: translateY(-1px);
+  }
+  .btn-export {
+    display: flex; align-items: center; gap: 8px;
+    background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08);
+    padding: 7px 14px; border-radius: 8px; color: var(--text-secondary);
+    font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px;
+    cursor: pointer; transition: all 0.2s cubic-bezier(0.4,0,0.2,1); margin-top: 4px;
+    backdrop-filter: blur(10px);
+  }
+  .btn-export:hover {
+    background: rgba(96,165,250,0.1); border-color: rgba(96,165,250,0.4);
+    color: var(--text-primary); transform: translateY(-1px); box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  }
+  .btn-export svg, .btn-back svg { width: 14px; height: 14px; stroke: var(--accent-blue); stroke-width: 2.5; }
+  .user-role { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; color: var(--phase-2-from); opacity: 0.8; }
+
+  .stats-bar { display: flex; gap: 1px; padding: 16px 20px; border-bottom: 1px solid var(--border); background: var(--bg-secondary); }
+  .stat-item {
+    flex:1; display: flex; flex-direction: column; align-items: center; gap: 4px;
+    padding: 14px 20px 12px; border-radius: 14px; margin: 0 5px;
+    background: var(--glass-bg); border: 1px solid var(--glass-border);
+    backdrop-filter: blur(16px); transition: all 0.35s cubic-bezier(0.4,0,0.2,1);
+    position: relative; overflow: hidden;
+  }
+  .stat-item::before {
+    content:''; position:absolute; top:0; left:0; right:0; height:2px;
+    border-radius: 14px 14px 0 0; opacity: 0; transition: opacity 0.3s;
+  }
+  .stat-item:nth-child(1)::before { background: linear-gradient(90deg, var(--accent-green), transparent); }
+  .stat-item:nth-child(2)::before { background: linear-gradient(90deg, var(--accent-blue), transparent); }
+  .stat-item:nth-child(3)::before { background: linear-gradient(90deg, var(--accent-orange), transparent); }
+  .stat-item:nth-child(4)::before { background: linear-gradient(90deg, var(--accent-purple), transparent); }
+  .stat-item:hover { transform: translateY(-3px); border-color: rgba(255,255,255,0.12); box-shadow: 0 8px 24px rgba(0,0,0,0.3); }
+  .stat-item:hover::before { opacity: 1; }
+  .stat-ring-wrap { position: relative; width: 52px; height: 52px; }
+  .stat-ring { transform: rotate(-90deg); }
+  .stat-ring-bg { fill: none; stroke: rgba(255,255,255,0.04); stroke-width: 3.5; }
+  .stat-ring-fill { fill: none; stroke-width: 3.5; stroke-linecap: round; transition: stroke-dashoffset 1.8s cubic-bezier(0.4,0,0.2,1); }
+  .stat-ring-value { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 900; letter-spacing: -0.5px; }
+  .stat-label { font-size: 9px; color: var(--text-muted); font-weight: 600; text-transform: uppercase; letter-spacing: 1.2px; margin-top: 2px; }
+
+  .legend-bar { display: flex; gap: 24px; padding: 11px 44px; border-bottom: 1px solid var(--border); background: var(--bg-secondary); flex-wrap: wrap; align-items: center; }
+  .legend-item { display: flex; align-items: center; gap: 7px; font-size: 11px; color: var(--text-secondary); font-weight: 500; transition: color 0.2s; }
+  .legend-item:hover { color: var(--text-primary); }
+  .legend-dot { width: 10px; height: 10px; border-radius: 3px; box-shadow: 0 0 6px rgba(0,0,0,0.3); }
+  .legend-item.today-legend .legend-dot { width:3px; height:14px; background:var(--today-line)!important; border-radius:2px; box-shadow: 0 0 6px rgba(248,113,113,0.4); }
+
+  .gantt-scroll { overflow-x: auto; overflow-y: auto; max-height: calc(100vh - 210px); }
+  .gantt-container { min-width: 3200px; position: relative; overflow: visible; }
+
+  .timeline-header { display: flex; position: sticky; top: 0; z-index: 20; background: var(--bg-primary); height: 38px; }
+  .tl-label-spacer {
+    min-width: var(--label-width); flex-shrink:0;
+    border-right: 1px solid var(--border); background: var(--bg-secondary);
+    display: flex; align-items: center; padding: 0 18px;
+    font-size: 9px; font-weight: 700; color: var(--text-muted);
+    text-transform: uppercase; letter-spacing: 1.5px;
+  }
+  .tl-cells { flex:1; display:flex; position:relative; }
+  .month-cell { position:absolute; top:0; bottom:0; display:flex; align-items:center; justify-content:center; font-size:11px; font-weight:800; text-transform:uppercase; letter-spacing:2px; color:var(--text-secondary); border-bottom:1px solid var(--border); border-right:1px solid var(--border); background:var(--bg-secondary); }
+  .week-cell { position:absolute; top:0; bottom:0; display:flex; align-items:center; justify-content:center; font-size:10px; font-weight:700; color:var(--text-muted); border-bottom:1px solid var(--border); border-right:1px solid rgba(42,47,66,0.35); background:var(--bg-secondary); }
+  .day-cell { position:absolute; top:0; bottom:0; display:flex; align-items:center; justify-content:center; font-size:9px; font-weight:500; color:var(--text-muted); border-bottom:2px solid var(--border); border-right:1px solid rgba(30,35,53,0.8); background:var(--bg-primary); transition: background 0.15s; }
+  .day-cell.weekend { background: var(--weekend-bg); color:rgba(79,86,112,0.35); }
+  .day-cell.today { background: rgba(248,113,113,0.15); color:var(--accent-red); font-weight:800; border-bottom: 2px solid var(--accent-red); text-shadow: 0 0 8px rgba(248,113,113,0.3); }
+  .day-cell.month-start { border-left: 1px solid rgba(255,255,255,0.06); }
+
+  .gantt-row { display:flex; align-items:stretch; border-bottom:1px solid var(--border-light); min-height: var(--row-height); transition: all 0.15s ease; position: relative; animation: rowFadeIn 0.4s ease both; }
+  @keyframes rowFadeIn { from { opacity: 0; transform: translateX(-6px); } to { opacity: 1; transform: translateX(0); } }
+  .gantt-row:nth-child(even):not(.phase-header):not(.milestone-row) { background: rgba(255,255,255,0.008); }
+  .gantt-row:hover { background: var(--bg-hover); }
+  .gantt-row.sub-task { min-height: var(--sub-row-height); }
+  .gantt-row.phase-header { background: linear-gradient(90deg, var(--bg-card), var(--bg-secondary)); min-height: 46px; cursor: pointer; user-select: none; border-bottom: 1px solid var(--border); border-top: 1px solid var(--border); }
+  .gantt-row.phase-header:hover { background: linear-gradient(90deg, var(--bg-hover), var(--bg-card)); }
+  .gantt-row.phase-header.phase-done { border-left: 3px solid var(--accent-green); }
+  .gantt-row.phase-header.phase-active { border-left: 3px solid var(--accent-blue); }
+  .gantt-row.phase-header.phase-upcoming { border-left: 3px solid var(--accent-orange); }
+  .gantt-row.phase-child { overflow: hidden; transition: min-height 0.35s ease, opacity 0.3s; }
+  .gantt-row.phase-child.collapsed { min-height: 0 !important; height: 0; opacity: 0; border: none; pointer-events: none; }
+  .collapse-arrow { font-size: 10px; color: var(--text-muted); transition: transform 0.3s; flex-shrink: 0; width: 16px; text-align: center; }
+  .collapse-arrow.collapsed { transform: rotate(-90deg); }
+  .status-dot { width: 6px; height: 6px; border-radius: 50%; flex-shrink: 0; box-shadow: 0 0 6px currentColor; }
+  .status-dot.done { background: var(--accent-green); color: var(--accent-green); }
+  .status-dot.active { background: var(--accent-blue); color: var(--accent-blue); animation: dotPulse 2s infinite; }
+  .status-dot.upcoming { background: var(--accent-orange); color: var(--accent-orange); opacity: 0.5; }
+  @keyframes dotPulse { 0%,100%{opacity:1;} 50%{opacity:0.4;} }
+
+  .row-label { width: var(--label-width); min-width: var(--label-width); max-width: var(--label-width); flex-shrink:0; flex-grow:0; display:flex; align-items:center; padding: 0 16px; border-right:1px solid var(--border); font-size:12px; gap:8px; overflow:hidden; transition: border-color 0.2s; box-sizing: border-box; }
+  .row-label .task-name { white-space:normal; line-height: 1.35; font-weight:500; color:var(--text-primary); flex:1; padding: 6px 0; }
+  .phase-header .row-label .task-name { font-weight:800; font-size:13px; letter-spacing:-0.3px; }
+  .row-label .dates { font-size:9px; color:var(--text-muted); flex-shrink:0; white-space:nowrap; font-variant-numeric: tabular-nums; font-weight: 500; }
+  .sub-task .row-label { padding-left: 46px; position: relative; }
+  .sub-task .row-label::before { content: ''; position: absolute; left: 32px; top: 0; bottom: 50%; width: 1px; background: var(--border); }
+  .sub-task .row-label::after { content: ''; position: absolute; left: 32px; top: 50%; width: 8px; height: 1px; background: var(--border); }
+  .sub-task .row-label .task-name { font-weight:400; font-size:11px; color:var(--text-secondary); }
+
+  .bar-progress { position: absolute; left: 0; top: 0; bottom: 0; border-radius: 6px; background: rgba(255,255,255,0.12); pointer-events: none; z-index: 1; }
+  .row-chart { flex:1; position:relative; overflow:visible; }
+
+  .bar { position:absolute; top:6px; bottom:6px; border-radius:6px; display:flex; align-items:center; justify-content:space-between; padding:0 9px; font-size:9.5px; font-weight:600; color:rgba(255,255,255,0.92); overflow:visible; white-space:nowrap; transition: all 0.2s cubic-bezier(0.4,0,0.2,1); cursor:default; z-index:3; box-shadow: 0 2px 8px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.1); animation: barSlideIn 0.6s cubic-bezier(0.4,0,0.2,1) both; }
+  @keyframes barSlideIn { from { opacity: 0; transform: scaleX(0); transform-origin: left center; } to { opacity: 1; transform: scaleX(1); transform-origin: left center; } }
+  .bar:hover { filter:brightness(1.2) saturate(1.1); transform:scaleY(1.25); z-index:8; box-shadow: 0 4px 16px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.15); }
+  .bar.phase-bar { opacity:0.15; border-radius:7px; top:4px; bottom:4px; box-shadow:none; animation: none; }
+  .bar.p1 { background: linear-gradient(135deg, var(--phase-1-from), var(--phase-1-to)); }
+  .bar.p2 { background: linear-gradient(135deg, var(--phase-2-from), var(--phase-2-to)); }
+  .bar.p3 { background: linear-gradient(135deg, var(--phase-3-from), var(--phase-3-to)); }
+  .bar.redac { background: linear-gradient(135deg, var(--redac-from), var(--redac-to)); }
+  .bar.completed { background: linear-gradient(135deg, var(--phase-1-from), var(--phase-1-to)); opacity: 0.65; }
+  .bar.completed::after { content:''; position:absolute; inset:0; border-radius:6px; background: repeating-linear-gradient(-45deg, transparent, transparent 3px, rgba(255,255,255,0.06) 3px, rgba(255,255,255,0.06) 6px); }
+  .bar .bar-label { overflow:hidden; text-overflow:ellipsis; min-width:0; flex: 1; }
+  .bar .bar-days { flex-shrink:0; opacity:0.85; font-weight:600; font-size:8px; background: rgba(0,0,0,0.25); padding: 2px 6px; border-radius: 4px; margin-left: 5px; letter-spacing: 0.2px; backdrop-filter: blur(4px); }
+  .bar.short-bar .bar-label { display:none; }
+  .bar.short-bar .bar-days { position:absolute; left:calc(100% + 5px); top:50%; transform:translateY(-50%); background: var(--bg-card); color: var(--text-secondary); border: 1px solid var(--glass-border); font-size:9px; padding: 2px 7px; border-radius: 4px; }
+  .bar.medium-bar .bar-label { position:absolute; left:calc(100% + 5px); top:50%; transform:translateY(-50%); color: var(--text-secondary); font-size:9px; overflow:visible; text-shadow: 0 1px 3px rgba(0,0,0,0.6); }
+
+  .today-line-global { position:absolute; top:0; bottom:0; width:2px; background: linear-gradient(180deg, var(--today-line) 0%, rgba(248,113,113,0.6) 50%, rgba(248,113,113,0.15) 100%); z-index:15; pointer-events:none; box-shadow: 0 0 12px rgba(248,113,113,0.25), 0 0 4px rgba(248,113,113,0.4); }
+  .today-dot { position: absolute; top: 0; left: 50%; transform: translateX(-50%); width: 8px; height: 8px; border-radius: 50%; background: var(--accent-red); box-shadow: 0 0 10px rgba(248,113,113,0.6); animation: todayDotPulse 2s ease-in-out infinite; }
+  @keyframes todayDotPulse { 0%, 100% { transform: translateX(-50%) scale(1); box-shadow: 0 0 10px rgba(248,113,113,0.6); } 50% { transform: translateX(-50%) scale(1.4); box-shadow: 0 0 18px rgba(248,113,113,0.8); } }
+  .today-label-tag { position: absolute; top: 12px; left: 50%; transform: translateX(-50%); font-size: 8px; font-weight: 800; color: #fff; background: linear-gradient(135deg, #ef4444, #dc2626); padding: 2px 8px; border-radius: 4px; white-space: nowrap; letter-spacing: 0.5px; box-shadow: 0 2px 8px rgba(248,113,113,0.4); }
+
+  .weekend-col { position:absolute; top:0; bottom:0; background:var(--weekend-bg); z-index:0; pointer-events:none; }
+  .month-sep { position:absolute; top:0; bottom:0; width:1px; background: rgba(255,255,255,0.05); z-index:1; pointer-events:none; }
+
+  .tooltip { display:none; position:fixed; background: rgba(16,20,30,0.95); border:1px solid var(--glass-border); border-radius:14px; padding:16px 20px; font-size:12px; color:var(--text-primary); z-index:200; pointer-events:none; box-shadow: 0 20px 60px rgba(0,0,0,0.6), 0 2px 8px rgba(0,0,0,0.3); max-width:340px; backdrop-filter: blur(24px); animation: ttFadeIn 0.15s ease; }
+  @keyframes ttFadeIn { from { opacity:0; transform:translateY(4px); } to { opacity:1; transform:translateY(0); } }
+  .tooltip .tt-title { font-weight:800; margin-bottom:10px; font-size:14px; }
+  .tooltip .tt-status { display:inline-flex; align-items:center; gap:5px; margin-bottom:8px; font-size:10px; font-weight:700; padding:3px 10px; border-radius:8px; }
+  .tooltip .tt-status.s-done { background:var(--accent-green-dim); color:var(--accent-green); }
+  .tooltip .tt-status.s-active { background:var(--accent-blue-dim); color:var(--accent-blue); }
+  .tooltip .tt-status.s-upcoming { background:var(--accent-orange-dim); color:var(--accent-orange); }
+  .tooltip .tt-dates { font-size:11px; color:var(--text-secondary); margin-bottom:5px; display:flex; gap:7px; align-items:center; }
+  .tooltip .tt-dates::before { content:'📅'; font-size:11px; }
+  .tooltip .tt-duration { font-size:11px; color:var(--accent-blue); font-weight:600; display:flex; gap:7px; align-items:center; }
+  .tooltip .tt-duration::before { content:'⏱️'; font-size:11px; }
+  .tooltip .tt-phase { font-size:10px; color:var(--text-muted); margin-top:8px; font-style:italic; padding-top:8px; border-top: 1px solid var(--glass-border); }
+
+  .progress-badge { display:inline-flex; align-items:center; gap:5px; padding:3px 12px; border-radius:12px; font-size:10px; font-weight:700; flex-shrink:0; letter-spacing: 0.2px; }
+  .progress-badge.done { background: var(--accent-green-dim); color:var(--accent-green); border: 1px solid rgba(52,211,153,0.15); }
+  .progress-badge.active { background: var(--accent-blue-dim); color:var(--accent-blue); border: 1px solid rgba(96,165,250,0.15); animation: badgePulse 2.5s ease-in-out infinite; }
+  .progress-badge.upcoming { background: var(--accent-orange-dim); color:var(--accent-orange); border: 1px solid rgba(251,146,60,0.1); }
+  @keyframes badgePulse { 0%,100% { opacity:1; box-shadow: 0 0 0 0 rgba(96,165,250,0); } 50% { opacity:0.8; box-shadow: 0 0 12px 2px rgba(96,165,250,0.15); } }
+
+  .gantt-row.row-done .row-label .task-name { text-decoration: line-through; text-decoration-color: rgba(52,211,153,0.45); text-decoration-thickness: 1.5px; opacity: 0.65; }
+  .gantt-row.row-done .row-label .dates { opacity: 0.5; }
+  .check-badge { display: inline-flex; align-items: center; justify-content: center; width: 18px; height: 18px; border-radius: 50%; flex-shrink: 0; background: linear-gradient(135deg, rgba(52,211,153,0.2), rgba(16,185,129,0.2)); border: 1px solid rgba(52,211,153,0.3); font-size: 9px; color: var(--accent-green); box-shadow: 0 0 8px rgba(52,211,153,0.15); }
+  .sub-task .check-badge { width: 15px; height: 15px; font-size: 7px; }
+
+  @media (max-width: 1200px) {
+    :root { --label-width: 270px; }
+    .header { padding: 22px 24px 12px; }
+    .legend-bar { padding: 9px 24px; }
+    .stats-bar { padding: 12px 12px; }
+  }
+  @media (max-width: 768px) {
+    :root { --label-width: 180px; }
+    .row-label { padding: 0 8px; font-size: 11px; }
+    .row-label .task-name { font-size: 10px; }
+    .sub-task .row-label { padding-left: 24px; }
+    .sub-task .row-label::before, .sub-task .row-label::after { left: 14px; }
+    .header h1 { font-size: 18px; }
+    .user-name-big { font-size: 24px; }
+    .btn-export { padding: 5px 10px; font-size: 9px; }
+  }
+  @media print {
+    @page { size: A4 landscape; margin: 6mm; }
+    * { animation: none !important; transition: none !important; }
+    body { background: #080a10 !important; -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; min-height: auto !important; overflow: visible !important; margin: 0 !important; padding: 0 !important; }
+    .btn-export, .btn-back, .collapse-arrow, .tooltip { display: none !important; }
+    .header { padding: 6px 14px !important; break-after: avoid; }
+    .header h1 { font-size: 14px !important; background: none !important; -webkit-text-fill-color: var(--accent-blue) !important; color: var(--accent-blue) !important; }
+    .user-name-big { font-size: 18px !important; }
+    .stats-bar { display: none !important; }
+    .legend-bar { padding: 3px 12px !important; gap: 12px !important; break-after: avoid; }
+    .legend-item { font-size: 9px !important; }
+    .gantt-scroll { overflow: visible !important; height: auto !important; max-height: none !important; }
+    .gantt-row { break-inside: avoid !important; page-break-inside: avoid !important; }
+    .timeline-header { position: static !important; }
+    .bar { box-shadow: none !important; }
+    ::-webkit-scrollbar { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="header-left">
+    <h1>📊 Gantt Chart — End-of-Studies Project (PFE)</h1>
+    <div class="subtitle">
+      01 February – 31 May 2026 · Emove Vehicules
+    </div>
+  </div>
+  <div class="header-right">
+    <a class="btn-back" href="index.html">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
+      <span>Back to Portfolio</span>
+    </a>
+    <div class="user-name-big">Rafi Nasrallah</div>
+    <button class="btn-export" onclick="triggerPrint()">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+      <span>Download PDF</span>
+    </button>
+  </div>
+</div>
+
+<div class="stats-bar" id="statsBar"></div>
+
+<div class="legend-bar">
+  <div class="legend-item"><div class="legend-dot" style="background:linear-gradient(135deg,var(--phase-1-from),var(--phase-1-to))"></div>Phase 1 — Completed</div>
+  <div class="legend-item"><div class="legend-dot" style="background:linear-gradient(135deg,var(--phase-2-from),var(--phase-2-to))"></div>Phase 2 — In Progress</div>
+  <div class="legend-item"><div class="legend-dot" style="background:linear-gradient(135deg,var(--phase-3-from),var(--phase-3-to))"></div>Phase 3 — Upcoming</div>
+  <div class="legend-item today-legend" id="todayLegend"><div class="legend-dot"></div></div>
+</div>
+
+<div class="gantt-scroll">
+  <div class="gantt-container" id="gantt"></div>
+</div>
+
+<div class="tooltip" id="tooltip">
+  <div class="tt-title"></div>
+  <div class="tt-status"></div>
+  <div class="tt-dates"></div>
+  <div class="tt-duration"></div>
+  <div class="tt-phase"></div>
+</div>
+
+<script>
+const PROJECT_START = new Date(2026, 1, 1);
+const PROJECT_END   = new Date(2026, 5, 1);
+const TODAY         = new Date();
+TODAY.setHours(0,0,0,0);
+
+const PHASES = [
+  {
+    name: "⚙️ PHASE 1 · Mechanical Resolution & Quality",
+    status: "done", color: "p1",
+    start: "2026-02-01", end: "2026-03-06",
+    tasks: [
+      { name: "Ch 1 · Industrial & Quality Diagnostic", start: "2026-02-01", end: "2026-02-18", type: "tech",
+        subs: [
+          { name: "1.1 Production line diagnostic",          start: "2026-02-01", end: "2026-02-07" },
+          { name: "1.2 Production improvement plan",         start: "2026-02-05", end: "2026-02-11" },
+          { name: "1.3 Battery assembly diagnostic",         start: "2026-02-10", end: "2026-02-15" },
+          { name: "1.4 SOC management plan",                 start: "2026-02-14", end: "2026-02-18" },
+        ]
+      },
+      { name: "Ch 2 · Mechanical Optimization & Tooling", start: "2026-02-19", end: "2026-03-06", type: "tech",
+        subs: [
+          { name: "2.1 Bending process analysis",            start: "2026-02-19", end: "2026-02-25" },
+          { name: "2.2 Operator training",                   start: "2026-02-24", end: "2026-03-02" },
+          { name: "2.3 Press-brake punch design",            start: "2026-03-01", end: "2026-03-06" },
+        ]
+      },
+    ]
+  },
+  {
+    name: "🔋 PHASE 2 · Battery Modeling & BMS",
+    status: "active", color: "p2",
+    start: "2026-03-07", end: "2026-03-31",
+    tasks: [
+      { name: "Ch 3 · Battery Modeling", start: "2026-03-07", end: "2026-03-20", type: "tech",
+        subs: [
+          { name: "3.1 Gotion LFP cell characterization",    start: "2026-03-07", end: "2026-03-12", status: "done" },
+          { name: "3.2 MATLAB/Simulink modeling",            start: "2026-03-12", end: "2026-03-17", status: "done" },
+          { name: "3.3 Model validation",                    start: "2026-03-17", end: "2026-03-20", status: "active" },
+        ]
+      },
+      { name: "Ch 4 · BMS Modeling", start: "2026-03-21", end: "2026-03-31", type: "tech",
+        subs: [
+          { name: "4.1 SOC estimation, balancing & safety modeling", start: "2026-03-21", end: "2026-03-29" },
+          { name: "4.2 Global BMS model validation",          start: "2026-03-29", end: "2026-03-31" },
+        ]
+      },
+    ]
+  },
+  {
+    name: "🛠️ PHASE 3 · Hardware & Prototyping",
+    status: "upcoming", color: "p3",
+    start: "2026-04-01", end: "2026-05-31",
+    tasks: [
+      { name: "5.1 Hardware Design & Simulation", start: "2026-04-01", end: "2026-04-30", type: "tech",
+        subs: [
+          { name: "5.1.1 Critical component identification & model specification", start: "2026-04-01", end: "2026-04-02" },
+          { name: "5.1.2 Hardware sub-system design & simulation",                 start: "2026-04-02", end: "2026-04-27" },
+          { name: "5.1.3 Global validation",                                        start: "2026-04-27", end: "2026-04-30" },
+        ]
+      },
+      { name: "5.2 Prototyping", start: "2026-05-01", end: "2026-05-20", type: "tech" },
+      { name: "5.3 Final Tests & Validation", start: "2026-05-21", end: "2026-05-31", type: "tech" },
+    ]
+  }
+];
+
+const MILESTONES = [];
+
+const pd = s => { const [y,m,d]=s.split('-').map(Number); return new Date(y,m-1,d); };
+const diffD = (a,b) => Math.round((b-a)/864e5);
+const totalDays = diffD(PROJECT_START, PROJECT_END);
+const toP = d => (diffD(PROJECT_START, typeof d==='string'?pd(d):d)/totalDays)*100;
+const isWE = d => d.getDay()===0||d.getDay()===6;
+const monthsEN = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+const fmtShort = d => d.getDate()+' '+monthsEN[d.getMonth()];
+const fmtFull = d => d.getDate()+' '+monthsEN[d.getMonth()]+' '+d.getFullYear();
+const countWD = (s,e) => { let a=pd(s),b=pd(e),c=0; while(a<=b){if(!isWE(a))c++;a.setDate(a.getDate()+1);} return c; };
+
+function buildStats() {
+  const elapsed = diffD(PROJECT_START, TODAY);
+  const remaining = diffD(TODAY, PROJECT_END);
+  const pct = Math.round((elapsed / totalDays) * 100);
+  const R = 21, C = 2 * Math.PI * R;
+  const p2Start = new Date(2026, 2, 7), p2End = new Date(2026, 2, 31);
+  let p2Elapsed = 0;
+  if (TODAY >= p2Start) p2Elapsed = diffD(p2Start, TODAY > p2End ? p2End : TODAY);
+  const p2Total = diffD(p2Start, p2End);
+  const p2Pct = Math.round((p2Elapsed / p2Total) * 100);
+  const items = [
+    { value: elapsed.toString(), label: 'Days Elapsed', color: '#34d399', stroke: '#059669', pct: Math.min(100, Math.max(0, pct)) },
+    { value: p2Elapsed.toString(), label: 'Phase 2 Days', color: '#60a5fa', stroke: '#2563eb', pct: Math.min(100, p2Pct) },
+    { value: Math.max(0, remaining).toString(), label: 'Days Remaining', color: '#fb923c', stroke: '#ea580c', pct: Math.min(100, Math.max(0, Math.round(remaining/totalDays*100))) },
+    { value: Math.min(100, Math.max(0, pct))+'%', label: 'Overall Progress', color: '#a78bfa', stroke: '#7c3aed', pct: Math.min(100, Math.max(0, pct)) },
+  ];
+  const bar = document.getElementById('statsBar');
+  items.forEach(it => {
+    const offset = C - (it.pct / 100) * C;
+    const div = document.createElement('div'); div.className='stat-item';
+    div.innerHTML=`<div class="stat-ring-wrap"><svg class="stat-ring" width="52" height="52" viewBox="0 0 48 48"><circle class="stat-ring-bg" cx="24" cy="24" r="${R}"/><circle class="stat-ring-fill" cx="24" cy="24" r="${R}" stroke="${it.color}" stroke-dasharray="${C}" stroke-dashoffset="${C}" data-target="${offset}" style="filter:drop-shadow(0 0 4px ${it.color}40)"/></svg><div class="stat-ring-value" style="color:${it.color}">${it.value}</div></div><span class="stat-label">${it.label}</span>`;
+    bar.appendChild(div);
+  });
+  requestAnimationFrame(() => { setTimeout(() => { document.querySelectorAll('.stat-ring-fill').forEach(c => { c.style.strokeDashoffset = c.dataset.target; }); }, 300); });
+}
+
+function buildHeader(c) {
+  const monthNames=['','February','March','April','May'];
+  const months=[{y:2026,m:1},{y:2026,m:2},{y:2026,m:3},{y:2026,m:4}];
+  const mR=mkRow('Month'); const mC=mR.querySelector('.tl-cells');
+  months.forEach(({y,m})=>{
+    const s=new Date(y,m,1), e=new Date(y,m+1,1);
+    const cell=document.createElement('div'); cell.className='month-cell';
+    cell.style.cssText=`left:${toP(s)}%;width:${toP(e)-toP(s)}%`;
+    cell.textContent=monthNames[m]+' 2026'; mC.appendChild(cell);
+  });
+  c.appendChild(mR);
+  const wR=mkRow('Week'); const wC=wR.querySelector('.tl-cells');
+  let cur=new Date(PROJECT_START);
+  while(cur<PROJECT_END){
+    const ne=new Date(cur); ne.setDate(ne.getDate()+7);
+    const end=ne>PROJECT_END?PROJECT_END:ne;
+    const cell=document.createElement('div'); cell.className='week-cell';
+    cell.style.cssText=`left:${toP(cur)}%;width:${toP(end)-toP(cur)}%`;
+    const wIdx = Math.floor(diffD(PROJECT_START, cur) / 7) + 1;
+    cell.textContent='W'+wIdx; wC.appendChild(cell);
+    cur.setDate(cur.getDate()+7);
+  }
+  c.appendChild(wR);
+  const dR=mkRow('Day'); const dC=dR.querySelector('.tl-cells');
+  let dc=new Date(PROJECT_START);
+  while(dc<PROJECT_END){
+    const nd=new Date(dc);nd.setDate(nd.getDate()+1);
+    const cell=document.createElement('div');
+    let cls='day-cell';
+    if(isWE(dc))cls+=' weekend';
+    if(dc.toDateString()===TODAY.toDateString())cls+=' today';
+    if(dc.getDate()===1)cls+=' month-start';
+    cell.className=cls;
+    cell.style.cssText=`left:${toP(dc)}%;width:${toP(nd)-toP(dc)}%`;
+    cell.textContent=dc.getDate();
+    dC.appendChild(cell);
+    dc.setDate(dc.getDate()+1);
+  }
+  c.appendChild(dR);
+}
+
+function mkRow(label){
+  const r=document.createElement('div');r.className='timeline-header';
+  r.innerHTML=`<div class="tl-label-spacer">${label}</div><div class="tl-cells" style="flex:1;display:flex;position:relative;"></div>`;
+  return r;
+}
+
+function addBG(el){
+  let dc=new Date(PROJECT_START);
+  while(dc<PROJECT_END){
+    const nd=new Date(dc);nd.setDate(nd.getDate()+1);
+    if(isWE(dc)){const col=document.createElement('div');col.className='weekend-col';col.style.cssText=`left:${toP(dc)}%;width:${toP(nd)-toP(dc)}%`;el.appendChild(col);}
+    if(dc.getDate()===1&&dc>PROJECT_START){const sep=document.createElement('div');sep.className='month-sep';sep.style.left=toP(dc)+'%';el.appendChild(sep);}
+    dc.setDate(dc.getDate()+1);
+  }
+}
+
+function addGlobalTodayLine(ganttEl){
+  const l = toP(TODAY);
+  const line = document.createElement('div');
+  line.className = 'today-line-global';
+  line.style.left = `calc(var(--label-width) + (100% - var(--label-width)) * ${l / 100})`;
+  const dot = document.createElement('div'); dot.className = 'today-dot'; line.appendChild(dot);
+  const tag = document.createElement('div'); tag.className = 'today-label-tag';
+  const mo = monthsEN[TODAY.getMonth()].slice(0,3).toUpperCase();
+  tag.textContent = TODAY.getDate()+' '+mo; line.appendChild(tag);
+  ganttEl.appendChild(line);
+}
+
+let barIndex = 0;
+function mkBar(startS, endS, cls, label, phaseName, isCompleted, taskStatus){
+  const left=toP(startS);
+  const nd=new Date(pd(endS));nd.setDate(nd.getDate()+1);
+  const w=toP(nd)-left;
+  const dur=diffD(pd(startS),pd(endS))+1;
+  const wd=countWD(startS,endS);
+  const bar=document.createElement('div');
+  bar.className=`bar ${cls}${isCompleted?' completed':''}`;
+  if(w < 5.5) bar.classList.add('short-bar');
+  else if(w < 9.5) bar.classList.add('medium-bar');
+  bar.style.cssText=`left:${left}%;width:${w}%;animation-delay:${barIndex * 0.03}s;`;
+  barIndex++;
+  let progressHTML = '';
+  if(taskStatus === 'active' && !cls.includes('phase-bar')){
+    const taskStart = pd(startS), taskEnd = pd(endS);
+    const elapsed = diffD(taskStart, TODAY); const total = diffD(taskStart, taskEnd);
+    const prgPct = Math.min(100, Math.max(0, Math.round((elapsed/total)*100)));
+    if(prgPct > 0 && prgPct < 100) progressHTML = `<div class="bar-progress" style="width:${prgPct}%"></div>`;
+  }
+  bar.innerHTML=`${progressHTML}<span class="bar-label">${label||''}</span><span class="bar-days">${dur}d · ${wd}wd</span>`;
+  const statusLabel = isCompleted ? 'done' : taskStatus||'upcoming';
+  bar.dataset.title=label||''; bar.dataset.dates=`${fmtFull(pd(startS))} → ${fmtFull(pd(endS))}`;
+  bar.dataset.duration=`${dur} calendar days · ${wd} working days`;
+  bar.dataset.phase=phaseName||''; bar.dataset.status=statusLabel;
+  bar.addEventListener('mouseenter',ttShow); bar.addEventListener('mousemove',ttMove); bar.addEventListener('mouseleave',ttHide);
+  return bar;
+}
+
+function getTaskStatus(startS, endS, manualStatus) {
+  if(manualStatus) return manualStatus;
+  const s=pd(startS), e=pd(endS);
+  if(TODAY > e) return 'done';
+  if(TODAY >= s && TODAY <= e) return 'active';
+  return 'upcoming';
+}
+
+function buildRows(c){
+  let rowIdx = 0;
+  PHASES.forEach(phase=>{
+    const isDone = phase.status==='done';
+    const phaseId = 'phase-'+phase.color;
+    const phR=document.createElement('div');phR.className=`gantt-row phase-header phase-${phase.status}`;
+    phR.dataset.phaseId=phaseId;phR.style.animationDelay = (rowIdx * 0.02)+'s'; rowIdx++;
+    const phL=document.createElement('div');phL.className='row-label';
+    const arrow=document.createElement('span'); arrow.className='collapse-arrow'; arrow.textContent='▾'; phL.appendChild(arrow);
+    const badge=document.createElement('span');badge.className=`progress-badge ${phase.status}`;
+    badge.textContent=phase.status==='done'?'✅ Completed':phase.status==='active'?'🔄 In Progress':'⏳ Upcoming';
+    const nameSpan=document.createElement('span'); nameSpan.className='task-name'; nameSpan.textContent=phase.name;
+    phL.appendChild(nameSpan); phL.appendChild(badge); phR.appendChild(phL);
+    const phC=document.createElement('div');phC.className='row-chart';addBG(phC);
+    phC.appendChild(mkBar(phase.start,phase.end,`${phase.color} phase-bar`,'',phase.name,false,phase.status));
+    phR.appendChild(phC); c.appendChild(phR);
+    phR.addEventListener('click', ()=>{
+      const children=c.querySelectorAll(`.phase-child[data-parent="${phaseId}"]`);
+      const isCollapsed=arrow.classList.toggle('collapsed');
+      children.forEach(ch=>ch.classList.toggle('collapsed',isCollapsed));
+    });
+    phase.tasks.forEach(task=>{
+      const cc=task.type==='redac'?'redac':phase.color;
+      const icon=task.type==='redac'?'📝':'🔧';
+      const tStatus = isDone ? 'done' : getTaskStatus(task.start, task.end, task.status);
+      const row=document.createElement('div');row.className=`gantt-row phase-child${tStatus==='done'?' row-done':''}`;
+      row.dataset.parent=phaseId;row.style.animationDelay = (rowIdx * 0.02)+'s'; rowIdx++;
+      const lbl=document.createElement('div');lbl.className='row-label';
+      const dot=document.createElement('span');dot.className=`status-dot ${tStatus}`;lbl.appendChild(dot);
+      if(tStatus==='done'){const chk=document.createElement('span');chk.className='check-badge';chk.textContent='✓';lbl.appendChild(chk);}
+      lbl.innerHTML+=`<span class="icon">${icon}</span><span class="task-name">${task.name}</span><span class="dates">${fmtShort(pd(task.start))} → ${fmtShort(pd(task.end))}</span>`;
+      row.appendChild(lbl);
+      const ch=document.createElement('div');ch.className='row-chart';addBG(ch);
+      ch.appendChild(mkBar(task.start,task.end,cc,task.name,phase.name,isDone,tStatus));
+      row.appendChild(ch); c.appendChild(row);
+      if(task.subs){
+        task.subs.forEach(sub=>{
+          const sStatus = isDone ? 'done' : getTaskStatus(sub.start, sub.end, sub.status);
+          const sR=document.createElement('div');sR.className=`gantt-row sub-task phase-child${sStatus==='done'?' row-done':''}`;
+          sR.dataset.parent=phaseId;sR.style.animationDelay = (rowIdx * 0.02)+'s'; rowIdx++;
+          const sL=document.createElement('div');sL.className='row-label';
+          const sDot=document.createElement('span');sDot.className=`status-dot ${sStatus}`;sL.appendChild(sDot);
+          if(sStatus==='done'){const chk=document.createElement('span');chk.className='check-badge';chk.textContent='✓';sL.appendChild(chk);}
+          sL.innerHTML+=`<span class="task-name">${sub.name}</span><span class="dates">${fmtShort(pd(sub.start))}</span>`;
+          sR.appendChild(sL);
+          const sC=document.createElement('div');sC.className='row-chart';addBG(sC);
+          sC.appendChild(mkBar(sub.start,sub.end,cc,sub.name,phase.name,isDone,sStatus));
+          sR.appendChild(sC); c.appendChild(sR);
+        });
+      }
+    });
+  });
+}
+
+const tt=document.getElementById('tooltip');
+const statusMap = { done: ['✅ Completed','s-done'], active: ['🔄 In Progress','s-active'], upcoming: ['⏳ Upcoming','s-upcoming'] };
+function ttShow(e){
+  const t=e.currentTarget;
+  tt.querySelector('.tt-title').textContent=t.dataset.title;
+  const st = t.dataset.status || 'upcoming';
+  const stEl = tt.querySelector('.tt-status');
+  stEl.className = 'tt-status ' + (statusMap[st]?.[1]||'');
+  stEl.textContent = statusMap[st]?.[0] || st;
+  tt.querySelector('.tt-dates').textContent=t.dataset.dates;
+  tt.querySelector('.tt-duration').textContent=t.dataset.duration;
+  tt.querySelector('.tt-phase').textContent=t.dataset.phase?'Phase: '+t.dataset.phase:'';
+  tt.style.display='block';
+}
+function ttMove(e){
+  let x=e.clientX+16, y=e.clientY-16;
+  if(x+340>window.innerWidth) x=e.clientX-340-16;
+  if(y<0) y=e.clientY+16;
+  tt.style.left=x+'px'; tt.style.top=y+'px';
+}
+function ttHide(){ tt.style.display='none'; }
+
+buildStats();
+const gantt=document.getElementById('gantt');
+buildHeader(gantt);
+buildRows(gantt);
+addGlobalTodayLine(gantt);
+
+const options = { day: 'numeric', month: 'long', year: 'numeric' };
+document.getElementById('todayLegend').innerHTML += 'Today · ' + TODAY.toLocaleDateString('en-GB', options);
+
+function triggerPrint() {
+  document.querySelectorAll('.collapse-arrow').forEach(a => a.style.display = 'none');
+  const scrollWrapper = document.querySelector('.gantt-scroll');
+  const container = document.getElementById('gantt');
+  const origWrapper = { overflow: scrollWrapper.style.overflow, maxHeight: scrollWrapper.style.maxHeight, height: scrollWrapper.style.height, width: scrollWrapper.style.width };
+  const origContainer = { zoom: container.style.zoom, minWidth: container.style.minWidth, width: container.style.width };
+  const origBody = { overflow: document.body.style.overflow };
+  const PAGE_W = 1020;
+  const naturalW = container.scrollWidth;
+  const zoomLevel = PAGE_W / naturalW;
+  container.style.zoom = zoomLevel;
+  container.style.minWidth = naturalW + 'px';
+  container.style.width = naturalW + 'px';
+  const zoomedH = Math.ceil(container.scrollHeight * zoomLevel);
+  scrollWrapper.style.overflow = 'visible';
+  scrollWrapper.style.maxHeight = 'none';
+  scrollWrapper.style.height = zoomedH + 'px';
+  scrollWrapper.style.width = PAGE_W + 'px';
+  document.body.style.overflow = 'visible';
+  setTimeout(() => {
+    window.print();
+    setTimeout(() => {
+      document.querySelectorAll('.collapse-arrow').forEach(a => a.style.display = '');
+      container.style.zoom = origContainer.zoom;
+      container.style.minWidth = origContainer.minWidth;
+      container.style.width = origContainer.width;
+      scrollWrapper.style.overflow = origWrapper.overflow;
+      scrollWrapper.style.maxHeight = origWrapper.maxHeight;
+      scrollWrapper.style.height = origWrapper.height;
+      scrollWrapper.style.width = origWrapper.width;
+      document.body.style.overflow = origBody.overflow;
+    }, 600);
+  }, 150);
+}
+</script>
+</body>
+</html>

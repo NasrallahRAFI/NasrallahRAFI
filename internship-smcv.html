@@ -11,7 +11,9 @@
     <script src="https://unpkg.com/lucide@latest"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
     <!-- Link to external style.css -->
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="css/style.css">
+    <!-- Theme Switcher Script -->
+    <script src="js/theme.js"></script>
     <style>
         /* Specific optimization for HMI screenshots in the grid (Section 1) */
         #section-1 .responsive-img {
@@ -40,10 +42,14 @@
             <h1
                 class="text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 to-cyan-200 truncate">
                 SMCV Internship Details</h1>
-            <a href="index.html#experience"
-                class="inline-flex items-center text-slate-300 hover:text-cyan-400 font-medium transition-colors text-sm">
-                <i data-lucide="arrow-left" class="w-4 h-4 mr-2"></i> Back to Portfolio
-            </a>
+            <div class="flex items-center space-x-6"><button aria-label="Toggle Theme" onclick="toggleTheme()" class="text-slate-300 hover:text-cyan-400 transition-colors">
+                    <i id="theme-toggle-icon" data-lucide="layers" class="w-5 h-5"></i>
+                </button>
+                <a href="index.html#experience"
+                    class="inline-flex items-center text-slate-300 hover:text-cyan-400 font-medium transition-colors text-sm">
+                    <i data-lucide="arrow-left" class="w-4 h-4 mr-2"></i> Back to Portfolio
+                </a>
+            </div>
         </div>
     </header>
 
@@ -57,8 +63,8 @@
             <!-- Title & Metadata -->
             <section class="content-section text-center relative z-10">
                 <span
-                    class="text-xs font-bold text-white bg-cyan-600/80 px-4 py-1.5 rounded-full uppercase tracking-wider mb-6 inline-block shadow-lg shadow-cyan-500/20">Engineering
-                    Internship</span>
+                    class="text-xs font-bold text-white bg-cyan-600/80 px-4 py-1.5 rounded-full uppercase tracking-wider mb-6 inline-block shadow-lg shadow-cyan-500/20">Final
+                    Project Stage</span>
                 <h2 class="text-3xl md:text-5xl font-extrabold text-white mb-4 leading-tight">
                     Automation (PLC/HMI), Mechanical Arm and Pneumatic Press Design, and IT Maintenance
                 </h2>
@@ -126,22 +132,25 @@
                 <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
                     <!-- Images -->
                     <div class="group">
-                        <img src="Main page HMI - Mold Injection Machine.png" alt="Main page HMI"
+                        <img src="assets/img/Main page HMI - Mold Injection Machine.png" alt="Main page HMI"
                             class="gallery-image responsive-img transition-transform group-hover:scale-105">
                         <p class="text-xs text-center text-slate-400 mt-2">Main page</p>
                     </div>
                     <div class="group">
-                        <img src="Manual control page HMI - Mold Injection Machine.png" alt="Manual control page"
+                        <img src="assets/img/Manual control page HMI - Mold Injection Machine.png"
+                            alt="Manual control page"
                             class="gallery-image responsive-img transition-transform group-hover:scale-105">
                         <p class="text-xs text-center text-slate-400 mt-2">Manual Control</p>
                     </div>
                     <div class="group">
-                        <img src="Confuguration page part 1 HMI - Mold Injection Machine.png" alt="Configuration page 1"
+                        <img src="assets/img/Confuguration page part 1 HMI - Mold Injection Machine.png"
+                            alt="Configuration page 1"
                             class="gallery-image responsive-img transition-transform group-hover:scale-105">
                         <p class="text-xs text-center text-slate-400 mt-2">Config 1</p>
                     </div>
                     <div class="group">
-                        <img src="Confuguration page part 2 HMI - Mold Injection Machine.png" alt="Configuration page 2"
+                        <img src="assets/img/Confuguration page part 2 HMI - Mold Injection Machine.png"
+                            alt="Configuration page 2"
                             class="gallery-image responsive-img transition-transform group-hover:scale-105">
                         <p class="text-xs text-center text-slate-400 mt-2">Config 2</p>
                     </div>
@@ -176,7 +185,7 @@
 
                 <!-- Visuals -->
                 <div class="mb-6">
-                    <img src="mechanical_arm_design.png"
+                    <img src="assets/img/mechanical_arm_design.png"
                         alt="Mechanical design of the mechanical arm for nut insertion - Autodesk Inventor"
                         class="gallery-image h-auto aspect-[16/9] mb-2">
                     <p class="text-xs text-center text-slate-400 mt-1">Figure 2.1: 3D Model of the Nut Insertion Arm
@@ -231,19 +240,19 @@
                 </h4>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div>
-                        <img src="HMI nut insertion press.png" alt="HMI nut insertion press screenshot"
+                        <img src="assets/img/HMI nut insertion press.png" alt="HMI nut insertion press screenshot"
                             class="gallery-image responsive-img">
                         <p class="text-xs text-center text-slate-400 mt-2">HMI nut insertion press</p>
                     </div>
                     <div>
-                        <img src="Evolution of nut temperature based on the heating source.png" alt="Thermal plot"
+                        <img src="assets/img/Evolution of nut temperature based on the heating source.png" alt="Thermal plot"
                             class="gallery-image responsive-img">
                         <p class="text-xs text-center text-slate-400 mt-2">Evolution of nut temperature based on the
                             heating source</p>
                     </div>
                 </div>
                 <div class="max-w-md mx-auto mt-6">
-                    <img src="Evolution of nut temperature in cool down phase based on Initial temperature.png"
+                    <img src="assets/img/Evolution of nut temperature in cool down phase based on Initial temperature.png"
                         alt="Thermal plot cooldown" class="gallery-image responsive-img">
                     <p class="text-xs text-center text-slate-400 mt-2">Evolution of nut temperature in cool down phase
                     </p>
@@ -336,14 +345,14 @@
                 <div class="bg-red-900/30 p-4 rounded-lg border-l-4 border-red-500 mb-6">
                     <h4 class="font-bold text-lg text-red-300 mb-2">Overall Remarks:</h4>
                     <p class="text-base italic text-slate-300 leading-relaxed">
-                        "Travail sérieux, ponctualité et respect des consignes." (Serious work, punctuality, and respect
-                        for instructions.)
+                        "Serious work, punctuality, and respect for instructions are to be highlighted."
+                        <br><span class="text-sm text-slate-400 font-normal">(Original: "Travail sérieux, ponctualité et respect des consignes sont à souligner")</span>
                     </p>
                 </div>
 
                 <h4 class="font-semibold text-lg text-white mb-4 mt-6">Full Evaluation Sheet:</h4>
                 <div class="rounded-lg overflow-hidden shadow-xl max-w-xl mx-auto border border-slate-700">
-                    <img src="SMCV_Supervisor_Evaluation.jpg" alt="Supervisor's Detailed Evaluation"
+                    <img src="assets/img/SMCV_Supervisor_Evaluation.jpg" alt="Supervisor's Detailed Evaluation"
                         class="w-full h-auto">
                 </div>
             </section>
