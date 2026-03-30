@@ -414,23 +414,20 @@ const fmtFull = d => d.getDate()+' '+monthsEN[d.getMonth()]+' '+d.getFullYear();
 const countWD = (s,e) => { let a=pd(s),b=pd(e),c=0; while(a<=b){if(!isWE(a))c++;a.setDate(a.getDate()+1);} return c; };
 
 function buildStats() {
-  const boundedToday = TODAY > PROJECT_END ? PROJECT_END : (TODAY < PROJECT_START ? PROJECT_START : TODAY);
-  const elapsed = diffD(PROJECT_START, boundedToday);
-  const remaining = Math.max(0, diffD(boundedToday, PROJECT_END));
-  const pct = Math.round((elapsed / totalDays) * 100);
+  const boundedElapsed = Math.min(totalDays, Math.max(0, diffD(PROJECT_START, TODAY)));
+  const remaining = Math.max(0, diffD(TODAY, PROJECT_END));
+  const pct = Math.round((boundedElapsed / totalDays) * 100);
   const R = 21, C = 2 * Math.PI * R;
-  
-  const p2Start = pd("2026-03-07"), p2End = pd("2026-03-31");
+  const p2Start = new Date(2026, 2, 7), p2End = new Date(2026, 2, 31);
   let p2Elapsed = 0;
-  if (boundedToday >= p2Start) p2Elapsed = diffD(p2Start, boundedToday > p2End ? p2End : boundedToday);
+  if (TODAY >= p2Start) p2Elapsed = diffD(p2Start, TODAY > p2End ? p2End : TODAY);
   const p2Total = diffD(p2Start, p2End);
   const p2Pct = Math.round((p2Elapsed / p2Total) * 100);
-  
   const items = [
-    { value: Math.max(0, elapsed).toString(), label: 'Jours Terminés', color: '#34d399', stroke: '#059669', pct: Math.min(100, Math.max(0, pct)) },
-    { value: p2Elapsed.toString(), label: 'Jours Phase 2', color: '#60a5fa', stroke: '#2563eb', pct: Math.min(100, Math.max(0, p2Pct)) },
-    { value: remaining.toString(), label: 'Jours Restants', color: '#fb923c', stroke: '#ea580c', pct: Math.min(100, Math.max(0, Math.round(remaining/totalDays*100))) },
-    { value: Math.min(100, Math.max(0, pct))+'%', label: 'Progression Globale', color: '#a78bfa', stroke: '#7c3aed', pct: Math.min(100, Math.max(0, pct)) },
+    { value: boundedElapsed.toString(), label: 'Jours terminés', color: '#34d399', stroke: '#059669', pct: Math.min(100, pct) },
+    { value: p2Elapsed.toString(), label: 'Jours Phase 2', color: '#60a5fa', stroke: '#2563eb', pct: Math.min(100, p2Pct) },
+    { value: remaining.toString(), label: 'Jours restants', color: '#fb923c', stroke: '#ea580c', pct: Math.min(100, Math.round((remaining/totalDays)*100)) },
+    { value: Math.min(100, pct)+'%', label: 'Progression globale', color: '#a78bfa', stroke: '#7c3aed', pct: Math.min(100, pct) },
   ];
   const bar = document.getElementById('statsBar');
   items.forEach(it => {
@@ -541,24 +538,26 @@ function mkBar(startS, endS, cls, label, phaseName, isCompleted, taskStatus){
 }
 
 function getTaskStatus(startS, endS) {
-  const s=pd(startS), e=pd(endS);
-  if(TODAY >= e) return 'done';
-  if(TODAY >= s && TODAY < e) return 'active';
+  const e=pd(endS);
+  if(TODAY > e) return 'done';
+  if(TODAY.toDateString() === e.toDateString()) return 'done';
+  const s=pd(startS);
+  if(TODAY >= s) return 'active';
   return 'upcoming';
 }
 
 function buildRows(c){
   let rowIdx = 0;
   PHASES.forEach(phase=>{
-    const pStatus = getTaskStatus(phase.start, phase.end);
-    const isDone = pStatus === 'done';
+    phase.status = getTaskStatus(phase.start, phase.end);
+    const isDone = phase.status==='done';
     const phaseId = 'phase-'+phase.color;
-    const phR=document.createElement('div');phR.className=`gantt-row phase-header phase-${pStatus}`;
+    const phR=document.createElement('div');phR.className=`gantt-row phase-header phase-${phase.status}`;
     phR.dataset.phaseId=phaseId;phR.style.animationDelay = (rowIdx * 0.02)+'s'; rowIdx++;
     const phL=document.createElement('div');phL.className='row-label';
     const arrow=document.createElement('span'); arrow.className='collapse-arrow'; arrow.textContent='▾'; phL.appendChild(arrow);
-    const badge=document.createElement('span');badge.className=`progress-badge ${pStatus}`;
-    badge.textContent=pStatus==='done'?'✅ Completed':pStatus==='active'?'🔄 In Progress':'⏳ Upcoming';
+    const badge=document.createElement('span');badge.className=`progress-badge ${phase.status}`;
+    badge.textContent=phase.status==='done'?'✅ Completed':phase.status==='active'?'🔄 In Progress':'⏳ Upcoming';
     const nameSpan=document.createElement('span'); nameSpan.className='task-name'; nameSpan.textContent=phase.name;
     phL.appendChild(nameSpan); phL.appendChild(badge); phR.appendChild(phL);
     const phC=document.createElement('div');phC.className='row-chart';addBG(phC);
@@ -581,7 +580,7 @@ function buildRows(c){
       lbl.innerHTML+=`<span class="icon">${icon}</span><span class="task-name">${task.name}</span><span class="dates">${fmtShort(pd(task.start))} → ${fmtShort(pd(task.end))}</span>`;
       row.appendChild(lbl);
       const ch=document.createElement('div');ch.className='row-chart';addBG(ch);
-      ch.appendChild(mkBar(task.start,task.end,cc,task.name,phase.name,isDone,tStatus));
+      ch.appendChild(mkBar(task.start,task.end,cc,task.name,phase.name,tStatus==='done',tStatus));
       row.appendChild(ch); c.appendChild(row);
       if(task.subs){
         task.subs.forEach(sub=>{
@@ -594,7 +593,7 @@ function buildRows(c){
           sL.innerHTML+=`<span class="task-name">${sub.name}</span><span class="dates">${fmtShort(pd(sub.start))}</span>`;
           sR.appendChild(sL);
           const sC=document.createElement('div');sC.className='row-chart';addBG(sC);
-          sC.appendChild(mkBar(sub.start,sub.end,cc,sub.name,phase.name,isDone,sStatus));
+          sC.appendChild(mkBar(sub.start,sub.end,cc,sub.name,phase.name,sStatus==='done',sStatus));
           sR.appendChild(sC); c.appendChild(sR);
         });
       }
