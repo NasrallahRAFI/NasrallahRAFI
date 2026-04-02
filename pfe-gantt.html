@@ -124,7 +124,7 @@
     color: var(--text-primary); transform: translateY(-1px); box-shadow: 0 4px 12px rgba(0,0,0,0.2);
   }
   .btn-export svg, .btn-back svg { width: 14px; height: 14px; stroke: var(--accent-blue); stroke-width: 2.5; }
-  .user-role { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; color: var(--phase-2-from); opacity: 0.8; }
+  .user-role { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; color: var(--phase-3-from); opacity: 0.8; }
 
   .stats-bar { display: flex; gap: 1px; padding: 16px 20px; border-bottom: 1px solid var(--border); background: var(--bg-secondary); }
   .stat-item {
@@ -414,17 +414,17 @@ const fmtFull = d => d.getDate()+' '+monthsEN[d.getMonth()]+' '+d.getFullYear();
 const countWD = (s,e) => { let a=pd(s),b=pd(e),c=0; while(a<=b){if(!isWE(a))c++;a.setDate(a.getDate()+1);} return c; };
 
 function buildStats() {
-  const boundedElapsed = Math.min(totalDays, Math.max(0, diffD(PROJECT_START, TODAY)));
+  const boundedElapsed = Math.min(totalDays, Math.max(0, diffD(PROJECT_START, TODAY) + 1));
   const remaining = Math.max(0, diffD(TODAY, PROJECT_END));
-  const pct = Math.round((boundedElapsed / totalDays) * 100);
+  const pct = Math.round(((boundedElapsed - 1) / totalDays) * 100);
   const R = 21, C = 2 * Math.PI * R;
   const p3Start = new Date(2026, 3, 1), p3End = new Date(2026, 5, 1);
   let p3Elapsed = 0;
-  if (TODAY >= p3Start) p3Elapsed = diffD(p3Start, TODAY > p3End ? p3End : TODAY);
+  if (TODAY >= p3Start) p3Elapsed = Math.min(diffD(p3Start, p3End), diffD(p3Start, TODAY > p3End ? p3End : TODAY) + 1);
   const p3Total = diffD(p3Start, p3End);
   const p3Pct = Math.round((p3Elapsed / p3Total) * 100);
   const items = [
-    { value: boundedElapsed.toString(), label: 'Jours terminés', color: '#34d399', stroke: '#059669', pct: Math.min(100, pct) },
+    { value: boundedElapsed.toString(), label: 'Jours terminés', color: '#34d399', stroke: '#059669', pct: Math.min(100, Math.round((boundedElapsed/totalDays)*100)) },
     { value: p3Elapsed.toString(), label: 'Jours Phase 3', color: '#fb923c', stroke: '#ea580c', pct: Math.min(100, p3Pct) },
     { value: remaining.toString(), label: 'Jours restants', color: '#f87171', stroke: '#dc2626', pct: Math.min(100, Math.round((remaining/totalDays)*100)) },
     { value: Math.min(100, pct)+'%', label: 'Progression globale', color: '#a78bfa', stroke: '#7c3aed', pct: Math.min(100, pct) },
