@@ -317,8 +317,8 @@
 
 <div class="legend-bar">
   <div class="legend-item"><div class="legend-dot" style="background:linear-gradient(135deg,var(--phase-1-from),var(--phase-1-to))"></div>Phase 1 — Completed</div>
-  <div class="legend-item"><div class="legend-dot" style="background:linear-gradient(135deg,var(--phase-2-from),var(--phase-2-to))"></div>Phase 2 — In Progress</div>
-  <div class="legend-item"><div class="legend-dot" style="background:linear-gradient(135deg,var(--phase-3-from),var(--phase-3-to))"></div>Phase 3 — Upcoming</div>
+  <div class="legend-item"><div class="legend-dot" style="background:linear-gradient(135deg,var(--phase-2-from),var(--phase-2-to))"></div>Phase 2 — Completed</div>
+  <div class="legend-item"><div class="legend-dot" style="background:linear-gradient(135deg,var(--phase-3-from),var(--phase-3-to))"></div>Phase 3 — In Progress</div>
   <div class="legend-item today-legend" id="todayLegend"><div class="legend-dot"></div></div>
 </div>
 
@@ -365,7 +365,7 @@ const PHASES = [
   },
   {
     name: "🔋 PHASE 2 · Battery Modeling & BMS",
-    status: "active", color: "p2",
+    status: "done", color: "p2",
     start: "2026-03-07", end: "2026-03-31",
     tasks: [
       { name: "Ch 3 · Battery Modeling", start: "2026-03-07", end: "2026-03-20", type: "tech", status: "done",
@@ -385,7 +385,7 @@ const PHASES = [
   },
   {
     name: "🛠️ PHASE 3 · Hardware & Prototyping",
-    status: "upcoming", color: "p3",
+    status: "active", color: "p3",
     start: "2026-04-01", end: "2026-05-31",
     tasks: [
       { name: "5.1 Hardware Design & Simulation", start: "2026-04-01", end: "2026-04-30", type: "tech",
@@ -418,15 +418,15 @@ function buildStats() {
   const remaining = Math.max(0, diffD(TODAY, PROJECT_END));
   const pct = Math.round((boundedElapsed / totalDays) * 100);
   const R = 21, C = 2 * Math.PI * R;
-  const p2Start = new Date(2026, 2, 7), p2End = new Date(2026, 2, 31);
-  let p2Elapsed = 0;
-  if (TODAY >= p2Start) p2Elapsed = diffD(p2Start, TODAY > p2End ? p2End : TODAY);
-  const p2Total = diffD(p2Start, p2End);
-  const p2Pct = Math.round((p2Elapsed / p2Total) * 100);
+  const p3Start = new Date(2026, 3, 1), p3End = new Date(2026, 5, 1);
+  let p3Elapsed = 0;
+  if (TODAY >= p3Start) p3Elapsed = diffD(p3Start, TODAY > p3End ? p3End : TODAY);
+  const p3Total = diffD(p3Start, p3End);
+  const p3Pct = Math.round((p3Elapsed / p3Total) * 100);
   const items = [
     { value: boundedElapsed.toString(), label: 'Jours terminés', color: '#34d399', stroke: '#059669', pct: Math.min(100, pct) },
-    { value: p2Elapsed.toString(), label: 'Jours Phase 2', color: '#60a5fa', stroke: '#2563eb', pct: Math.min(100, p2Pct) },
-    { value: remaining.toString(), label: 'Jours restants', color: '#fb923c', stroke: '#ea580c', pct: Math.min(100, Math.round((remaining/totalDays)*100)) },
+    { value: p3Elapsed.toString(), label: 'Jours Phase 3', color: '#fb923c', stroke: '#ea580c', pct: Math.min(100, p3Pct) },
+    { value: remaining.toString(), label: 'Jours restants', color: '#f87171', stroke: '#dc2626', pct: Math.min(100, Math.round((remaining/totalDays)*100)) },
     { value: Math.min(100, pct)+'%', label: 'Progression globale', color: '#a78bfa', stroke: '#7c3aed', pct: Math.min(100, pct) },
   ];
   const bar = document.getElementById('statsBar');
@@ -561,7 +561,7 @@ function buildRows(c){
     const nameSpan=document.createElement('span'); nameSpan.className='task-name'; nameSpan.textContent=phase.name;
     phL.appendChild(nameSpan); phL.appendChild(badge); phR.appendChild(phL);
     const phC=document.createElement('div');phC.className='row-chart';addBG(phC);
-    phC.appendChild(mkBar(phase.start,phase.end,`${phase.color} phase-bar`,'',phase.name,false,pStatus));
+    phC.appendChild(mkBar(phase.start,phase.end,`${phase.color} phase-bar`,'',phase.name,false,phase.status));
     phR.appendChild(phC); c.appendChild(phR);
     phR.addEventListener('click', ()=>{
       const children=c.querySelectorAll(`.phase-child[data-parent="${phaseId}"]`);
