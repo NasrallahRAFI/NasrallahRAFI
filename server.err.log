@@ -1,0 +1,136 @@
+127.0.0.1 - - [17/Jun/2026 14:18:43] "GET /index.html HTTP/1.1" 200 -
+127.0.0.1 - - [17/Jun/2026 14:19:06] "GET /index.html HTTP/1.1" 200 -
+127.0.0.1 - - [17/Jun/2026 14:21:46] "GET / HTTP/1.1" 200 -
+----------------------------------------
+Exception occurred during processing of request from ('127.0.0.1', 50856)
+127.0.0.1 - - [17/Jun/2026 14:21:47] "GET /index.html HTTP/1.1" 304 -
+Traceback (most recent call last):
+  File "C:\Users\Nasrallah\AppData\Local\Programs\Python\Python314\Lib\socketserver.py", line 697, in process_request_thread
+    self.finish_request(request, client_address)
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Nasrallah\AppData\Local\Programs\Python\Python314\Lib\http\server.py", line 1422, in finish_request
+    self.RequestHandlerClass(request, client_address, self,
+    ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                             directory=args.directory)
+                             ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Nasrallah\AppData\Local\Programs\Python\Python314\Lib\http\server.py", line 732, in __init__
+    super().__init__(*args, **kwargs)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\Nasrallah\AppData\Local\Programs\Python\Python314\Lib\socketserver.py", line 766, in __init__
+    self.handle()
+    ~~~~~~~~~~~^^
+  File "C:\Users\Nasrallah\AppData\Local\Programs\Python\Python314\Lib\http\server.py", line 496, in handle
+    self.handle_one_request()
+    ~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\Nasrallah\AppData\Local\Programs\Python\Python314\Lib\http\server.py", line 484, in handle_one_request
+    method()
+    ~~~~~~^^
+  File "C:\Users\Nasrallah\AppData\Local\Programs\Python\Python314\Lib\http\server.py", line 739, in do_GET
+    self.copyfile(f, self.wfile)
+    ~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "C:\Users\Nasrallah\AppData\Local\Programs\Python\Python314\Lib\http\server.py", line 942, in copyfile
+    shutil.copyfileobj(source, outputfile)
+    ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Nasrallah\AppData\Local\Programs\Python\Python314\Lib\shutil.py", line 257, in copyfileobj
+    fdst_write(buf)
+    ~~~~~~~~~~^^^^^
+  File "C:\Users\Nasrallah\AppData\Local\Programs\Python\Python314\Lib\socketserver.py", line 845, in write
+    self._sock.sendall(b)
+    ~~~~~~~~~~~~~~~~~~^^^
+ConnectionAbortedError: [WinError 10053] An established connection was aborted by the software in your host machine
+----------------------------------------
+127.0.0.1 - - [17/Jun/2026 14:21:49] "GET /css/style.css?v=pcb-trace-20260617 HTTP/1.1" 304 -
+127.0.0.1 - - [17/Jun/2026 14:21:50] "GET /js/theme.js HTTP/1.1" 304 -
+127.0.0.1 - - [17/Jun/2026 14:21:50] "GET /index.html HTTP/1.1" 200 -
+127.0.0.1 - - [17/Jun/2026 14:21:51] "GET /css/style.css?v=emil-polish-2-20260617 HTTP/1.1" 200 -
+127.0.0.1 - - [17/Jun/2026 14:21:51] "GET /assets/img/Profile%20picture.jpg HTTP/1.1" 200 -
+127.0.0.1 - - [17/Jun/2026 14:21:51] "GET /js/theme.js HTTP/1.1" 200 -
+127.0.0.1 - - [17/Jun/2026 14:21:52] "GET /assets/img/Air_E_Mag_Animation.webp HTTP/1.1" 304 -
+127.0.0.1 - - [17/Jun/2026 14:21:53] "GET /assets/img/Air_E_Mag_Animation.webp HTTP/1.1" 200 -
+127.0.0.1 - - [17/Jun/2026 14:22:02] "GET /assets/img/Final_Temperature_Distribution_Nut_Stack.jpg HTTP/1.1" 200 -
+127.0.0.1 - - [17/Jun/2026 14:22:02] "GET /assets/img/Rendezvous_Trajectory_(Phase_Plot).jpg HTTP/1.1" 200 -
+127.0.0.1 - - [17/Jun/2026 14:22:02] "GET /assets/img/Alumina_E_Mag_Animation.webp HTTP/1.1" 200 -
+127.0.0.1 - - [17/Jun/2026 14:22:02] "GET /assets/img/Temperature_result_view_1.jpg HTTP/1.1" 200 -
+127.0.0.1 - - [17/Jun/2026 14:22:02] "GET /assets/img/Real_Satellite_state_vs_time.jpg HTTP/1.1" 200 -
+127.0.0.1 - - [17/Jun/2026 14:22:03] "GET /assets/img/Air_H_Mag_Animation_SideView.webp HTTP/1.1" 200 -
+127.0.0.1 - - [17/Jun/2026 14:22:03] "GET /assets/img/Nut_Stack_Heat_Flux.jpg HTTP/1.1" 200 -
+127.0.0.1 - - [17/Jun/2026 14:22:03] "GET /assets/img/Estimation_Error_vs_time.jpg HTTP/1.1" 200 -
+127.0.0.1 - - [17/Jun/2026 14:22:07] "GET /assets/img/Alumina_H_Mag_Animation.webp HTTP/1.1" 200 -
+127.0.0.1 - - [17/Jun/2026 14:22:07] "GET /assets/img/Comparative_Heating_Curves.jpg HTTP/1.1" 200 -
+127.0.0.1 - - [17/Jun/2026 14:22:08] "GET /assets/img/Real_vs_Estimated_(x).jpg HTTP/1.1" 200 -
+127.0.0.1 - - [17/Jun/2026 14:22:11] "GET /assets/img/Air_H_Mag_Animation_SideView.webp HTTP/1.1" 304 -
+127.0.0.1 - - [17/Jun/2026 14:22:12] "GET /assets/img/S_parameter_plot_Air.jpg HTTP/1.1" 200 -
+127.0.0.1 - - [17/Jun/2026 14:22:12] "GET /assets/img/Heating_Cycle_Sensitivity_Analysis.jpg HTTP/1.1" 200 -
+127.0.0.1 - - [17/Jun/2026 14:22:12] "GET /assets/img/Control_Effort_vs_time.jpg HTTP/1.1" 200 -
+127.0.0.1 - - [17/Jun/2026 14:22:15] "GET /assets/img/Alumina_H_Mag_Animation.webp HTTP/1.1" 304 -
+127.0.0.1 - - [17/Jun/2026 14:22:18] "GET /assets/img/S_Parameter_Plot_Alumina.jpg HTTP/1.1" 200 -
+127.0.0.1 - - [17/Jun/2026 14:22:18] "GET /assets/img/3D_model_of_heating_color_and_adapting_cylinder.jpg HTTP/1.1" 200 -
+127.0.0.1 - - [17/Jun/2026 14:22:21] code 404, message File not found
+127.0.0.1 - - [17/Jun/2026 14:22:21] "GET /favicon.ico HTTP/1.1" 404 -
+127.0.0.1 - - [17/Jun/2026 14:22:23] "GET /assets/img/Vector_Pointing_Air.jpg HTTP/1.1" 200 -
+127.0.0.1 - - [17/Jun/2026 14:22:23] "GET /assets/img/Insert_nut_design.jpg HTTP/1.1" 200 -
+127.0.0.1 - - [17/Jun/2026 14:22:30] "GET /assets/img/Vector_Pointing_Alumina.jpg HTTP/1.1" 200 -
+127.0.0.1 - - [17/Jun/2026 14:22:30] "GET /assets/img/Mesh_Refinement_Comparison_a.jpg HTTP/1.1" 200 -
+127.0.0.1 - - [17/Jun/2026 14:22:32] "GET /assets/img/Multiple_insert_nut_stacked_in_assembly.jpg HTTP/1.1" 200 -
+127.0.0.1 - - [17/Jun/2026 14:22:38] "GET /assets/img/Technical_drawing_of_autofeed_mechanism.jpg HTTP/1.1" 200 -
+127.0.0.1 - - [17/Jun/2026 14:22:42] "GET /assets/img/Alumina_E_Mag_Animation.webp HTTP/1.1" 304 -
+127.0.0.1 - - [17/Jun/2026 14:22:43] "GET /assets/img/Temperature_Probe_Graph.jpg HTTP/1.1" 200 -
+127.0.0.1 - - [17/Jun/2026 14:22:47] "GET /assets/img/Temperature_Probe_View_1.jpg HTTP/1.1" 200 -
+127.0.0.1 - - [17/Jun/2026 14:22:52] "GET /assets/img/Total_Heat_Flux_View_1.jpg HTTP/1.1" 200 -
+127.0.0.1 - - [17/Jun/2026 14:22:57] "GET /assets/img/Transient_Cooling_of_Insert_Nut_in_Ambient_Air.jpg HTTP/1.1" 200 -
+127.0.0.1 - - [17/Jun/2026 14:26:14] "GET /index.html HTTP/1.1" 200 -
+127.0.0.1 - - [17/Jun/2026 14:26:46] "GET /index.html HTTP/1.1" 200 -
+127.0.0.1 - - [17/Jun/2026 14:28:04] "GET /index.html HTTP/1.1" 200 -
+127.0.0.1 - - [17/Jun/2026 14:28:05] "GET /css/style.css?v=emil-polish-2-20260617 HTTP/1.1" 304 -
+127.0.0.1 - - [17/Jun/2026 14:28:17] "GET /index.html HTTP/1.1" 200 -
+127.0.0.1 - - [17/Jun/2026 14:28:19] "GET /css/style.css?v=emil-polish-2-20260617 HTTP/1.1" 304 -
+127.0.0.1 - - [17/Jun/2026 14:28:27] "GET /assets/img/Heating_Cycle_Sensitivity_Analysis.jpg HTTP/1.1" 200 -
+127.0.0.1 - - [17/Jun/2026 14:28:30] "GET /pfe-gantt.html HTTP/1.1" 200 -
+127.0.0.1 - - [17/Jun/2026 14:29:42] "GET /assets/img/3D_model_of_heating_color_and_adapting_cylinder.jpg HTTP/1.1" 200 -
+127.0.0.1 - - [17/Jun/2026 14:30:52] "GET /assets/img/Air_E_Mag_Animation.webp HTTP/1.1" 304 -
+127.0.0.1 - - [17/Jun/2026 14:30:57] "GET /assets/img/Alumina_E_Mag_Animation.webp HTTP/1.1" 304 -
+127.0.0.1 - - [17/Jun/2026 14:31:02] "GET /assets/img/Air_H_Mag_Animation_SideView.webp HTTP/1.1" 304 -
+127.0.0.1 - - [17/Jun/2026 14:31:42] "GET /assets/img/Transient_Cooling_of_Insert_Nut_in_Ambient_Air.jpg HTTP/1.1" 200 -
+127.0.0.1 - - [17/Jun/2026 14:31:52] "GET /assets/img/Alumina_H_Mag_Animation.webp HTTP/1.1" 304 -
+127.0.0.1 - - [17/Jun/2026 14:32:27] "GET /index.html HTTP/1.1" 304 -
+127.0.0.1 - - [17/Jun/2026 14:32:27] "GET /css/style.css?v=emil-polish-2-20260617 HTTP/1.1" 200 -
+127.0.0.1 - - [17/Jun/2026 14:32:27] "GET /assets/img/Profile%20picture.jpg HTTP/1.1" 200 -
+127.0.0.1 - - [17/Jun/2026 14:32:27] "GET /js/theme.js HTTP/1.1" 200 -
+127.0.0.1 - - [17/Jun/2026 14:33:27] "GET /index.html HTTP/1.1" 200 -
+127.0.0.1 - - [17/Jun/2026 14:33:46] "GET /index.html HTTP/1.1" 200 -
+127.0.0.1 - - [17/Jun/2026 14:33:47] "GET /js/theme.js HTTP/1.1" 200 -
+127.0.0.1 - - [17/Jun/2026 14:33:49] "GET /assets/img/Air_E_Mag_Animation.webp HTTP/1.1" 304 -
+127.0.0.1 - - [17/Jun/2026 14:33:58] "GET /assets/img/Alumina_E_Mag_Animation.webp HTTP/1.1" 304 -
+127.0.0.1 - - [17/Jun/2026 14:34:36] "GET /index.html HTTP/1.1" 304 -
+127.0.0.1 - - [17/Jun/2026 14:34:36] "GET /js/theme.js HTTP/1.1" 304 -
+127.0.0.1 - - [17/Jun/2026 14:34:56] "GET /assets/img/Air_H_Mag_Animation_SideView.webp HTTP/1.1" 304 -
+127.0.0.1 - - [17/Jun/2026 14:34:57] "GET /assets/img/Alumina_H_Mag_Animation.webp HTTP/1.1" 304 -
+127.0.0.1 - - [17/Jun/2026 14:35:46] "GET /index.html HTTP/1.1" 200 -
+127.0.0.1 - - [17/Jun/2026 14:35:55] "GET /index.html HTTP/1.1" 200 -
+127.0.0.1 - - [17/Jun/2026 14:35:55] "GET /css/style.css?v=theme-button-20260617 HTTP/1.1" 200 -
+127.0.0.1 - - [17/Jun/2026 14:35:55] "GET /js/theme.js HTTP/1.1" 304 -
+127.0.0.1 - - [17/Jun/2026 14:37:21] "GET /index.html HTTP/1.1" 200 -
+127.0.0.1 - - [17/Jun/2026 14:37:21] "GET /css/style.css?v=theme-button-20260617 HTTP/1.1" 200 -
+127.0.0.1 - - [17/Jun/2026 14:39:20] "GET /index.html HTTP/1.1" 200 -
+127.0.0.1 - - [17/Jun/2026 14:39:33] "GET /index.html HTTP/1.1" 200 -
+127.0.0.1 - - [17/Jun/2026 14:39:33] "GET /css/style.css?v=theme-button-20260617 HTTP/1.1" 304 -
+127.0.0.1 - - [17/Jun/2026 14:39:33] "GET /js/theme.js HTTP/1.1" 304 -
+127.0.0.1 - - [17/Jun/2026 14:40:23] "GET /assets/img/Air_E_Mag_Animation.webp HTTP/1.1" 304 -
+127.0.0.1 - - [17/Jun/2026 14:40:28] "GET /assets/img/Alumina_E_Mag_Animation.webp HTTP/1.1" 304 -
+127.0.0.1 - - [17/Jun/2026 14:40:34] "GET /assets/img/Air_H_Mag_Animation_SideView.webp HTTP/1.1" 304 -
+127.0.0.1 - - [17/Jun/2026 14:40:35] "GET /index.html HTTP/1.1" 200 -
+127.0.0.1 - - [17/Jun/2026 14:40:36] "GET /css/style.css?v=theme-button-20260617 HTTP/1.1" 304 -
+127.0.0.1 - - [17/Jun/2026 14:42:13] "GET /assets/img/Alumina_H_Mag_Animation.webp HTTP/1.1" 304 -
+127.0.0.1 - - [17/Jun/2026 14:44:58] "GET /index.html HTTP/1.1" 200 -
+127.0.0.1 - - [17/Jun/2026 14:45:12] "GET /index.html HTTP/1.1" 200 -
+127.0.0.1 - - [17/Jun/2026 14:45:12] "GET /css/style.css?v=theme-button-20260617 HTTP/1.1" 304 -
+127.0.0.1 - - [17/Jun/2026 14:45:12] "GET /js/theme.js HTTP/1.1" 304 -
+127.0.0.1 - - [17/Jun/2026 14:45:13] "GET /assets/img/Air_E_Mag_Animation.webp HTTP/1.1" 304 -
+127.0.0.1 - - [17/Jun/2026 14:45:29] "GET /assets/img/Alumina_E_Mag_Animation.webp HTTP/1.1" 304 -
+127.0.0.1 - - [17/Jun/2026 14:45:59] "GET /index.html HTTP/1.1" 200 -
+127.0.0.1 - - [17/Jun/2026 14:46:01] "GET /css/style.css?v=theme-button-20260617 HTTP/1.1" 304 -
+127.0.0.1 - - [17/Jun/2026 14:46:01] "GET /js/theme.js HTTP/1.1" 200 -
+127.0.0.1 - - [17/Jun/2026 14:46:16] "GET /assets/img/Air_H_Mag_Animation_SideView.webp HTTP/1.1" 304 -
+127.0.0.1 - - [17/Jun/2026 14:50:05] "GET /index.html HTTP/1.1" 304 -
+127.0.0.1 - - [17/Jun/2026 14:50:05] "GET /css/style.css?v=theme-button-20260617 HTTP/1.1" 304 -
+127.0.0.1 - - [17/Jun/2026 14:50:05] "GET /js/theme.js HTTP/1.1" 304 -
