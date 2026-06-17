@@ -1,0 +1,26 @@
+{
+  "name": "nasrallahrafi",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build:css": "tailwindcss -i ./css/tailwind-input.css -o ./css/tailwind.min.css --minify",
+    "watch:css": "tailwindcss -i ./css/tailwind-input.css -o ./css/tailwind.min.css --watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/NasrallahRAFI/NasrallahRAFI.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/NasrallahRAFI/NasrallahRAFI/issues"
+  },
+  "homepage": "https://github.com/NasrallahRAFI/NasrallahRAFI#readme",
+  "devDependencies": {
+    "tailwindcss": "^3.4.19"
+  }
+}

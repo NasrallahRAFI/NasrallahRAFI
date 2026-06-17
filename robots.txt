@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Disallow: /server.log
+Disallow: /server.err.log
+Crawl-delay: 1
+Sitemap: https://nasrallahrafi.me/sitemap.xml

@@ -1,40 +1,37 @@
 <!DOCTYPE html>
+
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Orbital Rendezvous Control Project | Rafi Nasrallah</title>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Luenberger-Based Orbital Rendezvous Control | Rafi Nasrallah</title>
+<meta content="Luenberger rendezvous control project using angle-only data, state feedback, observer design, normalization, and MATLAB/Simulink simulation." name="description"/>
+<meta content="Rafi Nasrallah, Luenberger observer, satellite rendezvous, orbital mechanics, state feedback control, angle-only measurements, MATLAB, control systems" name="keywords"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://unpkg.com" rel="preconnect"/><link href="https://nasrallahrafi.me/project-rendezvous.html" rel="canonical"/>
+<meta content="website" property="og:type"/>
+<meta content="Rafi Nasrallah Portfolio" property="og:site_name"/>
+<meta content="Luenberger-Based Orbital Rendezvous Control | Rafi Nasrallah" property="og:title"/>
+<meta content="Luenberger rendezvous control project using angle-only data, state feedback, observer design, normalization, and MATLAB/Simulink simulation." property="og:description"/>
+<meta content="https://nasrallahrafi.me/assets/img/Profile_picture.jpg" property="og:image"/>
+<meta content="https://nasrallahrafi.me/project-rendezvous.html" property="og:url"/>
+<meta content="en_US" property="og:locale"/>
+<meta content="summary_large_image" name="twitter:card"/>
+<meta content="Luenberger-Based Orbital Rendezvous Control | Rafi Nasrallah" name="twitter:title"/>
+<meta content="Luenberger rendezvous control project using angle-only data, state feedback, observer design, normalization, and MATLAB/Simulink simulation." name="twitter:description"/>
+<meta content="https://nasrallahrafi.me/assets/img/Profile_picture.jpg" name="twitter:image"/>
+<meta content="@RafiNasrallah" name="twitter:creator"/>
+<meta content="@RafiNasrallah" name="twitter:site"/>
+<meta content="index, follow" name="robots"/>
+<meta content="Rafi Nasrallah" name="author"/>
+<link href="/favicon.ico" rel="icon" type="image/x-icon"/>
+<link href="/apple-touch-icon.png" rel="apple-touch-icon"/><!-- Load Tailwind CSS --><link href="css/tailwind.min.css" rel="stylesheet"/><!-- Load Lucide Icons --><script crossorigin="anonymous" integrity="sha384-vEpkK5oidsrH6UhRc6tAPlgJZ/qXFwumFY+Kx8vBSeZ7NBag809YZCSmxFYGe/pt" src="https://unpkg.com/lucide@1.20.0/dist/umd/lucide.min.js"></script><link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&amp;family=JetBrains+Mono:wght@500;600&amp;display=swap" rel="stylesheet"/><!-- Link to external minified style.css --><link href="css/style.min.css" rel="stylesheet"/>
+<!-- Load Tailwind CSS -->
 
-    <!-- Load Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com/3.4.17"></script>
+<!-- Link to the main external style.css -->
 
-    <!-- Load Lucide Icons -->
-    <script src="https://unpkg.com/lucide@1.20.0/dist/umd/lucide.min.js"></script>
-
-    <!-- Load MathJax for LaTeX Rendering -->
-    <script>
-        MathJax = {
-            tex: {
-                inlineMath: [['$', '$'], ['\\(', '\\)']],
-                displayMath: [['$$', '$$'], ['\\[', '\\]']],
-                processEscapes: true
-            },
-            svg: {
-                fontCache: 'global'
-            }
-        };
-    </script>
-    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
-
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
-
-    <!-- Link to the main external style.css -->
-    <link rel="stylesheet" href="css/style.css?v=emil-polish-2-20260617">
-    <!-- Theme Switcher Script -->
-    <script src="js/theme.js" defer></script>
-
-    <style>
+<!-- Theme Switcher Script -->
+<script defer="" src="js/theme.js"></script>
+<style>
         .milestone-card {
             background: rgba(30, 41, 59, 0.5);
             backdrop-filter: blur(8px);
@@ -50,267 +47,297 @@
             box-shadow: 0 10px 20px -5px rgba(0, 0, 0, 0.3);
         }
     </style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://nasrallahrafi.me/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Projects",
+      "item": "https://nasrallahrafi.me/#projects"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Luenberger-Based Rendezvous Control",
+      "item": "https://nasrallahrafi.me/project-rendezvous.html"
+    }
+  ]
+}
+</script>
 </head>
-
 <body class="antialiased selection:bg-cyan-500 selection:text-white">
-
-    <!-- Header -->
-    <header class="sticky top-0 z-50 glass transition-colors duration-300">
-        <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
-            <h1
-                class="text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 to-cyan-200 truncate">
+<!-- Header -->
+<header class="sticky top-0 z-50 glass transition-colors duration-300">
+<div class="container mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
+<div class="text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 to-cyan-200 truncate">
                 Luenberger-Based Rendezvous Control
-            </h1>
-            <div class="flex items-center space-x-6"><button aria-label="Toggle Theme" onclick="toggleTheme()" class="text-slate-300 hover:text-cyan-400 transition-colors">
-                    <i id="theme-toggle-icon" data-lucide="layers" class="w-5 h-5"></i>
-                </button>
-                <a href="index.html#projects"
-                    class="inline-flex items-center text-slate-300 hover:text-cyan-400 font-medium transition-colors text-sm">
-                    <i data-lucide="arrow-left" class="w-4 h-4 mr-2"></i> Back to Portfolio
+            </div>
+<div class="flex items-center space-x-6"><button aria-label="Toggle Theme" class="text-slate-300 hover:text-cyan-400 transition-colors" onclick="toggleTheme()">
+<i class="w-5 h-5" data-lucide="layers" id="theme-toggle-icon"></i>
+</button>
+<a class="inline-flex items-center text-slate-300 hover:text-cyan-400 font-medium transition-colors text-sm" href="index.html#projects">
+<i class="w-4 h-4 mr-2" data-lucide="arrow-left"></i> Back to Portfolio
                 </a>
-            </div>
-        </div>
-    </header>
-
-    <main class="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <article class="max-w-4xl mx-auto glass p-8 md:p-12 rounded-2xl relative overflow-hidden">
-            <!-- Background Blob -->
-            <div
-                class="absolute top-0 right-0 w-96 h-96 bg-cyan-500/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 pointer-events-none">
-            </div>
-
-            <!-- Title & Metadata -->
-            <section class="content-section text-center relative z-10">
-                <span
-                    class="text-xs font-bold text-white bg-cyan-600/80 px-4 py-1.5 rounded-full uppercase tracking-wider mb-6 inline-block shadow-lg shadow-cyan-500/20">
-                    Advanced Control & Systems
+</div>
+</div>
+</header>
+<main class="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
+<article class="max-w-4xl mx-auto glass p-8 md:p-12 rounded-2xl relative overflow-hidden">
+<!-- Background Blob -->
+<div class="absolute top-0 right-0 w-96 h-96 bg-cyan-500/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 pointer-events-none">
+</div>
+<!-- Title & Metadata -->
+<section aria-labelledby="luenberger-based-rendezvous-control-with-angle-only-data" class="content-section text-center relative z-10">
+<span class="text-xs font-bold text-white bg-cyan-600/80 px-4 py-1.5 rounded-full uppercase tracking-wider mb-6 inline-block shadow-lg shadow-cyan-500/20">
+                    Advanced Control &amp; Systems
                 </span>
-                <h2 class="text-3xl md:text-5xl font-extrabold text-white mb-4 leading-tight">
+<h1 class="text-3xl md:text-5xl font-extrabold text-white mb-4 leading-tight" id="luenberger-based-rendezvous-control-with-angle-only-data">
                     Luenberger-Based Rendezvous Control with Angle-Only Data
-                </h2>
-                <p class="text-lg font-medium text-cyan-200 mb-6">
-                    Academic Project | Control Systems Theory & Simulation
+                </h1>
+<p class="text-lg font-medium text-cyan-200 mb-6">
+                    Academic Project | Control Systems Theory &amp; Simulation
                 </p>
-                <a href="assets/pdf/Luenberger_Based_Rendezvous_Control_with_Angle_Only_Data.pdf" target="_blank"
-                    class="inline-flex items-center font-bold px-6 py-3 bg-red-600 text-white rounded-full hover:bg-red-700 transition-colors shadow-lg hover:shadow-red-500/30 text-sm" rel="noopener noreferrer">
-                    <i data-lucide="file-text" class="w-5 h-5 mr-2"></i> Download Full Simulation Report (PDF)
+<a class="inline-flex items-center font-bold px-6 py-3 bg-red-600 text-white rounded-full hover:bg-red-700 transition-colors shadow-lg hover:shadow-red-500/30 text-sm" href="assets/pdf/Luenberger_Based_Rendezvous_Control_with_Angle_Only_Data.pdf" rel="noopener noreferrer" target="_blank">
+<i class="w-5 h-5 mr-2" data-lucide="file-text"></i> Download Full Simulation Report (PDF)
                 </a>
-            </section>
-
-            <!-- 1. Context and Problem -->
-            <section class="content-section relative z-10">
-                <h3 class="text-2xl font-bold text-white mb-6 flex items-center space-x-3">
-                    <div class="p-2 bg-cyan-500/10 rounded-lg">
-                        <i data-lucide="binary" class="w-6 h-6 text-cyan-400"></i>
-                    </div>
-                    <span>1. Context & Engineering Problem</span>
-                </h3>
-                <p class="text-slate-300 leading-relaxed mb-4 text-lg">
+</section>
+<!-- 1. Context and Problem -->
+<section aria-labelledby="section-problem-statement" class="content-section relative z-10">
+<h2 class="text-2xl font-bold text-white mb-6 flex items-center space-x-3" id="section-problem-statement">
+<div class="p-2 bg-cyan-500/10 rounded-lg">
+<i class="w-6 h-6 text-cyan-400" data-lucide="target"></i>
+</div>
+<span>Problem Statement</span>
+</h2>
+<h3 class="text-2xl font-bold text-white mb-6 flex items-center space-x-3">
+<div class="p-2 bg-cyan-500/10 rounded-lg">
+<i class="w-6 h-6 text-cyan-400" data-lucide="binary"></i>
+</div>
+<span>1. Context &amp; Engineering Problem</span>
+</h3>
+<p class="text-slate-300 leading-relaxed mb-4 text-lg">
                     Orbital rendezvous (docking) is an essential maneuver requiring precise control of a satellite's 4
                     relative states (radial/angular position and velocity) to bring them to zero. The central
                     engineering challenge is an **output feedback problem**:
-                </p>
-                <ul class="list-disc ml-5 text-slate-300 space-y-2 mb-6">
-                    <li>
-                        <strong>Full State Required:</strong> The controller needs all 4 states: $x = [r, \dot{r},
+                 The implementation combined Luenberger observer design, normalized state-feedback control, and MATLAB/Simulink validation to keep the numerical model usable. The results section links the theoretical observability and controllability work to plotted convergence and control-effort behavior.</p>
+<ul class="list-disc ml-5 text-slate-300 space-y-2 mb-6">
+<li>
+<strong>Full State Required:</strong> The controller needs all 4 states: $x = [r, \dot{r},
                         \theta, \dot{\theta}]^T$.
                     </li>
-                    <li>
-                        <strong>Limited Measurement:</strong> The sensors only provide a single measurement: the angle
+<li>
+<strong>Limited Measurement:</strong> The sensors only provide a single measurement: the angle
                         $y = \theta$.
                     </li>
-                    <li>
-                        <strong>Unobservable States:</strong> All velocities ($\dot{r}, \dot{\theta}$) and the radial
+<li>
+<strong>Unobservable States:</strong> All velocities ($\dot{r}, \dot{\theta}$) and the radial
                         position ($r$) are unknown.
                     </li>
-                </ul>
-                <div class="p-4 bg-yellow-900/20 border-l-4 border-yellow-500 rounded-lg">
-                    <p class="text-sm font-semibold text-yellow-200">
-                        <strong>Critical Discovery:</strong> Initial analysis revealed the physical model (using meters,
+</ul>
+<div class="p-4 bg-yellow-900/20 border-l-4 border-yellow-500 rounded-lg">
+<p class="text-sm font-semibold text-yellow-200">
+<strong>Critical Discovery:</strong> Initial analysis revealed the physical model (using meters,
                         seconds) was numerically ill-conditioned, producing physically unrealizable controller gains of
                         $10^{15}$. This problem was solved via **system normalization (non-dimensionalization)** before
                         design.
                     </p>
-                </div>
-            </section>
+</div>
+</section>
+<!-- 2. Goal -->
+<section aria-labelledby="section-control-methodology" class="content-section relative z-10">
+<h2 class="text-2xl font-bold text-white mb-6 flex items-center space-x-3" id="section-control-methodology"><i class="w-8 h-8 text-cyan-400" data-lucide="cpu"></i><span>Control Methodology</span></h2>
 
-            <!-- 2. Goal -->
-            <section class="content-section relative z-10">
-                <h3 class="text-2xl font-bold text-white mb-6 flex items-center space-x-3">
-                    <div class="p-2 bg-cyan-500/10 rounded-lg">
-                        <i data-lucide="target" class="w-6 h-6 text-cyan-400"></i>
-                    </div>
-                    <span>2. Goal</span>
-                </h3>
-                <p class="text-slate-300 leading-relaxed">
+<h3 class="text-2xl font-bold text-white mb-6 flex items-center space-x-3" id="2-goal">
+<div class="p-2 bg-cyan-500/10 rounded-lg">
+<i class="w-6 h-6 text-cyan-400" data-lucide="target"></i>
+</div>
+<span>2. Goal</span>
+</h3>
+<p class="text-slate-300 leading-relaxed">
                     Designed a complete <strong>orbital rendezvous autopilot</strong> capable of guiding a chaser
                     satellite to
                     a target using <strong>only angle-of-sight data</strong> ($y=\theta$). The core challenge was the
                     non-observability of the system in Cartesian coordinates, which I solved using a coordinate
                     transformation to modified polar coordinates for the Luenberger Observer.
                 </p>
-            </section>
-
-            <!-- 3. Project Milestones -->
-            <section class="content-section relative z-10">
-                <h3 class="text-2xl font-bold text-white mb-6 flex items-center space-x-3">
-                    <div class="p-2 bg-cyan-500/10 rounded-lg">
-                        <i data-lucide="check-check" class="w-6 h-6 text-cyan-400"></i>
-                    </div>
-                    <span>3. Project Milestones</span>
-                </h3>
-                <div class="grid md:grid-cols-2 gap-4">
-                    <span class="text-xs font-bold text-cyan-400 tracking-wider">MILESTONE 1</span>
-                    <h4 class="font-bold text-lg text-white mt-2 group-hover:text-cyan-300 transition-colors">
+</section>
+<!-- 3. Project Milestones -->
+<section aria-labelledby="3-project-milestones" class="content-section relative z-10">
+<h3 class="text-2xl font-bold text-white mb-6 flex items-center space-x-3" id="3-project-milestones">
+<div class="p-2 bg-cyan-500/10 rounded-lg">
+<i class="w-6 h-6 text-cyan-400" data-lucide="check-check"></i>
+</div>
+<span>3. Project Milestones</span>
+</h3>
+<div class="grid md:grid-cols-2 gap-4">
+<span class="text-xs font-bold text-cyan-400 tracking-wider">MILESTONE 1</span>
+<h4 class="font-bold text-lg text-white mt-2 group-hover:text-cyan-300 transition-colors">
                         Feasibility Analysis</h4>
-                    <p class="text-sm text-slate-300 mt-2">Proved the system is both <strong>Controllable</strong>
+<p class="text-sm text-slate-300 mt-2">Proved the system is both <strong>Controllable</strong>
                         and <strong>Observable</strong> from $y=\theta$. The problem is solvable.</p>
-                    <div class="mt-3 flex items-center text-green-400 text-xs font-bold uppercase tracking-wider">
-                        <i data-lucide="check-circle" class="w-4 h-4 mr-1"></i> Achieved
+<div class="mt-3 flex items-center text-green-400 text-xs font-bold uppercase tracking-wider">
+<i class="w-4 h-4 mr-1" data-lucide="check-circle"></i> Achieved
                     </div>
-                </div>
-                <div class="milestone-card group">
-                    <span class="text-xs font-bold text-cyan-400 tracking-wider">MILESTONE 2</span>
-                    <h4 class="font-bold text-lg text-white mt-2 group-hover:text-cyan-300 transition-colors">Robust
+</div>
+<div class="milestone-card group">
+<span class="text-xs font-bold text-cyan-400 tracking-wider">MILESTONE 2</span>
+<h4 class="font-bold text-lg text-white mt-2 group-hover:text-cyan-300 transition-colors">Robust
                         Gain Design</h4>
-                    <p class="text-sm text-slate-300 mt-2">Calculated stable $K_{norm}$ and $L_{norm}$ gains after
+<p class="text-sm text-slate-300 mt-2">Calculated stable $K_{norm}$ and $L_{norm}$ gains after
                         normalization (Observer 10x faster than Controller).</p>
-                    <div class="mt-3 flex items-center text-green-400 text-xs font-bold uppercase tracking-wider">
-                        <i data-lucide="check-circle" class="w-4 h-4 mr-1"></i> Achieved
+<div class="mt-3 flex items-center text-green-400 text-xs font-bold uppercase tracking-wider">
+<i class="w-4 h-4 mr-1" data-lucide="check-circle"></i> Achieved
                     </div>
-                </div>
-                <div class="milestone-card group">
-                    <span class="text-xs font-bold text-cyan-400 tracking-wider">MILESTONE 3</span>
-                    <h4 class="font-bold text-lg text-white mt-2 group-hover:text-cyan-300 transition-colors">
+</div>
+<div class="milestone-card group">
+<span class="text-xs font-bold text-cyan-400 tracking-wider">MILESTONE 3</span>
+<h4 class="font-bold text-lg text-white mt-2 group-hover:text-cyan-300 transition-colors">
                         Observer Validation</h4>
-                    <p class="text-sm text-slate-300 mt-2">Simulation proved estimation error $\tilde{x}(t) \to 0$.
+<p class="text-sm text-slate-300 mt-2">Simulation proved estimation error $\tilde{x}(t) \to 0$.
                         The observer successfully tracks the real state.</p>
-                    <div class="mt-3 flex items-center text-green-400 text-xs font-bold uppercase tracking-wider">
-                        <i data-lucide="check-circle" class="w-4 h-4 mr-1"></i> Achieved
+<div class="mt-3 flex items-center text-green-400 text-xs font-bold uppercase tracking-wider">
+<i class="w-4 h-4 mr-1" data-lucide="check-circle"></i> Achieved
                     </div>
-                </div>
-                <div class="milestone-card group">
-                    <span class="text-xs font-bold text-cyan-400 tracking-wider">MILESTONE 4</span>
-                    <h4 class="font-bold text-lg text-white mt-2 group-hover:text-cyan-300 transition-colors">Full
+</div>
+<div class="milestone-card group">
+<span class="text-xs font-bold text-cyan-400 tracking-wider">MILESTONE 4</span>
+<h4 class="font-bold text-lg text-white mt-2 group-hover:text-cyan-300 transition-colors">Full
                         System Validation</h4>
-                    <p class="text-sm text-slate-300 mt-2">Simulation proved the satellite's real state $x(t) \to
+<p class="text-sm text-slate-300 mt-2">Simulation proved the satellite's real state $x(t) \to
                         0$. The rendezvous maneuver was successful.</p>
-                    <div class="mt-3 flex items-center text-green-400 text-xs font-bold uppercase tracking-wider">
-                        <i data-lucide="check-circle" class="w-4 h-4 mr-1"></i> Achieved
+<div class="mt-3 flex items-center text-green-400 text-xs font-bold uppercase tracking-wider">
+<i class="w-4 h-4 mr-1" data-lucide="check-circle"></i> Achieved
                     </div>
-                </div>
-                </div>
-            </section>
+</div>
+</section>
+<!-- 4. Result Gallery -->
+<section aria-labelledby="section-simulation-results" class="content-section relative z-10">
+<h2 class="text-2xl font-bold text-white mb-6 flex items-center space-x-3" id="section-simulation-results"><i class="w-8 h-8 text-cyan-400" data-lucide="chart-line"></i><span>Simulation Results</span></h2>
 
-            <!-- 4. Result Gallery -->
-            <section class="content-section relative z-10">
-                <h3 class="text-2xl font-bold text-white mb-6 flex items-center space-x-3">
-                    <div class="p-2 bg-cyan-500/10 rounded-lg">
-                        <i data-lucide="image" class="w-6 h-6 text-cyan-400"></i>
-                    </div>
-                    <span>4. Simulation Results Gallery</span>
-                </h3>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <figure class="group">
-                        <img src="assets/img/Real_vs_Estimated_(x).jpg" alt="Real vs Estimated States"
-                            class="gallery-image transition-transform group-hover:scale-[1.02]" width="1074" height="677" loading="lazy" decoding="async">
-                        <figcaption class="text-xs text-center text-slate-400 mt-3">Validation of Observer (Milestone
+<h3 class="text-2xl font-bold text-white mb-6 flex items-center space-x-3" id="4-simulation-results-gallery">
+<div class="p-2 bg-cyan-500/10 rounded-lg">
+<i class="w-6 h-6 text-cyan-400" data-lucide="image"></i>
+</div>
+<span>4. Simulation Results Gallery</span>
+</h3>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<figure class="group">
+<img alt="Real vs Estimated States" class="gallery-image transition-transform group-hover:scale-[1.02]" decoding="async" height="677" loading="lazy" src="assets/img/Real_vs_Estimated_(x).jpg" width="1074"/>
+<figcaption class="text-xs text-center text-slate-400 mt-3">Validation of Observer (Milestone
                             3): Estimated states (dotted) rapidly converge on real states (solid).</figcaption>
-                    </figure>
-                    <figure class="group">
-                        <img src="assets/img/Estimation_Error_vs_time.jpg" alt="Estimation Error vs Time"
-                            class="gallery-image transition-transform group-hover:scale-[1.02]" width="1070" height="672" loading="lazy" decoding="async">
-                        <figcaption class="text-xs text-center text-slate-400 mt-3">Observer Performance: All four
+</figure>
+<figure class="group">
+<img alt="Estimation Error vs Time" class="gallery-image transition-transform group-hover:scale-[1.02]" decoding="async" height="672" loading="lazy" src="assets/img/Estimation_Error_vs_time.jpg" width="1070"/>
+<figcaption class="text-xs text-center text-slate-400 mt-3">Observer Performance: All four
                             estimation errors converge to zero, confirming successful state tracking.</figcaption>
-                    </figure>
-                    <figure class="group">
-                        <img src="assets/img/Real_Satellite_state_vs_time.jpg" alt="Real Satellite State vs Time"
-                            class="gallery-image transition-transform group-hover:scale-[1.02]" width="1070" height="675" loading="lazy" decoding="async">
-                        <figcaption class="text-xs text-center text-slate-400 mt-3">Full System Validation (Milestone
+</figure>
+<figure class="group">
+<img alt="Real Satellite State vs Time" class="gallery-image transition-transform group-hover:scale-[1.02]" decoding="async" height="675" loading="lazy" src="assets/img/Real_Satellite_state_vs_time.jpg" width="1070"/>
+<figcaption class="text-xs text-center text-slate-400 mt-3">Full System Validation (Milestone
                             4): The satellite's real states $x(t)$ are all driven to zero.</figcaption>
-                    </figure>
-                    <figure class="group">
-                        <img src="assets/img/Rendezvous_Trajectory_(Phase_Plot).jpg" alt="Rendezvous Trajectory Phase Plot"
-                            class="gallery-image transition-transform group-hover:scale-[1.02]" width="1078" height="672" loading="lazy" decoding="async">
-                        <figcaption class="text-xs text-center text-slate-400 mt-3">Rendezvous Trajectory: The phase
+</figure>
+<figure class="group">
+<img alt="Rendezvous Trajectory Phase Plot" class="gallery-image transition-transform group-hover:scale-[1.02]" decoding="async" height="672" loading="lazy" src="assets/img/Rendezvous_Trajectory_(Phase_Plot).jpg" width="1078"/>
+<figcaption class="text-xs text-center text-slate-400 mt-3">Rendezvous Trajectory: The phase
                             plot shows the satellite spiraling into the origin (0,0), confirming a successful
                             rendezvous.</figcaption>
-                    </figure>
-                    <figure class="group md:col-span-2 max-w-lg mx-auto">
-                        <img src="assets/img/Control_Effort_vs_time.jpg" alt="Control Effort vs Time"
-                            class="gallery-image transition-transform group-hover:scale-[1.02]" width="1075" height="674" loading="lazy" decoding="async">
-                        <figcaption class="text-xs text-center text-slate-400 mt-3">Control Effort (Thrusters): Shows
+</figure>
+<figure class="group md:col-span-2 max-w-lg mx-auto">
+<img alt="Control Effort vs Time" class="gallery-image transition-transform group-hover:scale-[1.02]" decoding="async" height="674" loading="lazy" src="assets/img/Control_Effort_vs_time.jpg" width="1075"/>
+<figcaption class="text-xs text-center text-slate-400 mt-3">Control Effort (Thrusters): Shows
                             the commanded force $u(t)$ converging to zero as the rendezvous is completed.</figcaption>
-                    </figure>
-                </div>
-            </section>
-
-            <!-- 5. Conclusion -->
-            <section class="content-section relative z-10">
-                <h3 class="text-2xl font-bold text-white mb-6 flex items-center space-x-3">
-                    <div class="p-2 bg-cyan-500/10 rounded-lg">
-                        <i data-lucide="award" class="w-6 h-6 text-cyan-400"></i>
-                    </div>
-                    <span>5. Conclusion</span>
-                </h3>
-                <div class="bg-blue-900/20 p-6 rounded-xl border-l-4 border-blue-500">
-                    <p class="text-slate-300 leading-relaxed">
+</figure>
+</div>
+</section>
+<!-- 5. Conclusion -->
+<section aria-labelledby="5-conclusion" class="content-section relative z-10">
+<h3 class="text-2xl font-bold text-white mb-6 flex items-center space-x-3" id="5-conclusion">
+<div class="p-2 bg-cyan-500/10 rounded-lg">
+<i class="w-6 h-6 text-cyan-400" data-lucide="award"></i>
+</div>
+<span>5. Conclusion</span>
+</h3>
+<div class="bg-blue-900/20 p-6 rounded-xl border-l-4 border-blue-500">
+<p class="text-slate-300 leading-relaxed">
                         The project was a complete success. We demonstrated that an autopilot for orbital rendezvous can
                         be designed using only a single angular measurement. The analysis revealed that **system
                         normalization** was a critical, non-negotiable step to overcome numerical instability and
                         achieve a robust, physically realistic design. Final validation confirmed the (Observer +
                         Controller) architecture successfully stabilizes the satellite and achieves rendezvous.
                     </p>
-                </div>
-            </section>
-
-            <!-- 6. Future Work -->
-            <section class="content-section relative z-10">
-                <h3 class="text-2xl font-bold text-white mb-6 flex items-center space-x-3">
-                    <div class="p-2 bg-cyan-500/10 rounded-lg">
-                        <i data-lucide="git-branch-plus" class="w-6 h-6 text-cyan-400"></i>
-                    </div>
-                    <span>6. Future Work (Logical Next Steps)</span>
-                </h3>
-                <p class="text-slate-300 leading-relaxed mb-6">
+</div>
+</section>
+<!-- 6. Future Work -->
+<section aria-labelledby="6-future-work-logical-next-steps" class="content-section relative z-10">
+<h3 class="text-2xl font-bold text-white mb-6 flex items-center space-x-3" id="6-future-work-logical-next-steps">
+<div class="p-2 bg-cyan-500/10 rounded-lg">
+<i class="w-6 h-6 text-cyan-400" data-lucide="git-branch-plus"></i>
+</div>
+<span>6. Future Work (Logical Next Steps)</span>
+</h3>
+<p class="text-slate-300 leading-relaxed mb-6">
                     This report serves as a proof-of-concept for the 2D linear model (4 states). The logical future work
                     is to extend this solution to the full, non-linear, 6-Degree-of-Freedom (6-DOF) problem.
                 </p>
-                <div class="bg-slate-800/50 p-6 rounded-xl border border-slate-700/50">
-                    <ul class="list-disc ml-5 text-slate-300 space-y-3">
-                        <li>
-                            <strong class="text-white">13-State Modeling:</strong> Utilize the full state vector (3D
+<div class="bg-slate-800/50 p-6 rounded-xl border border-slate-700/50">
+<ul class="list-disc ml-5 text-slate-300 space-y-3">
+<li>
+<strong class="text-white">13-State Modeling:</strong> Utilize the full state vector (3D
                             position, 3D velocity, 4 attitude quaternions, 3 angular velocities).
                         </li>
-                        <li>
-                            <strong class="text-white">Non-Linear Estimator:</strong> Replace the linear Luenberger
+<li>
+<strong class="text-white">Non-Linear Estimator:</strong> Replace the linear Luenberger
                             Observer with an <strong>Extended Kalman Filter (EKF)</strong> or <strong>Unscented Kalman
                                 Filter (UKF)</strong> to fuse data from multiple sensors (e.g., Camera + LiDAR).
                         </li>
-                        <li>
-                            <strong class="text-white">6-DOF Control:</strong> Design a control law that manages both
+<li>
+<strong class="text-white">6-DOF Control:</strong> Design a control law that manages both
                             the 3 translation forces ($\vec{F}$) and the 3 attitude torques ($\vec{\tau}$) of the
                             spacecraft.
                         </li>
-                    </ul>
-                </div>
-            </section>
-
-            <!-- Final Navigation -->
-            <section class="text-center pt-8 relative z-10">
-                <a href="index.html#projects"
-                    class="inline-flex items-center font-bold text-white bg-gradient-to-r from-cyan-600 to-blue-600 py-3 px-8 rounded-full shadow-lg hover:shadow-cyan-500/30 hover:-translate-y-1 transition-all">
-                    <i data-lucide="arrow-left" class="w-5 h-5 mr-2"></i> Return to Main Portfolio
+</ul>
+</div>
+</section>
+<!-- Final Navigation -->
+<section aria-labelledby="section-8" class="text-center pt-8 relative z-10"><h2 class="sr-only" id="section-8">Section 8</h2>
+<a class="inline-flex items-center font-bold text-white bg-gradient-to-r from-cyan-600 to-blue-600 py-3 px-8 rounded-full shadow-lg hover:shadow-cyan-500/30 hover:-translate-y-1 transition-all" href="index.html#projects">
+<i class="w-5 h-5 mr-2" data-lucide="arrow-left"></i> Return to Main Portfolio
                 </a>
-            </section>
-
-        </article>
-    </main>
-
-    <!-- Script to initialize Lucide icons -->
-    <script>
+</section>
+</article>
+</main>
+<!-- Script to initialize Lucide icons -->
+<script>
         lucide.createIcons();
     </script>
-</body>
 
+<!-- Load Lucide Icons -->
+
+<!-- Load MathJax for LaTeX Rendering -->
+
+
+
+<script>
+        MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']],
+                processEscapes: true
+            },
+            svg: {
+                fontCache: 'global'
+            }
+        };
+    </script>
+<script async="" id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+</body>
 </html>
