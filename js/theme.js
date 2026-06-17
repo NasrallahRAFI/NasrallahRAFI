@@ -1,38 +1,55 @@
-// theme.js
+const THEMES = ['theme-glass', 'theme-volt', 'theme-deepsea', 'theme-obsidian'];
+const DEFAULT_THEME = 'theme-glass';
+const THEME_META = {
+    'theme-glass': { icon: 'sun', label: 'Glass' },
+    'theme-volt': { icon: 'zap', label: 'Volt' },
+    'theme-deepsea': { icon: 'droplets', label: 'Deep Sea' },
+    'theme-obsidian': { icon: 'moon', label: 'Obsidian' },
+};
+
 function initTheme() {
-    const savedTheme = localStorage.getItem('portfolio-theme') || 'theme-glass';
-    document.body.classList.add(savedTheme);
+    const savedTheme = localStorage.getItem('portfolio-theme');
+    const theme = THEMES.includes(savedTheme) ? savedTheme : DEFAULT_THEME;
+
+    document.body.classList.remove(...THEMES);
+    document.body.classList.add(theme);
+    updateThemeIcon(theme);
 }
 
 function toggleTheme() {
-    const isDashboard = document.body.classList.contains('theme-dashboard');
-    const newTheme = isDashboard ? 'theme-glass' : 'theme-dashboard';
+    const currentTheme = THEMES.find(t => document.body.classList.contains(t)) || DEFAULT_THEME;
+    const nextIndex = (THEMES.indexOf(currentTheme) + 1) % THEMES.length;
+    const nextTheme = THEMES[nextIndex];
     
-    document.body.classList.remove('theme-glass', 'theme-dashboard');
-    document.body.classList.add(newTheme);
+    document.body.classList.remove(...THEMES);
+    document.body.classList.add(nextTheme);
     
-    localStorage.setItem('portfolio-theme', newTheme);
-    updateThemeIcon(newTheme);
+    localStorage.setItem('portfolio-theme', nextTheme);
+    updateThemeIcon(nextTheme);
 }
 
 function updateThemeIcon(theme) {
     const iconEl = document.getElementById('theme-toggle-icon');
+    const labelEl = document.getElementById('theme-toggle-name');
+    const buttonEl = document.getElementById('theme-toggle-button');
+    const themeMeta = THEME_META[theme] || THEME_META[DEFAULT_THEME];
+
+    if (labelEl) {
+        labelEl.textContent = themeMeta.label;
+    }
+
+    if (buttonEl) {
+        buttonEl.setAttribute('aria-label', `Change theme. Current theme: ${themeMeta.label}`);
+        buttonEl.setAttribute('title', `Change theme. Current: ${themeMeta.label}`);
+    }
+
     if (iconEl && window.lucide) {
-        if (theme === 'theme-dashboard') {
-            iconEl.setAttribute('data-lucide', 'layout-dashboard');
-        } else {
-            iconEl.setAttribute('data-lucide', 'layers');
-        }
-        // Re-render the specific icon or all icons
+        iconEl.setAttribute('data-lucide', themeMeta.icon);
         lucide.createIcons();
     }
 }
 
-// Run immediately to set the class on the body before content renders
-initTheme();
 
-// Ensure the icon is correct when the DOM is fully loaded
 document.addEventListener('DOMContentLoaded', () => {
-    const currentTheme = document.body.classList.contains('theme-dashboard') ? 'theme-dashboard' : 'theme-glass';
-    updateThemeIcon(currentTheme);
+    initTheme();
 });

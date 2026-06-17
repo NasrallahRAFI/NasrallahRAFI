@@ -7,10 +7,10 @@
     <title>Orbital Rendezvous Control Project | Rafi Nasrallah</title>
 
     <!-- Load Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.tailwindcss.com/3.4.17"></script>
 
     <!-- Load Lucide Icons -->
-    <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="https://unpkg.com/lucide@1.20.0/dist/umd/lucide.min.js"></script>
 
     <!-- Load MathJax for LaTeX Rendering -->
     <script>
@@ -27,12 +27,12 @@
     </script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
 
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
 
     <!-- Link to the main external style.css -->
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/style.css?v=emil-polish-2-20260617">
     <!-- Theme Switcher Script -->
-    <script src="js/theme.js"></script>
+    <script src="js/theme.js" defer></script>
 
     <style>
         .milestone-card {
@@ -92,7 +92,7 @@
                     Academic Project | Control Systems Theory & Simulation
                 </p>
                 <a href="assets/pdf/Luenberger_Based_Rendezvous_Control_with_Angle_Only_Data.pdf" target="_blank"
-                    class="inline-flex items-center font-bold px-6 py-3 bg-red-600 text-white rounded-full hover:bg-red-700 transition-colors shadow-lg hover:shadow-red-500/30 text-sm">
+                    class="inline-flex items-center font-bold px-6 py-3 bg-red-600 text-white rounded-full hover:bg-red-700 transition-colors shadow-lg hover:shadow-red-500/30 text-sm" rel="noopener noreferrer">
                     <i data-lucide="file-text" class="w-5 h-5 mr-2"></i> Download Full Simulation Report (PDF)
                 </a>
             </section>
@@ -213,32 +213,32 @@
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <figure class="group">
                         <img src="assets/img/Real_vs_Estimated_(x).jpg" alt="Real vs Estimated States"
-                            class="gallery-image transition-transform group-hover:scale-[1.02]">
+                            class="gallery-image transition-transform group-hover:scale-[1.02]" width="1074" height="677" loading="lazy" decoding="async">
                         <figcaption class="text-xs text-center text-slate-400 mt-3">Validation of Observer (Milestone
                             3): Estimated states (dotted) rapidly converge on real states (solid).</figcaption>
                     </figure>
                     <figure class="group">
                         <img src="assets/img/Estimation_Error_vs_time.jpg" alt="Estimation Error vs Time"
-                            class="gallery-image transition-transform group-hover:scale-[1.02]">
+                            class="gallery-image transition-transform group-hover:scale-[1.02]" width="1070" height="672" loading="lazy" decoding="async">
                         <figcaption class="text-xs text-center text-slate-400 mt-3">Observer Performance: All four
                             estimation errors converge to zero, confirming successful state tracking.</figcaption>
                     </figure>
                     <figure class="group">
                         <img src="assets/img/Real_Satellite_state_vs_time.jpg" alt="Real Satellite State vs Time"
-                            class="gallery-image transition-transform group-hover:scale-[1.02]">
+                            class="gallery-image transition-transform group-hover:scale-[1.02]" width="1070" height="675" loading="lazy" decoding="async">
                         <figcaption class="text-xs text-center text-slate-400 mt-3">Full System Validation (Milestone
                             4): The satellite's real states $x(t)$ are all driven to zero.</figcaption>
                     </figure>
                     <figure class="group">
                         <img src="assets/img/Rendezvous_Trajectory_(Phase_Plot).jpg" alt="Rendezvous Trajectory Phase Plot"
-                            class="gallery-image transition-transform group-hover:scale-[1.02]">
+                            class="gallery-image transition-transform group-hover:scale-[1.02]" width="1078" height="672" loading="lazy" decoding="async">
                         <figcaption class="text-xs text-center text-slate-400 mt-3">Rendezvous Trajectory: The phase
                             plot shows the satellite spiraling into the origin (0,0), confirming a successful
                             rendezvous.</figcaption>
                     </figure>
                     <figure class="group md:col-span-2 max-w-lg mx-auto">
                         <img src="assets/img/Control_Effort_vs_time.jpg" alt="Control Effort vs Time"
-                            class="gallery-image transition-transform group-hover:scale-[1.02]">
+                            class="gallery-image transition-transform group-hover:scale-[1.02]" width="1075" height="674" loading="lazy" decoding="async">
                         <figcaption class="text-xs text-center text-slate-400 mt-3">Control Effort (Thrusters): Shows
                             the commanded force $u(t)$ converging to zero as the rendezvous is completed.</figcaption>
                     </figure>

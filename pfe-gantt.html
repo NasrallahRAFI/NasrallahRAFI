@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Diagramme de Gantt — PFE Emove Vehicles</title>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
 <style>
   :root {
     --bg-primary: #080a10;
@@ -41,7 +41,7 @@
   }
   * { margin: 0; padding: 0; box-sizing: border-box; }
   body {
-    font-family: 'Inter', -apple-system, sans-serif;
+    font-family: 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
     background: var(--bg-primary);
     color: var(--text-primary);
     min-height: 100vh;
@@ -104,7 +104,7 @@
     background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08);
     padding: 7px 14px; border-radius: 8px; color: var(--text-secondary);
     font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px;
-    cursor: pointer; transition: all 0.2s; text-decoration: none; margin-bottom: 8px;
+    cursor: pointer; transition: transform 160ms cubic-bezier(0.23, 1, 0.32, 1), background-color 180ms ease, border-color 180ms ease, color 180ms ease; text-decoration: none; margin-bottom: 8px;
     backdrop-filter: blur(10px);
   }
   .btn-back:hover {
@@ -116,13 +116,14 @@
     background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08);
     padding: 7px 14px; border-radius: 8px; color: var(--text-secondary);
     font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px;
-    cursor: pointer; transition: all 0.2s cubic-bezier(0.4,0,0.2,1); margin-top: 4px;
+    cursor: pointer; transition: transform 160ms cubic-bezier(0.23, 1, 0.32, 1), background-color 180ms ease, border-color 180ms ease, color 180ms ease, box-shadow 180ms ease; margin-top: 4px;
     backdrop-filter: blur(10px);
   }
   .btn-export:hover {
     background: rgba(96,165,250,0.1); border-color: rgba(96,165,250,0.4);
     color: var(--text-primary); transform: translateY(-1px); box-shadow: 0 4px 12px rgba(0,0,0,0.2);
   }
+  .btn-back:active, .btn-export:active { transform: scale(0.97); }
   .btn-export svg, .btn-back svg { width: 14px; height: 14px; stroke: var(--accent-blue); stroke-width: 2.5; }
   .user-role { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; color: var(--phase-3-from); opacity: 0.8; }
 
@@ -131,7 +132,7 @@
     flex:1; display: flex; flex-direction: column; align-items: center; gap: 4px;
     padding: 14px 20px 12px; border-radius: 14px; margin: 0 5px;
     background: var(--glass-bg); border: 1px solid var(--glass-border);
-    backdrop-filter: blur(16px); transition: all 0.35s cubic-bezier(0.4,0,0.2,1);
+    backdrop-filter: blur(16px); transition: transform 220ms cubic-bezier(0.23, 1, 0.32, 1), background-color 220ms ease, border-color 220ms ease, box-shadow 220ms ease;
     position: relative; overflow: hidden;
   }
   .stat-item::before {
@@ -176,7 +177,7 @@
   .day-cell.today { background: rgba(248,113,113,0.15); color:var(--accent-red); font-weight:800; border-bottom: 2px solid var(--accent-red); text-shadow: 0 0 8px rgba(248,113,113,0.3); }
   .day-cell.month-start { border-left: 1px solid rgba(255,255,255,0.06); }
 
-  .gantt-row { display:flex; align-items:stretch; border-bottom:1px solid var(--border-light); min-height: var(--row-height); transition: all 0.15s ease; position: relative; animation: rowFadeIn 0.4s ease both; }
+  .gantt-row { display:flex; align-items:stretch; border-bottom:1px solid var(--border-light); min-height: var(--row-height); transition: background-color 150ms ease, border-color 150ms ease; position: relative; animation: rowFadeIn 0.4s ease both; }
   @keyframes rowFadeIn { from { opacity: 0; transform: translateX(-6px); } to { opacity: 1; transform: translateX(0); } }
   .gantt-row:nth-child(even):not(.phase-header):not(.milestone-row) { background: rgba(255,255,255,0.008); }
   .gantt-row:hover { background: var(--bg-hover); }
@@ -208,7 +209,7 @@
   .bar-progress { position: absolute; left: 0; top: 0; bottom: 0; border-radius: 6px; background: rgba(255,255,255,0.12); pointer-events: none; z-index: 1; }
   .row-chart { flex:1; position:relative; overflow:visible; }
 
-  .bar { position:absolute; top:6px; bottom:6px; border-radius:6px; display:flex; align-items:center; justify-content:space-between; padding:0 9px; font-size:9.5px; font-weight:600; color:rgba(255,255,255,0.92); overflow:visible; white-space:nowrap; transition: all 0.2s cubic-bezier(0.4,0,0.2,1); cursor:default; z-index:3; box-shadow: 0 2px 8px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.1); animation: barSlideIn 0.6s cubic-bezier(0.4,0,0.2,1) both; }
+  .bar { position:absolute; top:6px; bottom:6px; border-radius:6px; display:flex; align-items:center; justify-content:space-between; padding:0 9px; font-size:9.5px; font-weight:600; color:rgba(255,255,255,0.92); overflow:visible; white-space:nowrap; transition: transform 180ms cubic-bezier(0.23, 1, 0.32, 1), filter 180ms ease, box-shadow 180ms ease; cursor:default; z-index:3; box-shadow: 0 2px 8px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.1); animation: barSlideIn 0.6s cubic-bezier(0.4,0,0.2,1) both; }
   @keyframes barSlideIn { from { opacity: 0; transform: scaleX(0); transform-origin: left center; } to { opacity: 1; transform: scaleX(1); transform-origin: left center; } }
   .bar:hover { filter:brightness(1.2) saturate(1.1); transform:scaleY(1.25); z-index:8; box-shadow: 0 4px 16px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.15); }
   .bar.phase-bar { opacity:0.15; border-radius:7px; top:4px; bottom:4px; box-shadow:none; animation: none; }

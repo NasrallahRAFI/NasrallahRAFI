@@ -4,12 +4,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rafi Nasrallah (Electrical Engineering and Industrial Systems Control)</title>
+    <title>Rafi Nasrallah (Electrical Engineer - Embedded Systems, IoT &amp; Smart BMS)</title>
     <!-- Load Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.tailwindcss.com/3.4.17"></script>
     <!-- Load Lucide Icons -->
-    <script src="https://unpkg.com/lucide@latest"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@1.20.0/dist/umd/lucide.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
 
     <!-- ADDED: MathJax for LaTeX Rendering -->
     <script>
@@ -27,12 +27,13 @@
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
 
     <!-- Link to external style.css -->
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/style.css?v=theme-button-20260617">
     <!-- Theme Switcher Script -->
-    <script src="js/theme.js"></script>
+    <script src="js/theme.js" defer></script>
 </head>
 
 <body class="tracking-wide antialiased selection:bg-cyan-500 selection:text-white overflow-x-hidden">
+    <a class="skip-link" href="#main-content">Skip to content</a>
 
     <!-- Global Animated Background -->
     <div class="animated-background">
@@ -67,9 +68,11 @@
 
             <!-- Action Buttons -->
             <div class="flex items-center space-x-2 sm:space-x-4">
-                <!-- Theme Toggle Button --><button aria-label="Toggle Theme" onclick="toggleTheme()"
-                    class="p-2 rounded-lg text-slate-300 hover:bg-slate-800 hover:text-cyan-400 transition-colors flex items-center justify-center">
-                    <i id="theme-toggle-icon" data-lucide="layers" class="w-5 h-5"></i>
+                <!-- Theme Toggle Button --><button id="theme-toggle-button" type="button" aria-label="Change theme" onclick="toggleTheme()"
+                    class="theme-toggle-button text-slate-200 transition-colors flex items-center justify-center">
+                    <i id="theme-toggle-icon" data-lucide="palette" class="w-4 h-4"></i>
+                    <span class="theme-toggle-copy">Theme</span>
+                    <span id="theme-toggle-name" class="theme-toggle-name">Glass</span>
                 </button>
                 <!-- Mobile Menu Button -->
                 <button id="mobile-menu-button"
@@ -101,15 +104,15 @@
         </div>
     </header>
 
-    <main class="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <main id="main-content" class="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
 
         <!-- Hero Section -->
         <section id="hero" class="hero-section py-20 md:py-32 text-center rounded-3xl mb-16 relative">
             <!-- Animated Blobs -->
             <div
-                class="hero-blob w-64 h-64 md:w-96 md:h-96 top-0 left-0 -translate-x-1/2 -translate-y-1/2 bg-cyan-500/30 blur-3xl rounded-full absolute">
+                class="hero-blob hero-blob-primary w-64 h-64 md:w-96 md:h-96 top-0 left-0 -translate-x-1/2 -translate-y-1/2 blur-3xl rounded-full absolute">
             </div>
-            <div class="hero-blob w-64 h-64 md:w-96 md:h-96 bottom-0 right-0 translate-x-1/2 translate-y-1/2 bg-purple-500/30 blur-3xl rounded-full absolute"
+            <div class="hero-blob hero-blob-secondary w-64 h-64 md:w-96 md:h-96 bottom-0 right-0 translate-x-1/2 translate-y-1/2 blur-3xl rounded-full absolute"
                 style="animation-delay: -5s;"></div>
 
             <div class="max-w-4xl mx-auto hero-content px-4 sm:px-6 lg:px-8 fade-in-up">
@@ -117,61 +120,59 @@
                 <div
                     class="mx-auto w-80 h-80 rounded-full mb-8 overflow-hidden border-4 border-cyan-500/50 shadow-[0_0_30px_rgba(6,182,212,0.4)] relative group floating">
                     <img src="assets/img/Profile picture.jpg" alt="Rafi Nasrallah"
-                        class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                        class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" width="1280" height="1280">
                     <div
-                        class="absolute inset-0 bg-cyan-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                        class="absolute inset-0 bg-accent/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                     </div>
                 </div>
 
-                <h1
-                    class="text-5xl sm:text-6xl lg:text-7xl font-extrabold text-white mb-6 leading-tight tracking-tight">
-                    Rafi <span
-                        class="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-blue-400 to-purple-500 text-gradient-animate">Nasrallah</span>
+                <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-2 leading-tight">
+                    Rafi <span class="text-transparent bg-clip-text bg-gradient-to-r" style="background-image: linear-gradient(to right, var(--accent-color), #3b82f6);">Nasrallah</span>
                 </h1>
 
                 <div class="mb-10 fade-in-up" style="animation-delay: 0.2s;">
                     <p class="text-2xl sm:text-3xl md:text-4xl font-extrabold text-slate-100 tracking-tight italic">
                         Three values guide my work:<br>
-                        <span class="hover:text-cyan-400 transition-colors duration-300 cursor-default">Integrity,</span>
-                        <span class="hover:text-cyan-400 transition-colors duration-300 cursor-default">Quality,</span>
-                        <span class="hover:text-cyan-400 transition-colors duration-300 cursor-default">and Curiosity</span>
+                        <span class="hover:text-accent transition-colors duration-300 cursor-default">Integrity,</span>
+                        <span class="hover:text-accent transition-colors duration-300 cursor-default">Quality,</span>
+                        <span class="hover:text-accent transition-colors duration-300 cursor-default">and Curiosity</span>
                     </p>
                 </div>
 
                 <h2 class="text-xl sm:text-2xl text-cyan-200 font-medium mb-8 max-w-2xl mx-auto">
-                    Final-Year Engineering Student | Electrical & Industrial Systems Control
+                    Electrical Engineer — Embedded Systems, IoT &amp; Smart BMS
                 </h2>
 
                 <div class="flex flex-wrap justify-center gap-x-8 gap-y-3 text-slate-300 mb-10 font-medium">
                     <span
                         class="flex items-center space-x-2 bg-slate-800/50 px-4 py-2 rounded-full border border-slate-700/50">
-                        <i data-lucide="map-pin" class="w-4 h-4 text-cyan-400"></i><span>Dar Bouazza, Morocco</span>
+                        <i data-lucide="map-pin" class="w-4 h-4 text-accent"></i><span>Dar Bouazza, Morocco</span>
                     </span>
                     <span
                         class="flex items-center space-x-2 bg-slate-800/50 px-4 py-2 rounded-full border border-slate-700/50">
-                        <i data-lucide="phone" class="w-4 h-4 text-cyan-400"></i><span>+212 671114377</span>
+                        <i data-lucide="phone" class="w-4 h-4 text-accent"></i><span>+212 671114377</span>
                     </span>
                     <a href="mailto:nasrollahrafi@gmail.com"
-                        class="flex items-center space-x-2 bg-slate-800/50 px-4 py-2 rounded-full border border-slate-700/50 hover:border-cyan-500/50 hover:text-cyan-400 transition-colors">
-                        <i data-lucide="mail" class="w-4 h-4 text-cyan-400"></i><span>nasrollahrafi@gmail.com</span>
+                        class="flex items-center space-x-2 bg-slate-800/50 px-4 py-2 rounded-full border border-slate-700/50 hover:border-accent/50 hover:text-accent transition-colors">
+                        <i data-lucide="mail" class="w-4 h-4 text-accent"></i><span>nasrollahrafi@gmail.com</span>
                     </a>
                 </div>
 
                 <div class="flex flex-wrap justify-center gap-4 mb-8">
                     <a href="assets/pdf/RAFI_Nasrallah_CV_ENG.pdf" download target="_blank"
-                        class="inline-flex items-center bg-slate-800 hover:bg-slate-700 text-white font-semibold py-3 px-6 rounded-full border border-slate-600 transition-all hover:-translate-y-1 hover:border-cyan-400 group">
-                        <i data-lucide="download" class="w-5 h-5 mr-2 text-cyan-400 group-hover:text-cyan-300"></i>
+                        class="inline-flex items-center bg-slate-800 hover:bg-slate-700 text-white font-semibold py-3 px-6 rounded-full border border-slate-600 transition-all hover:-translate-y-1 hover:border-accent group" rel="noopener noreferrer">
+                        <i data-lucide="download" class="w-5 h-5 mr-2 text-accent group-hover:text-cyan-300"></i>
                         Download CV (English)
                     </a>
                     <a href="assets/pdf/RAFI_Nasrallah_CV_FR.pdf" download target="_blank"
-                        class="inline-flex items-center bg-slate-800 hover:bg-slate-700 text-white font-semibold py-3 px-6 rounded-full border border-slate-600 transition-all hover:-translate-y-1 hover:border-cyan-400 group">
-                        <i data-lucide="download" class="w-5 h-5 mr-2 text-cyan-400 group-hover:text-cyan-300"></i>
+                        class="inline-flex items-center bg-slate-800 hover:bg-slate-700 text-white font-semibold py-3 px-6 rounded-full border border-slate-600 transition-all hover:-translate-y-1 hover:border-accent group" rel="noopener noreferrer">
+                        <i data-lucide="download" class="w-5 h-5 mr-2 text-accent group-hover:text-cyan-300"></i>
                         Download CV (French)
                     </a>
                 </div>
 
                 <a href="#projects"
-                    class="inline-flex items-center bg-gradient-to-r from-cyan-600 to-blue-600 text-white font-bold py-4 px-10 rounded-full text-lg shadow-lg shadow-cyan-500/25 hover:shadow-cyan-500/40 hover:-translate-y-1 transition-all duration-300">
+                    class="inline-flex items-center bg-gradient-to-r from-accent to-blue-600 text-white font-bold py-4 px-10 rounded-full text-lg shadow-lg shadow-accent/25 hover:shadow-accent/40 hover:-translate-y-1 transition-all duration-300">
                     View Key Projects <i data-lucide="arrow-right" class="w-5 h-5 ml-2"></i>
                 </a>
             </div>
@@ -181,58 +182,60 @@
             <!-- About Section -->
             <section id="about" class="glass p-10 rounded-2xl relative overflow-hidden group reveal">
                 <div
-                    class="absolute top-0 right-0 w-64 h-64 bg-cyan-500/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 group-hover:bg-cyan-500/10 transition-colors duration-500">
+                    class="absolute top-0 right-0 w-64 h-64 bg-accent/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 group-hover:bg-accent/10 transition-colors duration-500">
                 </div>
 
                 <h2 class="text-3xl font-bold text-white mb-6 flex items-center space-x-3 relative z-10">
-                    <div class="p-2 bg-cyan-500/10 rounded-lg">
-                        <i data-lucide="user-check" class="w-8 h-8 text-cyan-400"></i>
+                    <div class="p-2 bg-accent/10 rounded-lg">
+                        <i data-lucide="user-check" class="w-8 h-8 text-accent"></i>
                     </div>
                     <span>About Me</span>
                 </h2>
 
                 <p class="text-lg text-slate-300 leading-relaxed w-full relative z-10 text-justify">
-                    Passionate about solving complex technical challenges in industrial automation and energy management. Currently completing my <span class="text-white font-medium">Final Year Project at Emove Vehicles</span>, focusing on Digital Twin modeling for LFP battery BMS, as well as production optimization in compliance with ISO 9001 standards. Available for full-time engineering opportunities starting <span class="text-cyan-400 font-medium">June 2026</span>.
+                    State Engineer in Electrical Engineering and Industrial Systems Control, with a research focus on smart Battery Management Systems, battery analytics, and AI-assisted SOC estimation for LiFePO4 batteries.
+                    Experienced in physical battery modeling, ECM-based simulation, Unscented Kalman Filtering, LSTM residual correction, and digital-twin-based validation for electric mobility applications.
+                    Skilled in MATLAB/Simulink, Python, embedded systems, and industrial data acquisition, with strong interest in predictive modeling, SOH estimation, anomaly detection, and real-time battery health monitoring.
                 </p>
             </section>
 
             <!-- Experience / Internships & Education Section (Grid Layout) -->
             <section id="experience">
                 <h2
-                    class="text-3xl font-bold text-white mb-8 border-b-2 border-cyan-500/30 pb-2 flex items-center space-x-2">
-                    <i data-lucide="briefcase" class="w-7 h-7 text-cyan-400"></i><span>Internships & Education</span>
+                    class="text-3xl font-bold text-white mb-8 border-b-2 border-accent/30 pb-2 flex items-center space-x-2">
+                    <i data-lucide="briefcase" class="w-7 h-7 text-accent"></i><span>Internships & Education</span>
                 </h2>
 
                 <div class="grid md:grid-cols-2 gap-10 glass p-8 rounded-xl shadow-lg relative overflow-hidden reveal">
                     <!-- Column 1: Internships Timeline (REORDERED: Oldest to Youngest) -->
-                    <div class="reveal reveal-left">
-                        <h3 class="text-2xl font-semibold text-white mb-8">Professional Experience</h3>
+                    <div class="experience-column space-y-8 relative group">
+                        <h3 class="text-2xl font-bold text-white mb-6 relative z-10 group-hover:text-accent transition-colors">Professional Experience</h3>
                         <div class="space-y-8 pl-8 sm:pl-10 relative">
 
-                            <!-- PFE - Emove Vehicules (Current) -->
-                            <div class="timeline-item">
-                                <div class="timeline-dot" style="background: linear-gradient(135deg, #06b6d4, #a855f7); box-shadow: 0 0 12px rgba(6,182,212,0.6);"></div>
+                            <!-- Engineering Internship - Emove Vehicules -->
+                            <div class="timeline-item timeline-item-content">
+                                <div class="timeline-dot" style="background: linear-gradient(135deg, var(--accent-color), #a855f7); box-shadow: 0 0 12px rgba(var(--accent-rgb),0.6);"></div>
                                 <div class="flex items-center gap-3 flex-wrap mb-1">
-                                    <h4 class="font-bold text-xl text-cyan-400">End-of-Studies Internship — Emove Vehicules</h4>
-                                    <span class="inline-flex items-center gap-1.5 text-xs font-bold px-3 py-1 rounded-full bg-cyan-500/15 text-cyan-300 border border-cyan-500/30" style="animation: pulse 2s cubic-bezier(0.4,0,0.6,1) infinite;">
-                                        <span style="display:inline-block;width:7px;height:7px;border-radius:50%;background:#22d3ee;box-shadow:0 0 6px #22d3ee;"></span>
-                                        In Progress
+                                    <h4 class="font-bold text-xl text-accent">Engineering Intern (Internship – R&amp;D and Industrialization) — Emove Vehicules</h4>
+                                    <span class="text-xs text-white px-2 py-1 rounded-full shadow-[0_0_10px_rgba(var(--primary-rgb),0.5)]" style="background-color: var(--accent-color);">
+                                        Completed
                                     </span>
                                 </div>
-                                <p class="text-sm font-medium text-slate-400 mb-2">Feb 2026 – Present</p>
-                                <p class="text-slate-200 font-semibold mb-1">Subject: Modeling, Stabilization & Control of an Integrated Industrial Electric Scooter Production System Subject to Energy and Organizational Disturbances</p>
+                                <p class="text-sm font-medium text-slate-400 mb-2">Feb 2026 – May 2026</p>
+                                <p class="text-slate-200 font-semibold mb-1">Project: Systemic resolution of a critical premature shutdown defect (at 20% SoC) and energy gauge instability during abrupt accelerations on electric scooters through a coupled Hardware / Software / Process approach.</p>
                                 <ul class="list-disc ml-5 mt-2 space-y-1 text-slate-300 text-sm">
-                                    <li>Diagnosis of energy and organizational disturbances impacting the production line.</li>
-                                    <li>Development of a production improvement plan and a State-of-Charge (SOC) management plan for battery packs.</li>
-                                    <li>Development of quality control procedures and LiFePO4 lithium cell testing protocols compliant with ISO 9001 standards.</li>
-                                    <li>Improvement of the industrial bending process: operator training and design/conception of press-brake punches.</li>
-                                    <li>Digital Twin modeling of a Lithium Iron Phosphate (LFP) battery.</li>
-                                    <li>Study and modeling of advanced SOC estimation algorithms for Battery Management Systems (BMS).</li>
+                                    <li><strong>Digital Twin:</strong> Development of a high-fidelity virtual battery (15S2P configuration, LFP chemistry) integrating dynamic hysteresis models and a digital guard/safety architecture (IEC 62133 / ISO 26262 standards).</li>
+                                    <li><strong>Estimation Algorithms &amp; AI:</strong> Design and implementation of a hybrid State of Charge (SoC) estimation architecture combining a physical model (ECM 3RC), an Unscented Kalman Filter (UKF), and an LSTM neural network. Development of a residual observer (AI) to compensate for unmodeled phenomena.</li>
+                                    <li><strong>Advanced Energy Management:</strong> Integration of a bidirectional active balancing system (LTC3300-1) and development of a safety supervisor (Finite State Machine - FSM) for degraded mode management and system protection.</li>
+                                    <li><strong>Hardware &amp; Embedded Design:</strong> Designed and routed in Altium Designer a 16S Battery Management System (BMS) board based on an STM32 architecture, integrating EMC considerations, power protections, and I2C, SPI, and CAN communication interfaces.</li>
+                                    <li><strong>Validation &amp; Robustness:</strong> Validation of algorithms via MIL simulation on a digital twin (RMSE &lt; 2 %) and experimental validation on an instrumented HiL prototype (Arduino, High-side MOSFET).</li>
+                                    <li><strong>Quality Management (QMS):</strong> Development and implementation of a strict industrial cell qualification procedure (PR-BAT-01) inspired by the ISO 9001 standard.</li>
+                                    <li><strong>Supervision and Digitalization:</strong> Creation of a real-time industrial dashboard (MQTT, REST API) for production monitoring, complete traceability of battery packs, and KPI analysis.</li>
                                 </ul>
                                 <div class="flex flex-wrap gap-2 mt-3">
                                     <a href="pfe-gantt.html" target="_blank"
                                         class="inline-flex items-center text-xs font-semibold px-3 py-1 rounded-full transition-all hover:-translate-y-0.5"
-                                        style="background: linear-gradient(135deg, rgba(96,165,250,0.2), rgba(167,139,250,0.2)); color: #93c5fd; border: 1px solid rgba(96,165,250,0.35); box-shadow: 0 2px 8px rgba(96,165,250,0.15);">
+                                        style="background: linear-gradient(135deg, rgba(96,165,250,0.2), rgba(167,139,250,0.2)); color: #93c5fd; border: 1px solid rgba(96,165,250,0.35); box-shadow: 0 2px 8px rgba(96,165,250,0.15);" rel="noopener noreferrer">
                                         <svg xmlns="http://www.w3.org/2000/svg" class="w-3 h-3 mr-1.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
                                         View Progress (Gantt)
                                     </a>
@@ -240,9 +243,9 @@
                             </div>
 
                             <!-- Engineering Internship (SMCV) — Jul–Sep 2025 -->
-                            <div class="timeline-item">
+                            <div class="timeline-item timeline-item-content">
                                 <div class="timeline-dot"></div>
-                                <h4 class="font-bold text-xl text-cyan-400">Engineering Internship - SMCV</h4>
+                                <h4 class="font-bold text-xl text-accent">Engineering Internship - SMCV</h4>
                                 <p class="text-sm font-medium text-slate-400 mb-2">July 2025 – September 2025</p>
                                 <p class="text-slate-200 font-semibold mb-3">Industrial Automation (PLC/HMI), Mechanical Design</p>
                                 <p class="text-sm italic text-slate-400 mb-2">Software Used: TIA Portal, Autodesk Inventor</p>
@@ -252,16 +255,16 @@
                                     <li><strong>Automatic Hot-Press:</strong> Designed/analysed mechanical and thermal components, sized actuators, and programmed PLC/HMI.</li>
                                 </ul>
                                 <a href="internship-smcv.html"
-                                    class="mt-3 inline-flex items-center text-xs font-semibold px-3 py-1 bg-cyan-600/80 text-white rounded-full hover:bg-cyan-600 transition-colors shadow-md">
+                                    class="mt-3 inline-flex items-center text-xs font-semibold px-3 py-1 bg-accent/80 text-white rounded-full hover:bg-accent transition-colors shadow-md">
                                     View Details
                                     <i data-lucide="arrow-up-right" class="w-3 h-3 ml-1"></i>
                                 </a>
                             </div>
 
                             <!-- Internship (ONEE) — Jul–Aug 2024 -->
-                            <div class="timeline-item">
+                            <div class="timeline-item timeline-item-content">
                                 <div class="timeline-dot"></div>
-                                <h4 class="font-bold text-xl text-cyan-400">Internship - ONEE</h4>
+                                <h4 class="font-bold text-xl text-accent">Internship - ONEE</h4>
                                 <p class="text-sm font-medium text-slate-400 mb-2">July 2024 – August 2024</p>
                                 <p class="text-slate-200 font-semibold">National Office of Electricity and Water</p>
                                 <p class="text-sm italic text-slate-400 mb-2">Software Used: OMICRON Test Universe, SIPROTEC Tools</p>
@@ -272,16 +275,16 @@
                                     <li><strong>Developed and finalized comprehensive technical documentation</strong> for compliance records.</li>
                                 </ul>
                                 <a href="internship-onee.html"
-                                    class="mt-3 inline-flex items-center text-xs font-semibold px-3 py-1 bg-cyan-600/80 text-white rounded-full hover:bg-cyan-600 transition-colors shadow-md">
+                                    class="mt-3 inline-flex items-center text-xs font-semibold px-3 py-1 bg-accent/80 text-white rounded-full hover:bg-accent transition-colors shadow-md">
                                     View Details
                                     <i data-lucide="arrow-up-right" class="w-3 h-3 ml-1"></i>
                                 </a>
                             </div>
 
                             <!-- Apprenticeship (RAFI) — 2020–2023 -->
-                            <div class="timeline-item">
+                            <div class="timeline-item timeline-item-content">
                                 <div class="timeline-dot"></div>
-                                <h4 class="font-bold text-xl text-cyan-400">Apprenticeship - Rafi Robotiques et Machineries</h4>
+                                <h4 class="font-bold text-xl text-accent">Apprenticeship - Rafi Robotiques et Machineries</h4>
                                 <p class="text-sm font-medium text-slate-400 mb-2">2020 – 2023 (3 Years)</p>
                                 <p class="text-slate-200 font-semibold mb-3">Mechanical Repair, CNC & Robotics</p>
                                 <ul class="list-disc ml-5 mt-2 space-y-1 text-slate-300 text-sm">
@@ -291,7 +294,7 @@
                                     <li>Reprogramming of Spring Assembly Machine (Matissar).</li>
                                 </ul>
                                 <a href="apprenticeship-rafi.html"
-                                    class="mt-3 inline-flex items-center text-xs font-semibold px-3 py-1 bg-cyan-600/80 text-white rounded-full hover:bg-cyan-600 transition-colors shadow-md">
+                                    class="mt-3 inline-flex items-center text-xs font-semibold px-3 py-1 bg-accent/80 text-white rounded-full hover:bg-accent transition-colors shadow-md">
                                     View Details
                                     <i data-lucide="arrow-up-right" class="w-3 h-3 ml-1"></i>
                                 </a>
@@ -301,34 +304,34 @@
                     </div>
 
                     <!-- Column 2: Education -->
-                    <div class="reveal reveal-right">
-                        <h3 class="text-2xl font-semibold text-white mb-8">Academic Background</h3>
+                    <div class="experience-column space-y-8 relative group">
+                        <h3 class="text-2xl font-bold text-white mb-6 relative z-10 transition-colors duration-300 group-hover:text-accent">Academic Background</h3>
                         <div class="space-y-6">
                             <!-- Education 1: Engineering Degree -->
                             <div class="timeline-item-content p-6 rounded-lg border border-slate-700/50">
-                                <p class="text-sm font-medium text-cyan-400 float-right">2023 - 2026</p>
-                                <h4 class="font-bold text-lg text-white">Engineering Degree Program</h4>
-                                <p class="text-slate-300">ENSET Mohammedia</p>
+                                <p class="text-sm font-medium text-accent float-right">2023 - 2026</p>
+                                <h3 class="text-2xl font-bold text-white group-hover:text-accent transition-colors duration-300">Engineering Degree Program</h3>
+                                <p class="text-accent font-medium">ENSET Mohammedia</p>
                                 <p class="text-sm text-slate-400">Electrical Engineering and Industrial Systems Control
                                 </p>
                             </div>
                             <!-- Education 2: Licence -->
                             <div class="timeline-item-content p-6 rounded-lg border border-slate-700/50">
-                                <p class="text-sm font-medium text-cyan-400 float-right">2022 - 2023</p>
+                                <p class="text-sm font-medium text-accent float-right">2022 - 2023</p>
                                 <h4 class="font-bold text-lg text-white">Licence in Physical Sciences</h4>
                                 <p class="text-slate-300">Faculty of Sciences Ben M'sik, Casablanca</p>
                                 <p class="text-sm text-slate-400">Electronics Specialization</p>
                             </div>
                             <!-- Education 3: DEUG -->
                             <div class="timeline-item-content p-6 rounded-lg border border-slate-700/50">
-                                <p class="text-sm font-medium text-cyan-400 float-right">2020 - 2022</p>
+                                <p class="text-sm font-medium text-accent float-right">2020 - 2022</p>
                                 <h4 class="font-bold text-lg text-white">DEUG in Physical Sciences</h4>
                                 <p class="text-slate-300">Faculty of Sciences Ben M'sik, Casablanca</p>
                                 <p class="text-sm text-slate-400">General Physics and Chemistry</p>
                             </div>
                             <!-- Education 4: Baccalaureate -->
                             <div class="timeline-item-content p-6 rounded-lg border border-slate-700/50">
-                                <p class="text-sm font-medium text-cyan-400 float-right">2019 - 2020</p>
+                                <p class="text-sm font-medium text-accent float-right">2019 - 2020</p>
                                 <h4 class="font-bold text-lg text-white">Baccalaureate in Science and Technology</h4>
                                 <p class="text-slate-300">Technical High School, Mohammedia</p>
                                 <p class="text-sm text-slate-400">Electrical Specialization</p>
@@ -341,15 +344,15 @@
             <!-- Projects Section -->
             <section id="projects">
                 <h2
-                    class="text-3xl font-bold text-white mb-8 border-b-2 border-cyan-500/30 pb-2 flex items-center space-x-2">
-                    <i data-lucide="rocket" class="w-7 h-7 text-cyan-400"></i><span>Key Projects</span>
+                    class="text-3xl font-bold text-white mb-8 border-b-2 border-accent/30 pb-2 flex items-center space-x-2">
+                    <i data-lucide="rocket" class="w-7 h-7 text-accent"></i><span>Key Projects</span>
                 </h2>
 
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
 
                     <!-- 1. Waveguide Project -->
                     <div class="project-card reveal p-6 rounded-xl flex flex-col justify-between group relative overflow-hidden"
-                         data-previews="assets/img/Air_E_Mag_Animation.gif,assets/img/Alumina_E_Mag_Animation.gif,assets/img/Air_H_Mag_Animation_SideView.gif,assets/img/Alumina_H_Mag_Animation.gif,assets/img/S_parameter_plot_Air.jpg,assets/img/S_Parameter_Plot_Alumina.jpg,assets/img/Air_E_Vector_Animation.gif,assets/img/Air_H_Mag_Animation_TopView.gif,assets/img/Air_H_Vector_Animation.gif,assets/img/Air_Jsurf_Mag_Animation.gif,assets/img/Alumina_E_Vector_Animation.gif,assets/img/Alumina_H_Vector_Animation.gif,assets/img/Alumina_J_Surface_Mag_Animation.gif,assets/img/Alumina_J_vol_Mag_Animation.gif,assets/img/Alumina_J_vol_top_view_Mag_Animation.gif,assets/img/S_Parameter_Plot_2_Alumina.jpg,assets/img/Vector_Pointing_Air.jpg,assets/img/Vector_Pointing_Alumina.jpg">
+                         data-previews="assets/img/Air_E_Mag_Animation.webp,assets/img/Alumina_E_Mag_Animation.webp,assets/img/Air_H_Mag_Animation_SideView.webp,assets/img/Alumina_H_Mag_Animation.webp,assets/img/S_parameter_plot_Air.jpg,assets/img/S_Parameter_Plot_Alumina.jpg,assets/img/Vector_Pointing_Air.jpg,assets/img/Vector_Pointing_Alumina.jpg">
                         
                         <div class="preview-bg absolute inset-0 z-0 transition-all duration-1000 bg-cover bg-center opacity-20 group-hover:opacity-40" style="mix-blend-mode: screen; pointer-events: none;"></div>
                         <div class="absolute inset-0 bg-slate-900/60 z-0 pointer-events-none transition-opacity group-hover:opacity-50"></div>
@@ -357,10 +360,10 @@
                         <div class="relative z-10">
                             <div class="flex items-center space-x-3 mb-4">
                                 <div
-                                    class="p-2 bg-slate-800/80 backdrop-blur-sm rounded-lg group-hover:bg-cyan-500/20 transition-colors">
-                                    <i data-lucide="radio-tower" class="w-8 h-8 text-cyan-500"></i>
+                                    class="p-2 bg-slate-800/80 backdrop-blur-sm rounded-lg group-hover:bg-accent/20 transition-colors">
+                                    <i data-lucide="radio-tower" class="w-8 h-8 text-accent"></i>
                                 </div>
-                                <h4 class="text-xl font-bold text-white group-hover:text-cyan-400 transition-colors drop-shadow-md">
+                                <h4 class="text-xl font-bold text-white group-hover:text-accent transition-colors drop-shadow-md">
                                     Rectangular Waveguide (TE10) Analysis</h4>
                             </div>
                             <p class="text-sm text-slate-200 mb-3 drop-shadow-sm font-medium">
@@ -368,7 +371,7 @@
                             </p>
                         </div>
                         <a href="project-waveguide.html"
-                            class="text-sm font-bold text-cyan-400 hover:text-cyan-300 transition-colors mt-4 flex items-center relative z-10 drop-shadow-md">View
+                            class="text-sm font-bold text-accent hover:text-cyan-300 transition-colors mt-4 flex items-center relative z-10 drop-shadow-md">View
                             Details <i data-lucide="arrow-right" class="w-4 h-4 ml-1"></i></a>
                     </div>
 
@@ -385,7 +388,7 @@
                                     class="p-2 bg-slate-800/80 backdrop-blur-sm rounded-lg group-hover:bg-red-500/20 transition-colors">
                                     <i data-lucide="thermometer-sun" class="w-8 h-8 text-red-400"></i>
                                 </div>
-                                <h4 class="text-xl font-bold text-white group-hover:text-cyan-400 transition-colors drop-shadow-md">
+                                <h4 class="text-xl font-bold text-white group-hover:text-accent transition-colors drop-shadow-md">
                                     Transient Thermal Analysis (FEA vs. LCM)</h4>
                             </div>
                             <p class="text-sm text-slate-200 mb-3 drop-shadow-sm font-medium">
@@ -394,7 +397,7 @@
                             </p>
                         </div>
                         <a href="project-thermal.html"
-                            class="text-sm font-bold text-cyan-400 hover:text-cyan-300 transition-colors mt-4 flex items-center relative z-10 drop-shadow-md">View
+                            class="text-sm font-bold text-accent hover:text-cyan-300 transition-colors mt-4 flex items-center relative z-10 drop-shadow-md">View
                             Details <i data-lucide="arrow-right" class="w-4 h-4 ml-1"></i></a>
                     </div>
 
@@ -408,10 +411,10 @@
                         <div class="relative z-10">
                             <div class="flex items-center space-x-3 mb-4">
                                 <div
-                                    class="p-2 bg-slate-800/80 backdrop-blur-sm rounded-lg group-hover:bg-cyan-500/20 transition-colors">
+                                    class="p-2 bg-slate-800/80 backdrop-blur-sm rounded-lg group-hover:bg-accent/20 transition-colors">
                                     <i data-lucide="orbit" class="w-8 h-8 text-purple-400"></i>
                                 </div>
-                                <h4 class="text-xl font-bold text-white group-hover:text-cyan-400 transition-colors drop-shadow-md">
+                                <h4 class="text-xl font-bold text-white group-hover:text-accent transition-colors drop-shadow-md">
                                     Luenberger-Based Rendezvous Control</h4>
                             </div>
                             <p class="text-sm text-slate-200 mb-3 drop-shadow-sm font-medium">
@@ -421,7 +424,7 @@
                             </p>
                         </div>
                         <a href="project-rendezvous.html"
-                            class="text-sm font-bold text-cyan-400 hover:text-cyan-300 transition-colors mt-4 flex items-center relative z-10 drop-shadow-md">View
+                            class="text-sm font-bold text-accent hover:text-cyan-300 transition-colors mt-4 flex items-center relative z-10 drop-shadow-md">View
                             Details <i data-lucide="arrow-right" class="w-4 h-4 ml-1"></i></a>
                     </div>
 
@@ -429,15 +432,15 @@
                     <div
                         class="project-card reveal p-6 rounded-xl flex flex-col justify-between group relative overflow-hidden">
                         <div
-                            class="absolute inset-0 bg-gradient-to-br from-cyan-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">
+                            class="absolute inset-0 bg-gradient-to-br from-accent/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">
                         </div>
                         <div>
                             <div class="flex items-center space-x-3 mb-4">
                                 <div
-                                    class="p-2 bg-slate-800/50 rounded-lg group-hover:bg-cyan-500/20 transition-colors">
+                                    class="p-2 bg-slate-800/50 rounded-lg group-hover:bg-accent/20 transition-colors">
                                     <i data-lucide="plug-zap" class="w-8 h-8 text-yellow-400"></i>
                                 </div>
-                                <h4 class="text-xl font-bold text-white group-hover:text-cyan-400 transition-colors">LV
+                                <h4 class="text-xl font-bold text-white group-hover:text-accent transition-colors">LV
                                     Electrical System Design</h4>
                             </div>
                             <p class="text-sm text-slate-300 mb-3">
@@ -451,15 +454,15 @@
                     <div
                         class="project-card reveal delay-100 p-6 rounded-xl flex flex-col justify-between group relative overflow-hidden">
                         <div
-                            class="absolute inset-0 bg-gradient-to-br from-cyan-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">
+                            class="absolute inset-0 bg-gradient-to-br from-accent/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">
                         </div>
                         <div>
                             <div class="flex items-center space-x-3 mb-4">
                                 <div
-                                    class="p-2 bg-slate-800/50 rounded-lg group-hover:bg-cyan-500/20 transition-colors">
+                                    class="p-2 bg-slate-800/50 rounded-lg group-hover:bg-accent/20 transition-colors">
                                     <i data-lucide="factory" class="w-8 h-8 text-orange-400"></i>
                                 </div>
-                                <h4 class="text-xl font-bold text-white group-hover:text-cyan-400 transition-colors">
+                                <h4 class="text-xl font-bold text-white group-hover:text-accent transition-colors">
                                     Speed Profile Conveyor</h4>
                             </div>
                             <ul class="list-disc ml-5 text-sm space-y-1 mt-1 text-slate-300">
@@ -476,15 +479,15 @@
                     <div
                         class="project-card reveal delay-200 p-6 rounded-xl flex flex-col justify-between group relative overflow-hidden">
                         <div
-                            class="absolute inset-0 bg-gradient-to-br from-cyan-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">
+                            class="absolute inset-0 bg-gradient-to-br from-accent/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">
                         </div>
                         <div>
                             <div class="flex items-center space-x-3 mb-4">
                                 <div
-                                    class="p-2 bg-slate-800/50 rounded-lg group-hover:bg-cyan-500/20 transition-colors">
+                                    class="p-2 bg-slate-800/50 rounded-lg group-hover:bg-accent/20 transition-colors">
                                     <i data-lucide="hard-hat" class="w-8 h-8 text-yellow-500"></i>
                                 </div>
-                                <h4 class="text-xl font-bold text-white group-hover:text-cyan-400 transition-colors">
+                                <h4 class="text-xl font-bold text-white group-hover:text-accent transition-colors">
                                     Plastic Shredder</h4>
                             </div>
                             <ul class="list-disc ml-5 text-sm space-y-1 mt-1 text-slate-300">
@@ -500,15 +503,15 @@
                     <div
                         class="project-card reveal p-6 rounded-xl flex flex-col justify-between group relative overflow-hidden">
                         <div
-                            class="absolute inset-0 bg-gradient-to-br from-cyan-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">
+                            class="absolute inset-0 bg-gradient-to-br from-accent/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">
                         </div>
                         <div>
                             <div class="flex items-center space-x-3 mb-4">
                                 <div
-                                    class="p-2 bg-slate-800/50 rounded-lg group-hover:bg-cyan-500/20 transition-colors">
+                                    class="p-2 bg-slate-800/50 rounded-lg group-hover:bg-accent/20 transition-colors">
                                     <i data-lucide="wifi" class="w-8 h-8 text-green-400"></i>
                                 </div>
-                                <h4 class="text-xl font-bold text-white group-hover:text-cyan-400 transition-colors">
+                                <h4 class="text-xl font-bold text-white group-hover:text-accent transition-colors">
                                     Remote Solar Pump Control (IoT)</h4>
                             </div>
                             <ul class="list-disc ml-5 text-sm space-y-1 mt-1 text-slate-300">
@@ -526,15 +529,15 @@
                     <div
                         class="project-card reveal delay-100 p-6 rounded-xl flex flex-col justify-between group relative overflow-hidden">
                         <div
-                            class="absolute inset-0 bg-gradient-to-br from-cyan-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">
+                            class="absolute inset-0 bg-gradient-to-br from-accent/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">
                         </div>
                         <div>
                             <div class="flex items-center space-x-3 mb-4">
                                 <div
-                                    class="p-2 bg-slate-800/50 rounded-lg group-hover:bg-cyan-500/20 transition-colors">
+                                    class="p-2 bg-slate-800/50 rounded-lg group-hover:bg-accent/20 transition-colors">
                                     <i data-lucide="wind" class="w-8 h-8 text-blue-300"></i>
                                 </div>
-                                <h4 class="text-xl font-bold text-white group-hover:text-cyan-400 transition-colors">
+                                <h4 class="text-xl font-bold text-white group-hover:text-accent transition-colors">
                                     Micro Wind Turbine Control</h4>
                             </div>
                             <ul class="list-disc ml-5 text-sm space-y-1 mt-1 text-slate-300">
@@ -552,15 +555,15 @@
                     <div
                         class="project-card reveal delay-200 p-6 rounded-xl flex flex-col justify-between group relative overflow-hidden">
                         <div
-                            class="absolute inset-0 bg-gradient-to-br from-cyan-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">
+                            class="absolute inset-0 bg-gradient-to-br from-accent/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">
                         </div>
                         <div>
                             <div class="flex items-center space-x-3 mb-4">
                                 <div
-                                    class="p-2 bg-slate-800/50 rounded-lg group-hover:bg-cyan-500/20 transition-colors">
+                                    class="p-2 bg-slate-800/50 rounded-lg group-hover:bg-accent/20 transition-colors">
                                     <i data-lucide="battery-charging" class="w-8 h-8 text-green-500"></i>
                                 </div>
-                                <h4 class="text-xl font-bold text-white group-hover:text-cyan-400 transition-colors">
+                                <h4 class="text-xl font-bold text-white group-hover:text-accent transition-colors">
                                     Power Electronics (Sim & Hardware)</h4>
                             </div>
                             <ul class="list-disc ml-5 text-sm space-y-1 mt-1 text-slate-300">
@@ -578,15 +581,15 @@
                     <div
                         class="project-card reveal p-6 rounded-xl flex flex-col justify-between group relative overflow-hidden">
                         <div
-                            class="absolute inset-0 bg-gradient-to-br from-cyan-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">
+                            class="absolute inset-0 bg-gradient-to-br from-accent/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">
                         </div>
                         <div>
                             <div class="flex items-center space-x-3 mb-4">
                                 <div
-                                    class="p-2 bg-slate-800/50 rounded-lg group-hover:bg-cyan-500/20 transition-colors">
+                                    class="p-2 bg-slate-800/50 rounded-lg group-hover:bg-accent/20 transition-colors">
                                     <i data-lucide="cpu" class="w-8 h-8 text-slate-400"></i>
                                 </div>
-                                <h4 class="text-xl font-bold text-white group-hover:text-cyan-400 transition-colors">
+                                <h4 class="text-xl font-bold text-white group-hover:text-accent transition-colors">
                                     Arduino L-C Meter</h4>
                             </div>
                             <ul class="list-disc ml-5 text-sm space-y-1 mt-1 text-slate-300">
@@ -601,67 +604,75 @@
             <!-- Skills Section -->
             <section id="skills">
                 <h2
-                    class="text-3xl font-bold text-white mb-8 border-b-2 border-cyan-500/30 pb-2 flex items-center space-x-2">
-                    <i data-lucide="wrench" class="w-7 h-7 text-cyan-400"></i><span>Skills and Tools</span>
+                    class="text-3xl font-bold text-white mb-8 border-b-2 border-accent/30 pb-2 flex items-center space-x-2">
+                    <i data-lucide="wrench" class="w-7 h-7 text-accent"></i><span>Skills and Tools</span>
                 </h2>
 
                 <div class="grid grid-cols-1 gap-8">
 
                     <!-- 1. Technical Skills Group -->
                     <div class="skill-group reveal p-6 rounded-xl border border-slate-700/50">
-                        <h3 class="text-2xl font-bold text-cyan-400 mb-4 flex items-center space-x-2"><i
+                        <h3 class="text-2xl font-bold text-accent mb-4 flex items-center space-x-2"><i
                                 data-lucide="hammer" class="w-6 h-6"></i><span>Technical Expertise</span></h3>
 
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-2 text-slate-300 text-sm">
                             <div class="flex items-center">
-                                <i data-lucide="check" class="w-4 h-4 text-cyan-500 mr-2 flex-shrink-0"></i>
+                                <i data-lucide="check" class="w-4 h-4 text-accent mr-2 flex-shrink-0"></i>
                                 <span class="font-medium">Electrical Design & Analysis</span>
                             </div>
                             <div class="flex items-center">
-                                <i data-lucide="check" class="w-4 h-4 text-cyan-500 mr-2 flex-shrink-0"></i>
+                                <i data-lucide="check" class="w-4 h-4 text-accent mr-2 flex-shrink-0"></i>
                                 <span class="font-medium">High-Frequency (HFSS) Simulation</span>
                             </div>
                             <div class="flex items-center">
-                                <i data-lucide="check" class="w-4 h-4 text-cyan-500 mr-2 flex-shrink-0"></i>
+                                <i data-lucide="check" class="w-4 h-4 text-accent mr-2 flex-shrink-0"></i>
                                 <span class="font-medium">Mechanical Design (3D Modeling)</span>
                             </div>
                             <div class="flex items-center">
-                                <i data-lucide="check" class="w-4 h-4 text-cyan-500 mr-2 flex-shrink-0"></i>
+                                <i data-lucide="check" class="w-4 h-4 text-accent mr-2 flex-shrink-0"></i>
                                 <span class="font-medium">Advanced Control Theory</span>
                             </div>
                             <div class="flex items-center">
-                                <i data-lucide="check" class="w-4 h-4 text-cyan-500 mr-2 flex-shrink-0"></i>
+                                <i data-lucide="check" class="w-4 h-4 text-accent mr-2 flex-shrink-0"></i>
                                 <span>Automation (PLC/HMI Dev.)</span>
                             </div>
                             <div class="flex items-center">
-                                <i data-lucide="check" class="w-4 h-4 text-cyan-500 mr-2 flex-shrink-0"></i>
+                                <i data-lucide="check" class="w-4 h-4 text-accent mr-2 flex-shrink-0"></i>
                                 <span>Machine Learning Fundamentals</span>
                             </div>
                             <div class="flex items-center">
-                                <i data-lucide="check" class="w-4 h-4 text-cyan-500 mr-2 flex-shrink-0"></i>
+                                <i data-lucide="check" class="w-4 h-4 text-accent mr-2 flex-shrink-0"></i>
                                 <span>Deep Learning (PyTorch, FFNNs)</span>
+                            </div>
+                            <div class="flex items-center">
+                                <i data-lucide="check" class="w-4 h-4 text-accent mr-2 flex-shrink-0"></i>
+                                <span class="font-medium">Modeling &amp; Advanced Control</span>
+                            </div>
+                            <div class="flex items-center">
+                                <i data-lucide="check" class="w-4 h-4 text-accent mr-2 flex-shrink-0"></i>
+                                <span class="font-medium">Embedded Systems &amp; IoT</span>
                             </div>
                         </div>
                     </div>
 
                     <!-- 2. Software Group -->
                     <div class="skill-group reveal delay-100 p-6 rounded-xl border border-slate-700/50">
-                        <h3 class="text-2xl font-bold text-cyan-400 mb-4 flex items-center space-x-2"><i
+                        <h3 class="text-2xl font-bold text-accent mb-4 flex items-center space-x-2"><i
                                 data-lucide="monitor" class="w-6 h-6"></i><span>Software Proficiencies</span></h3>
 
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-4">
                             <!-- Inner Column 1 -->
                             <div>
-                                <h4 class="font-semibold text-sm text-cyan-400 w-full mb-2">Automation & Control</h4>
+                                <h4 class="font-semibold text-sm text-accent w-full mb-2">Automation & Control</h4>
                                 <div class="flex flex-wrap gap-2 mb-4">
                                     <span
-                                        class="bg-cyan-900/40 text-cyan-200 text-sm font-medium px-3 py-1.5 rounded-full border border-cyan-700/50">TIA
+                                        class="bg-accent/20 text-accent text-sm font-medium px-3 py-1.5 rounded-full border border-accent/50">TIA
                                         Portal</span>
                                     <span
-                                        class="bg-cyan-900/40 text-cyan-200 text-sm font-medium px-3 py-1.5 rounded-full border border-cyan-700/50">PLCnext
+                                        class="bg-accent/20 text-accent text-sm font-medium px-3 py-1.5 rounded-full border border-accent/50">PLCnext
                                         Eng.</span>
                                     <span
-                                        class="bg-cyan-900/40 text-cyan-200 text-sm font-medium px-3 py-1.5 rounded-full border border-cyan-700/50">Mach3
+                                        class="bg-accent/20 text-accent text-sm font-medium px-3 py-1.5 rounded-full border border-accent/50">Mach3
                                         CNC</span>
                                 </div>
 
@@ -684,20 +695,20 @@
 
                             <!-- Inner Column 2 -->
                             <div>
-                                <h4 class="font-semibold text-sm text-cyan-400 w-full mb-2">Electrical, Power & RF</h4>
+                                <h4 class="font-semibold text-sm text-accent w-full mb-2">Electrical, Power & RF</h4>
                                 <div class="flex flex-wrap gap-2 mb-4">
                                     <span
-                                        class="bg-cyan-900/40 text-cyan-200 text-sm font-medium px-3 py-1.5 rounded-full border border-cyan-700/50">Caneco
+                                        class="bg-accent/20 text-accent text-sm font-medium px-3 py-1.5 rounded-full border border-accent/50">Caneco
                                         BT</span>
                                     <span
-                                        class="bg-cyan-900/40 text-cyan-200 text-sm font-medium px-3 py-1.5 rounded-full border border-cyan-700/50">ETAP</span>
+                                        class="bg-accent/20 text-accent text-sm font-medium px-3 py-1.5 rounded-full border border-accent/50">ETAP</span>
                                     <span
-                                        class="bg-cyan-900/40 text-cyan-200 text-sm font-medium px-3 py-1.5 rounded-full border border-cyan-700/50">ANSYS
+                                        class="bg-accent/20 text-accent text-sm font-medium px-3 py-1.5 rounded-full border border-accent/50">ANSYS
                                         HFSS</span>
                                     <span
-                                        class="bg-cyan-900/40 text-cyan-200 text-sm font-medium px-3 py-1.5 rounded-full border border-cyan-700/50">Proteus</span>
+                                        class="bg-accent/20 text-accent text-sm font-medium px-3 py-1.5 rounded-full border border-accent/50">Proteus</span>
                                     <span
-                                        class="bg-cyan-900/40 text-cyan-200 text-sm font-medium px-3 py-1.5 rounded-full border border-cyan-700/50">MATLAB/Simulink</span>
+                                        class="bg-accent/20 text-accent text-sm font-medium px-3 py-1.5 rounded-full border border-accent/50">MATLAB/Simulink</span>
                                 </div>
 
                                 <h4 class="font-semibold text-sm text-purple-400 w-full mb-2">Data Science & Cloud</h4>
@@ -721,18 +732,18 @@
                             <div class="flex items-center">
                                 <i data-lucide="check" class="w-4 h-4 text-cyan-500 mr-2 flex-shrink-0"></i>
                                 <a href="assets/pdf/EF SET Certificate RAFI Nasrallah.pdf" target="_blank"
-                                    class="text-cyan-400 hover:text-cyan-300 hover:underline cursor-pointer flex items-center space-x-1">
-                                    <span class="font-medium">English:</strong> C2 - EF Standard English Test</span>
+                                    class="text-cyan-400 hover:text-cyan-300 hover:underline cursor-pointer flex items-center space-x-1" rel="noopener noreferrer">
+                                    <span class="font-medium"><strong>English:</strong> C2 - EF Standard English Test</span>
                                     <i data-lucide="file-text" class="w-4 h-4"></i>
                                 </a>
                             </div>
                             <div class="flex items-center">
                                 <i data-lucide="check" class="w-4 h-4 text-cyan-500 mr-2 flex-shrink-0"></i>
-                                <span class="font-medium">French:</strong> B2 - Upper-Intermediate</span>
+                                <span class="font-medium"><strong>French:</strong> B2 - Upper-Intermediate</span>
                             </div>
                             <div class="flex items-center">
                                 <i data-lucide="check" class="w-4 h-4 text-cyan-500 mr-2 flex-shrink-0"></i>
-                                <span class="font-medium">Arabic:</strong> Native</span>
+                                <span class="font-medium"><strong>Arabic:</strong> Native</span>
                             </div>
                         </div>
                     </div>
@@ -740,26 +751,25 @@
             </section>
 
             <!-- Patents Section -->
-            <section id="patents">
-                <h2 class="text-3xl font-bold text-white mb-8 border-b-2 border-cyan-500/30 pb-2 flex items-center space-x-2">
-                    <i data-lucide="shield-check" class="w-7 h-7 text-cyan-400"></i><span>Patents</span>
+            <section id="patents" class="reveal">
+                <h2 class="text-3xl font-bold text-white mb-8 border-b-2 border-accent/30 pb-2 flex items-center space-x-2">
+                    <i data-lucide="award" class="w-7 h-7 text-accent"></i><span>Patents</span>
                 </h2>
-                <div class="glass reveal p-8 rounded-xl shadow-lg">
-                    <div class="flex flex-col sm:flex-row sm:items-start gap-6">
-                        <!-- Icon / badge -->
-                        <div class="flex-shrink-0 flex items-center justify-center w-16 h-16 rounded-2xl bg-gradient-to-br from-cyan-500/20 to-purple-500/20 border border-cyan-500/20">
-                            <i data-lucide="file-badge" class="w-8 h-8 text-cyan-400"></i>
+
+                <div class="patent-card glass p-8 rounded-xl relative overflow-hidden group">
+                    <div class="flex flex-col md:flex-row md:items-center gap-6">
+                        <div class="icon-container w-16 h-16 flex-shrink-0 group-hover:scale-110 transition-transform">
+                            <i data-lucide="file-check" class="w-10 h-10 text-accent"></i>
                         </div>
-                        <!-- Content -->
-                        <div class="flex-1">
+                        <div class="flex-grow">
                             <div class="flex flex-wrap items-center gap-3 mb-2">
-                                <h3 class="text-xl font-bold text-white">Automated system and process for welding and assembling corrugated web beam profiles</h3>
-                                <span class="inline-flex items-center gap-1.5 text-xs font-bold px-3 py-1 rounded-full bg-cyan-500/15 text-cyan-300 border border-cyan-500/30">
-                                    <i data-lucide="award" class="w-3 h-3"></i> Granted
+                                <h3 class="text-xl md:text-2xl font-bold text-white group-hover:text-accent transition-colors">
+                                    Automated system and process for welding and assembling corrugated web beam profiles
+                                </h3>
+                                <span class="bg-accent/20 text-accent text-xs font-bold px-3 py-1 rounded-full border border-accent/30">
+                                    <i data-lucide="shield-check" class="w-3 h-3 inline mr-1"></i> Granted
                                 </span>
                             </div>
-                            <p class="text-sm text-slate-400 mb-1"><span class="font-medium text-slate-300">Role:</span> Inventor</p>
-                            <p class="text-sm text-slate-400 mb-1">
                                 <span class="font-medium text-slate-300">Filing Authority:</span>
                                 OMPIC (Moroccan Industrial and Commercial Property Office)
                             </p>
@@ -778,25 +788,25 @@
                 </div>
             </section>
 
-            <!-- Current Development Focus Section -->
+            <!-- Recent Development Focus Section -->
             <section id="dev-focus">
                 <h2
                     class="text-3xl font-bold text-white mb-8 border-b-2 border-cyan-500/30 pb-2 flex items-center space-x-2">
-                    <i data-lucide="zap" class="w-7 h-7 text-cyan-400"></i><span>Ongoing Projects & Development
+                    <i data-lucide="zap" class="w-7 h-7 text-cyan-400"></i><span>Recent Projects & Development
                         Focus</span>
                 </h2>
                 <div class="grid grid-cols-1 glass p-8 rounded-xl shadow-lg relative overflow-hidden text-left reveal">
-                    <!-- Ongoing Project: Emove Vehicules -->
+                    <!-- Recent Project: Emove Vehicules -->
                     <div class="border-l-4 border-cyan-500 p-6 bg-slate-800/50 rounded-lg">
                         <div class="flex flex-wrap items-center justify-between gap-4 mb-4">
-                            <h3 class="text-2xl font-bold text-white">End-of-Studies Internship — Emove Vehicules</h3>
-                            <span class="inline-flex items-center gap-1.5 text-xs font-bold px-3 py-1 rounded-full bg-cyan-500/15 text-cyan-300 border border-cyan-500/30" style="animation: pulse 2s cubic-bezier(0.4,0,0.6,1) infinite;">
+                            <h3 class="text-2xl font-bold text-white">Engineering Intern (Internship – R&amp;D and Industrialization) — Emove Vehicules</h3>
+                            <span class="inline-flex items-center gap-1.5 text-xs font-bold px-3 py-1 rounded-full bg-cyan-500/15 text-cyan-300 border border-cyan-500/30">
                                 <span style="display:inline-block;width:7px;height:7px;border-radius:50%;background:#22d3ee;box-shadow:0 0 6px #22d3ee;"></span>
-                                In Progress
+                                Completed
                             </span>
                         </div>
                         <p class="text-cyan-400 mb-4 italic font-medium">
-                            Modeling, Stabilization & Control of an Integrated Industrial Electric Scooter Production System
+                            Systemic resolution of premature shutdown and energy gauge instability on electric scooters
                         </p>
                         <hr class="border-slate-700 mb-4">
                         <div class="grid md:grid-cols-2 gap-8">
@@ -806,7 +816,7 @@
                                         <i data-lucide="target" class="w-4 h-4 text-cyan-500"></i> Project Scope
                                     </h4>
                                     <p class="text-sm text-slate-300 leading-relaxed">
-                                        Focusing on the <strong>Digital Twin modeling</strong> of LFP batteries and developing advanced <strong>SOC estimation algorithms</strong> for Battery Management Systems (BMS). The project also involves industrial production optimization and quality control protocols under ISO 9001 standards.
+                                        Built a coupled Hardware / Software / Process approach around a high-fidelity <strong>Digital Twin</strong>, hybrid <strong>SoC estimation</strong>, active balancing, embedded BMS hardware, HiL validation, and production traceability.
                                     </p>
                                 </div>
 
@@ -817,14 +827,14 @@
                                         <i data-lucide="zap" class="w-4 h-4 text-cyan-400"></i> Key Technical Focus
                                     </h4>
                                     <ul class="text-xs text-slate-300 space-y-2">
-                                        <li class="flex items-center gap-2"><i data-lucide="check-circle" class="w-3 h-3 text-cyan-500"></i> LFP Battery Digital Twin Modeling</li>
-                                        <li class="flex items-center gap-2"><i data-lucide="check-circle" class="w-3 h-3 text-cyan-500"></i> SOC Estimation Algorithms (BMS)</li>
-                                        <li class="flex items-center gap-2"><i data-lucide="check-circle" class="w-3 h-3 text-cyan-500"></i> Production Line Disturbance Analysis</li>
-                                        <li class="flex items-center gap-2"><i data-lucide="check-circle" class="w-3 h-3 text-cyan-500"></i> ISO 9001 Quality Control Procedures</li>
+                                        <li class="flex items-center gap-2"><i data-lucide="check-circle" class="w-3 h-3 text-cyan-500"></i> LFP Battery Digital Twin (15S2P)</li>
+                                        <li class="flex items-center gap-2"><i data-lucide="check-circle" class="w-3 h-3 text-cyan-500"></i> ECM 3RC, UKF &amp; LSTM SoC Estimation</li>
+                                        <li class="flex items-center gap-2"><i data-lucide="check-circle" class="w-3 h-3 text-cyan-500"></i> STM32-Based 16S BMS Hardware</li>
+                                        <li class="flex items-center gap-2"><i data-lucide="check-circle" class="w-3 h-3 text-cyan-500"></i> MQTT / REST Production Dashboard</li>
                                     </ul>
                                 </div>
                                 <a href="pfe-gantt.html" target="_blank"
-                                    class="inline-flex items-center justify-center w-full bg-gradient-to-r from-cyan-600 to-blue-600 text-white font-bold py-2 px-4 rounded-lg shadow-md hover:shadow-cyan-500/20 hover:-translate-y-0.5 transition-all text-sm">
+                                    class="inline-flex items-center justify-center w-full bg-gradient-to-r from-cyan-600 to-blue-600 text-white font-bold py-2 px-4 rounded-lg shadow-md hover:shadow-cyan-500/20 hover:-translate-y-0.5 transition-all text-sm" rel="noopener noreferrer">
                                     <i data-lucide="calendar" class="w-4 h-4 mr-2"></i> View Project Gantt
                                 </a>
                             </div>
@@ -842,25 +852,38 @@
                 <div class="flex flex-wrap gap-4 justify-center md:justify-start">
                     <div
                         class="p-3 bg-cyan-900/40 rounded-lg shadow-md flex items-center space-x-2 border border-cyan-700/50">
-                        <i data-lucide="robot" class="w-6 h-6 text-cyan-400"></i>
-                        <span class="font-semibold text-cyan-200">Industrial Automation</span>
+                        <i data-lucide="battery-charging" class="w-6 h-6 text-cyan-400"></i>
+                        <span class="font-semibold text-cyan-200">Smart BMS</span>
                     </div>
                     <div
                         class="p-3 bg-cyan-900/40 rounded-lg shadow-md flex items-center space-x-2 border border-cyan-700/50">
-                        <i data-lucide="zap" class="w-6 h-6 text-cyan-400"></i>
-                        <span class="font-semibold text-cyan-200">Electronic Design</span>
+                        <i data-lucide="brain-circuit" class="w-6 h-6 text-cyan-400"></i>
+                        <span class="font-semibold text-cyan-200">AI-Assisted SOC/SOH Estimation</span>
                     </div>
                     <div
                         class="p-3 bg-cyan-900/40 rounded-lg shadow-md flex items-center space-x-2 border border-cyan-700/50">
-                        <i data-lucide="hard-hat" class="w-6 h-6 text-cyan-400"></i>
-                        <span class="font-semibold text-cyan-200">Mechanical Design</span>
+                        <i data-lucide="activity" class="w-6 h-6 text-cyan-400"></i>
+                        <span class="font-semibold text-cyan-200">Battery Analytics</span>
+                    </div>
+                    <div
+                        class="p-3 bg-cyan-900/40 rounded-lg shadow-md flex items-center space-x-2 border border-cyan-700/50">
+                        <i data-lucide="settings-2" class="w-6 h-6 text-cyan-400"></i>
+                        <span class="font-semibold text-cyan-200">Modeling &amp; Advanced Control</span>
+                    </div>
+                    <div
+                        class="p-3 bg-cyan-900/40 rounded-lg shadow-md flex items-center space-x-2 border border-cyan-700/50">
+                        <i data-lucide="radio-tower" class="w-6 h-6 text-cyan-400"></i>
+                        <span class="font-semibold text-cyan-200">Embedded Systems &amp; IoT</span>
                     </div>
                 </div>
                 <p class="text-lg text-slate-300 leading-relaxed mt-4">
-                    My core interest lies at the intersection of <strong>mechatronics</strong>, where I thrive on
-                    integrating PLC-based <strong>automation</strong> systems, precise <strong>electronic circuit
-                        design</strong>, and robust <strong>mechanical conception</strong> to build efficient industrial
-                    solutions.
+                    State Engineer in Electrical Engineering and Industrial Systems Control, with a research focus on
+                    <strong>smart Battery Management Systems</strong>, battery analytics, and <strong>AI-assisted SOC
+                        estimation</strong> for LiFePO4 batteries. Experienced in physical battery modeling, ECM-based
+                    simulation, Unscented Kalman Filtering, LSTM residual correction, and digital-twin-based validation
+                    for electric mobility applications. Skilled in MATLAB/Simulink, Python, embedded systems, and
+                    industrial data acquisition, with strong interest in predictive modeling, SOH estimation, anomaly
+                    detection, and real-time battery health monitoring.
                 </p>
             </section>
 
@@ -870,18 +893,15 @@
     <!-- Footer -->
     <footer class="bg-slate-900 text-white py-8 mt-16 border-t border-slate-800">
         <div class="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <p class="text-sm text-slate-400">&copy; 2025 Rafi Nasrallah | Electrical & Industrial Systems Control</p>
+            <p class="text-sm text-slate-400">&copy; 2025 Rafi Nasrallah | Electrical Engineer - Embedded Systems, IoT &amp; Smart BMS</p>
             <div class="mt-4 flex justify-center space-x-6">
                 <a href="mailto:nasrollahrafi@gmail.com" class="text-slate-400 hover:text-cyan-400 transition-colors"
                     aria-label="Email">
                     <i data-lucide="mail" class="w-6 h-6"></i>
                 </a>
                 <a href="https://www.linkedin.com/in/nasrollah-rafi-4834862a2" target="_blank"
-                    class="text-slate-400 hover:text-cyan-400 transition-colors" aria-label="LinkedIn">
+                    class="text-slate-400 hover:text-cyan-400 transition-colors" aria-label="LinkedIn" rel="noopener noreferrer">
                     <i data-lucide="linkedin" class="w-6 h-6"></i>
-                </a>
-                <a href="#" class="text-slate-400 hover:text-cyan-400 transition-colors" aria-label="GitHub">
-                    <i data-lucide="github" class="w-6 h-6"></i>
                 </a>
             </div>
         </div>
@@ -907,7 +927,58 @@
             });
         });
 
-        // 3. Project Preview Slider Script
+        // 3. Active navigation state
+        document.addEventListener("DOMContentLoaded", () => {
+            const navLinks = [...document.querySelectorAll('header nav a[href^="#"]')];
+            const sections = navLinks
+                .map(link => document.querySelector(link.getAttribute('href')))
+                .filter(Boolean);
+
+            const setCurrentSection = (id) => {
+                navLinks.forEach(link => {
+                    const isCurrent = link.getAttribute('href') === `#${id}`;
+                    if (isCurrent) {
+                        link.setAttribute('aria-current', 'true');
+                    } else {
+                        link.removeAttribute('aria-current');
+                    }
+                });
+            };
+
+            let navFrame = null;
+            const updateCurrentSection = () => {
+                navFrame = null;
+                const marker = window.scrollY + window.innerHeight * 0.35;
+                const current = sections.reduce((active, section) => {
+                    return section.offsetTop <= marker ? section : active;
+                }, sections[0]);
+
+                if (current) setCurrentSection(current.id);
+            };
+
+            const requestNavUpdate = () => {
+                if (navFrame) return;
+                navFrame = requestAnimationFrame(updateCurrentSection);
+            };
+
+            updateCurrentSection();
+            window.addEventListener('scroll', requestNavUpdate, { passive: true });
+            window.addEventListener('resize', requestNavUpdate);
+        });
+
+        // 4. Pointer-aware surface spotlight
+        document.addEventListener("pointermove", (event) => {
+            if (event.pointerType === 'touch') return;
+
+            const target = event.target.closest('.project-card, .skill-group, .timeline-item-content, .experience-column, .patent-card');
+            if (!target) return;
+
+            const rect = target.getBoundingClientRect();
+            target.style.setProperty('--spot-x', `${event.clientX - rect.left}px`);
+            target.style.setProperty('--spot-y', `${event.clientY - rect.top}px`);
+        });
+
+        // 5. Project Preview Slider Script
         document.addEventListener("DOMContentLoaded", () => {
             const cards = document.querySelectorAll(".project-card[data-previews]");
             
@@ -933,7 +1004,7 @@
             });
         });
 
-        // 4. Scroll Reveal Animations (Intersection Observer)
+        // 6. Scroll Reveal Animations (Intersection Observer)
         document.addEventListener("DOMContentLoaded", () => {
             const observerOptions = {
                 root: null,
