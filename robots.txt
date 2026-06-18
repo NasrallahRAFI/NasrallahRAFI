@@ -4,3 +4,4 @@ Disallow: /server.log
 Disallow: /server.err.log
 Crawl-delay: 1
 Sitemap: https://nasrallahrafi.me/sitemap.xml
+X-IndexNow-Key: a3c66107815495964ea7a8fede11f3fc

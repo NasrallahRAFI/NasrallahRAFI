@@ -55,14 +55,26 @@
 <body class="antialiased selection:bg-cyan-500 selection:text-white">
 <!-- Header -->
 <header class="sticky top-0 z-50 glass transition-colors duration-300">
-<div class="container mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
-<div class="text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 to-cyan-200 truncate">
-                Thermal Analysis: LCM vs FEA</div>
-<div class="flex items-center space-x-6"><button aria-label="Toggle Theme" class="text-slate-300 hover:text-cyan-400 transition-colors" onclick="toggleTheme()">
-<i class="w-5 h-5" data-lucide="layers" id="theme-toggle-icon"></i>
+<div class="container mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center gap-4">
+<a class="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 to-cyan-200 hover:text-cyan-300 transition-colors truncate" href="index.html#hero">
+                Rafi Nasrallah
+            </a>
+<nav class="hidden lg:flex space-x-6">
+<a class="text-slate-300 hover:text-cyan-400 font-medium transition-colors" href="index.html#about">About</a>
+<a class="text-slate-300 hover:text-cyan-400 font-medium transition-colors" href="index.html#experience">Experience</a>
+<a class="text-slate-300 hover:text-cyan-400 font-medium transition-colors" href="index.html#projects">Projects</a>
+<a class="text-slate-300 hover:text-cyan-400 font-medium transition-colors" href="index.html#skills">Skills</a>
+<a class="text-slate-300 hover:text-cyan-400 font-medium transition-colors" href="index.html#patents">Patents</a>
+<a class="text-slate-300 hover:text-cyan-400 font-medium transition-colors" href="index.html#dev-focus">Development</a>
+</nav>
+<div class="flex items-center space-x-2 sm:space-x-4">
+<button aria-label="Change theme" class="theme-toggle-button text-slate-200 transition-colors flex items-center justify-center" id="theme-toggle-button" onclick="toggleTheme()" type="button">
+<i class="w-4 h-4" data-lucide="palette" id="theme-toggle-icon"></i>
+<span class="theme-toggle-copy">Theme</span>
+<span class="theme-toggle-name" id="theme-toggle-name">Glass</span>
 </button>
 <a class="inline-flex items-center text-slate-300 hover:text-cyan-400 font-medium transition-colors text-sm" href="index.html#projects">
-<i class="w-4 h-4 mr-1" data-lucide="arrow-left"></i> Back to Portfolio
+<i class="w-4 h-4 mr-2" data-lucide="arrow-left"></i><span class="hidden sm:inline">Back</span>
                 </a>
 </div>
 </div>

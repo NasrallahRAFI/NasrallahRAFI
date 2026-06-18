@@ -7,7 +7,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "build:css": "tailwindcss -i ./css/tailwind-input.css -o ./css/tailwind.min.css --minify",
     "watch:css": "tailwindcss -i ./css/tailwind-input.css -o ./css/tailwind.min.css --watch",
-    "build:style": "cleancss -o css/style.min.css css/style.css"
+    "build:style": "cleancss -o css/style.min.css css/style.css",
+    "indexnow": "node js/indexnow.mjs"
   },
   "repository": {
     "type": "git",

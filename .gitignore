@@ -1,2 +1,4 @@
 server.log
 server.err.log
+.env
+*.env
