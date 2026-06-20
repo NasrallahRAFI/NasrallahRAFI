@@ -1,0 +1,53 @@
+# Rafi Nasrallah — Electrical Engineer Portfolio
+
+> State Engineer in Electrical Engineering (ENSET Mohammedia, 2026) specialising in Smart
+> Battery Management Systems, embedded hardware design, and industrial IoT. Patent holder
+> (OMPIC #65133). Based in Dar Bouazza, Morocco.
+
+Rafi Nasrallah is a Moroccan electrical engineer whose work centres on battery intelligence:
+physical modelling of LiFePO4 cells, hybrid SOC/SOH estimation pipelines (ECM 3RC + UKF +
+LSTM residual correction), STM32-based BMS hardware designed in Altium Designer, and
+real-time production dashboards over MQTT/REST. He holds a granted patent for an automated
+corrugated-web beam welding and assembly system (OMPIC #65133, November 2025).
+
+## Projects
+
+- [Rectangular Waveguide TE10 Analysis](https://nasrallahrafi.me/project-waveguide.html): ANSYS HFSS simulation of WR-90 waveguide with air and alumina dielectric loading. Key result: alumina loading shifts the cutoff frequency from 6.56 GHz to 2.19 GHz with measured insertion loss of 0.26–0.72 dB.
+- [Transient Thermal Analysis — FEA vs LCM](https://nasrallahrafi.me/project-thermal.html): Comparative study of Lumped Capacitance Modelling vs ANSYS FEA (Fusion 360) for hot-nut insertion cycle validation in polycarbonate. Full report available as PDF.
+- [Luenberger-Based Orbital Rendezvous Control](https://nasrallahrafi.me/project-rendezvous.html): Full autopilot system (Luenberger Observer + State-Feedback Controller) for satellite rendezvous using angle-only measurements, with system normalisation to overcome numerical instability. Implemented in MATLAB/Simulink.
+- BMS Digital Twin — Emove Véhicules (Feb–May 2026): High-fidelity 15S2P LFP battery digital twin integrating dynamic hysteresis, ECM 3RC + UKF + LSTM SOC estimation, active balancing (LTC3300-1), STM32 16S BMS hardware, HiL validation (RMSE < 2 %), and MQTT/REST production dashboard.
+
+## Experience
+
+- [Engineering Intern — Emove Véhicules](https://nasrallahrafi.me/#experience) (Feb–May 2026): R&D and industrialisation internship. Resolved premature shutdown at 20 % SOC and energy gauge instability on electric scooters via coupled hardware/software/process approach.
+- [Internship — SMCV](https://nasrallahrafi.me/internship-smcv.html) (2025): HMI design (WinCC), injection moulding machine automation, mechanical arm design (Inventor), thermal analysis of nut insertion press.
+- [Internship — ONEE Mohammedia Thermal Power Plant](https://nasrallahrafi.me/internship-onee.html) (Jul–Aug 2024): Formalised test procedures for Siemens SIPROTEC digital protection relays using OMICRON CMC. Supervisor evaluation: 18.5/20.
+- [Apprenticeship — Rafi Robotiques et Machineries](https://nasrallahrafi.me/apprenticeship-rafi.html) (2020–2023): Three-year industrial apprenticeship covering CNC lathe repair (Siemens Sinumerik 840D / Simodrive 611), 5-axis welding robot fabrication, PLC reprogramming, and heavy-machine restoration.
+
+## Skills
+
+Battery modelling (ECM 3RC, hysteresis), SOC/SOH estimation (UKF, LSTM), digital twin
+development, STM32 firmware, Altium Designer PCB layout, CAN/I2C/SPI, MATLAB/Simulink,
+Python, ANSYS HFSS, ANSYS Thermal, Fusion 360, MQTT, REST API, PLC programming, Siemens
+Sinumerik 840D, WinCC HMI, Caneco BT, ETAP, IEC 62133, ISO 26262, ISO 9001.
+
+## Education
+
+- Engineering Degree in Electrical Engineering and Industrial Systems Control — ENSET Mohammedia (2023–2026)
+- Licence in Physical Sciences (Electronics) — Faculté des Sciences Ben M'sik, Casablanca (2022–2023)
+- DEUG in Physical Sciences — Faculté des Sciences Ben M'sik, Casablanca (2020–2022)
+
+## Contact
+
+- Email: nasrollahrafi@gmail.com
+- Phone: +212 671 114 377
+- GitHub: https://github.com/NasrallahRAFI
+- Portfolio: https://nasrallahrafi.me/
+
+## Optional
+
+- [CV (English)](https://nasrallahrafi.me/assets/pdf/RAFI_Nasrallah_CV_ENG.pdf)
+- [CV (French)](https://nasrallahrafi.me/assets/pdf/RAFI_Nasrallah_CV_FR.pdf)
+- [Waveguide Analysis Report (PDF)](https://nasrallahrafi.me/assets/pdf/ANALYSIS_OF_TE10_MODE_PROPAGATION.pdf)
+- [Thermal Analysis Report (PDF)](https://nasrallahrafi.me/assets/pdf/Thermal_Analysis_Full_Report.pdf)
+- [Luenberger Rendezvous Paper (PDF)](https://nasrallahrafi.me/assets/pdf/Luenberger_Based_Rendezvous_Control_with_Angle_Only_Data.pdf)

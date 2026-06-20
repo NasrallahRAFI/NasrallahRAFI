@@ -13,6 +13,8 @@
 <meta content="TE10 Waveguide Analysis: Air vs Alumina (HFSS) | Rafi Nasrallah" property="og:title"/>
 <meta content="ANSYS HFSS study comparing TE10 propagation in air-filled and alumina-filled WR-90 waveguides with cutoff frequency and S-parameter analysis." property="og:description"/>
 <meta content="https://nasrallahrafi.me/assets/img/Profile_picture.jpg" property="og:image"/>
+<meta property="og:image:width" content="1280"/>
+<meta property="og:image:height" content="1280"/>
 <meta content="https://nasrallahrafi.me/project-waveguide.html" property="og:url"/>
 <meta content="en_US" property="og:locale"/>
 <meta content="summary_large_image" name="twitter:card"/>
@@ -54,25 +56,34 @@
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": "BreadcrumbList",
-  "itemListElement": [
+  "@graph": [
     {
-      "@type": "ListItem",
-      "position": 1,
-      "name": "Home",
-      "item": "https://nasrallahrafi.me/"
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://nasrallahrafi.me/" },
+        { "@type": "ListItem", "position": 2, "name": "Projects", "item": "https://nasrallahrafi.me/#projects" },
+        { "@type": "ListItem", "position": 3, "name": "Rectangular Waveguide TE10 Analysis", "item": "https://nasrallahrafi.me/project-waveguide.html" }
+      ]
     },
     {
-      "@type": "ListItem",
-      "position": 2,
-      "name": "Projects",
-      "item": "https://nasrallahrafi.me/#projects"
-    },
-    {
-      "@type": "ListItem",
-      "position": 3,
-      "name": "Rectangular Waveguide (TE10) Analysis",
-      "item": "https://nasrallahrafi.me/project-waveguide.html"
+      "@type": "TechArticle",
+      "@id": "https://nasrallahrafi.me/project-waveguide.html#article",
+      "headline": "Analysis of TE10 Mode Propagation in WR-90 Rectangular Waveguide — Air vs Alumina Dielectric Loading",
+      "description": "ANSYS HFSS simulation study comparing air-filled and alumina-loaded WR-90 rectangular waveguides. Alumina loading shifts the TE10 cutoff frequency from 6.56 GHz to 2.19 GHz, enabling miniaturisation at the cost of 0.26–0.72 dB dielectric insertion loss.",
+      "url": "https://nasrallahrafi.me/project-waveguide.html",
+      "author": { "@id": "https://nasrallahrafi.me/#rafi-nasrallah" },
+      "datePublished": "2025-01-01",
+      "inLanguage": "en",
+      "keywords": ["ANSYS HFSS", "WR-90 waveguide", "TE10 mode", "alumina dielectric", "cutoff frequency", "S-parameters", "microwave engineering"],
+      "about": [
+        { "@type": "Thing", "name": "Rectangular Waveguide" },
+        { "@type": "Thing", "name": "TE10 Mode Propagation" },
+        { "@type": "Thing", "name": "Dielectric Loading" },
+        { "@type": "Thing", "name": "ANSYS HFSS Simulation" }
+      ],
+      "proficiencyLevel": "Expert",
+      "image": "https://nasrallahrafi.me/assets/img/S_parameter_plot_Air.jpg",
+      "isPartOf": { "@id": "https://nasrallahrafi.me/#website" }
     }
   ]
 }
@@ -220,7 +231,7 @@
 <h3 class="text-xl font-bold text-white mb-3">Air-filled waveguide</h3>
 <p class="text-sm text-slate-300 leading-relaxed mb-6">Baseline result set used to validate the WR-90 air-filled model before comparing the dielectric-loaded guide.</p>
 <div class="flex flex-col items-center gap-8">
-<img alt="S-parameter plot for WR-90 waveguide HFSS simulation" class="gallery-image" decoding="async" height="562" loading="lazy" src="assets/img/S_parameter_plot_Air.jpg" width="1526"/>
+<img alt="S-parameter plot for air-filled WR-90 waveguide — ANSYS HFSS simulation" class="gallery-image" decoding="async" height="562" loading="lazy" src="assets/img/S_parameter_plot_Air.jpg" width="1526"/>
 <div class="grid grid-cols-1 md:grid-cols-2 gap-4 w-full">
 <img alt="Electric field magnitude animation from HFSS waveguide simulation" class="gallery-image" decoding="async" height="558" loading="lazy" src="assets/img/Air_E_Mag_Animation.webp" width="903"/>
 <img alt="Magnetic field magnitude animation from HFSS waveguide simulation" class="gallery-image" decoding="async" height="558" loading="lazy" src="assets/img/Air_H_Mag_Animation_SideView.webp" width="903"/>
@@ -232,7 +243,7 @@
 <h3 class="text-xl font-bold text-white mb-3">Alumina-filled waveguide</h3>
 <p class="text-sm text-slate-300 leading-relaxed mb-6">Dielectric-loaded result set showing the lower cutoff frequency, stronger field concentration, and measurable insertion loss.</p>
 <div class="flex flex-col items-center gap-8">
-<img alt="S-parameter plot for WR-90 waveguide HFSS simulation" class="gallery-image" decoding="async" height="561" loading="lazy" src="assets/img/S_Parameter_Plot_Alumina.jpg" width="1519"/>
+<img alt="S-parameter plot for alumina-loaded WR-90 waveguide — ANSYS HFSS simulation" class="gallery-image" decoding="async" height="561" loading="lazy" src="assets/img/S_Parameter_Plot_Alumina.jpg" width="1519"/>
 <div class="grid grid-cols-1 md:grid-cols-2 gap-4 w-full">
 <img alt="Electric field magnitude animation from HFSS waveguide simulation" class="gallery-image" decoding="async" height="558" loading="lazy" src="assets/img/Alumina_E_Mag_Animation.webp" width="903"/>
 <img alt="Magnetic field magnitude animation from HFSS waveguide simulation" class="gallery-image" decoding="async" height="558" loading="lazy" src="assets/img/Alumina_H_Mag_Animation.webp" width="903"/>

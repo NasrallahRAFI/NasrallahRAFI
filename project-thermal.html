@@ -13,6 +13,8 @@
 <meta content="Transient Thermal Analysis: LCM vs FEA (ANSYS) | Rafi Nasrallah" property="og:title"/>
 <meta content="Transient thermal analysis project comparing lumped capacitance modeling and ANSYS FEA for hot nut insertion process optimization." property="og:description"/>
 <meta content="https://nasrallahrafi.me/assets/img/Profile_picture.jpg" property="og:image"/>
+<meta property="og:image:width" content="1280"/>
+<meta property="og:image:height" content="1280"/>
 <meta content="https://nasrallahrafi.me/project-thermal.html" property="og:url"/>
 <meta content="en_US" property="og:locale"/>
 <meta content="summary_large_image" name="twitter:card"/>
@@ -28,25 +30,34 @@
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": "BreadcrumbList",
-  "itemListElement": [
+  "@graph": [
     {
-      "@type": "ListItem",
-      "position": 1,
-      "name": "Home",
-      "item": "https://nasrallahrafi.me/"
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://nasrallahrafi.me/" },
+        { "@type": "ListItem", "position": 2, "name": "Projects", "item": "https://nasrallahrafi.me/#projects" },
+        { "@type": "ListItem", "position": 3, "name": "Transient Thermal Analysis — FEA vs LCM", "item": "https://nasrallahrafi.me/project-thermal.html" }
+      ]
     },
     {
-      "@type": "ListItem",
-      "position": 2,
-      "name": "Projects",
-      "item": "https://nasrallahrafi.me/#projects"
-    },
-    {
-      "@type": "ListItem",
-      "position": 3,
-      "name": "Transient Thermal Analysis (FEA vs. LCM)",
-      "item": "https://nasrallahrafi.me/project-thermal.html"
+      "@type": "TechArticle",
+      "@id": "https://nasrallahrafi.me/project-thermal.html#article",
+      "headline": "Transient Thermal Analysis of Hot-Nut Insertion in Polycarbonate — FEA vs Lumped Capacitance Model",
+      "description": "Comparative engineering study using Lumped Capacitance Modelling (LCM) and ANSYS FEA (Fusion 360) to validate the heating cycle time for automated hot brass nut insertion into polycarbonate. Includes mesh refinement analysis, heat flux mapping, sensitivity analysis, and transient cooling curves.",
+      "url": "https://nasrallahrafi.me/project-thermal.html",
+      "author": { "@id": "https://nasrallahrafi.me/#rafi-nasrallah" },
+      "datePublished": "2025-06-01",
+      "inLanguage": "en",
+      "keywords": ["ANSYS thermal simulation", "FEA", "lumped capacitance model", "transient thermal analysis", "heat flux", "polycarbonate", "brass insert nut", "Fusion 360"],
+      "about": [
+        { "@type": "Thing", "name": "Finite Element Analysis" },
+        { "@type": "Thing", "name": "Lumped Capacitance Model" },
+        { "@type": "Thing", "name": "Transient Heat Transfer" },
+        { "@type": "Thing", "name": "Industrial Process Validation" }
+      ],
+      "proficiencyLevel": "Expert",
+      "image": "https://nasrallahrafi.me/assets/img/Final_Temperature_Distribution_Nut_Stack.jpg",
+      "isPartOf": { "@id": "https://nasrallahrafi.me/#website" }
     }
   ]
 }

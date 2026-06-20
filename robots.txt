@@ -5,3 +5,34 @@ Disallow: /server.err.log
 Crawl-delay: 1
 Sitemap: https://nasrallahrafi.me/sitemap.xml
 X-IndexNow-Key: a3c66107815495964ea7a8fede11f3fc
+
+# AI crawlers — explicitly permitted
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: CCBot
+Allow: /
+
+User-agent: cohere-ai
+Allow: /
+
+User-agent: meta-externalagent
+Allow: /

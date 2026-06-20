@@ -13,6 +13,8 @@
 <meta content="Luenberger-Based Orbital Rendezvous Control | Rafi Nasrallah" property="og:title"/>
 <meta content="Luenberger rendezvous control project using angle-only data, state feedback, observer design, normalization, and MATLAB/Simulink simulation." property="og:description"/>
 <meta content="https://nasrallahrafi.me/assets/img/Profile_picture.jpg" property="og:image"/>
+<meta property="og:image:width" content="1280"/>
+<meta property="og:image:height" content="1280"/>
 <meta content="https://nasrallahrafi.me/project-rendezvous.html" property="og:url"/>
 <meta content="en_US" property="og:locale"/>
 <meta content="summary_large_image" name="twitter:card"/>
@@ -50,25 +52,34 @@
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": "BreadcrumbList",
-  "itemListElement": [
+  "@graph": [
     {
-      "@type": "ListItem",
-      "position": 1,
-      "name": "Home",
-      "item": "https://nasrallahrafi.me/"
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://nasrallahrafi.me/" },
+        { "@type": "ListItem", "position": 2, "name": "Projects", "item": "https://nasrallahrafi.me/#projects" },
+        { "@type": "ListItem", "position": 3, "name": "Luenberger-Based Orbital Rendezvous Control", "item": "https://nasrallahrafi.me/project-rendezvous.html" }
+      ]
     },
     {
-      "@type": "ListItem",
-      "position": 2,
-      "name": "Projects",
-      "item": "https://nasrallahrafi.me/#projects"
-    },
-    {
-      "@type": "ListItem",
-      "position": 3,
-      "name": "Luenberger-Based Rendezvous Control",
-      "item": "https://nasrallahrafi.me/project-rendezvous.html"
+      "@type": "TechArticle",
+      "@id": "https://nasrallahrafi.me/project-rendezvous.html#article",
+      "headline": "Luenberger Observer-Based Orbital Rendezvous Control Using Angle-Only Measurements",
+      "description": "Design and MATLAB/Simulink simulation of a full autopilot system combining a Luenberger state observer and state-feedback controller to achieve orbital rendezvous using only angular measurements (y=θ). System normalisation is applied to overcome numerical instability in the observability matrix. Convergence validated through phase-plot trajectory and estimation error analysis.",
+      "url": "https://nasrallahrafi.me/project-rendezvous.html",
+      "author": { "@id": "https://nasrallahrafi.me/#rafi-nasrallah" },
+      "datePublished": "2024-01-01",
+      "inLanguage": "en",
+      "keywords": ["Luenberger observer", "orbital rendezvous", "satellite control", "angle-only measurements", "state feedback", "MATLAB Simulink", "control systems", "orbital mechanics"],
+      "about": [
+        { "@type": "Thing", "name": "Luenberger State Observer" },
+        { "@type": "Thing", "name": "Orbital Rendezvous" },
+        { "@type": "Thing", "name": "State Feedback Control" },
+        { "@type": "Thing", "name": "Angle-Only Navigation" }
+      ],
+      "proficiencyLevel": "Expert",
+      "image": "https://nasrallahrafi.me/assets/img/Rendezvous_Trajectory_(Phase_Plot).jpg",
+      "isPartOf": { "@id": "https://nasrallahrafi.me/#website" }
     }
   ]
 }
