@@ -347,7 +347,7 @@
   <div class="header-left">
     <h1>📊 Gantt Chart — End-of-Studies Project (PFE)</h1>
     <div class="subtitle">
-      01 February – 31 May 2026 · Emove Vehicules
+      01 February – 31 May 2026 · Emove Véhicules
     </div>
   </div>
   <div class="header-right">
@@ -368,7 +368,7 @@
 <div class="legend-bar">
   <div class="legend-item"><div class="legend-dot" style="background:linear-gradient(135deg,var(--phase-1-from),var(--phase-1-to))"></div>Phase 1 — Completed</div>
   <div class="legend-item"><div class="legend-dot" style="background:linear-gradient(135deg,var(--phase-2-from),var(--phase-2-to))"></div>Phase 2 — Completed</div>
-  <div class="legend-item"><div class="legend-dot" style="background:linear-gradient(135deg,var(--phase-3-from),var(--phase-3-to))"></div>Phase 3 — In Progress</div>
+  <div class="legend-item"><div class="legend-dot" style="background:linear-gradient(135deg,var(--phase-3-from),var(--phase-3-to))"></div>Phase 3 — Completed</div>
   <div class="legend-item today-legend" id="todayLegend"><div class="legend-dot"></div></div>
 </div>
 
@@ -435,7 +435,7 @@ const PHASES = [
   },
   {
     name: "🛠️ PHASE 3 · Hardware & Prototyping",
-    status: "active", color: "p3",
+    status: "done", color: "p3",
     start: "2026-04-01", end: "2026-05-31",
     tasks: [
       { name: "5.1 Hardware Design & Simulation", start: "2026-04-01", end: "2026-04-30", type: "tech",
@@ -599,7 +599,7 @@ function getTaskStatus(startS, endS) {
 function buildRows(c){
   let rowIdx = 0;
   PHASES.forEach(phase=>{
-    phase.status = getTaskStatus(phase.start, phase.end);
+    phase.status = phase.status || getTaskStatus(phase.start, phase.end);
     const isDone = phase.status==='done';
     const phaseId = 'phase-'+phase.color;
     const phR=document.createElement('div');phR.className=`gantt-row phase-header phase-${phase.status}`;
