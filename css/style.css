@@ -574,6 +574,184 @@ html {
     scroll-behavior: smooth;
 }
 
+/* Experience and education layout */
+.experience-education-layout {
+    display: grid;
+    gap: clamp(2.25rem, 5vw, 4rem);
+}
+
+.experience-block {
+    min-width: 0;
+}
+
+.experience-block-title {
+    margin-bottom: 1.25rem;
+    letter-spacing: -0.025em;
+}
+
+.professional-experience-grid {
+    display: grid;
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+    gap: clamp(1rem, 2vw, 1.35rem);
+}
+
+.professional-experience-grid .timeline-item {
+    display: flex;
+    grid-column: span 2;
+    min-width: 0;
+    flex-direction: column;
+    padding: clamp(1.15rem, 2vw, 1.5rem);
+}
+
+.professional-experience-grid .timeline-item:first-child {
+    grid-column: 1 / -1;
+    padding: clamp(1.35rem, 2.5vw, 1.85rem);
+    background:
+        radial-gradient(circle at 100% 0%, rgba(var(--primary-rgb), 0.13), transparent 28rem),
+        var(--card-bg);
+}
+
+.professional-experience-grid .timeline-item::before {
+    display: none;
+}
+
+.professional-experience-grid .timeline-dot {
+    top: 1.25rem;
+    right: 1.25rem;
+    left: auto;
+    width: 0.62rem;
+    height: 0.62rem;
+}
+
+.professional-experience-grid .timeline-item > a,
+.professional-experience-grid .timeline-item > .flex:last-child {
+    align-self: flex-start;
+    margin-top: auto;
+}
+
+.details-button {
+    position: relative;
+    z-index: 10;
+    display: inline-flex;
+    min-height: 2.4rem;
+    align-self: flex-start;
+    align-items: center;
+    justify-content: center;
+    gap: 0.45rem;
+    margin-top: 1.1rem;
+    border: 1px solid rgba(var(--primary-rgb), 0.72);
+    border-radius: 0.7rem;
+    background: var(--accent-color);
+    color: #06131a;
+    padding: 0.58rem 0.9rem;
+    font-size: 0.78rem;
+    font-weight: 800;
+    line-height: 1;
+    text-decoration: none;
+    box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.24),
+        0 8px 18px -10px rgba(var(--primary-rgb), 0.9);
+    transition:
+        transform 160ms var(--ease-out),
+        filter 160ms ease,
+        border-color 160ms ease,
+        box-shadow 180ms ease;
+}
+
+.details-button svg {
+    width: 0.85rem;
+    height: 0.85rem;
+    margin-left: 0;
+    transition: transform 180ms var(--ease-out);
+}
+
+.details-button:active {
+    transform: scale(0.97);
+}
+
+@media (hover: hover) and (pointer: fine) {
+    .details-button:hover {
+        transform: translateY(-2px);
+        filter: brightness(1.08);
+        border-color: rgba(255, 255, 255, 0.44);
+        box-shadow:
+            inset 0 1px 0 rgba(255, 255, 255, 0.3),
+            0 12px 24px -10px rgba(var(--primary-rgb), 0.95);
+    }
+
+    .details-button:hover svg {
+        transform: translateX(2px);
+    }
+
+    .details-button:hover [data-lucide="arrow-up-right"] {
+        transform: translate(2px, -2px);
+    }
+}
+
+.education-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: clamp(0.85rem, 1.6vw, 1.15rem);
+}
+
+.education-grid .timeline-item-content {
+    height: 100%;
+    min-width: 0;
+    padding: 1.25rem;
+}
+
+.education-grid .timeline-item-content > p:first-child {
+    float: none;
+    width: max-content;
+    margin-bottom: 0.75rem;
+    border: 1px solid rgba(var(--primary-rgb), 0.24);
+    border-radius: 999px;
+    background: rgba(var(--primary-rgb), 0.08);
+    padding: 0.25rem 0.55rem;
+    font-variant-numeric: tabular-nums;
+    line-height: 1;
+}
+
+.education-grid h3,
+.education-grid h4 {
+    margin-bottom: 0.35rem;
+    font-size: clamp(1.05rem, 1.55vw, 1.3rem);
+    line-height: 1.15;
+}
+
+@media (max-width: 1024px) {
+    .professional-experience-grid .timeline-item {
+        grid-column: span 3;
+    }
+
+    .professional-experience-grid .timeline-item:first-child,
+    .professional-experience-grid .timeline-item:last-child {
+        grid-column: 1 / -1;
+    }
+
+    .education-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 640px) {
+    .experience-education-layout {
+        gap: 2.5rem;
+        padding: 1.15rem !important;
+    }
+
+    .professional-experience-grid,
+    .education-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .professional-experience-grid .timeline-item,
+    .professional-experience-grid .timeline-item:first-child,
+    .professional-experience-grid .timeline-item:last-child {
+        grid-column: 1;
+    }
+}
+
 /* Timeline Items */
 .timeline-item {
     position: relative;
