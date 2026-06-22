@@ -26,10 +26,10 @@
 <meta content="@RafiNasrallah" name="twitter:site"/>
 <meta content="index, follow" name="robots"/>
 <meta content="Rafi Nasrallah" name="author"/>
-<link href="/favicon.ico" rel="icon" type="image/x-icon"/>
-<link href="/apple-touch-icon.png" rel="apple-touch-icon"/>
+<link href="/Icon.png" rel="icon" type="image/png"/>
+<link href="/Icon.png" rel="apple-touch-icon"/>
 <link rel="me" href="https://github.com/NasrallahRAFI"/>
-<link rel="me" href="https://twitter.com/RafiNasrallah"/><!-- Load Tailwind CSS --><link href="css/tailwind.min.css" rel="stylesheet"/><!-- Load Lucide Icons --><script crossorigin="anonymous" integrity="sha384-vEpkK5oidsrH6UhRc6tAPlgJZ/qXFwumFY+Kx8vBSeZ7NBag809YZCSmxFYGe/pt" src="https://unpkg.com/lucide@1.20.0/dist/umd/lucide.min.js"></script><link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&amp;family=JetBrains+Mono:wght@500;600&amp;display=swap" rel="stylesheet"/><!-- Link to external minified style.css --><link href="css/style.min.css" rel="stylesheet"/><script src="js/theme.js" defer></script>
+<link rel="me" href="https://twitter.com/RafiNasrallah"/><!-- Load Tailwind CSS --><link href="css/tailwind.min.css" rel="stylesheet"/><!-- Load Lucide Icons --><script crossorigin="anonymous" defer integrity="sha384-vEpkK5oidsrH6UhRc6tAPlgJZ/qXFwumFY+Kx8vBSeZ7NBag809YZCSmxFYGe/pt" src="https://unpkg.com/lucide@1.20.0/dist/umd/lucide.min.js"></script><link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&amp;family=JetBrains+Mono:wght@500;600&amp;display=swap" rel="stylesheet"/><!-- Link to external minified style.css --><link href="css/style.min.css" rel="stylesheet"/><script src="js/theme.js" defer></script>
 <link href="https://fonts.googleapis.com" rel="preconnect"/>
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
 
@@ -146,7 +146,7 @@
                 Rafi Nasrallah
             </a>
 <!-- Desktop Navigation -->
-<nav class="hidden md:flex space-x-8">
+<nav class="hidden lg:flex space-x-8">
 <a class="text-slate-300 hover:text-cyan-400 font-medium transition-colors" href="#about">About</a>
 <a class="text-slate-300 hover:text-cyan-400 font-medium transition-colors" href="#experience">Experience</a>
 <a class="text-slate-300 hover:text-cyan-400 font-medium transition-colors" href="#projects">Projects</a>
@@ -163,13 +163,13 @@
 <span class="theme-toggle-name" id="theme-toggle-name">Glass</span>
 </button>
 <!-- Mobile Menu Button -->
-<button aria-label="Open Menu" class="md:hidden p-2 rounded-lg text-slate-300 hover:bg-slate-800 transition-colors" id="mobile-menu-button">
+<button aria-label="Open Menu" class="lg:hidden p-2 rounded-lg text-slate-300 hover:bg-slate-800 transition-colors" id="mobile-menu-button">
 <i class="w-6 h-6" data-lucide="menu"></i>
 </button>
 </div>
 </div>
 <!-- Mobile Menu (Hidden by default) -->
-<div class="hidden md:hidden absolute w-full glass border-t border-slate-700" id="mobile-menu">
+<div class="hidden lg:hidden absolute w-full glass border-t border-slate-700" id="mobile-menu">
 <nav class="flex flex-col p-4 space-y-2">
 <a class="block py-2 px-3 text-slate-300 hover:bg-slate-800 hover:text-cyan-400 rounded-lg transition-colors" href="#about">About</a>
 <a class="block py-2 px-3 text-slate-300 hover:bg-slate-800 hover:text-cyan-400 rounded-lg transition-colors" href="#experience">Experience</a>
@@ -183,60 +183,45 @@
 </header>
 <main class="container mx-auto px-4 sm:px-6 lg:px-8 py-12" id="main-content">
 <!-- Hero Section -->
-<section aria-labelledby="rafi-nasrallah" class="hero-section py-20 md:py-32 text-center rounded-3xl mb-16 relative" id="hero">
+<section aria-labelledby="rafi-nasrallah" class="hero-section mb-16 relative" id="hero">
 <!-- Animated Blobs -->
 <div class="hero-blob hero-blob-primary w-64 h-64 md:w-96 md:h-96 top-0 left-0 -translate-x-1/2 -translate-y-1/2 blur-3xl rounded-full absolute">
 </div>
 <div class="hero-blob hero-blob-secondary w-64 h-64 md:w-96 md:h-96 bottom-0 right-0 translate-x-1/2 translate-y-1/2 blur-3xl rounded-full absolute" style="animation-delay: -5s;"></div>
-<div class="max-w-4xl mx-auto hero-content px-4 sm:px-6 lg:px-8 fade-in-up">
-<!-- Profile Image -->
-<div class="mx-auto w-80 h-80 rounded-full mb-8 overflow-hidden border-4 border-cyan-500/50 shadow-[0_0_30px_rgba(6,182,212,0.4)] relative group floating">
-<img alt="Rafi Nasrallah — Electrical Engineer, BMS specialist based in Dar Bouazza Morocco" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" fetchpriority="high" height="1280" loading="eager" src="assets/img/Profile_picture.jpg" width="1280"/>
-<div class="absolute inset-0 bg-accent/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+<div class="hero-content hero-layout fade-in-up">
+<div class="hero-copy">
+<p class="hero-availability"><span aria-hidden="true"></span>Open to engineering opportunities</p>
+<h1 class="hero-name" id="rafi-nasrallah">Rafi <span>Nasrallah</span></h1>
+<h2 class="hero-role">Electrical Engineer specializing in embedded systems, IoT and smart BMS</h2>
+<p class="hero-values">Three values guide my work: <strong>integrity, quality and curiosity.</strong></p>
+<div class="hero-contact-list" aria-label="Contact information">
+<span><i aria-hidden="true" data-lucide="map-pin"></i><span>Dar Bouazza, Morocco</span></span>
+<a href="tel:+212671114377"><i aria-hidden="true" data-lucide="phone"></i><span>+212 671 114 377</span></a>
+<a href="mailto:nasrollahrafi@gmail.com"><i aria-hidden="true" data-lucide="mail"></i><span>nasrollahrafi@gmail.com</span></a>
 </div>
+<div class="hero-actions">
+<a class="hero-button hero-button-primary" href="#projects">
+                        View key projects <i aria-hidden="true" data-lucide="arrow-right"></i>
+                    </a>
+<a class="hero-button hero-button-linkedin" href="https://www.linkedin.com/in/nasrallah-rafi-4834862a2" rel="noopener noreferrer" target="_blank">
+<svg aria-hidden="true" viewBox="0 0 24 24"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.34V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28ZM5.32 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12ZM7.1 20.45H3.54V9H7.1v11.45Z"/></svg>
+                        LinkedIn <i aria-hidden="true" data-lucide="arrow-up-right"></i>
+                    </a>
 </div>
-<h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-2 leading-tight" id="rafi-nasrallah">
-                    Rafi <span class="text-transparent bg-clip-text bg-gradient-to-r" style="background-image: linear-gradient(to right, var(--accent-color), #3b82f6);">Nasrallah</span>
-</h1>
-<div class="mb-10 fade-in-up" style="animation-delay: 0.2s;">
-<p class="text-2xl sm:text-3xl md:text-4xl font-extrabold text-slate-100 tracking-tight italic">
-                        Three values guide my work:<br/>
-<span class="hover:text-accent transition-colors duration-300 cursor-default">Integrity,</span>
-<span class="hover:text-accent transition-colors duration-300 cursor-default">Quality,</span>
-<span class="hover:text-accent transition-colors duration-300 cursor-default">and Curiosity</span>
-</p>
-</div>
-<h2 class="text-xl sm:text-2xl text-cyan-200 font-medium mb-8 max-w-2xl mx-auto">
-                    Electrical Engineer — Embedded Systems, IoT &amp; Smart BMS
-                </h2>
-<div class="flex flex-wrap justify-center gap-x-8 gap-y-3 text-slate-300 mb-10 font-medium">
-<span class="flex items-center space-x-2 bg-slate-800/50 px-4 py-2 rounded-full border border-slate-700/50">
-<i class="w-4 h-4 text-accent" data-lucide="map-pin"></i><span>Dar Bouazza, Morocco</span>
-</span>
-<span class="flex items-center space-x-2 bg-slate-800/50 px-4 py-2 rounded-full border border-slate-700/50">
-<i class="w-4 h-4 text-accent" data-lucide="phone"></i><span>+212 671114377</span>
-</span>
-<a class="flex items-center space-x-2 bg-slate-800/50 px-4 py-2 rounded-full border border-slate-700/50 hover:border-accent/50 hover:text-accent transition-colors" href="mailto:nasrollahrafi@gmail.com">
-<i class="w-4 h-4 text-accent" data-lucide="mail"></i><span>nasrollahrafi@gmail.com</span>
+<div class="hero-cv-links" aria-label="Curriculum vitae downloads">
+<a download="" href="assets/pdf/RAFI_Nasrallah_CV_ENG.pdf" rel="noopener noreferrer" target="_blank">
+<i aria-hidden="true" data-lucide="download"></i><span>CV in English</span>
+</a>
+<a download="" href="assets/pdf/RAFI_Nasrallah_CV_FR.pdf" rel="noopener noreferrer" target="_blank">
+<i aria-hidden="true" data-lucide="download"></i><span>CV en français</span>
 </a>
 </div>
-<div class="flex flex-wrap justify-center gap-4 mb-8">
-<a class="inline-flex items-center bg-slate-800 hover:bg-slate-700 text-white font-semibold py-3 px-6 rounded-full border border-slate-600 transition-all hover:-translate-y-1 hover:border-accent group" download="" href="assets/pdf/RAFI_Nasrallah_CV_ENG.pdf" rel="noopener noreferrer" target="_blank">
-<i class="w-5 h-5 mr-2 text-accent group-hover:text-cyan-300" data-lucide="download"></i>
-                        Download CV (English)
-                    </a>
-<a class="inline-flex items-center bg-slate-800 hover:bg-slate-700 text-white font-semibold py-3 px-6 rounded-full border border-slate-600 transition-all hover:-translate-y-1 hover:border-accent group" download="" href="assets/pdf/RAFI_Nasrallah_CV_FR.pdf" rel="noopener noreferrer" target="_blank">
-<i class="w-5 h-5 mr-2 text-accent group-hover:text-cyan-300" data-lucide="download"></i>
-                        Download CV (French)
-                    </a>
-<a class="inline-flex items-center bg-slate-800 hover:bg-slate-700 text-white font-semibold py-3 px-6 rounded-full border border-slate-600 transition-all hover:-translate-y-1 hover:border-accent group" href="https://www.linkedin.com/in/nasrallah-rafi-4834862a2" rel="noopener noreferrer" target="_blank">
-<i class="w-5 h-5 mr-2 text-accent group-hover:text-cyan-300" data-lucide="linkedin"></i>
-                        LinkedIn
-                    </a>
 </div>
-<a class="inline-flex items-center bg-gradient-to-r from-accent to-blue-600 text-white font-bold py-4 px-10 rounded-full text-lg shadow-lg shadow-accent/25 hover:shadow-accent/40 hover:-translate-y-1 transition-all duration-300" href="#projects">
-                    View Key Projects <i class="w-5 h-5 ml-2" data-lucide="arrow-right"></i>
-</a>
+<aside class="hero-profile" aria-label="Profile and contact information">
+<div class="hero-portrait">
+<img alt="Rafi Nasrallah, electrical engineer specializing in embedded systems and battery management" fetchpriority="high" height="1280" loading="eager" src="assets/img/Profile_picture.jpg" width="1280"/>
+</div>
+</aside>
 </div>
 </section>
 <div class="space-y-24 mt-8">
@@ -910,7 +895,7 @@
 <i class="w-6 h-6" data-lucide="mail"></i>
 </a>
 <a aria-label="LinkedIn" class="inline-flex items-center gap-2 text-slate-400 hover:text-cyan-400 transition-colors" href="https://www.linkedin.com/in/nasrallah-rafi-4834862a2" rel="noopener noreferrer" target="_blank">
-<i class="w-6 h-6" data-lucide="linkedin"></i>
+<svg aria-hidden="true" class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.34V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28ZM5.32 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12ZM7.1 20.45H3.54V9H7.1v11.45Z"/></svg>
 <span>LinkedIn</span>
 </a>
 </div>
@@ -918,8 +903,10 @@
 </footer>
 <!-- JavaScript for Interactivity (Embedded) -->
 <script>
-        // Initialize Lucide Icons
-        lucide.createIcons();
+        // Initialize Lucide icons after the deferred library is ready.
+        document.addEventListener('DOMContentLoaded', () => {
+            if (window.lucide) window.lucide.createIcons();
+        });
 
         // 1. Mobile Menu Toggle
         const mobileMenuButton = document.getElementById('mobile-menu-button');

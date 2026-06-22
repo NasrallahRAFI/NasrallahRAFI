@@ -230,6 +230,319 @@ a[class*="rounded"]:active {
     background: radial-gradient(circle, rgba(var(--secondary-rgb), 0.32) 0%, rgba(var(--secondary-rgb), 0.08) 68%, transparent 100%) !important;
 }
 
+.hero-section {
+    isolation: isolate;
+    overflow: hidden;
+    padding: clamp(2rem, 6vw, 5.5rem);
+    border: 1px solid rgba(var(--primary-rgb), 0.2);
+    border-radius: 1rem;
+    background:
+        radial-gradient(circle at 8% 12%, rgba(var(--primary-rgb), 0.13), transparent 28rem),
+        radial-gradient(circle at 92% 88%, rgba(var(--secondary-rgb), 0.11), transparent 26rem),
+        rgba(5, 12, 20, 0.72);
+}
+
+.hero-blob {
+    z-index: -1;
+    opacity: 0.5;
+    pointer-events: none;
+}
+
+.hero-layout {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    width: min(100%, 72rem);
+    margin-inline: auto;
+    grid-template-columns: minmax(0, 1.25fr) minmax(17rem, 0.75fr);
+    align-items: center;
+    gap: clamp(2.5rem, 7vw, 6.5rem);
+    text-align: left;
+}
+
+.hero-copy {
+    min-width: 0;
+}
+
+.hero-availability {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    margin-bottom: 1.15rem;
+    color: rgba(226, 232, 240, 0.82);
+    font-size: 0.84rem;
+    font-weight: 700;
+}
+
+.hero-availability > span {
+    width: 0.58rem;
+    height: 0.58rem;
+    flex: 0 0 0.58rem;
+    border-radius: 50%;
+    background: var(--accent-color);
+    box-shadow: 0 0 0 0.28rem rgba(var(--primary-rgb), 0.12);
+}
+
+.hero-name {
+    color: #fff;
+    font-size: clamp(3.25rem, 7vw, 5.75rem);
+    font-weight: 900;
+    letter-spacing: -0.04em;
+    line-height: 0.94;
+}
+
+.hero-name span {
+    color: var(--accent-color);
+}
+
+.hero-role {
+    max-width: 38rem;
+    margin-top: 1.35rem;
+    color: rgba(241, 245, 249, 0.94);
+    font-size: clamp(1.25rem, 2.2vw, 1.75rem);
+    font-weight: 650;
+    letter-spacing: -0.02em;
+    line-height: 1.25;
+}
+
+.hero-values {
+    max-width: 40rem;
+    margin-top: 1rem;
+    color: rgba(203, 213, 225, 0.82);
+    font-size: clamp(1rem, 1.4vw, 1.12rem);
+    line-height: 1.65;
+}
+
+.hero-values strong {
+    color: #f8fafc;
+    font-weight: 700;
+}
+
+.hero-contact-list {
+    display: flex;
+    max-width: 42rem;
+    flex-wrap: wrap;
+    gap: 0.45rem 1.25rem;
+    margin-top: 1.65rem;
+}
+
+.hero-contact-list > a,
+.hero-contact-list > span {
+    display: inline-flex;
+    min-height: 2rem;
+    align-items: center;
+    gap: 0.45rem;
+    color: rgba(203, 213, 225, 0.86);
+    font-size: 0.86rem;
+    font-weight: 600;
+    transition: color 160ms ease;
+}
+
+.hero-contact-list svg {
+    width: 0.95rem;
+    height: 0.95rem;
+    flex: 0 0 0.95rem;
+    color: var(--accent-color);
+}
+
+.hero-actions,
+.hero-cv-links {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.hero-actions {
+    gap: 0.75rem;
+    margin-top: 2rem;
+}
+
+.hero-button {
+    display: inline-flex;
+    min-height: 3rem;
+    align-items: center;
+    justify-content: center;
+    gap: 0.55rem;
+    border-radius: 0.75rem;
+    padding: 0.78rem 1.05rem;
+    font-size: 0.92rem;
+    font-weight: 800;
+    line-height: 1;
+    text-decoration: none;
+    transition:
+        transform 160ms var(--ease-out),
+        background-color 160ms ease,
+        border-color 160ms ease,
+        box-shadow 180ms ease;
+}
+
+.hero-button > svg {
+    width: 1.05rem;
+    height: 1.05rem;
+    flex: 0 0 1.05rem;
+    transition: transform 180ms var(--ease-out);
+}
+
+.hero-button-primary {
+    border: 1px solid var(--accent-color);
+    background: var(--accent-color);
+    color: #041116;
+}
+
+.hero-button-linkedin {
+    border: 1px solid #0a66c2;
+    background: #0a66c2;
+    color: #fff;
+}
+
+.hero-button-linkedin > svg:first-child {
+    fill: currentColor;
+}
+
+.hero-button:active {
+    transform: scale(0.97);
+}
+
+.hero-cv-links {
+    gap: 0.65rem 1.25rem;
+    margin-top: 1.15rem;
+}
+
+.hero-cv-links a {
+    display: inline-flex;
+    min-height: 2.75rem;
+    align-items: center;
+    gap: 0.45rem;
+    border-bottom: 1px solid rgba(var(--primary-rgb), 0.38);
+    color: rgba(226, 232, 240, 0.9);
+    font-size: 0.86rem;
+    font-weight: 700;
+    transition:
+        color 160ms ease,
+        border-color 160ms ease,
+        transform 160ms var(--ease-out);
+}
+
+.hero-cv-links svg {
+    width: 0.95rem;
+    height: 0.95rem;
+    color: var(--accent-color);
+}
+
+.hero-profile {
+    display: flex;
+    min-width: 0;
+    justify-content: center;
+}
+
+.hero-portrait {
+    position: relative;
+    width: min(100%, 21rem);
+    aspect-ratio: 4 / 5;
+    overflow: hidden;
+    border: 1px solid rgba(var(--primary-rgb), 0.62);
+    border-radius: 1rem;
+    background: rgba(15, 23, 42, 0.8);
+    box-shadow: 0.7rem 0.7rem 0 rgba(var(--primary-rgb), 0.12);
+}
+
+.hero-portrait img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: 50% 42%;
+    transition: transform 240ms var(--ease-out);
+}
+
+@media (hover: hover) and (pointer: fine) {
+    .hero-contact-list a:hover {
+        color: var(--accent-color);
+    }
+
+    .hero-button:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 0 rgba(0, 0, 0, 0.22);
+    }
+
+    .hero-button:hover > svg:last-child {
+        transform: translateX(2px);
+    }
+
+    .hero-button-linkedin:hover > svg:last-child {
+        transform: translate(2px, -2px);
+    }
+
+    .hero-cv-links a:hover {
+        border-color: var(--accent-color);
+        color: var(--accent-color);
+        transform: translateY(-1px);
+    }
+
+    .hero-portrait:hover img {
+        transform: scale(1.025);
+    }
+}
+
+@media (max-width: 900px) {
+    .hero-layout {
+        max-width: 44rem;
+        grid-template-columns: 1fr;
+        gap: 2.5rem;
+        text-align: center;
+    }
+
+    .hero-profile {
+        order: -1;
+    }
+
+    .hero-portrait {
+        width: clamp(14rem, 48vw, 18rem);
+    }
+
+    .hero-role,
+    .hero-values {
+        margin-inline: auto;
+    }
+
+    .hero-contact-list,
+    .hero-actions,
+    .hero-cv-links {
+        justify-content: center;
+        margin-inline: auto;
+    }
+}
+
+@media (max-width: 520px) {
+    .hero-section {
+        padding: 1.5rem 1rem 2rem;
+    }
+
+    .hero-name {
+        font-size: clamp(2.8rem, 15vw, 4rem);
+    }
+
+    .hero-contact-list {
+        max-width: 19rem;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0.15rem;
+    }
+
+    .hero-contact-list > a,
+    .hero-contact-list > span {
+        justify-content: center;
+    }
+
+    .hero-actions {
+        width: 100%;
+        flex-direction: column;
+    }
+
+    .hero-button {
+        width: 100%;
+    }
+}
+
 @keyframes blob-float {
     0% { transform: translate(0, 0) scale(1) rotate(0deg); }
     33% { transform: translate(4vw, -6vh) scale(1.05) rotate(10deg); }
