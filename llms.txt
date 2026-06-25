@@ -12,6 +12,7 @@ corrugated-web beam welding and assembly system (OMPIC #65133, November 2025).
 
 ## Projects
 
+- [Smart BMS for Electric Mobility](https://nasrallahrafi.me/project-smart-bms.html): End-of-studies internship project at Emove Véhicules focused on LFP electric scooter battery reliability, ECM/UKF/LSTM SOC estimation, STM32-based BMS hardware architecture, battery quality procedures, and industrial supervision.
 - [Rectangular Waveguide TE10 Analysis](https://nasrallahrafi.me/project-waveguide.html): ANSYS HFSS simulation of WR-90 waveguide with air and alumina dielectric loading. Key result: alumina loading shifts the cutoff frequency from 6.56 GHz to 2.19 GHz with measured insertion loss of 0.26–0.72 dB.
 - [Transient Thermal Analysis — FEA vs LCM](https://nasrallahrafi.me/project-thermal.html): Comparative study of Lumped Capacitance Modelling vs ANSYS FEA (Fusion 360) for hot-nut insertion cycle validation in polycarbonate. Full report available as PDF.
 - [Luenberger-Based Orbital Rendezvous Control](https://nasrallahrafi.me/project-rendezvous.html): Full autopilot system (Luenberger Observer + State-Feedback Controller) for satellite rendezvous using angle-only measurements, with system normalisation to overcome numerical instability. Implemented in MATLAB/Simulink.
