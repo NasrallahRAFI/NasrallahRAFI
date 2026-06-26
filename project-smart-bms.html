@@ -4,14 +4,14 @@
 <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Smart BMS for Electric Mobility | Rafi Nasrallah</title>
-<meta content="End-of-studies engineering internship project focused on smart BMS design for LFP electric scooter battery packs, combining ECM/UKF/LSTM SOC estimation, STM32-based embedded hardware, battery quality procedures, and industrial supervision." name="description"/>
-<meta content="Smart BMS, Battery Management System, LFP battery, LiFePO4, electric mobility, STM32, SOC estimation, UKF, LSTM, ECM, Altium Designer, embedded systems, battery modeling, industrial supervision, Rafi Nasrallah" name="keywords"/>
+<title>Smart BMS: Advanced SOC Estimation &amp; Active Balancing | Rafi Nasrallah</title>
+<meta content="Extract from internship: Algorithmic and hardware development of a Smart BMS, addressing advanced SOC estimation and robust active balancing (bidirectional synchronous flyback)." name="description"/>
+<meta content="Smart BMS, Active Balancing, Synchronous Flyback, MATLAB, Simulink, SOC estimation, LFP battery, STM32, Altium Designer, Rafi Nasrallah" name="keywords"/>
 <link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://unpkg.com" rel="preconnect"/><link href="https://nasrallahrafi.me/project-smart-bms.html" rel="canonical"/>
 <meta content="article" property="og:type"/>
 <meta content="Rafi Nasrallah Portfolio" property="og:site_name"/>
-<meta content="Smart BMS for Electric Mobility | Rafi Nasrallah" property="og:title"/>
-<meta content="A professional engineering case study on LFP scooter battery reliability, SOC estimation, STM32-based BMS architecture, hardware design, and industrial supervision." property="og:description"/>
+<meta content="Smart BMS: Advanced SOC Estimation &amp; Active Balancing | Rafi Nasrallah" property="og:title"/>
+<meta content="Extract from internship: Algorithmic and hardware development of a Smart BMS, addressing advanced SOC estimation and robust active balancing (bidirectional synchronous flyback)." property="og:description"/>
 <!-- TODO: replace with dedicated BMS hero image -->
 <meta content="https://nasrallahrafi.me/assets/img/Profile_picture.png" property="og:image"/>
 <meta content="1254" property="og:image:width"/>
@@ -19,8 +19,8 @@
 <meta content="https://nasrallahrafi.me/project-smart-bms.html" property="og:url"/>
 <meta content="en_US" property="og:locale"/>
 <meta content="summary_large_image" name="twitter:card"/>
-<meta content="Smart BMS for Electric Mobility | Rafi Nasrallah" name="twitter:title"/>
-<meta content="A professional engineering case study on LFP scooter battery reliability, SOC estimation, STM32-based BMS architecture, hardware design, and industrial supervision." name="twitter:description"/>
+<meta content="Smart BMS: Advanced SOC Estimation &amp; Active Balancing | Rafi Nasrallah" name="twitter:title"/>
+<meta content="Extract from internship: Algorithmic and hardware development of a Smart BMS, addressing advanced SOC estimation and robust active balancing (bidirectional synchronous flyback)." name="twitter:description"/>
 <meta content="https://nasrallahrafi.me/assets/img/Profile_picture.png" name="twitter:image"/>
 <meta content="@RafiNasrallah" name="twitter:creator"/>
 <meta content="@RafiNasrallah" name="twitter:site"/>
@@ -48,17 +48,17 @@
     {
       "@type": "TechArticle",
       "@id": "https://nasrallahrafi.me/project-smart-bms.html#article",
-      "headline": "Smart BMS for Electric Mobility",
-      "description": "End-of-studies engineering internship project focused on smart BMS design for LFP electric scooter battery packs, combining ECM/UKF/LSTM SOC estimation, STM32-based embedded hardware, battery quality procedures, and industrial supervision.",
+      "headline": "Smart BMS: Advanced SOC Estimation & Active Balancing",
+      "description": "Extract from internship: Algorithmic and hardware development of a Smart BMS, addressing advanced SOC estimation and robust active balancing (bidirectional synchronous flyback).",
       "url": "https://nasrallahrafi.me/project-smart-bms.html",
       "author": { "@id": "https://nasrallahrafi.me/#rafi-nasrallah" },
       "datePublished": "2026-05-31",
       "inLanguage": "en",
-      "keywords": ["Smart BMS", "Battery Management System", "LFP battery", "LiFePO4", "electric mobility", "STM32", "SOC estimation", "UKF", "LSTM", "ECM", "Altium Designer", "embedded systems", "battery modeling", "industrial supervision"],
+      "keywords": ["Smart BMS", "Active Balancing", "Synchronous Flyback", "MATLAB", "Simulink", "SOC estimation", "LFP battery", "STM32", "Altium Designer"],
       "about": [
         { "@type": "Thing", "name": "Battery Management System" },
-        { "@type": "Thing", "name": "Embedded Systems" },
-        { "@type": "Thing", "name": "Electric Mobility" },
+        { "@type": "Thing", "name": "Active Balancing" },
+        { "@type": "Thing", "name": "MATLAB Simulink" },
         { "@type": "Thing", "name": "State-of-Charge Estimation" }
       ],
       "proficiencyLevel": "Advanced",
@@ -88,6 +88,12 @@
 <span class="theme-toggle-copy">Theme</span>
 <span class="theme-toggle-name" id="theme-toggle-name">Glass</span>
 </button>
+<a aria-label="Afficher la version française" class="language-toggle-button text-slate-200 transition-colors flex items-center justify-center" href="project-smart-bms-fr.html" hreflang="fr" lang="fr" title="Version française">
+<i aria-hidden="true" class="language-toggle-icon" data-lucide="languages"></i>
+<span class="language-toggle-current">EN</span>
+<span class="language-toggle-arrow" aria-hidden="true">→</span>
+<span class="language-toggle-target">FR</span>
+</a>
 <a class="inline-flex items-center text-slate-300 hover:text-cyan-400 font-medium transition-colors text-sm" href="index.html#projects">
 <i class="w-4 h-4 mr-2" data-lucide="arrow-left"></i><span class="hidden sm:inline">Back</span>
 </a>
@@ -95,166 +101,223 @@
 </div>
 </header>
 <main class="container mx-auto px-4 sm:px-6 lg:px-8 py-12" id="main-content">
-<article class="max-w-4xl mx-auto glass p-6 sm:p-8 md:p-12 rounded-2xl relative overflow-hidden">
+<article class="smart-bms-case max-w-6xl mx-auto glass p-6 sm:p-8 md:p-12 rounded-2xl relative overflow-hidden">
 <div aria-hidden="true" class="absolute top-0 right-0 w-96 h-96 bg-cyan-500/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 pointer-events-none"></div>
 
-<section aria-labelledby="smart-bms-for-electric-mobility" class="content-section text-center relative z-10">
-<span class="text-xs font-bold text-white bg-cyan-600/80 px-4 py-1.5 rounded-full uppercase tracking-wider mb-6 inline-block shadow-lg shadow-cyan-500/20">Battery Intelligence &amp; Embedded Systems</span>
-<h1 class="text-3xl md:text-5xl font-extrabold text-white mb-4 leading-tight" id="smart-bms-for-electric-mobility">Smart BMS for Electric Mobility</h1>
-<p class="text-lg font-medium text-cyan-200 mb-4">End-of-Studies Internship at Emove Véhicules</p>
-<p class="text-lg text-slate-300 leading-relaxed max-w-3xl mx-auto mb-8">Development of a smart battery management architecture for LFP electric scooter packs, combining battery modeling, SOC estimation, embedded hardware design, safety supervision, and industrial battery quality procedures.</p>
-<div class="flex flex-wrap justify-center gap-2 mb-8" aria-label="Project technologies">
-<span class="bg-cyan-900/40 text-cyan-200 text-sm font-medium px-3 py-1.5 rounded-full border border-cyan-700/50">BMS</span>
-<span class="bg-cyan-900/40 text-cyan-200 text-sm font-medium px-3 py-1.5 rounded-full border border-cyan-700/50">LFP Batteries</span>
-<span class="bg-cyan-900/40 text-cyan-200 text-sm font-medium px-3 py-1.5 rounded-full border border-cyan-700/50">STM32</span>
-<span class="bg-cyan-900/40 text-cyan-200 text-sm font-medium px-3 py-1.5 rounded-full border border-cyan-700/50">ECM / UKF / LSTM</span>
-<span class="bg-cyan-900/40 text-cyan-200 text-sm font-medium px-3 py-1.5 rounded-full border border-cyan-700/50">Altium Designer</span>
-<span class="bg-cyan-900/40 text-cyan-200 text-sm font-medium px-3 py-1.5 rounded-full border border-cyan-700/50">Electric Mobility</span>
-<span class="bg-cyan-900/40 text-cyan-200 text-sm font-medium px-3 py-1.5 rounded-full border border-cyan-700/50">Industrial Supervision</span>
+<section aria-labelledby="smart-bms-algorithm" class="smart-bms-hero content-section relative z-10">
+<div class="smart-bms-hero-copy">
+<span class="smart-bms-eyebrow">Internship engineering extract</span>
+<h1 class="smart-bms-title" id="smart-bms-algorithm">Smart BMS: Advanced SOC Estimation &amp; Active Balancing</h1>
+<p class="smart-bms-subtitle">Emove Véhicules · Battery intelligence, embedded hardware, and active energy redistribution</p>
+<p class="smart-bms-lede">A focused case study on the algorithmic and hardware engineering of a Smart Battery Management System. The work centers on robust State-of-Charge estimation under dynamic scooter loads and an active balancing architecture based on bidirectional synchronous flyback energy transfer.</p>
+<div class="smart-bms-chip-row" aria-label="Project technologies">
+<span>BMS</span>
+<span>Active balancing</span>
+<span>Synchronous flyback</span>
+<span>STM32</span>
+<span>MATLAB/Simulink</span>
+<span>Altium Designer</span>
 </div>
-<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 text-left">
-<div class="bg-slate-800/50 p-4 rounded-xl border border-slate-700/50"><p class="text-xs font-bold text-cyan-400 uppercase tracking-wider mb-2">Duration</p><p class="font-bold text-white">Feb 2026 – May 2026</p></div>
-<div class="bg-slate-800/50 p-4 rounded-xl border border-slate-700/50"><p class="text-xs font-bold text-cyan-400 uppercase tracking-wider mb-2">Company</p><p class="font-bold text-white">Emove Véhicules</p></div>
-<div class="bg-slate-800/50 p-4 rounded-xl border border-slate-700/50"><p class="text-xs font-bold text-cyan-400 uppercase tracking-wider mb-2">Application</p><p class="font-bold text-white">Electric scooters</p></div>
-<div class="bg-slate-800/50 p-4 rounded-xl border border-slate-700/50"><p class="text-xs font-bold text-cyan-400 uppercase tracking-wider mb-2">Battery type</p><p class="font-bold text-white">LiFePO4 / LFP</p></div>
-<div class="bg-slate-800/50 p-4 rounded-xl border border-cyan-500/30 sm:col-span-2"><p class="text-xs font-bold text-cyan-400 uppercase tracking-wider mb-2">Role</p><p class="font-bold text-white">Electrical &amp; Embedded Systems Engineering Intern</p></div>
 </div>
+<aside class="bg-slate-800/40 backdrop-blur-md border border-slate-700/50 rounded-3xl p-6 md:p-8 shadow-2xl relative overflow-hidden" aria-label="Smart BMS engineering scope">
+    <!-- Ambient glow -->
+    <div class="absolute -top-10 -right-10 w-40 h-40 bg-cyan-500/10 blur-3xl rounded-full"></div>
+
+    <div class="mb-8 border-b border-slate-700/50 pb-4">
+        <h3 class="text-xs font-bold text-slate-300 tracking-[0.2em] uppercase">Engineering Scope</h3>
+    </div>
+
+    <dl class="space-y-3">
+        <!-- Item 1 -->
+        <div class="group bg-slate-900/40 border border-slate-700/50 rounded-xl p-4 md:p-5 flex items-center gap-4 md:gap-5 transition-all duration-300 hover:border-red-500/30 hover:bg-slate-800/60">
+            <div class="flex-shrink-0 w-10 h-10 rounded-full bg-slate-800/50 flex items-center justify-center border border-slate-700/50 group-hover:border-red-500/50 group-hover:shadow-[0_0_12px_rgba(248,113,113,0.3)] transition-all">
+                <i class="w-4 h-4 text-red-400" data-lucide="alert-circle"></i>
+            </div>
+            <div class="flex flex-col justify-center">
+                <dt class="text-[11px] font-bold text-slate-400/70 uppercase tracking-widest mb-0.5 group-hover:text-red-300/90 transition-colors">Primary Faults</dt>
+                <dd class="text-[15px] text-slate-200 font-medium leading-tight">Premature cut-offs & severe SOC instability</dd>
+            </div>
+        </div>
+
+        <!-- Item 2 -->
+        <div class="group bg-slate-900/40 border border-slate-700/50 rounded-xl p-4 md:p-5 flex items-center gap-4 md:gap-5 transition-all duration-300 hover:border-cyan-500/30 hover:bg-slate-800/60">
+            <div class="flex-shrink-0 w-10 h-10 rounded-full bg-slate-800/50 flex items-center justify-center border border-slate-700/50 group-hover:border-cyan-500/50 group-hover:shadow-[0_0_12px_rgba(6,182,212,0.3)] transition-all">
+                <i class="w-4 h-4 text-cyan-400" data-lucide="cpu"></i>
+            </div>
+            <div class="flex flex-col justify-center">
+                <dt class="text-[11px] font-bold text-slate-400/70 uppercase tracking-widest mb-0.5 group-hover:text-cyan-300/90 transition-colors">Algorithmic Path</dt>
+                <dd class="text-[15px] text-slate-200 font-medium leading-tight">ECM · UKF · LSTM residual correction</dd>
+            </div>
+        </div>
+
+        <!-- Item 3 -->
+        <div class="group bg-slate-900/40 border border-slate-700/50 rounded-xl p-4 md:p-5 flex items-center gap-4 md:gap-5 transition-all duration-300 hover:border-emerald-500/30 hover:bg-slate-800/60">
+            <div class="flex-shrink-0 w-10 h-10 rounded-full bg-slate-800/50 flex items-center justify-center border border-slate-700/50 group-hover:border-emerald-500/50 group-hover:shadow-[0_0_12px_rgba(16,185,129,0.3)] transition-all">
+                <i class="w-4 h-4 text-emerald-400" data-lucide="check-circle-2"></i>
+            </div>
+            <div class="flex flex-col justify-center">
+                <dt class="text-[11px] font-bold text-slate-400/70 uppercase tracking-widest mb-0.5 group-hover:text-emerald-300/90 transition-colors">Validation Layer</dt>
+                <dd class="text-[15px] text-slate-200 font-medium leading-tight">MiL scenarios, then HiL prototype</dd>
+            </div>
+        </div>
+
+        <!-- Item 4 -->
+        <div class="group bg-slate-900/40 border border-slate-700/50 rounded-xl p-4 md:p-5 flex items-center gap-4 md:gap-5 transition-all duration-300 hover:border-purple-500/30 hover:bg-slate-800/60">
+            <div class="flex-shrink-0 w-10 h-10 rounded-full bg-slate-800/50 flex items-center justify-center border border-slate-700/50 group-hover:border-purple-500/50 group-hover:shadow-[0_0_12px_rgba(168,85,247,0.3)] transition-all">
+                <i class="w-4 h-4 text-purple-400" data-lucide="circuit-board"></i>
+            </div>
+            <div class="flex flex-col justify-center">
+                <dt class="text-[11px] font-bold text-slate-400/70 uppercase tracking-widest mb-0.5 group-hover:text-purple-300/90 transition-colors">Hardware Target</dt>
+                <dd class="text-[15px] text-slate-200 font-medium leading-tight">6-layer industrial BMS architecture</dd>
+            </div>
+        </div>
+    </dl>
+
+
+</aside>
 </section>
 
-<section aria-labelledby="industrial-context" class="content-section relative z-10">
-<h2 class="text-2xl font-bold text-white mb-6 flex items-center space-x-3" id="industrial-context"><i class="w-8 h-8 text-cyan-400" data-lucide="factory"></i><span>Industrial Context</span></h2>
-<p class="text-slate-300 leading-relaxed text-lg mb-6">Emove Véhicules develops electric mobility solutions in an industrial environment where battery reliability, repeatable assembly, and clear production data directly influence vehicle availability and customer confidence. The internship focused on connecting battery engineering with practical manufacturing constraints.</p>
-<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-<div class="bg-slate-800/50 p-6 rounded-xl border border-slate-700/50"><h3 class="font-bold text-cyan-400 mb-3">Electric Mobility</h3><p class="text-sm text-slate-300 leading-relaxed">Electric scooters require compact, efficient battery packs that remain predictable under changing load and operating conditions.</p></div>
-<div class="bg-slate-800/50 p-6 rounded-xl border border-slate-700/50"><h3 class="font-bold text-cyan-400 mb-3">Battery Reliability</h3><p class="text-sm text-slate-300 leading-relaxed">Reliable state estimation and protective supervision help operators use available energy while respecting cell and pack limits.</p></div>
-<div class="bg-slate-800/50 p-6 rounded-xl border border-slate-700/50"><h3 class="font-bold text-cyan-400 mb-3">Industrial Production</h3><p class="text-sm text-slate-300 leading-relaxed">Quality procedures and traceable production data support more consistent pack assembly, diagnosis, and follow-up.</p></div>
-</div>
-</section>
-
-<section aria-labelledby="problem-statement" class="content-section relative z-10">
+<section aria-labelledby="problem-statement" class="content-section relative z-10 mt-12">
 <h2 class="text-2xl font-bold text-white mb-6 flex items-center space-x-3" id="problem-statement"><i class="w-8 h-8 text-cyan-400" data-lucide="alert-triangle"></i><span>Problem Statement</span></h2>
-<p class="text-slate-300 leading-relaxed text-lg mb-6">Field observations indicated premature shutdown near a displayed 20% SOC and gauge instability during abrupt acceleration. The engineering diagnosis considered pack-level estimation, cell dispersion, load transients, and production quality together rather than treating the issue as a single isolated fault.</p>
+<p class="text-slate-300 leading-relaxed text-lg mb-6">Field observations of the electric scooter fleet revealed critical performance anomalies, specifically:</p>
 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-<div class="bg-slate-800/50 p-6 rounded-xl border border-slate-700/50"><h3 class="font-bold text-white mb-2">Premature shutdowns</h3><p class="text-sm text-slate-300 leading-relaxed">Voltage sag under load could trigger protective behavior before the displayed energy estimate reached zero.</p></div>
-<div class="bg-slate-800/50 p-6 rounded-xl border border-slate-700/50"><h3 class="font-bold text-white mb-2">SOC instability</h3><p class="text-sm text-slate-300 leading-relaxed">Rapid current changes could expose limitations in a gauge that relied on insufficiently dynamic correction.</p></div>
-<div class="bg-slate-800/50 p-6 rounded-xl border border-slate-700/50"><h3 class="font-bold text-white mb-2">Cell heterogeneity</h3><p class="text-sm text-slate-300 leading-relaxed">Capacity, internal resistance, and assembly variation could cause the weakest cell group to constrain usable pack energy.</p></div>
-<div class="bg-slate-800/50 p-6 rounded-xl border border-slate-700/50"><h3 class="font-bold text-white mb-2">LFP estimation difficulty</h3><p class="text-sm text-slate-300 leading-relaxed">The flat LFP OCV-SOC region makes voltage-only estimation less informative across a large part of the operating range.</p></div>
+<div class="bg-slate-800/50 p-6 rounded-xl border border-slate-700/50"><h3 class="font-bold text-white mb-2">Premature Power Cut-offs</h3><p class="text-sm text-slate-300 leading-relaxed">The vehicle would experience abrupt power loss, despite the dashboard State-of-Charge (SOC) indicator displaying approximately 20% remaining capacity.</p></div>
+<div class="bg-slate-800/50 p-6 rounded-xl border border-slate-700/50"><h3 class="font-bold text-white mb-2">Severe SOC Instability</h3><p class="text-sm text-slate-300 leading-relaxed">The estimated SOC exhibited rapid, erratic drops under high-current discharge profiles (e.g., strong accelerations), indicating severe instability in the fuel gauge algorithm.</p></div>
 </div>
 </section>
 
-<section aria-labelledby="engineering-approach" class="content-section relative z-10">
-<h2 class="text-2xl font-bold text-white mb-6 flex items-center space-x-3" id="engineering-approach"><i class="w-8 h-8 text-cyan-400" data-lucide="git-branch"></i><span>Engineering Approach</span></h2>
-<p class="text-slate-300 leading-relaxed text-lg mb-6">The proposed approach linked field diagnosis, battery quality, model-based estimation, embedded electronics, and production supervision into one engineering workflow.</p>
-<div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
-<div class="bg-slate-800/50 p-6 rounded-xl border border-slate-700/50"><h3 class="font-bold text-cyan-400 mb-2">Battery quality procedure</h3><p class="text-sm text-slate-300">Cell qualification, matching, assembly checks, and traceability were structured to help limit pack variability.</p></div>
-<div class="bg-slate-800/50 p-6 rounded-xl border border-slate-700/50"><h3 class="font-bold text-cyan-400 mb-2">Modeling &amp; estimation</h3><p class="text-sm text-slate-300">An ECM, UKF, and learned residual correction were combined to support more robust SOC estimation.</p></div>
-<div class="bg-slate-800/50 p-6 rounded-xl border border-slate-700/50"><h3 class="font-bold text-cyan-400 mb-2">Embedded BMS architecture</h3><p class="text-sm text-slate-300">A proposed STM32-based architecture linked measurement, protection, balancing, communication, and supervision.</p></div>
-<div class="bg-slate-800/50 p-6 rounded-xl border border-slate-700/50"><h3 class="font-bold text-cyan-400 mb-2">Industrial supervision</h3><p class="text-sm text-slate-300">Pack and production data were organized for monitoring, diagnosis, quality control, and KPI analysis.</p></div>
-</div>
-<div class="bg-slate-800/50 p-6 rounded-xl border border-cyan-500/30" role="img" aria-label="Engineering process from field diagnosis through battery quality, digital twin, smart estimation, embedded BMS, and supervision.">
-<div aria-hidden="true" class="flex flex-wrap items-center justify-center gap-3 text-sm font-bold text-white">
-<span class="px-3 py-2 rounded-lg bg-cyan-900/40 border border-cyan-700/50">Field Diagnosis</span><i class="w-4 h-4 text-cyan-400" data-lucide="arrow-right"></i>
-<span class="px-3 py-2 rounded-lg bg-cyan-900/40 border border-cyan-700/50">Battery Quality</span><i class="w-4 h-4 text-cyan-400" data-lucide="arrow-right"></i>
-<span class="px-3 py-2 rounded-lg bg-cyan-900/40 border border-cyan-700/50">Digital Twin</span><i class="w-4 h-4 text-cyan-400" data-lucide="arrow-right"></i>
-<span class="px-3 py-2 rounded-lg bg-cyan-900/40 border border-cyan-700/50">Smart Estimation</span><i class="w-4 h-4 text-cyan-400" data-lucide="arrow-right"></i>
-<span class="px-3 py-2 rounded-lg bg-cyan-900/40 border border-cyan-700/50">Embedded BMS</span><i class="w-4 h-4 text-cyan-400" data-lucide="arrow-right"></i>
-<span class="px-3 py-2 rounded-lg bg-cyan-900/40 border border-cyan-700/50">Supervision</span>
-</div>
-<ol class="sr-only"><li>Field Diagnosis</li><li>Battery Quality</li><li>Digital Twin</li><li>Smart Estimation</li><li>Embedded BMS</li><li>Supervision</li></ol>
-</div>
-</section>
+<section aria-labelledby="probable-causes" class="content-section relative z-10 mt-12">
+<h2 class="text-2xl font-bold text-white mb-6 flex items-center space-x-3" id="probable-causes"><i class="w-8 h-8 text-cyan-400" data-lucide="search"></i><span>Probable Causes</span></h2>
+<p class="text-slate-300 leading-relaxed text-lg mb-6">A root-cause analysis identified three primary factors contributing to these failures:</p>
 
-<section aria-labelledby="smart-bms-architecture" class="content-section relative z-10">
-<h2 class="text-2xl font-bold text-white mb-6 flex items-center space-x-3" id="smart-bms-architecture"><i class="w-8 h-8 text-cyan-400" data-lucide="layers"></i><span>Smart BMS Architecture</span></h2>
-<div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
-<div class="bg-slate-800/50 p-6 rounded-xl border border-slate-700/50"><h3 class="text-xl font-bold text-white mb-3">Equivalent Circuit Model</h3><p class="text-sm text-slate-300 mb-4">A dynamic battery model represents the voltage response needed by the estimator.</p><div class="flex flex-wrap gap-2 text-xs text-cyan-200"><span>OCV-SOC curve</span><span>R0</span><span>RC branches</span><span>Hysteresis</span><span>Temperature influence</span></div></div>
-<div class="bg-slate-800/50 p-6 rounded-xl border border-slate-700/50"><h3 class="text-xl font-bold text-white mb-3">Unscented Kalman Filter</h3><p class="text-sm text-slate-300 mb-4">The nonlinear observer combines model prediction with measured terminal voltage.</p><div class="flex flex-wrap gap-2 text-xs text-cyan-200"><span>State estimation</span><span>Voltage innovation</span><span>Covariance</span><span>Nonlinear observer</span><span>SOC correction</span></div></div>
-<div class="bg-slate-800/50 p-6 rounded-xl border border-slate-700/50"><h3 class="text-xl font-bold text-white mb-3">LSTM Residual Correction</h3><p class="text-sm text-slate-300 mb-4">A sequence model learns residual behavior not fully represented by the physical model.</p><div class="flex flex-wrap gap-2 text-xs text-cyan-200"><span>Sequence window</span><span>Residual learning</span><span>PyTorch</span><span>SOC correction</span><span>Dynamic compensation</span></div></div>
-<div class="bg-slate-800/50 p-6 rounded-xl border border-slate-700/50"><h3 class="text-xl font-bold text-white mb-3">Safety Supervisor</h3><p class="text-sm text-slate-300 mb-4">A finite-state supervisory layer coordinates estimation confidence and pack operating limits.</p><div class="flex flex-wrap gap-2 text-xs text-cyan-200"><span>Normal mode</span><span>Degraded mode</span><span>Recalibration</span><span>Safe mode</span><span>Fault detection</span><span>Current limits</span></div></div>
+<div class="mb-8 p-4 bg-slate-800/50 rounded-xl border border-slate-700/50 flex justify-center">
+    <img src="assets/img/Causes Diagram.png" alt="Causes Diagram" class="rounded-lg shadow-md max-w-md md:max-w-xl lg:max-w-2xl h-auto">
 </div>
-<div class="bg-blue-900/20 p-6 rounded-xl border border-cyan-500/30" role="img" aria-label="Smart BMS architecture from measurements through ECM, UKF, LSTM correction, and supervisor to SOC, diagnostics, and current limits.">
-<div aria-hidden="true" class="flex flex-wrap items-center justify-center gap-3 text-sm font-bold text-white">
-<span>Measurements</span><i class="w-4 h-4 text-cyan-400" data-lucide="arrow-right"></i><span>ECM</span><i class="w-4 h-4 text-cyan-400" data-lucide="arrow-right"></i><span>UKF</span><i class="w-4 h-4 text-cyan-400" data-lucide="arrow-right"></i><span>LSTM Correction</span><i class="w-4 h-4 text-cyan-400" data-lucide="arrow-right"></i><span>Supervisor</span><i class="w-4 h-4 text-cyan-400" data-lucide="arrow-right"></i><span>SOC / Diagnostics / Current Limits</span>
-</div>
-<ol class="sr-only"><li>Measurements</li><li>Equivalent Circuit Model</li><li>Unscented Kalman Filter</li><li>LSTM Correction</li><li>Safety Supervisor</li><li>SOC, Diagnostics, and Current Limits</li></ol>
-</div>
-</section>
 
-<section aria-labelledby="embedded-hardware-design" class="content-section relative z-10">
-<h2 class="text-2xl font-bold text-white mb-6 flex items-center space-x-3" id="embedded-hardware-design"><i class="w-8 h-8 text-cyan-400" data-lucide="cpu"></i><span>Embedded Hardware Design</span></h2>
-<p class="text-slate-300 leading-relaxed text-lg mb-6">The hardware work defined a proposed 16-cell BMS architecture and PCB design that could support measurement, processing, communication, balancing, and protection functions.</p>
-<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-<div class="bg-slate-800/50 p-6 rounded-xl border border-slate-700/50"><h3 class="font-bold text-cyan-400 mb-2">Battery monitoring front-end</h3><p class="text-sm text-slate-300">Cell-voltage and temperature acquisition, input filtering, measurement isolation, and diagnostic access.</p></div>
-<div class="bg-slate-800/50 p-6 rounded-xl border border-slate-700/50"><h3 class="font-bold text-cyan-400 mb-2">STM32 processing unit</h3><p class="text-sm text-slate-300">Real-time acquisition, estimator execution, state supervision, fault handling, and communication management.</p></div>
-<div class="bg-slate-800/50 p-6 rounded-xl border border-slate-700/50"><h3 class="font-bold text-cyan-400 mb-2">Power stage</h3><p class="text-sm text-slate-300">High-side switching, pre-charge control, current-path monitoring, and a bidirectional active-balancing concept.</p></div>
-<div class="bg-slate-800/50 p-6 rounded-xl border border-slate-700/50"><h3 class="font-bold text-cyan-400 mb-2">Communication</h3><p class="text-sm text-slate-300">CAN for vehicle integration, with I2C and SPI interfaces for sensing, memory, and peripheral devices.</p></div>
-<div class="bg-slate-800/50 p-6 rounded-xl border border-cyan-500/30 md:col-span-2"><h3 class="font-bold text-cyan-400 mb-2">Protection and EMC</h3><p class="text-sm text-slate-300">Input protection, controlled grounding, separation of sensitive measurement paths, transient suppression, and layout practices intended to improve electromagnetic robustness.</p></div>
-</div>
-</section>
-
-<section aria-labelledby="validation-strategy" class="content-section relative z-10">
-<h2 class="text-2xl font-bold text-white mb-6 flex items-center space-x-3" id="validation-strategy"><i class="w-8 h-8 text-cyan-400" data-lucide="check-circle"></i><span>Validation Strategy</span></h2>
 <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-<div class="bg-slate-800/50 p-6 rounded-xl border border-slate-700/50"><h3 class="font-bold text-white mb-3">Model-in-the-Loop</h3><p class="text-sm text-slate-300">Simulation scenarios were used to assess model response, estimator convergence, and supervisory transitions under controlled current profiles.</p></div>
-<div class="bg-slate-800/50 p-6 rounded-xl border border-slate-700/50"><h3 class="font-bold text-white mb-3">Prototype-level</h3><p class="text-sm text-slate-300">Acquisition and control paths were exercised with prototype instrumentation to check measurement flow and embedded integration assumptions.</p></div>
-<div class="bg-slate-800/50 p-6 rounded-xl border border-slate-700/50"><h3 class="font-bold text-white mb-3">Industrial validation roadmap</h3><p class="text-sm text-slate-300">Full real-time LFP pack validation remains the next step before any production deployment claim could be considered.</p></div>
+<div class="bg-slate-800/50 p-6 rounded-xl border border-slate-700/50 opacity-70"><h3 class="font-bold text-white mb-2">1. Cell Heterogeneity</h3><p class="text-sm text-slate-300 leading-relaxed">Inherent variations in cell capacity and internal resistance, resulting in the weakest series element prematurely constraining the entire battery pack.</p></div>
+<div class="bg-slate-800/50 p-6 rounded-xl border border-slate-700/50 opacity-70"><h3 class="font-bold text-white mb-2">2. Insufficient Balancing Capability</h3><p class="text-sm text-slate-300 leading-relaxed">Traditional passive balancing mechanisms proving inadequate to compensate for significant capacity drift over time.</p></div>
+<div class="bg-cyan-900/30 p-6 rounded-xl border border-cyan-500/50 relative overflow-hidden">
+<div class="absolute top-0 right-0 w-16 h-16 bg-cyan-400/20 blur-xl rounded-full"></div>
+<h3 class="font-bold text-cyan-300 mb-2">3. Non-Robust SOC Estimation</h3><p class="text-sm text-slate-200 leading-relaxed">The baseline estimation algorithm failing to dynamically and accurately track the true State-of-Charge under transient load conditions.</p>
 </div>
-<div class="bg-slate-800/50 p-6 rounded-xl border border-cyan-500/30" role="img" aria-label="Validation timeline from simulation through prototype acquisition tests to future real-time LFP validation.">
-<div aria-hidden="true" class="flex flex-wrap items-center justify-center gap-3 text-sm font-bold text-white"><span>Simulation</span><i class="w-4 h-4 text-cyan-400" data-lucide="arrow-right"></i><span>Prototype Acquisition Tests</span><i class="w-4 h-4 text-cyan-400" data-lucide="arrow-right"></i><span>Future LFP Real-Time Validation</span></div>
-<ol class="sr-only"><li>Simulation</li><li>Prototype Acquisition Tests</li><li>Future LFP Real-Time Validation</li></ol>
 </div>
-</section>
-
-<section aria-labelledby="results-and-impact" class="content-section relative z-10">
-<h2 class="text-2xl font-bold text-white mb-6 flex items-center space-x-3" id="results-and-impact"><i class="w-8 h-8 text-cyan-400" data-lucide="trending-up"></i><span>Results and Impact</span></h2>
-<p class="text-slate-300 leading-relaxed text-lg mb-6">The project produced an integrated engineering proposal and a staged validation path. The outcomes below describe intended and prototype-supported impact without implying production validation.</p>
-<div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
-<div class="bg-slate-800/50 p-6 rounded-xl border border-slate-700/50"><h3 class="font-bold text-white mb-2">More reliable SOC estimation</h3><p class="text-sm text-slate-300">The hybrid estimation chain supports more robust correction across dynamic load conditions.</p></div>
-<div class="bg-slate-800/50 p-6 rounded-xl border border-slate-700/50"><h3 class="font-bold text-white mb-2">Reduced premature cut-offs</h3><p class="text-sm text-slate-300">Better estimation and pack supervision can help reduce avoidable protective shutdowns.</p></div>
-<div class="bg-slate-800/50 p-6 rounded-xl border border-slate-700/50"><h3 class="font-bold text-white mb-2">Improved usable energy</h3><p class="text-sm text-slate-300">More representative SOC information can help operators use available pack energy within configured limits.</p></div>
-<div class="bg-slate-800/50 p-6 rounded-xl border border-slate-700/50"><h3 class="font-bold text-white mb-2">Better battery quality control</h3><p class="text-sm text-slate-300">Qualification and traceability procedures make cell and pack variation easier to identify and manage.</p></div>
-<div class="bg-slate-800/50 p-6 rounded-xl border border-cyan-500/30 sm:col-span-2"><h3 class="font-bold text-white mb-2">Industrial scalability</h3><p class="text-sm text-slate-300">The proposed architecture separates measurement, estimation, supervision, and data services so each layer can be developed and validated incrementally.</p></div>
+<div class="bg-gradient-to-r from-cyan-900/40 to-slate-800/20 border-l-4 border-cyan-500 p-6 rounded-r-xl shadow-lg flex items-start gap-4">
+    <div class="flex-shrink-0 mt-1 p-2 bg-cyan-900/50 rounded-lg border border-cyan-500/30">
+        <i class="w-6 h-6 text-cyan-400" data-lucide="target"></i>
+    </div>
+    <div class="flex-1">
+        <h4 class="text-lg font-bold text-cyan-300 mb-2 uppercase tracking-wide text-sm">Project Scope</h4>
+        <p class="text-cyan-50 leading-relaxed">
+            The ensuing engineering work focuses specifically on mitigating <strong class="text-white font-bold border-b border-cyan-500/50 pb-0.5">Cause #3 (Non-Robust SOC Estimation)</strong>, while simultaneously integrating a high-performance active balancing architecture to address cell heterogeneity.
+        </p>
+    </div>
 </div>
 </section>
 
-<section aria-labelledby="tools-and-technologies" class="content-section relative z-10">
-<h2 class="text-2xl font-bold text-white mb-6 flex items-center space-x-3" id="tools-and-technologies"><i class="w-8 h-8 text-cyan-400" data-lucide="wrench"></i><span>Tools &amp; Technologies</span></h2>
-<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-<div class="bg-slate-800/50 p-6 rounded-xl border border-slate-700/50"><h3 class="font-bold text-cyan-400 mb-3">Battery &amp; Modeling</h3><p class="text-sm text-slate-300">LiFePO4, ECM 3RC, OCV-SOC characterization, hysteresis, parameter identification</p></div>
-<div class="bg-slate-800/50 p-6 rounded-xl border border-slate-700/50"><h3 class="font-bold text-cyan-400 mb-3">Algorithms</h3><p class="text-sm text-slate-300">Unscented Kalman Filter, LSTM residual learning, state estimation, fault logic</p></div>
-<div class="bg-slate-800/50 p-6 rounded-xl border border-slate-700/50"><h3 class="font-bold text-cyan-400 mb-3">Embedded Systems</h3><p class="text-sm text-slate-300">STM32, embedded C, CAN, I2C, SPI, real-time acquisition</p></div>
-<div class="bg-slate-800/50 p-6 rounded-xl border border-slate-700/50"><h3 class="font-bold text-cyan-400 mb-3">Hardware Design</h3><p class="text-sm text-slate-300">Altium Designer, schematic capture, PCB routing, protection, EMC-aware layout</p></div>
-<div class="bg-slate-800/50 p-6 rounded-xl border border-slate-700/50"><h3 class="font-bold text-cyan-400 mb-3">Simulation &amp; Validation</h3><p class="text-sm text-slate-300">MATLAB/Simulink, Python, PyTorch, MIL scenarios, prototype acquisition tests</p></div>
-<div class="bg-slate-800/50 p-6 rounded-xl border border-slate-700/50"><h3 class="font-bold text-cyan-400 mb-3">Industrial Layer</h3><p class="text-sm text-slate-300">MQTT, REST API, production traceability, KPI dashboards, quality procedures</p></div>
+<section aria-labelledby="engineering-workflow" class="content-section relative z-10 mt-12">
+<h2 class="text-2xl font-bold text-white mb-6 flex items-center space-x-3" id="engineering-workflow"><i class="w-8 h-8 text-cyan-400" data-lucide="git-merge"></i><span>Engineering Workflow</span></h2>
+
+<div class="smart-bms-workflow">
+    <!-- Step 1 -->
+    <div class="smart-bms-step">
+        <div class="smart-bms-step-index">1</div>
+        <div class="smart-bms-step-body">
+            <h3 class="text-xl font-bold text-white mb-2">Modeling &amp; Algorithm Development</h3>
+            <p class="text-slate-300 leading-relaxed text-sm">The engineering cycle initiated with the development of a high-fidelity virtual battery model (Digital Twin). This facilitated the rigorous design, tuning, and closed-loop testing of the SOC estimation algorithms within the MATLAB/Simulink environment, effectively abstracting hardware constraints during the early development phases.</p>
+        </div>
+    </div>
+
+    <div class="my-10 flex justify-center w-full">
+        <img src="assets/img/Algorithm Workflow.png?v=5" alt="Algorithm Workflow Schematic" class="rounded-lg shadow-lg w-full h-auto border border-slate-700/50">
+    </div>
+
+    <!-- Step 2 -->
+    <div class="smart-bms-step">
+        <div class="smart-bms-step-index">2</div>
+        <div class="smart-bms-step-body smart-bms-step-body-wide">
+            <h3 class="text-xl font-bold text-white mb-2">Validation by Simulation</h3>
+            <p class="text-slate-300 leading-relaxed text-sm mb-6">To guarantee algorithmic robustness under diverse and highly dynamic load profiles, a comprehensive suite of <strong class="text-cyan-300">12 rigorous test scenarios</strong> was executed via Model-in-the-Loop (MiL) simulation. Three critical scenarios are detailed below:</p>
+
+            <div class="smart-bms-scenarios">
+                <!-- Scenario A -->
+                <div class="smart-bms-scenario-card">
+                    <h4 class="text-lg font-bold text-white mb-3 text-cyan-300">Scenario A: Nominal Dynamic Profile</h4>
+                    <p class="text-sm text-slate-300 leading-relaxed mb-4">This scenario evaluates the estimator's response under a nominal yet highly dynamic current profile. The results confirm exceptional estimation stability under heavy dynamic loads, achieving a Root Mean Square Error (RMSE) of just <strong class="text-white">0.23%</strong> and a final estimation error of <strong class="text-white">0.61%</strong>.</p>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <img src="assets/img/Fig_A1_current.png" alt="Scenario A Current Profile" class="rounded-lg border border-slate-600/50 shadow-md">
+                        <img src="assets/img/Fig_A2_soc.png" alt="Scenario A Estimated vs Real SOC" class="rounded-lg border border-slate-600/50 shadow-md">
+                    </div>
+                </div>
+
+                <!-- Scenario B -->
+                <div class="smart-bms-scenario-card">
+                    <h4 class="text-lg font-bold text-white mb-3 text-cyan-300">Scenario B: Battery Aging (80% SOH)</h4>
+                    <p class="text-sm text-slate-300 leading-relaxed mb-4">This scenario assesses algorithmic robustness against battery degradation, specifically simulating a State-of-Health (SOH) of 80%. The estimated SOC accurately tracks the true SOC despite the reduced available capacity. Demonstrating an RMSE of <strong class="text-white">0.89%</strong> and a final error of <strong class="text-white">1.33%</strong>, this scenario validates the architecture's capability to maintain a highly reliable estimation in the presence of moderate capacity fade.</p>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <img src="assets/img/Fig_B1_soc.png" alt="Scenario B Estimated vs Real SOC" class="rounded-lg border border-slate-600/50 shadow-md">
+                        <img src="assets/img/Fig_B2_error.png" alt="Scenario B Estimation Error" class="rounded-lg border border-slate-600/50 shadow-md">
+                    </div>
+                </div>
+
+                <!-- Scenario C -->
+                <div class="smart-bms-scenario-card">
+                    <h4 class="text-lg font-bold text-white mb-3 text-cyan-300">Scenario C: Sensor Bias and Measurement Noise</h4>
+                    <p class="text-sm text-slate-300 leading-relaxed mb-4">To evaluate sensitivity to measurement inaccuracies, realistic sensor biases were introduced to the voltage and current readings. Despite these perturbations, the UKF-LSTM fusion, governed by the supervisory logic, successfully mitigated the impact of sensor uncertainty. The system maintained tight tracking with an RMSE of <strong class="text-white">0.49%</strong> and a final error of only <strong class="text-white">0.25%</strong>.</p>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <img src="assets/img/Fig_C1_soc.png" alt="Scenario C Estimated vs Real SOC" class="rounded-lg border border-slate-600/50 shadow-md">
+                        <img src="assets/img/Fig_C3_voltage.png" alt="Scenario C Measured vs Real Voltage" class="rounded-lg border border-slate-600/50 shadow-md">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Step 3 -->
+    <div class="smart-bms-step">
+        <div class="smart-bms-step-index">3</div>
+        <div class="smart-bms-step-body">
+            <h3 class="text-xl font-bold text-white mb-2">Hardware Prototyping (Hardware-in-the-Loop)</h3>
+            <p class="text-slate-300 leading-relaxed text-sm mb-4">Upon achieving successful simulation metrics, the algorithmic pipeline was ported to a simplified Hardware-in-the-Loop (HiL) prototype for empirical validation. This setup featured a custom Analog Front-End (AFE) for precise acquisition of cell voltages (via precision resistive dividers), pack current (via a 0.22Ω shunt), and temperatures (via NTC thermistors).</p>
+            <p class="text-slate-300 leading-relaxed text-sm mb-4">Crucially, this phase successfully validated the power protection architecture: a high-side double-switch topology utilizing P-Channel MOSFETs (IRF5210), safely driven by an NPN transistor (2N3904) level-shifting stage to interface with the microcontroller logic.</p>
+            <div class="smart-bms-image-frame smart-bms-prototype-frame">
+                <img src="assets/img/Prototype_PCB.jpeg" alt="BMS Prototype PCB" class="smart-bms-prototype-img rounded-xl border border-slate-700/50 shadow-lg">
+            </div>
+        </div>
+    </div>
+
+    <!-- Step 4 -->
+    <div class="smart-bms-step">
+        <div class="smart-bms-step-index">4</div>
+        <div class="smart-bms-step-body">
+            <h3 class="text-xl font-bold text-white mb-2">Industrial Hardware Architecture</h3>
+            <p class="text-slate-300 leading-relaxed text-sm mb-4">The validated prototype was subsequently transitioned into a comprehensive 6-layer industrial PCB layout using Altium Designer. The architecture centers around a high-performance <strong class="text-white">STM32H743VIT6</strong> microcontroller, leveraging its FPU, DMA, and dual clocks (32.768 kHz / 25 MHz) to guarantee real-time execution of the ECM, UKF, and LSTM networks.</p>
+            <p class="text-slate-300 leading-relaxed text-sm mb-4">The board integrates a <strong class="text-white">BQ76952PFBR</strong> Analog Front-End for primary autonomous hardware protection, and an <strong class="text-white">LTC3300-1</strong> active balancing controller to enable bidirectional energy transfer. Strict EMC and signal integrity constraints were applied, including galvanic isolation (TME 0505S) and a dedicated CAN bus interface for vehicle integration.</p>
+            <div class="smart-bms-pcb-grid">
+                <figure class="smart-bms-figure">
+                    <img src="assets/img/Industrial BMS PCB Part 1.jpeg" alt="Industrial BMS PCB power and control side" class="rounded-xl border border-slate-700/50 shadow-lg">
+                    <figcaption>Industrial BMS PCB — acquisition, protection, and control architecture.</figcaption>
+                </figure>
+                <figure class="smart-bms-figure">
+                    <img src="assets/img/Industrial BMS PCB Part 2.jpeg" alt="Industrial BMS PCB balancing side" class="rounded-xl border border-slate-700/50 shadow-lg">
+                    <figcaption>Active balancing stage — bidirectional energy transfer layout.</figcaption>
+                </figure>
+            </div>
+        </div>
+    </div>
+
+    <!-- Step 5 -->
+    <div class="smart-bms-step">
+        <div class="smart-bms-step-index">5</div>
+        <div class="smart-bms-step-body">
+            <h3 class="text-xl font-bold text-white mb-2">Conclusion &amp; Future Work</h3>
+            <p class="text-slate-300 leading-relaxed text-sm">The proposed intelligent BMS architecture successfully mitigates premature power cut-offs and maximizes the extraction of usable energy. Future engineering directives involve comprehensive real-time validation on full-scale LFP packs under actual vehicle operating conditions to certify the system for mass production.</p>
+        </div>
+    </div>
 </div>
 </section>
 
-<section aria-labelledby="my-contribution" class="content-section relative z-10">
-<h2 class="text-2xl font-bold text-white mb-6 flex items-center space-x-3" id="my-contribution"><i class="w-8 h-8 text-cyan-400" data-lucide="user-check"></i><span>My Contribution</span></h2>
-<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-<div class="bg-slate-800/50 p-5 rounded-xl border border-slate-700/50"><h3 class="font-bold text-white">Diagnosed the field problem</h3><p class="text-sm text-slate-300 mt-2">Connected shutdown behavior, voltage sag, SOC display, and production variation.</p></div>
-<div class="bg-slate-800/50 p-5 rounded-xl border border-slate-700/50"><h3 class="font-bold text-white">Structured battery quality checks</h3><p class="text-sm text-slate-300 mt-2">Defined qualification, matching, assembly, and traceability considerations.</p></div>
-<div class="bg-slate-800/50 p-5 rounded-xl border border-slate-700/50"><h3 class="font-bold text-white">Developed the battery model</h3><p class="text-sm text-slate-300 mt-2">Built the dynamic ECM and parameter workflow used by the estimator.</p></div>
-<div class="bg-slate-800/50 p-5 rounded-xl border border-slate-700/50"><h3 class="font-bold text-white">Designed the SOC estimator</h3><p class="text-sm text-slate-300 mt-2">Combined UKF state estimation with learned residual correction.</p></div>
-<div class="bg-slate-800/50 p-5 rounded-xl border border-slate-700/50"><h3 class="font-bold text-white">Defined safety supervision</h3><p class="text-sm text-slate-300 mt-2">Specified operating states, recalibration behavior, fault responses, and limits.</p></div>
-<div class="bg-slate-800/50 p-5 rounded-xl border border-slate-700/50"><h3 class="font-bold text-white">Designed the embedded architecture</h3><p class="text-sm text-slate-300 mt-2">Mapped monitoring, processing, balancing, protection, and communication functions.</p></div>
-<div class="bg-slate-800/50 p-5 rounded-xl border border-slate-700/50"><h3 class="font-bold text-white">Produced the PCB design</h3><p class="text-sm text-slate-300 mt-2">Created schematic and routing work in Altium Designer with EMC considerations.</p></div>
-<div class="bg-slate-800/50 p-5 rounded-xl border border-slate-700/50"><h3 class="font-bold text-white">Connected industrial data</h3><p class="text-sm text-slate-300 mt-2">Outlined supervision, traceability, and production KPI data flows.</p></div>
-</div>
-</section>
-
-<section aria-labelledby="engineering-lessons" class="content-section relative z-10">
-<h2 class="text-2xl font-bold text-white mb-6 flex items-center space-x-3" id="engineering-lessons"><i class="w-8 h-8 text-cyan-400" data-lucide="lightbulb"></i><span>Engineering Lessons Learned</span></h2>
-<p class="text-slate-300 leading-relaxed text-lg mb-6">The work reinforced that battery reliability is a system problem: estimation quality, electrical design, cell consistency, software supervision, and production discipline influence one another.</p>
-<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-<div class="bg-slate-800/50 p-6 rounded-xl border border-slate-700/50"><h3 class="font-bold text-white mb-2">Model and data must agree</h3><p class="text-sm text-slate-300">A physical model gives structure, while measured residuals reveal behavior that still needs correction.</p></div>
-<div class="bg-slate-800/50 p-6 rounded-xl border border-slate-700/50"><h3 class="font-bold text-white mb-2">The weakest cell shapes pack behavior</h3><p class="text-sm text-slate-300">Pack-level energy availability depends on cell matching, resistance dispersion, and assembly quality.</p></div>
-<div class="bg-slate-800/50 p-6 rounded-xl border border-slate-700/50"><h3 class="font-bold text-white mb-2">Validation must be staged</h3><p class="text-sm text-slate-300">Simulation and prototype tests reduce uncertainty, but they do not replace full real-time validation on the target pack.</p></div>
-<div class="bg-slate-800/50 p-6 rounded-xl border border-slate-700/50"><h3 class="font-bold text-white mb-2">Industrialization starts with traceability</h3><p class="text-sm text-slate-300">A repeatable BMS process needs controlled data, clear quality checks, and diagnosable production records.</p></div>
-</div>
-</section>
-
-<section aria-labelledby="interested-in-this-project" class="text-center pt-10 relative z-10">
+<section aria-labelledby="interested-in-this-project" class="text-center pt-10 mt-12 border-t border-slate-800/50 relative z-10">
 <h2 class="text-2xl font-bold text-white mb-4" id="interested-in-this-project">Interested in this project?</h2>
 <p class="text-slate-300 leading-relaxed max-w-2xl mx-auto mb-8">Explore my CV, connect on LinkedIn, or contact me to discuss battery modeling, embedded systems, and electric mobility engineering.</p>
 <div class="flex flex-wrap justify-center gap-4">

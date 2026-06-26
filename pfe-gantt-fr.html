@@ -1,24 +1,24 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>PFE Gantt Chart — Emove Véhicules | Rafi Nasrallah</title>
-<meta name="description" content="Interactive Gantt chart for Rafi Nasrallah's end-of-studies project at Emove Véhicules: BMS development, battery digital twin, ECM 3RC + UKF + LSTM SOC estimation, STM32 hardware design.">
+<title>Diagramme de Gantt PFE — Emove Véhicules | Rafi Nasrallah</title>
+<meta name="description" content="Diagramme de Gantt interactif pour le projet de fin d'études de Rafi Nasrallah chez Emove Véhicules: BMS development, battery digital twin, ECM 3RC + UKF + LSTM SOC estimation, STM32 hardware design.">
     <meta name="keywords" content="Rafi Nasrallah, BMS project, final year project, Gantt chart, STM32, battery management system, ENSET Mohammedia">
 <link rel="canonical" href="https://nasrallahrafi.me/pfe-gantt.html">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Rafi Nasrallah Portfolio">
-<meta property="og:title" content="PFE Gantt Chart — Emove Véhicules | Rafi Nasrallah">
-<meta property="og:description" content="Interactive Gantt chart for Rafi Nasrallah's end-of-studies project at Emove Véhicules: BMS development, battery digital twin, ECM 3RC + UKF + LSTM SOC estimation, STM32 hardware design.">
+<meta property="og:title" content="Diagramme de Gantt PFE — Emove Véhicules | Rafi Nasrallah">
+<meta property="og:description" content="Diagramme de Gantt interactif pour le projet de fin d'études de Rafi Nasrallah chez Emove Véhicules: BMS development, battery digital twin, ECM 3RC + UKF + LSTM SOC estimation, STM32 hardware design.">
 <meta property="og:image" content="https://nasrallahrafi.me/assets/img/Profile_picture.png">
 <meta property="og:image:width" content="1254"/>
 <meta property="og:image:height" content="1254"/>
 <meta property="og:url" content="https://nasrallahrafi.me/pfe-gantt.html">
-    <meta property="og:locale" content="en_US">
+    <meta property="og:locale" content="fr_FR">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="PFE Gantt Chart — Emove Véhicules | Rafi Nasrallah">
-<meta name="twitter:description" content="Interactive Gantt chart for Rafi Nasrallah's end-of-studies project at Emove Véhicules: BMS development, battery digital twin, ECM 3RC + UKF + LSTM SOC estimation, STM32 hardware design.">
+<meta name="twitter:title" content="Diagramme de Gantt PFE — Emove Véhicules | Rafi Nasrallah">
+<meta name="twitter:description" content="Diagramme de Gantt interactif pour le projet de fin d'études de Rafi Nasrallah chez Emove Véhicules: BMS development, battery digital twin, ECM 3RC + UKF + LSTM SOC estimation, STM32 hardware design.">
 <meta name="twitter:image" content="https://nasrallahrafi.me/assets/img/Profile_picture.png">
     <meta name="twitter:creator" content="@RafiNasrallah">
     <meta name="twitter:site" content="@RafiNasrallah">
@@ -345,24 +345,24 @@
 
 <div class="header">
   <div class="header-left">
-    <h1>📊 Gantt Chart — End-of-Studies Project (PFE)</h1>
+    <h1>📊 Diagramme de Gantt — Projet de Fin d'Études (PFE)</h1>
     <div class="subtitle">
-      01 February – 31 May 2026 · Emove Véhicules
+      01 Février – 31 Mai 2026 · Emove Véhicules
     </div>
   </div>
   <div class="header-right">
-    <a class="btn-back" href="index.html">
+    <a class="btn-back" href="index-fr.html">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
-      <span>Back to Portfolio</span>
+      <span>Retour au Portfolio</span>
     </a>
-    <a aria-label="Afficher la version française" class="btn-back" href="pfe-gantt-fr.html" hreflang="fr" lang="fr" title="Version française" style="justify-content: center;">
+    <a aria-label="View English version" class="btn-back" href="pfe-gantt.html" hreflang="en" lang="en" title="English version" style="justify-content: center;">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="m5 8 6 6"/><path d="m4 14 6-6 2-3"/><path d="M2 5h12"/><path d="M7 2h1"/><path d="m22 22-5-10-5 10"/><path d="M14 18h6"/></svg>
-      <span>FR</span>
+      <span>EN</span>
     </a>
     <div class="user-name-big">Rafi Nasrallah</div>
     <button class="btn-export" onclick="triggerPrint()">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
-      <span>Download PDF</span>
+      <span>Télécharger le PDF</span>
     </button>
   </div>
 </div>
@@ -370,9 +370,9 @@
 <div class="stats-bar" id="statsBar"></div>
 
 <div class="legend-bar">
-  <div class="legend-item"><div class="legend-dot" style="background:linear-gradient(135deg,var(--phase-1-from),var(--phase-1-to))"></div>Phase 1 — Completed</div>
-  <div class="legend-item"><div class="legend-dot" style="background:linear-gradient(135deg,var(--phase-2-from),var(--phase-2-to))"></div>Phase 2 — Completed</div>
-  <div class="legend-item"><div class="legend-dot" style="background:linear-gradient(135deg,var(--phase-3-from),var(--phase-3-to))"></div>Phase 3 — Completed</div>
+  <div class="legend-item"><div class="legend-dot" style="background:linear-gradient(135deg,var(--phase-1-from),var(--phase-1-to))"></div>Phase 1 — Terminée</div>
+  <div class="legend-item"><div class="legend-dot" style="background:linear-gradient(135deg,var(--phase-2-from),var(--phase-2-to))"></div>Phase 2 — Terminée</div>
+  <div class="legend-item"><div class="legend-dot" style="background:linear-gradient(135deg,var(--phase-3-from),var(--phase-3-to))"></div>Phase 3 — Terminée</div>
   <div class="legend-item today-legend" id="todayLegend"><div class="legend-dot"></div></div>
 </div>
 
@@ -396,61 +396,61 @@ TODAY.setHours(0,0,0,0);
 
 const PHASES = [
   {
-    name: "⚙️ PHASE 1 · Mechanical Resolution & Quality",
+    name: "⚙️ PHASE 1 · Résolution Mécanique et Qualité",
     status: "done", color: "p1",
     start: "2026-02-01", end: "2026-03-06",
     tasks: [
-      { name: "Ch 1 · Industrial & Quality Diagnostic", start: "2026-02-01", end: "2026-02-18", type: "tech",
+      { name: "Chap 1 · Diagnostic Industriel et Qualité", start: "2026-02-01", end: "2026-02-18", type: "tech",
         subs: [
-          { name: "1.1 Production line diagnostic",          start: "2026-02-01", end: "2026-02-07" },
-          { name: "1.2 Production improvement plan",         start: "2026-02-05", end: "2026-02-11" },
-          { name: "1.3 Battery assembly diagnostic",         start: "2026-02-10", end: "2026-02-15" },
-          { name: "1.4 SOC management plan",                 start: "2026-02-14", end: "2026-02-18" },
+          { name: "1.1 Diagnostic de la ligne de production",          start: "2026-02-01", end: "2026-02-07" },
+          { name: "1.2 Plan d'amélioration de la production",         start: "2026-02-05", end: "2026-02-11" },
+          { name: "1.3 Diagnostic d'assemblage de la batterie",         start: "2026-02-10", end: "2026-02-15" },
+          { name: "1.4 Plan de gestion du SOC",                 start: "2026-02-14", end: "2026-02-18" },
         ]
       },
-      { name: "Ch 2 · Mechanical Optimization & Tooling", start: "2026-02-19", end: "2026-03-06", type: "tech",
+      { name: "Chap 2 · Optimisation Mécanique et Outillage", start: "2026-02-19", end: "2026-03-06", type: "tech",
         subs: [
-          { name: "2.1 Bending process analysis",            start: "2026-02-19", end: "2026-02-25" },
-          { name: "2.2 Operator training",                   start: "2026-02-24", end: "2026-03-02" },
-          { name: "2.3 Press-brake punch design",            start: "2026-03-01", end: "2026-03-06" },
+          { name: "2.1 Analyse du processus de pliage",            start: "2026-02-19", end: "2026-02-25" },
+          { name: "2.2 Formation des opérateurs",                   start: "2026-02-24", end: "2026-03-02" },
+          { name: "2.3 Conception du poinçon de presse plieuse",            start: "2026-03-01", end: "2026-03-06" },
         ]
       },
     ]
   },
   {
-    name: "🔋 PHASE 2 · Battery Modeling & BMS",
+    name: "🔋 PHASE 2 · Modélisation Batterie & BMS",
     status: "done", color: "p2",
     start: "2026-03-07", end: "2026-03-31",
     tasks: [
-      { name: "Ch 3 · Battery Modeling", start: "2026-03-07", end: "2026-03-20", type: "tech", status: "done",
+      { name: "Chap 3 · Modélisation de la Batterie", start: "2026-03-07", end: "2026-03-20", type: "tech", status: "done",
         subs: [
-          { name: "3.1 Gotion LFP cell characterization",    start: "2026-03-07", end: "2026-03-12", status: "done" },
-          { name: "3.2 MATLAB/Simulink modeling",            start: "2026-03-12", end: "2026-03-17", status: "done" },
-          { name: "3.3 Model validation",                    start: "2026-03-17", end: "2026-03-20", status: "done" },
+          { name: "3.1 Caractérisation de la cellule Gotion LFP",    start: "2026-03-07", end: "2026-03-12", status: "done" },
+          { name: "3.2 Modélisation sous MATLAB/Simulink",            start: "2026-03-12", end: "2026-03-17", status: "done" },
+          { name: "3.3 Validation du modèle",                    start: "2026-03-17", end: "2026-03-20", status: "done" },
         ]
       },
-      { name: "Ch 4 · BMS Modeling", start: "2026-03-21", end: "2026-03-31", type: "tech", status: "active",
+      { name: "Chap 4 · Modélisation du BMS", start: "2026-03-21", end: "2026-03-31", type: "tech", status: "active",
         subs: [
-          { name: "4.1 SOC estimation, balancing & safety modeling", start: "2026-03-21", end: "2026-03-29", status: "active" },
-          { name: "4.2 Global BMS model validation",          start: "2026-03-29", end: "2026-03-31" },
+          { name: "4.1 Estimation SOC, équilibrage & modélisation sécurité", start: "2026-03-21", end: "2026-03-29", status: "active" },
+          { name: "4.2 Validation globale du modèle BMS",          start: "2026-03-29", end: "2026-03-31" },
         ]
       },
     ]
   },
   {
-    name: "🛠️ PHASE 3 · Hardware & Prototyping",
+    name: "🛠️ PHASE 3 · Matériel & Prototypage",
     status: "done", color: "p3",
     start: "2026-04-01", end: "2026-05-31",
     tasks: [
-      { name: "5.1 Hardware Design & Simulation", start: "2026-04-01", end: "2026-04-30", type: "tech",
+      { name: "5.1 Conception Matérielle & Simulation", start: "2026-04-01", end: "2026-04-30", type: "tech",
         subs: [
-          { name: "5.1.1 Critical component identification & model specification", start: "2026-04-01", end: "2026-04-02" },
-          { name: "5.1.2 Hardware sub-system design & simulation",                 start: "2026-04-02", end: "2026-04-27" },
-          { name: "5.1.3 Global validation",                                        start: "2026-04-27", end: "2026-04-30" },
+          { name: "5.1.1 Identification des composants critiques & spécification du modèle", start: "2026-04-01", end: "2026-04-02" },
+          { name: "5.1.2 Conception et simulation du sous-système matériel",                 start: "2026-04-02", end: "2026-04-27" },
+          { name: "5.1.3 Validation globale",                                        start: "2026-04-27", end: "2026-04-30" },
         ]
       },
-      { name: "5.2 Prototyping", start: "2026-05-01", end: "2026-05-20", type: "tech" },
-      { name: "5.3 Final Tests & Validation", start: "2026-05-21", end: "2026-05-31", type: "tech" },
+      { name: "5.2 Prototypage", start: "2026-05-01", end: "2026-05-20", type: "tech" },
+      { name: "5.3 Tests Finaux & Validation", start: "2026-05-21", end: "2026-05-31", type: "tech" },
     ]
   }
 ];
@@ -459,18 +459,18 @@ const MILESTONES = [];
 
 const pd = s => { const [y,m,d]=s.split('-').map(Number); return new Date(y,m-1,d); };
 const diffD = (a,b) => Math.round((b-a)/864e5);
-const totalDays = diffD(PROJECT_START, PROJECT_END);
-const toP = d => (diffD(PROJECT_START, typeof d==='string'?pd(d):d)/totalDays)*100;
-const isWE = d => d.getDay()===0||d.getDay()===6;
-const monthsEN = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
-const fmtShort = d => d.getDate()+' '+monthsEN[d.getMonth()];
-const fmtFull = d => d.getDate()+' '+monthsEN[d.getMonth()]+' '+d.getFullYear();
+const totalJours = diffD(PROJECT_START, PROJECT_END);
+const toP = d => (diffD(PROJECT_START, typeof d==='string'?pd(d):d)/totalJours)*100;
+const isWE = d => d.getJour()===0||d.getJour()===6;
+const monthsEN = ['Jan','Fév','Mar','Avr','Mai','Juin','Juil','Aoû','Sep','Oct','Nov','Déc'];
+const fmtShort = d => d.getDate()+' '+monthsEN[d.getMois()];
+const fmtFull = d => d.getDate()+' '+monthsEN[d.getMois()]+' '+d.getFullYear();
 const countWD = (s,e) => { let a=pd(s),b=pd(e),c=0; while(a<=b){if(!isWE(a))c++;a.setDate(a.getDate()+1);} return c; };
 
 function buildStats() {
-  const boundedElapsed = Math.min(totalDays, Math.max(0, diffD(PROJECT_START, TODAY) + 1));
+  const boundedElapsed = Math.min(totalJours, Math.max(0, diffD(PROJECT_START, TODAY) + 1));
   const remaining = Math.max(0, diffD(TODAY, PROJECT_END));
-  const pct = Math.round(((boundedElapsed - 1) / totalDays) * 100);
+  const pct = Math.round(((boundedElapsed - 1) / totalJours) * 100);
   const R = 21, C = 2 * Math.PI * R;
   const p3Start = new Date(2026, 3, 1), p3End = new Date(2026, 5, 1);
   let p3Elapsed = 0;
@@ -478,9 +478,9 @@ function buildStats() {
   const p3Total = diffD(p3Start, p3End);
   const p3Pct = Math.round((p3Elapsed / p3Total) * 100);
   const items = [
-    { value: boundedElapsed.toString(), label: 'Jours terminés', color: '#34d399', stroke: '#059669', pct: Math.min(100, Math.round((boundedElapsed/totalDays)*100)) },
+    { value: boundedElapsed.toString(), label: 'Jours terminés', color: '#34d399', stroke: '#059669', pct: Math.min(100, Math.round((boundedElapsed/totalJours)*100)) },
     { value: p3Elapsed.toString(), label: 'Jours Phase 3', color: '#fb923c', stroke: '#ea580c', pct: Math.min(100, p3Pct) },
-    { value: remaining.toString(), label: 'Jours restants', color: '#f87171', stroke: '#dc2626', pct: Math.min(100, Math.round((remaining/totalDays)*100)) },
+    { value: remaining.toString(), label: 'Jours restants', color: '#f87171', stroke: '#dc2626', pct: Math.min(100, Math.round((remaining/totalJours)*100)) },
     { value: Math.min(100, pct)+'%', label: 'Progression globale', color: '#a78bfa', stroke: '#7c3aed', pct: Math.min(100, pct) },
   ];
   const bar = document.getElementById('statsBar');
@@ -494,9 +494,9 @@ function buildStats() {
 }
 
 function buildHeader(c) {
-  const monthNames=['','February','March','April','May'];
+  const monthNames=['','Février','Mars','Avril','Mai'];
   const months=[{y:2026,m:1},{y:2026,m:2},{y:2026,m:3},{y:2026,m:4}];
-  const mR=mkRow('Month'); const mC=mR.querySelector('.tl-cells');
+  const mR=mkRow('Mois'); const mC=mR.querySelector('.tl-cells');
   months.forEach(({y,m})=>{
     const s=new Date(y,m,1), e=new Date(y,m+1,1);
     const cell=document.createElement('div'); cell.className='month-cell';
@@ -504,7 +504,7 @@ function buildHeader(c) {
     cell.textContent=monthNames[m]+' 2026'; mC.appendChild(cell);
   });
   c.appendChild(mR);
-  const wR=mkRow('Week'); const wC=wR.querySelector('.tl-cells');
+  const wR=mkRow('Semaine'); const wC=wR.querySelector('.tl-cells');
   let cur=new Date(PROJECT_START);
   while(cur<PROJECT_END){
     const ne=new Date(cur); ne.setDate(ne.getDate()+7);
@@ -516,7 +516,7 @@ function buildHeader(c) {
     cur.setDate(cur.getDate()+7);
   }
   c.appendChild(wR);
-  const dR=mkRow('Day'); const dC=dR.querySelector('.tl-cells');
+  const dR=mkRow('Jour'); const dC=dR.querySelector('.tl-cells');
   let dc=new Date(PROJECT_START);
   while(dc<PROJECT_END){
     const nd=new Date(dc);nd.setDate(nd.getDate()+1);
@@ -557,7 +557,7 @@ function addGlobalTodayLine(ganttEl){
   line.style.left = `calc(var(--label-width) + (100% - var(--label-width)) * ${l / 100})`;
   const dot = document.createElement('div'); dot.className = 'today-dot'; line.appendChild(dot);
   const tag = document.createElement('div'); tag.className = 'today-label-tag';
-  const mo = monthsEN[TODAY.getMonth()].slice(0,3).toUpperCase();
+  const mo = monthsEN[TODAY.getMois()].slice(0,3).toUpperCase();
   tag.textContent = TODAY.getDate()+' '+mo; line.appendChild(tag);
   ganttEl.appendChild(line);
 }
@@ -585,7 +585,7 @@ function mkBar(startS, endS, cls, label, phaseName, isCompleted, taskStatus){
   bar.innerHTML=`${progressHTML}<span class="bar-label">${label||''}</span><span class="bar-days">${dur}d · ${wd}wd</span>`;
   const statusLabel = isCompleted ? 'done' : taskStatus||'upcoming';
   bar.dataset.title=label||''; bar.dataset.dates=`${fmtFull(pd(startS))} → ${fmtFull(pd(endS))}`;
-  bar.dataset.duration=`${dur} calendar days · ${wd} working days`;
+  bar.dataset.duration=`${dur} jours calendaires · ${wd} jours ouvrés`;
   bar.dataset.phase=phaseName||''; bar.dataset.status=statusLabel;
   bar.addEventListener('mouseenter',ttShow); bar.addEventListener('mousemove',ttMove); bar.addEventListener('mouseleave',ttHide);
   return bar;
@@ -611,7 +611,7 @@ function buildRows(c){
     const phL=document.createElement('div');phL.className='row-label';
     const arrow=document.createElement('span'); arrow.className='collapse-arrow'; arrow.textContent='▾'; phL.appendChild(arrow);
     const badge=document.createElement('span');badge.className=`progress-badge ${phase.status}`;
-    badge.textContent=phase.status==='done'?'✅ Completed':phase.status==='active'?'🔄 In Progress':'⏳ Upcoming';
+    badge.textContent=phase.status==='done'?'✅ Terminé':phase.status==='active'?'🔄 En cours':'⏳ À venir';
     const nameSpan=document.createElement('span'); nameSpan.className='task-name'; nameSpan.textContent=phase.name;
     phL.appendChild(nameSpan); phL.appendChild(badge); phR.appendChild(phL);
     const phC=document.createElement('div');phC.className='row-chart';addBG(phC);
@@ -656,7 +656,7 @@ function buildRows(c){
 }
 
 const tt=document.getElementById('tooltip');
-const statusMap = { done: ['✅ Completed','s-done'], active: ['🔄 In Progress','s-active'], upcoming: ['⏳ Upcoming','s-upcoming'] };
+const statusMap = { done: ['✅ Terminé','s-done'], active: ['🔄 En cours','s-active'], upcoming: ['⏳ À venir','s-upcoming'] };
 function ttShow(e){
   const t=e.currentTarget;
   tt.querySelector('.tt-title').textContent=t.dataset.title;
@@ -684,7 +684,7 @@ buildRows(gantt);
 addGlobalTodayLine(gantt);
 
 const options = { day: 'numeric', month: 'long', year: 'numeric' };
-document.getElementById('todayLegend').innerHTML += 'Today · ' + TODAY.toLocaleDateString('en-GB', options);
+document.getElementById('todayLegend').innerHTML += 'Aujourd\'hui · ' + TODAY.toLocaleDateString('fr-FR', options);
 
 function triggerPrint() {
   document.querySelectorAll('.collapse-arrow').forEach(a => a.style.display = 'none');
