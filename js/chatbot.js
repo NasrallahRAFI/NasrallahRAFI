@@ -7,8 +7,27 @@ document.addEventListener('DOMContentLoaded', () => {
                 from { opacity: 0; transform: translateY(10px) scale(0.98); }
                 to { opacity: 1; transform: translateY(0) scale(1); }
             }
+            @keyframes botPulse {
+                0% { box-shadow: 0 0 0 0 rgba(6, 182, 212, 0.6); }
+                70% { box-shadow: 0 0 0 15px rgba(6, 182, 212, 0); }
+                100% { box-shadow: 0 0 0 0 rgba(6, 182, 212, 0); }
+            }
+            @keyframes botFloat {
+                0%, 100% { transform: translateY(0); }
+                50% { transform: translateY(-6px); }
+            }
+            @keyframes botEyeBlink {
+                0%, 96%, 98% { opacity: 1; transform: scaleY(1); }
+                97% { opacity: 0.5; transform: scaleY(0.1); }
+            }
             .chat-msg-animate {
                 animation: slideUpFade 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+            }
+            .bot-toggle-btn {
+                animation: botFloat 4s ease-in-out infinite, botPulse 2s infinite;
+            }
+            .bot-icon-animate {
+                animation: botEyeBlink 4s infinite;
             }
             /* Custom scrollbar for chatbot */
             #chatbot-messages::-webkit-scrollbar { width: 4px; }
@@ -47,9 +66,9 @@ document.addEventListener('DOMContentLoaded', () => {
                     <div class="text-[9px] uppercase tracking-widest text-center text-slate-600 mt-3 font-medium">AI can make mistakes</div>
                 </div>
             </div>
-            <button id="chatbot-toggle-btn" class="absolute bottom-0 right-0 w-14 h-14 rounded-full bg-black/60 backdrop-blur-md border border-white/10 text-white shadow-[0_4px_24px_rgba(0,0,0,0.4)] hover:shadow-[0_4px_32px_rgba(6,182,212,0.3)] hover:border-cyan-500/30 hover:scale-105 transition-all duration-300 flex items-center justify-center group" aria-label="Open Chat">
-                <i data-lucide="sparkles" class="w-5 h-5 group-[.chat-open]:hidden text-cyan-400"></i>
-                <i data-lucide="chevron-down" class="w-6 h-6 hidden group-[.chat-open]:block text-slate-300"></i>
+            <button id="chatbot-toggle-btn" class="absolute bottom-0 right-0 w-14 h-14 rounded-full bg-black/80 backdrop-blur-md border border-cyan-500/50 text-white hover:bg-black hover:border-cyan-400 transition-all duration-300 flex items-center justify-center group bot-toggle-btn" aria-label="Open Chat">
+                <i data-lucide="bot" class="w-6 h-6 group-[.chat-open]:hidden text-cyan-400 bot-icon-animate drop-shadow-[0_0_8px_rgba(6,182,212,0.8)]"></i>
+                <i data-lucide="chevron-down" class="w-6 h-6 hidden group-[.chat-open]:block text-cyan-300"></i>
             </button>
         </div>`;
         document.body.insertAdjacentHTML('beforeend', chatbotHTML);
