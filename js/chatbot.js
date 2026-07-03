@@ -167,7 +167,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 } else if (res.status === 503) {
                     msg = 'The AI provider is currently overloaded. Please try again later.';
                 } else if (err.error) {
-                    msg = err.error;
+                    msg = typeof err.error === 'object' ? (err.error.message || JSON.stringify(err.error)) : err.error;
                 }
                 addMessage(msg, 'system', true);
                 history.pop();
