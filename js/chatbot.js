@@ -26,11 +26,7 @@
     if (window.__nrChatbotInitialized) return;
     window.__nrChatbotInitialized = true;
 
-    if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', init);
-    } else {
-        init();
-    }
+    document.addEventListener('DOMContentLoaded', init);
 
     // ---------------------------------------------------------------
     // Config
@@ -108,6 +104,7 @@
     function widgetMarkup() {
         return `
         <style>
+            #chatbot-window { background-color: rgba(5,5,5,0.98) !important; backdrop-filter: blur(24px) !important; }
             @keyframes slideUpFade { from { opacity: 0; transform: translateY(10px) scale(0.98); } to { opacity: 1; transform: translateY(0) scale(1); } }
             @keyframes botPulse { 0% { box-shadow: 0 0 0 0 rgba(6,182,212,0.6); } 70% { box-shadow: 0 0 0 15px rgba(6,182,212,0); } 100% { box-shadow: 0 0 0 0 rgba(6,182,212,0); } }
             @keyframes botFloat { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-6px); } }
@@ -141,7 +138,7 @@
             }
         </style>
         <div id="chatbot-container" class="fixed bottom-6 right-6 z-[100] font-sans">
-            <div id="chatbot-window" role="dialog" aria-label="Chat with AI Assistant" class="hidden flex-col w-[350px] sm:w-[400px] h-[550px] max-h-[80vh] bg-[#050505]/98 backdrop-blur-3xl border-t border-l border-white/10 border-b border-r border-black/50 rounded-2xl shadow-[0_8px_32px_rgba(0,0,0,0.6)] mb-4 overflow-hidden transition-all duration-400 ease-out transform scale-95 opacity-0 origin-bottom-right">
+            <div id="chatbot-window" role="dialog" aria-label="Chat with AI Assistant" class="hidden flex-col w-[350px] sm:w-[400px] h-[550px] max-h-[80vh] bg-[#050505]/80 backdrop-blur-2xl border-t border-l border-white/10 border-b border-r border-black/50 rounded-2xl shadow-[0_8px_32px_rgba(0,0,0,0.6)] mb-4 overflow-hidden transition-all duration-400 ease-out transform scale-95 opacity-0 origin-bottom-right">
                 <div class="flex items-center justify-between px-5 py-4 bg-white/5 border-b border-white/10 backdrop-blur-md">
                     <div class="flex items-center gap-3">
                         <div class="relative flex h-2.5 w-2.5 mt-0.5">
@@ -357,9 +354,9 @@
             } else {
                 const data = await res.json();
                 if (data && data.reply) {
+                    await renderAssistantBubble(data.reply, { animate: true, latest: true });
                     history.push({ role: 'model', content: data.reply });
                     persistState();
-                    await renderAssistantBubble(data.reply, { animate: true, latest: true });
                 } else {
                     throw new Error('Invalid response');
                 }
