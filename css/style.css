@@ -189,7 +189,6 @@ a[class*="rounded"]:active {
     position: absolute;
     opacity: 0.5;
     border-radius: 50%;
-    animation: blob-float infinite ease-in-out alternate;
     mix-blend-mode: screen;
     will-change: transform;
     transform: translateZ(0);

@@ -109,7 +109,9 @@
             #chatbot-window { background-color: rgba(5,5,5,0.98) !important; backdrop-filter: blur(24px) !important; -webkit-backdrop-filter: blur(24px) !important; }
             .w-\[350px\] { width: 350px; }
             @media (min-width:640px) { .sm\:w-\[400px\] { width: 400px; } }
-            .h-\[550px\] { height: 550px; }
+            .h-\[auto\] { height: auto; }
+            .min-h-\[300px\] { min-height: 300px; }
+            .max-h-\[550px\] { max-height: 550px; }
             .max-h-\[80vh\] { max-height: 80vh; }
             .max-w-\[90\%\] { max-width: 90%; }
             .max-w-\[85\%\] { max-width: 85%; }
@@ -179,7 +181,7 @@
             @keyframes typingBounce { 0%, 60%, 100% { transform: translateY(0); opacity: 0.5; } 30% { transform: translateY(-4px); opacity: 1; } }
             @keyframes fabPop { from { opacity: 0; transform: translate(-50%, 6px); } to { opacity: 1; transform: translate(-50%, 0); } }
             .chat-msg-animate { animation: slideUpFade 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
-            .bot-toggle-btn { animation: botFloat 4s ease-in-out infinite, botPulse 2s infinite; }
+            .bot-toggle-btn { animation: botFloat 4s ease-in-out infinite; }
             .bot-icon-animate { animation: botEyeBlink 4s infinite; }
             .typing-dot { animation: typingBounce 1.1s ease-in-out infinite; }
             .chatbot-fab-in { animation: fabPop 0.2s ease-out forwards; }
@@ -205,7 +207,7 @@
             }
         </style>
         <div id="chatbot-container" class="fixed bottom-6 right-6 z-[100] font-sans">
-            <div id="chatbot-window" role="dialog" aria-label="Chat with AI Assistant" class="hidden flex-col w-[350px] sm:w-[400px] h-[550px] max-h-[80vh] bg-[#050505]/80 backdrop-blur-2xl border-t border-l border-white/10 border-b border-r border-black/50 rounded-2xl shadow-[0_8px_32px_rgba(0,0,0,0.6)] mb-20 overflow-hidden transition-all duration-400 ease-out transform scale-95 opacity-0 origin-bottom-right">
+            <div id="chatbot-window" role="dialog" aria-label="Chat with AI Assistant" class="hidden flex-col w-[350px] sm:w-[400px] h-auto min-h-[300px] max-h-[550px] bg-[#050505]/80 backdrop-blur-2xl border-t border-l border-white/10 border-b border-r border-black/50 rounded-2xl shadow-[0_8px_32px_rgba(0,0,0,0.6)] mb-20 overflow-hidden transition-all duration-400 ease-out transform scale-95 opacity-0 origin-bottom-right">
                 <div class="flex items-center justify-between px-5 py-4 bg-white/5 border-b border-white/10 backdrop-blur-md">
                     <div class="flex items-center gap-3">
                         <div class="relative flex h-2.5 w-2.5 mt-0.5">
