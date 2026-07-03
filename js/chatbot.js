@@ -71,6 +71,7 @@
         injectMarkup();
         cacheDom();
         wireEvents();
+        adjustWindowHeight();
         restoreConversation();
         setOfflineState(!navigator.onLine);
         refreshIcons();
@@ -281,6 +282,7 @@
     // Event wiring
     // ---------------------------------------------------------------
     function wireEvents() {
+        window.addEventListener('resize', adjustWindowHeight);
         toggleBtn.addEventListener('click', toggleChat);
         closeBtn.addEventListener('click', toggleChat);
         clearBtn.addEventListener('click', clearConversation);
@@ -679,6 +681,12 @@
     // ---------------------------------------------------------------
     // Scroll helpers
     // ---------------------------------------------------------------
+    function adjustWindowHeight() {
+        if (!windowEl) return;
+        const maxH = Math.min(550, window.innerHeight - 100);
+        windowEl.style.maxHeight = maxH + 'px';
+    }
+
     function isNearBottom() {
         return messages.scrollHeight - messages.scrollTop - messages.clientHeight < 80;
     }
