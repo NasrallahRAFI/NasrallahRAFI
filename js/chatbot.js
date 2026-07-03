@@ -111,7 +111,7 @@
             @media (min-width:640px) { .sm\:w-\[400px\] { width: 400px; } }
             .h-\[auto\] { height: auto; }
             .min-h-\[300px\] { min-height: 300px; }
-            .max-h-\[550px\] { max-height: 550px; }
+            .max-h-\[550px\] { max-height: min(550px, 80vh); }
             .max-h-\[80vh\] { max-height: 80vh; }
             .max-w-\[90\%\] { max-width: 90%; }
             .max-w-\[85\%\] { max-width: 85%; }
@@ -185,10 +185,13 @@
             .bot-icon-animate { animation: botEyeBlink 4s infinite; }
             .typing-dot { animation: typingBounce 1.1s ease-in-out infinite; }
             .chatbot-fab-in { animation: fabPop 0.2s ease-out forwards; }
-            #chatbot-messages::-webkit-scrollbar { width: 4px; }
+            
+            #chatbot-messages { scrollbar-width: thin; scrollbar-color: rgba(255,255,255,0.4) transparent; }
+            #chatbot-messages::-webkit-scrollbar { width: 6px; }
             #chatbot-messages::-webkit-scrollbar-track { background: transparent; }
-            #chatbot-messages::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 4px; }
-            #chatbot-messages::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,0.2); }
+            #chatbot-messages::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.4); border-radius: 6px; }
+            #chatbot-messages::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,0.6); }
+            
             #chatbot-input { resize: none; max-height: ${CONFIG.MAX_TEXTAREA_PX}px; }
             .chatbot-msg-actions { opacity: 0; transition: opacity 0.15s ease; }
             .chatbot-ai-row:hover .chatbot-msg-actions,
