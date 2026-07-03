@@ -26,11 +26,7 @@
     if (window.__nrChatbotInitialized) return;
     window.__nrChatbotInitialized = true;
 
-    if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', init);
-    } else {
-        init();
-    }
+    document.addEventListener('DOMContentLoaded', init);
 
     // ---------------------------------------------------------------
     // Config
