@@ -26,7 +26,11 @@
     if (window.__nrChatbotInitialized) return;
     window.__nrChatbotInitialized = true;
 
-    document.addEventListener('DOMContentLoaded', init);
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', init);
+    } else {
+        init();
+    }
 
     // ---------------------------------------------------------------
     // Config
@@ -354,9 +358,9 @@
             } else {
                 const data = await res.json();
                 if (data && data.reply) {
-                    await renderAssistantBubble(data.reply, { animate: true, latest: true });
                     history.push({ role: 'model', content: data.reply });
                     persistState();
+                    await renderAssistantBubble(data.reply, { animate: true, latest: true });
                 } else {
                     throw new Error('Invalid response');
                 }
