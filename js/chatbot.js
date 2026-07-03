@@ -205,8 +205,8 @@
             }
         </style>
         <div id="chatbot-container" class="fixed bottom-6 right-6 z-[100] font-sans">
-            <div id="chatbot-window" role="dialog" aria-label="Chat with AI Assistant" class="hidden flex-col w-[350px] sm:w-[400px] h-[550px] max-h-[80vh] bg-[#050505]/80 backdrop-blur-2xl border-t border-l border-white/10 border-b border-r border-black/50 rounded-2xl shadow-[0_8px_32px_rgba(0,0,0,0.6)] mb-4 overflow-hidden transition-all duration-400 ease-out transform scale-95 opacity-0 origin-bottom-right">
-                <div class="flex items-center justify-between px-5 py-4 bg-white/5 border-b border-white/10 backdrop-blur-md">
+            <div id="chatbot-window" role="dialog" aria-label="Chat with AI Assistant" class="hidden flex-col w-[350px] sm:w-[400px] h-[550px] max-h-[80vh] bg-[#050505]/80 backdrop-blur-2xl border-t border-l border-white/10 border-b border-r border-black/50 rounded-2xl shadow-[0_8px_32px_rgba(0,0,0,0.6)] mb-20 overflow-hidden transition-all duration-400 ease-out transform scale-95 opacity-0 origin-bottom-right">
+                <div class="flex items-center justify-between px-6 py-5 bg-white/5 border-b border-white/10 backdrop-blur-md">
                     <div class="flex items-center gap-3">
                         <div class="relative flex h-2.5 w-2.5 mt-0.5">
                             <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-cyan-400 opacity-75"></span>
@@ -235,18 +235,18 @@
                         <i data-lucide="arrow-down" class="w-3 h-3" aria-hidden="true"></i> New messages
                     </button>
                 </div>
-                <div class="p-4 bg-black/40 border-t border-white/5 backdrop-blur-md">
+                <div class="p-5 bg-black/40 border-t border-white/5 backdrop-blur-md">
                     <form id="chatbot-form" class="relative flex items-end">
                         <span id="chatbot-char-counter" class="hidden absolute -top-5 right-1 text-[10px] text-slate-500"></span>
-                        <textarea id="chatbot-input" rows="1" maxlength="${CONFIG.MAX_MESSAGE_LENGTH}" class="w-full bg-white/5 border border-white/10 focus:border-cyan-500/50 focus:bg-white/10 focus:ring-0 rounded-2xl pl-5 pr-12 py-3 text-[13px] text-white placeholder-slate-400 outline-none transition-all duration-300 shadow-inner" placeholder="Ask about his experience..." aria-label="Message"></textarea>
-                        <button type="submit" id="chatbot-send-btn" class="absolute right-1.5 bottom-1.5 w-9 h-9 flex items-center justify-center rounded-full bg-transparent hover:bg-white/10 text-cyan-400 transition-colors duration-300 disabled:opacity-30 disabled:hover:bg-transparent cursor-pointer disabled:cursor-not-allowed" aria-label="Send message">
+                        <textarea id="chatbot-input" rows="1" maxlength="${CONFIG.MAX_MESSAGE_LENGTH}" class="w-full bg-white/5 border border-white/10 focus:border-cyan-500/50 focus:bg-white/10 focus:ring-0 rounded-2xl pl-5 pr-12 py-3.5 text-[14px] text-white placeholder-slate-400 outline-none transition-all duration-300 shadow-inner" placeholder="Ask about his experience..." aria-label="Message"></textarea>
+                        <button type="submit" id="chatbot-send-btn" class="absolute right-2 bottom-2.5 w-9 h-9 flex items-center justify-center rounded-full bg-transparent hover:bg-white/10 text-cyan-400 transition-colors duration-300 disabled:opacity-30 disabled:hover:bg-transparent cursor-pointer disabled:cursor-not-allowed" aria-label="Send message">
                             <i data-lucide="send" class="w-4 h-4 ml-0.5" aria-hidden="true"></i>
                         </button>
-                        <button type="button" id="chatbot-stop-btn" class="hidden absolute right-1.5 bottom-1.5 w-9 h-9 flex items-center justify-center rounded-full bg-white/10 hover:bg-white/20 text-red-400 transition-colors duration-300" aria-label="Stop generating">
+                        <button type="button" id="chatbot-stop-btn" class="hidden absolute right-2 bottom-2.5 w-9 h-9 flex items-center justify-center rounded-full bg-white/10 hover:bg-white/20 text-red-400 transition-colors duration-300" aria-label="Stop generating">
                             <i data-lucide="square" class="w-3.5 h-3.5" aria-hidden="true"></i>
                         </button>
                     </form>
-                    <div class="text-[9px] uppercase tracking-widest text-center text-slate-600 mt-3 font-medium">AI can make mistakes</div>
+                    <div class="text-[10px] uppercase tracking-widest text-center text-slate-500 mt-4 font-medium">AI can make mistakes</div>
                 </div>
             </div>
             <button id="chatbot-toggle-btn" type="button" class="absolute bottom-0 right-0 w-14 h-14 rounded-full bg-black/80 backdrop-blur-md border border-cyan-500/50 text-white hover:bg-black hover:border-cyan-400 transition-all duration-300 flex items-center justify-center group bot-toggle-btn" aria-label="Open chat" aria-expanded="false">
@@ -259,13 +259,13 @@
 
     function greetingBlockHTML() {
         const chips = CONFIG.SUGGESTIONS.map(function (s) {
-            return '<button type="button" class="suggestion-chip px-3 py-1.5 rounded-full border border-white/10 bg-white/5 hover:bg-white/10 hover:border-cyan-500/40 text-[11.5px] text-slate-300 hover:text-cyan-300 transition-all duration-200" data-prompt="' + s.prompt.replace(/"/g, '&quot;') + '">' + s.label + '</button>';
+            return '<button type="button" class="suggestion-chip px-4 py-2.5 rounded-full border border-white/10 bg-white/5 hover:bg-white/10 hover:border-cyan-500/40 text-[12px] text-slate-300 hover:text-cyan-300 transition-all duration-200" data-prompt="' + s.prompt.replace(/"/g, '&quot;') + '">' + s.label + '</button>';
         }).join('');
         return '<div id="chatbot-greeting" class="self-start max-w-[90%] chat-msg-animate">'
-            + '<div class="flex items-start gap-2">' + avatarHTML()
-            + '<div class="inline-block px-4 py-3 rounded-2xl rounded-tl-sm bg-black/50 border border-white/5 text-slate-300 chat-markdown shadow-sm">'
+            + '<div class="flex items-start gap-3">' + avatarHTML()
+            + '<div class="inline-block px-5 py-4 rounded-2xl rounded-tl-sm bg-black/50 border border-white/5 text-slate-300 chat-markdown shadow-sm">'
             + '<p class="leading-relaxed m-0">Hi! I\'m an AI assistant trained on Nasrallah\'s portfolio. How can I help you today?</p></div></div>'
-            + '<div id="chatbot-suggestions" class="flex flex-wrap gap-2 mt-2 pl-9">' + chips + '</div></div>';
+            + '<div id="chatbot-suggestions" class="flex flex-wrap gap-2.5 mt-3 pl-10">' + chips + '</div></div>';
     }
 
     function avatarHTML() {
@@ -477,7 +477,7 @@
         const outer = document.createElement('div');
         outer.className = 'self-end max-w-[85%] chat-msg-animate';
         const inner = document.createElement('div');
-        inner.className = 'inline-block px-4 py-3 rounded-2xl rounded-tr-sm bg-gradient-to-br from-zinc-800 to-zinc-900 border border-white/5 text-slate-200 shadow-sm leading-relaxed';
+        inner.className = 'inline-block px-5 py-4 rounded-2xl rounded-tr-sm bg-gradient-to-br from-zinc-800 to-zinc-900 border border-white/5 text-slate-200 shadow-sm leading-relaxed';
         inner.textContent = text;
         outer.appendChild(inner);
         outer.appendChild(timestampEl('text-right pr-1'));
@@ -495,15 +495,15 @@
         outer.className = 'self-start max-w-[90%] chat-msg-animate chatbot-ai-row';
 
         const row = document.createElement('div');
-        row.className = 'flex items-start gap-2';
+        row.className = 'flex items-start gap-3';
         row.innerHTML = avatarHTML();
 
         const inner = document.createElement('div');
-        inner.className = 'inline-block px-4 py-3 rounded-2xl rounded-tl-sm chat-markdown shadow-sm leading-relaxed '
+        inner.className = 'inline-block px-5 py-4 rounded-2xl rounded-tl-sm chat-markdown shadow-sm leading-relaxed '
             + (isError ? 'bg-red-950/40 border border-red-500/30 text-red-300' : 'bg-black/50 border border-white/5 text-slate-300');
         row.appendChild(inner);
         outer.appendChild(row);
-        outer.appendChild(timestampEl('pl-9'));
+        outer.appendChild(timestampEl('pl-10'));
 
         if (isError) {
             inner.textContent = text;
