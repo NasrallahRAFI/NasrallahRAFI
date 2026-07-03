@@ -206,8 +206,8 @@
                 #chatbot-window { transition: opacity 0.15s ease !important; }
             }
         </style>
-        <div id="chatbot-container" class="fixed bottom-6 right-6 z-[100] font-sans">
-            <div id="chatbot-window" role="dialog" aria-label="Chat with AI Assistant" class="hidden flex-col w-[350px] sm:w-[400px] h-auto min-h-[300px] max-h-[550px] bg-[#050505]/80 backdrop-blur-2xl border-t border-l border-white/10 border-b border-r border-black/50 rounded-2xl shadow-[0_8px_32px_rgba(0,0,0,0.6)] mb-20 overflow-hidden transition-all duration-400 ease-out transform scale-95 opacity-0 origin-bottom-right">
+        <div id="chatbot-container" class="fixed bottom-6 right-6 z-[100] font-sans flex flex-col items-end gap-4 pointer-events-none">
+            <div id="chatbot-window" role="dialog" aria-label="Chat with AI Assistant" class="hidden flex-col w-[350px] sm:w-[400px] h-auto min-h-[300px] max-h-[550px] bg-[#050505]/80 backdrop-blur-2xl border-t border-l border-white/10 border-b border-r border-black/50 rounded-2xl shadow-[0_8px_32px_rgba(0,0,0,0.6)] overflow-hidden transition-all duration-400 ease-out transform scale-95 opacity-0 origin-bottom-right pointer-events-auto">
                 <div class="flex items-center justify-between px-5 py-4 bg-white/5 border-b border-white/10 backdrop-blur-md">
                     <div class="flex items-center gap-3">
                         <div class="relative flex h-2.5 w-2.5 mt-0.5">
@@ -230,7 +230,7 @@
                 </div>
                 <div id="chatbot-offline-banner" class="hidden px-4 py-2 text-[11px] text-center bg-amber-500/10 text-amber-300 border-b border-amber-500/20">You're offline — messages can't be sent right now.</div>
                 <div class="relative flex-1 flex flex-col min-h-0">
-                    <div id="chatbot-messages" role="log" aria-label="Conversation" class="flex-1 p-5 overflow-y-auto flex flex-col gap-4 scroll-smooth text-[13.5px] tracking-wide antialiased">
+                    <div id="chatbot-messages" role="log" aria-label="Conversation" class="flex-1 min-h-0 p-5 overflow-y-auto flex flex-col gap-4 scroll-smooth text-[13.5px] tracking-wide antialiased">
                         ${greetingBlockHTML()}
                     </div>
                     <button id="chatbot-scroll-fab" type="button" class="hidden absolute bottom-3 left-1/2 -translate-x-1/2 items-center gap-1.5 px-3 py-1.5 rounded-full bg-black/80 border border-cyan-500/40 text-cyan-300 text-[11px] font-medium shadow-lg hover:bg-black transition-colors chatbot-fab-in">
@@ -241,17 +241,17 @@
                     <form id="chatbot-form" class="relative flex items-end">
                         <span id="chatbot-char-counter" class="hidden absolute -top-5 right-1 text-[10px] text-slate-500"></span>
                         <textarea id="chatbot-input" rows="1" maxlength="${CONFIG.MAX_MESSAGE_LENGTH}" class="w-full bg-white/5 border border-white/10 focus:border-cyan-500/50 focus:bg-white/10 focus:ring-0 rounded-2xl pl-4 pr-12 py-3 text-[14px] text-white placeholder-slate-400 outline-none transition-all duration-300 shadow-inner" placeholder="Ask about his experience..." aria-label="Message"></textarea>
-                        <button type="submit" id="chatbot-send-btn" class="absolute right-2 bottom-2 w-9 h-9 flex items-center justify-center rounded-full bg-transparent hover:bg-white/10 text-cyan-400 transition-colors duration-300 disabled:opacity-30 disabled:hover:bg-transparent cursor-pointer disabled:cursor-not-allowed" aria-label="Send message">
+                        <button type="submit" id="chatbot-send-btn" class="absolute w-9 h-9 flex items-center justify-center rounded-full bg-transparent hover:bg-white/10 text-cyan-400 transition-colors duration-300 disabled:opacity-30 disabled:hover:bg-transparent cursor-pointer disabled:cursor-not-allowed" style="right: 0.5rem; bottom: 0.5rem;" aria-label="Send message">
                             <i data-lucide="send" class="w-4 h-4 ml-0.5" aria-hidden="true"></i>
                         </button>
-                        <button type="button" id="chatbot-stop-btn" class="hidden absolute right-2 bottom-2 w-9 h-9 flex items-center justify-center rounded-full bg-white/10 hover:bg-white/20 text-red-400 transition-colors duration-300" aria-label="Stop generating">
+                        <button type="button" id="chatbot-stop-btn" class="hidden absolute w-9 h-9 flex items-center justify-center rounded-full bg-white/10 hover:bg-white/20 text-red-400 transition-colors duration-300" style="right: 0.5rem; bottom: 0.5rem;" aria-label="Stop generating">
                             <i data-lucide="square" class="w-3.5 h-3.5" aria-hidden="true"></i>
                         </button>
                     </form>
                     <div class="text-[9px] uppercase tracking-wider text-center text-slate-500 mt-2.5 font-medium">AI can make mistakes</div>
                 </div>
             </div>
-            <button id="chatbot-toggle-btn" type="button" class="absolute bottom-0 right-0 w-14 h-14 rounded-full bg-black/80 backdrop-blur-md border border-cyan-500/50 text-white hover:bg-black hover:border-cyan-400 transition-all duration-300 flex items-center justify-center group bot-toggle-btn" aria-label="Open chat" aria-expanded="false">
+            <button id="chatbot-toggle-btn" type="button" class="w-14 h-14 rounded-full bg-black/80 backdrop-blur-md border border-cyan-500/50 text-white hover:bg-black hover:border-cyan-400 transition-all duration-300 flex items-center justify-center group bot-toggle-btn pointer-events-auto" aria-label="Open chat" aria-expanded="false">
                 <i data-lucide="bot" class="w-6 h-6 group-[.chat-open]:hidden text-cyan-400 bot-icon-animate drop-shadow-[0_0_8px_rgba(6,182,212,0.8)]" aria-hidden="true"></i>
                 <i data-lucide="chevron-down" class="w-6 h-6 hidden group-[.chat-open]:block text-cyan-300" aria-hidden="true"></i>
             </button>
