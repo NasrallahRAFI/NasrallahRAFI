@@ -1,6 +1,6 @@
 # Rafi Nasrallah — Electrical Engineer Portfolio
 
-> State Engineer in Electrical Engineering (ENSET Mohammedia, 2026) specialising in Smart
+> State Engineer in Electrical Engineering (ENSET Mohammedia, graduated 2026) specialising in Smart
 > Battery Management Systems, embedded hardware design, and industrial IoT. Patent holder
 > (OMPIC #65133). Based in Dar Bouazza, Morocco.
 
@@ -13,7 +13,7 @@ corrugated-web beam welding and assembly system (OMPIC #65133, November 2025).
 ## Projects
 
 - [French homepage](https://nasrallahrafi.me/index-fr.html): Professional French version of the main portfolio, written with academic and engineering terminology rather than literal translation.
-- [Smart BMS for Electric Mobility](https://nasrallahrafi.me/project-smart-bms.html): End-of-studies internship project at Emove Véhicules focused on LFP electric scooter battery reliability, ECM/UKF/LSTM SOC estimation, STM32-based BMS hardware architecture, battery quality procedures, and industrial supervision.
+- [Smart BMS for Electric Mobility](https://nasrallahrafi.me/project-smart-bms.html): Major engineering project at Emove Véhicules focused on LFP electric scooter battery reliability, ECM/UKF/LSTM SOC estimation, STM32-based BMS hardware architecture, battery quality procedures, and industrial supervision.
 - [Rectangular Waveguide TE10 Analysis](https://nasrallahrafi.me/project-waveguide.html): ANSYS HFSS simulation of WR-90 waveguide with air and alumina dielectric loading. Key result: alumina loading shifts the cutoff frequency from 6.56 GHz to 2.19 GHz with measured insertion loss of 0.26–0.72 dB.
 - [Transient Thermal Analysis — FEA vs LCM](https://nasrallahrafi.me/project-thermal.html): Comparative study of Lumped Capacitance Modelling vs ANSYS FEA (Fusion 360) for hot-nut insertion cycle validation in polycarbonate. Full report available as PDF.
 - [Luenberger-Based Orbital Rendezvous Control](https://nasrallahrafi.me/project-rendezvous.html): Full autopilot system (Luenberger Observer + State-Feedback Controller) for satellite rendezvous using angle-only measurements, with system normalisation to overcome numerical instability. Implemented in MATLAB/Simulink.
@@ -21,8 +21,8 @@ corrugated-web beam welding and assembly system (OMPIC #65133, November 2025).
 
 ## Experience
 
-- [Engineering Intern — Emove Véhicules](https://nasrallahrafi.me/#experience) (Feb–May 2026): R&D and industrialisation internship. Resolved premature shutdown at 20 % SOC and energy gauge instability on electric scooters via coupled hardware/software/process approach.
-- [Internship — SMCV](https://nasrallahrafi.me/internship-smcv.html) (2025): HMI design (WinCC), injection moulding machine automation, mechanical arm design (Inventor), thermal analysis of nut insertion press.
+- [Hardware & Battery Engineer — Emove Véhicules](https://nasrallahrafi.me/#experience) (Feb–May 2026): R&D and industrialisation project. Resolved premature shutdown at 20 % SOC and energy gauge instability on electric scooters via coupled hardware/software/process approach.
+- [Automation Engineer — SMCV](https://nasrallahrafi.me/internship-smcv.html) (2025): HMI design (WinCC), injection moulding machine automation, mechanical arm design (Inventor), thermal analysis of nut insertion press.
 - [Internship — ONEE Mohammedia Thermal Power Plant](https://nasrallahrafi.me/internship-onee.html) (Jul–Aug 2024): Formalised test procedures for Siemens SIPROTEC digital protection relays using OMICRON CMC. Supervisor evaluation: 18.5/20.
 - [Apprenticeship — Rafi Robotiques et Machineries](https://nasrallahrafi.me/apprenticeship-rafi.html) (2020–2023): Three-year industrial apprenticeship covering CNC lathe repair (Siemens Sinumerik 840D / Simodrive 611), 5-axis welding robot fabrication, PLC reprogramming, and heavy-machine restoration.
 
