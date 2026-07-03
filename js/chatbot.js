@@ -162,11 +162,7 @@
             .duration-400 { transition-duration: 400ms; }
 
             /* Shadow utilities — applied via IDs to avoid CSS escape conflicts in JS template literals */
-            #chatbot-window { 
-                box-shadow: 0 8px 32px rgba(0,0,0,0.6); 
-                max-height: calc(100vh - 100px) !important;
-                max-height: min(550px, 100vh - 100px) !important;
-            }
+            #chatbot-window { box-shadow: 0 8px 32px rgba(0,0,0,0.6); }
             #chatbot-container .bot-toggle-btn { box-shadow: none; }
             [id="chatbot-toggle-btn"] [data-lucide="bot"] { filter: drop-shadow(0 0 8px rgba(6,182,212,0.8)); }
 
