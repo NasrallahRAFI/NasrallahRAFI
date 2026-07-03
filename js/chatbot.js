@@ -104,7 +104,74 @@
     function widgetMarkup() {
         return `
         <style>
-            #chatbot-window { background-color: rgba(5,5,5,0.98) !important; backdrop-filter: blur(24px) !important; }
+            /* ── Chatbot self-contained styles ─────────────────────────── */
+            /* Sizing & layout classes missing from compiled Tailwind */
+            #chatbot-window { background-color: rgba(5,5,5,0.98) !important; backdrop-filter: blur(24px) !important; -webkit-backdrop-filter: blur(24px) !important; }
+            .w-\[350px\] { width: 350px; }
+            @media (min-width:640px) { .sm\:w-\[400px\] { width: 400px; } }
+            .h-\[550px\] { height: 550px; }
+            .max-h-\[80vh\] { max-height: 80vh; }
+            .max-w-\[90\%\] { max-width: 90%; }
+            .max-w-\[85\%\] { max-width: 85%; }
+            .z-\[100\] { z-index: 100; }
+
+            /* Custom font sizes */
+            .text-\[15px\] { font-size: 15px; }
+            .text-\[13\.5px\] { font-size: 13.5px; }
+            .text-\[13px\] { font-size: 13px; }
+            .text-\[11\.5px\] { font-size: 11.5px; }
+            .text-\[11px\] { font-size: 11px; }
+            .text-\[10\.5px\] { font-size: 10.5px; }
+            .text-\[10px\] { font-size: 10px; }
+            .text-\[9px\] { font-size: 9px; }
+
+            /* Background colors */
+            .bg-\[\#050505\]\/80 { background-color: rgba(5,5,5,0.8); }
+            .bg-black { background-color: rgb(0,0,0); }
+            .bg-black\/80 { background-color: rgba(0,0,0,0.8); }
+            .bg-black\/50 { background-color: rgba(0,0,0,0.5); }
+            .bg-black\/40 { background-color: rgba(0,0,0,0.4); }
+            .hover\:bg-black:hover { background-color: rgb(0,0,0); }
+            .bg-white\/5 { background-color: rgba(255,255,255,0.05); }
+            .bg-white\/10 { background-color: rgba(255,255,255,0.1); }
+            .hover\:bg-white\/5:hover { background-color: rgba(255,255,255,0.05); }
+            .hover\:bg-white\/10:hover { background-color: rgba(255,255,255,0.1); }
+            .hover\:bg-white\/20:hover { background-color: rgba(255,255,255,0.2); }
+            .focus\:bg-white\/10:focus { background-color: rgba(255,255,255,0.1); }
+
+            /* Border colors */
+            .border-white\/10 { border-color: rgba(255,255,255,0.1); }
+            .border-white\/5 { border-color: rgba(255,255,255,0.05); }
+            .border-black\/50 { border-color: rgba(0,0,0,0.5); }
+
+            /* Error state (red) */
+            .bg-red-950\/40 { background-color: rgba(69,10,10,0.4); }
+            .border-red-500\/30 { border-color: rgba(239,68,68,0.3); }
+            .text-red-300 { color: rgb(252,165,165); }
+            .text-red-400 { color: rgb(248,113,113); }
+            .hover\:text-red-200:hover { color: rgb(254,202,202); }
+
+            /* Offline banner (amber) */
+            .bg-amber-500\/10 { background-color: rgba(245,158,11,0.1); }
+            .text-amber-300 { color: rgb(252,211,77); }
+            .border-amber-500\/20 { border-color: rgba(245,158,11,0.2); }
+
+            /* Transition duration */
+            .duration-400 { transition-duration: 400ms; }
+
+            /* Shadow utilities — applied via IDs to avoid CSS escape conflicts in JS template literals */
+            #chatbot-window { box-shadow: 0 8px 32px rgba(0,0,0,0.6); }
+            #chatbot-container .bot-toggle-btn { box-shadow: none; }
+            [id="chatbot-toggle-btn"] [data-lucide="bot"] { filter: drop-shadow(0 0 8px rgba(6,182,212,0.8)); }
+
+            /* Group toggle for open/close icon swap */
+            .group.chat-open .group-\[\.chat-open\]\:hidden { display: none; }
+            .group.chat-open .group-\[\.chat-open\]\:block { display: block; }
+
+            /* Focus border */
+            .focus\:border-cyan-500\/50:focus { border-color: rgba(6,182,212,0.5); }
+
+            /* ── Animations ────────────────────────────────────────────── */
             @keyframes slideUpFade { from { opacity: 0; transform: translateY(10px) scale(0.98); } to { opacity: 1; transform: translateY(0) scale(1); } }
             @keyframes botPulse { 0% { box-shadow: 0 0 0 0 rgba(6,182,212,0.6); } 70% { box-shadow: 0 0 0 15px rgba(6,182,212,0); } 100% { box-shadow: 0 0 0 0 rgba(6,182,212,0); } }
             @keyframes botFloat { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-6px); } }
