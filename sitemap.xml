@@ -19,10 +19,22 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://nasrallahrafi.me/apprenticeship-rafi-fr.html</loc>
+    <lastmod>2026-06-17</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
     <loc>https://nasrallahrafi.me/internship-onee.html</loc>
     <lastmod>2026-06-17</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://nasrallahrafi.me/internship-onee-fr.html</loc>
+    <lastmod>2026-06-17</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
   </url>
   <url>
     <loc>https://nasrallahrafi.me/internship-smcv.html</loc>
@@ -31,7 +43,19 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://nasrallahrafi.me/internship-smcv-fr.html</loc>
+    <lastmod>2026-06-17</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
     <loc>https://nasrallahrafi.me/pfe-gantt.html</loc>
+    <lastmod>2026-06-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>https://nasrallahrafi.me/pfe-gantt-fr.html</loc>
     <lastmod>2026-06-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.3</priority>
@@ -43,10 +67,22 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://nasrallahrafi.me/project-smart-bms-fr.html</loc>
+    <lastmod>2026-06-22</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
     <loc>https://nasrallahrafi.me/project-rendezvous.html</loc>
     <lastmod>2026-06-17</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://nasrallahrafi.me/project-rendezvous-fr.html</loc>
+    <lastmod>2026-06-17</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
   </url>
   <url>
     <loc>https://nasrallahrafi.me/project-thermal.html</loc>
@@ -55,9 +91,21 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://nasrallahrafi.me/project-thermal-fr.html</loc>
+    <lastmod>2026-06-17</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
     <loc>https://nasrallahrafi.me/project-waveguide.html</loc>
     <lastmod>2026-06-17</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://nasrallahrafi.me/project-waveguide-fr.html</loc>
+    <lastmod>2026-06-17</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
   </url>
 </urlset>

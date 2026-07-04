@@ -7,6 +7,28 @@ const THEME_META = {
     'theme-obsidian': { icon: 'moon', label: 'Obsidian' },
 };
 
+// FIX: mobile browser chrome (Android Chrome address bar, iOS Safari
+// status bar) reads <meta name="theme-color">. It was hardcoded to the
+// Glass color on the 2 pages that had it, and missing entirely from the
+// other 17 — so it never matched a visitor's actual saved theme. Colors
+// mirror --accent-color per theme in css/style.css.
+const THEME_COLOR = {
+    'theme-glass': '#06b6d4',
+    'theme-volt': '#fbbf24',
+    'theme-deepsea': '#2dd4bf',
+    'theme-obsidian': '#f8fafc',
+};
+
+function updateMetaThemeColor(theme) {
+    let meta = document.querySelector('meta[name="theme-color"]');
+    if (!meta) {
+        meta = document.createElement('meta');
+        meta.setAttribute('name', 'theme-color');
+        document.head.appendChild(meta);
+    }
+    meta.setAttribute('content', THEME_COLOR[theme] || THEME_COLOR[DEFAULT_THEME]);
+}
+
 // The theme class already lives on <html> by the time this file runs —
 // it's applied synchronously by the blocking snippet in <head> (see
 // theme-init snippet) specifically so the correct theme is in place
@@ -28,6 +50,7 @@ function initTheme() {
         document.documentElement.classList.add(THEMES.includes(saved) ? saved : DEFAULT_THEME);
     }
     updateThemeIcon(currentTheme());
+    updateMetaThemeColor(currentTheme()); // FIX: sync on initial load too
 }
 
 function toggleTheme() {
@@ -46,6 +69,15 @@ function toggleTheme() {
     // reaching into localStorage themselves.
     document.dispatchEvent(new CustomEvent('themechange', { detail: { theme: nextTheme } }));
 }
+
+// FIX: this is the listener that never existed. The event was already
+// being dispatched above on every toggle — nothing consumed it. This
+// is what actually revives it, decoupled from toggleTheme() itself so
+// any other future script can hook the same event without touching
+// this function.
+document.addEventListener('themechange', function (e) {
+    updateMetaThemeColor(e.detail.theme);
+});
 
 function updateThemeIcon(theme) {
     const iconEl = document.getElementById('theme-toggle-icon');

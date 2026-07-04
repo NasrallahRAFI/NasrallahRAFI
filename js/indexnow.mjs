@@ -3,8 +3,10 @@ import { readFileSync } from 'fs';
 import { fileURLToPath } from 'url';
 import { dirname, join } from 'path';
 
-// Load .env manually (no dotenv dependency on ESM)
 const __dirname = dirname(fileURLToPath(import.meta.url));
+const HOST = 'nasrallahrafi.me';
+
+// ── Load .env manually (no dotenv dependency on ESM) ──────────────
 const envPath = join(__dirname, '..', '.env');
 const env = Object.fromEntries(
   readFileSync(envPath, 'utf8')
@@ -14,25 +16,29 @@ const env = Object.fromEntries(
 );
 
 const KEY = env.INDEXNOW_KEY;
-const BING_API_KEY = env.BING_API_KEY;
-const HOST = 'nasrallahrafi.me';
+const BING_API_KEY = env.BING_API_KEY; // now optional — see Step 2
 
-if (!KEY || !BING_API_KEY) {
-  console.error('❌ Missing INDEXNOW_KEY or BING_API_KEY in .env');
+// FIX 1: IndexNow no longer depends on the Bing key. Only the key it
+// actually needs is required to run.
+if (!KEY) {
+  console.error('❌ Missing INDEXNOW_KEY in .env');
   process.exit(1);
 }
 
-const URLS = [
-  `https://${HOST}/`,
-  `https://${HOST}/project-rendezvous.html`,
-  `https://${HOST}/project-thermal.html`,
-  `https://${HOST}/project-waveguide.html`,
-  `https://${HOST}/apprenticeship-rafi.html`,
-  `https://${HOST}/internship-onee.html`,
-  `https://${HOST}/internship-smcv.html`,
-];
+// FIX 2: URLs are read from sitemap.xml instead of a hand-maintained
+// array, so this list can never drift out of sync with the site again.
+// (Make sure sitemap.xml itself lists every page you want indexed —
+// see the corrected sitemap.xml alongside this file.)
+const sitemapPath = join(__dirname, '..', 'sitemap.xml');
+const sitemapXml = readFileSync(sitemapPath, 'utf8');
+const URLS = [...sitemapXml.matchAll(/<loc>(.*?)<\/loc>/g)].map(m => m[1]);
 
-// ── Step 1: Submit via IndexNow protocol ──────────────────────────
+if (URLS.length === 0) {
+  console.error('❌ No <loc> entries found in sitemap.xml — nothing to submit.');
+  process.exit(1);
+}
+
+// ── Step 1: Submit via IndexNow protocol ───────────────────────────
 function submitIndexNow() {
   return new Promise((resolve, reject) => {
     const payload = JSON.stringify({
@@ -74,9 +80,9 @@ function submitIndexNow() {
   });
 }
 
-// ── Step 2: Submit each URL via Bing URL Submission API ───────────
+// ── Step 2: Submit each URL via Bing URL Submission API (optional) ─
 function submitToBingApi(url) {
-  return new Promise((resolve, reject) => {
+  return new Promise((resolve) => {
     const payload = JSON.stringify({ siteUrl: `https://${HOST}/`, url });
 
     const options = {
@@ -95,11 +101,10 @@ function submitToBingApi(url) {
       res.on('end', () => {
         if (res.statusCode === 200) {
           console.log(`  ✅ Bing API: submitted ${url}`);
-          resolve();
         } else {
           console.error(`  ❌ Bing API ${res.statusCode} for ${url}: ${body}`);
-          resolve(); // continue even on individual failure
         }
+        resolve(); // continue even on individual failure
       });
     });
 
@@ -113,19 +118,25 @@ function submitToBingApi(url) {
   });
 }
 
-// ── Main ──────────────────────────────────────────────────────────
+// ── Main ─────────────────────────────────────────────────────────
 (async () => {
-  console.log(`\n🔍 Submitting ${URLS.length} URLs to Bing...\n`);
+  console.log(`\n🔍 Submitting ${URLS.length} URLs (from sitemap.xml)...\n`);
 
   console.log('── IndexNow protocol ──');
   await submitIndexNow();
 
-  console.log('\n── Bing URL Submission API ──');
-  for (const url of URLS) {
-    await submitToBingApi(url);
-    // small delay to avoid rate limiting
-    await new Promise(r => setTimeout(r, 300));
+  // FIX 1 (cont.): Bing submission is now skipped gracefully instead
+  // of blocking the whole script when the key is absent.
+  if (BING_API_KEY) {
+    console.log('\n── Bing URL Submission API ──');
+    for (const url of URLS) {
+      await submitToBingApi(url);
+      await new Promise(r => setTimeout(r, 300));
+    }
+  } else {
+    console.log('\n⚠️  Skipping Bing URL Submission API — BING_API_KEY not set in .env.');
+    console.log('   IndexNow already notifies Bing (and other participating engines) on its own.');
   }
 
-  console.log('\n🎉 Done. Bing will crawl all pages within minutes.');
+  console.log('\n🎉 Done.');
 })();
