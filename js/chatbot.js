@@ -14,7 +14,7 @@
  * widget safely falls back to plain text.
  *
  * Backend contract (unchanged from the original integration):
- *   POST {API_URL}  { messages: [{role, content}], contextUrl, contextTitle }
+ *   POST {API_URL}  { messages: [{role, content}], contextUrl }
  *   -> 200 { reply: string }
  *   -> 4xx/5xx { code?, error? }
  * ------------------------------------------------------------------
@@ -425,8 +425,7 @@
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
                     messages: history.slice(-CONFIG.MAX_HISTORY_SENT),
-                    contextUrl: window.location.href,
-                    contextTitle: document.title
+                    contextUrl: window.location.href
                 }),
                 signal: controller.signal
             });
@@ -451,7 +450,7 @@
             } else {
                 const data = await res.json();
                 if (data && data.reply) {
-                    history.push({ role: 'model', content: data.reply });
+                    history.push({ role: 'assistant', content: data.reply });
                     persistState();
                     await renderAssistantBubble(data.reply, { animate: true, latest: true });
                 } else {
@@ -655,7 +654,7 @@
             if (history[i].role === 'user') {
                 // Drop the trailing assistant reply from state; its bubble
                 // stays visible for context but is no longer "latest".
-                if (history[history.length - 1].role === 'model') history.pop();
+                if (history[history.length - 1].role === 'assistant') history.pop();
                 removeStaleRegenerateButtons();
                 persistState();
                 sendMessage(history.pop().content);
@@ -793,7 +792,7 @@
         const lastAi = messages.querySelectorAll('.chatbot-ai-row');
         if (lastAi.length) {
             const row = lastAi[lastAi.length - 1].querySelector('.flex.items-start.gap-2');
-            const rawText = history[history.length - 1] && history[history.length - 1].role === 'model'
+            const rawText = history[history.length - 1] && history[history.length - 1].role === 'assistant'
                 ? history[history.length - 1].content
                 : null;
             if (row && rawText) attachMessageActions(row, rawText, true);

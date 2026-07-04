@@ -2,3 +2,7 @@ server.log
 server.err.log
 .env
 *.env
+
+.impeccable/
+.codex/
+.claude/
