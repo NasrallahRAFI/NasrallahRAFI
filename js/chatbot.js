@@ -213,7 +213,11 @@
             #chatbot-messages::-webkit-scrollbar-track { background: transparent; }
             #chatbot-messages::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 4px; }
             #chatbot-messages::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,0.2); }
-            #chatbot-input { resize: none; max-height: ${CONFIG.MAX_TEXTAREA_PX}px; }
+            #chatbot-input { resize: none; max-height: ${CONFIG.MAX_TEXTAREA_PX}px; overflow-y: hidden; }
+            #chatbot-input::-webkit-scrollbar { width: 4px; }
+            #chatbot-input::-webkit-scrollbar-track { background: transparent; }
+            #chatbot-input::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 4px; }
+            #chatbot-input::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,0.2); }
             .chatbot-msg-actions { opacity: 0; transition: opacity 0.15s ease; }
             .chatbot-ai-row:hover .chatbot-msg-actions,
             .chatbot-msg-actions:focus-within { opacity: 1; }
@@ -718,7 +722,13 @@
     // ---------------------------------------------------------------
     function autoGrowInput() {
         input.style.height = 'auto';
+        const atCap = input.scrollHeight > CONFIG.MAX_TEXTAREA_PX;
         input.style.height = Math.min(input.scrollHeight, CONFIG.MAX_TEXTAREA_PX) + 'px';
+        // Only show a scrollbar once content genuinely exceeds the cap —
+        // otherwise rows="1" plus padding can make the box report 1-2px
+        // of "overflow" with nothing actually hidden, showing a phantom
+        // scrollbar (styled by the page's global 10px cyan scrollbar CSS).
+        input.style.overflowY = atCap ? 'auto' : 'hidden';
     }
 
     function updateCharCounter() {
