@@ -793,7 +793,7 @@
         // Only the most recent assistant reply should offer "Regenerate".
         const lastAi = messages.querySelectorAll('.chatbot-ai-row');
         if (lastAi.length) {
-            const row = lastAi[lastAi.length - 1].querySelector('.flex.items-start.gap-2');
+            const row = lastAi[lastAi.length - 1].querySelector('.flex.items-start.gap-3');
             const rawText = history[history.length - 1] && history[history.length - 1].role === 'assistant'
                 ? history[history.length - 1].content
                 : null;
