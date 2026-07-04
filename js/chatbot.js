@@ -107,56 +107,56 @@
             /* ── Chatbot self-contained styles ─────────────────────────── */
             /* Sizing & layout classes missing from compiled Tailwind */
             #chatbot-window { background-color: rgba(5,5,5,0.98) !important; backdrop-filter: blur(24px) !important; -webkit-backdrop-filter: blur(24px) !important; }
-            .w-\[350px\] { width: 350px; }
-            @media (min-width:640px) { .sm\:w-\[400px\] { width: 400px; } }
-            .h-\[auto\] { height: auto; }
-            .min-h-\[300px\] { min-height: 300px; }
-            .max-h-\[550px\] { max-height: 550px; }
-            .max-h-\[80vh\] { max-height: 80vh; }
-            .max-w-\[90\%\] { max-width: 90%; }
-            .max-w-\[85\%\] { max-width: 85%; }
-            .z-\[100\] { z-index: 100; }
+            .w-\\[350px\\] { width: 350px; }
+            @media (min-width:640px) { .sm\\:w-\\[400px\\] { width: 400px; } }
+            .h-\\[auto\\] { height: auto; }
+            .min-h-\\[300px\\] { min-height: 300px; }
+            .max-h-\\[550px\\] { max-height: 550px; }
+            .max-h-\\[80vh\\] { max-height: 80vh; }
+            .max-w-\\[90\\%\\] { max-width: 90%; }
+            .max-w-\\[85\\%\\] { max-width: 85%; }
+            .z-\\[100\\] { z-index: 100; }
 
             /* Custom font sizes */
-            .text-\[15px\] { font-size: 15px; }
-            .text-\[13\.5px\] { font-size: 13.5px; }
-            .text-\[13px\] { font-size: 13px; }
-            .text-\[11\.5px\] { font-size: 11.5px; }
-            .text-\[11px\] { font-size: 11px; }
-            .text-\[10\.5px\] { font-size: 10.5px; }
-            .text-\[10px\] { font-size: 10px; }
-            .text-\[9px\] { font-size: 9px; }
+            .text-\\[15px\\] { font-size: 15px; }
+            .text-\\[13\\.5px\\] { font-size: 13.5px; }
+            .text-\\[13px\\] { font-size: 13px; }
+            .text-\\[11\\.5px\\] { font-size: 11.5px; }
+            .text-\\[11px\\] { font-size: 11px; }
+            .text-\\[10\\.5px\\] { font-size: 10.5px; }
+            .text-\\[10px\\] { font-size: 10px; }
+            .text-\\[9px\\] { font-size: 9px; }
 
             /* Background colors */
-            .bg-\[\#050505\]\/80 { background-color: rgba(5,5,5,0.8); }
+            .bg-\\[\\#050505\\]\\/80 { background-color: rgba(5,5,5,0.8); }
             .bg-black { background-color: rgb(0,0,0); }
-            .bg-black\/80 { background-color: rgba(0,0,0,0.8); }
-            .bg-black\/50 { background-color: rgba(0,0,0,0.5); }
-            .bg-black\/40 { background-color: rgba(0,0,0,0.4); }
-            .hover\:bg-black:hover { background-color: rgb(0,0,0); }
-            .bg-white\/5 { background-color: rgba(255,255,255,0.05); }
-            .bg-white\/10 { background-color: rgba(255,255,255,0.1); }
-            .hover\:bg-white\/5:hover { background-color: rgba(255,255,255,0.05); }
-            .hover\:bg-white\/10:hover { background-color: rgba(255,255,255,0.1); }
-            .hover\:bg-white\/20:hover { background-color: rgba(255,255,255,0.2); }
-            .focus\:bg-white\/10:focus { background-color: rgba(255,255,255,0.1); }
+            .bg-black\\/80 { background-color: rgba(0,0,0,0.8); }
+            .bg-black\\/50 { background-color: rgba(0,0,0,0.5); }
+            .bg-black\\/40 { background-color: rgba(0,0,0,0.4); }
+            .hover\\:bg-black:hover { background-color: rgb(0,0,0); }
+            .bg-white\\/5 { background-color: rgba(255,255,255,0.05); }
+            .bg-white\\/10 { background-color: rgba(255,255,255,0.1); }
+            .hover\\:bg-white\\/5:hover { background-color: rgba(255,255,255,0.05); }
+            .hover\\:bg-white\\/10:hover { background-color: rgba(255,255,255,0.1); }
+            .hover\\:bg-white\\/20:hover { background-color: rgba(255,255,255,0.2); }
+            .focus\\:bg-white\\/10:focus { background-color: rgba(255,255,255,0.1); }
 
             /* Border colors */
-            .border-white\/10 { border-color: rgba(255,255,255,0.1); }
-            .border-white\/5 { border-color: rgba(255,255,255,0.05); }
-            .border-black\/50 { border-color: rgba(0,0,0,0.5); }
+            .border-white\\/10 { border-color: rgba(255,255,255,0.1); }
+            .border-white\\/5 { border-color: rgba(255,255,255,0.05); }
+            .border-black\\/50 { border-color: rgba(0,0,0,0.5); }
 
             /* Error state (red) */
-            .bg-red-950\/40 { background-color: rgba(69,10,10,0.4); }
-            .border-red-500\/30 { border-color: rgba(239,68,68,0.3); }
+            .bg-red-950\\/40 { background-color: rgba(69,10,10,0.4); }
+            .border-red-500\\/30 { border-color: rgba(239,68,68,0.3); }
             .text-red-300 { color: rgb(252,165,165); }
             .text-red-400 { color: rgb(248,113,113); }
-            .hover\:text-red-200:hover { color: rgb(254,202,202); }
+            .hover\\:text-red-200:hover { color: rgb(254,202,202); }
 
             /* Offline banner (amber) */
-            .bg-amber-500\/10 { background-color: rgba(245,158,11,0.1); }
+            .bg-amber-500\\/10 { background-color: rgba(245,158,11,0.1); }
             .text-amber-300 { color: rgb(252,211,77); }
-            .border-amber-500\/20 { border-color: rgba(245,158,11,0.2); }
+            .border-amber-500\\/20 { border-color: rgba(245,158,11,0.2); }
 
             /* Transition duration */
             .duration-400 { transition-duration: 400ms; }
@@ -167,8 +167,8 @@
             [id="chatbot-toggle-btn"] [data-lucide="bot"] { filter: drop-shadow(0 0 8px rgba(var(--primary-rgb, 6, 182, 212), 0.8)); }
 
             /* Group toggle for open/close icon swap */
-            .group.chat-open .group-\[\.chat-open\]\:hidden { display: none; }
-            .group.chat-open .group-\[\.chat-open\]\:block { display: block; }
+            .group.chat-open .group-\\[\\.chat-open\\]\\:hidden { display: none; }
+            .group.chat-open .group-\\[\\.chat-open\\]\\:block { display: block; }
 
             /* Missing Tailwind Utilities */
             .pointer-events-auto { pointer-events: auto !important; }
@@ -183,17 +183,17 @@
                re-cascade the moment the theme class changes. No JS wiring
                needed for this to stay in sync. */
             .text-cyan-300, .text-cyan-400,
-            .hover\:text-cyan-300:hover, .hover\:text-cyan-400:hover {
+            .hover\\:text-cyan-300:hover, .hover\\:text-cyan-400:hover {
                 color: var(--accent-color, #06b6d4) !important;
             }
-            .text-cyan-400\/70 { color: rgba(var(--primary-rgb, 6, 182, 212), 0.7) !important; }
+            .text-cyan-400\\/70 { color: rgba(var(--primary-rgb, 6, 182, 212), 0.7) !important; }
             .bg-cyan-400, .bg-cyan-500 { background-color: var(--accent-color, #06b6d4) !important; }
-            .bg-cyan-500\/50 { background-color: rgba(var(--primary-rgb, 6, 182, 212), 0.5) !important; }
-            .hover\:border-cyan-400:hover { border-color: var(--accent-color, #06b6d4) !important; }
-            .border-cyan-500\/50, .focus\:border-cyan-500\/50:focus { border-color: rgba(var(--primary-rgb, 6, 182, 212), 0.5) !important; }
-            .border-cyan-500\/40, .hover\:border-cyan-500\/40:hover { border-color: rgba(var(--primary-rgb, 6, 182, 212), 0.4) !important; }
-            .border-cyan-500\/30 { border-color: rgba(var(--primary-rgb, 6, 182, 212), 0.3) !important; }
-            .from-cyan-500\/30.to-cyan-500\/5 {
+            .bg-cyan-500\\/50 { background-color: rgba(var(--primary-rgb, 6, 182, 212), 0.5) !important; }
+            .hover\\:border-cyan-400:hover { border-color: var(--accent-color, #06b6d4) !important; }
+            .border-cyan-500\\/50, .focus\\:border-cyan-500\\/50:focus { border-color: rgba(var(--primary-rgb, 6, 182, 212), 0.5) !important; }
+            .border-cyan-500\\/40, .hover\\:border-cyan-500\\/40:hover { border-color: rgba(var(--primary-rgb, 6, 182, 212), 0.4) !important; }
+            .border-cyan-500\\/30 { border-color: rgba(var(--primary-rgb, 6, 182, 212), 0.3) !important; }
+            .from-cyan-500\\/30.to-cyan-500\\/5 {
                 background-image: linear-gradient(to bottom right, rgba(var(--primary-rgb, 6, 182, 212), 0.3), rgba(var(--primary-rgb, 6, 182, 212), 0.05)) !important;
             }
 
