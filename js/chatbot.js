@@ -173,6 +173,9 @@
             /* Focus border */
             .focus\:border-cyan-500\/50:focus { border-color: rgba(6,182,212,0.5); }
 
+            /* Missing Tailwind Utilities */
+            .pointer-events-auto { pointer-events: auto !important; }
+
             /* ── Animations ────────────────────────────────────────────── */
             @keyframes slideUpFade { from { opacity: 0; transform: translateY(10px) scale(0.98); } to { opacity: 1; transform: translateY(0) scale(1); } }
             @keyframes botPulse { 0% { box-shadow: 0 0 0 0 rgba(6,182,212,0.6); } 70% { box-shadow: 0 0 0 15px rgba(6,182,212,0); } 100% { box-shadow: 0 0 0 0 rgba(6,182,212,0); } }
