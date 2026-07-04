@@ -106,7 +106,15 @@
         <style>
             /* ── Chatbot self-contained styles ─────────────────────────── */
             /* Sizing & layout classes missing from compiled Tailwind */
-            #chatbot-window { background-color: rgba(5,5,5,0.98) !important; backdrop-filter: blur(24px) !important; -webkit-backdrop-filter: blur(24px) !important; }
+            #chatbot-window {
+                height: min(550px, calc(100vh - 7rem));
+                height: min(550px, calc(100dvh - 7rem));
+                min-height: min(300px, calc(100vh - 7rem));
+                min-height: min(300px, calc(100dvh - 7rem));
+                background-color: rgba(5,5,5,0.98) !important;
+                backdrop-filter: blur(24px) !important;
+                -webkit-backdrop-filter: blur(24px) !important;
+            }
             .w-\\[350px\\] { width: 350px; }
             @media (min-width:640px) { .sm\\:w-\\[400px\\] { width: 400px; } }
             .h-\\[auto\\] { height: auto; }
@@ -115,7 +123,13 @@
             .max-h-\\[80vh\\] { max-height: 80vh; }
             .max-w-\\[90\\%\\] { max-width: 90%; }
             .max-w-\\[85\\%\\] { max-width: 85%; }
+            .min-h-0 { min-height: 0; }
             .z-\\[100\\] { z-index: 100; }
+            #chatbot-window > :first-child,
+            #chatbot-window > :last-child,
+            #chatbot-offline-banner { flex: 0 0 auto; }
+            #chatbot-window > .relative,
+            #chatbot-messages { min-height: 0; }
 
             /* Custom font sizes */
             .text-\\[15px\\] { font-size: 15px; }
@@ -220,9 +234,10 @@
             #chatbot-input::-webkit-scrollbar-track { background: transparent; }
             #chatbot-input::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 4px; }
             #chatbot-input::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,0.2); }
-            .chatbot-msg-actions { opacity: 0; transition: opacity 0.15s ease; }
+            .chatbot-msg-actions { opacity: 0.72; min-height: 1.5rem; flex-wrap: wrap; transition: opacity 0.15s ease; }
             .chatbot-ai-row:hover .chatbot-msg-actions,
             .chatbot-msg-actions:focus-within { opacity: 1; }
+            .chatbot-msg-action-btn { min-height: 1.5rem; padding: 0.125rem 0.25rem; border-radius: 0.375rem; }
             #chatbot-toggle-btn:focus-visible,
             #chatbot-close-btn:focus-visible,
             #chatbot-clear-btn:focus-visible,
@@ -234,6 +249,15 @@
             @media (prefers-reduced-motion: reduce) {
                 .bot-toggle-btn, .bot-icon-animate, .typing-dot, .chat-msg-animate, .chatbot-fab-in { animation: none !important; }
                 #chatbot-window { transition: opacity 0.15s ease !important; }
+            }
+            @media (max-width: 479px) {
+                #chatbot-container { left: 0.75rem; right: 0.75rem; bottom: 0.75rem; }
+                #chatbot-window {
+                    width: 100%;
+                    height: min(550px, calc(100dvh - 5.5rem));
+                    max-height: calc(100dvh - 5.5rem);
+                }
+                #chatbot-toggle-btn { width: 3rem; height: 3rem; }
             }
         </style>
         <div id="chatbot-container" class="fixed bottom-6 right-6 z-[100] font-sans flex flex-col items-end gap-4 pointer-events-none">
@@ -374,6 +398,7 @@
             requestAnimationFrame(function () {
                 windowEl.classList.remove('opacity-0', 'scale-95');
                 windowEl.classList.add('opacity-100', 'scale-100');
+                if (hasInteracted) scrollToBottom();
             });
             toggleBtn.classList.add('chat-open');
             input.focus();
@@ -613,6 +638,10 @@
     }
 
     function attachMessageActions(row, rawText, isLatest) {
+        Array.prototype.forEach.call(row.parentElement.children, function (child) {
+            if (child.classList && child.classList.contains('chatbot-msg-actions')) child.remove();
+        });
+
         const bar = document.createElement('div');
         bar.className = 'chatbot-msg-actions flex items-center gap-2 mt-1 ml-8';
 
@@ -645,7 +674,9 @@
 
     function removeStaleRegenerateButtons() {
         messages.querySelectorAll('[data-regenerate]').forEach(function (btn) {
-            btn.closest('.chatbot-msg-actions').remove();
+            const bar = btn.closest('.chatbot-msg-actions');
+            btn.remove();
+            if (bar && !bar.querySelector('button')) bar.remove();
         });
     }
 
@@ -782,23 +813,17 @@
         hasInteracted = true;
         hideSuggestions();
 
-        history.forEach(function (turn) {
+        const lastAssistantIndex = history.reduce(function (latest, turn, index) {
+            return turn.role === 'assistant' ? index : latest;
+        }, -1);
+
+        history.forEach(function (turn, index) {
             if (turn.role === 'user') {
                 renderUserBubble(turn.content);
             } else {
-                renderAssistantBubble(turn.content, { animate: false, latest: false });
+                renderAssistantBubble(turn.content, { animate: false, latest: index === lastAssistantIndex });
             }
         });
-
-        // Only the most recent assistant reply should offer "Regenerate".
-        const lastAi = messages.querySelectorAll('.chatbot-ai-row');
-        if (lastAi.length) {
-            const row = lastAi[lastAi.length - 1].querySelector('.flex.items-start.gap-3');
-            const rawText = history[history.length - 1] && history[history.length - 1].role === 'assistant'
-                ? history[history.length - 1].content
-                : null;
-            if (row && rawText) attachMessageActions(row, rawText, true);
-        }
 
         refreshIcons();
         scrollToBottom();
