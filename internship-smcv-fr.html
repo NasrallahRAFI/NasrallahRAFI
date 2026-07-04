@@ -2,6 +2,14 @@
 
 <html lang="fr">
 <head>
+<script>
+(function () {
+    var THEMES = ['theme-glass', 'theme-volt', 'theme-deepsea', 'theme-obsidian'];
+    var saved = localStorage.getItem('portfolio-theme');
+    var theme = THEMES.indexOf(saved) !== -1 ? saved : 'theme-glass';
+    document.documentElement.classList.add(theme);
+})();
+</script>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>Stage SMCV — Automatisme PLC/IHM, Conception Mécanique et Analyse Thermique | Rafi Nasrallah</title>

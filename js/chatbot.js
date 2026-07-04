@@ -164,21 +164,42 @@
             /* Shadow utilities — applied via IDs to avoid CSS escape conflicts in JS template literals */
             #chatbot-window { box-shadow: 0 8px 32px rgba(0,0,0,0.6); }
             #chatbot-container .bot-toggle-btn { box-shadow: none; }
-            [id="chatbot-toggle-btn"] [data-lucide="bot"] { filter: drop-shadow(0 0 8px rgba(6,182,212,0.8)); }
+            [id="chatbot-toggle-btn"] [data-lucide="bot"] { filter: drop-shadow(0 0 8px rgba(var(--primary-rgb, 6, 182, 212), 0.8)); }
 
             /* Group toggle for open/close icon swap */
             .group.chat-open .group-\[\.chat-open\]\:hidden { display: none; }
             .group.chat-open .group-\[\.chat-open\]\:block { display: block; }
 
-            /* Focus border */
-            .focus\:border-cyan-500\/50:focus { border-color: rgba(6,182,212,0.5); }
-
             /* Missing Tailwind Utilities */
             .pointer-events-auto { pointer-events: auto !important; }
 
+            /* ── Adaptive theming ──────────────────────────────────────────
+               The widget is self-contained and looks right dropped onto any
+               page (falls back to the original cyan brand color below). But
+               if the host page defines --accent-color / --primary-rgb (this
+               portfolio's Glass/Volt/Deep Sea/Obsidian theme system), the
+               widget picks those up automatically — including live, the
+               instant the visitor switches themes, since CSS variables
+               re-cascade the moment the theme class changes. No JS wiring
+               needed for this to stay in sync. */
+            .text-cyan-300, .text-cyan-400,
+            .hover\:text-cyan-300:hover, .hover\:text-cyan-400:hover {
+                color: var(--accent-color, #06b6d4) !important;
+            }
+            .text-cyan-400\/70 { color: rgba(var(--primary-rgb, 6, 182, 212), 0.7) !important; }
+            .bg-cyan-400, .bg-cyan-500 { background-color: var(--accent-color, #06b6d4) !important; }
+            .bg-cyan-500\/50 { background-color: rgba(var(--primary-rgb, 6, 182, 212), 0.5) !important; }
+            .hover\:border-cyan-400:hover { border-color: var(--accent-color, #06b6d4) !important; }
+            .border-cyan-500\/50, .focus\:border-cyan-500\/50:focus { border-color: rgba(var(--primary-rgb, 6, 182, 212), 0.5) !important; }
+            .border-cyan-500\/40, .hover\:border-cyan-500\/40:hover { border-color: rgba(var(--primary-rgb, 6, 182, 212), 0.4) !important; }
+            .border-cyan-500\/30 { border-color: rgba(var(--primary-rgb, 6, 182, 212), 0.3) !important; }
+            .from-cyan-500\/30.to-cyan-500\/5 {
+                background-image: linear-gradient(to bottom right, rgba(var(--primary-rgb, 6, 182, 212), 0.3), rgba(var(--primary-rgb, 6, 182, 212), 0.05)) !important;
+            }
+
             /* ── Animations ────────────────────────────────────────────── */
             @keyframes slideUpFade { from { opacity: 0; transform: translateY(10px) scale(0.98); } to { opacity: 1; transform: translateY(0) scale(1); } }
-            @keyframes botPulse { 0% { box-shadow: 0 0 0 0 rgba(6,182,212,0.6); } 70% { box-shadow: 0 0 0 15px rgba(6,182,212,0); } 100% { box-shadow: 0 0 0 0 rgba(6,182,212,0); } }
+            @keyframes botPulse { 0% { box-shadow: 0 0 0 0 rgba(var(--primary-rgb, 6, 182, 212), 0.6); } 70% { box-shadow: 0 0 0 15px rgba(var(--primary-rgb, 6, 182, 212), 0); } 100% { box-shadow: 0 0 0 0 rgba(var(--primary-rgb, 6, 182, 212), 0); } }
             @keyframes botFloat { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-6px); } }
             @keyframes botEyeBlink { 0%, 96%, 98% { opacity: 1; transform: scaleY(1); } 97% { opacity: 0.5; transform: scaleY(0.1); } }
             @keyframes typingBounce { 0%, 60%, 100% { transform: translateY(0); opacity: 0.5; } 30% { transform: translateY(-4px); opacity: 1; } }
@@ -203,7 +224,7 @@
             #chatbot-stop-btn:focus-visible,
             .suggestion-chip:focus-visible,
             .chatbot-msg-action-btn:focus-visible,
-            #chatbot-input:focus-visible { outline: 2px solid rgba(34,211,238,0.8); outline-offset: 2px; }
+            #chatbot-input:focus-visible { outline: 2px solid rgba(var(--primary-rgb, 34, 211, 238), 0.8); outline-offset: 2px; }
             @media (prefers-reduced-motion: reduce) {
                 .bot-toggle-btn, .bot-icon-animate, .typing-dot, .chat-msg-animate, .chatbot-fab-in { animation: none !important; }
                 #chatbot-window { transition: opacity 0.15s ease !important; }
@@ -215,7 +236,7 @@
                     <div class="flex items-center gap-3">
                         <div class="relative flex h-2.5 w-2.5 mt-0.5">
                             <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-cyan-400 opacity-75"></span>
-                            <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-cyan-500 shadow-[0_0_8px_rgba(6,182,212,0.8)]"></span>
+                            <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-cyan-500" style="box-shadow: 0 0 8px rgba(var(--primary-rgb, 6, 182, 212), 0.8);"></span>
                         </div>
                         <div>
                             <h3 class="text-white font-semibold text-[15px] tracking-wide m-0 leading-none antialiased">AI Assistant</h3>
@@ -255,7 +276,7 @@
                 </div>
             </div>
             <button id="chatbot-toggle-btn" type="button" class="w-14 h-14 rounded-full bg-black/80 backdrop-blur-md border border-cyan-500/50 text-white hover:bg-black hover:border-cyan-400 transition-all duration-300 flex items-center justify-center group bot-toggle-btn pointer-events-auto" aria-label="Open chat" aria-expanded="false">
-                <i data-lucide="bot" class="w-6 h-6 group-[.chat-open]:hidden text-cyan-400 bot-icon-animate drop-shadow-[0_0_8px_rgba(6,182,212,0.8)]" aria-hidden="true"></i>
+                <i data-lucide="bot" class="w-6 h-6 group-[.chat-open]:hidden text-cyan-400 bot-icon-animate" style="filter: drop-shadow(0 0 8px rgba(var(--primary-rgb, 6, 182, 212), 0.8));" aria-hidden="true"></i>
                 <i data-lucide="chevron-down" class="w-6 h-6 hidden group-[.chat-open]:block text-cyan-300" aria-hidden="true"></i>
             </button>
         </div>

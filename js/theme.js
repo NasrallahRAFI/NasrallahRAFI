@@ -7,25 +7,44 @@ const THEME_META = {
     'theme-obsidian': { icon: 'moon', label: 'Obsidian' },
 };
 
-function initTheme() {
-    const savedTheme = localStorage.getItem('portfolio-theme');
-    const theme = THEMES.includes(savedTheme) ? savedTheme : DEFAULT_THEME;
+// The theme class already lives on <html> by the time this file runs —
+// it's applied synchronously by the blocking snippet in <head> (see
+// theme-init snippet) specifically so the correct theme is in place
+// before the browser ever paints. This file only has to sync the icon
+// and wire up the toggle button; it should never be the thing deciding
+// the theme on a fresh load, since by then it's already too late to
+// avoid a flash of the wrong colors.
+function currentTheme() {
+    return THEMES.find(t => document.documentElement.classList.contains(t)) || DEFAULT_THEME;
+}
 
-    document.body.classList.remove(...THEMES);
-    document.body.classList.add(theme);
-    updateThemeIcon(theme);
+function initTheme() {
+    // Safety net only: if the head snippet didn't run for some reason
+    // (script order mistake, or this file dropped onto a page that
+    // doesn't have the snippet yet), apply the theme now so the page
+    // is still correct — just without the flash-free guarantee.
+    if (!THEMES.some(t => document.documentElement.classList.contains(t))) {
+        const saved = localStorage.getItem('portfolio-theme');
+        document.documentElement.classList.add(THEMES.includes(saved) ? saved : DEFAULT_THEME);
+    }
+    updateThemeIcon(currentTheme());
 }
 
 function toggleTheme() {
-    const currentTheme = THEMES.find(t => document.body.classList.contains(t)) || DEFAULT_THEME;
-    const nextIndex = (THEMES.indexOf(currentTheme) + 1) % THEMES.length;
+    const current = currentTheme();
+    const nextIndex = (THEMES.indexOf(current) + 1) % THEMES.length;
     const nextTheme = THEMES[nextIndex];
-    
-    document.body.classList.remove(...THEMES);
-    document.body.classList.add(nextTheme);
-    
+
+    document.documentElement.classList.remove(...THEMES);
+    document.documentElement.classList.add(nextTheme);
+
     localStorage.setItem('portfolio-theme', nextTheme);
     updateThemeIcon(nextTheme);
+
+    // Broadcast the change so other independent scripts on the page
+    // (e.g. the chat widget) can react live without polling or
+    // reaching into localStorage themselves.
+    document.dispatchEvent(new CustomEvent('themechange', { detail: { theme: nextTheme } }));
 }
 
 function updateThemeIcon(theme) {
