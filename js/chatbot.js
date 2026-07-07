@@ -294,7 +294,7 @@
                 <div class="p-4 bg-black/40 border-t border-white/5 backdrop-blur-md">
                     <form id="chatbot-form" class="relative flex items-end">
                         <span id="chatbot-char-counter" class="hidden absolute -top-5 right-1 text-[10px] text-slate-500"></span>
-                        <textarea id="chatbot-input" rows="1" maxlength="${CONFIG.MAX_MESSAGE_LENGTH}" class="w-full bg-white/5 border border-white/10 focus:border-cyan-500/50 focus:bg-white/10 focus:ring-0 rounded-2xl pl-4 pr-12 py-3 text-[14px] text-white placeholder-slate-400 outline-none transition-all duration-300 shadow-inner" placeholder="Ask about his experience..." aria-label="Message"></textarea>
+                        <textarea id="chatbot-input" rows="1" maxlength="${CONFIG.MAX_MESSAGE_LENGTH}" class="w-full bg-white/5 border border-white/10 focus:border-cyan-500/50 focus:bg-white/10 focus:ring-0 rounded-2xl pl-4 pr-12 py-3 mb-0 text-[14px] text-white placeholder-slate-400 outline-none transition-all duration-300 shadow-inner" placeholder="Ask about his experience..." aria-label="Message"></textarea>
                         <button type="submit" id="chatbot-send-btn" class="absolute w-9 h-9 flex items-center justify-center rounded-full bg-transparent hover:bg-white/10 text-cyan-400 transition-colors duration-300 disabled:opacity-30 disabled:hover:bg-transparent cursor-pointer disabled:cursor-not-allowed" style="right: 0.5rem; bottom: 0.5rem;" aria-label="Send message">
                             <i data-lucide="send" class="w-4 h-4 ml-0.5" aria-hidden="true"></i>
                         </button>
@@ -302,7 +302,7 @@
                             <i data-lucide="square" class="w-3.5 h-3.5" aria-hidden="true"></i>
                         </button>
                     </form>
-                    <div class="text-[9px] uppercase tracking-wider text-center text-slate-500 mt-2.5 font-medium">AI can make mistakes</div>
+                    <div class="text-[9px] uppercase tracking-wider text-center text-slate-500 pt-3 mt-1 font-medium">AI can make mistakes</div>
                 </div>
             </div>
             <button id="chatbot-toggle-btn" type="button" class="w-14 h-14 rounded-full bg-black/80 backdrop-blur-md border border-cyan-500/50 text-white hover:bg-black hover:border-cyan-400 transition-all duration-300 flex items-center justify-center group bot-toggle-btn pointer-events-auto" aria-label="Open chat" aria-expanded="false">
