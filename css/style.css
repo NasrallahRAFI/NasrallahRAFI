@@ -606,6 +606,25 @@ header nav a[aria-current="true"]::after {
     opacity: 0.9;
 }
 
+/* Fluid Header Layout */
+header .container {
+    flex-wrap: wrap;
+    row-gap: 0.5rem;
+}
+
+header .container > a:first-child {
+    flex: 1 1 auto;
+    min-width: 0;
+    font-size: clamp(1.1rem, 4vw, 1.5rem);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+header .container > div:last-child {
+    flex-shrink: 0;
+}
+
 .theme-toggle-button {
     min-height: 2.5rem;
     gap: 0.45rem;
@@ -633,7 +652,7 @@ header nav a[aria-current="true"]::after {
 }
 
 .theme-toggle-name {
-    max-width: 5.4rem;
+    max-width: clamp(2.6rem, 10vw, 5.4rem);
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
@@ -648,7 +667,7 @@ header nav a[aria-current="true"]::after {
 
 .language-toggle-button {
     min-height: 2.5rem;
-    min-width: 6.15rem;
+    min-width: 0;
     gap: 0.36rem;
     padding: 0.38rem 0.5rem;
     border: 1px solid rgba(var(--primary-rgb), 0.38);
@@ -738,10 +757,6 @@ header nav a[aria-current="true"]::after {
 @media (max-width: 420px) {
     .theme-toggle-button {
         padding-inline: 0.58rem;
-    }
-
-    .theme-toggle-name {
-        max-width: 4.4rem;
     }
 }
 
