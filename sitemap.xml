@@ -1,109 +1,164 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://nasrallahrafi.me/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://nasrallahrafi.me/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://nasrallahrafi.me/index-fr.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://nasrallahrafi.me/"/>
     <lastmod>2026-06-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
     <loc>https://nasrallahrafi.me/index-fr.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://nasrallahrafi.me/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://nasrallahrafi.me/index-fr.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://nasrallahrafi.me/"/>
     <lastmod>2026-06-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://nasrallahrafi.me/apprenticeship-rafi.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://nasrallahrafi.me/apprenticeship-rafi.html"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://nasrallahrafi.me/apprenticeship-rafi-fr.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://nasrallahrafi.me/apprenticeship-rafi.html"/>
     <lastmod>2026-06-17</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://nasrallahrafi.me/apprenticeship-rafi-fr.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://nasrallahrafi.me/apprenticeship-rafi.html"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://nasrallahrafi.me/apprenticeship-rafi-fr.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://nasrallahrafi.me/apprenticeship-rafi.html"/>
     <lastmod>2026-06-17</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://nasrallahrafi.me/internship-onee.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://nasrallahrafi.me/internship-onee.html"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://nasrallahrafi.me/internship-onee-fr.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://nasrallahrafi.me/internship-onee.html"/>
     <lastmod>2026-06-17</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://nasrallahrafi.me/internship-onee-fr.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://nasrallahrafi.me/internship-onee.html"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://nasrallahrafi.me/internship-onee-fr.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://nasrallahrafi.me/internship-onee.html"/>
     <lastmod>2026-06-17</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://nasrallahrafi.me/internship-smcv.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://nasrallahrafi.me/internship-smcv.html"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://nasrallahrafi.me/internship-smcv-fr.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://nasrallahrafi.me/internship-smcv.html"/>
     <lastmod>2026-06-17</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://nasrallahrafi.me/internship-smcv-fr.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://nasrallahrafi.me/internship-smcv.html"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://nasrallahrafi.me/internship-smcv-fr.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://nasrallahrafi.me/internship-smcv.html"/>
     <lastmod>2026-06-17</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://nasrallahrafi.me/pfe-gantt.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://nasrallahrafi.me/pfe-gantt.html"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://nasrallahrafi.me/pfe-gantt-fr.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://nasrallahrafi.me/pfe-gantt.html"/>
     <lastmod>2026-06-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.3</priority>
   </url>
   <url>
     <loc>https://nasrallahrafi.me/pfe-gantt-fr.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://nasrallahrafi.me/pfe-gantt.html"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://nasrallahrafi.me/pfe-gantt-fr.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://nasrallahrafi.me/pfe-gantt.html"/>
     <lastmod>2026-06-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.3</priority>
   </url>
   <url>
     <loc>https://nasrallahrafi.me/project-smart-bms.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://nasrallahrafi.me/project-smart-bms.html"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://nasrallahrafi.me/project-smart-bms-fr.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://nasrallahrafi.me/project-smart-bms.html"/>
     <lastmod>2026-06-22</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://nasrallahrafi.me/project-smart-bms-fr.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://nasrallahrafi.me/project-smart-bms.html"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://nasrallahrafi.me/project-smart-bms-fr.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://nasrallahrafi.me/project-smart-bms.html"/>
     <lastmod>2026-06-22</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://nasrallahrafi.me/project-rendezvous.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://nasrallahrafi.me/project-rendezvous.html"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://nasrallahrafi.me/project-rendezvous-fr.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://nasrallahrafi.me/project-rendezvous.html"/>
     <lastmod>2026-06-17</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://nasrallahrafi.me/project-rendezvous-fr.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://nasrallahrafi.me/project-rendezvous.html"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://nasrallahrafi.me/project-rendezvous-fr.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://nasrallahrafi.me/project-rendezvous.html"/>
     <lastmod>2026-06-17</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://nasrallahrafi.me/project-thermal.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://nasrallahrafi.me/project-thermal.html"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://nasrallahrafi.me/project-thermal-fr.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://nasrallahrafi.me/project-thermal.html"/>
     <lastmod>2026-06-17</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://nasrallahrafi.me/project-thermal-fr.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://nasrallahrafi.me/project-thermal.html"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://nasrallahrafi.me/project-thermal-fr.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://nasrallahrafi.me/project-thermal.html"/>
     <lastmod>2026-06-17</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://nasrallahrafi.me/project-waveguide.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://nasrallahrafi.me/project-waveguide.html"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://nasrallahrafi.me/project-waveguide-fr.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://nasrallahrafi.me/project-waveguide.html"/>
     <lastmod>2026-06-17</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://nasrallahrafi.me/project-waveguide-fr.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://nasrallahrafi.me/project-waveguide.html"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://nasrallahrafi.me/project-waveguide-fr.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://nasrallahrafi.me/project-waveguide.html"/>
     <lastmod>2026-06-17</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.6</priority>

@@ -16,6 +16,10 @@
 <meta content="Extract from internship: Algorithmic and hardware development of a Smart BMS, addressing advanced SOC estimation and robust active balancing (bidirectional synchronous flyback)." name="description"/>
 <meta content="Smart BMS, Active Balancing, Synchronous Flyback, MATLAB, Simulink, SOC estimation, LFP battery, STM32, Altium Designer, Rafi Nasrallah" name="keywords"/>
 <link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://unpkg.com" rel="preconnect"/><link href="https://nasrallahrafi.me/project-smart-bms.html" rel="canonical"/>
+<link href="https://nasrallahrafi.me/project-smart-bms.html" hreflang="en" rel="alternate"/>
+<link href="https://nasrallahrafi.me/project-smart-bms-fr.html" hreflang="fr" rel="alternate"/>
+<link href="https://nasrallahrafi.me/project-smart-bms.html" hreflang="x-default" rel="alternate"/>
+
 <meta content="article" property="og:type"/>
 <meta content="Rafi Nasrallah Portfolio" property="og:site_name"/>
 <meta content="Smart BMS: Advanced SOC Estimation &amp; Active Balancing | Rafi Nasrallah" property="og:title"/>
@@ -76,6 +80,7 @@
   ]
 }
 </script>
+
 </head>
 <body class="antialiased selection:bg-cyan-500 selection:text-white">
 <a class="skip-link" href="#main-content">Skip to content</a>
@@ -118,7 +123,7 @@
 <h1 class="smart-bms-title" id="smart-bms-algorithm">Smart BMS: Advanced SOC Estimation &amp; Active Balancing</h1>
 <p class="smart-bms-subtitle">Emove Véhicules · Battery intelligence, embedded hardware, and active energy redistribution</p>
 <p class="smart-bms-lede">A focused case study on the algorithmic and hardware engineering of a Smart Battery Management System. The work centers on robust State-of-Charge estimation under dynamic scooter loads and an active balancing architecture based on bidirectional synchronous flyback energy transfer.</p>
-<div class="smart-bms-chip-row" aria-label="Project technologies">
+<div class="smart-bms-chip-row" role="group" aria-label="Project technologies">
 <span>BMS</span>
 <span>Active balancing</span>
 <span>Synchronous flyback</span>
@@ -132,18 +137,18 @@
     <div class="absolute -top-10 -right-10 w-40 h-40 bg-cyan-500/10 blur-3xl rounded-full"></div>
 
     <div class="mb-8 border-b border-slate-700/50 pb-4">
-        <h3 class="text-xs font-bold text-slate-300 tracking-[0.2em] uppercase">Engineering Scope</h3>
+        <h2 class="text-xs font-bold text-slate-300 tracking-[0.2em] uppercase">Engineering Scope</h2>
     </div>
 
-    <dl class="space-y-3">
+    <div class="space-y-3" role="list">
         <!-- Item 1 -->
         <div class="group bg-slate-900/40 border border-slate-700/50 rounded-xl p-4 md:p-5 flex items-center gap-4 md:gap-5 transition-all duration-300 hover:border-red-500/30 hover:bg-slate-800/60">
             <div class="flex-shrink-0 w-10 h-10 rounded-full bg-slate-800/50 flex items-center justify-center border border-slate-700/50 group-hover:border-red-500/50 group-hover:shadow-[0_0_12px_rgba(248,113,113,0.3)] transition-all">
                 <i class="w-4 h-4 text-red-400" data-lucide="alert-circle"></i>
             </div>
             <div class="flex flex-col justify-center">
-                <dt class="text-[11px] font-bold text-slate-400/70 uppercase tracking-widest mb-0.5 group-hover:text-red-300/90 transition-colors">Primary Faults</dt>
-                <dd class="text-[15px] text-slate-200 font-medium leading-tight">Premature cut-offs & severe SOC instability</dd>
+                <p class="text-[11px] font-bold text-slate-400/70 uppercase tracking-widest mb-0.5 group-hover:text-red-300/90 transition-colors">Primary Faults</p>
+                <p class="text-[15px] text-slate-200 font-medium leading-tight">Premature cut-offs & severe SOC instability</p>
             </div>
         </div>
 
@@ -153,8 +158,8 @@
                 <i class="w-4 h-4 text-cyan-400" data-lucide="cpu"></i>
             </div>
             <div class="flex flex-col justify-center">
-                <dt class="text-[11px] font-bold text-slate-400/70 uppercase tracking-widest mb-0.5 group-hover:text-cyan-300/90 transition-colors">Algorithmic Path</dt>
-                <dd class="text-[15px] text-slate-200 font-medium leading-tight">ECM · UKF · LSTM residual correction</dd>
+                <p class="text-[11px] font-bold text-slate-400/70 uppercase tracking-widest mb-0.5 group-hover:text-cyan-300/90 transition-colors">Algorithmic Path</p>
+                <p class="text-[15px] text-slate-200 font-medium leading-tight">ECM · UKF · LSTM residual correction</p>
             </div>
         </div>
 
@@ -164,8 +169,8 @@
                 <i class="w-4 h-4 text-emerald-400" data-lucide="check-circle-2"></i>
             </div>
             <div class="flex flex-col justify-center">
-                <dt class="text-[11px] font-bold text-slate-400/70 uppercase tracking-widest mb-0.5 group-hover:text-emerald-300/90 transition-colors">Validation Layer</dt>
-                <dd class="text-[15px] text-slate-200 font-medium leading-tight">MiL scenarios, then HiL prototype</dd>
+                <p class="text-[11px] font-bold text-slate-400/70 uppercase tracking-widest mb-0.5 group-hover:text-emerald-300/90 transition-colors">Validation Layer</p>
+                <p class="text-[15px] text-slate-200 font-medium leading-tight">MiL scenarios, then HiL prototype</p>
             </div>
         </div>
 
@@ -175,11 +180,11 @@
                 <i class="w-4 h-4 text-purple-400" data-lucide="circuit-board"></i>
             </div>
             <div class="flex flex-col justify-center">
-                <dt class="text-[11px] font-bold text-slate-400/70 uppercase tracking-widest mb-0.5 group-hover:text-purple-300/90 transition-colors">Hardware Target</dt>
-                <dd class="text-[15px] text-slate-200 font-medium leading-tight">6-layer industrial BMS architecture</dd>
+                <p class="text-[11px] font-bold text-slate-400/70 uppercase tracking-widest mb-0.5 group-hover:text-purple-300/90 transition-colors">Hardware Target</p>
+                <p class="text-[15px] text-slate-200 font-medium leading-tight">6-layer industrial BMS architecture</p>
             </div>
         </div>
-    </dl>
+    </div>
 
 
 </aside>
@@ -190,7 +195,11 @@
 <p class="text-slate-300 leading-relaxed text-lg mb-6">Field observations of the electric scooter fleet revealed critical performance anomalies, specifically:</p>
 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
 <div class="bg-slate-800/50 p-6 rounded-xl border border-slate-700/50"><h3 class="font-bold text-white mb-2">Premature Power Cut-offs</h3><p class="text-sm text-slate-300 leading-relaxed">The vehicle would experience abrupt power loss, despite the dashboard State-of-Charge (SOC) indicator displaying approximately 20% remaining capacity.</p></div>
-<div class="bg-slate-800/50 p-6 rounded-xl border border-slate-700/50"><h3 class="font-bold text-white mb-2">Severe SOC Instability</h3><p class="text-sm text-slate-300 leading-relaxed">The estimated SOC exhibited rapid, erratic drops under high-current discharge profiles (e.g., strong accelerations), indicating severe instability in the fuel gauge algorithm.</p></div>
+<section class="bg-slate-800/50 p-6 rounded-xl border border-slate-700/50"><h3 class="font-bold text-white mb-2">Severe SOC Instability</h3>
+<figure>
+<figcaption class="text-sm text-slate-300 leading-relaxed">The estimated SOC exhibited rapid, erratic drops under high-current discharge profiles (e.g., strong accelerations), indicating severe instability in the fuel gauge algorithm.</figcaption>
+</figure>
+</section>
 </div>
 </section>
 
@@ -199,12 +208,16 @@
 <p class="text-slate-300 leading-relaxed text-lg mb-6">A root-cause analysis identified three primary factors contributing to these failures:</p>
 
 <div class="mb-8 p-4 bg-slate-800/50 rounded-xl border border-slate-700/50 flex justify-center">
-    <img src="assets/img/Causes Diagram.png" alt="Causes Diagram" class="rounded-lg shadow-md max-w-md md:max-w-xl lg:max-w-2xl h-auto">
+    <img src="assets/img/Causes%20Diagram.png" alt="Root-cause diagram linking premature shutdown at 20% SoC and energy-gauge instability to hardware, software, and process factors on the electric scooter BMS" class="rounded-lg shadow-md max-w-md md:max-w-xl lg:max-w-2xl h-auto">
 </div>
 
 <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
 <div class="bg-slate-800/50 p-6 rounded-xl border border-slate-700/50 opacity-70"><h3 class="font-bold text-white mb-2">1. Cell Heterogeneity</h3><p class="text-sm text-slate-300 leading-relaxed">Inherent variations in cell capacity and internal resistance, resulting in the weakest series element prematurely constraining the entire battery pack.</p></div>
-<div class="bg-slate-800/50 p-6 rounded-xl border border-slate-700/50 opacity-70"><h3 class="font-bold text-white mb-2">2. Insufficient Balancing Capability</h3><p class="text-sm text-slate-300 leading-relaxed">Traditional passive balancing mechanisms proving inadequate to compensate for significant capacity drift over time.</p></div>
+<section class="bg-slate-800/50 p-6 rounded-xl border border-slate-700/50 opacity-70"><h3 class="font-bold text-white mb-2">2. Insufficient Balancing Capability</h3>
+<figure>
+<figcaption class="text-sm text-slate-300 leading-relaxed">Traditional passive balancing mechanisms proving inadequate to compensate for significant capacity drift over time.</figcaption>
+</figure>
+</section>
 <div class="bg-cyan-900/30 p-6 rounded-xl border border-cyan-500/50 relative overflow-hidden">
 <div class="absolute top-0 right-0 w-16 h-16 bg-cyan-400/20 blur-xl rounded-full"></div>
 <h3 class="font-bold text-cyan-300 mb-2">3. Non-Robust SOC Estimation</h3><p class="text-sm text-slate-200 leading-relaxed">The baseline estimation algorithm failing to dynamically and accurately track the true State-of-Charge under transient load conditions.</p>
@@ -237,7 +250,7 @@
     </div>
 
     <div class="my-10 flex justify-center w-full">
-        <img src="assets/img/Algorithm Workflow.png?v=5" alt="Algorithm Workflow Schematic" class="rounded-lg shadow-lg w-full h-auto border border-slate-700/50">
+        <img src="assets/img/Algorithm%20Workflow.png?v=5" alt="Hybrid SOC estimation algorithm workflow: ECM 3RC physical model, Unscented Kalman Filter, and LSTM residual observer feeding a safety supervisor FSM" class="rounded-lg shadow-lg w-full h-auto border border-slate-700/50">
     </div>
 
     <!-- Step 2 -->
@@ -253,8 +266,8 @@
                     <h4 class="text-lg font-bold text-white mb-3 text-cyan-300">Scenario A: Nominal Dynamic Profile</h4>
                     <p class="text-sm text-slate-300 leading-relaxed mb-4">This scenario evaluates the estimator's response under a nominal yet highly dynamic current profile. The results confirm exceptional estimation stability under heavy dynamic loads, achieving a Root Mean Square Error (RMSE) of just <strong class="text-white">0.23%</strong> and a final estimation error of <strong class="text-white">0.61%</strong>.</p>
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                        <img src="assets/img/Fig_A1_current.png" alt="Scenario A Current Profile" class="rounded-lg border border-slate-600/50 shadow-md">
-                        <img src="assets/img/Fig_A2_soc.png" alt="Scenario A Estimated vs Real SOC" class="rounded-lg border border-slate-600/50 shadow-md">
+                        <img src="assets/img/Fig_A1_current.png" alt="Scenario A test current profile used to validate the ECM 3RC + UKF + LSTM SOC estimator against real battery data" class="rounded-lg border border-slate-600/50 shadow-md">
+                        <img src="assets/img/Fig_A2_soc.png" alt="Scenario A: UKF+LSTM-estimated State of Charge versus real measured SOC over the test cycle" class="rounded-lg border border-slate-600/50 shadow-md">
                     </div>
                 </div>
 
@@ -263,8 +276,8 @@
                     <h4 class="text-lg font-bold text-white mb-3 text-cyan-300">Scenario B: Battery Aging (80% SOH)</h4>
                     <p class="text-sm text-slate-300 leading-relaxed mb-4">This scenario assesses algorithmic robustness against battery degradation, specifically simulating a State-of-Health (SOH) of 80%. The estimated SOC accurately tracks the true SOC despite the reduced available capacity. Demonstrating an RMSE of <strong class="text-white">0.89%</strong> and a final error of <strong class="text-white">1.33%</strong>, this scenario validates the architecture's capability to maintain a highly reliable estimation in the presence of moderate capacity fade.</p>
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                        <img src="assets/img/Fig_B1_soc.png" alt="Scenario B Estimated vs Real SOC" class="rounded-lg border border-slate-600/50 shadow-md">
-                        <img src="assets/img/Fig_B2_error.png" alt="Scenario B Estimation Error" class="rounded-lg border border-slate-600/50 shadow-md">
+                        <img src="assets/img/Fig_B1_soc.png" alt="Scenario B: UKF+LSTM-estimated State of Charge versus real measured SOC over the test cycle" class="rounded-lg border border-slate-600/50 shadow-md">
+                        <img src="assets/img/Fig_B2_error.png" alt="Scenario B SOC estimation error over time for the hybrid ECM 3RC + UKF + LSTM observer" class="rounded-lg border border-slate-600/50 shadow-md">
                     </div>
                 </div>
 
@@ -273,8 +286,8 @@
                     <h4 class="text-lg font-bold text-white mb-3 text-cyan-300">Scenario C: Sensor Bias and Measurement Noise</h4>
                     <p class="text-sm text-slate-300 leading-relaxed mb-4">To evaluate sensitivity to measurement inaccuracies, realistic sensor biases were introduced to the voltage and current readings. Despite these perturbations, the UKF-LSTM fusion, governed by the supervisory logic, successfully mitigated the impact of sensor uncertainty. The system maintained tight tracking with an RMSE of <strong class="text-white">0.49%</strong> and a final error of only <strong class="text-white">0.25%</strong>.</p>
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                        <img src="assets/img/Fig_C1_soc.png" alt="Scenario C Estimated vs Real SOC" class="rounded-lg border border-slate-600/50 shadow-md">
-                        <img src="assets/img/Fig_C3_voltage.png" alt="Scenario C Measured vs Real Voltage" class="rounded-lg border border-slate-600/50 shadow-md">
+                        <img src="assets/img/Fig_C1_soc.png" alt="Scenario C: UKF+LSTM-estimated State of Charge versus real measured SOC over the test cycle" class="rounded-lg border border-slate-600/50 shadow-md">
+                        <img src="assets/img/Fig_C3_voltage.png" alt="Scenario C measured versus real terminal voltage used to validate the battery digital twin" class="rounded-lg border border-slate-600/50 shadow-md">
                     </div>
                 </div>
             </div>
@@ -289,7 +302,7 @@
             <p class="text-slate-300 leading-relaxed text-sm mb-4">Upon achieving successful simulation metrics, the algorithmic pipeline was ported to a simplified Hardware-in-the-Loop (HiL) prototype for empirical validation. This setup featured a custom Analog Front-End (AFE) for precise acquisition of cell voltages (via precision resistive dividers), pack current (via a 0.22Ω shunt), and temperatures (via NTC thermistors).</p>
             <p class="text-slate-300 leading-relaxed text-sm mb-4">Crucially, this phase successfully validated the power protection architecture: a high-side double-switch topology utilizing P-Channel MOSFETs (IRF5210), safely driven by an NPN transistor (2N3904) level-shifting stage to interface with the microcontroller logic.</p>
             <div class="smart-bms-image-frame smart-bms-prototype-frame">
-                <img src="assets/img/Prototype_PCB.jpeg" alt="BMS Prototype PCB" class="smart-bms-prototype-img rounded-xl border border-slate-700/50 shadow-lg">
+                <img src="assets/img/Prototype_PCB.jpeg" alt="STM32-based 16S Smart BMS prototype PCB with LTC3300-1 active balancing circuitry" class="smart-bms-prototype-img rounded-xl border border-slate-700/50 shadow-lg">
             </div>
         </div>
     </div>
@@ -303,11 +316,11 @@
             <p class="text-slate-300 leading-relaxed text-sm mb-4">The board integrates a <strong class="text-white">BQ76952PFBR</strong> Analog Front-End for primary autonomous hardware protection, and an <strong class="text-white">LTC3300-1</strong> active balancing controller to enable bidirectional energy transfer. Strict EMC and signal integrity constraints were applied, including galvanic isolation (TME 0505S) and a dedicated CAN bus interface for vehicle integration.</p>
             <div class="smart-bms-pcb-grid">
                 <figure class="smart-bms-figure">
-                    <img src="assets/img/Industrial BMS PCB Part 1.jpeg" alt="Industrial BMS PCB power and control side" class="rounded-xl border border-slate-700/50 shadow-lg">
+                    <img src="assets/img/Industrial%20BMS%20PCB%20Part%201.jpeg" alt="Industrial 16S BMS PCB — power and control side, STM32 architecture with EMC protections" class="rounded-xl border border-slate-700/50 shadow-lg">
                     <figcaption>Industrial BMS PCB — acquisition, protection, and control architecture.</figcaption>
                 </figure>
                 <figure class="smart-bms-figure">
-                    <img src="assets/img/Industrial BMS PCB Part 2.jpeg" alt="Industrial BMS PCB balancing side" class="rounded-xl border border-slate-700/50 shadow-lg">
+                    <img src="assets/img/Industrial%20BMS%20PCB%20Part%202.jpeg" alt="Industrial 16S BMS PCB — LTC3300-1 active balancing side" class="rounded-xl border border-slate-700/50 shadow-lg">
                     <figcaption>Active balancing stage — bidirectional energy transfer layout.</figcaption>
                 </figure>
             </div>

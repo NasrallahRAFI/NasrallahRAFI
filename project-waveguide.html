@@ -16,6 +16,10 @@
 <meta content="ANSYS HFSS study comparing TE10 propagation in air-filled and alumina-filled WR-90 waveguides with cutoff frequency and S-parameter analysis." name="description"/>
 <meta content="Rafi Nasrallah, rectangular waveguide, TE10 mode, ANSYS HFSS, microwave simulation, alumina dielectric, S-parameters, electromagnetic field analysis" name="keywords"/>
 <link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://unpkg.com" rel="preconnect"/><link href="https://nasrallahrafi.me/project-waveguide.html" rel="canonical"/>
+<link href="https://nasrallahrafi.me/project-waveguide.html" hreflang="en" rel="alternate"/>
+<link href="https://nasrallahrafi.me/project-waveguide-fr.html" hreflang="fr" rel="alternate"/>
+<link href="https://nasrallahrafi.me/project-waveguide.html" hreflang="x-default" rel="alternate"/>
+
 <meta content="website" property="og:type"/>
 <meta content="Rafi Nasrallah Portfolio" property="og:site_name"/>
 <meta content="TE10 Waveguide Analysis: Air vs Alumina (HFSS) | Rafi Nasrallah" property="og:title"/>
@@ -96,6 +100,7 @@
   ]
 }
 </script>
+
 </head>
 <body class="antialiased selection:bg-cyan-500 selection:text-white">
 <!-- Header -->
@@ -235,15 +240,16 @@
 </div>
 </div>
 <h3 class="text-2xl font-bold text-white mb-6 flex items-center space-x-3" id="results-simulation-gallery">
-<div class="p-2 bg-cyan-500/10 rounded-lg">
+<span class="p-2 bg-cyan-500/10 rounded-lg">
 <i class="w-6 h-6 text-cyan-400" data-lucide="image"></i>
-</div>
+</span>
 <span>Simulation gallery</span>
 </h3>
 <div class="space-y-12">
-<div class="bg-slate-800/50 p-6 rounded-xl border border-slate-700/50">
+<section class="bg-slate-800/50 p-6 rounded-xl border border-slate-700/50">
 <h3 class="text-xl font-bold text-white mb-3">Air-filled waveguide</h3>
-<p class="text-sm text-slate-300 leading-relaxed mb-6">Baseline result set used to validate the WR-90 air-filled model before comparing the dielectric-loaded guide.</p>
+<figure>
+<figcaption class="text-sm text-slate-300 leading-relaxed mb-6">Baseline result set used to validate the WR-90 air-filled model before comparing the dielectric-loaded guide.</figcaption>
 <div class="flex flex-col items-center gap-8">
 <img alt="S-parameter plot for air-filled WR-90 waveguide — ANSYS HFSS simulation" class="gallery-image" decoding="async" height="562" loading="lazy" src="assets/img/S_parameter_plot_Air.jpg" width="1526"/>
 <div class="grid grid-cols-1 md:grid-cols-2 gap-4 w-full">
@@ -252,10 +258,12 @@
 </div>
 <img alt="Poynting vector visualization from HFSS waveguide simulation" class="gallery-image" decoding="async" height="565" loading="lazy" src="assets/img/Vector_Pointing_Air.jpg" width="913"/>
 </div>
-</div>
-<div class="bg-slate-800/50 p-6 rounded-xl border border-cyan-500/30">
+</figure>
+</section>
+<section class="bg-slate-800/50 p-6 rounded-xl border border-cyan-500/30">
 <h3 class="text-xl font-bold text-white mb-3">Alumina-filled waveguide</h3>
-<p class="text-sm text-slate-300 leading-relaxed mb-6">Dielectric-loaded result set showing the lower cutoff frequency, stronger field concentration, and measurable insertion loss.</p>
+<figure>
+<figcaption class="text-sm text-slate-300 leading-relaxed mb-6">Dielectric-loaded result set showing the lower cutoff frequency, stronger field concentration, and measurable insertion loss.</figcaption>
 <div class="flex flex-col items-center gap-8">
 <img alt="S-parameter plot for alumina-loaded WR-90 waveguide — ANSYS HFSS simulation" class="gallery-image" decoding="async" height="561" loading="lazy" src="assets/img/S_Parameter_Plot_Alumina.jpg" width="1519"/>
 <div class="grid grid-cols-1 md:grid-cols-2 gap-4 w-full">
@@ -264,15 +272,16 @@
 </div>
 <img alt="Poynting vector visualization from HFSS waveguide simulation" class="gallery-image" decoding="async" height="563" loading="lazy" src="assets/img/Vector_Pointing_Alumina.jpg" width="920"/>
 </div>
-</div>
+</figure>
+</section>
 </div>
 </section>
 <!-- 5. Conclusion -->
 <section aria-labelledby="conclusion" class="content-section relative z-10">
 <h2 class="text-2xl font-bold text-white mb-6 flex items-center space-x-3" id="conclusion">
-<div class="p-2 bg-cyan-500/10 rounded-lg">
+<span class="p-2 bg-cyan-500/10 rounded-lg">
 <i class="w-6 h-6 text-cyan-400" data-lucide="award"></i>
-</div>
+</span>
 <span>Conclusion</span>
 </h2>
 <div class="bg-blue-900/20 p-6 rounded-xl border-l-4 border-blue-500">
@@ -289,9 +298,9 @@
 <!-- 6. Future Work -->
 <section aria-labelledby="future-work" class="content-section relative z-10">
 <h2 class="text-2xl font-bold text-white mb-6 flex items-center space-x-3" id="future-work">
-<div class="p-2 bg-cyan-500/10 rounded-lg">
+<span class="p-2 bg-cyan-500/10 rounded-lg">
 <i class="w-6 h-6 text-cyan-400" data-lucide="git-branch-plus"></i>
-</div>
+</span>
 <span>Future work</span>
 </h2>
 <p class="text-slate-300 leading-relaxed mb-6">

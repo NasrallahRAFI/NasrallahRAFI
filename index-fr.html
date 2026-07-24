@@ -48,6 +48,7 @@
 <!-- Load Tailwind CSS -->
 
 <!-- Load Lucide Icons -->
+
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -59,9 +60,9 @@
       "givenName": "Rafi",
       "familyName": "Nasrallah",
       "jobTitle": "Ingénieur en génie électrique — BMS, systèmes embarqués & IoT",
-      "description": "Ingénieur d’État en génie électrique de l’ENSET Mohammedia, spécialisé en Battery Management Systems intelligents, estimation SOC/SOH par ECM 3RC, Unscented Kalman Filter et correction résiduelle LSTM, matériel embarqué STM32, conception PCB sous Altium Designer et IoT industriel.",
-      "url": "https://nasrallahrafi.me/index-fr.html",
-      "email": "nasrollahrafi@gmail.com",
+      "description": "Ingénieur d’État en génie électrique de l’ENSET Mohammedia, spécialisé en Battery Management Systems intelligents, estimation SOC/SOH par ECM 3RC, Unscented Kalman Filter et correction résiduelle LSTM, matériel embarqué STM32, conception PCB sous Altium Designer et IoT industriel. Titulaire du brevet OMPIC #65133.",
+      "url": "https://nasrallahrafi.me/",
+      "email": "mailto:nasrollahrafi@gmail.com",
       "telephone": "+212671114377",
       "image": "https://nasrallahrafi.me/assets/img/Profile_picture.png",
       "address": {
@@ -70,57 +71,38 @@
         "addressRegion": "Casablanca-Settat",
         "addressCountry": "MA"
       },
-      "nationality": {
-        "@type": "Country",
-        "name": "Maroc"
-      },
+      "nationality": { "@type": "Country", "name": "Maroc" },
+      "knowsLanguage": ["ar", "en", "fr"],
       "alumniOf": [
+        { "@type": "CollegeOrUniversity", "name": "ENSET Mohammedia", "url": "https://www.enset-media.ac.ma" },
+        { "@type": "CollegeOrUniversity", "name": "Faculté des Sciences Ben M'sik, Casablanca" }
+      ],
+      "hasCredential": [
         {
-          "@type": "CollegeOrUniversity",
-          "name": "ENSET Mohammedia",
-          "url": "https://www.enset-media.ac.ma"
+          "@type": "EducationalOccupationalCredential",
+          "name": "Diplôme d’ingénieur d’État en génie électrique et contrôle des systèmes industriels",
+          "credentialCategory": "degree",
+          "educationalLevel": "Ingénieur d’État",
+          "recognizedBy": { "@type": "CollegeOrUniversity", "name": "ENSET Mohammedia" }
         },
         {
-          "@type": "CollegeOrUniversity",
-          "name": "Faculté des Sciences Ben M'sik, Casablanca"
+          "@type": "EducationalOccupationalCredential",
+          "credentialCategory": "patent",
+          "name": "Brevet OMPIC N° 65133 — Système et procédé automatisé de soudage et d'assemblage de profilés de poutres à âme ondulée",
+          "dateCreated": "2025-11-28"
         }
       ],
-      "hasCredential": {
-        "@type": "EducationalOccupationalCredential",
-        "name": "Diplôme d’ingénieur d’État en génie électrique et contrôle des systèmes industriels",
-        "credentialCategory": "degree",
-        "educationalLevel": "Ingénieur d’État",
-        "recognizedBy": {
-          "@type": "CollegeOrUniversity",
-          "name": "ENSET Mohammedia"
-        }
-      },
       "knowsAbout": [
-        "Battery Management Systems",
-        "State of Charge Estimation",
-        "State of Health Estimation",
-        "Equivalent Circuit Model ECM 3RC",
-        "Unscented Kalman Filter",
-        "LSTM Neural Networks",
-        "Digital Twin",
-        "LiFePO4 Battery",
-        "STM32 Embedded Systems",
-        "Altium Designer",
-        "MATLAB Simulink",
-        "ANSYS HFSS",
-        "Industrial IoT",
-        "MQTT",
-        "CAN Bus",
-        "PLC Programming",
-        "Siemens Sinumerik"
+        "Battery Management Systems", "State of Charge Estimation", "State of Health Estimation",
+        "Equivalent Circuit Model ECM 3RC", "Unscented Kalman Filter", "LSTM Neural Networks",
+        "Digital Twin", "LiFePO4 Battery", "STM32 Embedded Systems", "Altium Designer",
+        "MATLAB Simulink", "ANSYS HFSS", "Industrial IoT", "MQTT", "CAN Bus",
+        "PLC Programming", "Siemens Sinumerik"
       ],
       "hasOccupation": {
         "@type": "Occupation",
         "name": "Ingénieur en génie électrique",
-        "occupationLocation": {
-          "@type": "Country",
-          "name": "Maroc"
-        },
+        "occupationLocation": { "@type": "Country", "name": "Maroc" },
         "skills": "conception BMS, systèmes embarqués, analyse de batteries, automatisation industrielle, IoT"
       },
       "sameAs": [
@@ -130,13 +112,23 @@
       ]
     },
     {
+      "@type": "ProfilePage",
+      "@id": "https://nasrallahrafi.me/#webpage",
+      "url": "https://nasrallahrafi.me/",
+      "name": "Rafi Nasrallah | Ingénieur en génie électrique — BMS, systèmes embarqués & IoT | Maroc",
+      "about": { "@id": "https://nasrallahrafi.me/#rafi-nasrallah" },
+      "primaryImageOfPage": "https://nasrallahrafi.me/assets/img/Profile_picture.png",
+      "inLanguage": "fr",
+      "isPartOf": { "@id": "https://nasrallahrafi.me/#website" }
+    },
+    {
       "@type": "WebSite",
       "@id": "https://nasrallahrafi.me/#website",
       "url": "https://nasrallahrafi.me/",
       "name": "Rafi Nasrallah Portfolio",
       "description": "Portfolio de Rafi Nasrallah, ingénieur en génie électrique spécialisé en BMS, systèmes embarqués et IoT industriel.",
       "inLanguage": "fr",
-      "author": { "@id": "https://nasrallahrafi.me/#rafi-nasrallah" }
+      "publisher": { "@id": "https://nasrallahrafi.me/#rafi-nasrallah" }
     }
   ]
 }

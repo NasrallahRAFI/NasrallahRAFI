@@ -36,3 +36,27 @@ Allow: /
 
 User-agent: meta-externalagent
 Allow: /
+
+# Anthropic — split into three bots as of 2026
+User-agent: ClaudeBot
+Allow: /
+User-agent: Claude-SearchBot
+Allow: /
+User-agent: Claude-User
+Allow: /
+
+# OpenAI — add the missing search bot
+User-agent: OAI-SearchBot
+Allow: /
+
+# Perplexity — add the user-triggered fetch bot
+User-agent: Perplexity-User
+Allow: /
+
+# Other assistants worth covering
+User-agent: Amazonbot
+Allow: /
+User-agent: MistralAI-User
+Allow: /
+User-agent: DuckAssistBot
+Allow: /

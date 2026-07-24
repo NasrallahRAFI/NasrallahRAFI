@@ -16,6 +16,10 @@
 <meta content="Luenberger rendezvous control project using angle-only data, state feedback, observer design, normalization, and MATLAB/Simulink simulation." name="description"/>
 <meta content="Rafi Nasrallah, Luenberger observer, satellite rendezvous, orbital mechanics, state feedback control, angle-only measurements, MATLAB, control systems" name="keywords"/>
 <link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://unpkg.com" rel="preconnect"/><link href="https://nasrallahrafi.me/project-rendezvous.html" rel="canonical"/>
+<link href="https://nasrallahrafi.me/project-rendezvous.html" hreflang="en" rel="alternate"/>
+<link href="https://nasrallahrafi.me/project-rendezvous-fr.html" hreflang="fr" rel="alternate"/>
+<link href="https://nasrallahrafi.me/project-rendezvous.html" hreflang="x-default" rel="alternate"/>
+
 <meta content="website" property="og:type"/>
 <meta content="Rafi Nasrallah Portfolio" property="og:site_name"/>
 <meta content="Luenberger-Based Orbital Rendezvous Control | Rafi Nasrallah" property="og:title"/>
@@ -92,6 +96,7 @@
   ]
 }
 </script>
+
 </head>
 <body class="antialiased selection:bg-cyan-500 selection:text-white">
 <!-- Header -->
@@ -174,18 +179,20 @@
 <!-- Engineering problem -->
 <section aria-labelledby="engineering-problem" class="content-section relative z-10">
 <h2 class="text-2xl font-bold text-white mb-6 flex items-center space-x-3" id="engineering-problem">
-<div class="p-2 bg-cyan-500/10 rounded-lg">
+<span class="p-2 bg-cyan-500/10 rounded-lg">
 <i class="w-6 h-6 text-cyan-400" data-lucide="target"></i>
-</div>
+</span>
 <span>Engineering problem</span>
 </h2>
 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-<div class="bg-slate-800/50 p-6 rounded-xl border border-slate-700/50">
+<section class="bg-slate-800/50 p-6 rounded-xl border border-slate-700/50">
 <h3 class="font-bold text-white mb-3">Output-feedback rendezvous</h3>
-<p class="text-slate-300 leading-relaxed">
+<figure>
+<figcaption class="text-slate-300 leading-relaxed">
                             The controller needs the full relative state x = [r, r_dot, theta, theta_dot]^T, but the available sensor output is only the angle y = theta. The missing radial position and velocity states must be estimated before feedback control can work.
-                        </p>
-</div>
+                        </figcaption>
+</figure>
+</section>
 <div class="bg-yellow-900/20 p-6 rounded-xl border-l-4 border-yellow-500">
 <h3 class="font-bold text-yellow-200 mb-3">Numerical conditioning issue</h3>
 <p class="text-sm text-yellow-100 leading-relaxed">
@@ -197,9 +204,9 @@
 <!-- Control architecture -->
 <section aria-labelledby="control-architecture" class="content-section relative z-10">
 <h2 class="text-2xl font-bold text-white mb-6 flex items-center space-x-3" id="control-architecture">
-<div class="p-2 bg-cyan-500/10 rounded-lg">
+<span class="p-2 bg-cyan-500/10 rounded-lg">
 <i class="w-6 h-6 text-cyan-400" data-lucide="cpu"></i>
-</div>
+</span>
 <span>Control architecture</span>
 </h2>
 <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -240,9 +247,9 @@
 <!-- Simulation evidence -->
 <section aria-labelledby="simulation-evidence" class="content-section relative z-10">
 <h2 class="text-2xl font-bold text-white mb-6 flex items-center space-x-3" id="simulation-evidence">
-<div class="p-2 bg-cyan-500/10 rounded-lg">
+<span class="p-2 bg-cyan-500/10 rounded-lg">
 <i class="w-6 h-6 text-cyan-400" data-lucide="chart-line"></i>
-</div>
+</span>
 <span>Simulation evidence</span>
 </h2>
 <div class="bg-cyan-900/20 p-6 rounded-xl border-l-4 border-cyan-500 mb-6">
@@ -277,9 +284,9 @@
 <!-- Conclusion and next steps -->
 <section aria-labelledby="conclusion-and-next-steps" class="content-section relative z-10">
 <h2 class="text-2xl font-bold text-white mb-6 flex items-center space-x-3" id="conclusion-and-next-steps">
-<div class="p-2 bg-cyan-500/10 rounded-lg">
+<span class="p-2 bg-cyan-500/10 rounded-lg">
 <i class="w-6 h-6 text-cyan-400" data-lucide="award"></i>
-</div>
+</span>
 <span>Conclusion and next steps</span>
 </h2>
 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">

@@ -3,6 +3,7 @@
 > State Engineer in Electrical Engineering (ENSET Mohammedia, graduated 2026) specialising in Smart
 > Battery Management Systems, embedded hardware design, and industrial IoT. Patent holder
 > (OMPIC #65133). Based in Dar Bouazza, Morocco.
+> Last updated: 2026-07-22
 
 Rafi Nasrallah is a Moroccan electrical engineer whose work centres on battery intelligence:
 physical modelling of LiFePO4 cells, hybrid SOC/SOH estimation pipelines (ECM 3RC + UKF +
@@ -53,3 +54,14 @@ Sinumerik 840D, WinCC HMI, Caneco BT, ETAP, IEC 62133, ISO 26262, ISO 9001.
 - [Waveguide Analysis Report (PDF)](https://nasrallahrafi.me/assets/pdf/ANALYSIS_OF_TE10_MODE_PROPAGATION.pdf)
 - [Thermal Analysis Report (PDF)](https://nasrallahrafi.me/assets/pdf/Thermal_Analysis_Full_Report.pdf)
 - [Luenberger Rendezvous Paper (PDF)](https://nasrallahrafi.me/assets/pdf/Luenberger_Based_Rendezvous_Control_with_Angle_Only_Data.pdf)
+
+## Frequently Asked
+
+**What does Rafi Nasrallah specialize in?**
+Battery Management System design and SOC/SOH estimation for LiFePO4 batteries, combining ECM 3RC physical modelling with UKF and LSTM residual correction, plus STM32-based embedded hardware.
+
+**What is OMPIC Patent 65133?**
+A granted Moroccan industrial patent (issued 28 Nov 2025) for an automated welding and assembly system for corrugated web beam profiles, with Rafi Nasrallah as lead inventor.
+
+**Is Rafi Nasrallah available for hire?**
+Yes, available for electrical/embedded engineering roles from June 2026 onward, based in Dar Bouazza, Morocco.
