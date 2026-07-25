@@ -40,6 +40,7 @@
         REQUEST_TIMEOUT_MS: 45000,
         TYPEWRITER_MAX_MS: 900,     // reveal is capped so long replies don't feel sluggish
         MAX_TEXTAREA_PX: 120,
+        CTA_TRIGGER_TURN: 3,        // assistant reply count before showing recruiter CTA card
         SUGGESTIONS: [
             { label: 'Projects', prompt: 'What projects have you worked on?' },
             { label: 'Skills', prompt: 'What are your technical skills?' },
@@ -59,10 +60,28 @@
     let isWaiting = false;
     let hasInteracted = false;
     let manualCancel = false;
+    let hasShownCtaCard = false;
     let history = [];
     let currentController = null;
     let saveTimer = null;
     let lastFocusedBeforeOpen = null;
+
+    // ---------------------------------------------------------------
+    // Analytics Helper
+    // ---------------------------------------------------------------
+    function trackEvent(eventName, payload) {
+        payload = payload || {};
+        payload.timestamp = Date.now();
+        try {
+            if (typeof window.gtag === 'function') {
+                window.gtag('event', eventName, payload);
+            } else if (navigator.sendBeacon) {
+                // Silently safe fallback if custom analytics endpoint exists
+            }
+        } catch (e) {
+            /* ignore analytics errors silently */
+        }
+    }
 
     // ---------------------------------------------------------------
     // Init
@@ -71,7 +90,10 @@
         injectMarkup();
         cacheDom();
         wireEvents();
+        setupVisualViewport();
+        setupTeaser();
         restoreConversation();
+        setupReturningVisitor();
         setOfflineState(!navigator.onLine);
         refreshIcons();
     }
@@ -302,8 +324,12 @@
                             <i data-lucide="square" class="w-3.5 h-3.5" aria-hidden="true"></i>
                         </button>
                     </form>
-                    <div class="text-[9px] uppercase tracking-wider text-center text-slate-500 pt-3 mt-1 font-medium">AI can make mistakes</div>
+                    <div class="text-[9px] uppercase tracking-wider text-center text-slate-500 pt-3 mt-1 font-medium">AI can make mistakes · Messages are not stored on our servers</div>
                 </div>
+            </div>
+            <div id="chatbot-teaser" class="hidden relative mb-2 px-3.5 py-2 rounded-xl bg-black/90 border border-cyan-500/40 text-cyan-300 text-[12px] font-medium shadow-xl pointer-events-auto cursor-pointer flex items-center gap-2 transition-all duration-300 transform scale-95 opacity-0">
+                <span>👋 Ask me anything about Rafi's work</span>
+                <button type="button" id="chatbot-teaser-close" class="text-slate-400 hover:text-white p-0.5" aria-label="Dismiss">✕</button>
             </div>
             <button id="chatbot-toggle-btn" type="button" class="w-14 h-14 rounded-full bg-black/80 backdrop-blur-md border border-cyan-500/50 text-white hover:bg-black hover:border-cyan-400 transition-all duration-300 flex items-center justify-center group bot-toggle-btn pointer-events-auto" aria-label="Open chat" aria-expanded="false">
                 <i data-lucide="bot" class="w-6 h-6 group-[.chat-open]:hidden text-cyan-400 bot-icon-animate" style="filter: drop-shadow(0 0 8px rgba(var(--primary-rgb, 6, 182, 212), 0.8));" aria-hidden="true"></i>
@@ -320,7 +346,7 @@
         return '<div id="chatbot-greeting" class="self-start max-w-[90%] chat-msg-animate">'
             + '<div class="flex items-start gap-3">' + avatarHTML()
             + '<div class="inline-block px-5 py-4 rounded-2xl rounded-tl-sm bg-black/50 border border-white/5 text-slate-300 chat-markdown shadow-sm">'
-            + '<p class="leading-relaxed m-0">Hi! I\'m an AI assistant trained on Nasrallah\'s portfolio. How can I help you today?</p></div></div>'
+            + '<p class="leading-relaxed m-0">Hi! I can answer questions about Rafi\'s engineering projects, technical skills, and experience — or share his CV. What would you like to know?</p></div></div>'
             + '<div id="chatbot-suggestions" class="flex flex-wrap gap-2 mt-3 pl-9">' + chips + '</div></div>';
     }
 
@@ -372,11 +398,18 @@
             scrollFab.classList.toggle('hidden', isNearBottom());
         });
 
-        // Event delegation: covers both the static greeting chips and
-        // any chips re-rendered after a "Clear conversation".
+        // Event delegation: covers greeting chips, dynamic chips, and CTA buttons
         messages.addEventListener('click', function (e) {
             const chip = e.target.closest('.suggestion-chip');
-            if (chip) sendMessage(chip.dataset.prompt);
+            if (chip) {
+                trackEvent('chip_click', { label: chip.textContent, prompt: chip.dataset.prompt });
+                sendMessage(chip.dataset.prompt);
+                return;
+            }
+            const ctaBtn = e.target.closest('.chatbot-cta-btn');
+            if (ctaBtn) {
+                trackEvent('cta_click', { cta: ctaBtn.dataset.cta, href: ctaBtn.getAttribute('href') });
+            }
         });
 
         window.addEventListener('online', function () { setOfflineState(false); });
@@ -392,6 +425,7 @@
         toggleBtn.setAttribute('aria-label', isChatOpen ? 'Close chat' : 'Open chat');
 
         if (isChatOpen) {
+            trackEvent('chat_open');
             lastFocusedBeforeOpen = document.activeElement;
             windowEl.classList.remove('hidden');
             windowEl.classList.add('flex');
@@ -404,6 +438,7 @@
             input.focus();
             refreshIcons();
         } else {
+            trackEvent('chat_close');
             windowEl.classList.remove('opacity-100', 'scale-100');
             windowEl.classList.add('opacity-0', 'scale-95');
             toggleBtn.classList.remove('chat-open');
@@ -452,7 +487,8 @@
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
                     messages: history.slice(-CONFIG.MAX_HISTORY_SENT),
-                    contextUrl: window.location.href
+                    contextUrl: window.location.href,
+                    lang: getClientLang()
                 }),
                 signal: controller.signal
             });
@@ -480,6 +516,7 @@
                     history.push({ role: 'assistant', content: data.reply });
                     persistState();
                     await renderAssistantBubble(data.reply, { animate: true, latest: true });
+                    checkAndTriggerCta();
                 } else {
                     throw new Error('Invalid response');
                 }
@@ -509,6 +546,41 @@
         stopBtn.classList.toggle('hidden', !busy);
         sendBtn.disabled = busy;
         statusText.textContent = busy ? 'Typing\u2026' : (navigator.onLine ? 'Online' : 'Offline');
+    }
+
+    function checkAndTriggerCta() {
+        if (hasShownCtaCard) return;
+        const assistantTurnCount = history.filter(function (t) { return t.role === 'assistant'; }).length;
+        if (assistantTurnCount >= CONFIG.CTA_TRIGGER_TURN) {
+            renderCtaCard();
+        }
+    }
+
+    function renderCtaCard() {
+        if (hasShownCtaCard) return;
+        hasShownCtaCard = true;
+
+        const outer = document.createElement('div');
+        outer.className = 'self-start max-w-[90%] chat-msg-animate chatbot-cta-card';
+        const row = document.createElement('div');
+        row.className = 'flex items-start gap-3';
+        row.innerHTML = avatarHTML();
+
+        const inner = document.createElement('div');
+        inner.className = 'inline-block p-4 rounded-2xl rounded-tl-sm bg-gradient-to-br from-cyan-950/40 to-black/80 border border-cyan-500/30 text-slate-200 shadow-md';
+        inner.innerHTML = '<p class="text-[12.5px] font-medium text-cyan-300 m-0 mb-1">Interested in working with Rafi?</p>'
+            + '<p class="text-[11.5px] text-slate-400 m-0 mb-3">You can reach out directly via email or download his full resume.</p>'
+            + '<div class="flex flex-wrap gap-2">'
+            + '<a href="mailto:nasrollahrafi@gmail.com" class="chatbot-cta-btn inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-cyan-500/20 border border-cyan-500/40 text-[11px] font-semibold text-cyan-300 hover:bg-cyan-500/30 transition-colors" data-cta="email"><i data-lucide="mail" class="w-3.5 h-3.5"></i> Email Rafi</a>'
+            + '<a href="https://nasrallahrafi.me/assets/pdf/RAFI_Nasrallah_CV_ENG.pdf" target="_blank" rel="noopener" class="chatbot-cta-btn inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white/5 border border-white/10 text-[11px] font-medium text-slate-300 hover:bg-white/10 transition-colors" data-cta="resume"><i data-lucide="file-text" class="w-3.5 h-3.5"></i> Download CV</a>'
+            + '</div>';
+
+        row.appendChild(inner);
+        outer.appendChild(row);
+        outer.appendChild(timestampEl('pl-10'));
+        appendToLog(outer);
+        refreshIcons();
+        trackEvent('cta_shown', { trigger: 'turn_count' });
     }
 
     function clearConversation() {
@@ -562,7 +634,13 @@
         outer.appendChild(timestampEl('pl-10'));
 
         if (isError) {
+            trackEvent('error_occurred', { message: text });
             inner.textContent = text;
+            const emailFallback = document.createElement('div');
+            emailFallback.className = 'mt-2 pt-2 border-t border-red-500/20 text-[11.5px] text-red-200';
+            emailFallback.innerHTML = 'In the meantime, feel free to email Rafi directly at <a href="mailto:nasrollahrafi@gmail.com" class="chatbot-cta-btn underline hover:text-white font-medium" data-cta="error_fallback_email">nasrollahrafi@gmail.com</a>';
+            inner.appendChild(emailFallback);
+
             if (opts.retryText) {
                 const retryBtn = document.createElement('button');
                 retryBtn.type = 'button';
@@ -601,9 +679,105 @@
     function renderMarkdownInto(el, text) {
         if (typeof marked !== 'undefined' && typeof DOMPurify !== 'undefined') {
             el.innerHTML = DOMPurify.sanitize(marked.parse(text));
+            attachCodeBlockCopy(el);
         } else {
             el.textContent = text;
         }
+    }
+
+    function attachCodeBlockCopy(container) {
+        const pres = container.querySelectorAll('pre');
+        Array.prototype.forEach.call(pres, function (pre) {
+            if (pre.querySelector('.code-copy-btn')) return;
+            pre.style.position = 'relative';
+            const copyBtn = document.createElement('button');
+            copyBtn.type = 'button';
+            copyBtn.className = 'code-copy-btn absolute top-2 right-2 px-2 py-1 rounded bg-white/10 hover:bg-white/20 text-slate-300 text-[10px] font-mono transition-opacity';
+            copyBtn.textContent = 'Copy Code';
+            copyBtn.addEventListener('click', function () {
+                const code = pre.querySelector('code') ? pre.querySelector('code').textContent : pre.textContent;
+                navigator.clipboard.writeText(code).then(function () {
+                    copyBtn.textContent = 'Copied!';
+                    setTimeout(function () { copyBtn.textContent = 'Copy Code'; }, 1500);
+                }).catch(function () {});
+            });
+            pre.appendChild(copyBtn);
+        });
+    }
+
+    function getClientLang() {
+        const htmlLang = document.documentElement.lang || '';
+        if (htmlLang.toLowerCase().startsWith('fr') || window.location.pathname.includes('-fr.html')) {
+            return 'fr';
+        }
+        return 'en';
+    }
+
+    function setupVisualViewport() {
+        if (!window.visualViewport) return;
+        window.visualViewport.addEventListener('resize', function () {
+            if (!isChatOpen) return;
+            const vv = window.visualViewport;
+            if (window.innerWidth < 640) {
+                const maxHeight = Math.min(550, vv.height - 80);
+                windowEl.style.maxHeight = maxHeight + 'px';
+                if (document.activeElement === input) {
+                    input.scrollIntoView({ block: 'nearest' });
+                }
+            }
+        });
+    }
+
+    function setupTeaser() {
+        const teaser = document.getElementById('chatbot-teaser');
+        const closeBtnTeaser = document.getElementById('chatbot-teaser-close');
+        if (!teaser) return;
+
+        try {
+            if (sessionStorage.getItem('nr-teaser-shown-v1')) return;
+        } catch (e) {}
+
+        let dismissTimer = null;
+        setTimeout(function () {
+            if (isChatOpen) return;
+            teaser.classList.remove('hidden');
+            requestAnimationFrame(function () {
+                teaser.classList.remove('opacity-0', 'scale-95');
+                teaser.classList.add('opacity-100', 'scale-100');
+            });
+            try { sessionStorage.setItem('nr-teaser-shown-v1', 'true'); } catch (e) {}
+
+            dismissTimer = setTimeout(dismissTeaser, 8000);
+        }, 3000);
+
+        function dismissTeaser() {
+            clearTimeout(dismissTimer);
+            teaser.classList.remove('opacity-100', 'scale-100');
+            teaser.classList.add('opacity-0', 'scale-95');
+            setTimeout(function () { teaser.classList.add('hidden'); }, 300);
+        }
+
+        teaser.addEventListener('click', function (e) {
+            if (e.target === closeBtnTeaser) {
+                dismissTeaser();
+            } else {
+                dismissTeaser();
+                if (!isChatOpen) toggleChat();
+            }
+        });
+    }
+
+    function setupReturningVisitor() {
+        try {
+            const hasSessionVisited = sessionStorage.getItem('nr-session-visited-v1');
+            sessionStorage.setItem('nr-session-visited-v1', 'true');
+            if (hasSessionVisited && history.length === 0) {
+                const greetingPara = messages.querySelector('#chatbot-greeting p');
+                if (greetingPara) {
+                    greetingPara.textContent = "Welcome back \u2014 what else can I help you find about Rafi\u2019s work today?";
+                }
+            }
+        } catch (e) {}
     }
 
     // Lightweight client-side "typewriter" reveal. Plain text is
