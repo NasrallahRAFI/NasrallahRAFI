@@ -54,7 +54,7 @@
     // ---------------------------------------------------------------
     let toggleBtn, closeBtn, clearBtn, windowEl, form, input, messages,
         sendBtn, stopBtn, scrollFab, charCounter, offlineBanner,
-        statusText, announcer;
+        statusText, announcer, badgeEl;
 
     let isChatOpen = false;
     let isWaiting = false;
@@ -118,6 +118,7 @@
         offlineBanner = document.getElementById('chatbot-offline-banner');
         statusText = document.getElementById('chatbot-status-text');
         announcer = document.getElementById('chatbot-sr-announcer');
+        badgeEl = document.getElementById('chatbot-badge');
     }
 
     // ---------------------------------------------------------------
@@ -327,13 +328,29 @@
                     <div class="text-[9px] uppercase tracking-wider text-center text-slate-500 pt-3 mt-1 font-medium">AI can make mistakes · Messages are not stored on our servers</div>
                 </div>
             </div>
-            <div id="chatbot-teaser" class="hidden relative mb-2 px-3.5 py-2 rounded-xl bg-black/90 border border-cyan-500/40 text-cyan-300 text-[12px] font-medium shadow-xl pointer-events-auto cursor-pointer flex items-center gap-2 transition-all duration-300 transform scale-95 opacity-0">
-                <span>👋 Ask me anything about Rafi's work</span>
-                <button type="button" id="chatbot-teaser-close" class="text-slate-400 hover:text-white p-0.5" aria-label="Dismiss">✕</button>
+            <div id="chatbot-teaser" class="hidden relative mb-3 p-3.5 rounded-2xl bg-[#08080c]/90 backdrop-blur-xl border border-cyan-500/30 text-white shadow-[0_10px_30px_rgba(0,0,0,0.6),0_0_20px_rgba(var(--primary-rgb,6,182,212),0.2)] pointer-events-auto cursor-pointer max-w-[280px] transition-all duration-300 transform scale-95 opacity-0 origin-bottom-right">
+                <div class="flex items-start gap-3">
+                    <div class="relative flex-shrink-0 mt-0.5">
+                        <div class="w-8 h-8 rounded-full bg-gradient-to-br from-cyan-500/30 to-cyan-500/10 border border-cyan-500/40 flex items-center justify-center">
+                            <i data-lucide="bot" class="w-4 h-4 text-cyan-400"></i>
+                        </div>
+                        <span class="absolute bottom-0 right-0 h-2.5 w-2.5 rounded-full bg-emerald-400 ring-2 ring-black"></span>
+                    </div>
+                    <div class="flex-1 min-w-0 pr-2">
+                        <div class="flex items-center gap-1.5 mb-0.5">
+                            <span class="text-[11px] font-semibold text-cyan-300 tracking-wide uppercase">AI Assistant</span>
+                        </div>
+                        <p class="text-[12.5px] text-slate-200 m-0 leading-snug font-normal">Ask me anything about Rafi's work! 👋</p>
+                    </div>
+                    <button id="chatbot-teaser-close" type="button" class="text-slate-400 hover:text-white transition-colors p-1 rounded-full hover:bg-white/10 -mt-1 -mr-1" aria-label="Dismiss">
+                        <i data-lucide="x" class="w-3.5 h-3.5 pointer-events-none"></i>
+                    </button>
+                </div>
             </div>
-            <button id="chatbot-toggle-btn" type="button" class="w-14 h-14 rounded-full bg-black/80 backdrop-blur-md border border-cyan-500/50 text-white hover:bg-black hover:border-cyan-400 transition-all duration-300 flex items-center justify-center group bot-toggle-btn pointer-events-auto" aria-label="Open chat" aria-expanded="false">
+            <button id="chatbot-toggle-btn" type="button" class="relative w-14 h-14 rounded-full bg-black/80 backdrop-blur-md border border-cyan-500/50 text-white hover:bg-black hover:border-cyan-400 transition-all duration-300 flex items-center justify-center group bot-toggle-btn pointer-events-auto" aria-label="Open chat" aria-expanded="false">
                 <i data-lucide="bot" class="w-6 h-6 group-[.chat-open]:hidden text-cyan-400 bot-icon-animate" style="filter: drop-shadow(0 0 8px rgba(var(--primary-rgb, 6, 182, 212), 0.8));" aria-hidden="true"></i>
                 <i data-lucide="chevron-down" class="w-6 h-6 hidden group-[.chat-open]:block text-cyan-300" aria-hidden="true"></i>
+                <span id="chatbot-badge" class="hidden absolute -top-1 -right-1 flex h-5.5 w-5.5 items-center justify-center rounded-full bg-red-500 text-[11px] font-bold text-white shadow-lg ring-2 ring-black animate-pulse" aria-hidden="true">1</span>
             </button>
         </div>
         <div id="chatbot-sr-announcer" class="sr-only" aria-live="polite" aria-atomic="true"></div>`;
@@ -423,6 +440,8 @@
         isChatOpen = !isChatOpen;
         toggleBtn.setAttribute('aria-expanded', String(isChatOpen));
         toggleBtn.setAttribute('aria-label', isChatOpen ? 'Close chat' : 'Open chat');
+
+        if (badgeEl) badgeEl.classList.add('hidden');
 
         if (isChatOpen) {
             trackEvent('chat_open');
@@ -741,6 +760,7 @@
         setTimeout(function () {
             if (isChatOpen) return;
             teaser.classList.remove('hidden');
+            if (badgeEl) badgeEl.classList.remove('hidden');
             requestAnimationFrame(function () {
                 teaser.classList.remove('opacity-0', 'scale-95');
                 teaser.classList.add('opacity-100', 'scale-100');
