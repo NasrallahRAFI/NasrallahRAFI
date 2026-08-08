@@ -328,7 +328,7 @@
                     <div class="text-[9px] uppercase tracking-wider text-center text-slate-500 pt-3 mt-1 font-medium">AI can make mistakes · Messages are not stored on our servers</div>
                 </div>
             </div>
-            <div id="chatbot-teaser" class="hidden relative mb-3 p-3.5 rounded-2xl bg-[#08080c]/90 backdrop-blur-xl border border-cyan-500/30 text-white shadow-[0_10px_30px_rgba(0,0,0,0.6),0_0_20px_rgba(var(--primary-rgb,6,182,212),0.2)] pointer-events-auto cursor-pointer max-w-[280px] transition-all duration-300 transform scale-95 opacity-0 origin-bottom-right">
+            <div id="chatbot-teaser" style="background-color: rgba(8, 8, 12, 0.9);" class="hidden relative mb-3 p-3.5 rounded-2xl bg-[#08080c]/90 backdrop-blur-xl border border-cyan-500/30 text-white shadow-[0_10px_30px_rgba(0,0,0,0.6),0_0_20px_rgba(var(--primary-rgb,6,182,212),0.2)] pointer-events-auto cursor-pointer max-w-[280px] transition-all duration-300 transform scale-95 opacity-0 origin-bottom-right">
                 <div class="flex items-start gap-3">
                     <div class="relative flex-shrink-0 mt-0.5">
                         <div class="w-8 h-8 rounded-full bg-gradient-to-br from-cyan-500/30 to-cyan-500/10 border border-cyan-500/40 flex items-center justify-center">

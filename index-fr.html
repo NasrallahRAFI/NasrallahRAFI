@@ -12,7 +12,7 @@
 </script>
 <meta charset="utf-8"/>
 <meta name="theme-color" content="#06b6d4"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/><link as="image" fetchpriority="high" href="assets/img/Profile_picture.png" rel="preload"/><link href="https://unpkg.com" rel="preconnect"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/><link as="image" fetchpriority="high" href="assets/img/Profile_picture.webp" rel="preload"/><link href="https://unpkg.com" rel="preconnect"/>
 <title>Rafi Nasrallah | Ingénieur en génie électrique — BMS, systèmes embarqués &amp; IoT | Maroc</title>
 <meta content="Portfolio professionnel de Rafi Nasrallah, ingénieur d’État en génie électrique de l’ENSET Mohammedia. Spécialisé en BMS intelligent, estimation SOC/SOH, systèmes embarqués STM32, conception Altium Designer et IoT industriel." name="description"/>
 <meta content="Rafi Nasrallah, ingénieur génie électrique, ingénieur BMS, Battery Management System, estimation SOC, estimation SOH, UKF, LSTM, STM32, Altium Designer, MQTT, systèmes embarqués Maroc, ENSET Mohammedia, batterie LiFePO4, IoT industriel" name="keywords"/>
@@ -152,6 +152,8 @@
 <a class="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 to-cyan-200 hover:text-cyan-300 transition-colors" href="#hero">
                 Rafi Nasrallah
             </a>
+<!-- Right Side Group: Navigation + Buttons -->
+<div class="flex items-center space-x-6 lg:space-x-8">
 <!-- Desktop Navigation -->
 <nav class="hidden lg:flex space-x-8">
 <a class="text-slate-300 hover:text-cyan-400 font-medium transition-colors" href="#about">Profil</a>
@@ -160,7 +162,6 @@
 <a class="text-slate-300 hover:text-cyan-400 font-medium transition-colors" href="#skills">Compétences</a>
 <a class="text-slate-300 hover:text-cyan-400 font-medium transition-colors" href="#patents">Brevet</a>
 <a class="text-slate-300 hover:text-cyan-400 font-medium transition-colors" href="#dev-focus">Développement</a>
-<a class="text-slate-300 hover:text-cyan-400 font-medium transition-colors" href="#interest">Intérêts</a>
 </nav>
 <!-- Action Buttons -->
 <div class="flex items-center space-x-2 sm:space-x-4">
@@ -181,6 +182,7 @@
 </button>
 </div>
 </div>
+</div>
 <!-- Mobile Menu (Hidden by default) -->
 <div class="hidden lg:hidden absolute w-full glass border-t border-slate-700" id="mobile-menu">
 <nav class="flex flex-col p-4 space-y-2">
@@ -190,7 +192,6 @@
 <a class="block py-2 px-3 text-slate-300 hover:bg-slate-800 hover:text-cyan-400 rounded-lg transition-colors" href="#skills">Compétences</a>
 <a class="block py-2 px-3 text-slate-300 hover:bg-slate-800 hover:text-cyan-400 rounded-lg transition-colors" href="#patents">Brevet</a>
 <a class="block py-2 px-3 text-slate-300 hover:bg-slate-800 hover:text-cyan-400 rounded-lg transition-colors" href="#dev-focus">Développement</a>
-<a class="block py-2 px-3 text-slate-300 hover:bg-slate-800 hover:text-cyan-400 rounded-lg transition-colors" href="#interest">Intérêts</a>
 </nav>
 </div>
 </header>
@@ -232,7 +233,7 @@
 </div>
 <aside class="hero-profile" aria-label="Portrait et informations professionnelles">
 <div class="hero-portrait">
-<img alt="Rafi Nasrallah, ingénieur en génie électrique spécialisé en systèmes embarqués et gestion de batteries" fetchpriority="high" height="1254" loading="eager" src="assets/img/Profile_picture.png" width="1254"/>
+<img alt="Rafi Nasrallah, ingénieur en génie électrique spécialisé en systèmes embarqués et gestion de batteries" fetchpriority="high" height="1254" loading="eager" src="assets/img/Profile_picture.webp" width="1254"/>
 </div>
 </aside>
 </div>
@@ -322,6 +323,18 @@
 <i class="w-7 h-7 text-accent" data-lucide="briefcase"></i><span>Expériences &amp; Formation</span>
 </h2>
 <div class="experience-education-layout glass p-8 rounded-xl shadow-lg relative overflow-hidden reveal">
+<!-- Academic background -->
+<div class="experience-block academic-background group">
+<h3 class="experience-block-title text-2xl font-bold text-white relative z-10 transition-colors duration-300 group-hover:text-accent">Formation académique</h3>
+<div class="education-grid">
+<!-- Education 1: Engineering Degree -->
+<div class="timeline-item-content p-6 rounded-lg border border-slate-700/50">
+<p class="text-sm font-medium text-accent float-right">2023 - 2026</p>
+<h3 class="text-2xl font-bold text-white group-hover:text-accent transition-colors duration-300">Cycle ingénieur d’État</h3>
+<p class="text-accent font-medium">ENSET Mohammedia</p>
+<p class="text-sm text-slate-400">Génie électrique et contrôle des systèmes industriels
+                                </p>
+</div>
 <!-- Professional experience -->
 <div class="experience-block professional-experience group">
 <h3 class="experience-block-title text-2xl font-bold text-white relative z-10 group-hover:text-accent transition-colors">Expérience professionnelle</h3>
@@ -346,12 +359,10 @@
 <li><strong>Qualité industrielle :</strong> formalisation et mise en œuvre d’une procédure de qualification de cellules batterie (PR-BAT-01) inspirée des pratiques ISO 9001.</li>
 <li><strong>Supervision &amp; digitalisation :</strong> création d’un tableau de bord industriel temps réel (MQTT, API REST) pour le suivi de production, la traçabilité des packs batterie et l’analyse KPI.</li>
 </ul>
-<div class="flex flex-wrap gap-2 mt-3">
-<a class="inline-flex items-center text-xs font-semibold px-3 py-1 rounded-full transition-all hover:-translate-y-0.5" href="project-smart-bms-fr.html" style="background: linear-gradient(135deg, rgba(96,165,250,0.2), rgba(167,139,250,0.2)); color: #93c5fd; border: 1px solid rgba(96,165,250,0.35); box-shadow: 0 2px 8px rgba(96,165,250,0.15);">
-<i class="w-3 h-3 mr-1.5" data-lucide="book-open"></i>
-                                        Lire le rapport technique complet sur le Smart BMS basé sur STM32
-                                    </a>
-</div>
+<a class="details-button" href="project-smart-bms-fr.html">
+                                    Lire le rapport technique complet sur le Smart BMS basé sur STM32
+                                    <i class="w-3 h-3 ml-1" data-lucide="arrow-up-right"></i>
+</a>
 </div>
 <!-- Engineering Internship (SMCV) — Jul–Sep 2025 -->
 <div class="timeline-item timeline-item-content">
@@ -406,18 +417,6 @@
 </a>
 </div>
 </div>
-</div>
-<!-- Academic background -->
-<div class="experience-block academic-background group">
-<h3 class="experience-block-title text-2xl font-bold text-white relative z-10 transition-colors duration-300 group-hover:text-accent">Formation académique</h3>
-<div class="education-grid">
-<!-- Education 1: Engineering Degree -->
-<div class="timeline-item-content p-6 rounded-lg border border-slate-700/50">
-<p class="text-sm font-medium text-accent float-right">2023 - 2026</p>
-<h3 class="text-2xl font-bold text-white group-hover:text-accent transition-colors duration-300">Cycle ingénieur d’État</h3>
-<p class="text-accent font-medium">ENSET Mohammedia</p>
-<p class="text-sm text-slate-400">Génie électrique et contrôle des systèmes industriels
-                                </p>
 </div>
 <!-- Education 2: Licence -->
 <div class="timeline-item-content p-6 rounded-lg border border-slate-700/50">
@@ -866,37 +865,6 @@
 </div>
 
 </div>
-</section>
-<!-- Areas of Interest Section -->
-<section aria-labelledby="areas-of-interest" class="glass p-8 rounded-xl shadow-lg reveal" id="interest">
-<h2 class="text-3xl font-bold text-white mb-6 border-b-2 border-cyan-500/30 pb-2 flex items-center space-x-2" id="areas-of-interest">
-<i class="w-7 h-7 text-red-500" data-lucide="heart"></i><span>Axes d’intérêt</span>
-</h2>
-<div class="flex flex-wrap gap-4 justify-center md:justify-start">
-<div class="p-3 bg-cyan-900/40 rounded-lg shadow-md flex items-center space-x-2 border border-cyan-700/50">
-<i class="w-6 h-6 text-cyan-400" data-lucide="battery-charging"></i>
-<span class="font-semibold text-cyan-200">Smart BMS</span>
-</div>
-<div class="p-3 bg-cyan-900/40 rounded-lg shadow-md flex items-center space-x-2 border border-cyan-700/50">
-<i class="w-6 h-6 text-cyan-400" data-lucide="brain-circuit"></i>
-<span class="font-semibold text-cyan-200">Estimation SOC/SOH assistée par IA</span>
-</div>
-<div class="p-3 bg-cyan-900/40 rounded-lg shadow-md flex items-center space-x-2 border border-cyan-700/50">
-<i class="w-6 h-6 text-cyan-400" data-lucide="activity"></i>
-<span class="font-semibold text-cyan-200">Analyse de batteries</span>
-</div>
-<div class="p-3 bg-cyan-900/40 rounded-lg shadow-md flex items-center space-x-2 border border-cyan-700/50">
-<i class="w-6 h-6 text-cyan-400" data-lucide="settings-2"></i>
-<span class="font-semibold text-cyan-200">Modélisation &amp; commande avancée</span>
-</div>
-<div class="p-3 bg-cyan-900/40 rounded-lg shadow-md flex items-center space-x-2 border border-cyan-700/50">
-<i class="w-6 h-6 text-cyan-400" data-lucide="radio-tower"></i>
-<span class="font-semibold text-cyan-200">Systèmes embarqués &amp; IoT</span>
-</div>
-</div>
-<p class="text-lg text-slate-300 leading-relaxed mt-4">
-                    Ingénieur d’État en génie électrique et contrôle des systèmes industriels, avec un axe de recherche centré sur les BMS intelligents, l’analyse de batteries et l’estimation SOC/SOH assistée par IA. Les travaux présentés couvrent la modélisation physique, la simulation ECM, l’Unscented Kalman Filtering, la correction résiduelle LSTM et la validation par jumeau numérique pour la mobilité électrique.
-                </p>
 </section>
 </div>
 </main>
