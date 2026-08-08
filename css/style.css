@@ -1203,6 +1203,24 @@ html {
     opacity: 0.9;
 }
 
+.edu-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 0.85rem;
+}
+
+.edu-header .edu-cluster-tag {
+    margin-bottom: 0;
+}
+
+.edu-header .edu-date {
+    margin-bottom: 0 !important;
+    float: none !important;
+}
+
 /* ── Secondary row (licence + DEUG) ────────────────────── */
 .edu-secondary-row {
     display: grid;
