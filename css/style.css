@@ -1095,37 +1095,206 @@ html {
     }
 }
 
-.education-grid {
-    display: grid;
-    grid-template-columns: repeat(4, minmax(0, 1fr));
-    gap: clamp(0.85rem, 1.6vw, 1.15rem);
+/* ── Education Journey (hierarchical layout) ─────────────── */
+.education-journey {
+    display: flex;
+    flex-direction: column;
+    gap: clamp(1rem, 2vw, 1.35rem);
 }
 
-.education-grid .timeline-item-content {
-    height: 100%;
-    min-width: 0;
-    padding: 1.25rem;
+.edu-subtitle {
+    margin-top: -0.5rem;
+    margin-bottom: 0.75rem;
+    color: rgba(226, 232, 240, 0.6);
+    font-size: clamp(0.88rem, 1.2vw, 1rem);
+    font-style: italic;
+    letter-spacing: 0.01em;
+    line-height: 1.5;
 }
 
-.education-grid .timeline-item-content > p:first-child {
+/* ── Featured card (engineering degree) ────────────────── */
+.edu-featured {
+    padding: clamp(1.5rem, 2.5vw, 2rem);
+    border-color: rgba(var(--primary-rgb), 0.42);
+    background:
+        radial-gradient(circle at 100% 0%, rgba(var(--primary-rgb), 0.15), transparent 28rem),
+        linear-gradient(145deg, rgba(var(--primary-rgb), 0.1), rgba(255, 255, 255, 0.02) 48%),
+        var(--card-bg);
+    box-shadow:
+        0 0 24px -8px rgba(var(--primary-rgb), 0.2),
+        inset 0 1px 0 rgba(255, 255, 255, 0.08);
+}
+
+.edu-featured .edu-date {
     float: none;
     width: max-content;
+    margin-bottom: 0.85rem;
+    border: 1px solid rgba(var(--primary-rgb), 0.32);
+    border-radius: 999px;
+    background: rgba(var(--primary-rgb), 0.1);
+    padding: 0.3rem 0.7rem;
+    font-size: 0.82rem;
+    font-weight: 600;
+    font-variant-numeric: tabular-nums;
+    line-height: 1;
+    color: var(--accent-color);
+}
+
+.edu-featured .edu-title {
+    margin-bottom: 0.2rem;
+    color: #fff;
+    font-size: clamp(1.35rem, 2.2vw, 1.75rem);
+    font-weight: 850;
+    letter-spacing: -0.025em;
+    line-height: 1.12;
+}
+
+.edu-featured .edu-field {
+    margin-bottom: 0.3rem;
+    color: var(--accent-color);
+    font-size: clamp(1rem, 1.5vw, 1.15rem);
+    font-weight: 700;
+    line-height: 1.25;
+}
+
+.edu-featured .edu-institution {
     margin-bottom: 0.75rem;
+    color: rgba(226, 232, 240, 0.7);
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+.edu-description {
+    max-width: 60ch;
+    margin-bottom: 1rem;
+    color: rgba(226, 232, 240, 0.72);
+    font-size: 0.92rem;
+    line-height: 1.65;
+}
+
+.edu-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.45rem;
+}
+
+.edu-tag {
+    display: inline-flex;
+    align-items: center;
+    min-height: 1.75rem;
     border: 1px solid rgba(var(--primary-rgb), 0.24);
     border-radius: 999px;
-    background: rgba(var(--primary-rgb), 0.08);
-    padding: 0.25rem 0.55rem;
-    font-variant-numeric: tabular-nums;
+    background: rgba(var(--primary-rgb), 0.07);
+    color: rgba(226, 232, 240, 0.88);
+    padding: 0.3rem 0.6rem;
+    font-size: 0.74rem;
+    font-weight: 700;
     line-height: 1;
 }
 
-.education-grid h3,
-.education-grid h4 {
-    margin-bottom: 0.35rem;
-    font-size: clamp(1.05rem, 1.55vw, 1.3rem);
+/* ── Secondary row (licence + DEUG) ────────────────────── */
+.edu-secondary-row {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: clamp(0.85rem, 1.6vw, 1.15rem);
+}
+
+.edu-secondary {
+    padding: clamp(1.15rem, 1.8vw, 1.4rem);
+}
+
+.edu-secondary .edu-date {
+    float: none;
+    width: max-content;
+    margin-bottom: 0.6rem;
+    border: 1px solid rgba(var(--primary-rgb), 0.2);
+    border-radius: 999px;
+    background: rgba(var(--primary-rgb), 0.06);
+    padding: 0.22rem 0.5rem;
+    font-size: 0.76rem;
+    font-weight: 600;
+    font-variant-numeric: tabular-nums;
+    line-height: 1;
+    color: var(--accent-color);
+}
+
+.edu-secondary .edu-title {
+    margin-bottom: 0.25rem;
+    color: #fff;
+    font-size: clamp(1.02rem, 1.4vw, 1.2rem);
+    font-weight: 800;
+    letter-spacing: -0.015em;
     line-height: 1.15;
 }
 
+.edu-secondary .edu-institution {
+    margin-bottom: 0.5rem;
+    color: rgba(226, 232, 240, 0.6);
+    font-size: 0.82rem;
+    font-weight: 500;
+}
+
+.edu-secondary .edu-description {
+    font-size: 0.84rem;
+    margin-bottom: 0.75rem;
+    line-height: 1.55;
+}
+
+.edu-secondary .edu-tags {
+    gap: 0.35rem;
+}
+
+.edu-secondary .edu-tag {
+    min-height: 1.55rem;
+    padding: 0.22rem 0.5rem;
+    font-size: 0.7rem;
+}
+
+/* ── Compact card (baccalaureate) ──────────────────────── */
+.edu-compact {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.5rem 1rem;
+    padding: 0.85rem 1.15rem;
+    border-color: rgba(var(--border-accent), 0.06);
+    opacity: 0.72;
+    font-size: 0.82rem;
+}
+
+.edu-compact .edu-date {
+    border: 1px solid rgba(var(--primary-rgb), 0.18);
+    border-radius: 999px;
+    background: rgba(var(--primary-rgb), 0.05);
+    padding: 0.2rem 0.48rem;
+    font-size: 0.72rem;
+    font-weight: 600;
+    font-variant-numeric: tabular-nums;
+    line-height: 1;
+    color: var(--accent-color);
+}
+
+.edu-compact .edu-compact-title {
+    color: #fff;
+    font-weight: 700;
+}
+
+.edu-compact .edu-compact-detail {
+    color: rgba(226, 232, 240, 0.6);
+}
+
+.edu-compact .edu-separator {
+    color: rgba(var(--primary-rgb), 0.4);
+    font-weight: 300;
+}
+
+@media (hover: hover) and (pointer: fine) {
+    .edu-compact:hover {
+        opacity: 1;
+    }
+}
+
+/* ── Responsive breakpoints ────────────────────────────── */
 @media (max-width: 1024px) {
     .professional-experience-grid .timeline-item {
         grid-column: span 3;
@@ -1135,10 +1304,6 @@ html {
     .professional-experience-grid .timeline-item:last-child {
         grid-column: 1 / -1;
     }
-
-    .education-grid {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-    }
 }
 
 @media (max-width: 640px) {
@@ -1147,8 +1312,7 @@ html {
         padding: 1.15rem !important;
     }
 
-    .professional-experience-grid,
-    .education-grid {
+    .professional-experience-grid {
         grid-template-columns: 1fr;
     }
 
@@ -1156,6 +1320,10 @@ html {
     .professional-experience-grid .timeline-item:first-child,
     .professional-experience-grid .timeline-item:last-child {
         grid-column: 1;
+    }
+
+    .edu-secondary-row {
+        grid-template-columns: 1fr;
     }
 }
 
