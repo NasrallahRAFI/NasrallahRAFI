@@ -1192,11 +1192,33 @@ html {
     line-height: 1;
 }
 
+.edu-cluster-tag {
+    display: inline-block;
+    font-size: 0.68rem;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--accent-color);
+    margin-bottom: 0.35rem;
+    opacity: 0.9;
+}
+
 /* ── Secondary row (licence + DEUG) ────────────────────── */
 .edu-secondary-row {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: clamp(0.85rem, 1.6vw, 1.15rem);
+}
+
+.edu-secondary.edu-licence {
+    border-color: rgba(var(--primary-rgb), 0.28);
+    background: linear-gradient(145deg, rgba(var(--primary-rgb), 0.07), rgba(255, 255, 255, 0.015) 60%), var(--card-bg);
+}
+
+.edu-secondary.edu-deug {
+    border-color: rgba(255, 255, 255, 0.07);
+    background: var(--card-bg);
+    opacity: 0.94;
 }
 
 .edu-secondary {
