@@ -6,3 +6,4 @@ server.err.log
 .impeccable/
 .codex/
 .claude/
+node_modules/
