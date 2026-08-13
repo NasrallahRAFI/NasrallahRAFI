@@ -5,6 +5,12 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
+    "check": "node scripts/check-frontend.mjs",
+    "build:pages": "node scripts/build-pages.mjs",
+    "inventory:assets": "node scripts/inventory-assets.mjs",
+    "media:metadata": "python scripts/add-image-dimensions.py",
+    "a11y:headings": "node scripts/fix-heading-levels.mjs",
+    "test:chatbot:browser": "echo Open http://127.0.0.1:8765/tests/chatbot.browser.html after starting the local server",
     "build:css": "tailwindcss -i ./css/tailwind-input.css -o ./css/tailwind.min.css --minify",
     "watch:css": "tailwindcss -i ./css/tailwind-input.css -o ./css/tailwind.min.css --watch",
     "build:style": "cleancss -o css/style.min.css css/style.css",

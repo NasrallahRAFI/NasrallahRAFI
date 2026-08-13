@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<script src="js/theme-config.js"></script>
+<script src="js/theme-init.js"></script>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Compteur d'eau intelligent — D&eacute;veloppement de la chambre de mesure rotative | Rafi Nasrallah</title>
+<meta content="Projet ind&eacute;pendant en cours consacr&eacute; &agrave; la mod&eacute;lisation g&eacute;om&eacute;trique 3D et &agrave; l'analyse cin&eacute;matique d'une chambre de mesure rotative pour un compteur d'eau intelligent." name="description"/>
+<meta content="compteur d'eau intelligent, chambre de mesure rotative, cin&eacute;matique, CAO 3D, m&eacute;catronique, CFD, syst&egrave;mes embarqu&eacute;s, Rafi Nasrallah" name="keywords"/>
+<link href="https://nasrallahrafi.me/project-smart-water-meter-fr.html" rel="canonical"/>
+<link href="https://nasrallahrafi.me/project-smart-water-meter.html" hreflang="en" rel="alternate"/>
+<link href="https://nasrallahrafi.me/project-smart-water-meter-fr.html" hreflang="fr" rel="alternate"/>
+<link href="https://nasrallahrafi.me/project-smart-water-meter.html" hreflang="x-default" rel="alternate"/>
+<meta content="article" property="og:type"/>
+<meta content="Rafi Nasrallah Portfolio" property="og:site_name"/>
+<meta content="Compteur d'eau intelligent — D&eacute;veloppement de la chambre de mesure rotative | Rafi Nasrallah" property="og:title"/>
+<meta content="&Eacute;tude en cours de la g&eacute;om&eacute;trie et de la cin&eacute;matique d'une chambre de mesure rotative, avant les phases hydrauliques, CFD et embarqu&eacute;es." property="og:description"/>
+<meta content="https://nasrallahrafi.me/assets/img/water_meter_cad.jpeg" property="og:image"/>
+<meta content="https://nasrallahrafi.me/project-smart-water-meter-fr.html" property="og:url"/>
+<meta content="fr_FR" property="og:locale"/>
+<meta content="summary_large_image" name="twitter:card"/>
+<meta content="Compteur d'eau intelligent — D&eacute;veloppement de la chambre de mesure rotative | Rafi Nasrallah" name="twitter:title"/>
+<meta content="&Eacute;tude en cours de la g&eacute;om&eacute;trie et de la cin&eacute;matique d'une chambre de mesure rotative, avant les phases hydrauliques, CFD et embarqu&eacute;es." name="twitter:description"/>
+<meta content="https://nasrallahrafi.me/assets/img/water_meter_cad.jpeg" name="twitter:image"/>
+<meta content="@RafiNasrallah" name="twitter:creator"/>
+<meta content="@RafiNasrallah" name="twitter:site"/>
+<meta content="index, follow" name="robots"/>
+<meta content="Rafi Nasrallah" name="author"/>
+<link href="/Icon.png" rel="icon" type="image/png"/>
+<link href="/Icon.png" rel="apple-touch-icon"/>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "TechArticle",
+  "headline": "Compteur d'eau intelligent — D&eacute;veloppement de la chambre de mesure rotative",
+  "description": "Projet ind&eacute;pendant en cours consacr&eacute; &agrave; la mod&eacute;lisation g&eacute;om&eacute;trique 3D et &agrave; l'analyse cin&eacute;matique d'une chambre de mesure rotative.",
+  "url": "https://nasrallahrafi.me/project-smart-water-meter-fr.html",
+  "author": { "@id": "https://nasrallahrafi.me/#rafi-nasrallah" },
+  "inLanguage": "fr",
+  "keywords": ["compteur d'eau intelligent", "chambre de mesure rotative", "cin&eacute;matique", "CAO 3D", "m&eacute;catronique", "CFD"],
+  "image": "https://nasrallahrafi.me/assets/img/water_meter_cad.jpeg",
+  "isPartOf": { "@id": "https://nasrallahrafi.me/#website" }
+}
+</script>
+<link href="https://unpkg.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link href="css/tailwind.min.css" rel="stylesheet"/>
+<script crossorigin="anonymous" defer integrity="sha384-vEpkK5oidsrH6UhRc6tAPlgJZ/qXFwumFY+Kx8vBSeZ7NBag809YZCSmxFYGe/pt" src="https://unpkg.com/lucide@1.20.0/dist/umd/lucide.min.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&amp;family=JetBrains+Mono:wght@500;600&amp;display=swap" rel="stylesheet"/>
+<link href="css/style.min.css?v=7" rel="stylesheet"/>
+<script src="js/theme.js?v=6" defer></script>
+<script src="js/site-shell.js" defer></script>
+</head>
+<body class="antialiased selection:bg-cyan-500 selection:theme-text-main">
+<a class="skip-link" href="#main-content">Aller au contenu</a>
+<header class="sticky top-0 z-50 glass transition-colors duration-300">
+<div class="container mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center gap-4">
+<a class="text-2xl font-bold theme-text-main hover:text-accent transition-colors truncate" href="index-fr.html#hero">Rafi Nasrallah</a>
+<nav class="hidden lg:flex space-x-6"><a class="theme-text-light hover:text-accent font-medium transition-colors" href="index-fr.html#about">&Agrave; propos</a> <a class="theme-text-light hover:text-accent font-medium transition-colors" href="index-fr.html#experience">Exp&eacute;rience</a> <a class="theme-text-light hover:text-accent font-medium transition-colors" href="index-fr.html#projects">Projets</a> <a class="theme-text-light hover:text-accent font-medium transition-colors" href="index-fr.html#skills">Comp&eacute;tences</a> <a class="theme-text-light hover:text-accent font-medium transition-colors" href="index-fr.html#patents">Brevets</a> <a class="theme-text-light hover:text-accent font-medium transition-colors" href="index-fr.html#dev-focus">D&eacute;veloppement</a></nav>
+<div class="flex items-center space-x-2 sm:space-x-4">
+<button aria-label="Th&egrave;me" class="theme-toggle-button theme-text-main transition-colors flex items-center justify-center" id="theme-toggle-button" type="button"><i class="w-4 h-4" data-lucide="palette" id="theme-toggle-icon"></i><span class="theme-toggle-copy">Th&egrave;me</span><span class="theme-toggle-name" id="theme-toggle-name">Glass</span></button>
+<a aria-label="Afficher la version anglaise" class="language-toggle-button theme-text-main transition-colors flex items-center justify-center" href="project-smart-water-meter.html" hreflang="en" lang="en" title="English version"><i aria-hidden="true" class="language-toggle-icon" data-lucide="languages"></i><span class="language-toggle-current">FR</span><span aria-hidden="true" class="language-toggle-arrow">&rarr;</span><span class="language-toggle-target">EN</span></a>
+<a class="inline-flex items-center theme-text-light hover:text-accent font-medium transition-colors text-sm" href="index-fr.html#projects"><i class="w-4 h-4 mr-2" data-lucide="arrow-left"></i><span class="hidden sm:inline">Retour</span></a>
+</div>
+</div>
+</header>
+<main class="container mx-auto px-4 sm:px-6 lg:px-8 py-12" id="main-content">
+<article class="water-meter-case max-w-6xl mx-auto glass p-8 md:p-12 rounded-2xl relative overflow-hidden">
+<div aria-hidden="true" class="absolute top-0 right-0 w-96 h-96 bg-teal-400/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 pointer-events-none"></div>
+<section aria-labelledby="water-meter-title" class="water-meter-hero water-meter-hero-text-only content-section relative z-10">
+<div class="water-meter-hero-copy">
+<p class="water-meter-status">Projet ind&eacute;pendant en cours</p>
+<h1 class="water-meter-title" id="water-meter-title"><span class="water-meter-title-line">Compteur d'eau intelligent</span><span class="water-meter-title-line">Chambre de mesure rotative</span><span class="water-meter-title-line">D&eacute;veloppement</span></h1>
+<p class="water-meter-subtitle">Construire la base m&eacute;canique et cin&eacute;matique d'un syst&egrave;me de comptage intelligent.</p>
+<p class="water-meter-lede">Ce projet commence par l'&eacute;tude g&eacute;om&eacute;trique et cin&eacute;matique d'une chambre de mesure rotative. Le travail actuel d&eacute;finit la forme de la chambre et du piston ainsi que leur mouvement, avant les futures &eacute;tudes hydrauliques, volumiques et &eacute;lectroniques.</p>
+<div aria-label="Axes du projet" class="water-meter-chip-row"><span>CAO 3D</span><span>Analyse cin&eacute;matique</span><span>Comptage rotatif</span><span>M&eacute;catronique</span><span>CFD ensuite</span></div>
+</div>
+</section>
+
+<section aria-labelledby="current-stage" class="content-section relative z-10">
+<div class="water-meter-section-heading"><h2 class="text-2xl font-bold theme-text-main mb-4 flex items-center space-x-3" id="current-stage"><span class="p-2 bg-teal-400/10 rounded-lg"><i class="w-6 h-6 text-accent" data-lucide="drafting-compass"></i></span><span>Ce qui est d&eacute;velopp&eacute; actuellement</span></h2><p>La premi&egrave;re &eacute;tape est volontairement m&eacute;canique : d&eacute;finir la chambre, comprendre le mouvement du piston et cr&eacute;er une base fiable pour les futures fonctions de mesure et d'&eacute;lectronique.</p></div>
+<div class="water-meter-stage-grid"><article class="water-meter-stage-panel"><h3>Mod&eacute;lisation g&eacute;om&eacute;trique 3D</h3><p>D&eacute;velopper la chambre rotative, le piston, la cloison et les g&eacute;om&eacute;tries associ&eacute;es comme un ensemble m&eacute;canique coh&eacute;rent.</p></article><article class="water-meter-stage-panel"><h3>Analyse cin&eacute;matique</h3><p>&Eacute;tudier le mouvement relatif du piston et de la chambre pendant le cycle de fonctionnement.</p></article><article class="water-meter-stage-panel"><h3>Base m&eacute;canique</h3><p>&Eacute;tablir la g&eacute;om&eacute;trie et le mouvement n&eacute;cessaires avant l'ajout des sous-syst&egrave;mes hydrauliques et embarqu&eacute;s.</p></article></div>
+<section aria-labelledby="three-dimensional-design" class="content-section relative z-10" id="three-dimensional-design">
+<figure class="water-meter-figure"><img alt="Vues CAO 3D de la chambre de mesure rotative et de l'ensemble piston du compteur d'eau intelligent" decoding="async" height="796" loading="lazy" src="assets/img/water_meter_cad.jpeg" width="1412"/><figcaption>Vues de conception 3D de la chambre de mesure rotative et de la g&eacute;om&eacute;trie du piston.</figcaption></figure>
+</section>
+</section>
+
+
+<section aria-labelledby="kinematic-animation" class="content-section relative z-10" id="kinematic-animation"><div class="water-meter-section-heading"><h2 class="text-2xl font-bold theme-text-main mb-4 flex items-center space-x-3"><span class="p-2 bg-teal-400/10 rounded-lg"><i class="w-6 h-6 text-accent" data-lucide="rotate-3d"></i></span><span>Animation cin&eacute;matique — un cycle complet</span></h2><p>Comprendre le mouvement en premier est essentiel avant de passer &agrave; l'analyse hydraulique et CFD, o&ugrave; pourront &ecirc;tre &eacute;tudi&eacute;s l'&eacute;coulement, la pression et le comportement volum&eacute;trique.</p></div><figure class="water-meter-media mt-6"><video aria-label="Animation cin&eacute;matique de la chambre de mesure rotative sur un cycle complet" controls loop muted playsinline poster="assets/img/water_meter_cad.jpeg" preload="metadata"><source src="assets/video/water_meter_simulation.mp4" type="video/mp4"/>Votre navigateur ne prend pas en charge la vid&eacute;o. <a href="assets/video/water_meter_simulation.mp4">T&eacute;l&eacute;charger l'animation</a>.</video><figcaption>L'animation pr&eacute;sente l'&eacute;tude cin&eacute;matique du concept m&eacute;canique actuel ; le comportement hydraulique appartient &agrave; une phase ult&eacute;rieure.</figcaption></figure></section>
+
+<section aria-labelledby="two-dimensional-definition" class="content-section relative z-10"><div class="water-meter-split"><div class="water-meter-section-heading"><h2 class="text-2xl font-bold theme-text-main mb-4 flex items-center space-x-3" id="two-dimensional-definition"><span class="p-2 bg-sky-400/10 rounded-lg"><i class="w-6 h-6 text-accent" data-lucide="ruler"></i></span><span>D&eacute;finition 2D et r&eacute;f&eacute;rence de conception</span></h2><p>Les deux feuilles du document de plans 2D sont affich&eacute;es ci-dessous dans l'ordre. Elles conservent la r&eacute;f&eacute;rence de conception actuelle pour le d&eacute;veloppement de la chambre.</p><a class="water-meter-action mt-6" href="assets/pdf/water_meter_cad_blueprints.pdf" rel="noopener noreferrer" target="_blank"><i class="w-4 h-4" data-lucide="external-link"></i>Ouvrir le PDF original</a></div><div class="water-meter-blueprint-gallery" aria-label="Feuilles de plans 2D"><figure class="water-meter-blueprint-page"><img alt="Feuille 1 des plans du compteur d'eau intelligent montrant quatre positions cin&eacute;matiques et les param&egrave;tres CAO" decoding="async" height="1241" loading="lazy" src="assets/img/water_meter_blueprint_01.png" width="1754"/><figcaption>Feuille 1 — cycle cin&eacute;matique sur quatre positions et param&egrave;tres CAO actuels.</figcaption></figure><figure class="water-meter-blueprint-page"><img alt="Feuille 2 des plans du compteur d'eau intelligent montrant les d&eacute;tails de la chambre et du piston" decoding="async" height="1241" loading="lazy" src="assets/img/water_meter_blueprint_02.png" width="1754"/><figcaption>Feuille 2 — d&eacute;tail de la g&eacute;om&eacute;trie de la chambre et du piston dans le rep&egrave;re local.</figcaption></figure></div></div></section>
+
+<section aria-labelledby="next-stages" class="content-section relative z-10"><div class="water-meter-section-heading"><h2 class="text-2xl font-bold theme-text-main mb-4 flex items-center space-x-3" id="next-stages"><span class="p-2 bg-teal-400/10 rounded-lg"><i class="w-6 h-6 text-accent" data-lucide="route"></i></span><span>Les prochaines &eacute;tapes</span></h2><p>Le projet continuera &agrave; partir de cette base m&eacute;canique. Ces axes correspondent aux prochaines investigations, et non &agrave; des r&eacute;sultats d&eacute;j&agrave; obtenus.</p></div><div class="water-meter-next-grid"><div class="water-meter-next-item"><strong>Analyse hydraulique et CFD</strong><p>&Eacute;tudier l'&eacute;coulement, la distribution de pression et l'interaction entre l'eau et la chambre mobile.</p></div><div class="water-meter-next-item"><strong>Performance volum&eacute;trique</strong><p>&Eacute;valuer comment la g&eacute;om&eacute;trie transforme le mouvement en volume d&eacute;plac&eacute; mesurable sur le cycle.</p></div><div class="water-meter-next-item"><strong>Int&eacute;gration &eacute;lectronique et embarqu&eacute;e</strong><p>Faire &eacute;voluer le concept m&eacute;canique vers la mesure, le traitement embarqu&eacute; et le syst&egrave;me de compteur intelligent.</p></div></div></section>
+
+<section aria-label="Note sur le projet en cours" class="content-section relative z-10"><div class="water-meter-note"><p>Il s'agit d'un projet d'ing&eacute;nierie ind&eacute;pendant en cours. Je continuerai &agrave; partager son d&eacute;veloppement au fur et &agrave; mesure de l'avancement des volets m&eacute;canique, hydraulique et embarqu&eacute;.</p></div></section>
+<section aria-labelledby="water-meter-contact" class="text-center pt-8 relative z-10"><h2 class="sr-only" id="water-meter-contact">Poursuivre la d&eacute;couverte</h2><a class="water-meter-action water-meter-action-primary" href="index-fr.html#projects"><i class="w-4 h-4" data-lucide="arrow-left"></i>Retour aux projets</a><a class="hero-button hero-button-linkedin ml-2" href="https://www.linkedin.com/in/nasrallah-rafi-4834862a2" rel="noopener noreferrer" target="_blank">Suivre le d&eacute;veloppement<i class="w-4 h-4 opacity-80" data-lucide="arrow-up-right"></i></a></section>
+</article>
+</main>
+<footer class="theme-bg-main theme-text-main py-8 mt-16 border-t theme-border-main/50"><div class="container mx-auto px-4 sm:px-6 lg:px-8 text-center"><p class="text-sm theme-text-muted">&copy; 2026 <span>Rafi Nasrallah</span> | Ing&eacute;nieur &eacute;lectricien - Syst&egrave;mes embarqu&eacute;s, IoT &amp; BMS intelligents</p><div class="mt-4 flex justify-center space-x-6"><a aria-label="E-mail" class="theme-text-muted hover:text-accent transition-colors" href="mailto:nasrollahrafi@gmail.com"><i class="w-6 h-6" data-lucide="mail"></i></a><a aria-label="LinkedIn" class="inline-flex items-center gap-2 theme-text-muted hover:text-accent transition-colors" href="https://www.linkedin.com/in/nasrallah-rafi-4834862a2" rel="noopener noreferrer" target="_blank"><svg aria-hidden="true" class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.34V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28ZM5.32 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12ZM7.1 20.45H3.54V9H7.1v11.45Z"/></svg><span>LinkedIn</span></a></div></div></footer>
+<script src="js/chatbot.js" defer></script>
+</body>
+</html>

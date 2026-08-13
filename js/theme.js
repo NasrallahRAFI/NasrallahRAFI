@@ -1,23 +1,22 @@
-const THEMES = ['theme-glass', 'theme-volt', 'theme-deepsea', 'theme-obsidian'];
-const DEFAULT_THEME = 'theme-glass';
-const THEME_META = {
-    'theme-glass': { icon: 'sun', label: 'Glass' },
-    'theme-volt': { icon: 'zap', label: 'Volt' },
-    'theme-deepsea': { icon: 'droplets', label: 'Deep Sea' },
-    'theme-obsidian': { icon: 'moon', label: 'Obsidian' },
+const THEME_CONFIG = window.NR_THEME_CONFIG || {
+    names: ['theme-glass', 'theme-deepsea'],
+    defaultTheme: 'theme-glass',
+    metadata: {
+        'theme-glass': { icon: 'sun', label: 'Classic' },
+        'theme-deepsea': { icon: 'moon', label: 'Deep Sea' }
+    },
+    colors: { 'theme-glass': '#D4AF37', 'theme-deepsea': '#2dd4bf' }
 };
+const THEMES = THEME_CONFIG.names;
+const DEFAULT_THEME = THEME_CONFIG.defaultTheme;
+const THEME_META = THEME_CONFIG.metadata;
 
 // FIX: mobile browser chrome (Android Chrome address bar, iOS Safari
 // status bar) reads <meta name="theme-color">. It was hardcoded to the
 // Glass color on the 2 pages that had it, and missing entirely from the
 // other 17 — so it never matched a visitor's actual saved theme. Colors
 // mirror --accent-color per theme in css/style.css.
-const THEME_COLOR = {
-    'theme-glass': '#06b6d4',
-    'theme-volt': '#fbbf24',
-    'theme-deepsea': '#2dd4bf',
-    'theme-obsidian': '#f8fafc',
-};
+const THEME_COLOR = THEME_CONFIG.colors;
 
 function updateMetaThemeColor(theme) {
     let meta = document.querySelector('meta[name="theme-color"]');

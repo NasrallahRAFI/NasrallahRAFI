@@ -1,14 +1,8 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-<script>
-(function () {
-    var THEMES = ['theme-glass', 'theme-volt', 'theme-deepsea', 'theme-obsidian'];
-    var saved = localStorage.getItem('portfolio-theme');
-    var theme = THEMES.indexOf(saved) !== -1 ? saved : 'theme-glass';
-    document.documentElement.classList.add(theme);
-})();
-</script>
+<script src="js/theme-config.js"></script>
+<script src="js/theme-init.js"></script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Diagramme de Gantt PFE — Emove Véhicules | Rafi Nasrallah</title>
@@ -372,7 +366,7 @@
       <span>EN</span>
     </a>
     <div class="user-name-big">Rafi Nasrallah</div>
-    <button class="btn-export" onclick="triggerPrint()">
+    <button class="btn-export" id="print-button">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
       <span>Télécharger le PDF</span>
     </button>
@@ -698,6 +692,8 @@ addGlobalTodayLine(gantt);
 const options = { day: 'numeric', month: 'long', year: 'numeric' };
 document.getElementById('todayLegend').innerHTML += 'Aujourd\'hui · ' + TODAY.toLocaleDateString('fr-FR', options);
 
+document.getElementById('print-button')?.addEventListener('click', triggerPrint);
+
 function triggerPrint() {
   document.querySelectorAll('.collapse-arrow').forEach(a => a.style.display = 'none');
   const scrollWrapper = document.querySelector('.gantt-scroll');
@@ -735,8 +731,6 @@ function triggerPrint() {
 </script>
 
 <!-- Chatbot Dependencies -->
-<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/dompurify/3.0.5/purify.min.js"></script>
 <script src="js/chatbot.js" defer></script>
 </body>
 </html>

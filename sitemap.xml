@@ -110,6 +110,24 @@
     <priority>0.6</priority>
   </url>
   <url>
+    <loc>https://nasrallahrafi.me/project-smart-water-meter.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://nasrallahrafi.me/project-smart-water-meter.html"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://nasrallahrafi.me/project-smart-water-meter-fr.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://nasrallahrafi.me/project-smart-water-meter.html"/>
+    <lastmod>2026-08-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://nasrallahrafi.me/project-smart-water-meter-fr.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://nasrallahrafi.me/project-smart-water-meter.html"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://nasrallahrafi.me/project-smart-water-meter-fr.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://nasrallahrafi.me/project-smart-water-meter.html"/>
+    <lastmod>2026-08-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://nasrallahrafi.me/project-rendezvous.html</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://nasrallahrafi.me/project-rendezvous.html"/>
     <xhtml:link rel="alternate" hreflang="fr" href="https://nasrallahrafi.me/project-rendezvous-fr.html"/>

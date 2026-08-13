@@ -2,20 +2,14 @@
 
 <html lang="en">
 <head>
-<script>
-(function () {
-    var THEMES = ['theme-glass', 'theme-volt', 'theme-deepsea', 'theme-obsidian'];
-    var saved = localStorage.getItem('portfolio-theme');
-    var theme = THEMES.indexOf(saved) !== -1 ? saved : 'theme-glass';
-    document.documentElement.classList.add(theme);
-})();
-</script>
+<script src="js/theme-config.js"></script>
+<script src="js/theme-init.js"></script>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>TE10 Waveguide Analysis: Air vs Alumina (HFSS) | Rafi Nasrallah</title>
 <meta content="ANSYS HFSS study comparing TE10 propagation in air-filled and alumina-filled WR-90 waveguides with cutoff frequency and S-parameter analysis." name="description"/>
 <meta content="Rafi Nasrallah, rectangular waveguide, TE10 mode, ANSYS HFSS, microwave simulation, alumina dielectric, S-parameters, electromagnetic field analysis" name="keywords"/>
-<link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://unpkg.com" rel="preconnect"/><link href="https://nasrallahrafi.me/project-waveguide.html" rel="canonical"/>
+<link href="https://nasrallahrafi.me/project-waveguide.html" rel="canonical"/>
 <link href="https://nasrallahrafi.me/project-waveguide.html" hreflang="en" rel="alternate"/>
 <link href="https://nasrallahrafi.me/project-waveguide-fr.html" hreflang="fr" rel="alternate"/>
 <link href="https://nasrallahrafi.me/project-waveguide.html" hreflang="x-default" rel="alternate"/>
@@ -38,13 +32,11 @@
 <meta content="index, follow" name="robots"/>
 <meta content="Rafi Nasrallah" name="author"/>
 <link href="/Icon.png" rel="icon" type="image/png"/>
-<link href="/Icon.png" rel="apple-touch-icon"/><!-- Load Tailwind CSS --><link href="css/tailwind.min.css" rel="stylesheet"/><!-- Load Lucide Icons --><script crossorigin="anonymous" integrity="sha384-vEpkK5oidsrH6UhRc6tAPlgJZ/qXFwumFY+Kx8vBSeZ7NBag809YZCSmxFYGe/pt" src="https://unpkg.com/lucide@1.20.0/dist/umd/lucide.min.js"></script><link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&amp;family=JetBrains+Mono:wght@500;600&amp;display=swap" rel="stylesheet"/><!-- Link to external minified style.css --><link href="css/style.min.css" rel="stylesheet"/>
-<!-- Load Tailwind CSS -->
+<link href="/Icon.png" rel="apple-touch-icon"/><!-- Load Tailwind CSS --><!-- Load Lucide Icons --><!-- Link to external minified style.css --><!-- Load Tailwind CSS -->
 
 <!-- Link to the main external style.css -->
 
 <!-- Theme Switcher Script -->
-<script defer="" src="js/theme.js"></script>
 <style>
         .milestone-card {
             background: rgba(30, 41, 59, 0.5);
@@ -101,37 +93,26 @@
 }
 </script>
 
+<link href="https://unpkg.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link href="css/tailwind.min.css" rel="stylesheet"/>
+<script crossorigin="anonymous" defer integrity="sha384-vEpkK5oidsrH6UhRc6tAPlgJZ/qXFwumFY+Kx8vBSeZ7NBag809YZCSmxFYGe/pt" src="https://unpkg.com/lucide@1.20.0/dist/umd/lucide.min.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&amp;family=JetBrains+Mono:wght@500;600&amp;display=swap" rel="stylesheet"/>
+<link href="css/style.min.css?v=6" rel="stylesheet"/>
+<script src="js/theme.js?v=6" defer></script>
+<script src="js/site-shell.js" defer></script>
 </head>
-<body class="antialiased selection:bg-cyan-500 selection:text-white">
+<body class="antialiased selection:bg-cyan-500 selection:theme-text-main">
 <!-- Header -->
 <header class="sticky top-0 z-50 glass transition-colors duration-300">
 <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center gap-4">
-<a class="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 to-cyan-200 hover:text-cyan-300 transition-colors truncate" href="index.html#hero">
-                Rafi Nasrallah
-            </a>
-<nav class="hidden lg:flex space-x-6">
-<a class="text-slate-300 hover:text-cyan-400 font-medium transition-colors" href="index.html#about">About</a>
-<a class="text-slate-300 hover:text-cyan-400 font-medium transition-colors" href="index.html#experience">Experience</a>
-<a class="text-slate-300 hover:text-cyan-400 font-medium transition-colors" href="index.html#projects">Projects</a>
-<a class="text-slate-300 hover:text-cyan-400 font-medium transition-colors" href="index.html#skills">Skills</a>
-<a class="text-slate-300 hover:text-cyan-400 font-medium transition-colors" href="index.html#patents">Patents</a>
-<a class="text-slate-300 hover:text-cyan-400 font-medium transition-colors" href="index.html#dev-focus">Development</a>
-</nav>
+<a class="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 to-cyan-200 hover:text-cyan-300 transition-colors truncate" href="index.html#hero">Rafi Nasrallah</a>
+<nav class="hidden lg:flex space-x-6"><a class="theme-text-light hover:text-accent font-medium transition-colors" href="index.html#about">About</a> <a class="theme-text-light hover:text-accent font-medium transition-colors" href="index.html#experience">Experience</a> <a class="theme-text-light hover:text-accent font-medium transition-colors" href="index.html#projects">Projects</a> <a class="theme-text-light hover:text-accent font-medium transition-colors" href="index.html#skills">Skills</a> <a class="theme-text-light hover:text-accent font-medium transition-colors" href="index.html#patents">Patents</a> <a class="theme-text-light hover:text-accent font-medium transition-colors" href="index.html#dev-focus">Development</a></nav>
 <div class="flex items-center space-x-2 sm:space-x-4">
-<button aria-label="Change theme" class="theme-toggle-button text-slate-200 transition-colors flex items-center justify-center" id="theme-toggle-button" onclick="toggleTheme()" type="button">
-<i class="w-4 h-4" data-lucide="palette" id="theme-toggle-icon"></i>
-<span class="theme-toggle-copy">Theme</span>
-<span class="theme-toggle-name" id="theme-toggle-name">Glass</span>
-</button>
-<a aria-label="Afficher la version française" class="language-toggle-button text-slate-200 transition-colors flex items-center justify-center" href="project-waveguide-fr.html" hreflang="fr" lang="fr" title="Version française">
-<i aria-hidden="true" class="language-toggle-icon" data-lucide="languages"></i>
-<span class="language-toggle-current">EN</span>
-<span class="language-toggle-arrow" aria-hidden="true">→</span>
-<span class="language-toggle-target">FR</span>
-</a>
-<a class="inline-flex items-center text-slate-300 hover:text-cyan-400 font-medium transition-colors text-sm" href="index.html#projects">
-<i class="w-4 h-4 mr-2" data-lucide="arrow-left"></i><span class="hidden sm:inline">Back</span>
-                </a>
+<button aria-label="Theme" class="theme-toggle-button theme-text-main transition-colors flex items-center justify-center" id="theme-toggle-button" type="button"><i class="w-4 h-4" data-lucide="palette" id="theme-toggle-icon"></i><span class="theme-toggle-copy">Theme</span><span class="theme-toggle-name" id="theme-toggle-name">Glass</span></button>
+<a aria-label="Afficher la version fran&ccedil;aise" class="language-toggle-button theme-text-main transition-colors flex items-center justify-center" href="project-waveguide-fr.html" hreflang="fr" lang="fr" title="Version fran&ccedil;aise"><i aria-hidden="true" class="language-toggle-icon" data-lucide="languages"></i><span class="language-toggle-current">EN</span><span aria-hidden="true" class="language-toggle-arrow">&rarr;</span><span class="language-toggle-target">FR</span></a>
+<a class="inline-flex items-center theme-text-light hover:text-accent font-medium transition-colors text-sm" href="index.html#projects"><i class="w-4 h-4 mr-2" data-lucide="arrow-left"></i><span class="hidden sm:inline">Back</span></a>
 </div>
 </div>
 </header>
@@ -142,77 +123,77 @@
 </div>
 <!-- 1. Title, Date, Report -->
 <section aria-labelledby="analysis-of-te10-mode-propagation-air-filled-vs-dielectrically-filled-alumina-waveguide" class="content-section text-center relative z-10">
-<span class="text-xs font-bold text-white bg-cyan-600/80 px-4 py-1.5 rounded-full uppercase tracking-wider mb-6 inline-block shadow-lg shadow-cyan-500/20">
+<span class="text-xs font-bold theme-text-main bg-cyan-600/80 px-4 py-1.5 rounded-full uppercase tracking-wider mb-6 inline-block shadow-lg shadow-cyan-500/20">
                     High-Frequency (RF) Simulation
                 </span>
-<h1 class="text-3xl md:text-4xl font-extrabold text-white mb-4 leading-tight" id="analysis-of-te10-mode-propagation-air-filled-vs-dielectrically-filled-alumina-waveguide">
+<h1 class="text-3xl md:text-4xl font-extrabold theme-text-main mb-4 leading-tight" id="analysis-of-te10-mode-propagation-air-filled-vs-dielectrically-filled-alumina-waveguide">
                     Analysis of TE10 mode propagation in air-filled and alumina-loaded WR-90 waveguides
                 </h1>
-<p class="text-lg text-slate-300 leading-relaxed max-w-2xl mx-auto mb-8">
+<p class="text-lg theme-text-light leading-relaxed max-w-2xl mx-auto mb-8">
                     A compact HFSS study comparing cutoff frequency, guided wavelength, field confinement, and insertion loss for a standard air-filled guide versus a 96% alumina-filled configuration.
                 </p>
 <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8 text-left">
-<div class="bg-slate-800/50 p-4 rounded-xl border border-slate-700/50">
-<p class="text-xs font-bold text-cyan-400 uppercase tracking-wider mb-2">Air cutoff</p>
-<p class="text-3xl font-extrabold text-white">6.56 GHz</p>
-<p class="text-sm text-slate-400 mt-2">Baseline WR-90 propagation threshold.</p>
+<div class="theme-card-bg p-4 rounded-xl border theme-border-main">
+<p class="text-xs font-bold text-accent uppercase tracking-wider mb-2">Air cutoff</p>
+<p class="text-3xl font-extrabold theme-text-main">6.56 GHz</p>
+<p class="text-sm theme-text-muted mt-2">Baseline WR-90 propagation threshold.</p>
 </div>
-<div class="bg-slate-800/50 p-4 rounded-xl border border-cyan-500/30">
-<p class="text-xs font-bold text-cyan-400 uppercase tracking-wider mb-2">Alumina cutoff</p>
-<p class="text-3xl font-extrabold text-white">2.19 GHz</p>
-<p class="text-sm text-slate-400 mt-2">Dielectric loading lowers the operating threshold.</p>
+<div class="theme-card-bg p-4 rounded-xl border border-cyan-500/30">
+<p class="text-xs font-bold text-accent uppercase tracking-wider mb-2">Alumina cutoff</p>
+<p class="text-3xl font-extrabold theme-text-main">2.19 GHz</p>
+<p class="text-sm theme-text-muted mt-2">Dielectric loading lowers the operating threshold.</p>
 </div>
-<div class="bg-slate-800/50 p-4 rounded-xl border border-slate-700/50">
-<p class="text-xs font-bold text-cyan-400 uppercase tracking-wider mb-2">Measured loss</p>
-<p class="text-3xl font-extrabold text-white">0.26-0.72 dB</p>
-<p class="text-sm text-slate-400 mt-2">Insertion loss range from alumina loss tangent.</p>
+<div class="theme-card-bg p-4 rounded-xl border theme-border-main">
+<p class="text-xs font-bold text-accent uppercase tracking-wider mb-2">Measured loss</p>
+<p class="text-3xl font-extrabold theme-text-main">0.26-0.72 dB</p>
+<p class="text-sm theme-text-muted mt-2">Insertion loss range from alumina loss tangent.</p>
 </div>
 </div>
-<p class="text-base font-medium text-slate-400 mb-6">
+<p class="text-base font-medium theme-text-muted mb-6">
                     Project completion date: November 9, 2025
                 </p>
-<a class="inline-flex items-center font-bold px-6 py-3 bg-red-600 text-white rounded-full hover:bg-red-700 transition-colors shadow-lg hover:shadow-red-500/30 text-sm" href="assets/pdf/ANALYSIS_OF_TE10_MODE_PROPAGATION.pdf" rel="noopener noreferrer" target="_blank">
+<a class="inline-flex items-center font-bold px-6 py-3 bg-red-600 theme-text-main rounded-full hover:bg-red-700 transition-colors shadow-lg hover:shadow-red-500/30 text-sm" href="assets/pdf/ANALYSIS_OF_TE10_MODE_PROPAGATION.pdf" rel="noopener noreferrer" target="_blank">
 <i class="w-5 h-5 mr-2" data-lucide="file-text"></i> Download full report (PDF)
                 </a>
 </section>
 <!-- 2. Theory and engineering scope -->
 <section aria-labelledby="section-waveguide-theory" class="content-section relative z-10">
-<h2 class="text-2xl font-bold text-white mb-6 flex items-center space-x-3" id="section-waveguide-theory"><i class="w-8 h-8 text-cyan-400" data-lucide="radio"></i><span>Waveguide theory</span></h2>
-<p class="text-slate-300 leading-relaxed text-lg mb-6">
+<h2 class="text-2xl font-bold theme-text-main mb-6 flex items-center space-x-3" id="section-waveguide-theory"><i class="w-8 h-8 text-accent" data-lucide="radio"></i><span>Waveguide theory</span></h2>
+<p class="theme-text-light leading-relaxed text-lg mb-6">
                     The project focuses on the dominant $TE_{10}$ mode in a WR-90 rectangular waveguide. The comparison isolates one design variable: replacing the air volume with 96% alumina to study how relative permittivity reshapes propagation behavior.
                 </p>
 <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-left">
-<div class="bg-slate-800/50 p-6 rounded-xl border border-slate-700/50">
-<h3 class="font-bold text-cyan-400 mb-3" id="domain">Engineering domain</h3>
-<p class="text-sm text-slate-300 leading-relaxed">High-frequency RF engineering, microwave theory, waveguide propagation, and electromagnetic field interpretation.</p>
+<div class="theme-card-bg p-8 md:p-10 rounded-xl border theme-border-main">
+<h3 class="font-bold text-accent mb-3" id="domain">Engineering domain</h3>
+<p class="text-sm theme-text-light leading-relaxed">High-frequency RF engineering, microwave theory, waveguide propagation, and electromagnetic field interpretation.</p>
 </div>
-<div class="bg-slate-800/50 p-6 rounded-xl border border-slate-700/50">
-<h3 class="font-bold text-cyan-400 mb-3">Core analysis</h3>
-<p class="text-sm text-slate-300 leading-relaxed">Cutoff frequency, guided wavelength, S-parameter response, field concentration, and dielectric attenuation.</p>
+<div class="theme-card-bg p-8 md:p-10 rounded-xl border theme-border-main">
+<h3 class="font-bold text-accent mb-3">Core analysis</h3>
+<p class="text-sm theme-text-light leading-relaxed">Cutoff frequency, guided wavelength, S-parameter response, field concentration, and dielectric attenuation.</p>
 </div>
-<div class="bg-slate-800/50 p-6 rounded-xl border border-slate-700/50">
-<h3 class="font-bold text-cyan-400 mb-3">Software used</h3>
-<p class="text-sm text-slate-300 leading-relaxed">ANSYS Electronics Desktop with HFSS for 3D electromagnetic modeling and post-processing.</p>
+<div class="theme-card-bg p-8 md:p-10 rounded-xl border theme-border-main">
+<h3 class="font-bold text-accent mb-3">Software used</h3>
+<p class="text-sm theme-text-light leading-relaxed">ANSYS Electronics Desktop with HFSS for 3D electromagnetic modeling and post-processing.</p>
 </div>
 </div>
 </section>
 <!-- 3. HFSS setup and milestones -->
 <section aria-labelledby="section-hfss-simulation-setup" class="content-section relative z-10">
-<h2 class="text-2xl font-bold text-white mb-6 flex items-center space-x-3" id="section-hfss-simulation-setup"><i class="w-8 h-8 text-cyan-400" data-lucide="monitor-cog"></i><span>HFSS simulation setup</span></h2>
+<h2 class="text-2xl font-bold theme-text-main mb-6 flex items-center space-x-3" id="section-hfss-simulation-setup"><i class="w-8 h-8 text-accent" data-lucide="monitor-cog"></i><span>HFSS simulation setup</span></h2>
 <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
-<div class="bg-slate-800/50 p-6 rounded-xl border border-slate-700/50">
-<h3 class="text-xl font-bold text-white mb-4 flex items-center space-x-3" id="objective">
-<i class="w-6 h-6 text-cyan-400" data-lucide="target"></i><span>Objective</span>
+<div class="theme-card-bg p-8 md:p-10 rounded-xl border theme-border-main">
+<h3 class="text-xl font-bold theme-text-main mb-4 flex items-center space-x-3" id="objective">
+<i class="w-6 h-6 text-accent" data-lucide="target"></i><span>Objective</span>
 </h3>
-<p class="text-slate-300 leading-relaxed">
+<p class="theme-text-light leading-relaxed">
                             The goal was to conduct a quantitative comparison of $TE_{10}$ propagation in a standard WR-90 waveguide and in the same geometry fully loaded with alumina. The HFSS setup evaluates how dielectric loading changes cutoff frequency, guided wavelength, field concentration, and insertion loss.
                         </p>
 </div>
-<div class="bg-slate-800/50 p-6 rounded-xl border border-slate-700/50">
-<h3 class="text-xl font-bold text-white mb-4 flex items-center space-x-3" id="project-milestones">
-<i class="w-6 h-6 text-cyan-400" data-lucide="check-check"></i><span>Project milestones</span>
+<div class="theme-card-bg p-8 md:p-10 rounded-xl border theme-border-main">
+<h3 class="text-xl font-bold theme-text-main mb-4 flex items-center space-x-3" id="project-milestones">
+<i class="w-6 h-6 text-accent" data-lucide="check-check"></i><span>Project milestones</span>
 </h3>
-<ul class="list-disc ml-5 text-slate-300 space-y-2 text-sm">
+<ul class="list-disc ml-5 theme-text-light space-y-2 text-sm">
 <li>Modeled both air-filled and alumina-filled WR-90 configurations against theoretical formulas.</li>
 <li>Compared $TE_{10}$ cutoff frequency using analytical relations and HFSS validation.</li>
 <li>Visualized E-field and H-field concentration for both material cases.</li>
@@ -224,32 +205,32 @@
 </section>
 <!-- 4. Results -->
 <section aria-labelledby="section-field-s-parameter-results" class="content-section relative z-10">
-<h2 class="text-2xl font-bold text-white mb-6 flex items-center space-x-3" id="section-field-s-parameter-results"><i class="w-8 h-8 text-cyan-400" data-lucide="activity"></i><span>Field &amp; S-parameter results</span></h2>
+<h2 class="text-2xl font-bold theme-text-main mb-6 flex items-center space-x-3" id="section-field-s-parameter-results"><i class="w-8 h-8 text-accent" data-lucide="activity"></i><span>Field &amp; S-parameter results</span></h2>
 <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
-<div class="bg-blue-900/20 p-6 rounded-xl border-l-4 border-blue-500">
-<h3 class="font-bold text-white mb-2">Cutoff shift</h3>
-<p class="text-sm text-slate-300 leading-relaxed">Alumina loading reduces cutoff from 6.56 GHz to 2.19 GHz, making the same physical guide behave like a lower-frequency structure.</p>
+<div class="bg-blue-900/20 p-8 md:p-10 rounded-xl border-l-4 border-blue-500">
+<h3 class="font-bold theme-text-main mb-2">Cutoff shift</h3>
+<p class="text-sm theme-text-light leading-relaxed">Alumina loading reduces cutoff from 6.56 GHz to 2.19 GHz, making the same physical guide behave like a lower-frequency structure.</p>
 </div>
-<div class="bg-blue-900/20 p-6 rounded-xl border-l-4 border-blue-500">
-<h3 class="font-bold text-white mb-2">Field confinement</h3>
-<p class="text-sm text-slate-300 leading-relaxed">The high-permittivity region concentrates electric and magnetic fields, changing the spatial energy distribution inside the guide.</p>
+<div class="bg-blue-900/20 p-8 md:p-10 rounded-xl border-l-4 border-blue-500">
+<h3 class="font-bold theme-text-main mb-2">Field confinement</h3>
+<p class="text-sm theme-text-light leading-relaxed">The high-permittivity region concentrates electric and magnetic fields, changing the spatial energy distribution inside the guide.</p>
 </div>
-<div class="bg-blue-900/20 p-6 rounded-xl border-l-4 border-blue-500">
-<h3 class="font-bold text-white mb-2">Loss trade-off</h3>
-<p class="text-sm text-slate-300 leading-relaxed">The alumina case introduces measurable insertion loss, quantified between approximately 0.26 dB and 0.72 dB.</p>
+<div class="bg-blue-900/20 p-8 md:p-10 rounded-xl border-l-4 border-blue-500">
+<h3 class="font-bold theme-text-main mb-2">Loss trade-off</h3>
+<p class="text-sm theme-text-light leading-relaxed">The alumina case introduces measurable insertion loss, quantified between approximately 0.26 dB and 0.72 dB.</p>
 </div>
 </div>
-<h3 class="text-2xl font-bold text-white mb-6 flex items-center space-x-3" id="results-simulation-gallery">
+<h3 class="text-2xl font-bold theme-text-main mb-6 flex items-center space-x-3" id="results-simulation-gallery">
 <span class="p-2 bg-cyan-500/10 rounded-lg">
-<i class="w-6 h-6 text-cyan-400" data-lucide="image"></i>
+<i class="w-6 h-6 text-accent" data-lucide="image"></i>
 </span>
 <span>Simulation gallery</span>
 </h3>
 <div class="space-y-12">
-<section class="bg-slate-800/50 p-6 rounded-xl border border-slate-700/50">
-<h3 class="text-xl font-bold text-white mb-3">Air-filled waveguide</h3>
+<section class="theme-card-bg p-8 md:p-10 rounded-xl border theme-border-main">
+<h3 class="text-xl font-bold theme-text-main mb-3">Air-filled waveguide</h3>
 <figure>
-<figcaption class="text-sm text-slate-300 leading-relaxed mb-6">Baseline result set used to validate the WR-90 air-filled model before comparing the dielectric-loaded guide.</figcaption>
+<figcaption class="text-sm theme-text-light leading-relaxed mb-6">Baseline result set used to validate the WR-90 air-filled model before comparing the dielectric-loaded guide.</figcaption>
 <div class="flex flex-col items-center gap-8">
 <img alt="S-parameter plot for air-filled WR-90 waveguide — ANSYS HFSS simulation" class="gallery-image" decoding="async" height="562" loading="lazy" src="assets/img/S_parameter_plot_Air.jpg" width="1526"/>
 <div class="grid grid-cols-1 md:grid-cols-2 gap-4 w-full">
@@ -260,10 +241,10 @@
 </div>
 </figure>
 </section>
-<section class="bg-slate-800/50 p-6 rounded-xl border border-cyan-500/30">
-<h3 class="text-xl font-bold text-white mb-3">Alumina-filled waveguide</h3>
+<section class="theme-card-bg p-8 md:p-10 rounded-xl border border-cyan-500/30">
+<h3 class="text-xl font-bold theme-text-main mb-3">Alumina-filled waveguide</h3>
 <figure>
-<figcaption class="text-sm text-slate-300 leading-relaxed mb-6">Dielectric-loaded result set showing the lower cutoff frequency, stronger field concentration, and measurable insertion loss.</figcaption>
+<figcaption class="text-sm theme-text-light leading-relaxed mb-6">Dielectric-loaded result set showing the lower cutoff frequency, stronger field concentration, and measurable insertion loss.</figcaption>
 <div class="flex flex-col items-center gap-8">
 <img alt="S-parameter plot for alumina-loaded WR-90 waveguide — ANSYS HFSS simulation" class="gallery-image" decoding="async" height="561" loading="lazy" src="assets/img/S_Parameter_Plot_Alumina.jpg" width="1519"/>
 <div class="grid grid-cols-1 md:grid-cols-2 gap-4 w-full">
@@ -278,17 +259,17 @@
 </section>
 <!-- 5. Conclusion -->
 <section aria-labelledby="conclusion" class="content-section relative z-10">
-<h2 class="text-2xl font-bold text-white mb-6 flex items-center space-x-3" id="conclusion">
+<h2 class="text-2xl font-bold theme-text-main mb-6 flex items-center space-x-3" id="conclusion">
 <span class="p-2 bg-cyan-500/10 rounded-lg">
-<i class="w-6 h-6 text-cyan-400" data-lucide="award"></i>
+<i class="w-6 h-6 text-accent" data-lucide="award"></i>
 </span>
 <span>Conclusion</span>
 </h2>
-<div class="bg-blue-900/20 p-6 rounded-xl border-l-4 border-blue-500">
-<p class="text-slate-300 leading-relaxed mb-4">
+<div class="bg-blue-900/20 p-8 md:p-10 rounded-xl border-l-4 border-blue-500">
+<p class="theme-text-light leading-relaxed mb-4">
                         The simulation confirms the expected electromagnetic trade-off: alumina loading enables a much lower cutoff frequency in the same WR-90 envelope, but it also increases field concentration and introduces dielectric loss.
                     </p>
-<ol class="list-decimal ml-5 text-slate-300 space-y-2 text-sm">
+<ol class="list-decimal ml-5 theme-text-light space-y-2 text-sm">
 <li><strong>Cutoff frequency:</strong> Alumina lowered the cutoff frequency from 6.56 GHz to 2.19 GHz.</li>
 <li><strong>Field concentration:</strong> Fields became more concentrated inside the high-permittivity material.</li>
 <li><strong>Insertion loss:</strong> Dielectric attenuation was quantified at approximately 0.26 dB to 0.72 dB.</li>
@@ -297,58 +278,35 @@
 </section>
 <!-- 6. Future Work -->
 <section aria-labelledby="future-work" class="content-section relative z-10">
-<h2 class="text-2xl font-bold text-white mb-6 flex items-center space-x-3" id="future-work">
+<h2 class="text-2xl font-bold theme-text-main mb-6 flex items-center space-x-3" id="future-work">
 <span class="p-2 bg-cyan-500/10 rounded-lg">
-<i class="w-6 h-6 text-cyan-400" data-lucide="git-branch-plus"></i>
+<i class="w-6 h-6 text-accent" data-lucide="git-branch-plus"></i>
 </span>
 <span>Future work</span>
 </h2>
-<p class="text-slate-300 leading-relaxed mb-6">
+<p class="theme-text-light leading-relaxed mb-6">
                     A logical next step would be to investigate a partially filled waveguide. Simulating a dielectric slab with variable thickness would help identify a practical compromise between miniaturization, field confinement, and insertion loss.
                 </p>
 </section>
 <!-- Final Navigation -->
 <section aria-labelledby="section-8" class="text-center pt-8 relative z-10"><h2 class="sr-only" id="section-8">Section 8</h2>
-<a class="inline-flex items-center font-bold text-white bg-gradient-to-r from-cyan-600 to-blue-600 py-3 px-8 rounded-full shadow-lg hover:shadow-cyan-500/30 hover:-translate-y-1 transition-all" href="index.html#projects">
+<a class="inline-flex items-center font-bold theme-text-main bg-gradient-to-r from-cyan-600 to-blue-600 py-3 px-8 rounded-full shadow-lg hover:shadow-cyan-500/30 hover:-translate-y-1 transition-all" href="index.html#projects">
 <i class="w-5 h-5 mr-2" data-lucide="arrow-left"></i> Return to Main Portfolio
                 </a>
 </section>
 </article>
 </main>
 <!-- Script to initialize Lucide icons -->
-<script>
-        lucide.createIcons();
-    </script>
-
 <!-- Load Lucide Icons -->
 
 <!-- Load MathJax for LaTeX Rendering -->
 
 
 
-<script>
-        MathJax = {
-            tex: {
-                inlineMath: [['$', '$'], ['\\(', '\\)']],
-                displayMath: [['$$', '$$'], ['\\[', '\\]']],
-                processEscapes: true,
-                tags: 'ams',
-                macros: {
-                    epsr: "{\\epsilon_r}",
-                    fc: "{f_c}",
-                    Zte: "{Z_{\\text{TE}}}"
-                }
-            },
-            svg: {
-                fontCache: 'global'
-            }
-        };
-    </script>
-<script async="" id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+<script src="js/mathjax-config.js" defer></script>
+<script async="" crossorigin="anonymous" id="MathJax-script" integrity="sha384-KKWa9jJ1MZvssLeOoXG6FiOAZfAgmzsIIfw8BXwI9+kYm0lPCbC6yTQPBC00F1/L" src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-svg.js"></script>
 
 <!-- Chatbot Dependencies -->
-<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/dompurify/3.0.5/purify.min.js"></script>
 <script src="js/chatbot.js" defer></script>
 </body>
 </html>

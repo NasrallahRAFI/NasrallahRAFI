@@ -2,20 +2,14 @@
 
 <html lang="en">
 <head>
-<script>
-(function () {
-    var THEMES = ['theme-glass', 'theme-volt', 'theme-deepsea', 'theme-obsidian'];
-    var saved = localStorage.getItem('portfolio-theme');
-    var theme = THEMES.indexOf(saved) !== -1 ? saved : 'theme-glass';
-    document.documentElement.classList.add(theme);
-})();
-</script>
+<script src="js/theme-config.js"></script>
+<script src="js/theme-init.js"></script>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>Smart BMS: Advanced SOC Estimation &amp; Active Balancing | Rafi Nasrallah</title>
 <meta content="Extract from internship: Algorithmic and hardware development of a Smart BMS, addressing advanced SOC estimation and robust active balancing (bidirectional synchronous flyback)." name="description"/>
 <meta content="Smart BMS, Active Balancing, Synchronous Flyback, MATLAB, Simulink, SOC estimation, LFP battery, STM32, Altium Designer, Rafi Nasrallah" name="keywords"/>
-<link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://unpkg.com" rel="preconnect"/><link href="https://nasrallahrafi.me/project-smart-bms.html" rel="canonical"/>
+<link href="https://nasrallahrafi.me/project-smart-bms.html" rel="canonical"/>
 <link href="https://nasrallahrafi.me/project-smart-bms.html" hreflang="en" rel="alternate"/>
 <link href="https://nasrallahrafi.me/project-smart-bms-fr.html" hreflang="fr" rel="alternate"/>
 <link href="https://nasrallahrafi.me/project-smart-bms.html" hreflang="x-default" rel="alternate"/>
@@ -40,11 +34,6 @@
 <meta content="Rafi Nasrallah" name="author"/>
 <link href="/Icon.png" rel="icon" type="image/png"/>
 <link href="/Icon.png" rel="apple-touch-icon"/>
-<link href="css/tailwind.min.css" rel="stylesheet"/>
-<script crossorigin="anonymous" defer integrity="sha384-vEpkK5oidsrH6UhRc6tAPlgJZ/qXFwumFY+Kx8vBSeZ7NBag809YZCSmxFYGe/pt" src="https://unpkg.com/lucide@1.20.0/dist/umd/lucide.min.js"></script>
-<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&amp;family=JetBrains+Mono:wght@500;600&amp;display=swap" rel="stylesheet"/>
-<link href="css/style.min.css" rel="stylesheet"/>
-<script defer src="js/theme.js"></script>
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -81,46 +70,37 @@
 }
 </script>
 
+<link href="https://unpkg.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link href="css/tailwind.min.css" rel="stylesheet"/>
+<script crossorigin="anonymous" defer integrity="sha384-vEpkK5oidsrH6UhRc6tAPlgJZ/qXFwumFY+Kx8vBSeZ7NBag809YZCSmxFYGe/pt" src="https://unpkg.com/lucide@1.20.0/dist/umd/lucide.min.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&amp;family=JetBrains+Mono:wght@500;600&amp;display=swap" rel="stylesheet"/>
+<link href="css/style.min.css?v=6" rel="stylesheet"/>
+<script src="js/theme.js?v=6" defer></script>
+<script src="js/site-shell.js" defer></script>
 </head>
-<body class="antialiased selection:bg-cyan-500 selection:text-white">
+<body class="antialiased selection:bg-cyan-500 selection:theme-text-main">
 <a class="skip-link" href="#main-content">Skip to content</a>
 <header class="sticky top-0 z-50 glass transition-colors duration-300">
 <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center gap-4">
 <a class="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 to-cyan-200 hover:text-cyan-300 transition-colors truncate" href="index.html#hero">Rafi Nasrallah</a>
-<nav class="hidden lg:flex space-x-6" aria-label="Primary navigation">
-<a class="text-slate-300 hover:text-cyan-400 font-medium transition-colors" href="index.html#about">About</a>
-<a class="text-slate-300 hover:text-cyan-400 font-medium transition-colors" href="index.html#experience">Experience</a>
-<a class="text-slate-300 hover:text-cyan-400 font-medium transition-colors" href="index.html#projects">Projects</a>
-<a class="text-slate-300 hover:text-cyan-400 font-medium transition-colors" href="index.html#skills">Skills</a>
-<a class="text-slate-300 hover:text-cyan-400 font-medium transition-colors" href="index.html#patents">Patents</a>
-<a class="text-slate-300 hover:text-cyan-400 font-medium transition-colors" href="index.html#dev-focus">Development</a>
-</nav>
+<nav class="hidden lg:flex space-x-6"><a class="theme-text-light hover:text-accent font-medium transition-colors" href="index.html#about">About</a> <a class="theme-text-light hover:text-accent font-medium transition-colors" href="index.html#experience">Experience</a> <a class="theme-text-light hover:text-accent font-medium transition-colors" href="index.html#projects">Projects</a> <a class="theme-text-light hover:text-accent font-medium transition-colors" href="index.html#skills">Skills</a> <a class="theme-text-light hover:text-accent font-medium transition-colors" href="index.html#patents">Patents</a> <a class="theme-text-light hover:text-accent font-medium transition-colors" href="index.html#dev-focus">Development</a></nav>
 <div class="flex items-center space-x-2 sm:space-x-4">
-<button aria-label="Change theme" class="theme-toggle-button text-slate-200 transition-colors flex items-center justify-center" id="theme-toggle-button" onclick="toggleTheme()" type="button">
-<i class="w-4 h-4" data-lucide="palette" id="theme-toggle-icon"></i>
-<span class="theme-toggle-copy">Theme</span>
-<span class="theme-toggle-name" id="theme-toggle-name">Glass</span>
-</button>
-<a aria-label="Afficher la version française" class="language-toggle-button text-slate-200 transition-colors flex items-center justify-center" href="project-smart-bms-fr.html" hreflang="fr" lang="fr" title="Version française">
-<i aria-hidden="true" class="language-toggle-icon" data-lucide="languages"></i>
-<span class="language-toggle-current">EN</span>
-<span class="language-toggle-arrow" aria-hidden="true">→</span>
-<span class="language-toggle-target">FR</span>
-</a>
-<a class="inline-flex items-center text-slate-300 hover:text-cyan-400 font-medium transition-colors text-sm" href="index.html#projects">
-<i class="w-4 h-4 mr-2" data-lucide="arrow-left"></i><span class="hidden sm:inline">Back</span>
-</a>
+<button aria-label="Theme" class="theme-toggle-button theme-text-main transition-colors flex items-center justify-center" id="theme-toggle-button" type="button"><i class="w-4 h-4" data-lucide="palette" id="theme-toggle-icon"></i><span class="theme-toggle-copy">Theme</span><span class="theme-toggle-name" id="theme-toggle-name">Glass</span></button>
+<a aria-label="Afficher la version fran&ccedil;aise" class="language-toggle-button theme-text-main transition-colors flex items-center justify-center" href="project-smart-bms-fr.html" hreflang="fr" lang="fr" title="Version fran&ccedil;aise"><i aria-hidden="true" class="language-toggle-icon" data-lucide="languages"></i><span class="language-toggle-current">EN</span><span aria-hidden="true" class="language-toggle-arrow">&rarr;</span><span class="language-toggle-target">FR</span></a>
+<a class="inline-flex items-center theme-text-light hover:text-accent font-medium transition-colors text-sm" href="index.html#projects"><i class="w-4 h-4 mr-2" data-lucide="arrow-left"></i><span class="hidden sm:inline">Back</span></a>
 </div>
 </div>
 </header>
 <main class="container mx-auto px-4 sm:px-6 lg:px-8 py-12" id="main-content">
-<article class="smart-bms-case max-w-6xl mx-auto glass p-6 sm:p-8 md:p-12 rounded-2xl relative overflow-hidden">
+<article class="smart-bms-case max-w-6xl mx-auto glass p-8 md:p-10 sm:p-8 md:p-12 rounded-2xl relative overflow-hidden">
 <div aria-hidden="true" class="absolute top-0 right-0 w-96 h-96 bg-cyan-500/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 pointer-events-none"></div>
 
 <section aria-labelledby="smart-bms-algorithm" class="smart-bms-hero content-section relative z-10">
 <div class="smart-bms-hero-copy">
 <span class="smart-bms-eyebrow">Internship engineering extract</span>
-<h1 class="smart-bms-title" id="smart-bms-algorithm">Smart BMS: Advanced SOC Estimation &amp; Active Balancing</h1>
+<h1 class="smart-bms-title" id="smart-bms-algorithm"><span class="smart-bms-title-line">Smart BMS: Advanced</span><span class="smart-bms-title-line">SOC Estimation &amp;</span><span class="smart-bms-title-line">Active Balancing</span></h1>
 <p class="smart-bms-subtitle">Emove Véhicules · Battery intelligence, embedded hardware, and active energy redistribution</p>
 <p class="smart-bms-lede">A focused case study on the algorithmic and hardware engineering of a Smart Battery Management System. The work centers on robust State-of-Charge estimation under dynamic scooter loads and an active balancing architecture based on bidirectional synchronous flyback energy transfer.</p>
 <div class="smart-bms-chip-row" role="group" aria-label="Project technologies">
@@ -132,56 +112,56 @@
 <span>Altium Designer</span>
 </div>
 </div>
-<aside class="bg-slate-800/40 backdrop-blur-md border border-slate-700/50 rounded-3xl p-6 md:p-8 shadow-2xl relative overflow-hidden" aria-label="Smart BMS engineering scope">
+<aside class="smart-bms-scope theme-card-bg border theme-border-main rounded-3xl p-8 md:p-10 md:p-8 shadow-2xl relative overflow-hidden" aria-label="Smart BMS engineering scope">
     <!-- Ambient glow -->
     <div class="absolute -top-10 -right-10 w-40 h-40 bg-cyan-500/10 blur-3xl rounded-full"></div>
 
-    <div class="mb-8 border-b border-slate-700/50 pb-4">
-        <h2 class="text-xs font-bold text-slate-300 tracking-[0.2em] uppercase">Engineering Scope</h2>
+    <div class="mb-8 border-b theme-border-main pb-4">
+        <h2 class="text-xs font-bold theme-text-light tracking-[0.2em] uppercase">Engineering Scope</h2>
     </div>
 
-    <div class="space-y-3" role="list">
+    <div class="smart-bms-scope-list space-y-3" role="list">
         <!-- Item 1 -->
-        <div class="group bg-slate-900/40 border border-slate-700/50 rounded-xl p-4 md:p-5 flex items-center gap-4 md:gap-5 transition-all duration-300 hover:border-red-500/30 hover:bg-slate-800/60">
-            <div class="flex-shrink-0 w-10 h-10 rounded-full bg-slate-800/50 flex items-center justify-center border border-slate-700/50 group-hover:border-red-500/50 group-hover:shadow-[0_0_12px_rgba(248,113,113,0.3)] transition-all">
+<div class="smart-bms-scope-item group theme-bg-main border theme-border-main rounded-xl p-4 md:p-5 flex items-center gap-4 md:gap-5 transition-all duration-300 hover:border-red-500/30 hover:theme-card-bg">
+            <div class="flex-shrink-0 w-10 h-10 rounded-full theme-card-bg flex items-center justify-center border theme-border-main group-hover:border-red-500/50 group-hover:shadow-[0_0_12px_rgba(248,113,113,0.3)] transition-all">
                 <i class="w-4 h-4 text-red-400" data-lucide="alert-circle"></i>
             </div>
             <div class="flex flex-col justify-center">
-                <p class="text-[11px] font-bold text-slate-400/70 uppercase tracking-widest mb-0.5 group-hover:text-red-300/90 transition-colors">Primary Faults</p>
-                <p class="text-[15px] text-slate-200 font-medium leading-tight">Premature cut-offs & severe SOC instability</p>
+                <p class="text-[11px] font-bold theme-text-muted/70 uppercase tracking-widest mb-0.5 group-hover:text-red-300/90 transition-colors">Primary Faults</p>
+                <p class="text-[15px] theme-text-main font-medium leading-tight">Premature cut-offs & severe SOC instability</p>
             </div>
         </div>
 
         <!-- Item 2 -->
-        <div class="group bg-slate-900/40 border border-slate-700/50 rounded-xl p-4 md:p-5 flex items-center gap-4 md:gap-5 transition-all duration-300 hover:border-cyan-500/30 hover:bg-slate-800/60">
-            <div class="flex-shrink-0 w-10 h-10 rounded-full bg-slate-800/50 flex items-center justify-center border border-slate-700/50 group-hover:border-cyan-500/50 group-hover:shadow-[0_0_12px_rgba(6,182,212,0.3)] transition-all">
-                <i class="w-4 h-4 text-cyan-400" data-lucide="cpu"></i>
+<div class="smart-bms-scope-item group theme-bg-main border theme-border-main rounded-xl p-4 md:p-5 flex items-center gap-4 md:gap-5 transition-all duration-300 hover:theme-border-main hover:theme-card-bg">
+            <div class="flex-shrink-0 w-10 h-10 rounded-full theme-card-bg flex items-center justify-center border theme-border-main group-hover:theme-border-main group-hover:shadow-[0_0_12px_rgba(6,182,212,0.3)] transition-all">
+                <i class="w-4 h-4 text-accent" data-lucide="cpu"></i>
             </div>
             <div class="flex flex-col justify-center">
-                <p class="text-[11px] font-bold text-slate-400/70 uppercase tracking-widest mb-0.5 group-hover:text-cyan-300/90 transition-colors">Algorithmic Path</p>
-                <p class="text-[15px] text-slate-200 font-medium leading-tight">ECM · UKF · LSTM residual correction</p>
+                <p class="text-[11px] font-bold theme-text-muted/70 uppercase tracking-widest mb-0.5 group-hover:text-cyan-300/90 transition-colors">Algorithmic Path</p>
+                <p class="text-[15px] theme-text-main font-medium leading-tight">ECM · UKF · LSTM residual correction</p>
             </div>
         </div>
 
         <!-- Item 3 -->
-        <div class="group bg-slate-900/40 border border-slate-700/50 rounded-xl p-4 md:p-5 flex items-center gap-4 md:gap-5 transition-all duration-300 hover:border-emerald-500/30 hover:bg-slate-800/60">
-            <div class="flex-shrink-0 w-10 h-10 rounded-full bg-slate-800/50 flex items-center justify-center border border-slate-700/50 group-hover:border-emerald-500/50 group-hover:shadow-[0_0_12px_rgba(16,185,129,0.3)] transition-all">
+<div class="smart-bms-scope-item group theme-bg-main border theme-border-main rounded-xl p-4 md:p-5 flex items-center gap-4 md:gap-5 transition-all duration-300 hover:border-emerald-500/30 hover:theme-card-bg">
+            <div class="flex-shrink-0 w-10 h-10 rounded-full theme-card-bg flex items-center justify-center border theme-border-main group-hover:border-emerald-500/50 group-hover:shadow-[0_0_12px_rgba(16,185,129,0.3)] transition-all">
                 <i class="w-4 h-4 text-emerald-400" data-lucide="check-circle-2"></i>
             </div>
             <div class="flex flex-col justify-center">
-                <p class="text-[11px] font-bold text-slate-400/70 uppercase tracking-widest mb-0.5 group-hover:text-emerald-300/90 transition-colors">Validation Layer</p>
-                <p class="text-[15px] text-slate-200 font-medium leading-tight">MiL scenarios, then HiL prototype</p>
+                <p class="text-[11px] font-bold theme-text-muted/70 uppercase tracking-widest mb-0.5 group-hover:text-emerald-300/90 transition-colors">Validation Layer</p>
+                <p class="text-[15px] theme-text-main font-medium leading-tight">MiL scenarios, then HiL prototype</p>
             </div>
         </div>
 
         <!-- Item 4 -->
-        <div class="group bg-slate-900/40 border border-slate-700/50 rounded-xl p-4 md:p-5 flex items-center gap-4 md:gap-5 transition-all duration-300 hover:border-purple-500/30 hover:bg-slate-800/60">
-            <div class="flex-shrink-0 w-10 h-10 rounded-full bg-slate-800/50 flex items-center justify-center border border-slate-700/50 group-hover:border-purple-500/50 group-hover:shadow-[0_0_12px_rgba(168,85,247,0.3)] transition-all">
+<div class="smart-bms-scope-item group theme-bg-main border theme-border-main rounded-xl p-4 md:p-5 flex items-center gap-4 md:gap-5 transition-all duration-300 hover:border-purple-500/30 hover:theme-card-bg">
+            <div class="flex-shrink-0 w-10 h-10 rounded-full theme-card-bg flex items-center justify-center border theme-border-main group-hover:border-purple-500/50 group-hover:shadow-[0_0_12px_rgba(168,85,247,0.3)] transition-all">
                 <i class="w-4 h-4 text-purple-400" data-lucide="circuit-board"></i>
             </div>
             <div class="flex flex-col justify-center">
-                <p class="text-[11px] font-bold text-slate-400/70 uppercase tracking-widest mb-0.5 group-hover:text-purple-300/90 transition-colors">Hardware Target</p>
-                <p class="text-[15px] text-slate-200 font-medium leading-tight">6-layer industrial BMS architecture</p>
+                <p class="text-[11px] font-bold theme-text-muted/70 uppercase tracking-widest mb-0.5 group-hover:text-purple-300/90 transition-colors">Hardware Target</p>
+                <p class="text-[15px] theme-text-main font-medium leading-tight">6-layer industrial BMS architecture</p>
             </div>
         </div>
     </div>
@@ -191,103 +171,103 @@
 </section>
 
 <section aria-labelledby="problem-statement" class="content-section relative z-10 mt-12">
-<h2 class="text-2xl font-bold text-white mb-6 flex items-center space-x-3" id="problem-statement"><i class="w-8 h-8 text-cyan-400" data-lucide="alert-triangle"></i><span>Problem Statement</span></h2>
-<p class="text-slate-300 leading-relaxed text-lg mb-6">Field observations of the electric scooter fleet revealed critical performance anomalies, specifically:</p>
-<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-<div class="bg-slate-800/50 p-6 rounded-xl border border-slate-700/50"><h3 class="font-bold text-white mb-2">Premature Power Cut-offs</h3><p class="text-sm text-slate-300 leading-relaxed">The vehicle would experience abrupt power loss, despite the dashboard State-of-Charge (SOC) indicator displaying approximately 20% remaining capacity.</p></div>
-<section class="bg-slate-800/50 p-6 rounded-xl border border-slate-700/50"><h3 class="font-bold text-white mb-2">Severe SOC Instability</h3>
+<h2 class="text-2xl font-bold theme-text-main mb-6 flex items-center space-x-3" id="problem-statement"><i class="w-8 h-8 text-accent" data-lucide="alert-triangle"></i><span>Problem Statement</span></h2>
+<p class="theme-text-light leading-relaxed text-lg mb-6">Field observations of the electric scooter fleet revealed critical performance anomalies, specifically:</p>
+<div class="smart-bms-problem-grid grid grid-cols-1 md:grid-cols-2 gap-6">
+<div class="theme-card-bg p-8 md:p-10 rounded-xl border theme-border-main"><h2 class="font-bold theme-text-main mb-2">Premature Power Cut-offs</h2><p class="text-sm theme-text-light leading-relaxed">The vehicle would experience abrupt power loss, despite the dashboard State-of-Charge (SOC) indicator displaying approximately 20% remaining capacity.</p></div>
+<section class="theme-card-bg p-8 md:p-10 rounded-xl border theme-border-main"><h3 class="font-bold theme-text-main mb-2">Severe SOC Instability</h3>
 <figure>
-<figcaption class="text-sm text-slate-300 leading-relaxed">The estimated SOC exhibited rapid, erratic drops under high-current discharge profiles (e.g., strong accelerations), indicating severe instability in the fuel gauge algorithm.</figcaption>
+<figcaption class="text-sm theme-text-light leading-relaxed">The estimated SOC exhibited rapid, erratic drops under high-current discharge profiles (e.g., strong accelerations), indicating severe instability in the fuel gauge algorithm.</figcaption>
 </figure>
 </section>
 </div>
 </section>
 
 <section aria-labelledby="probable-causes" class="content-section relative z-10 mt-12">
-<h2 class="text-2xl font-bold text-white mb-6 flex items-center space-x-3" id="probable-causes"><i class="w-8 h-8 text-cyan-400" data-lucide="search"></i><span>Probable Causes</span></h2>
-<p class="text-slate-300 leading-relaxed text-lg mb-6">A root-cause analysis identified three primary factors contributing to these failures:</p>
+<h2 class="text-2xl font-bold theme-text-main mb-6 flex items-center space-x-3" id="probable-causes"><i class="w-8 h-8 text-accent" data-lucide="search"></i><span>Probable Causes</span></h2>
+<p class="theme-text-light leading-relaxed text-lg mb-6">A root-cause analysis identified three primary factors contributing to these failures:</p>
 
-<div class="mb-8 p-4 bg-slate-800/50 rounded-xl border border-slate-700/50 flex justify-center">
-    <img src="assets/img/Causes%20Diagram.png" alt="Root-cause diagram linking premature shutdown at 20% SoC and energy-gauge instability to hardware, software, and process factors on the electric scooter BMS" class="rounded-lg shadow-md max-w-md md:max-w-xl lg:max-w-2xl h-auto">
+<div class="mb-8 p-4 theme-card-bg rounded-xl border theme-border-main flex justify-center">
+    <img src="assets/img/Causes%20Diagram.png" alt="Root-cause diagram linking premature shutdown at 20% SoC and energy-gauge instability to hardware, software, and process factors on the electric scooter BMS" class="rounded-lg shadow-md max-w-md md:max-w-xl lg:max-w-2xl h-auto" width="4098" height="1465" loading="lazy" decoding="async">
 </div>
 
-<div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-<div class="bg-slate-800/50 p-6 rounded-xl border border-slate-700/50 opacity-70"><h3 class="font-bold text-white mb-2">1. Cell Heterogeneity</h3><p class="text-sm text-slate-300 leading-relaxed">Inherent variations in cell capacity and internal resistance, resulting in the weakest series element prematurely constraining the entire battery pack.</p></div>
-<section class="bg-slate-800/50 p-6 rounded-xl border border-slate-700/50 opacity-70"><h3 class="font-bold text-white mb-2">2. Insufficient Balancing Capability</h3>
+<div class="smart-bms-cause-grid grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+<div class="theme-card-bg p-8 md:p-10 rounded-xl border theme-border-main opacity-70"><h3 class="font-bold theme-text-main mb-2">1. Cell Heterogeneity</h3><p class="text-sm theme-text-light leading-relaxed">Inherent variations in cell capacity and internal resistance, resulting in the weakest series element prematurely constraining the entire battery pack.</p></div>
+<section class="theme-card-bg p-8 md:p-10 rounded-xl border theme-border-main opacity-70"><h3 class="font-bold theme-text-main mb-2">2. Insufficient Balancing Capability</h3>
 <figure>
-<figcaption class="text-sm text-slate-300 leading-relaxed">Traditional passive balancing mechanisms proving inadequate to compensate for significant capacity drift over time.</figcaption>
+<figcaption class="text-sm theme-text-light leading-relaxed">Traditional passive balancing mechanisms proving inadequate to compensate for significant capacity drift over time.</figcaption>
 </figure>
 </section>
-<div class="bg-cyan-900/30 p-6 rounded-xl border border-cyan-500/50 relative overflow-hidden">
+<div class="bg-cyan-900/30 p-8 md:p-10 rounded-xl border border-cyan-500/50 relative overflow-hidden">
 <div class="absolute top-0 right-0 w-16 h-16 bg-cyan-400/20 blur-xl rounded-full"></div>
-<h3 class="font-bold text-cyan-300 mb-2">3. Non-Robust SOC Estimation</h3><p class="text-sm text-slate-200 leading-relaxed">The baseline estimation algorithm failing to dynamically and accurately track the true State-of-Charge under transient load conditions.</p>
+<h3 class="font-bold text-cyan-300 mb-2">3. Non-Robust SOC Estimation</h3><p class="text-sm theme-text-main leading-relaxed">The baseline estimation algorithm failing to dynamically and accurately track the true State-of-Charge under transient load conditions.</p>
 </div>
 </div>
-<div class="bg-gradient-to-r from-cyan-900/40 to-slate-800/20 border-l-4 border-cyan-500 p-6 rounded-r-xl shadow-lg flex items-start gap-4">
+<div class="smart-bms-scope-callout bg-gradient-to-r from-cyan-900/40 to-slate-800/20 border-l-4 border-cyan-500 p-8 md:p-10 rounded-r-xl shadow-lg flex items-start gap-4">
     <div class="flex-shrink-0 mt-1 p-2 bg-cyan-900/50 rounded-lg border border-cyan-500/30">
-        <i class="w-6 h-6 text-cyan-400" data-lucide="target"></i>
+        <i class="w-6 h-6 text-accent" data-lucide="target"></i>
     </div>
     <div class="flex-1">
-        <h4 class="text-lg font-bold text-cyan-300 mb-2 uppercase tracking-wide text-sm">Project Scope</h4>
+        <h3 class="text-lg font-bold text-cyan-300 mb-2 uppercase tracking-wide text-sm">Project Scope</h3>
         <p class="text-cyan-50 leading-relaxed">
-            The ensuing engineering work focuses specifically on mitigating <strong class="text-white font-bold border-b border-cyan-500/50 pb-0.5">Cause #3 (Non-Robust SOC Estimation)</strong>, while simultaneously integrating a high-performance active balancing architecture to address cell heterogeneity.
+            The ensuing engineering work focuses specifically on mitigating <strong class="theme-text-main font-bold border-b border-cyan-500/50 pb-0.5">Cause #3 (Non-Robust SOC Estimation)</strong>, while simultaneously integrating a high-performance active balancing architecture to address cell heterogeneity.
         </p>
     </div>
 </div>
 </section>
 
 <section aria-labelledby="engineering-workflow" class="content-section relative z-10 mt-12">
-<h2 class="text-2xl font-bold text-white mb-6 flex items-center space-x-3" id="engineering-workflow"><i class="w-8 h-8 text-cyan-400" data-lucide="git-merge"></i><span>Engineering Workflow</span></h2>
+<h2 class="text-2xl font-bold theme-text-main mb-6 flex items-center space-x-3" id="engineering-workflow"><i class="w-8 h-8 text-accent" data-lucide="git-merge"></i><span>Engineering Workflow</span></h2>
 
 <div class="smart-bms-workflow">
     <!-- Step 1 -->
     <div class="smart-bms-step">
         <div class="smart-bms-step-index">1</div>
         <div class="smart-bms-step-body">
-            <h3 class="text-xl font-bold text-white mb-2">Modeling &amp; Algorithm Development</h3>
-            <p class="text-slate-300 leading-relaxed text-sm">The engineering cycle initiated with the development of a high-fidelity virtual battery model (Digital Twin). This facilitated the rigorous design, tuning, and closed-loop testing of the SOC estimation algorithms within the MATLAB/Simulink environment, effectively abstracting hardware constraints during the early development phases.</p>
+            <h3 class="text-xl font-bold theme-text-main mb-2">Modeling &amp; Algorithm Development</h3>
+            <p class="theme-text-light leading-relaxed text-sm">The engineering cycle initiated with the development of a high-fidelity virtual battery model (Digital Twin). This facilitated the rigorous design, tuning, and closed-loop testing of the SOC estimation algorithms within the MATLAB/Simulink environment, effectively abstracting hardware constraints during the early development phases.</p>
         </div>
     </div>
 
     <div class="my-10 flex justify-center w-full">
-        <img src="assets/img/Algorithm%20Workflow.png?v=5" alt="Hybrid SOC estimation algorithm workflow: ECM 3RC physical model, Unscented Kalman Filter, and LSTM residual observer feeding a safety supervisor FSM" class="rounded-lg shadow-lg w-full h-auto border border-slate-700/50">
+        <img src="assets/img/Algorithm%20Workflow.png?v=5" alt="Hybrid SOC estimation algorithm workflow: ECM 3RC physical model, Unscented Kalman Filter, and LSTM residual observer feeding a safety supervisor FSM" class="rounded-lg shadow-lg w-full h-auto border theme-border-main" width="8045" height="1206" loading="lazy" decoding="async">
     </div>
 
     <!-- Step 2 -->
     <div class="smart-bms-step">
         <div class="smart-bms-step-index">2</div>
         <div class="smart-bms-step-body smart-bms-step-body-wide">
-            <h3 class="text-xl font-bold text-white mb-2">Validation by Simulation</h3>
-            <p class="text-slate-300 leading-relaxed text-sm mb-6">To guarantee algorithmic robustness under diverse and highly dynamic load profiles, a comprehensive suite of <strong class="text-cyan-300">12 rigorous test scenarios</strong> was executed via Model-in-the-Loop (MiL) simulation. Three critical scenarios are detailed below:</p>
+            <h3 class="text-xl font-bold theme-text-main mb-2">Validation by Simulation</h3>
+            <p class="theme-text-light leading-relaxed text-sm mb-6">To guarantee algorithmic robustness under diverse and highly dynamic load profiles, a comprehensive suite of <strong class="text-cyan-300">12 rigorous test scenarios</strong> was executed via Model-in-the-Loop (MiL) simulation. Three critical scenarios are detailed below:</p>
 
             <div class="smart-bms-scenarios">
                 <!-- Scenario A -->
                 <div class="smart-bms-scenario-card">
-                    <h4 class="text-lg font-bold text-white mb-3 text-cyan-300">Scenario A: Nominal Dynamic Profile</h4>
-                    <p class="text-sm text-slate-300 leading-relaxed mb-4">This scenario evaluates the estimator's response under a nominal yet highly dynamic current profile. The results confirm exceptional estimation stability under heavy dynamic loads, achieving a Root Mean Square Error (RMSE) of just <strong class="text-white">0.23%</strong> and a final estimation error of <strong class="text-white">0.61%</strong>.</p>
+                    <h4 class="text-lg font-bold theme-text-main mb-3 text-cyan-300">Scenario A: Nominal Dynamic Profile</h4>
+                    <p class="text-sm theme-text-light leading-relaxed mb-4">This scenario evaluates the estimator's response under a nominal yet highly dynamic current profile. The results confirm exceptional estimation stability under heavy dynamic loads, achieving a Root Mean Square Error (RMSE) of just <strong class="theme-text-main">0.23%</strong> and a final estimation error of <strong class="theme-text-main">0.61%</strong>.</p>
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                        <img src="assets/img/Fig_A1_current.png" alt="Scenario A test current profile used to validate the ECM 3RC + UKF + LSTM SOC estimator against real battery data" class="rounded-lg border border-slate-600/50 shadow-md">
-                        <img src="assets/img/Fig_A2_soc.png" alt="Scenario A: UKF+LSTM-estimated State of Charge versus real measured SOC over the test cycle" class="rounded-lg border border-slate-600/50 shadow-md">
+                        <img src="assets/img/Fig_A1_current.png" alt="Scenario A test current profile used to validate the ECM 3RC + UKF + LSTM SOC estimator against real battery data" class="rounded-lg border theme-border-main shadow-md" width="1399" height="843" loading="lazy" decoding="async">
+                        <img src="assets/img/Fig_A2_soc.png" alt="Scenario A: UKF+LSTM-estimated State of Charge versus real measured SOC over the test cycle" class="rounded-lg border theme-border-main shadow-md" width="1399" height="843" loading="lazy" decoding="async">
                     </div>
                 </div>
 
                 <!-- Scenario B -->
                 <div class="smart-bms-scenario-card">
-                    <h4 class="text-lg font-bold text-white mb-3 text-cyan-300">Scenario B: Battery Aging (80% SOH)</h4>
-                    <p class="text-sm text-slate-300 leading-relaxed mb-4">This scenario assesses algorithmic robustness against battery degradation, specifically simulating a State-of-Health (SOH) of 80%. The estimated SOC accurately tracks the true SOC despite the reduced available capacity. Demonstrating an RMSE of <strong class="text-white">0.89%</strong> and a final error of <strong class="text-white">1.33%</strong>, this scenario validates the architecture's capability to maintain a highly reliable estimation in the presence of moderate capacity fade.</p>
+                    <h4 class="text-lg font-bold theme-text-main mb-3 text-cyan-300">Scenario B: Battery Aging (80% SOH)</h4>
+                    <p class="text-sm theme-text-light leading-relaxed mb-4">This scenario assesses algorithmic robustness against battery degradation, specifically simulating a State-of-Health (SOH) of 80%. The estimated SOC accurately tracks the true SOC despite the reduced available capacity. Demonstrating an RMSE of <strong class="theme-text-main">0.89%</strong> and a final error of <strong class="theme-text-main">1.33%</strong>, this scenario validates the architecture's capability to maintain a highly reliable estimation in the presence of moderate capacity fade.</p>
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                        <img src="assets/img/Fig_B1_soc.png" alt="Scenario B: UKF+LSTM-estimated State of Charge versus real measured SOC over the test cycle" class="rounded-lg border border-slate-600/50 shadow-md">
-                        <img src="assets/img/Fig_B2_error.png" alt="Scenario B SOC estimation error over time for the hybrid ECM 3RC + UKF + LSTM observer" class="rounded-lg border border-slate-600/50 shadow-md">
+                        <img src="assets/img/Fig_B1_soc.png" alt="Scenario B: UKF+LSTM-estimated State of Charge versus real measured SOC over the test cycle" class="rounded-lg border theme-border-main shadow-md" width="1399" height="843" loading="lazy" decoding="async">
+                        <img src="assets/img/Fig_B2_error.png" alt="Scenario B SOC estimation error over time for the hybrid ECM 3RC + UKF + LSTM observer" class="rounded-lg border theme-border-main shadow-md" width="1399" height="843" loading="lazy" decoding="async">
                     </div>
                 </div>
 
                 <!-- Scenario C -->
                 <div class="smart-bms-scenario-card">
-                    <h4 class="text-lg font-bold text-white mb-3 text-cyan-300">Scenario C: Sensor Bias and Measurement Noise</h4>
-                    <p class="text-sm text-slate-300 leading-relaxed mb-4">To evaluate sensitivity to measurement inaccuracies, realistic sensor biases were introduced to the voltage and current readings. Despite these perturbations, the UKF-LSTM fusion, governed by the supervisory logic, successfully mitigated the impact of sensor uncertainty. The system maintained tight tracking with an RMSE of <strong class="text-white">0.49%</strong> and a final error of only <strong class="text-white">0.25%</strong>.</p>
+                    <h4 class="text-lg font-bold theme-text-main mb-3 text-cyan-300">Scenario C: Sensor Bias and Measurement Noise</h4>
+                    <p class="text-sm theme-text-light leading-relaxed mb-4">To evaluate sensitivity to measurement inaccuracies, realistic sensor biases were introduced to the voltage and current readings. Despite these perturbations, the UKF-LSTM fusion, governed by the supervisory logic, successfully mitigated the impact of sensor uncertainty. The system maintained tight tracking with an RMSE of <strong class="theme-text-main">0.49%</strong> and a final error of only <strong class="theme-text-main">0.25%</strong>.</p>
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                        <img src="assets/img/Fig_C1_soc.png" alt="Scenario C: UKF+LSTM-estimated State of Charge versus real measured SOC over the test cycle" class="rounded-lg border border-slate-600/50 shadow-md">
-                        <img src="assets/img/Fig_C3_voltage.png" alt="Scenario C measured versus real terminal voltage used to validate the battery digital twin" class="rounded-lg border border-slate-600/50 shadow-md">
+                        <img src="assets/img/Fig_C1_soc.png" alt="Scenario C: UKF+LSTM-estimated State of Charge versus real measured SOC over the test cycle" class="rounded-lg border theme-border-main shadow-md" width="1399" height="843" loading="lazy" decoding="async">
+                        <img src="assets/img/Fig_C3_voltage.png" alt="Scenario C measured versus real terminal voltage used to validate the battery digital twin" class="rounded-lg border theme-border-main shadow-md" width="1399" height="843" loading="lazy" decoding="async">
                     </div>
                 </div>
             </div>
@@ -298,11 +278,11 @@
     <div class="smart-bms-step">
         <div class="smart-bms-step-index">3</div>
         <div class="smart-bms-step-body">
-            <h3 class="text-xl font-bold text-white mb-2">Hardware Prototyping (Hardware-in-the-Loop)</h3>
-            <p class="text-slate-300 leading-relaxed text-sm mb-4">Upon achieving successful simulation metrics, the algorithmic pipeline was ported to a simplified Hardware-in-the-Loop (HiL) prototype for empirical validation. This setup featured a custom Analog Front-End (AFE) for precise acquisition of cell voltages (via precision resistive dividers), pack current (via a 0.22Ω shunt), and temperatures (via NTC thermistors).</p>
-            <p class="text-slate-300 leading-relaxed text-sm mb-4">Crucially, this phase successfully validated the power protection architecture: a high-side double-switch topology utilizing P-Channel MOSFETs (IRF5210), safely driven by an NPN transistor (2N3904) level-shifting stage to interface with the microcontroller logic.</p>
+            <h3 class="text-xl font-bold theme-text-main mb-2">Hardware Prototyping (Hardware-in-the-Loop)</h3>
+            <p class="theme-text-light leading-relaxed text-sm mb-4">Upon achieving successful simulation metrics, the algorithmic pipeline was ported to a simplified Hardware-in-the-Loop (HiL) prototype for empirical validation. This setup featured a custom Analog Front-End (AFE) for precise acquisition of cell voltages (via precision resistive dividers), pack current (via a 0.22Ω shunt), and temperatures (via NTC thermistors).</p>
+            <p class="theme-text-light leading-relaxed text-sm mb-4">Crucially, this phase successfully validated the power protection architecture: a high-side double-switch topology utilizing P-Channel MOSFETs (IRF5210), safely driven by an NPN transistor (2N3904) level-shifting stage to interface with the microcontroller logic.</p>
             <div class="smart-bms-image-frame smart-bms-prototype-frame">
-                <img src="assets/img/Prototype_PCB.jpeg" alt="STM32-based 16S Smart BMS prototype PCB with LTC3300-1 active balancing circuitry" class="smart-bms-prototype-img rounded-xl border border-slate-700/50 shadow-lg">
+                <img src="assets/img/Prototype_PCB.jpeg" alt="STM32-based 16S Smart BMS prototype PCB with LTC3300-1 active balancing circuitry" class="smart-bms-prototype-img rounded-xl border theme-border-main shadow-lg" width="991" height="536" loading="lazy" decoding="async">
             </div>
         </div>
     </div>
@@ -311,16 +291,16 @@
     <div class="smart-bms-step">
         <div class="smart-bms-step-index">4</div>
         <div class="smart-bms-step-body">
-            <h3 class="text-xl font-bold text-white mb-2">Industrial Hardware Architecture</h3>
-            <p class="text-slate-300 leading-relaxed text-sm mb-4">The validated prototype was subsequently transitioned into a comprehensive 6-layer industrial PCB layout using Altium Designer. The architecture centers around a high-performance <strong class="text-white">STM32H743VIT6</strong> microcontroller, leveraging its FPU, DMA, and dual clocks (32.768 kHz / 25 MHz) to guarantee real-time execution of the ECM, UKF, and LSTM networks.</p>
-            <p class="text-slate-300 leading-relaxed text-sm mb-4">The board integrates a <strong class="text-white">BQ76952PFBR</strong> Analog Front-End for primary autonomous hardware protection, and an <strong class="text-white">LTC3300-1</strong> active balancing controller to enable bidirectional energy transfer. Strict EMC and signal integrity constraints were applied, including galvanic isolation (TME 0505S) and a dedicated CAN bus interface for vehicle integration.</p>
+            <h3 class="text-xl font-bold theme-text-main mb-2">Industrial Hardware Architecture</h3>
+            <p class="theme-text-light leading-relaxed text-sm mb-4">The validated prototype was subsequently transitioned into a comprehensive 6-layer industrial PCB layout using Altium Designer. The architecture centers around a high-performance <strong class="theme-text-main">STM32H743VIT6</strong> microcontroller, leveraging its FPU, DMA, and dual clocks (32.768 kHz / 25 MHz) to guarantee real-time execution of the ECM, UKF, and LSTM networks.</p>
+            <p class="theme-text-light leading-relaxed text-sm mb-4">The board integrates a <strong class="theme-text-main">BQ76952PFBR</strong> Analog Front-End for primary autonomous hardware protection, and an <strong class="theme-text-main">LTC3300-1</strong> active balancing controller to enable bidirectional energy transfer. Strict EMC and signal integrity constraints were applied, including galvanic isolation (TME 0505S) and a dedicated CAN bus interface for vehicle integration.</p>
             <div class="smart-bms-pcb-grid">
                 <figure class="smart-bms-figure">
-                    <img src="assets/img/Industrial%20BMS%20PCB%20Part%201.jpeg" alt="Industrial 16S BMS PCB — power and control side, STM32 architecture with EMC protections" class="rounded-xl border border-slate-700/50 shadow-lg">
+                    <img src="assets/img/Industrial%20BMS%20PCB%20Part%201.jpeg" alt="Industrial 16S BMS PCB — power and control side, STM32 architecture with EMC protections" class="rounded-xl border theme-border-main shadow-lg" width="961" height="506" loading="lazy" decoding="async">
                     <figcaption>Industrial BMS PCB — acquisition, protection, and control architecture.</figcaption>
                 </figure>
                 <figure class="smart-bms-figure">
-                    <img src="assets/img/Industrial%20BMS%20PCB%20Part%202.jpeg" alt="Industrial 16S BMS PCB — LTC3300-1 active balancing side" class="rounded-xl border border-slate-700/50 shadow-lg">
+                    <img src="assets/img/Industrial%20BMS%20PCB%20Part%202.jpeg" alt="Industrial 16S BMS PCB — LTC3300-1 active balancing side" class="rounded-xl border theme-border-main shadow-lg" width="994" height="487" loading="lazy" decoding="async">
                     <figcaption>Active balancing stage — bidirectional energy transfer layout.</figcaption>
                 </figure>
             </div>
@@ -331,42 +311,34 @@
     <div class="smart-bms-step">
         <div class="smart-bms-step-index">5</div>
         <div class="smart-bms-step-body">
-            <h3 class="text-xl font-bold text-white mb-2">Conclusion &amp; Future Work</h3>
-            <p class="text-slate-300 leading-relaxed text-sm">The proposed intelligent BMS architecture successfully mitigates premature power cut-offs and maximizes the extraction of usable energy. Future engineering directives involve comprehensive real-time validation on full-scale LFP packs under actual vehicle operating conditions to certify the system for mass production.</p>
+            <h3 class="text-xl font-bold theme-text-main mb-2">Conclusion &amp; Future Work</h3>
+            <p class="theme-text-light leading-relaxed text-sm">The proposed intelligent BMS architecture successfully mitigates premature power cut-offs and maximizes the extraction of usable energy. Future engineering directives involve comprehensive real-time validation on full-scale LFP packs under actual vehicle operating conditions to certify the system for mass production.</p>
         </div>
     </div>
 </div>
 </section>
 
-<section aria-labelledby="interested-in-this-project" class="text-center pt-10 mt-12 border-t border-slate-800/50 relative z-10">
-<h2 class="text-2xl font-bold text-white mb-4" id="interested-in-this-project">Interested in this project?</h2>
-<p class="text-slate-300 leading-relaxed max-w-2xl mx-auto mb-8">Explore my CV, connect on LinkedIn, or contact me to discuss battery modeling, embedded systems, and electric mobility engineering.</p>
+<section aria-labelledby="interested-in-this-project" class="text-center pt-10 mt-12 border-t theme-border-main/50 relative z-10">
+<h2 class="text-2xl font-bold theme-text-main mb-4" id="interested-in-this-project">Interested in this project?</h2>
+<p class="theme-text-light leading-relaxed max-w-2xl mx-auto mb-8">Explore my CV, connect on LinkedIn, or contact me to discuss battery modeling, embedded systems, and electric mobility engineering.</p>
 <div class="flex flex-wrap justify-center gap-4">
-<a class="inline-flex items-center font-bold text-white bg-gradient-to-r from-cyan-600 to-blue-600 py-3 px-6 rounded-full shadow-lg hover:shadow-cyan-500/30 hover:-translate-y-1 transition-all" href="assets/pdf/RAFI_Nasrallah_CV_ENG.pdf" rel="noopener noreferrer" target="_blank"><i class="w-5 h-5 mr-2" data-lucide="download"></i>Download CV</a>
-<a class="inline-flex items-center font-bold text-white bg-slate-800 py-3 px-6 rounded-full border border-slate-600 hover:border-cyan-500/50 hover:-translate-y-1 transition-all" href="https://www.linkedin.com/in/nasrallah-rafi-4834862a2" rel="noopener noreferrer" target="_blank">View LinkedIn<i class="w-5 h-5 ml-2" data-lucide="arrow-up-right"></i></a>
-<a class="inline-flex items-center font-bold text-white bg-slate-800 py-3 px-6 rounded-full border border-slate-600 hover:border-cyan-500/50 hover:-translate-y-1 transition-all" href="mailto:nasrollahrafi@gmail.com"><i class="w-5 h-5 mr-2" data-lucide="mail"></i>Contact Me</a>
+<a class="inline-flex items-center font-bold theme-text-main bg-gradient-to-r from-cyan-600 to-blue-600 py-3 px-6 rounded-full shadow-lg hover:shadow-cyan-500/30 hover:-translate-y-1 transition-all" href="assets/pdf/RAFI_Nasrallah_CV_ENG.pdf" rel="noopener noreferrer" target="_blank"><i class="w-5 h-5 mr-2" data-lucide="download"></i>Download CV</a>
+<a class="hero-button hero-button-linkedin" href="https://www.linkedin.com/in/nasrallah-rafi-4834862a2" rel="noopener noreferrer" target="_blank">View LinkedIn<i class="w-4 h-4 opacity-80" data-lucide="arrow-up-right"></i></a>
+<a class="hero-button hero-button-primary" href="mailto:nasrollahrafi@gmail.com"><i class="w-4 h-4" data-lucide="mail"></i>Contact Me</a>
 </div>
 </section>
 </article>
 </main>
-<footer class="bg-slate-900 text-white py-8 mt-16 border-t border-slate-800">
+<footer class="theme-bg-main theme-text-main py-8 mt-16 border-t theme-border-main/50">
 <div class="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
-<p class="text-sm text-slate-400">© 2026 <span>Rafi Nasrallah</span> | Electrical Engineer - Embedded Systems, IoT &amp; Smart BMS</p>
+<p class="text-sm theme-text-muted">&copy; 2026 <span>Rafi Nasrallah</span> | Electrical Engineer - Embedded Systems, IoT &amp; Smart BMS</p>
 <div class="mt-4 flex justify-center space-x-6">
-<a aria-label="Email" class="text-slate-400 hover:text-cyan-400 transition-colors" href="mailto:nasrollahrafi@gmail.com"><i class="w-6 h-6" data-lucide="mail"></i></a>
-<a aria-label="LinkedIn" class="inline-flex items-center gap-2 text-slate-400 hover:text-cyan-400 transition-colors" href="https://www.linkedin.com/in/nasrallah-rafi-4834862a2" rel="noopener noreferrer" target="_blank"><svg aria-hidden="true" class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.34V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28ZM5.32 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12ZM7.1 20.45H3.54V9H7.1v11.45Z"/></svg><span>LinkedIn</span></a>
+<a aria-label="Email" class="theme-text-muted hover:text-accent transition-colors" href="mailto:nasrollahrafi@gmail.com"><i class="w-6 h-6" data-lucide="mail"></i></a>
+<a aria-label="LinkedIn" class="inline-flex items-center gap-2 theme-text-muted hover:text-accent transition-colors" href="https://www.linkedin.com/in/nasrallah-rafi-4834862a2" rel="noopener noreferrer" target="_blank"><svg aria-hidden="true" class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.34V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28ZM5.32 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12ZM7.1 20.45H3.54V9H7.1v11.45Z"/></svg><span>LinkedIn</span></a>
 </div>
 </div>
 </footer>
-<script>
-document.addEventListener('DOMContentLoaded', () => {
-    if (window.lucide) window.lucide.createIcons();
-});
-</script>
-
 <!-- Chatbot Dependencies -->
-<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/dompurify/3.0.5/purify.min.js"></script>
 <script src="js/chatbot.js" defer></script>
 </body>
 </html>

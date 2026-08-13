@@ -1,0 +1,525 @@
+{
+  "generatedAt": "2026-08-13T20:43:22.865Z",
+  "summary": {
+    ".gif": {
+      "count": 13,
+      "bytes": 34405366
+    },
+    ".webp": {
+      "count": 14,
+      "bytes": 29544666
+    },
+    ".pdf": {
+      "count": 11,
+      "bytes": 10236375
+    },
+    ".jpg": {
+      "count": 28,
+      "bytes": 4820525
+    },
+    ".png": {
+      "count": 21,
+      "bytes": 2922762
+    },
+    ".jpeg": {
+      "count": 4,
+      "bytes": 356290
+    },
+    ".jfif": {
+      "count": 7,
+      "bytes": 549428
+    }
+  },
+  "files": [
+    {
+      "path": "assets/img/Alumina_E_Mag_Animation.gif",
+      "extension": ".gif",
+      "bytes": 4407704
+    },
+    {
+      "path": "assets/img/Alumina_E_Vector_Animation.gif",
+      "extension": ".gif",
+      "bytes": 3883980
+    },
+    {
+      "path": "assets/img/Alumina_H_Vector_Animation.webp",
+      "extension": ".webp",
+      "bytes": 3796560
+    },
+    {
+      "path": "assets/img/Alumina_J_vol_Mag_Animation.gif",
+      "extension": ".gif",
+      "bytes": 3731361
+    },
+    {
+      "path": "assets/img/Alumina_H_Mag_Animation.gif",
+      "extension": ".gif",
+      "bytes": 3713571
+    },
+    {
+      "path": "assets/img/Alumina_E_Vector_Animation.webp",
+      "extension": ".webp",
+      "bytes": 3611136
+    },
+    {
+      "path": "assets/img/Alumina_J_vol_top_view_Mag_Animation.gif",
+      "extension": ".gif",
+      "bytes": 3397912
+    },
+    {
+      "path": "assets/pdf/Thermal_Analysis_Full_Report.pdf",
+      "extension": ".pdf",
+      "bytes": 3240564
+    },
+    {
+      "path": "assets/img/Alumina_J_vol_top_view_Mag_Animation.webp",
+      "extension": ".webp",
+      "bytes": 3240528
+    },
+    {
+      "path": "assets/img/Alumina_H_Vector_Animation.gif",
+      "extension": ".gif",
+      "bytes": 3167035
+    },
+    {
+      "path": "assets/img/Alumina_J_vol_Mag_Animation.webp",
+      "extension": ".webp",
+      "bytes": 2989776
+    },
+    {
+      "path": "assets/pdf/ANALYSIS_OF_TE10_MODE_PROPAGATION.pdf",
+      "extension": ".pdf",
+      "bytes": 2945077
+    },
+    {
+      "path": "assets/img/Alumina_J_Surface_Mag_Animation.gif",
+      "extension": ".gif",
+      "bytes": 2884152
+    },
+    {
+      "path": "assets/img/Alumina_E_Mag_Animation.webp",
+      "extension": ".webp",
+      "bytes": 2581106
+    },
+    {
+      "path": "assets/img/Alumina_J_Surface_Mag_Animation.webp",
+      "extension": ".webp",
+      "bytes": 2387592
+    },
+    {
+      "path": "assets/img/Alumina_H_Mag_Animation.webp",
+      "extension": ".webp",
+      "bytes": 2305500
+    },
+    {
+      "path": "assets/img/Air_E_Vector_Animation.gif",
+      "extension": ".gif",
+      "bytes": 1931620
+    },
+    {
+      "path": "assets/img/Air_E_Vector_Animation.webp",
+      "extension": ".webp",
+      "bytes": 1821668
+    },
+    {
+      "path": "assets/img/Air_H_Vector_Animation.webp",
+      "extension": ".webp",
+      "bytes": 1709594
+    },
+    {
+      "path": "assets/img/Air_H_Mag_Animation_TopView.webp",
+      "extension": ".webp",
+      "bytes": 1665928
+    },
+    {
+      "path": "assets/img/Air_Jsurf_Mag_Animation.gif",
+      "extension": ".gif",
+      "bytes": 1613192
+    },
+    {
+      "path": "assets/img/Air_H_Vector_Animation.gif",
+      "extension": ".gif",
+      "bytes": 1536405
+    },
+    {
+      "path": "assets/img/Air_H_Mag_Animation_SideView.gif",
+      "extension": ".gif",
+      "bytes": 1485998
+    },
+    {
+      "path": "assets/img/Air_E_Mag_Animation.gif",
+      "extension": ".gif",
+      "bytes": 1475231
+    },
+    {
+      "path": "assets/img/Air_Jsurf_Mag_Animation.webp",
+      "extension": ".webp",
+      "bytes": 1238308
+    },
+    {
+      "path": "assets/pdf/water_meter_cad_blueprints.pdf",
+      "extension": ".pdf",
+      "bytes": 1228194
+    },
+    {
+      "path": "assets/img/Air_H_Mag_Animation_TopView.gif",
+      "extension": ".gif",
+      "bytes": 1177205
+    },
+    {
+      "path": "assets/img/Air_H_Mag_Animation_SideView.webp",
+      "extension": ".webp",
+      "bytes": 1153814
+    },
+    {
+      "path": "assets/pdf/Luenberger_Based_Rendezvous_Control_with_Angle_Only_Data.pdf",
+      "extension": ".pdf",
+      "bytes": 1035063
+    },
+    {
+      "path": "assets/img/Air_E_Mag_Animation.webp",
+      "extension": ".webp",
+      "bytes": 984310
+    },
+    {
+      "path": "assets/pdf/Proposition_SMCV_2_Presse_d_insert_des_ecrous.pdf",
+      "extension": ".pdf",
+      "bytes": 823691
+    },
+    {
+      "path": "assets/img/Temperature_Probe_View_1.jpg",
+      "extension": ".jpg",
+      "bytes": 488506
+    },
+    {
+      "path": "assets/img/mechanical_arm_design.png",
+      "extension": ".png",
+      "bytes": 444191
+    },
+    {
+      "path": "assets/pdf/Attestation_de_stage_ONEE.pdf",
+      "extension": ".pdf",
+      "bytes": 416198
+    },
+    {
+      "path": "assets/img/Total_Heat_Flux_View_1.jpg",
+      "extension": ".jpg",
+      "bytes": 391053
+    },
+    {
+      "path": "assets/img/Final_Temperature_Distribution_Nut_Stack.jpg",
+      "extension": ".jpg",
+      "bytes": 374923
+    },
+    {
+      "path": "assets/img/Nut_Stack_Heat_Flux.jpg",
+      "extension": ".jpg",
+      "bytes": 370432
+    },
+    {
+      "path": "assets/img/Temperature_result_view_1.jpg",
+      "extension": ".jpg",
+      "bytes": 367392
+    },
+    {
+      "path": "assets/img/Main_page_HMI_-_Mold_Injection_Machine.png",
+      "extension": ".png",
+      "bytes": 351703
+    },
+    {
+      "path": "assets/img/Vector_Pointing_Air.jpg",
+      "extension": ".jpg",
+      "bytes": 320517
+    },
+    {
+      "path": "assets/img/Mesh_Refinement_Comparison_a.jpg",
+      "extension": ".jpg",
+      "bytes": 299552
+    },
+    {
+      "path": "assets/img/Algorithm Workflow.png",
+      "extension": ".png",
+      "bytes": 299403
+    },
+    {
+      "path": "assets/img/Causes Diagram.png",
+      "extension": ".png",
+      "bytes": 299383
+    },
+    {
+      "path": "assets/pdf/Proposition_SMCV_1_Bra_mecanique.pdf",
+      "extension": ".pdf",
+      "bytes": 272917
+    },
+    {
+      "path": "assets/img/Vector_Pointing_Alumina.jpg",
+      "extension": ".jpg",
+      "bytes": 271469
+    },
+    {
+      "path": "assets/img/water_meter_blueprint_01.png",
+      "extension": ".png",
+      "bytes": 261696
+    },
+    {
+      "path": "assets/img/siprotec_testing_view2.jpg",
+      "extension": ".jpg",
+      "bytes": 178130
+    },
+    {
+      "path": "assets/img/water_meter_blueprint_02.png",
+      "extension": ".png",
+      "bytes": 174335
+    },
+    {
+      "path": "assets/img/water_meter_cad.jpeg",
+      "extension": ".jpeg",
+      "bytes": 152225
+    },
+    {
+      "path": "assets/img/Transient_Cooling_of_Insert_Nut_in_Ambient_Air.jpg",
+      "extension": ".jpg",
+      "bytes": 139444
+    },
+    {
+      "path": "assets/img/S_Parameter_Plot_2_Alumina.jpg",
+      "extension": ".jpg",
+      "bytes": 138505
+    },
+    {
+      "path": "assets/img/S_parameter_plot_Air.jpg",
+      "extension": ".jpg",
+      "bytes": 137980
+    },
+    {
+      "path": "assets/img/Heating_Cycle_Sensitivity_Analysis.jpg",
+      "extension": ".jpg",
+      "bytes": 137741
+    },
+    {
+      "path": "assets/img/Evaluation de stage d'initiation ONEE.jpg",
+      "extension": ".jpg",
+      "bytes": 132995
+    },
+    {
+      "path": "assets/img/S_Parameter_Plot_Alumina.jpg",
+      "extension": ".jpg",
+      "bytes": 130117
+    },
+    {
+      "path": "assets/img/SMCV_Supervisor_Evaluation.jpg",
+      "extension": ".jpg",
+      "bytes": 129633
+    },
+    {
+      "path": "assets/img/Fig_C3_voltage.png",
+      "extension": ".png",
+      "bytes": 118135
+    },
+    {
+      "path": "assets/img/Real_vs_Estimated_(x).jpg",
+      "extension": ".jpg",
+      "bytes": 116643
+    },
+    {
+      "path": "assets/img/siprotec_testing_view1.jpg",
+      "extension": ".jpg",
+      "bytes": 113037
+    },
+    {
+      "path": "assets/img/Manual_control_page_HMI_-_Mold_Injection_Machine.png",
+      "extension": ".png",
+      "bytes": 112401
+    },
+    {
+      "path": "assets/img/HMI_nut_insertion_press.png",
+      "extension": ".png",
+      "bytes": 99776
+    },
+    {
+      "path": "assets/pdf/Plan_2D_Ecrou_Insert.pdf",
+      "extension": ".pdf",
+      "bytes": 99242
+    },
+    {
+      "path": "assets/img/5_Axis_Industrial_Welding_Robot_Testing_Phase_2.jfif",
+      "extension": ".jfif",
+      "bytes": 99090
+    },
+    {
+      "path": "assets/img/Lathe.jfif",
+      "extension": ".jfif",
+      "bytes": 94964
+    },
+    {
+      "path": "assets/img/Confuguration_page_part_2_HMI_-_Mold_Injection_Machine.png",
+      "extension": ".png",
+      "bytes": 94015
+    },
+    {
+      "path": "assets/img/Rendezvous_Trajectory_(Phase_Plot).jpg",
+      "extension": ".jpg",
+      "bytes": 83425
+    },
+    {
+      "path": "assets/img/Repair_of_boring_machine.jfif",
+      "extension": ".jfif",
+      "bytes": 82043
+    },
+    {
+      "path": "assets/pdf/EF_SET_Certificate_RAFI_Nasrallah.pdf",
+      "extension": ".pdf",
+      "bytes": 79911
+    },
+    {
+      "path": "assets/img/Confuguration_page_part_1_HMI_-_Mold_Injection_Machine.png",
+      "extension": ".png",
+      "bytes": 79834
+    },
+    {
+      "path": "assets/img/Insert_nut_design.jpg",
+      "extension": ".jpg",
+      "bytes": 77201
+    },
+    {
+      "path": "assets/img/Real_Satellite_state_vs_time.jpg",
+      "extension": ".jpg",
+      "bytes": 76623
+    },
+    {
+      "path": "assets/img/Industrial BMS PCB Part 1.jpeg",
+      "extension": ".jpeg",
+      "bytes": 74364
+    },
+    {
+      "path": "assets/img/5_Axis_Industrial_Welding_Robot_Testing_Phase.jfif",
+      "extension": ".jfif",
+      "bytes": 74134
+    },
+    {
+      "path": "assets/img/5_Axis_Industrial_Welding_Robot_assembly_cad.jfif",
+      "extension": ".jfif",
+      "bytes": 73921
+    },
+    {
+      "path": "assets/img/Fig_B1_soc.png",
+      "extension": ".png",
+      "bytes": 73569
+    },
+    {
+      "path": "assets/img/Comparative_Heating_Curves.jpg",
+      "extension": ".jpg",
+      "bytes": 72010
+    },
+    {
+      "path": "assets/img/Industrial BMS PCB Part 2.jpeg",
+      "extension": ".jpeg",
+      "bytes": 68087
+    },
+    {
+      "path": "assets/img/Estimation_Error_vs_time.jpg",
+      "extension": ".jpg",
+      "bytes": 67739
+    },
+    {
+      "path": "assets/img/Control_Effort_vs_time.jpg",
+      "extension": ".jpg",
+      "bytes": 66846
+    },
+    {
+      "path": "assets/img/5_Axis_Industrial_Welding_Robot_Testing_Phase_1.jfif",
+      "extension": ".jfif",
+      "bytes": 65822
+    },
+    {
+      "path": "assets/img/Fig_A2_soc.png",
+      "extension": ".png",
+      "bytes": 65166
+    },
+    {
+      "path": "assets/img/Fig_C1_soc.png",
+      "extension": ".png",
+      "bytes": 65000
+    },
+    {
+      "path": "assets/img/Fig_B2_error.png",
+      "extension": ".png",
+      "bytes": 64129
+    },
+    {
+      "path": "assets/img/Fig_C4_current.png",
+      "extension": ".png",
+      "bytes": 63824
+    },
+    {
+      "path": "assets/img/Prototype_PCB.jpeg",
+      "extension": ".jpeg",
+      "bytes": 61614
+    },
+    {
+      "path": "assets/img/Spring_assembly_machine.jfif",
+      "extension": ".jfif",
+      "bytes": 59454
+    },
+    {
+      "path": "assets/img/Evolution_of_nut_temperature_in_cool_down_phase_based_on_Initial_temperature.png",
+      "extension": ".png",
+      "bytes": 58940
+    },
+    {
+      "path": "assets/img/Profile_picture.webp",
+      "extension": ".webp",
+      "bytes": 58846
+    },
+    {
+      "path": "assets/img/Fig_C2_error.png",
+      "extension": ".png",
+      "bytes": 58481
+    },
+    {
+      "path": "assets/img/Fig_A3_error.png",
+      "extension": ".png",
+      "bytes": 56865
+    },
+    {
+      "path": "assets/pdf/RAFI_Nasrallah_CV_FR.pdf",
+      "extension": ".pdf",
+      "bytes": 48642
+    },
+    {
+      "path": "assets/img/Technical_drawing_of_autofeed_mechanism.jpg",
+      "extension": ".jpg",
+      "bytes": 47186
+    },
+    {
+      "path": "assets/pdf/RAFI_Nasrallah_CV_ENG.pdf",
+      "extension": ".pdf",
+      "bytes": 46876
+    },
+    {
+      "path": "assets/img/Evolution_of_nut_temperature_based_on_the_heating_source.png",
+      "extension": ".png",
+      "bytes": 44260
+    },
+    {
+      "path": "assets/img/Temperature_Probe_Graph.jpg",
+      "extension": ".jpg",
+      "bytes": 44178
+    },
+    {
+      "path": "assets/img/Fig_A1_current.png",
+      "extension": ".png",
+      "bytes": 37656
+    },
+    {
+      "path": "assets/img/Multiple_insert_nut_stacked_in_assembly.jpg",
+      "extension": ".jpg",
+      "bytes": 28925
+    },
+    {
+      "path": "assets/img/3D_model_of_heating_color_and_adapting_cylinder.jpg",
+      "extension": ".jpg",
+      "bytes": 18323
+    }
+  ]
+}
