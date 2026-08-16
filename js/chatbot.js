@@ -38,6 +38,7 @@
         MAX_MESSAGE_LENGTH: 2000,
         MAX_HISTORY_SENT: 20,       // trims the payload sent to the backend on long threads
         REQUEST_TIMEOUT_MS: 45000,
+        TYPING_DELAY_MS: 450,
         TYPEWRITER_MAX_MS: 900,     // reveal is capped so long replies don't feel sluggish
         MAX_TEXTAREA_PX: 120,
         CTA_TRIGGER_TURN: 3,        // assistant reply count before showing recruiter CTA card
@@ -54,20 +55,20 @@
                 teaser: "Need a quick recruiter brief? I can point you to Rafi's strongest work and evidence.",
                 evidenceTags: ['BMS', 'SMCV', 'PLC/HMI', 'ANSYS'],
                 suggestions: [
-                    "Give me Rafi's recruiter snapshot",
-                    'Show strongest project evidence',
-                    'Explore project-backed skills',
-                    'Download Rafi\'s CV'
+                    'Give me a quick overview',
+                    "Walk me through Rafi's key projects",
+                    "What are Rafi's core technical skills?",
+                    'How do I get in touch with Rafi?'
                 ]
             },
             fr: {
                 teaser: 'Besoin d’un aperçu rapide pour recruteur ? Je peux vous guider vers les projets et preuves les plus solides de Rafi.',
                 evidenceTags: ['BMS', 'SMCV', 'PLC/IHM', 'ANSYS'],
                 suggestions: [
-                    'Donnez-moi un aperçu recruteur de Rafi',
-                    'Voir les preuves des projets clés',
-                    'Explorer les compétences prouvées',
-                    'Télécharger le CV de Rafi'
+                    'Donnez-moi un aperçu rapide',
+                    'Présentez-moi les projets clés de Rafi',
+                    'Quelles sont les compétences techniques de Rafi ?',
+                    'Comment contacter Rafi ?'
                 ]
             }
         },
@@ -296,15 +297,15 @@ L’architecture embarquée utilise STM32H743VIT6, un AFE BQ76952PFBR, l’équi
 
     const UI_COPY = {
         en: {
-            identity: 'Portfolio Concierge',
-            assistantName: "Rafi's Portfolio Concierge",
-            dialogLabel: "Chat with Rafi's Portfolio Concierge",
+            identity: 'JARVIS — Rafi’s AI Assistant',
+            assistantName: "JARVIS — Rafi's AI Assistant",
+            dialogLabel: "Chat with JARVIS — Rafi's AI Assistant",
             cvHref: 'https://nasrallahrafi.me/assets/pdf/RAFI_Nasrallah_CV_ENG.pdf',
             greeting: "Ask me about Rafi’s experience, see the project proof, or get his CV.",
             online: 'Online',
             offline: 'Offline',
             apiUnavailable: 'API unavailable',
-            openChat: 'Open portfolio concierge',
+            openChat: 'Open JARVIS assistant',
             closeChat: 'Close chat',
             dismiss: 'Dismiss',
             clearConversation: 'Clear conversation',
@@ -343,15 +344,15 @@ L’architecture embarquée utilise STM32H743VIT6, un AFE BQ76952PFBR, l’équi
             assistantReplied: 'Assistant replied: '
         },
         fr: {
-            identity: 'Concierge du portfolio',
-            assistantName: 'Concierge du portfolio de Rafi',
-            dialogLabel: 'Discussion avec le concierge du portfolio de Rafi',
+            identity: 'JARVIS — Assistant IA de Rafi',
+            assistantName: 'JARVIS — Assistant IA de Rafi',
+            dialogLabel: 'Discussion avec JARVIS — Assistant IA de Rafi',
             cvHref: 'https://nasrallahrafi.me/assets/pdf/RAFI_Nasrallah_CV_FR.pdf',
             greeting: 'Posez vos questions sur l’expérience de Rafi, consultez les preuves de ses projets ou obtenez son CV.',
             online: 'En ligne',
             offline: 'Hors ligne',
             apiUnavailable: 'API indisponible',
-            openChat: 'Ouvrir le concierge du portfolio',
+            openChat: 'Ouvrir l’assistant JARVIS',
             closeChat: 'Fermer le chat',
             dismiss: 'Fermer',
             clearConversation: 'Effacer la conversation',
@@ -654,9 +655,15 @@ L’architecture embarquée utilise STM32H743VIT6, un AFE BQ76952PFBR, l’équi
             /* ── Animations ────────────────────────────────────────────── */
             @keyframes slideUpFade { from { opacity: 0; transform: translateY(10px) scale(0.98); } to { opacity: 1; transform: translateY(0) scale(1); } }
             @keyframes typingPulse { 0%, 100% { opacity: 0.45; } 50% { opacity: 1; } }
+            @keyframes chatbotStatusPulse { 0%, 100% { transform: scale(0.9); opacity: 0.65; } 50% { transform: scale(1.18); opacity: 1; } }
+            @keyframes chatbotButtonIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
+            @keyframes chatbotButtonSquish { 0% { transform: scale(1); } 45% { transform: scale(0.94); } 100% { transform: scale(1); } }
+            @keyframes chatbotLauncherNudge { 0%, 88%, 100% { transform: translateY(0) rotate(0); } 92% { transform: translateY(-3px) rotate(-2deg); } 96% { transform: translateY(0) rotate(2deg); } }
             .chat-msg-animate { animation: slideUpFade 0.22s cubic-bezier(0.23, 1, 0.32, 1) forwards; }
             .bot-icon-animate { transition: opacity 150ms ease, color 150ms ease; }
             .typing-dot { animation: typingPulse 1.1s ease-in-out infinite; }
+            #chatbot-status-pulse { animation: chatbotStatusPulse 1.8s ease-in-out infinite; transform-origin: center; }
+            #chatbot-toggle-btn:not(.hidden) { animation: chatbotLauncherNudge 12s cubic-bezier(0.23, 1, 0.32, 1) infinite; }
             .chatbot-fab-in { animation: slideUpFade 0.18s cubic-bezier(0.23, 1, 0.32, 1) forwards; }
             #chatbot-messages { scrollbar-width: thin; scrollbar-color: rgba(255,255,255,0.35) transparent; }
             #chatbot-messages::-webkit-scrollbar { width: 6px; }
@@ -674,6 +681,15 @@ L’architecture embarquée utilise STM32H743VIT6, un AFE BQ76952PFBR, l’équi
                 border-color: rgba(255,255,255,0.18);
                 background: rgba(255,255,255,0.07);
                 color: rgb(226 232 240);
+                opacity: 0;
+                animation: chatbotButtonIn 320ms cubic-bezier(0.23, 1, 0.32, 1) forwards;
+            }
+            .chatbot-first-open-actions .suggestion-chip:nth-child(1) { animation-delay: 80ms; }
+            .chatbot-first-open-actions .suggestion-chip:nth-child(2) { animation-delay: 170ms; }
+            .chatbot-first-open-actions .suggestion-chip:nth-child(3) { animation-delay: 260ms; }
+            .chatbot-first-open-actions .suggestion-chip:nth-child(4) { animation-delay: 350ms; }
+            .chatbot-first-open-actions .suggestion-chip.is-pressed {
+                animation: chatbotButtonSquish 180ms cubic-bezier(0.23, 1, 0.32, 1) both;
             }
             .chatbot-first-open-actions .suggestion-chip:hover {
                 border-color: rgba(var(--primary-rgb, 34, 211, 238), 0.58);
@@ -802,7 +818,9 @@ L’architecture embarquée utilise STM32H743VIT6, un AFE BQ76952PFBR, l’équi
             .chatbot-msg-action-btn:focus-visible,
             #chatbot-input:focus-visible { outline: 2px solid rgba(var(--primary-rgb, 34, 211, 238), 0.8); outline-offset: 2px; }
             @media (prefers-reduced-motion: reduce) {
-                .bot-toggle-btn, .bot-icon-animate, .typing-dot, .chat-msg-animate, .chatbot-fab-in { animation: none !important; }
+                .bot-toggle-btn, .bot-icon-animate, .typing-dot, .chat-msg-animate, .chatbot-fab-in,
+                #chatbot-status-pulse, #chatbot-toggle-btn:not(.hidden),
+                .chatbot-first-open-actions .suggestion-chip { animation: none !important; opacity: 1 !important; transform: none !important; }
                 #chatbot-window, #chatbot-teaser { transition: opacity 0.15s ease, color 0.15s ease, background-color 0.15s ease !important; transform: none !important; }
             }
             @media (max-width: 479px) {
@@ -985,7 +1003,8 @@ L’architecture embarquée utilise STM32H743VIT6, un AFE BQ76952PFBR, l’équi
             const chip = e.target.closest('.suggestion-chip');
             if (chip) {
                 trackEvent('chip_click', { label: chip.textContent, prompt: chip.dataset.prompt, action: chip.dataset.action || 'suggestion' });
-                sendMessage(chip.dataset.prompt);
+                chip.classList.add('is-pressed');
+                setTimeout(function () { sendMessage(chip.dataset.prompt); }, 110);
                 return;
             }
             const ctaBtn = e.target.closest('.chatbot-cta-btn');
@@ -1051,6 +1070,13 @@ L’architecture embarquée utilise STM32H743VIT6, un AFE BQ76952PFBR, l’équi
     // ---------------------------------------------------------------
     // Sending messages
     // ---------------------------------------------------------------
+    function waitForTypingBeat(startedAt) {
+        const remaining = CONFIG.TYPING_DELAY_MS - (Date.now() - startedAt);
+        return remaining > 0
+            ? new Promise(function (resolve) { setTimeout(resolve, remaining); })
+            : Promise.resolve();
+    }
+
     async function sendMessage(rawText, options) {
         options = options || {};
         const copy = getWidgetCopy();
@@ -1074,6 +1100,10 @@ L’architecture embarquée utilise STM32H743VIT6, un AFE BQ76952PFBR, l’équi
         persistState();
 
         if (localEvidenceReply) {
+            const typingStartedAt = Date.now();
+            showTyping();
+            await waitForTypingBeat(typingStartedAt);
+            hideTyping();
             history.push({ role: 'assistant', content: localEvidenceReply });
             persistState();
             await renderAssistantBubble(localEvidenceReply, { animate: true, latest: true });
@@ -1086,6 +1116,7 @@ L’architecture embarquée utilise STM32H743VIT6, un AFE BQ76952PFBR, l’équi
         manualCancel = false;
         setBusyUI(true);
         showTyping();
+        const typingStartedAt = Date.now();
 
         const controller = new AbortController();
         currentController = controller;
@@ -1105,6 +1136,7 @@ L’architecture embarquée utilise STM32H743VIT6, un AFE BQ76952PFBR, l’équi
             });
 
             await markdownReady;
+            await waitForTypingBeat(typingStartedAt);
             hideTyping();
 
             if (!res.ok) {
