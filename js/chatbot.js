@@ -413,6 +413,10 @@ L’architecture embarquée utilise STM32H743VIT6, un AFE BQ76952PFBR, l’équi
     let connectionState = 'online';
     let apiHealthTimer = null;
     let apiHealthController = null;
+    let pendingChipTimer = null;
+    let scrollFrame = null;
+    let pendingSmoothScroll = false;
+    let isRestoring = false;
     const analyticsQueue = [];
 
     function loadMarkdownLibs() {
@@ -659,11 +663,16 @@ L’architecture embarquée utilise STM32H743VIT6, un AFE BQ76952PFBR, l’équi
             @keyframes chatbotButtonIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
             @keyframes chatbotButtonSquish { 0% { transform: scale(1); } 45% { transform: scale(0.94); } 100% { transform: scale(1); } }
             @keyframes chatbotLauncherNudge { 0%, 88%, 100% { transform: translateY(0) rotate(0); } 92% { transform: translateY(-3px) rotate(-2deg); } 96% { transform: translateY(0) rotate(2deg); } }
+            @keyframes chatbotPanelDrift { 0%, 100% { background-position: 0% 0%; } 50% { background-position: 100% 100%; } }
+            @keyframes chatbotCheckDraw { from { stroke-dashoffset: 16; } to { stroke-dashoffset: 0; } }
+            @keyframes chatbotCursorBlink { 0%, 45% { opacity: 1; } 46%, 100% { opacity: 0; } }
             .chat-msg-animate { animation: slideUpFade 0.22s cubic-bezier(0.23, 1, 0.32, 1) forwards; }
             .bot-icon-animate { transition: opacity 150ms ease, color 150ms ease; }
             .typing-dot { animation: typingPulse 1.1s ease-in-out infinite; }
             #chatbot-status-pulse { animation: chatbotStatusPulse 1.8s ease-in-out infinite; transform-origin: center; }
             #chatbot-toggle-btn:not(.hidden) { animation: chatbotLauncherNudge 12s cubic-bezier(0.23, 1, 0.32, 1) infinite; }
+            #chatbot-window { background-image: radial-gradient(circle at 15% 10%, rgba(var(--primary-rgb, 6, 182, 212), 0.07), transparent 38%), linear-gradient(135deg, rgba(5,5,5,0.98), rgba(8,12,16,0.98), rgba(5,5,5,0.98)); background-size: 180% 180%; animation: chatbotPanelDrift 18s ease-in-out infinite; }
+            .chatbot-typewriter-cursor { display: inline-block; margin-left: 0.08em; color: var(--accent-color, #67e8f9); animation: chatbotCursorBlink 720ms steps(1, end) infinite; }
             .chatbot-fab-in { animation: slideUpFade 0.18s cubic-bezier(0.23, 1, 0.32, 1) forwards; }
             #chatbot-messages { scrollbar-width: thin; scrollbar-color: rgba(255,255,255,0.35) transparent; }
             #chatbot-messages::-webkit-scrollbar { width: 6px; }
@@ -713,6 +722,10 @@ L’architecture embarquée utilise STM32H743VIT6, un AFE BQ76952PFBR, l’équi
             .chatbot-quick-link:hover {
                 color: rgb(165 243 252);
             }
+            .chatbot-quick-link.is-downloaded,
+            .chatbot-cta-btn.is-downloaded { color: rgb(134 239 172); text-decoration-color: rgba(134, 239, 172, 0.7); }
+            .chatbot-download-check { width: 0.8rem; height: 0.8rem; margin-right: 0.25rem; vertical-align: -0.12rem; }
+            .chatbot-download-check path { fill: none; stroke: currentColor; stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round; stroke-dasharray: 16; stroke-dashoffset: 16; animation: chatbotCheckDraw 260ms cubic-bezier(0.23, 1, 0.32, 1) forwards; }
             .chatbot-first-open-actions .suggestion-chip--primary {
                 border-color: rgba(var(--primary-rgb, 34, 211, 238), 0.62);
                 background: rgba(var(--primary-rgb, 34, 211, 238), 0.13);
@@ -752,6 +765,7 @@ L’architecture embarquée utilise STM32H743VIT6, un AFE BQ76952PFBR, l’équi
             #chatbot-input::-webkit-scrollbar-track { background: transparent; }
             #chatbot-input::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 4px; }
             #chatbot-input::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,0.2); }
+            #chatbot-input:focus { box-shadow: 0 0 0 1px rgba(var(--primary-rgb, 34, 211, 238), 0.26), 0 0 18px rgba(var(--primary-rgb, 34, 211, 238), 0.12); }
             .chatbot-msg-actions { opacity: 0.72; min-height: 1.5rem; flex-wrap: wrap; transition: opacity 0.15s ease; }
             .chatbot-ai-row:hover .chatbot-msg-actions,
             .chatbot-msg-actions:focus-within { opacity: 1; }
@@ -819,7 +833,7 @@ L’architecture embarquée utilise STM32H743VIT6, un AFE BQ76952PFBR, l’équi
             #chatbot-input:focus-visible { outline: 2px solid rgba(var(--primary-rgb, 34, 211, 238), 0.8); outline-offset: 2px; }
             @media (prefers-reduced-motion: reduce) {
                 .bot-toggle-btn, .bot-icon-animate, .typing-dot, .chat-msg-animate, .chatbot-fab-in,
-                #chatbot-status-pulse, #chatbot-toggle-btn:not(.hidden),
+                #chatbot-status-pulse, #chatbot-toggle-btn:not(.hidden), #chatbot-window, .chatbot-typewriter-cursor,
                 .chatbot-first-open-actions .suggestion-chip { animation: none !important; opacity: 1 !important; transform: none !important; }
                 #chatbot-window, #chatbot-teaser { transition: opacity 0.15s ease, color 0.15s ease, background-color 0.15s ease !important; transform: none !important; }
             }
@@ -944,7 +958,7 @@ L’architecture embarquée utilise STM32H743VIT6, un AFE BQ76952PFBR, l’équi
             + '<div class="chatbot-context-tags" role="list" aria-label="Evidence areas">' + tags + '</div>'
             + '<div id="chatbot-suggestions" class="chatbot-first-open-actions grid grid-cols-2 gap-2 mt-3 pl-9">' + chips + '</div>'
             + '<div class="chatbot-quick-links" aria-label="Direct actions">'
-            + '<a class="chatbot-quick-link" href="' + copy.cvHref + '" target="_blank" rel="noopener">' + copy.downloadCv + '</a>'
+            + '<a class="chatbot-quick-link" data-cta="resume" href="' + copy.cvHref + '" target="_blank" rel="noopener">' + copy.downloadCv + '</a>'
             + '<a class="chatbot-quick-link" href="mailto:nasrollahrafi@gmail.com">' + copy.emailRafi + '</a>'
             + '</div></div>';
     }
@@ -1004,13 +1018,20 @@ L’architecture embarquée utilise STM32H743VIT6, un AFE BQ76952PFBR, l’équi
             if (chip) {
                 trackEvent('chip_click', { label: chip.textContent, prompt: chip.dataset.prompt, action: chip.dataset.action || 'suggestion' });
                 chip.classList.add('is-pressed');
-                setTimeout(function () { sendMessage(chip.dataset.prompt); }, 110);
+                cancelPendingChipSend();
+                pendingChipTimer = setTimeout(function () {
+                    pendingChipTimer = null;
+                    sendMessage(chip.dataset.prompt);
+                }, 110);
                 return;
             }
             const ctaBtn = e.target.closest('.chatbot-cta-btn');
             if (ctaBtn) {
                 trackEvent('cta_click', { cta: ctaBtn.dataset.cta, href: ctaBtn.getAttribute('href') });
+                if (ctaBtn.dataset.cta === 'resume') markCvDownload(ctaBtn);
             }
+            const quickLink = e.target.closest('.chatbot-quick-link');
+            if (quickLink && quickLink.dataset.cta === 'resume') markCvDownload(quickLink);
         });
 
         window.addEventListener('online', function () { setOfflineState(false); });
@@ -1053,6 +1074,7 @@ L’architecture embarquée utilise STM32H743VIT6, un AFE BQ76952PFBR, l’équi
             refreshIcons();
         } else {
             trackEvent('chat_close');
+            cancelPendingChipSend();
             stopApiHealthMonitor();
             toggleBtn.classList.remove('hidden');
             windowEl.classList.remove('opacity-100', 'scale-100');
@@ -1319,7 +1341,6 @@ L’architecture embarquée utilise STM32H743VIT6, un AFE BQ76952PFBR, l’équi
         outer.appendChild(row);
         outer.appendChild(timestampEl('pl-10'));
         appendToLog(outer);
-        refreshIcons();
         trackEvent('cta_shown', { trigger: 'turn_count' });
     }
 
@@ -1335,6 +1356,7 @@ L’architecture embarquée utilise STM32H743VIT6, un AFE BQ76952PFBR, l’équi
 
     function clearConversation() {
         if (isWaiting) return;
+        cancelPendingChipSend();
         history = [];
         clearPersistedState();
         hasInteracted = false;
@@ -1360,7 +1382,7 @@ L’architecture embarquée utilise STM32H743VIT6, un AFE BQ76952PFBR, l’équi
         inner.textContent = text;
         outer.appendChild(inner);
         outer.appendChild(timestampEl('text-right pr-1'));
-        appendToLog(outer);
+        appendToLog(outer, true);
     }
 
     // Renders an assistant or error/system bubble. Returns a Promise
@@ -1368,7 +1390,7 @@ L’architecture embarquée utilise STM32H743VIT6, un AFE BQ76952PFBR, l’équi
     function renderAssistantBubble(text, opts) {
         opts = opts || {};
         const isError = !!opts.isError;
-        removeStaleRegenerateButtons();
+        if (!isRestoring) removeStaleRegenerateButtons();
 
         const outer = document.createElement('div');
         outer.className = 'self-start max-w-[90%] chat-msg-animate chatbot-ai-row';
@@ -1403,31 +1425,44 @@ L’architecture embarquée utilise STM32H743VIT6, un AFE BQ76952PFBR, l’équi
                 retryBtn.addEventListener('click', function () { sendMessage(opts.retryText); });
                 inner.appendChild(retryBtn);
             }
-            appendToLog(outer);
+            appendToLog(outer, true);
+            if (!isRestoring) refreshIcons();
             return Promise.resolve();
         }
 
-        appendToLog(outer);
         const shouldStick = isNearBottom();
+        appendToLog(outer, true);
 
         if (opts.animate) {
             return revealText(inner, text, shouldStick).then(function () {
                 attachMessageActions(row, text, !!opts.latest);
-                refreshIcons();
+                if (!isRestoring) refreshIcons();
                 announce(text);
             });
         }
 
         renderMarkdownInto(inner, text);
         attachMessageActions(row, text, !!opts.latest);
-        refreshIcons();
+        if (!isRestoring) refreshIcons();
         return Promise.resolve();
     }
 
-    function appendToLog(el) {
+    function appendToLog(el, skipIconRefresh) {
+        const shouldStick = isNearBottom();
         messages.appendChild(el);
-        refreshIcons();
-        if (isNearBottom()) scrollToBottom();
+        if (!isRestoring && !skipIconRefresh) refreshIcons();
+        if (!isRestoring && shouldStick) requestScrollToBottom(true);
+    }
+
+    function markCvDownload(link) {
+        if (link.classList.contains('is-downloaded')) return;
+        link.classList.add('is-downloaded');
+        link.insertAdjacentHTML('afterbegin', '<svg class="chatbot-download-check" viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8.5 6.5 12 13 4.5"></path></svg>');
+        setTimeout(function () {
+            const check = link.querySelector('.chatbot-download-check');
+            if (check) check.remove();
+            link.classList.remove('is-downloaded');
+        }, 1800);
     }
 
     function renderMarkdownInto(el, text) {
@@ -1563,24 +1598,54 @@ L’architecture embarquée utilise STM32H743VIT6, un AFE BQ76952PFBR, l’équi
             return Promise.resolve();
         }
         return new Promise(function (resolve) {
-            const total = Math.min(CONFIG.TYPEWRITER_MAX_MS, 250 + fullText.length * 4);
-            const start = performance.now();
+            const cursor = document.createElement('span');
+            cursor.className = 'chatbot-typewriter-cursor';
+            cursor.setAttribute('aria-hidden', 'true');
+            cursor.textContent = '▍';
+            const characters = Array.from(fullText);
+            const rawDelays = characters.map(function (character) {
+                if (/[,.!?;:]/.test(character)) return 72;
+                if (character === ' ') return 9;
+                return 18;
+            });
+            const targetTotal = Math.min(CONFIG.TYPEWRITER_MAX_MS, 220 + fullText.length * 3.2);
+            const delayScale = targetTotal / Math.max(rawDelays.reduce(function (sum, delay) { return sum + delay; }, 0), 1);
+            const cumulativeDelays = [];
+            let cumulative = 0;
+            rawDelays.forEach(function (delay) {
+                cumulative += delay * delayScale;
+                cumulativeDelays.push(cumulative);
+            });
             let skipped = false;
+            let index = 0;
+            const start = performance.now();
             function skip() { skipped = true; }
             el.addEventListener('click', skip, { once: true });
 
+            function paint() {
+                el.textContent = fullText.slice(0, index);
+                el.appendChild(cursor);
+                if (shouldStick) requestScrollToBottom(true);
+            }
+
             function tick(now) {
-                const progress = skipped ? 1 : Math.min(1, (now - start) / total);
-                el.textContent = fullText.slice(0, Math.floor(fullText.length * progress));
-                if (shouldStick && isNearBottom()) scrollToBottom();
-                if (progress < 1) {
+                if (skipped) {
+                    index = fullText.length;
+                } else {
+                    const elapsed = now - start;
+                    while (index < cumulativeDelays.length && cumulativeDelays[index] <= elapsed) index += 1;
+                }
+                paint();
+                if (index < fullText.length) {
                     requestAnimationFrame(tick);
                 } else {
                     el.removeEventListener('click', skip);
+                    cursor.remove();
                     renderMarkdownInto(el, fullText);
                     resolve();
                 }
             }
+            paint();
             requestAnimationFrame(tick);
         });
     }
@@ -1631,6 +1696,13 @@ L’architecture embarquée utilise STM32H743VIT6, un AFE BQ76952PFBR, l’équi
             btn.remove();
             if (bar && !bar.querySelector('button')) bar.remove();
         });
+    }
+
+    function cancelPendingChipSend() {
+        if (pendingChipTimer !== null) {
+            clearTimeout(pendingChipTimer);
+            pendingChipTimer = null;
+        }
     }
 
     function regenerateLast() {
@@ -1702,6 +1774,17 @@ L’architecture embarquée utilise STM32H743VIT6, un AFE BQ76952PFBR, l’équi
             messages.scrollTop = messages.scrollHeight;
         }
         scrollFab.classList.add('hidden');
+    }
+
+    function requestScrollToBottom(smooth) {
+        pendingSmoothScroll = pendingSmoothScroll || !!smooth;
+        if (scrollFrame !== null) return;
+        scrollFrame = requestAnimationFrame(function () {
+            const shouldSmooth = pendingSmoothScroll;
+            scrollFrame = null;
+            pendingSmoothScroll = false;
+            scrollToBottom(shouldSmooth);
+        });
     }
 
     // ---------------------------------------------------------------
@@ -1778,13 +1861,18 @@ L’architecture embarquée utilise STM32H743VIT6, un AFE BQ76952PFBR, l’équi
             return turn.role === 'assistant' ? index : latest;
         }, -1);
 
-        history.forEach(function (turn, index) {
-            if (turn.role === 'user') {
-                renderUserBubble(turn.content);
-            } else {
-                renderAssistantBubble(turn.content, { animate: false, latest: index === lastAssistantIndex });
-            }
-        });
+        isRestoring = true;
+        try {
+            history.forEach(function (turn, index) {
+                if (turn.role === 'user') {
+                    renderUserBubble(turn.content);
+                } else {
+                    renderAssistantBubble(turn.content, { animate: false, latest: index === lastAssistantIndex });
+                }
+            });
+        } finally {
+            isRestoring = false;
+        }
 
         refreshIcons();
         scrollToBottom();
