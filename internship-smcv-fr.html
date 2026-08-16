@@ -52,7 +52,7 @@
 <link href="css/tailwind.min.css" rel="stylesheet"/>
 <script crossorigin="anonymous" defer integrity="sha384-vEpkK5oidsrH6UhRc6tAPlgJZ/qXFwumFY+Kx8vBSeZ7NBag809YZCSmxFYGe/pt" src="https://unpkg.com/lucide@1.20.0/dist/umd/lucide.min.js"></script>
 <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&amp;family=JetBrains+Mono:wght@500;600&amp;display=swap" rel="stylesheet"/>
-<link href="css/style.min.css?v=6" rel="stylesheet"/>
+<link href="css/style.min.css?v=10" rel="stylesheet"/>
 <script src="js/theme.js?v=6" defer></script>
 <script src="js/site-shell.js" defer></script>
 </head>
@@ -65,7 +65,7 @@
 <div class="flex items-center space-x-2 sm:space-x-4">
 <button aria-label="Th&egrave;me" class="theme-toggle-button theme-text-main transition-colors flex items-center justify-center" id="theme-toggle-button" type="button"><i class="w-4 h-4" data-lucide="palette" id="theme-toggle-icon"></i><span class="theme-toggle-copy">Th&egrave;me</span><span class="theme-toggle-name" id="theme-toggle-name">Glass</span></button>
 <a aria-label="Voir la version anglaise" class="language-toggle-button theme-text-main transition-colors flex items-center justify-center" href="internship-smcv.html" hreflang="en" lang="en" title="Version anglaise"><i aria-hidden="true" class="language-toggle-icon" data-lucide="languages"></i><span class="language-toggle-current">FR</span><span aria-hidden="true" class="language-toggle-arrow">&rarr;</span><span class="language-toggle-target">EN</span></a>
-<a class="inline-flex items-center theme-text-light hover:text-accent font-medium transition-colors text-sm" href="index-fr.html#experience"><i class="w-4 h-4 mr-2" data-lucide="arrow-left"></i><span class="hidden sm:inline">Retour</span></a>
+<a aria-label="Retour vers le portfolio principal" class="inline-flex items-center theme-text-light hover:text-accent font-medium transition-colors text-sm" href="index-fr.html#experience"><i class="w-4 h-4 mr-2" data-lucide="arrow-left"></i><span class="hidden sm:inline">Retour</span></a>
 </div>
 </div>
 </header>
@@ -146,23 +146,33 @@
                         Le travail sur l'IHM a couvert la page d'opération principale, les commandes manuelles et les écrans de configuration pour la machine de moulage par injection. L'objectif était de rendre les commandes de la machine, le réglage des paramètres et la supervision par l'opérateur plus clairs dans l'atelier.
                     </p>
 </div>
-<div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-<figure class="group">
+<div class="smcv-hmi-carousel" data-carousel data-carousel-label="Galerie des écrans IHM" data-autoplay="6000">
+<div aria-live="polite" class="smcv-hmi-carousel__stage">
+<figure class="smcv-hmi-carousel__slide is-active" data-carousel-slide>
 <img alt="Main HMI screen for SMCV injection molding machine" class="gallery-image responsive-img transition-transform group-hover:scale-105" decoding="async" height="561" loading="lazy" src="assets/img/Main_page_HMI_-_Mold_Injection_Machine.png" width="781"/>
 <figcaption class="text-xs text-center theme-text-muted mt-2">Page principale</figcaption>
 </figure>
-<figure class="group">
+<figure class="smcv-hmi-carousel__slide" data-carousel-slide>
 <img alt="Contrôle manuel HMI screen for SMCV injection molding machine" class="gallery-image responsive-img transition-transform group-hover:scale-105" decoding="async" height="466" loading="lazy" src="assets/img/Manual_control_page_HMI_-_Mold_Injection_Machine.png" width="648"/>
 <figcaption class="text-xs text-center theme-text-muted mt-2">Contrôle manuel</figcaption>
 </figure>
-<figure class="group">
+<figure class="smcv-hmi-carousel__slide" data-carousel-slide>
 <img alt="Configuration HMI page 1 for SMCV injection molding machine" class="gallery-image responsive-img transition-transform group-hover:scale-105" decoding="async" height="436" loading="lazy" src="assets/img/Confuguration_page_part_1_HMI_-_Mold_Injection_Machine.png" width="600"/>
 <figcaption class="text-xs text-center theme-text-muted mt-2">Configuration 1</figcaption>
 </figure>
-<figure class="group">
+<figure class="smcv-hmi-carousel__slide" data-carousel-slide>
 <img alt="Configuration HMI page 2 for SMCV injection molding machine" class="gallery-image responsive-img transition-transform group-hover:scale-105" decoding="async" height="498" loading="lazy" src="assets/img/Confuguration_page_part_2_HMI_-_Mold_Injection_Machine.png" width="690"/>
 <figcaption class="text-xs text-center theme-text-muted mt-2">Configuration 2</figcaption>
 </figure>
+</div>
+<button aria-label="Écran IHM précédent" class="smcv-hmi-carousel__control smcv-hmi-carousel__control--previous" data-carousel-prev type="button"><i aria-hidden="true" data-lucide="arrow-left"></i></button>
+<button aria-label="Écran IHM suivant" class="smcv-hmi-carousel__control smcv-hmi-carousel__control--next" data-carousel-next type="button"><i aria-hidden="true" data-lucide="arrow-right"></i></button>
+</div>
+<div class="smcv-hmi-carousel__footer">
+<button aria-label="Mettre en pause le diaporama automatique" aria-pressed="false" class="smcv-hmi-carousel__pause" data-carousel-pause type="button"><i aria-hidden="true" data-lucide="pause"></i><span data-carousel-pause-label>Pause</span></button>
+<div aria-label="Choisir un écran IHM" class="smcv-hmi-carousel__dots" data-carousel-dots role="tablist"></div>
+<p class="smcv-hmi-carousel__counter theme-text-muted" data-carousel-counter>1 / 4</p>
+</div>
 </div>
 </section>
 <!-- SECTION 2: Livrables d'Ingénierie -->
@@ -194,26 +204,60 @@
 </ul>
 </div>
 </div>
-<figure class="mb-8">
-<img alt="Mechanical design of the mechanical arm for nut insertion - Autodesk Inventor" class="gallery-image h-auto aspect-[16/9] mb-2" decoding="async" height="615" loading="lazy" src="assets/img/mechanical_arm_design.png" width="1164"/>
-<figcaption class="text-xs text-center theme-text-muted mt-2">Modèle 3D du bras d'insertion d'écrous sur Autodesk Inventor.</figcaption>
+<div class="smcv-hmi-carousel smcv-engineering-carousel" data-carousel data-carousel-label="Propositions de conception mécanique" data-autoplay="6500">
+<div aria-live="polite" class="smcv-hmi-carousel__stage">
+<figure class="smcv-hmi-carousel__slide is-active" data-carousel-slide>
+<img alt="Conception mécanique du bras d'insertion d'écrous - Autodesk Inventor" class="gallery-image responsive-img" decoding="async" height="615" loading="eager" src="assets/img/mechanical_arm_design.png" width="1164"/>
+<figcaption class="text-sm text-center theme-text-muted mt-3">Modèle 3D du bras d'insertion d'écrous sur Autodesk Inventor.</figcaption>
 </figure>
+<figure class="smcv-hmi-carousel__slide" data-carousel-slide>
+<img alt="Proposition de bras mécanique SMCV pour l'insertion des écrous" class="gallery-image responsive-img" decoding="async" height="802" loading="lazy" src="assets/img/Proposition SMCV 1 Bras mecanique.png" width="1153"/>
+<figcaption class="text-sm text-center theme-text-muted mt-3">Proposition de bras mécanique.</figcaption>
+</figure>
+<figure class="smcv-hmi-carousel__slide" data-carousel-slide>
+<img alt="Proposition de presse d'insertion des écrous SMCV avec alimentation automatique" class="gallery-image responsive-img" decoding="async" height="626" loading="lazy" src="assets/img/Proposition SMCV 2 Presse d'insert des écrous avec auto feed.png" width="896"/>
+<figcaption class="text-sm text-center theme-text-muted mt-3">Proposition de presse d'insertion avec alimentation automatique.</figcaption>
+</figure>
+<figure class="smcv-hmi-carousel__slide" data-carousel-slide>
+<img alt="Dessin technique 2D de l'écrou d'insertion" class="gallery-image responsive-img" decoding="async" height="716" loading="lazy" src="assets/img/Insert Nut 2D drawing.jpg" width="1002"/>
+<figcaption class="text-sm text-center theme-text-muted mt-3">Dessin 2D de l'écrou d'insertion.</figcaption>
+</figure>
+</div>
+<button aria-label="Image de conception mécanique précédente" class="smcv-hmi-carousel__control smcv-hmi-carousel__control--previous" data-carousel-prev type="button"><i aria-hidden="true" data-lucide="arrow-left"></i></button>
+<button aria-label="Image de conception mécanique suivante" class="smcv-hmi-carousel__control smcv-hmi-carousel__control--next" data-carousel-next type="button"><i aria-hidden="true" data-lucide="arrow-right"></i></button>
+</div>
+<div class="smcv-hmi-carousel__footer">
+<button aria-label="Mettre en pause le diaporama automatique" aria-pressed="false" class="smcv-hmi-carousel__pause" data-carousel-pause type="button"><i aria-hidden="true" data-lucide="pause"></i><span data-carousel-pause-label>Pause</span></button>
+<div aria-label="Choisir une image de conception mécanique" class="smcv-hmi-carousel__dots" data-carousel-dots role="tablist"></div>
+<p class="smcv-hmi-carousel__counter theme-text-muted" data-carousel-counter>1 / 4</p>
+</div>
+</div>
 <h3 class="text-xl font-bold theme-text-main mb-4 flex items-center space-x-2">
 <i class="w-5 h-5 text-accent" data-lucide="camera"></i><span>Preuves Thermiques et IHM de la Presse</span>
 </h3>
-<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-<figure>
+<div class="smcv-hmi-carousel smcv-press-carousel" data-carousel data-carousel-label="Preuves thermiques et IHM de la presse" data-autoplay="6000">
+<div aria-live="polite" class="smcv-hmi-carousel__stage">
+<figure class="smcv-hmi-carousel__slide is-active" data-carousel-slide>
 <img alt="HMI screen for SMCV nut insertion press" class="gallery-image responsive-img" decoding="async" height="508" loading="lazy" src="assets/img/HMI_nut_insertion_press.png" width="709"/>
 <figcaption class="text-xs text-center theme-text-muted mt-2">Presse d'insertion d'écrous HMI</figcaption>
 </figure>
-<figure>
+<figure class="smcv-hmi-carousel__slide" data-carousel-slide>
 <img alt="Nut temperature evolution plot based on heating source for SMCV thermal analysis" class="gallery-image responsive-img" decoding="async" height="389" loading="lazy" src="assets/img/Evolution_of_nut_temperature_based_on_the_heating_source.png" width="821"/>
 <figcaption class="text-xs text-center theme-text-muted mt-2">Sensibilité à la source de chaleur</figcaption>
 </figure>
-<figure>
+<figure class="smcv-hmi-carousel__slide" data-carousel-slide>
 <img alt="Nut cooldown temperature evolution plot based on initial temperature for SMCV thermal analysis" class="gallery-image responsive-img" decoding="async" height="427" loading="lazy" src="assets/img/Evolution_of_nut_temperature_in_cool_down_phase_based_on_Initial_temperature.png" width="872"/>
 <figcaption class="text-xs text-center theme-text-muted mt-2">Évolution de la température en refroidissement</figcaption>
 </figure>
+</div>
+<button aria-label="Preuve précédente" class="smcv-hmi-carousel__control smcv-hmi-carousel__control--previous" data-carousel-prev type="button"><i aria-hidden="true" data-lucide="arrow-left"></i></button>
+<button aria-label="Preuve suivante" class="smcv-hmi-carousel__control smcv-hmi-carousel__control--next" data-carousel-next type="button"><i aria-hidden="true" data-lucide="arrow-right"></i></button>
+</div>
+<div class="smcv-hmi-carousel__footer">
+<button aria-label="Mettre en pause le diaporama automatique" aria-pressed="false" class="smcv-hmi-carousel__pause" data-carousel-pause type="button"><i aria-hidden="true" data-lucide="pause"></i><span data-carousel-pause-label>Pause</span></button>
+<div aria-label="Choisir une preuve" class="smcv-hmi-carousel__dots" data-carousel-dots role="tablist"></div>
+<p class="smcv-hmi-carousel__counter theme-text-muted" data-carousel-counter>1 / 3</p>
+</div>
 </div>
 </section>
 <!-- SECTION 3: Industrial IT Maintenance -->
@@ -270,7 +314,7 @@
 <h2 class="text-2xl font-bold theme-text-main mb-6 flex items-center space-x-3" id="supervisor-s-evaluation-20-20">
 <i class="w-6 h-6 text-red-400" data-lucide="star"></i><span>Évaluation du Superviseur (20/20)</span>
 </h2>
-<div class="grid grid-cols-1 md:grid-cols-2 gap-6 items-start">
+<div class="smcv-evaluation-stack">
 <div class="bg-red-900/30 p-8 md:p-10 rounded-xl border-l-4 border-red-500">
 <h3 class="font-bold text-red-300 mb-3">Remarques générales</h3>
 <p class="text-base italic theme-text-light leading-relaxed">
@@ -278,7 +322,7 @@
                         <br/><span class="text-sm theme-text-muted font-normal">(Original: "Travail sérieux, ponctualité et respect des consignes sont à souligner")</span>
 </p>
 </div>
-<figure class="rounded-lg overflow-hidden shadow-xl border theme-border-main">
+<figure class="smcv-evaluation-document rounded-lg overflow-hidden shadow-xl border theme-border-main">
 <img alt="SMCV supervisor evaluation sheet — 20/20 rating for Rafi Nasrallah internship" class="w-full h-auto" decoding="async" height="782" loading="lazy" src="assets/img/SMCV_Supervisor_Evaluation.jpg" width="558"/>
 </figure>
 </div>
@@ -293,6 +337,7 @@
 </main>
 <!-- Script to initialize Lucide icons -->
 <!-- Chatbot Dependencies -->
+<script src="js/smcv-carousel.js?v=4" defer></script>
 <script src="js/chatbot.js" defer></script>
 </body>
 </html>

@@ -40,7 +40,7 @@
         fixture.onload = resolve;
         fixture.src = 'about:blank';
       });
-      fixture.contentWindow.localStorage.setItem('nr-chatbot-state-v1', JSON.stringify(state));
+      fixture.contentWindow.localStorage.setItem('nr-chatbot-state-v2', JSON.stringify(state));
       await load(url);
     }
 
@@ -65,18 +65,40 @@
       focusables.at(-1).focus();
       doc.dispatchEvent(new KeyboardEvent('keydown', { key: 'Tab', bubbles: true }));
       pass('focus trap keeps focus in dialog', chat.contains(doc.activeElement));
-      win.localStorage.setItem('nr-chatbot-state-v1', '{invalid');
+      win.localStorage.setItem('nr-chatbot-state-v2', '{invalid');
       await load('../index.html?chatbot-test=corrupt');
-      pass('corrupted localStorage is discarded', !frameWin().localStorage.getItem('nr-chatbot-state-v1') || frameDoc().getElementById('chatbot-greeting'));
+      pass('corrupted localStorage is discarded', !frameWin().localStorage.getItem('nr-chatbot-state-v2') || frameDoc().getElementById('chatbot-greeting'));
       const history = Array.from({ length: 50 }, (_, index) => ({ role: index % 2 ? 'assistant' : 'user', content: `turn ${index}` }));
       await loadWithStoredState('../index.html?chatbot-test=cap', { history, savedAt: Date.now() });
-      const cappedState = JSON.parse(frameWin().localStorage.getItem('nr-chatbot-state-v1') || '{"history":[]}');
+      const cappedState = JSON.parse(frameWin().localStorage.getItem('nr-chatbot-state-v2') || '{"history":[]}');
       pass('history cap is 40 turns', cappedState.history.length === 40, `got ${cappedState.history.length}`);
       await load('../index-fr.html?chatbot-test=fr');
       pass('French localization is selected', frameDoc().documentElement.lang === 'fr' && frameDoc().getElementById('chatbot-input').getAttribute('aria-label') === 'Message');
       await loadWithStoredState('../project-smart-bms.html?chatbot-test=suggestions', { history: [], savedAt: Date.now() });
       frameDoc().getElementById('chatbot-toggle-btn').click();
-      pass('page-specific suggestions are present', frameDoc().querySelector('[data-prompt="Explain the BMS architecture"]') !== null);
+      pass('page-specific recruiter suggestions are present', frameDoc().querySelector('[data-prompt="Give me a recruiter summary of this project"]') !== null);
+      async function checkCtaLinks(url, expectedCv, label) {
+        await loadWithStoredState(url, { history: [], savedAt: Date.now() });
+        const ctaDoc = frameDoc();
+        ctaDoc.getElementById('chatbot-toggle-btn').click();
+        const prompts = [...ctaDoc.querySelectorAll('.suggestion-chip')].slice(0, 3).map((chip) => chip.dataset.prompt);
+        for (const prompt of prompts) {
+          const input = ctaDoc.getElementById('chatbot-input');
+          input.value = prompt;
+          ctaDoc.getElementById('chatbot-form').dispatchEvent(new Event('submit', { bubbles: true, cancelable: true }));
+          await wait(350);
+        }
+        const email = ctaDoc.querySelector('[data-cta="email"]')?.getAttribute('href') || '';
+        const cv = ctaDoc.querySelector('[data-cta="resume"]')?.getAttribute('href') || '';
+        const linkedIn = ctaDoc.querySelector('[data-cta="linkedin"]')?.getAttribute('href') || '';
+        pass(`${label} CTA links are rendered`, email.startsWith('mailto:') && cv.includes(expectedCv) && linkedIn.includes('linkedin.com/in/nasrallah-rafi-4834862a2'));
+        ctaDoc.getElementById('chatbot-clear-btn').click();
+        await wait(350);
+        const stored = JSON.parse(frameWin().localStorage.getItem('nr-chatbot-state-v2') || '{"history":[]}');
+        pass(`${label} clear conversation resets history`, stored.history.length === 0 && !ctaDoc.querySelector('.chatbot-user-row'));
+      }
+      await checkCtaLinks('../project-smart-bms.html?chatbot-test=cta-en', 'RAFI_Nasrallah_CV_ENG.pdf', 'English');
+      await checkCtaLinks('../project-smart-bms-fr.html?chatbot-test=cta-fr', 'RAFI_Nasrallah_CV_FR.pdf', 'French');
       const online = Object.getOwnPropertyDescriptor(frameWin().Navigator.prototype, 'onLine');
       Object.defineProperty(frameWin().navigator, 'onLine', { configurable: true, value: false });
       frameWin().dispatchEvent(new Event('offline'));
@@ -84,7 +106,7 @@
       if (online) Object.defineProperty(frameWin().Navigator.prototype, 'onLine', online);
       delete frameWin().navigator.onLine;
       frameWin().dispatchEvent(new Event('online'));
-      frameWin().localStorage.removeItem('nr-chatbot-state-v1');
+      frameWin().localStorage.removeItem('nr-chatbot-state-v2');
       await loadWithStoredState('../index.html?chatbot-test=api', { history: [], savedAt: Date.now() });
       const apiWin = frameWin();
       const apiDoc = frameDoc();

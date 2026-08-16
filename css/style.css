@@ -1904,6 +1904,269 @@ html {
     transition: transform 220ms var(--ease-out), box-shadow 220ms ease, border-color 220ms ease;
 }
 
+/* SMCV HMI gallery: keep one screen large enough to inspect at a time. */
+.smcv-hmi-carousel {
+    position: relative;
+    --smcv-carousel-ease: cubic-bezier(0.23, 1, 0.32, 1);
+    margin-top: 1.5rem;
+}
+
+/* SMCV page motion: staged, interruptible, and visible by default without JS. */
+@keyframes smcv-header-in {
+    from { opacity: 0; transform: translateY(-0.5rem); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes smcv-article-in {
+    from { opacity: 0; transform: translateY(0.75rem); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes smcv-frame-sheen {
+    0%, 100% { opacity: 0.18; transform: translateX(-18%); }
+    50% { opacity: 0.38; transform: translateX(18%); }
+}
+
+body.smcv-motion-enabled > header {
+    animation: smcv-header-in 360ms var(--ease-out) both;
+}
+
+body.smcv-motion-enabled > main > article {
+    animation: smcv-article-in 440ms var(--ease-out) both;
+}
+
+body.smcv-motion-enabled .smcv-motion-section {
+    opacity: 0;
+    transform: translateY(1.1rem);
+    transition: opacity 460ms var(--ease-out), transform 460ms var(--ease-out);
+    transition-delay: calc(var(--smcv-motion-order, 0) * 24ms);
+}
+
+body.smcv-motion-enabled .smcv-motion-section.smcv-motion-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+body.smcv-motion-enabled .smcv-motion-section.smcv-motion-visible > h2 {
+    animation: smcv-article-in 360ms var(--ease-out) both;
+}
+
+body.smcv-motion-enabled .smcv-motion-section.smcv-motion-visible > :nth-child(2) {
+    animation: smcv-article-in 420ms var(--ease-out) 55ms both;
+}
+
+body.smcv-motion-enabled .smcv-motion-section.smcv-motion-visible > :nth-child(3) {
+    animation: smcv-article-in 420ms var(--ease-out) 95ms both;
+}
+
+.smcv-evaluation-stack {
+    display: grid;
+    gap: 1.5rem;
+    max-width: 52rem;
+    margin-inline: auto;
+}
+
+.smcv-evaluation-stack > div {
+    width: 100%;
+}
+
+.smcv-evaluation-document {
+    width: min(100%, 34rem);
+    margin-inline: auto;
+}
+
+.smcv-evaluation-document img {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+.smcv-hmi-carousel__stage {
+    display: block;
+    position: relative;
+    aspect-ratio: 16 / 9;
+    min-height: 0;
+    padding: 0;
+    border: 1px solid rgba(var(--primary-rgb), 0.18);
+    border-radius: 1rem;
+    background: rgba(0, 0, 0, 0.06);
+    overflow: hidden;
+}
+
+.smcv-hmi-carousel__stage::before {
+    position: absolute;
+    inset: -30% 18% auto;
+    height: 40%;
+    background: linear-gradient(105deg, transparent 20%, rgba(255, 255, 255, 0.22), transparent 80%);
+    content: "";
+    filter: blur(1.5rem);
+    pointer-events: none;
+    transform: translateX(-18%);
+    opacity: 0.18;
+}
+
+.smcv-hmi-carousel.is-changing .smcv-hmi-carousel__stage::before {
+    animation: smcv-frame-sheen 760ms var(--ease-out) both;
+}
+
+.smcv-hmi-carousel__slide {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    padding: clamp(0.6rem, 1.5vw, 1rem) clamp(2.75rem, 7vw, 5rem) 0;
+    margin: 0;
+    opacity: 0;
+    pointer-events: none;
+    transform: translateX(1.5rem) scale(0.965) rotateY(-1.5deg);
+    transition: opacity 320ms var(--smcv-carousel-ease), transform 420ms var(--smcv-carousel-ease), filter 320ms ease;
+    filter: blur(5px);
+}
+
+.smcv-hmi-carousel__slide.is-active {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateX(0) scale(1) rotateY(0);
+    filter: blur(0);
+}
+
+.smcv-hmi-carousel[data-direction="previous"] .smcv-hmi-carousel__slide:not(.is-active) {
+    transform: translateX(-1.5rem) scale(0.965) rotateY(1.5deg);
+}
+
+.smcv-hmi-carousel__slide .gallery-image {
+    display: block;
+    flex: 1 1 auto;
+    min-height: 0;
+    width: 100%;
+    max-height: calc(100% - 1.5rem);
+    object-fit: contain;
+    margin-inline: auto;
+}
+
+.smcv-hmi-carousel__control,
+.smcv-hmi-carousel__pause,
+.smcv-hmi-carousel__dot {
+    border: 1px solid rgba(var(--primary-rgb), 0.26);
+    background: var(--card-bg, rgba(255, 255, 255, 0.78));
+    color: var(--text-main, #0f172a);
+    transition: transform 160ms ease-out, background-color 160ms ease-out, border-color 160ms ease-out, color 160ms ease-out;
+}
+
+.smcv-hmi-carousel__control {
+    position: absolute;
+    top: 50%;
+    display: inline-flex;
+    width: 2.75rem;
+    height: 2.75rem;
+    align-items: center;
+    justify-content: center;
+    border-radius: 999px;
+    transform: translateY(-50%);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.18);
+}
+
+.smcv-hmi-carousel__control:hover,
+.smcv-hmi-carousel__pause:hover,
+.smcv-hmi-carousel__dot:hover {
+    border-color: rgba(var(--primary-rgb), 0.6);
+    background: rgba(var(--primary-rgb), 0.14);
+    color: var(--accent-color, #0891b2);
+}
+
+.smcv-hmi-carousel__control:active,
+.smcv-hmi-carousel__pause:active,
+.smcv-hmi-carousel__dot:active {
+    transform: scale(0.97);
+}
+
+.smcv-hmi-carousel__control--previous { left: 0.75rem; }
+.smcv-hmi-carousel__control--next { right: 0.75rem; }
+
+.smcv-hmi-carousel__footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.smcv-hmi-carousel__pause {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    min-height: 2.35rem;
+    padding: 0.45rem 0.75rem;
+    border-radius: 0.65rem;
+    font-size: 0.8rem;
+    font-weight: 700;
+}
+
+.smcv-hmi-carousel__dots {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+.smcv-hmi-carousel__dot {
+    width: 0.6rem;
+    height: 0.6rem;
+    padding: 0;
+    border-radius: 999px;
+}
+
+.smcv-hmi-carousel__dot[aria-selected="true"] {
+    width: 1.5rem;
+    background: var(--accent-color, #0891b2);
+    border-color: var(--accent-color, #0891b2);
+}
+
+.smcv-hmi-carousel__counter {
+    min-width: 2.5rem;
+    margin: 0;
+    text-align: right;
+    font-size: 0.8rem;
+    font-variant-numeric: tabular-nums;
+}
+
+.smcv-hmi-carousel button:focus-visible {
+    outline: 3px solid rgba(var(--primary-rgb), 0.52);
+    outline-offset: 3px;
+}
+
+@media (max-width: 640px) {
+    .smcv-hmi-carousel__stage {
+        aspect-ratio: 4 / 3;
+    }
+
+    .smcv-hmi-carousel__slide {
+        padding-inline: 2.25rem;
+    }
+
+    .smcv-hmi-carousel__control {
+        width: 2.35rem;
+        height: 2.35rem;
+    }
+
+    .smcv-hmi-carousel__control--previous { left: 0.5rem; }
+    .smcv-hmi-carousel__control--next { right: 0.5rem; }
+    .smcv-hmi-carousel__footer { gap: 0.5rem; }
+    .smcv-hmi-carousel__pause span { display: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .smcv-hmi-carousel__slide,
+    .smcv-hmi-carousel__control,
+    .smcv-hmi-carousel__pause,
+    .smcv-hmi-carousel__dot {
+        transition-duration: 0.01ms;
+    }
+}
+
 /* Smart Water Meter case-study surface */
 .water-meter-case {
     --water-meter-accent: #2dd4bf;

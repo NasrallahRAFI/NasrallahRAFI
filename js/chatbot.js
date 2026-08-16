@@ -33,7 +33,7 @@
     // ---------------------------------------------------------------
     const CONFIG = {
         API_URL: 'https://api.nasrallahrafi.me/api/v1/chat',
-        STORAGE_KEY: 'nr-chatbot-state-v1',
+        STORAGE_KEY: 'nr-chatbot-state-v2',
         STORAGE_TTL_MS: 24 * 60 * 60 * 1000, // conversations older than this start fresh
         MAX_MESSAGE_LENGTH: 2000,
         MAX_HISTORY_SENT: 20,       // trims the payload sent to the backend on long threads
@@ -51,41 +51,45 @@
     const PAGE_CONTENT = {
         default: {
             en: {
-                teaser: "Curious about Rafi's work? Ask me anything.",
+                teaser: "Need a quick recruiter brief? I can point you to Rafi's strongest work and evidence.",
+                evidenceTags: ['BMS', 'SMCV', 'PLC/HMI', 'ANSYS'],
                 suggestions: [
-                    "What are Rafi's strongest engineering skills?",
-                    'Tell me about the BMS project',
-                    "Walk me through his experience",
-                    'How can I contact Rafi?'
+                    "Give me Rafi's recruiter snapshot",
+                    'Show me the strongest project evidence',
+                    "Which skills are backed by real projects?",
+                    'Download the CV or contact Rafi'
                 ]
             },
             fr: {
-                teaser: 'Curieux du travail de Rafi ? Demandez-moi.',
+                teaser: 'Besoin d’un aperçu rapide pour recruteur ? Je peux vous guider vers les projets et preuves les plus solides de Rafi.',
+                evidenceTags: ['BMS', 'SMCV', 'PLC/IHM', 'ANSYS'],
                 suggestions: [
-                    'Quelles sont les plus grandes compétences de Rafi ?',
-                    'Parlez-moi du projet BMS',
-                    'Présentez-moi son expérience',
-                    'Comment puis-je contacter Rafi ?'
+                    'Donnez-moi un aperçu recruteur de Rafi',
+                    'Montrez-moi les preuves de ses meilleurs projets',
+                    'Quelles compétences sont liées à des projets réels ?',
+                    'Télécharger le CV ou contacter Rafi'
                 ]
             }
         },
         bms: {
             en: {
                 teaser: 'Curious about this BMS project? Ask me.',
+                evidenceTags: ['SOC', 'STM32', 'UKF', 'LTC3300-1'],
                 suggestions: [
-                    'Explain the BMS architecture',
-                    'What did Rafi build?',
-                    'How was the SOC estimator validated?',
-                    'What technologies were used?'
+                    'Give me a recruiter summary of this project',
+                    'What did Rafi actually build?',
+                    'Show me the evidence behind the SOC work',
+                    'How does this project demonstrate his skills?'
                 ]
             },
             fr: {
                 teaser: 'Curieux de ce projet BMS ? Demandez-moi.',
+                evidenceTags: ['SOC', 'STM32', 'UKF', 'LTC3300-1'],
                 suggestions: [
-                    "Expliquez l'architecture du BMS",
-                    "Qu'a construit Rafi ?",
-                    "Comment l'estimateur de SOC a-t-il été validé ?",
-                    'Quelles technologies ont été utilisées ?'
+                    'Donnez-moi un résumé recruteur de ce projet',
+                    "Qu'a réellement construit Rafi ?",
+                    "Montrez-moi les preuves liées à l'estimation du SOC",
+                    'Quelles compétences ce projet démontre-t-il ?'
                 ]
             }
         },
@@ -93,19 +97,19 @@
             en: {
                 teaser: 'Want the story behind this waveguide design? Ask me.',
                 suggestions: [
-                    'Explain the TE10 mode',
-                    'What was simulated in HFSS?',
-                    'Why was Alumina used?',
-                    'What was the design goal?'
+                    'Give me a recruiter summary of this project',
+                    'What was Rafi responsible for?',
+                    'What technical evidence is available?',
+                    'Which skills does this project demonstrate?'
                 ]
             },
             fr: {
                 teaser: 'Envie de connaître l’histoire de ce guide d’ondes ? Demandez-moi.',
                 suggestions: [
-                    'Expliquez le mode TE10',
-                    "Qu'a-t-on simulé dans HFSS ?",
-                    "Pourquoi l'alumine a-t-elle été utilisée ?",
-                    'Quel était l’objectif de conception ?'
+                    'Donnez-moi un résumé recruteur de ce projet',
+                    'Quelle était la responsabilité de Rafi ?',
+                    'Quelles preuves techniques sont disponibles ?',
+                    'Quelles compétences ce projet démontre-t-il ?'
                 ]
             }
         },
@@ -151,37 +155,156 @@
         },
         internship: {
             en: {
-                teaser: 'Curious what Rafi did during this internship? Ask me.',
+                teaser: 'Reviewing this experience? I can connect the SMCV work to concrete skills and evidence.',
+                greeting: "I’m Rafi’s Portfolio Concierge. I can connect this SMCV work to recruiter-ready evidence and help you find the CV or contact details.",
+                evidenceTags: ['SMCV', 'PLC/HMI', 'Inventor', 'ANSYS'],
                 suggestions: [
-                    'What did Rafi work on here?',
-                    'What skills did he develop?',
-                    'What tools did he use?',
-                    'How does this connect to his other work?'
+                    'Summarize this SMCV experience for a recruiter',
+                    'Show me the PLC/HMI evidence',
+                    'What did Rafi design and validate?',
+                    'Open the CV or contact Rafi'
                 ]
             },
             fr: {
-                teaser: 'Curieux de ce que Rafi a fait durant ce stage ? Demandez-moi.',
+                teaser: 'Vous examinez cette expérience ? Je peux relier le travail chez SMCV à des compétences et preuves concrètes.',
+                greeting: 'Bonjour ! Je suis le concierge du portfolio de Rafi. Je peux relier cette expérience SMCV à des preuves concrètes et vous aider à trouver le CV ou les coordonnées.',
+                evidenceTags: ['SMCV', 'PLC/IHM', 'Inventor', 'ANSYS'],
                 suggestions: [
-                    'Sur quoi Rafi a-t-il travaillé ici ?',
-                    'Quelles compétences a-t-il développées ?',
-                    'Quels outils a-t-il utilisés ?',
-                    'Quel est le lien avec ses autres travaux ?'
+                    'Résumez cette expérience SMCV pour un recruteur',
+                    'Montrez-moi les preuves PLC/IHM',
+                    "Qu'a conçu et validé Rafi ?",
+                    'Ouvrir le CV ou contacter Rafi'
                 ]
+            }
+        }
+    };
+
+    const LOCAL_EVIDENCE_REPLIES = {
+        default: {
+            en: {
+                summary: `Rafi is an electrical and industrial-systems engineer focused on embedded systems, industrial automation, battery-management systems, and applied modelling.
+
+**Recruiter snapshot**
+- Smart BMS: SOC estimation, STM32 hardware, active balancing, and HiL validation.
+- Industrial automation: Siemens PLC/HMI work at SMCV.
+- Mechanical and thermal engineering: Inventor and ANSYS-backed design studies.
+- Control and embedded systems: IoT supervision, advanced control, and power electronics.
+
+[Review professional experience](#experience) · [Explore key projects](#projects) · [Open skills and tools](#skills)`,
+                projects: `The strongest portfolio evidence is concentrated in three areas: Smart BMS for electric mobility, SMCV industrial automation, and thermal/mechanical engineering studies.
+
+[Open Smart BMS](project-smart-bms.html) · [Open SMCV evidence](internship-smcv.html) · [Review key projects](#projects)`,
+                skills: `The portfolio backs Rafi’s skills with concrete work: STM32, UKF/LSTM SOC estimation, Altium, TIA Portal, Siemens S7-1200, Autodesk Inventor, ANSYS, MQTT/REST, and HiL/MiL validation.
+
+[Review the evidence in experience](#experience) · [Open skills and tools](#skills)`
+            },
+            fr: {
+                summary: `Rafi est un ingénieur en génie électrique et systèmes industriels, orienté systèmes embarqués, automatisation industrielle, gestion de batteries et modélisation appliquée.
+
+**Aperçu recruteur**
+- Smart BMS : estimation du SOC, matériel STM32, équilibrage actif et validation HiL.
+- Automatisation industrielle : travail PLC/IHM Siemens chez SMCV.
+- Ingénierie mécanique et thermique : études appuyées par Inventor et ANSYS.
+- Systèmes embarqués et commande : supervision IoT, commande avancée et électronique de puissance.
+
+[Voir l’expérience professionnelle](#experience) · [Explorer les projets principaux](#projects) · [Ouvrir les compétences et outils](#skills)`,
+                projects: `Les preuves les plus solides du portfolio se concentrent sur trois axes : le Smart BMS pour la mobilité électrique, l’automatisation industrielle chez SMCV et les études thermiques et mécaniques.
+
+[Ouvrir le Smart BMS](project-smart-bms-fr.html) · [Ouvrir les preuves SMCV](internship-smcv-fr.html) · [Voir les projets principaux](#projects)`,
+                skills: `Le portfolio relie les compétences de Rafi à des réalisations concrètes : STM32, estimation du SOC par UKF/LSTM, Altium, TIA Portal, Siemens S7-1200, Autodesk Inventor, ANSYS, MQTT/REST et validation HiL/MiL.
+
+[Voir les preuves dans l’expérience](#experience) · [Ouvrir les compétences et outils](#skills)`
+            }
+        },
+        bms: {
+            en: {
+                summary: `This Smart BMS project addresses premature power cut-offs and unreliable SOC estimation in electric mobility through a combined algorithm, embedded-hardware, and validation workflow.
+
+**Strongest evidence**
+- Hybrid ECM 3RC + UKF + LSTM residual observer.
+- 12 MiL test scenarios, including dynamic load, 80% SOH aging, and sensor bias/noise.
+- RMSE results below 1% in the highlighted scenarios.
+- STM32H743VIT6 industrial architecture with BQ76952 protection and LTC3300-1 active balancing.
+
+[Review the engineering workflow](#engineering-workflow) · [See the problem statement](#problem-statement) · [Discuss the project](#interested-in-this-project)`,
+                build: `Rafi built a complete Smart BMS engineering stack: a digital-twin battery model, hybrid SOC estimator, simplified HiL prototype, and 6-layer industrial PCB architecture.
+
+The embedded architecture uses STM32H743VIT6, a BQ76952PFBR AFE, LTC3300-1 bidirectional active balancing, CAN integration, and protected power switching.
+
+[Review the workflow and hardware evidence](#engineering-workflow) · [Discuss the project](#interested-in-this-project)`,
+                soc: `The SOC work combines an ECM 3RC physical model with an Unscented Kalman Filter and an LSTM residual observer. The page documents validation across 12 MiL scenarios, including dynamic loads, battery aging at 80% SOH, and sensor bias/noise.
+
+[Review the SOC workflow](#engineering-workflow) · [See the original problem](#problem-statement) · [Explore the project scope](#probable-causes)`
+            },
+            fr: {
+                summary: `Ce projet Smart BMS traite les coupures prématurées et l’estimation instable du SOC dans la mobilité électrique grâce à une démarche combinant algorithmes, matériel embarqué et validation.
+
+**Preuves principales**
+- Observateur hybride ECM 3RC + UKF + résidu LSTM.
+- 12 scénarios de test MiL : charge dynamique, vieillissement à 80 % SOH et biais/bruit capteurs.
+- Résultats RMSE inférieurs à 1 % dans les scénarios présentés.
+- Architecture industrielle STM32H743VIT6 avec protection BQ76952 et équilibrage actif LTC3300-1.
+
+[Consulter le flux d’ingénierie](#engineering-workflow) · [Voir la problématique](#problem-statement) · [Discuter du projet](#interested-in-this-project)`,
+                build: `Rafi a construit une chaîne Smart BMS complète : modèle de batterie numérique, estimateur hybride du SOC, prototype HiL simplifié et architecture de PCB industriel 6 couches.
+
+L’architecture embarquée utilise STM32H743VIT6, un AFE BQ76952PFBR, l’équilibrage bidirectionnel LTC3300-1, une intégration CAN et une commutation de puissance protégée.
+
+[Consulter les preuves du flux et du matériel](#engineering-workflow) · [Discuter du projet](#interested-in-this-project)`,
+                soc: `Le travail sur le SOC combine un modèle physique ECM 3RC, un filtre de Kalman non linéaire UKF et un observateur résiduel LSTM. La page documente 12 scénarios MiL, dont les charges dynamiques, le vieillissement à 80 % SOH et les biais/bruits de mesure.
+
+[Consulter le flux SOC](#engineering-workflow) · [Voir la problématique initiale](#problem-statement) · [Explorer le périmètre du projet](#probable-causes)`
+            }
+        },
+        internship: {
+            en: {
+                summary: `Rafi is an electrical and industrial-systems engineer whose SMCV internship combined industrial automation, mechanical design, thermal analysis, and workstation troubleshooting.
+
+**Strongest evidence**
+- PLC/HMI: Siemens S7-1200 sequence logic and TIA Portal operator screens.
+- Mechanical design: Autodesk Inventor concepts for a nut-insertion arm and pneumatic press.
+- Thermal analysis: ANSYS-based heating validation for the insertion process.
+- Industrial result: recovered stable meter-configuration workstations.
+
+[Open the PLC/HMI evidence](#section-1) · [Review engineering deliverables](#section-2) · [View supervisor evaluation](#evaluation)`,
+                plc: `At SMCV, Rafi worked with Siemens S7-1200 and TIA Portal to develop sequence logic and HMI screens for an industrial insertion process.
+
+[Open SMCV PLC/HMI evidence](#section-1) · [View the press HMI and thermal evidence](#3-nut-insertion-press-design-and-programming) · [Review engineering deliverables](#section-2)`,
+                design: `Rafi designed and assessed two insertion concepts: a manual mechanical arm and a pneumatic press concept. The work connected Autodesk Inventor modelling, PLC/HMI control logic, and thermal validation.
+
+[Open the mechanical design evidence](#section-2) · [Review the press design](#3-nut-insertion-press-design-and-programming) · [View the supervisor evaluation](#evaluation)`
+            },
+            fr: {
+                summary: `Rafi est un ingénieur en génie électrique et systèmes industriels. Son stage chez SMCV a combiné automatisation industrielle, conception mécanique, analyse thermique et dépannage de postes de travail.
+
+**Preuves principales**
+- PLC/IHM : logique séquentielle Siemens S7-1200 et écrans opérateur sous TIA Portal.
+- Conception mécanique : concepts Autodesk Inventor pour un bras d’insertion et une presse pneumatique.
+- Analyse thermique : validation du chauffage du procédé d’insertion avec ANSYS.
+- Résultat industriel : stabilisation des postes de configuration des compteurs.
+
+[Ouvrir les preuves PLC/IHM](#section-1) · [Consulter les livrables d’ingénierie](#section-2) · [Voir l’évaluation du superviseur](#evaluation)`,
+                plc: `Chez SMCV, Rafi a travaillé avec Siemens S7-1200 et TIA Portal pour développer la logique séquentielle et les écrans IHM d’un procédé industriel d’insertion.
+
+[Ouvrir les preuves PLC/IHM](#section-1) · [Voir les preuves IHM de la presse et l’analyse thermique](#3-nut-insertion-press-design-and-programming) · [Consulter les livrables d’ingénierie](#section-2)`,
+                design: `Rafi a conçu et évalué deux concepts d’insertion : un bras mécanique manuel et un concept de presse pneumatique. Le travail a relié la modélisation Autodesk Inventor, la logique de commande PLC/IHM et la validation thermique.
+
+[Ouvrir les preuves de conception mécanique](#section-2) · [Consulter la conception de la presse](#3-nut-insertion-press-design-and-programming) · [Voir l’évaluation du superviseur](#evaluation)`
             }
         }
     };
 
     const UI_COPY = {
         en: {
-            identity: 'Ask Rafi',
-            assistantName: "Rafi's Engineering Assistant",
-            dialogLabel: "Chat with Rafi's Engineering Assistant",
+            identity: 'Portfolio Concierge',
+            assistantName: "Rafi's Portfolio Concierge",
+            dialogLabel: "Chat with Rafi's Portfolio Concierge",
             cvHref: 'https://nasrallahrafi.me/assets/pdf/RAFI_Nasrallah_CV_ENG.pdf',
-            greeting: "Hi! I'm Rafi's Engineering Assistant. I can answer questions about Rafi's engineering projects, technical skills, and professional experience — or share his CV. What would you like to know?",
+            greeting: "I’m Rafi’s Portfolio Concierge. I can connect Rafi’s strongest engineering work to project evidence and help you find the CV or contact details.",
             online: 'Online',
             offline: 'Offline',
             apiUnavailable: 'API unavailable',
-            openChat: 'Ask Rafi',
+            openChat: 'Open portfolio concierge',
             closeChat: 'Close chat',
             dismiss: 'Dismiss',
             clearConversation: 'Clear conversation',
@@ -199,8 +322,10 @@
             cancel: 'Cancel',
             emailRafi: 'Email Rafi',
             downloadCv: 'Download CV',
+            viewLinkedIn: 'View LinkedIn',
+            exploreProject: 'Explore another project',
             offlineBanner: "You're offline — messages can't be sent right now.",
-            privacy: 'Not stored on our servers — kept in your browser for 24h, then auto-deleted.',
+            privacy: 'Private in this browser for 24h. No confidential information.',
             mistakes: 'AI can make mistakes',
             unexpected: 'An unexpected error occurred. Please try again.',
             offlineError: 'You’re offline. Reconnect and try again.',
@@ -212,21 +337,21 @@
             timeout: 'The request timed out. Please try again.',
             networkError: 'Network error. Please check your connection and try again.',
             errorFallback: 'In the meantime, feel free to email Rafi directly at',
-            interested: 'Interested in working with Rafi?',
-            ctaDescription: 'You can reach out directly via email or download his full resume.',
-            welcomeBack: 'Welcome back — what else can I help you find about Rafi’s work today?',
+            interested: 'Want to discuss Rafi’s fit?',
+            ctaDescription: 'Review the CV or contact Rafi directly about a potential collaboration.',
+            welcomeBack: 'Welcome back — what would you like to review next in Rafi’s work?',
             assistantReplied: 'Assistant replied: '
         },
         fr: {
-            identity: 'Demandez à Rafi',
-            assistantName: 'Assistant technique de Rafi',
-            dialogLabel: 'Chat avec l’assistant de Rafi',
+            identity: 'Concierge du portfolio',
+            assistantName: 'Concierge du portfolio de Rafi',
+            dialogLabel: 'Discussion avec le concierge du portfolio de Rafi',
             cvHref: 'https://nasrallahrafi.me/assets/pdf/RAFI_Nasrallah_CV_FR.pdf',
-            greeting: 'Bonjour ! Je suis l’assistant technique de Rafi. Je peux répondre à vos questions sur ses projets d’ingénierie, ses compétences techniques et son expérience professionnelle, ou partager son CV. Que souhaitez-vous savoir ?',
+            greeting: 'Bonjour ! Je suis le concierge du portfolio de Rafi. Je peux relier ses projets d’ingénierie à des preuves concrètes et vous aider à trouver le CV ou les coordonnées.',
             online: 'En ligne',
             offline: 'Hors ligne',
             apiUnavailable: 'API indisponible',
-            openChat: 'Demandez à Rafi',
+            openChat: 'Ouvrir le concierge du portfolio',
             closeChat: 'Fermer le chat',
             dismiss: 'Fermer',
             clearConversation: 'Effacer la conversation',
@@ -244,8 +369,10 @@
             cancel: 'Annuler',
             emailRafi: 'Envoyer un e-mail à Rafi',
             downloadCv: 'Télécharger le CV',
+            viewLinkedIn: 'Voir LinkedIn',
+            exploreProject: 'Explorer un autre projet',
             offlineBanner: 'Vous êtes hors ligne — les messages ne peuvent pas être envoyés pour le moment.',
-            privacy: 'Non stocké sur nos serveurs — conservé dans votre navigateur pendant 24 h, puis supprimé automatiquement.',
+            privacy: 'Privé dans ce navigateur pendant 24 h. Aucune donnée confidentielle.',
             mistakes: 'L’IA peut se tromper',
             unexpected: 'Une erreur inattendue s’est produite. Veuillez réessayer.',
             offlineError: 'Vous êtes hors ligne. Reconnectez-vous et réessayez.',
@@ -257,9 +384,9 @@
             timeout: 'La requête a expiré. Veuillez réessayer.',
             networkError: 'Erreur réseau. Veuillez vérifier votre connexion et réessayer.',
             errorFallback: 'En attendant, vous pouvez écrire directement à Rafi à l’adresse',
-            interested: 'Intéressé par le travail de Rafi ?',
-            ctaDescription: 'Vous pouvez le contacter directement par e-mail ou télécharger son CV complet.',
-            welcomeBack: 'Bon retour — que puis-je vous aider à trouver sur le travail de Rafi aujourd’hui ?',
+            interested: 'Envie de discuter de l’adéquation de Rafi ?',
+            ctaDescription: 'Consultez le CV ou contactez directement Rafi au sujet d’une éventuelle collaboration.',
+            welcomeBack: 'Bon retour — que souhaitez-vous examiner ensuite dans le travail de Rafi ?',
             assistantReplied: 'Réponse de l’assistant : '
         }
     };
@@ -334,6 +461,15 @@
         if (path.includes('project-rendezvous')) return 'rendezvous';
         if (path.includes('internship-onee') || path.includes('internship-smcv')) return 'internship';
         return 'default';
+    }
+
+    function getLocalEvidenceReply(text, copy) {
+        const replies = LOCAL_EVIDENCE_REPLIES[copy.pageKey]?.[copy.lang];
+        if (!replies) return null;
+        if (text === copy.suggestions[0]) return replies.summary;
+        if (text === copy.suggestions[1]) return replies.plc || replies.projects || replies.build;
+        if (text === copy.suggestions[2]) return replies.design || replies.skills || replies.soc;
+        return null;
     }
 
     // ---------------------------------------------------------------
@@ -528,6 +664,48 @@
             #chatbot-messages::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.35); border-radius: 4px; }
             #chatbot-messages::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,0.55); }
             #chatbot-messages { mask-image: linear-gradient(to bottom, transparent 0, black 20px, black calc(100% - 20px), transparent 100%); -webkit-mask-image: linear-gradient(to bottom, transparent 0, black 20px, black calc(100% - 20px), transparent 100%); }
+            .chatbot-first-open-actions { align-items: stretch; }
+            .chatbot-first-open-actions .suggestion-chip {
+                min-width: 0;
+                min-height: 3.25rem;
+                padding: 0.65rem 0.7rem;
+                border-radius: 0.9rem;
+                line-height: 1.25;
+            }
+            .chatbot-first-open-actions .suggestion-chip--primary {
+                border-color: rgba(var(--primary-rgb, 34, 211, 238), 0.62);
+                background: rgba(var(--primary-rgb, 34, 211, 238), 0.13);
+                color: rgb(165 243 252);
+                box-shadow: inset 0 0 0 1px rgba(var(--primary-rgb, 34, 211, 238), 0.08);
+            }
+            .chatbot-first-open-actions .suggestion-chip--primary:hover {
+                border-color: rgba(var(--primary-rgb, 34, 211, 238), 0.9);
+                background: rgba(var(--primary-rgb, 34, 211, 238), 0.2);
+                color: white;
+            }
+            .chatbot-context-tags {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 0.35rem;
+                margin: 0.15rem 0 0 2.25rem;
+            }
+            .chatbot-context-tag {
+                border: 1px solid rgba(var(--primary-rgb, 34, 211, 238), 0.28);
+                border-radius: 999px;
+                background: rgba(var(--primary-rgb, 34, 211, 238), 0.08);
+                color: rgba(165, 243, 252, 0.9);
+                padding: 0.2rem 0.48rem;
+                font-size: 10px;
+                font-weight: 650;
+                letter-spacing: 0.035em;
+                line-height: 1.2;
+            }
+            .chatbot-cta-card [data-cta="email"],
+            .chatbot-cta-card [data-cta="resume"] {
+                border-color: rgba(var(--primary-rgb, 34, 211, 238), 0.5);
+                background: rgba(var(--primary-rgb, 34, 211, 238), 0.14);
+                color: rgb(165 243 252);
+            }
             #chatbot-input { resize: none; max-height: ${CONFIG.MAX_TEXTAREA_PX}px; overflow-y: hidden; }
             #chatbot-input::-webkit-scrollbar { width: 4px; }
             #chatbot-input::-webkit-scrollbar-track { background: transparent; }
@@ -610,6 +788,24 @@
                     max-height: calc(100dvh - 5.5rem);
                 }
                 #chatbot-toggle-btn { width: 3rem; height: 3rem; }
+                .chatbot-first-open-actions { padding-left: 2.25rem; }
+                .chatbot-first-open-actions .suggestion-chip {
+                    min-height: 2.8rem;
+                    padding: 0.48rem 0.5rem;
+                    font-size: 10.5px;
+                }
+                #chatbot-greeting > .flex > .chat-markdown {
+                    padding: 0.75rem 0.9rem;
+                    font-size: 12.5px;
+                }
+                .chatbot-context-tags {
+                    gap: 0.25rem;
+                    margin-top: 0;
+                }
+                .chatbot-context-tag {
+                    padding: 0.16rem 0.38rem;
+                    font-size: 9px;
+                }
             }
         </style>
         <div id="chatbot-container" class="fixed bottom-6 right-6 z-[100] font-sans flex flex-col items-end gap-4 pointer-events-none">
@@ -688,14 +884,22 @@
 
     function greetingBlockHTML() {
         const copy = getWidgetCopy();
+        const tags = (copy.evidenceTags || []).map(function (tag) {
+            return '<span class="chatbot-context-tag">' + tag + '</span>';
+        }).join('');
         const chips = copy.suggestions.map(function (prompt) {
-            return '<button type="button" class="suggestion-chip px-4 py-2.5 rounded-full border border-white/10 bg-white/5 hover:bg-white/10 hover:border-cyan-500/40 text-[12px] text-slate-300 hover:text-cyan-300 transition-[background-color,border-color,color,transform] duration-180" data-prompt="' + prompt.replace(/"/g, '&quot;') + '">' + prompt + '</button>';
+            const isPrimary = copy.pageKey === 'default'
+                ? prompt === copy.suggestions[0]
+                : prompt.toLowerCase().includes('recruiter') || prompt.toLowerCase().includes('recruteur');
+            const action = copy.pageKey === 'default' && isPrimary ? 'recruiter-snapshot' : 'page-recruiter-action';
+            return '<button type="button" class="suggestion-chip ' + (isPrimary ? 'suggestion-chip--primary ' : '') + 'px-4 py-2.5 rounded-full border border-white/10 bg-white/5 hover:bg-white/10 hover:border-cyan-500/40 text-[12px] text-slate-300 hover:text-cyan-300 transition-[background-color,border-color,color,transform] duration-180" data-action="' + action + '" data-prompt="' + prompt.replace(/"/g, '&quot;') + '">' + prompt + '</button>';
         }).join('');
         return '<div id="chatbot-greeting" class="self-start max-w-[90%] chat-msg-animate">'
             + '<div class="flex items-start gap-3">' + avatarHTML()
             + '<div class="inline-block px-5 py-4 rounded-2xl rounded-tl-sm bg-black/50 border border-white/5 text-slate-300 chat-markdown shadow-sm">'
             + '<p class="leading-relaxed m-0">' + copy.greeting + '</p></div></div>'
-            + '<div id="chatbot-suggestions" class="flex flex-wrap gap-2 mt-3 pl-9">' + chips + '</div></div>';
+            + '<div class="chatbot-context-tags" aria-label="Evidence areas">' + tags + '</div>'
+            + '<div id="chatbot-suggestions" class="chatbot-first-open-actions grid grid-cols-2 gap-2 mt-3 pl-9">' + chips + '</div></div>';
     }
 
     function avatarHTML() {
@@ -751,7 +955,7 @@
         messages.addEventListener('click', function (e) {
             const chip = e.target.closest('.suggestion-chip');
             if (chip) {
-                trackEvent('chip_click', { label: chip.textContent, prompt: chip.dataset.prompt });
+                trackEvent('chip_click', { label: chip.textContent, prompt: chip.dataset.prompt, action: chip.dataset.action || 'suggestion' });
                 sendMessage(chip.dataset.prompt);
                 return;
             }
@@ -824,7 +1028,8 @@
         const text = (rawText || '').trim();
         if (!text || isWaiting || text.length > CONFIG.MAX_MESSAGE_LENGTH) return;
 
-        if (!navigator.onLine) {
+        const localEvidenceReply = getLocalEvidenceReply(text, copy);
+        if (!navigator.onLine && !localEvidenceReply) {
             renderAssistantBubble(copy.offlineError, { isError: true, retryText: text });
             return;
         }
@@ -838,6 +1043,15 @@
         if (!options.reuseVisibleUserBubble) renderUserBubble(text);
         history.push({ role: 'user', content: text });
         persistState();
+
+        if (localEvidenceReply) {
+            history.push({ role: 'assistant', content: localEvidenceReply });
+            persistState();
+            await renderAssistantBubble(localEvidenceReply, { animate: true, latest: true });
+            checkAndTriggerCta();
+            input.focus();
+            return;
+        }
 
         isWaiting = true;
         manualCancel = false;
@@ -1021,6 +1235,7 @@
         if (hasShownCtaCard) return;
         hasShownCtaCard = true;
         const copy = getWidgetCopy();
+        const project = getCtaProject(copy);
 
         const outer = document.createElement('div');
         outer.className = 'self-start max-w-[90%] chat-msg-animate chatbot-cta-card';
@@ -1035,6 +1250,8 @@
             + '<div class="flex flex-wrap gap-2">'
             + '<a href="mailto:nasrollahrafi@gmail.com" class="chatbot-cta-btn inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-cyan-500/20 border border-cyan-500/40 text-[11px] font-semibold text-cyan-300 hover:bg-cyan-500/30 transition-colors" data-cta="email"><i data-lucide="mail" class="w-3.5 h-3.5"></i> ' + copy.emailRafi + '</a>'
             + '<a href="' + copy.cvHref + '" target="_blank" rel="noopener" class="chatbot-cta-btn inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white/5 border border-white/10 text-[11px] font-medium text-slate-300 hover:bg-white/10 transition-colors" data-cta="resume"><i data-lucide="file-text" class="w-3.5 h-3.5"></i> ' + copy.downloadCv + '</a>'
+            + '<a href="https://www.linkedin.com/in/nasrallah-rafi-4834862a2" target="_blank" rel="noopener" class="chatbot-cta-btn inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white/5 border border-white/10 text-[11px] font-medium text-slate-300 hover:bg-white/10 transition-colors" data-cta="linkedin"><i data-lucide="linkedin" class="w-3.5 h-3.5"></i> ' + copy.viewLinkedIn + '</a>'
+            + '<a href="' + project.href + '" class="chatbot-cta-btn inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white/5 border border-white/10 text-[11px] font-medium text-slate-300 hover:bg-white/10 transition-colors" data-cta="project"><i data-lucide="arrow-up-right" class="w-3.5 h-3.5"></i> ' + copy.exploreProject + '</a>'
             + '</div>';
 
         row.appendChild(inner);
@@ -1043,6 +1260,16 @@
         appendToLog(outer);
         refreshIcons();
         trackEvent('cta_shown', { trigger: 'turn_count' });
+    }
+
+    function getCtaProject(copy) {
+        if (copy.pageKey === 'bms') {
+            return { href: copy.lang === 'fr' ? 'internship-smcv-fr.html' : 'internship-smcv.html' };
+        }
+        if (copy.pageKey === 'internship') {
+            return { href: copy.lang === 'fr' ? 'project-smart-bms-fr.html' : 'project-smart-bms.html' };
+        }
+        return { href: copy.lang === 'fr' ? 'project-smart-bms-fr.html' : 'project-smart-bms.html' };
     }
 
     function clearConversation() {
@@ -1090,8 +1317,10 @@
         row.innerHTML = avatarHTML();
 
         const inner = document.createElement('div');
-        inner.className = 'inline-block px-5 py-4 rounded-2xl rounded-tl-sm chat-markdown shadow-sm leading-relaxed '
-            + (isError ? 'bg-red-950/40 border border-red-500/30 text-red-300' : 'bg-black/50 border border-white/5 text-slate-300');
+        inner.className = 'inline-block px-5 py-4 rounded-2xl rounded-tl-sm chat-markdown shadow-sm leading-relaxed';
+        inner.classList.add(...(isError
+            ? ['bg-red-950/40', 'border', 'border-red-500/30', 'text-red-100']
+            : ['bg-black/50', 'border', 'border-white/5', 'text-slate-300']));
         row.appendChild(inner);
         outer.appendChild(row);
         outer.appendChild(timestampEl('pl-10'));
