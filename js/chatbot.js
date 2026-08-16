@@ -465,6 +465,23 @@ L’architecture embarquée utilise STM32H743VIT6, un AFE BQ76952PFBR, l’équi
         return 'default';
     }
 
+    // Stable, controlled page identity for page-aware retrieval. The backend
+    // rejects values outside its own allowlist; pathname mapping keeps older
+    // pages working until they are rebuilt with data-chatbot-page attributes.
+    function getChatbotPageId() {
+        var configured = document.body && document.body.dataset ? document.body.dataset.chatbotPage : '';
+        if (configured) return configured;
+        var path = window.location.pathname.toLowerCase();
+        var mappings = [
+            ['internship-smcv', 'internship-smcv'], ['internship-onee', 'internship-onee'],
+            ['apprenticeship-rafi', 'apprenticeship'], ['pfe-gantt', 'pfe-gantt'],
+            ['project-smart-bms', 'project-smart-bms'], ['project-thermal', 'project-thermal'],
+            ['project-waveguide', 'project-waveguide'], ['project-rendezvous', 'project-rendezvous']
+        ];
+        for (var i = 0; i < mappings.length; i++) if (path.indexOf(mappings[i][0]) !== -1) return mappings[i][1];
+        return 'homepage';
+    }
+
     function getLocalEvidenceReply(text, copy) {
         const replies = LOCAL_EVIDENCE_REPLIES[copy.pageKey]?.[copy.lang];
         if (!replies) return null;
@@ -1120,6 +1137,7 @@ L’architecture embarquée utilise STM32H743VIT6, un AFE BQ76952PFBR, l’équi
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
                     messages: history.slice(-CONFIG.MAX_HISTORY_SENT),
+                    pageId: getChatbotPageId(),
                     contextUrl: window.location.href,
                     lang: getClientLang()
                 }),
@@ -1151,7 +1169,7 @@ L’architecture embarquée utilise STM32H743VIT6, un AFE BQ76952PFBR, l’équi
                 if (data && data.reply) {
                     history.push({ role: 'assistant', content: data.reply });
                     persistState();
-                    await renderAssistantBubble(data.reply, { animate: true, latest: true });
+                    await renderAssistantBubble(data.reply, { animate: true, latest: true, metadata: data });
                     notifyUnreadMessage();
                     checkAndTriggerCta();
                 } else {
@@ -1409,6 +1427,7 @@ L’architecture embarquée utilise STM32H743VIT6, un AFE BQ76952PFBR, l’équi
         if (opts.animate) {
             return revealText(inner, text, shouldStick).then(function () {
                 attachMessageActions(row, text, !!opts.latest);
+                renderResponseLinks(outer, opts.metadata);
                 if (!isRestoring) refreshIcons();
                 announce(text);
             });
@@ -1416,6 +1435,7 @@ L’architecture embarquée utilise STM32H743VIT6, un AFE BQ76952PFBR, l’équi
 
         renderMarkdownInto(inner, text);
         attachMessageActions(row, text, !!opts.latest);
+        renderResponseLinks(outer, opts.metadata);
         if (!isRestoring) refreshIcons();
         return Promise.resolve();
     }
@@ -1661,6 +1681,38 @@ L’architecture embarquée utilise STM32H743VIT6, un AFE BQ76952PFBR, l’équi
         }
 
         row.parentElement.appendChild(bar);
+    }
+
+    function renderResponseLinks(outer, metadata) {
+        if (!metadata) return;
+        var groups = [
+            { key: 'evidence', title: getClientLang() === 'fr' ? 'Preuves' : 'Evidence', className: 'chatbot-evidence-link' },
+            { key: 'actions', title: getClientLang() === 'fr' ? 'Prochaine étape' : 'Next step', className: 'chatbot-action-link' },
+            { key: 'relatedTopics', title: getClientLang() === 'fr' ? 'Explorer ensuite' : 'Explore next', className: 'chatbot-related-link' }
+        ];
+        groups.forEach(function (group) {
+            var items = Array.isArray(metadata[group.key]) ? metadata[group.key] : [];
+            if (!items.length) return;
+            var section = document.createElement('div');
+            section.className = 'chatbot-response-links mt-3 pt-2 border-t border-white/10';
+            var heading = document.createElement('div');
+            heading.className = 'text-[10px] uppercase tracking-[0.16em] text-slate-500 mb-1.5';
+            heading.textContent = group.title;
+            section.appendChild(heading);
+            var row = document.createElement('div');
+            row.className = 'flex flex-wrap gap-1.5';
+            items.forEach(function (item) {
+                if (!item || !item.label) return;
+                var link = document.createElement('a');
+                link.className = group.className + ' inline-flex items-center rounded-full border border-white/10 bg-white/5 px-2.5 py-1 text-[11px] text-cyan-200 hover:border-cyan-400/50 hover:bg-cyan-400/10 transition-colors';
+                link.textContent = item.label;
+                if (item.href) { link.href = item.href; link.target = item.href.indexOf('mailto:') === 0 ? '_self' : '_blank'; link.rel = 'noopener'; }
+                else { link.href = '#'; link.addEventListener('click', function (event) { event.preventDefault(); }); }
+                row.appendChild(link);
+            });
+            if (row.children.length) { section.appendChild(row); outer.appendChild(section); }
+        });
+        requestScrollToBottom(true);
     }
 
     function removeStaleRegenerateButtons() {
