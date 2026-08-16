@@ -55,9 +55,9 @@
                 evidenceTags: ['BMS', 'SMCV', 'PLC/HMI', 'ANSYS'],
                 suggestions: [
                     "Give me Rafi's recruiter snapshot",
-                    'Show me the strongest project evidence',
-                    "Which skills are backed by real projects?",
-                    'Download the CV or contact Rafi'
+                    'Show strongest project evidence',
+                    'Explore project-backed skills',
+                    'Download Rafi\'s CV'
                 ]
             },
             fr: {
@@ -65,9 +65,9 @@
                 evidenceTags: ['BMS', 'SMCV', 'PLC/IHM', 'ANSYS'],
                 suggestions: [
                     'Donnez-moi un aperçu recruteur de Rafi',
-                    'Montrez-moi les preuves de ses meilleurs projets',
-                    'Quelles compétences sont liées à des projets réels ?',
-                    'Télécharger le CV ou contacter Rafi'
+                    'Voir les preuves des projets clés',
+                    'Explorer les compétences prouvées',
+                    'Télécharger le CV de Rafi'
                 ]
             }
         },
@@ -156,24 +156,24 @@
         internship: {
             en: {
                 teaser: 'Reviewing this experience? I can connect the SMCV work to concrete skills and evidence.',
-                greeting: "I’m Rafi’s Portfolio Concierge. I can connect this SMCV work to recruiter-ready evidence and help you find the CV or contact details.",
+                greeting: 'Ask about the SMCV work, open the PLC/HMI proof, or get Rafi\'s CV.',
                 evidenceTags: ['SMCV', 'PLC/HMI', 'Inventor', 'ANSYS'],
                 suggestions: [
                     'Summarize this SMCV experience for a recruiter',
-                    'Show me the PLC/HMI evidence',
-                    'What did Rafi design and validate?',
-                    'Open the CV or contact Rafi'
+                    'Open the PLC/HMI evidence',
+                    'Review what Rafi designed and validated',
+                    'Download Rafi\'s CV'
                 ]
             },
             fr: {
                 teaser: 'Vous examinez cette expérience ? Je peux relier le travail chez SMCV à des compétences et preuves concrètes.',
-                greeting: 'Bonjour ! Je suis le concierge du portfolio de Rafi. Je peux relier cette expérience SMCV à des preuves concrètes et vous aider à trouver le CV ou les coordonnées.',
+                greeting: 'Posez vos questions sur l’expérience SMCV, consultez les preuves PLC/IHM ou obtenez le CV de Rafi.',
                 evidenceTags: ['SMCV', 'PLC/IHM', 'Inventor', 'ANSYS'],
                 suggestions: [
                     'Résumez cette expérience SMCV pour un recruteur',
-                    'Montrez-moi les preuves PLC/IHM',
-                    "Qu'a conçu et validé Rafi ?",
-                    'Ouvrir le CV ou contacter Rafi'
+                    'Ouvrir les preuves PLC/IHM',
+                    'Voir ce que Rafi a conçu et validé',
+                    'Télécharger le CV de Rafi'
                 ]
             }
         }
@@ -300,7 +300,7 @@ L’architecture embarquée utilise STM32H743VIT6, un AFE BQ76952PFBR, l’équi
             assistantName: "Rafi's Portfolio Concierge",
             dialogLabel: "Chat with Rafi's Portfolio Concierge",
             cvHref: 'https://nasrallahrafi.me/assets/pdf/RAFI_Nasrallah_CV_ENG.pdf',
-            greeting: "I’m Rafi’s Portfolio Concierge. I can connect Rafi’s strongest engineering work to project evidence and help you find the CV or contact details.",
+            greeting: "Ask me about Rafi’s experience, see the project proof, or get his CV.",
             online: 'Online',
             offline: 'Offline',
             apiUnavailable: 'API unavailable',
@@ -325,7 +325,7 @@ L’architecture embarquée utilise STM32H743VIT6, un AFE BQ76952PFBR, l’équi
             viewLinkedIn: 'View LinkedIn',
             exploreProject: 'Explore another project',
             offlineBanner: "You're offline — messages can't be sent right now.",
-            privacy: 'Private in this browser for 24h. No confidential information.',
+            privacy: 'Please don’t share confidential information.',
             mistakes: 'AI can make mistakes',
             unexpected: 'An unexpected error occurred. Please try again.',
             offlineError: 'You’re offline. Reconnect and try again.',
@@ -347,7 +347,7 @@ L’architecture embarquée utilise STM32H743VIT6, un AFE BQ76952PFBR, l’équi
             assistantName: 'Concierge du portfolio de Rafi',
             dialogLabel: 'Discussion avec le concierge du portfolio de Rafi',
             cvHref: 'https://nasrallahrafi.me/assets/pdf/RAFI_Nasrallah_CV_FR.pdf',
-            greeting: 'Bonjour ! Je suis le concierge du portfolio de Rafi. Je peux relier ses projets d’ingénierie à des preuves concrètes et vous aider à trouver le CV ou les coordonnées.',
+            greeting: 'Posez vos questions sur l’expérience de Rafi, consultez les preuves de ses projets ou obtenez son CV.',
             online: 'En ligne',
             offline: 'Hors ligne',
             apiUnavailable: 'API indisponible',
@@ -372,7 +372,7 @@ L’architecture embarquée utilise STM32H743VIT6, un AFE BQ76952PFBR, l’équi
             viewLinkedIn: 'Voir LinkedIn',
             exploreProject: 'Explorer un autre projet',
             offlineBanner: 'Vous êtes hors ligne — les messages ne peuvent pas être envoyés pour le moment.',
-            privacy: 'Privé dans ce navigateur pendant 24 h. Aucune donnée confidentielle.',
+            privacy: 'Ne partagez pas d’informations confidentielles.',
             mistakes: 'L’IA peut se tromper',
             unexpected: 'Une erreur inattendue s’est produite. Veuillez réessayer.',
             offlineError: 'Vous êtes hors ligne. Reconnectez-vous et réessayez.',
@@ -671,6 +671,31 @@ L’architecture embarquée utilise STM32H743VIT6, un AFE BQ76952PFBR, l’équi
                 padding: 0.65rem 0.7rem;
                 border-radius: 0.9rem;
                 line-height: 1.25;
+                border-color: rgba(255,255,255,0.18);
+                background: rgba(255,255,255,0.07);
+                color: rgb(226 232 240);
+            }
+            .chatbot-first-open-actions .suggestion-chip:hover {
+                border-color: rgba(var(--primary-rgb, 34, 211, 238), 0.58);
+                background: rgba(var(--primary-rgb, 34, 211, 238), 0.1);
+                color: rgb(207 250 254);
+            }
+            .chatbot-quick-links {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 0.5rem 0.8rem;
+                margin: 0.75rem 0 0 2.25rem;
+            }
+            .chatbot-quick-link {
+                color: rgba(203, 213, 225, 0.92);
+                font-size: 11px;
+                font-weight: 650;
+                text-decoration: underline;
+                text-decoration-color: rgba(var(--primary-rgb, 34, 211, 238), 0.55);
+                text-underline-offset: 3px;
+            }
+            .chatbot-quick-link:hover {
+                color: rgb(165 243 252);
             }
             .chatbot-first-open-actions .suggestion-chip--primary {
                 border-color: rgba(var(--primary-rgb, 34, 211, 238), 0.62);
@@ -885,7 +910,7 @@ L’architecture embarquée utilise STM32H743VIT6, un AFE BQ76952PFBR, l’équi
     function greetingBlockHTML() {
         const copy = getWidgetCopy();
         const tags = (copy.evidenceTags || []).map(function (tag) {
-            return '<span class="chatbot-context-tag">' + tag + '</span>';
+            return '<span class="chatbot-context-tag" role="listitem">' + tag + '</span>';
         }).join('');
         const chips = copy.suggestions.map(function (prompt) {
             const isPrimary = copy.pageKey === 'default'
@@ -898,8 +923,12 @@ L’architecture embarquée utilise STM32H743VIT6, un AFE BQ76952PFBR, l’équi
             + '<div class="flex items-start gap-3">' + avatarHTML()
             + '<div class="inline-block px-5 py-4 rounded-2xl rounded-tl-sm bg-black/50 border border-white/5 text-slate-300 chat-markdown shadow-sm">'
             + '<p class="leading-relaxed m-0">' + copy.greeting + '</p></div></div>'
-            + '<div class="chatbot-context-tags" aria-label="Evidence areas">' + tags + '</div>'
-            + '<div id="chatbot-suggestions" class="chatbot-first-open-actions grid grid-cols-2 gap-2 mt-3 pl-9">' + chips + '</div></div>';
+            + '<div class="chatbot-context-tags" role="list" aria-label="Evidence areas">' + tags + '</div>'
+            + '<div id="chatbot-suggestions" class="chatbot-first-open-actions grid grid-cols-2 gap-2 mt-3 pl-9">' + chips + '</div>'
+            + '<div class="chatbot-quick-links" aria-label="Direct actions">'
+            + '<a class="chatbot-quick-link" href="' + copy.cvHref + '" target="_blank" rel="noopener">' + copy.downloadCv + '</a>'
+            + '<a class="chatbot-quick-link" href="mailto:nasrollahrafi@gmail.com">' + copy.emailRafi + '</a>'
+            + '</div></div>';
     }
 
     function avatarHTML() {
@@ -1484,7 +1513,9 @@ L’architecture embarquée utilise STM32H743VIT6, un AFE BQ76952PFBR, l’équi
         try {
             const hasSessionVisited = sessionStorage.getItem('nr-session-visited-v1');
             sessionStorage.setItem('nr-session-visited-v1', 'true');
-            if (hasSessionVisited && history.length === 0) {
+            // Keep each page's recruiter context on a fresh visit. Only replace
+            // it with a return message when a saved conversation was restored.
+            if (hasSessionVisited && history.length > 0) {
                 const greetingPara = messages.querySelector('#chatbot-greeting p');
                 if (greetingPara) greetingPara.textContent = getWidgetCopy().welcomeBack;
             }
