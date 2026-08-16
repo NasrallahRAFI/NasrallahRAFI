@@ -34,6 +34,8 @@
     const CONFIG = {
         API_URL: 'https://api.nasrallahrafi.me/api/v1/chat',
         STORAGE_KEY: 'nr-chatbot-state-v2',
+        UNREAD_STORAGE_KEY: 'nr-chatbot-unread-v1',
+        MAX_UNREAD_COUNT: 99,
         STORAGE_TTL_MS: 24 * 60 * 60 * 1000, // conversations older than this start fresh
         MAX_MESSAGE_LENGTH: 2000,
         MAX_HISTORY_SENT: 20,       // trims the payload sent to the backend on long threads
@@ -53,7 +55,6 @@
         default: {
             en: {
                 teaser: "Need a quick recruiter brief? I can point you to Rafi's strongest work and evidence.",
-                evidenceTags: ['BMS', 'SMCV', 'PLC/HMI', 'ANSYS'],
                 suggestions: [
                     'Give me a quick overview',
                     "Walk me through Rafi's key projects",
@@ -63,7 +64,6 @@
             },
             fr: {
                 teaser: 'Besoin d’un aperçu rapide pour recruteur ? Je peux vous guider vers les projets et preuves les plus solides de Rafi.',
-                evidenceTags: ['BMS', 'SMCV', 'PLC/IHM', 'ANSYS'],
                 suggestions: [
                     'Donnez-moi un aperçu rapide',
                     'Présentez-moi les projets clés de Rafi',
@@ -75,7 +75,6 @@
         bms: {
             en: {
                 teaser: 'Curious about this BMS project? Ask me.',
-                evidenceTags: ['SOC', 'STM32', 'UKF', 'LTC3300-1'],
                 suggestions: [
                     'Give me a recruiter summary of this project',
                     'What did Rafi actually build?',
@@ -85,7 +84,6 @@
             },
             fr: {
                 teaser: 'Curieux de ce projet BMS ? Demandez-moi.',
-                evidenceTags: ['SOC', 'STM32', 'UKF', 'LTC3300-1'],
                 suggestions: [
                     'Donnez-moi un résumé recruteur de ce projet',
                     "Qu'a réellement construit Rafi ?",
@@ -158,7 +156,6 @@
             en: {
                 teaser: 'Reviewing this experience? I can connect the SMCV work to concrete skills and evidence.',
                 greeting: 'Ask about the SMCV work, open the PLC/HMI proof, or get Rafi\'s CV.',
-                evidenceTags: ['SMCV', 'PLC/HMI', 'Inventor', 'ANSYS'],
                 suggestions: [
                     'Summarize this SMCV experience for a recruiter',
                     'Open the PLC/HMI evidence',
@@ -169,7 +166,6 @@
             fr: {
                 teaser: 'Vous examinez cette expérience ? Je peux relier le travail chez SMCV à des compétences et preuves concrètes.',
                 greeting: 'Posez vos questions sur l’expérience SMCV, consultez les preuves PLC/IHM ou obtenez le CV de Rafi.',
-                evidenceTags: ['SMCV', 'PLC/IHM', 'Inventor', 'ANSYS'],
                 suggestions: [
                     'Résumez cette expérience SMCV pour un recruteur',
                     'Ouvrir les preuves PLC/IHM',
@@ -404,6 +400,7 @@ L’architecture embarquée utilise STM32H743VIT6, un AFE BQ76952PFBR, l’équi
     let hasInteracted = false;
     let manualCancel = false;
     let hasShownCtaCard = false;
+    let unreadCount = 0;
     let history = [];
     let currentController = null;
     let saveTimer = null;
@@ -512,6 +509,7 @@ L’architecture embarquée utilise STM32H743VIT6, un AFE BQ76952PFBR, l’équi
         setupVisualViewport();
         setupTeaser();
         restoreConversation();
+        loadUnreadCount();
         setupReturningVisitor();
         setOfflineState(!navigator.onLine);
         refreshIcons();
@@ -737,23 +735,6 @@ L’architecture embarquée utilise STM32H743VIT6, un AFE BQ76952PFBR, l’équi
                 background: rgba(var(--primary-rgb, 34, 211, 238), 0.2);
                 color: white;
             }
-            .chatbot-context-tags {
-                display: flex;
-                flex-wrap: wrap;
-                gap: 0.35rem;
-                margin: 0.15rem 0 0 2.25rem;
-            }
-            .chatbot-context-tag {
-                border: 1px solid rgba(var(--primary-rgb, 34, 211, 238), 0.28);
-                border-radius: 999px;
-                background: rgba(var(--primary-rgb, 34, 211, 238), 0.08);
-                color: rgba(165, 243, 252, 0.9);
-                padding: 0.2rem 0.48rem;
-                font-size: 10px;
-                font-weight: 650;
-                letter-spacing: 0.035em;
-                line-height: 1.2;
-            }
             .chatbot-cta-card [data-cta="email"],
             .chatbot-cta-card [data-cta="resume"] {
                 border-color: rgba(var(--primary-rgb, 34, 211, 238), 0.5);
@@ -855,14 +836,6 @@ L’architecture embarquée utilise STM32H743VIT6, un AFE BQ76952PFBR, l’équi
                     padding: 0.75rem 0.9rem;
                     font-size: 12.5px;
                 }
-                .chatbot-context-tags {
-                    gap: 0.25rem;
-                    margin-top: 0;
-                }
-                .chatbot-context-tag {
-                    padding: 0.16rem 0.38rem;
-                    font-size: 9px;
-                }
             }
         </style>
         <div id="chatbot-container" class="fixed bottom-6 right-6 z-[100] font-sans flex flex-col items-end gap-4 pointer-events-none">
@@ -941,9 +914,6 @@ L’architecture embarquée utilise STM32H743VIT6, un AFE BQ76952PFBR, l’équi
 
     function greetingBlockHTML() {
         const copy = getWidgetCopy();
-        const tags = (copy.evidenceTags || []).map(function (tag) {
-            return '<span class="chatbot-context-tag" role="listitem">' + tag + '</span>';
-        }).join('');
         const chips = copy.suggestions.map(function (prompt) {
             const isPrimary = copy.pageKey === 'default'
                 ? prompt === copy.suggestions[0]
@@ -955,7 +925,6 @@ L’architecture embarquée utilise STM32H743VIT6, un AFE BQ76952PFBR, l’équi
             + '<div class="flex items-start gap-3">' + avatarHTML()
             + '<div class="inline-block px-5 py-4 rounded-2xl rounded-tl-sm bg-black/50 border border-white/5 text-slate-300 chat-markdown shadow-sm">'
             + '<p class="leading-relaxed m-0">' + copy.greeting + '</p></div></div>'
-            + '<div class="chatbot-context-tags" role="list" aria-label="Evidence areas">' + tags + '</div>'
             + '<div id="chatbot-suggestions" class="chatbot-first-open-actions grid grid-cols-2 gap-2 mt-3 pl-9">' + chips + '</div>'
             + '<div class="chatbot-quick-links" aria-label="Direct actions">'
             + '<a class="chatbot-quick-link" data-cta="resume" href="' + copy.cvHref + '" target="_blank" rel="noopener">' + copy.downloadCv + '</a>'
@@ -1050,9 +1019,8 @@ L’architecture embarquée utilise STM32H743VIT6, un AFE BQ76952PFBR, l’équi
         const toggleLabel = document.getElementById('chatbot-toggle-label');
         if (toggleLabel) toggleLabel.textContent = isChatOpen ? copy.closeChat : copy.openChat;
 
-        if (badgeEl) badgeEl.classList.add('hidden');
-
         if (isChatOpen) {
+            clearUnreadMessages();
             if (closeAnimationTimeoutId !== null) {
                 clearTimeout(closeAnimationTimeoutId);
                 closeAnimationTimeoutId = null;
@@ -1129,6 +1097,7 @@ L’architecture embarquée utilise STM32H743VIT6, un AFE BQ76952PFBR, l’équi
             history.push({ role: 'assistant', content: localEvidenceReply });
             persistState();
             await renderAssistantBubble(localEvidenceReply, { animate: true, latest: true });
+            notifyUnreadMessage();
             checkAndTriggerCta();
             input.focus();
             return;
@@ -1174,6 +1143,7 @@ L’architecture embarquée utilise STM32H743VIT6, un AFE BQ76952PFBR, l’équi
                     msg = typeof err.error === 'object' ? (err.error.message || JSON.stringify(err.error)) : err.error;
                 }
                 renderAssistantBubble(msg, { isError: true, retryText: text });
+                notifyUnreadMessage();
                 history.pop();
                 persistState();
             } else {
@@ -1182,6 +1152,7 @@ L’architecture embarquée utilise STM32H743VIT6, un AFE BQ76952PFBR, l’équi
                     history.push({ role: 'assistant', content: data.reply });
                     persistState();
                     await renderAssistantBubble(data.reply, { animate: true, latest: true });
+                    notifyUnreadMessage();
                     checkAndTriggerCta();
                 } else {
                     throw new Error('Invalid response');
@@ -1192,9 +1163,11 @@ L’architecture embarquée utilise STM32H743VIT6, un AFE BQ76952PFBR, l’équi
             if (err.name === 'AbortError') {
                 const msg = manualCancel ? copy.cancelled : copy.timeout;
                 renderAssistantBubble(msg, { isError: true, retryText: text });
+                notifyUnreadMessage();
             } else {
                 console.error('Chat API Error:', err);
                 renderAssistantBubble(copy.networkError, { isError: true, retryText: text });
+                notifyUnreadMessage();
             }
             history.pop();
             persistState();
@@ -1876,6 +1849,56 @@ L’architecture embarquée utilise STM32H743VIT6, un AFE BQ76952PFBR, l’équi
 
         refreshIcons();
         scrollToBottom();
+    }
+
+    function loadUnreadCount() {
+        try {
+            const stored = Number.parseInt(localStorage.getItem(CONFIG.UNREAD_STORAGE_KEY) || '0', 10);
+            unreadCount = Number.isFinite(stored) ? Math.min(Math.max(stored, 0), CONFIG.MAX_UNREAD_COUNT) : 0;
+        } catch (e) {
+            unreadCount = 0;
+        }
+        updateUnreadBadge();
+    }
+
+    function saveUnreadCount() {
+        try {
+            if (unreadCount > 0) localStorage.setItem(CONFIG.UNREAD_STORAGE_KEY, String(unreadCount));
+            else localStorage.removeItem(CONFIG.UNREAD_STORAGE_KEY);
+        } catch (e) { /* storage unavailable — the in-memory badge still works */ }
+    }
+
+    function unreadLabel(count, copy) {
+        if (copy.lang === 'fr') return count + (count === 1 ? ' message non lu' : ' messages non lus');
+        return count + (count === 1 ? ' unread message' : ' unread messages');
+    }
+
+    function updateUnreadBadge() {
+        if (!badgeEl || !toggleBtn) return;
+        const copy = getWidgetCopy();
+        const toggleLabel = document.getElementById('chatbot-toggle-label');
+        const label = unreadCount > 0 ? copy.openChat + ' (' + unreadLabel(unreadCount, copy) + ')' : copy.openChat;
+badgeEl.textContent = String(unreadCount);
+        badgeEl.classList.toggle('hidden', unreadCount === 0 || isChatOpen);
+        toggleBtn.setAttribute('aria-label', label);
+        if (!isChatOpen && toggleLabel) toggleLabel.textContent = label;
+    }
+
+    function notifyUnreadMessage() {
+        if (isChatOpen) return;
+        unreadCount = Math.min(unreadCount + 1, CONFIG.MAX_UNREAD_COUNT);
+        saveUnreadCount();
+        updateUnreadBadge();
+    }
+
+    function clearUnreadMessages() {
+        if (unreadCount === 0) {
+            updateUnreadBadge();
+            return;
+        }
+        unreadCount = 0;
+        saveUnreadCount();
+        updateUnreadBadge();
     }
 
     function loadPersistedState() {
