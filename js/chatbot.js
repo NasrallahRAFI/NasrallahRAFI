@@ -179,38 +179,38 @@
     const LOCAL_EVIDENCE_REPLIES = {
         default: {
             en: {
-                summary: `Rafi is an electrical and industrial-systems engineer focused on embedded systems, industrial automation, battery-management systems, and applied modelling.
+                summary: `Rafi is a PhD Researcher at University Mohammed VI Polytechnic (UM6P) and a State Engineer in Electrical Engineering, specializing in next-generation Battery Management Systems (BMS), embedded systems, and IoT for electric mobility.
 
 **Recruiter snapshot**
-- Smart BMS: SOC estimation, STM32 hardware, active balancing, and HiL validation.
-- Industrial automation: Siemens PLC/HMI work at SMCV.
-- Mechanical and thermal engineering: Inventor and ANSYS-backed design studies.
-- Control and embedded systems: IoT supervision, advanced control, and power electronics.
+- Doctoral Research: Next-generation Smart BMS and IoT for electric mobility applications at UM6P.
+- Smart BMS: Hybrid SOC/SOH estimation (ECM 3RC + UKF + LSTM), STM32 hardware, active balancing, and HiL validation.
+- Industrial Automation: Siemens PLC/HMI engineering at SMCV and automated machinery.
+- Multi-Physics Modeling: LiFePO₄ electro-thermal modeling, ANSYS FEA, and GNC control algorithms.
 
-[Review professional experience](#experience) · [Explore key projects](#projects) · [Open skills and tools](#skills)`,
-                projects: `The strongest portfolio evidence is concentrated in three areas: Smart BMS for electric mobility, SMCV industrial automation, and thermal/mechanical engineering studies.
+[Review academic background](#academic-background) · [Review professional experience](#experience) · [Explore key projects](#projects) · [Open skills and tools](#skills)`,
+                projects: `The strongest portfolio evidence is concentrated in four areas: Doctoral BMS research at UM6P, Smart BMS for electric mobility at Emove Véhicules, SMCV industrial automation, and thermal/mechanical engineering studies.
 
 [Open Smart BMS](project-smart-bms.html) · [Open SMCV evidence](internship-smcv.html) · [Review key projects](#projects)`,
                 skills: `The portfolio backs Rafi’s skills with concrete work: STM32, UKF/LSTM SOC estimation, Altium, TIA Portal, Siemens S7-1200, Autodesk Inventor, ANSYS, MQTT/REST, and HiL/MiL validation.
 
-[Review the evidence in experience](#experience) · [Open skills and tools](#skills)`
+[Review academic background](#academic-background) · [Review the evidence in experience](#experience) · [Open skills and tools](#skills)`
             },
             fr: {
-                summary: `Rafi est un ingénieur en génie électrique et systèmes industriels, orienté systèmes embarqués, automatisation industrielle, gestion de batteries et modélisation appliquée.
+                summary: `Rafi est chercheur doctorant à l'Université Mohammed VI Polytechnique (UM6P) et ingénieur d'État en génie électrique, spécialisé dans les BMS de nouvelle génération, les systèmes embarqués et l'IoT pour la mobilité électrique.
 
 **Aperçu recruteur**
-- Smart BMS : estimation du SOC, matériel STM32, équilibrage actif et validation HiL.
-- Automatisation industrielle : travail PLC/IHM Siemens chez SMCV.
-- Ingénierie mécanique et thermique : études appuyées par Inventor et ANSYS.
-- Systèmes embarqués et commande : supervision IoT, commande avancée et électronique de puissance.
+- Recherche doctorale : BMS intelligent de nouvelle génération et IoT pour la mobilité électrique à l'UM6P.
+- Smart BMS : Estimation hybride du SOC/SOH (ECM 3RC + UKF + LSTM), matériel STM32, équilibrage actif et validation HiL.
+- Automatisation industrielle : Ingénierie PLC/IHM Siemens chez SMCV et machines automatisées.
+- Modélisation multi-physique : Modélisation électro-thermique LiFePO₄, éléments finis ANSYS et commande GNC.
 
-[Voir l’expérience professionnelle](#experience) · [Explorer les projets principaux](#projects) · [Ouvrir les compétences et outils](#skills)`,
-                projects: `Les preuves les plus solides du portfolio se concentrent sur trois axes : le Smart BMS pour la mobilité électrique, l’automatisation industrielle chez SMCV et les études thermiques et mécaniques.
+[Voir le parcours académique](#academic-background) · [Voir l’expérience professionnelle](#experience) · [Explorer les projets principaux](#projects) · [Ouvrir les compétences et outils](#skills)`,
+                projects: `Les preuves les plus solides du portfolio se concentrent sur quatre axes : la recherche doctorale BMS à l'UM6P, le Smart BMS pour la mobilité électrique chez Emove Véhicules, l’automatisation industrielle chez SMCV et les études thermiques et mécaniques.
 
 [Ouvrir le Smart BMS](project-smart-bms-fr.html) · [Ouvrir les preuves SMCV](internship-smcv-fr.html) · [Voir les projets principaux](#projects)`,
                 skills: `Le portfolio relie les compétences de Rafi à des réalisations concrètes : STM32, estimation du SOC par UKF/LSTM, Altium, TIA Portal, Siemens S7-1200, Autodesk Inventor, ANSYS, MQTT/REST et validation HiL/MiL.
 
-[Voir les preuves dans l’expérience](#experience) · [Ouvrir les compétences et outils](#skills)`
+[Voir le parcours académique](#academic-background) · [Voir les preuves dans l’expérience](#experience) · [Ouvrir les compétences et outils](#skills)`
             }
         },
         bms: {

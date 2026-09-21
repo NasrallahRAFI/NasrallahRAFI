@@ -1,24 +1,24 @@
 /* Global Styles */
 :root {
-    --primary-rgb: 212, 175, 55; /* Gold */
-    --secondary-rgb: 197, 160, 89; /* Darker Gold */
+    --primary-rgb: 146, 92, 8; /* Deep Burnished Gold */
+    --secondary-rgb: 125, 78, 6; /* Rich Dark Gold */
     --primary-color: rgb(var(--primary-rgb));
-    --accent-color: #D4AF37;
+    --accent-color: #925C08; /* High-contrast, eye-comfort antique gold */
     --accent-rgb: var(--primary-rgb);
-    --bg-color: #ffffff;
-    --bg-alt: #fbfbfb;
-    --bg-alt-2: #f5f5f4;
-    --border-color: #e5e7eb;
+    --bg-color: #fcfbf9;
+    --bg-alt: #f6f4ef;
+    --bg-alt-2: #edeae2;
+    --border-color: #e6e3da;
     --text-light: #57534e;
     --text-lighter: #78716c; /* Noble White */
     --text-color: #1c1917; /* Deep stone */
-    --text-muted: #78716c; /* Muted stone */
+    --text-muted: #6b635b; /* Muted stone with strong contrast */
 
-    --glass-bg: #ffffff;
-    --glass-border: rgba(0, 0, 0, 0.05);
-    --glass-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+    --glass-bg: rgba(255, 255, 255, 0.94);
+    --glass-border: rgba(0, 0, 0, 0.06);
+    --glass-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
     --card-bg: #ffffff;
-    --border-accent: rgba(212, 175, 55, 0.3);
+    --border-accent: rgba(146, 92, 8, 0.28);
     --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
     --ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
     --focus-ring: 0 0 0 3px rgba(var(--primary-rgb), 0.22), 0 0 0 1px rgba(var(--primary-rgb), 0.72);
@@ -121,18 +121,19 @@ html.theme-obsidian {
 
 /* 4. Glass Theme (Default White & Gold) */
 html.theme-glass {
-    --primary-rgb: 212, 175, 55;
-    --secondary-rgb: 197, 160, 89;
-    --accent-color: #D4AF37;
+    --primary-rgb: 146, 92, 8;
+    --secondary-rgb: 125, 78, 6;
+    --accent-color: #925C08;
     --accent-rgb: var(--primary-rgb);
-    --bg-color: #ffffff;
-    --bg-alt: #fbfbfb;
-    --bg-alt-2: #f5f5f4;
-    --border-color: #e5e7eb;
+    --bg-color: #fcfbf9;
+    --bg-alt: #f6f4ef;
+    --bg-alt-2: #edeae2;
+    --border-color: #e6e3da;
     --text-light: #57534e;
     --text-lighter: #78716c;
+    --text-muted: #6b635b;
     --card-bg: #ffffff;
-    --border-accent: rgba(212, 175, 55, 0.3);
+    --border-accent: rgba(146, 92, 8, 0.28);
 }
 
 body {
@@ -384,7 +385,7 @@ a[class*="rounded"]:active {
 .hero-button-primary {
     border: 1px solid var(--accent-color);
     background: var(--accent-color);
-    color: #041116;
+    color: #ffffff;
 }
 
 .hero-button-linkedin {
@@ -2649,3 +2650,56 @@ body.smcv-motion-enabled .smcv-motion-section.smcv-motion-visible > :nth-child(3
         font-size: clamp(2.7rem, 4.4vw, 3.55rem);
     }
 }
+
+/* Software Proficiencies Component */
+.software-proficiencies-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+}
+@media (min-width: 640px) {
+    .software-proficiencies-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+@media (min-width: 1024px) {
+    .software-proficiencies-grid {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+.software-card {
+    background-color: var(--card-bg);
+    border: 1px solid var(--border-accent);
+    border-radius: 0.85rem;
+    padding: 1.15rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: transform 180ms var(--ease-out), border-color 180ms ease, box-shadow 180ms ease;
+}
+.software-card:hover {
+    transform: translateY(-2px);
+    border-color: rgba(var(--primary-rgb), 0.5);
+    box-shadow: 0 8px 20px -6px rgba(var(--primary-rgb), 0.15);
+}
+.software-pill {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.32rem 0.7rem;
+    font-size: 0.78rem;
+    font-weight: 600;
+    line-height: 1.25;
+    border-radius: 0.5rem;
+    border: 1px solid rgba(var(--primary-rgb), 0.22);
+    background: rgba(var(--primary-rgb), 0.05);
+    color: var(--text-color);
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.03);
+    transition: border-color 140ms ease, background 140ms ease, color 140ms ease, transform 140ms var(--ease-out);
+}
+.software-pill:hover {
+    border-color: var(--accent-color);
+    background: rgba(var(--primary-rgb), 0.12);
+    color: var(--accent-color);
+    transform: translateY(-1px);
+}
+

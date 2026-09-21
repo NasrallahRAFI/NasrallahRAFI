@@ -5,7 +5,7 @@ const THEME_CONFIG = window.NR_THEME_CONFIG || {
         'theme-glass': { icon: 'sun', label: 'Classic' },
         'theme-deepsea': { icon: 'moon', label: 'Deep Sea' }
     },
-    colors: { 'theme-glass': '#D4AF37', 'theme-deepsea': '#2dd4bf' }
+    colors: { 'theme-glass': '#925C08', 'theme-deepsea': '#2dd4bf' }
 };
 const THEMES = THEME_CONFIG.names;
 const DEFAULT_THEME = THEME_CONFIG.defaultTheme;

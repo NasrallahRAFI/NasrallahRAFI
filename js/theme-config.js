@@ -9,7 +9,7 @@
             'theme-deepsea': Object.freeze({ icon: 'moon', label: 'Deep Sea' })
         }),
         colors: Object.freeze({
-            'theme-glass': '#D4AF37',
+            'theme-glass': '#925C08',
             'theme-deepsea': '#2dd4bf'
         })
     });

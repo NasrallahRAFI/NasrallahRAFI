@@ -782,73 +782,114 @@
 </div>
 </div>
 <!-- 2. Software Group -->
-<div class="skill-group reveal delay-100 p-8 md:p-10 rounded-xl border border-slate-700/50">
-<h3 class="text-2xl font-bold text-accent mb-4 flex items-center space-x-2"><i class="w-6 h-6" data-lucide="monitor"></i><span>Outils logiciels</span></h3>
-<div class="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-8">
-<!-- Inner Column 1 -->
-<div>
-<h4 class="font-semibold text-sm text-accent w-full mb-4">Automatisation &amp; contrôle</h4>
-<div class="flex flex-wrap gap-3 mb-4">
-<span class="bg-accent/15 text-accent text-sm font-medium px-4 py-2 rounded-full border border-accent/40">TIA
-                                        Portal</span>
-<span class="bg-accent/15 text-accent text-sm font-medium px-4 py-2 rounded-full border border-accent/40">PLCnext
-                                        Eng.</span>
-<span class="bg-accent/15 text-accent text-sm font-medium px-4 py-2 rounded-full border border-accent/40">Mach3
-                                        CNC</span>
-<span class="bg-accent/15 text-accent text-sm font-medium px-4 py-2 rounded-full border border-accent/40">MATLAB/Simulink</span>
-</div>
-<h4 class="font-semibold text-sm text-accent w-full mb-4">Mécanique &amp; simulation</h4>
-<div class="flex flex-wrap gap-3 mb-4">
-<span class="bg-accent/15 text-accent text-sm font-medium px-4 py-2 rounded-full border border-accent/40">ANSYS
-                                        Mech.</span>
-<span class="bg-accent/15 text-accent text-sm font-medium px-4 py-2 rounded-full border border-accent/40">Inventor</span>
-<span class="bg-accent/15 text-accent text-sm font-medium px-4 py-2 rounded-full border border-accent/40">Fusion
-                                        360</span>
-<span class="bg-accent/15 text-accent text-sm font-medium px-4 py-2 rounded-full border border-accent/40">AutoCAD</span>
-<span class="bg-accent/15 text-accent text-sm font-medium px-4 py-2 rounded-full border border-accent/40">ProNest</span>
-</div>
-</div>
-<!-- Inner Column 2 -->
-<div>
-<h4 class="font-semibold text-sm text-accent w-full mb-4">Électrique, puissance &amp; RF</h4>
-<div class="flex flex-wrap gap-3 mb-4">
-<span class="bg-accent/15 text-accent text-sm font-medium px-4 py-2 rounded-full border border-accent/40">Caneco
-                                        BT</span>
-<span class="bg-accent/15 text-accent text-sm font-medium px-4 py-2 rounded-full border border-accent/40">ETAP</span>
-<span class="bg-accent/15 text-accent text-sm font-medium px-4 py-2 rounded-full border border-accent/40">ANSYS
-                                        HFSS</span>
-<span class="bg-accent/15 text-accent text-sm font-medium px-4 py-2 rounded-full border border-accent/40">Proteus</span>
-</div>
-<h4 class="font-semibold text-sm text-accent w-full mb-4">Data science &amp; cloud</h4>
-<div class="flex flex-wrap gap-3">
-<span class="bg-accent/15 text-accent text-sm font-medium px-4 py-2 rounded-full border border-accent/40">PyTorch</span>
-<span class="bg-accent/15 text-accent text-sm font-medium px-4 py-2 rounded-full border border-accent/40">Google
-                                        Colab</span>
-</div>
-</div>
-</div>
-</div>
-<!-- 3. Languages Group -->
-<div class="skill-group reveal delay-200 p-8 md:p-10 rounded-xl border border-slate-700/50">
-<h3 class="text-2xl font-bold text-cyan-400 mb-4 flex items-center space-x-2"><i class="w-6 h-6" data-lucide="globe"></i><span>Langues</span></h3>
-<div class="space-y-2 sm:space-y-0 sm:flex sm:flex-row sm:justify-around text-slate-300 text-sm">
-<div class="flex items-center">
-<i class="w-4 h-4 text-cyan-500 mr-2 flex-shrink-0" data-lucide="check"></i>
-<a class="text-cyan-400 hover:text-cyan-300 hover:underline cursor-pointer flex items-center space-x-1" href="assets/pdf/EF_SET_Certificate_RAFI_Nasrallah.pdf" rel="noopener noreferrer" target="_blank">
-<span class="font-medium"><strong>Anglais :</strong> C2 - EF Standard English Test</span>
-<i class="w-4 h-4" data-lucide="file-text"></i>
-</a>
-</div>
-<div class="flex items-center">
-<i class="w-4 h-4 text-cyan-500 mr-2 flex-shrink-0" data-lucide="check"></i>
-<span class="font-medium"><strong>Français :</strong> B2 - niveau intermédiaire supérieur</span>
-</div>
-<div class="flex items-center">
-<i class="w-4 h-4 text-cyan-500 mr-2 flex-shrink-0" data-lucide="check"></i>
-<span class="font-medium"><strong>Arabe :</strong> langue maternelle</span>
-</div>
-</div>
-</div>
+                <div class="skill-group reveal delay-100 p-6 md:p-8 rounded-2xl border theme-border-main/50">
+                    <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 mb-6 pb-4 border-b theme-border-main/40">
+                        <h3 class="text-2xl font-bold text-accent flex items-center gap-2.5">
+                            <i class="w-6 h-6" data-lucide="monitor"></i>
+                            <span>Outils logiciels</span>
+                        </h3>
+                        <span class="text-xs uppercase tracking-wider font-bold text-accent/80 bg-accent/10 px-3 py-1 rounded-full border border-accent/20 w-fit">
+                            Stack Ingénierie &amp; Recherche
+                        </span>
+                    </div>
+                    <div class="software-proficiencies-grid">
+                        <!-- Category 1: Automation & Control -->
+                        <div class="software-card">
+                            <div>
+                                <div class="flex items-center gap-2 mb-3">
+                                    <div class="w-7 h-7 rounded-lg bg-accent/15 text-accent flex items-center justify-center flex-shrink-0">
+                                        <i class="w-4 h-4" data-lucide="cpu"></i>
+                                    </div>
+                                    <h4 class="font-bold text-sm theme-text-main leading-tight">Automatisation &amp; Contrôle</h4>
+                                </div>
+                                <div class="flex flex-wrap gap-2">
+                                    <span class="software-pill">TIA Portal</span>
+                                    <span class="software-pill">PLCnext</span>
+                                    <span class="software-pill">Mach3 CNC</span>
+                                    <span class="software-pill">Simulink</span>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Category 2: Electrical, Power & RF -->
+                        <div class="software-card">
+                            <div>
+                                <div class="flex items-center gap-2 mb-3">
+                                    <div class="w-7 h-7 rounded-lg bg-accent/15 text-accent flex items-center justify-center flex-shrink-0">
+                                        <i class="w-4 h-4" data-lucide="zap"></i>
+                                    </div>
+                                    <h4 class="font-bold text-sm theme-text-main leading-tight">Électrique &amp; RF</h4>
+                                </div>
+                                <div class="flex flex-wrap gap-2">
+                                    <span class="software-pill">Altium Designer</span>
+                                    <span class="software-pill">LTspice</span>
+                                    <span class="software-pill">OMICRON Test Universe</span>
+                                    <span class="software-pill">Caneco BT</span>
+                                    <span class="software-pill">ETAP</span>
+                                    <span class="software-pill">ANSYS HFSS</span>
+                                    <span class="software-pill">Proteus</span>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Category 3: Mechanical & Simulation -->
+                        <div class="software-card">
+                            <div>
+                                <div class="flex items-center gap-2 mb-3">
+                                    <div class="w-7 h-7 rounded-lg bg-accent/15 text-accent flex items-center justify-center flex-shrink-0">
+                                        <i class="w-4 h-4" data-lucide="box"></i>
+                                    </div>
+                                    <h4 class="font-bold text-sm theme-text-main leading-tight">Mécanique &amp; CAO</h4>
+                                </div>
+                                <div class="flex flex-wrap gap-2">
+                                    <span class="software-pill">ANSYS Mech</span>
+                                    <span class="software-pill">Inventor</span>
+                                    <span class="software-pill">Fusion 360</span>
+                                    <span class="software-pill">AutoCAD</span>
+                                    <span class="software-pill">ProNest</span>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Category 4: Data Science & Embedded AI -->
+                        <div class="software-card">
+                            <div>
+                                <div class="flex items-center gap-2 mb-3">
+                                    <div class="w-7 h-7 rounded-lg bg-accent/15 text-accent flex items-center justify-center flex-shrink-0">
+                                        <i class="w-4 h-4" data-lucide="database"></i>
+                                    </div>
+                                    <h4 class="font-bold text-sm theme-text-main leading-tight">Embarqué &amp; IA</h4>
+                                </div>
+                                <div class="flex flex-wrap gap-2">
+                                    <span class="software-pill">STM32CubeIDE</span>
+                                    <span class="software-pill">FreeRTOS</span>
+                                    <span class="software-pill">PyTorch</span>
+                                    <span class="software-pill">Google Colab</span>
+                                    <span class="software-pill">Jupyter</span>
+                                    <span class="software-pill">Git / GitHub</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- 3. Languages Group -->
+                <div class="skill-group reveal delay-200 p-8 md:p-10 rounded-xl border theme-border-main/50">
+                    <h3 class="text-2xl font-bold text-accent mb-4 flex items-center space-x-2"><i class="w-6 h-6" data-lucide="globe"></i><span>Langues</span></h3>
+                    <div class="space-y-2 sm:space-y-0 sm:flex sm:flex-row sm:justify-around theme-text-light text-sm">
+                        <div class="flex items-center">
+                            <i class="w-4 h-4 text-accent mr-2 flex-shrink-0" data-lucide="check"></i>
+                            <a class="text-accent hover:text-accent hover:underline cursor-pointer flex items-center space-x-1" href="assets/pdf/EF_SET_Certificate_RAFI_Nasrallah.pdf" rel="noopener noreferrer" target="_blank">
+                                <span class="font-medium"><strong>Anglais :</strong> C2 - EF Standard English Test</span>
+                                <i class="w-4 h-4" data-lucide="file-text"></i>
+                            </a>
+                        </div>
+                        <div class="flex items-center">
+                            <i class="w-4 h-4 text-accent mr-2 flex-shrink-0" data-lucide="check"></i>
+                            <span class="font-medium"><strong>Français :</strong> B2 - niveau intermédiaire supérieur</span>
+                        </div>
+                        <div class="flex items-center">
+                            <i class="w-4 h-4 text-accent mr-2 flex-shrink-0" data-lucide="check"></i>
+                            <span class="font-medium"><strong>Arabe :</strong> langue maternelle</span>
+                        </div>
+                    </div>
+                </div>
 </div>
 </section>
 <!-- Patents Section -->
