@@ -1,15 +1,15 @@
-# Rafi Nasrallah — Electrical Engineer Portfolio
+# Rafi Nasrallah — PhD Researcher & Electrical Engineer Portfolio
 
-> State Engineer in Electrical Engineering (ENSET Mohammedia, graduated 2026) specialising in Smart
-> Battery Management Systems, embedded hardware design, and industrial IoT. Patent holder
-> (OMPIC #65133). Based in Dar Bouazza, Morocco.
+> PhD Researcher at University Mohammed VI Polytechnic (UM6P) and State Engineer in Electrical
+> Engineering (ENSET Mohammedia, 2026) specialising in next-generation Smart Battery Management Systems,
+> embedded hardware design, and IoT for electric mobility. Patent holder (OMPIC #65133). Based in Dar Bouazza, Morocco.
 > Last updated: 2026-07-22
 
-Rafi Nasrallah is a Moroccan electrical engineer whose work centres on battery intelligence:
-physical modelling of LiFePO4 cells, hybrid SOC/SOH estimation pipelines (ECM 3RC + UKF +
-LSTM residual correction), STM32-based BMS hardware designed in Altium Designer, and
-real-time production dashboards over MQTT/REST. He holds a granted patent for an automated
-corrugated-web beam welding and assembly system (OMPIC #65133, November 2025).
+Rafi Nasrallah is a Moroccan electrical engineer and doctoral researcher at UM6P whose work centres on
+battery intelligence: physical modelling of LiFePO4 cells, hybrid SOC/SOH estimation pipelines (ECM 3RC + UKF +
+LSTM residual correction), STM32-based BMS hardware designed in Altium Designer, and real-time mobility
+telemetry over MQTT/REST. He is pursuing doctoral research on next-generation BMS for electric mobility at UM6P
+and holds a granted patent for an automated corrugated-web beam welding and assembly system (OMPIC #65133, November 2025).
 
 ## Projects
 
@@ -36,6 +36,7 @@ Sinumerik 840D, WinCC HMI, Caneco BT, ETAP, IEC 62133, ISO 26262, ISO 9001.
 
 ## Education
 
+- PhD in Embedded Systems & IoT for Mobility Applications — University Mohammed VI Polytechnic (UM6P) (2026 — Present)
 - Engineering Degree in Electrical Engineering and Industrial Systems Control — ENSET Mohammedia (2023–2026)
 - Licence in Physical Sciences (Electronics) — Faculté des Sciences Ben M'sik, Casablanca (2022–2023)
 - DEUG in Physical Sciences — Faculté des Sciences Ben M'sik, Casablanca (2020–2022)
@@ -58,10 +59,13 @@ Sinumerik 840D, WinCC HMI, Caneco BT, ETAP, IEC 62133, ISO 26262, ISO 9001.
 ## Frequently Asked
 
 **What does Rafi Nasrallah specialize in?**
-Battery Management System design and SOC/SOH estimation for LiFePO4 batteries, combining ECM 3RC physical modelling with UKF and LSTM residual correction, plus STM32-based embedded hardware.
+Next-generation Battery Management System (BMS) design, embedded systems, and IoT for electric mobility, combining advanced LiFePO4 battery modeling with hybrid SOC/SOH estimation (ECM 3RC + UKF + LSTM) and STM32 hardware architectures.
+
+**What is his current academic and professional status?**
+PhD Researcher at University Mohammed VI Polytechnic (UM6P) focusing on Embedded Systems and IoT for Mobility Applications (Next-Generation BMS for Electric Mobility), building on his State Engineering degree from ENSET Mohammedia.
 
 **What is OMPIC Patent 65133?**
 A granted Moroccan industrial patent (issued 28 Nov 2025) for an automated welding and assembly system for corrugated web beam profiles, with Rafi Nasrallah as lead inventor.
 
-**Is Rafi Nasrallah available for hire?**
-Yes, available for electrical/embedded engineering roles from June 2026 onward, based in Dar Bouazza, Morocco.
+**Is Rafi Nasrallah open to collaborations?**
+Yes, open to research collaborations, joint academic-industrial R&D projects, and technical partnerships in electric mobility and battery management systems.

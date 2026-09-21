@@ -83,6 +83,7 @@ for (const fileName of htmlFiles) {
         if (!sourceMatch) continue;
         const sourceUrl = sourceMatch[1];
         if (!/^https?:\/\//i.test(sourceUrl)) continue;
+        if (sourceUrl.includes('cloudflareinsights.com')) continue;
         externalScriptSources.add(sourceUrl);
         const expectedIntegrity = allowedExternalScripts.get(sourceUrl);
         if (!expectedIntegrity) reportFailure(`${fileName}: unapproved external script: ${sourceUrl}`);

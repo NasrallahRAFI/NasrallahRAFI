@@ -1140,7 +1140,7 @@ html {
 }
 
 .edu-description {
-    max-width: 60ch;
+    max-width: 100%;
     margin-bottom: 1rem;
     color: var(--text-muted);
     font-size: 0.92rem;
