@@ -156,22 +156,22 @@
         internship: {
             en: {
                 teaser: 'Reviewing this experience? I can connect the SMCV work to concrete skills and evidence.',
-                greeting: 'Ask about the SMCV work, open the PLC/HMI proof, or get Rafi\'s CV.',
+                greeting: 'Ask about the SMCV work or open the PLC/HMI proof.',
                 suggestions: [
                     'Summarize this SMCV experience for a recruiter',
                     'Open the PLC/HMI evidence',
                     'Review what Rafi designed and validated',
-                    'Download Rafi\'s CV'
+                    'How can I contact Rafi?'
                 ]
             },
             fr: {
                 teaser: 'Vous examinez cette expérience ? Je peux relier le travail chez SMCV à des compétences et preuves concrètes.',
-                greeting: 'Posez vos questions sur l’expérience SMCV, consultez les preuves PLC/IHM ou obtenez le CV de Rafi.',
+                greeting: 'Posez vos questions sur l’expérience SMCV ou consultez les preuves PLC/IHM.',
                 suggestions: [
                     'Résumez cette expérience SMCV pour un recruteur',
                     'Ouvrir les preuves PLC/IHM',
                     'Voir ce que Rafi a conçu et validé',
-                    'Télécharger le CV de Rafi'
+                    'Comment contacter Rafi ?'
                 ]
             }
         }
@@ -297,8 +297,7 @@ L’architecture embarquée utilise STM32H743VIT6, un AFE BQ76952PFBR, l’équi
             identity: 'JARVIS — Rafi’s AI Assistant',
             assistantName: "JARVIS — Rafi's AI Assistant",
             dialogLabel: "Chat with JARVIS — Rafi's AI Assistant",
-            cvHref: 'https://nasrallahrafi.me/assets/pdf/RAFI_Nasrallah_CV_ENG.pdf',
-            greeting: "Ask me about Rafi’s experience, see the project proof, or get his CV.",
+            greeting: "Ask me about Rafi’s experience, see the project proof, or contact him.",
             online: 'Online',
             offline: 'Offline',
             apiUnavailable: 'API unavailable',
@@ -319,7 +318,6 @@ L’architecture embarquée utilise STM32H743VIT6, un AFE BQ76952PFBR, l’équi
             tryAgain: 'Try again',
             cancel: 'Cancel',
             emailRafi: 'Email Rafi',
-            downloadCv: 'Download CV',
             viewLinkedIn: 'View LinkedIn',
             exploreProject: 'Explore another project',
             offlineBanner: "You're offline — messages can't be sent right now.",
@@ -337,8 +335,8 @@ L’architecture embarquée utilise STM32H743VIT6, un AFE BQ76952PFBR, l’équi
             timeout: 'The request timed out. Please try again.',
             networkError: 'Network error. Please check your connection and try again.',
             errorFallback: 'In the meantime, feel free to email Rafi directly at',
-            interested: 'Want to discuss Rafi’s fit?',
-            ctaDescription: 'Review the CV or contact Rafi directly about a potential collaboration.',
+            interested: 'Interested in Rafi’s work?',
+            ctaDescription: 'Explore the project evidence or contact Rafi about a potential collaboration.',
             welcomeBack: 'Welcome back — what would you like to review next in Rafi’s work?',
             assistantReplied: 'Assistant replied: '
         },
@@ -346,8 +344,7 @@ L’architecture embarquée utilise STM32H743VIT6, un AFE BQ76952PFBR, l’équi
             identity: 'JARVIS — Assistant IA de Rafi',
             assistantName: 'JARVIS — Assistant IA de Rafi',
             dialogLabel: 'Discussion avec JARVIS — Assistant IA de Rafi',
-            cvHref: 'https://nasrallahrafi.me/assets/pdf/RAFI_Nasrallah_CV_FR.pdf',
-            greeting: 'Posez vos questions sur l’expérience de Rafi, consultez les preuves de ses projets ou obtenez son CV.',
+            greeting: 'Posez vos questions sur l’expérience de Rafi, consultez les preuves de ses projets ou contactez-le.',
             online: 'En ligne',
             offline: 'Hors ligne',
             apiUnavailable: 'API indisponible',
@@ -368,7 +365,6 @@ L’architecture embarquée utilise STM32H743VIT6, un AFE BQ76952PFBR, l’équi
             tryAgain: 'Réessayer',
             cancel: 'Annuler',
             emailRafi: 'Envoyer un e-mail à Rafi',
-            downloadCv: 'Télécharger le CV',
             viewLinkedIn: 'Voir LinkedIn',
             exploreProject: 'Explorer un autre projet',
             offlineBanner: 'Vous êtes hors ligne — les messages ne peuvent pas être envoyés pour le moment.',
@@ -386,8 +382,8 @@ L’architecture embarquée utilise STM32H743VIT6, un AFE BQ76952PFBR, l’équi
             timeout: 'La requête a expiré. Veuillez réessayer.',
             networkError: 'Erreur réseau. Veuillez vérifier votre connexion et réessayer.',
             errorFallback: 'En attendant, vous pouvez écrire directement à Rafi à l’adresse',
-            interested: 'Envie de discuter de l’adéquation de Rafi ?',
-            ctaDescription: 'Consultez le CV ou contactez directement Rafi au sujet d’une éventuelle collaboration.',
+            interested: 'Le travail de Rafi vous intéresse ?',
+            ctaDescription: 'Explorez les preuves des projets ou contactez Rafi au sujet d’une éventuelle collaboration.',
             welcomeBack: 'Bon retour — que souhaitez-vous examiner ensuite dans le travail de Rafi ?',
             assistantReplied: 'Réponse de l’assistant : '
         }
@@ -687,7 +683,6 @@ L’architecture embarquée utilise STM32H743VIT6, un AFE BQ76952PFBR, l’équi
             @keyframes chatbotButtonSquish { 0% { transform: scale(1); } 45% { transform: scale(0.94); } 100% { transform: scale(1); } }
             @keyframes chatbotLauncherNudge { 0%, 88%, 100% { transform: translateY(0) rotate(0); } 92% { transform: translateY(-3px) rotate(-2deg); } 96% { transform: translateY(0) rotate(2deg); } }
             @keyframes chatbotPanelDrift { 0%, 100% { background-position: 0% 0%; } 50% { background-position: 100% 100%; } }
-            @keyframes chatbotCheckDraw { from { stroke-dashoffset: 16; } to { stroke-dashoffset: 0; } }
             @keyframes chatbotCursorBlink { 0%, 45% { opacity: 1; } 46%, 100% { opacity: 0; } }
             .chat-msg-animate { animation: slideUpFade 0.22s cubic-bezier(0.23, 1, 0.32, 1) forwards; }
             .bot-icon-animate { transition: opacity 150ms ease, color 150ms ease; }
@@ -745,10 +740,6 @@ L’architecture embarquée utilise STM32H743VIT6, un AFE BQ76952PFBR, l’équi
             .chatbot-quick-link:hover {
                 color: rgb(165 243 252);
             }
-            .chatbot-quick-link.is-downloaded,
-            .chatbot-cta-btn.is-downloaded { color: rgb(134 239 172); text-decoration-color: rgba(134, 239, 172, 0.7); }
-            .chatbot-download-check { width: 0.8rem; height: 0.8rem; margin-right: 0.25rem; vertical-align: -0.12rem; }
-            .chatbot-download-check path { fill: none; stroke: currentColor; stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round; stroke-dasharray: 16; stroke-dashoffset: 16; animation: chatbotCheckDraw 260ms cubic-bezier(0.23, 1, 0.32, 1) forwards; }
             .chatbot-first-open-actions .suggestion-chip--primary {
                 border-color: rgba(var(--primary-rgb, 34, 211, 238), 0.62);
                 background: rgba(var(--primary-rgb, 34, 211, 238), 0.13);
@@ -760,8 +751,7 @@ L’architecture embarquée utilise STM32H743VIT6, un AFE BQ76952PFBR, l’équi
                 background: rgba(var(--primary-rgb, 34, 211, 238), 0.2);
                 color: white;
             }
-            .chatbot-cta-card [data-cta="email"],
-            .chatbot-cta-card [data-cta="resume"] {
+            .chatbot-cta-card [data-cta="email"] {
                 border-color: rgba(var(--primary-rgb, 34, 211, 238), 0.5);
                 background: rgba(var(--primary-rgb, 34, 211, 238), 0.14);
                 color: rgb(165 243 252);
@@ -953,7 +943,6 @@ L’architecture embarquée utilise STM32H743VIT6, un AFE BQ76952PFBR, l’équi
             + '<p class="leading-relaxed m-0">' + copy.greeting + '</p></div></div>'
             + '<div id="chatbot-suggestions" class="chatbot-first-open-actions grid grid-cols-2 gap-2 mt-3 pl-9">' + chips + '</div>'
             + '<div class="chatbot-quick-links" aria-label="Direct actions">'
-            + '<a class="chatbot-quick-link" data-cta="resume" href="' + copy.cvHref + '" target="_blank" rel="noopener">' + copy.downloadCv + '</a>'
             + '<a class="chatbot-quick-link" href="mailto:nasrollahrafi@gmail.com">' + copy.emailRafi + '</a>'
             + '</div></div>';
     }
@@ -1023,10 +1012,7 @@ L’architecture embarquée utilise STM32H743VIT6, un AFE BQ76952PFBR, l’équi
             const ctaBtn = e.target.closest('.chatbot-cta-btn');
             if (ctaBtn) {
                 trackEvent('cta_click', { cta: ctaBtn.dataset.cta, href: ctaBtn.getAttribute('href') });
-                if (ctaBtn.dataset.cta === 'resume') markCvDownload(ctaBtn);
             }
-            const quickLink = e.target.closest('.chatbot-quick-link');
-            if (quickLink && quickLink.dataset.cta === 'resume') markCvDownload(quickLink);
         });
 
         window.addEventListener('online', function () { setOfflineState(false); });
@@ -1407,7 +1393,6 @@ L’architecture embarquée utilise STM32H743VIT6, un AFE BQ76952PFBR, l’équi
             + '<p class="text-[11.5px] text-slate-400 m-0 mb-3">' + copy.ctaDescription + '</p>'
             + '<div class="flex flex-wrap gap-2">'
             + '<a href="mailto:nasrollahrafi@gmail.com" class="chatbot-cta-btn inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-cyan-500/20 border border-cyan-500/40 text-[11px] font-semibold text-cyan-300 hover:bg-cyan-500/30 transition-colors" data-cta="email"><i data-lucide="mail" class="w-3.5 h-3.5"></i> ' + copy.emailRafi + '</a>'
-            + '<a href="' + copy.cvHref + '" target="_blank" rel="noopener" class="chatbot-cta-btn inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white/5 border border-white/10 text-[11px] font-medium text-slate-300 hover:bg-white/10 transition-colors" data-cta="resume"><i data-lucide="file-text" class="w-3.5 h-3.5"></i> ' + copy.downloadCv + '</a>'
             + '<a href="https://www.linkedin.com/in/nasrallah-rafi-4834862a2" target="_blank" rel="noopener" class="chatbot-cta-btn inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white/5 border border-white/10 text-[11px] font-medium text-slate-300 hover:bg-white/10 transition-colors" data-cta="linkedin"><i data-lucide="linkedin" class="w-3.5 h-3.5"></i> ' + copy.viewLinkedIn + '</a>'
             + '<a href="' + project.href + '" class="chatbot-cta-btn inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white/5 border border-white/10 text-[11px] font-medium text-slate-300 hover:bg-white/10 transition-colors" data-cta="project"><i data-lucide="arrow-up-right" class="w-3.5 h-3.5"></i> ' + copy.exploreProject + '</a>'
             + '</div>';
@@ -1529,17 +1514,6 @@ L’architecture embarquée utilise STM32H743VIT6, un AFE BQ76952PFBR, l’équi
         messages.appendChild(el);
         if (!isRestoring && !skipIconRefresh) refreshIcons();
         if (!isRestoring && shouldStick) requestScrollToBottom(true);
-    }
-
-    function markCvDownload(link) {
-        if (link.classList.contains('is-downloaded')) return;
-        link.classList.add('is-downloaded');
-        link.insertAdjacentHTML('afterbegin', '<svg class="chatbot-download-check" viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8.5 6.5 12 13 4.5"></path></svg>');
-        setTimeout(function () {
-            const check = link.querySelector('.chatbot-download-check');
-            if (check) check.remove();
-            link.classList.remove('is-downloaded');
-        }, 1800);
     }
 
     function renderMarkdownInto(el, text) {

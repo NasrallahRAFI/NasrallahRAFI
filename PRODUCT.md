@@ -21,6 +21,7 @@ The static frontend is hosted on GitHub Pages. Its chatbot sends requests to an 
 ## Capabilities and Constraints
 
 - The existing portfolio and chat widget are in use. Preserve their established layout and interaction while adding security controls.
+- The portfolio itself is Rafi's public professional record. Do not offer the outdated CV PDFs as downloads; visitors needing a formal CV can contact him directly.
 - Chat runs in English and French and is available on multiple portfolio pages.
 - Browser traffic must pass a Cloudflare Turnstile check before using the AI backend once that protection is enabled.
 

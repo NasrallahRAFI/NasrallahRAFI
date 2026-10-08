@@ -50,8 +50,6 @@ Sinumerik 840D, WinCC HMI, Caneco BT, ETAP, IEC 62133, ISO 26262, ISO 9001.
 
 ## Optional
 
-- [CV (English)](https://nasrallahrafi.me/assets/pdf/RAFI_Nasrallah_CV_ENG.pdf)
-- [CV (French)](https://nasrallahrafi.me/assets/pdf/RAFI_Nasrallah_CV_FR.pdf)
 - [Waveguide Analysis Report (PDF)](https://nasrallahrafi.me/assets/pdf/ANALYSIS_OF_TE10_MODE_PROPAGATION.pdf)
 - [Thermal Analysis Report (PDF)](https://nasrallahrafi.me/assets/pdf/Thermal_Analysis_Full_Report.pdf)
 - [Luenberger Rendezvous Paper (PDF)](https://nasrallahrafi.me/assets/pdf/Luenberger_Based_Rendezvous_Control_with_Angle_Only_Data.pdf)

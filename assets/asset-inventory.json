@@ -10,8 +10,8 @@
       "bytes": 29544666
     },
     ".pdf": {
-      "count": 11,
-      "bytes": 10236375
+      "count": 9,
+      "bytes": 10140857
     },
     ".jpg": {
       "count": 28,
@@ -482,19 +482,9 @@
       "bytes": 56865
     },
     {
-      "path": "assets/pdf/RAFI_Nasrallah_CV_FR.pdf",
-      "extension": ".pdf",
-      "bytes": 48642
-    },
-    {
       "path": "assets/img/Technical_drawing_of_autofeed_mechanism.jpg",
       "extension": ".jpg",
       "bytes": 47186
-    },
-    {
-      "path": "assets/pdf/RAFI_Nasrallah_CV_ENG.pdf",
-      "extension": ".pdf",
-      "bytes": 46876
     },
     {
       "path": "assets/img/Evolution_of_nut_temperature_based_on_the_heating_source.png",
