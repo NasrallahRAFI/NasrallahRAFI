@@ -33,6 +33,7 @@
     // ---------------------------------------------------------------
     const CONFIG = {
         API_URL: 'https://api.nasrallahrafi.me/api/v1/chat',
+        TURNSTILE_SITE_KEY: '0x4AAAAAAFRlIVapfFq-tt9j',
         STORAGE_KEY: 'nr-chatbot-state-v2',
         UNREAD_STORAGE_KEY: 'nr-chatbot-unread-v1',
         MAX_UNREAD_COUNT: 99,
@@ -397,6 +398,7 @@ L’architecture embarquée utilise STM32H743VIT6, un AFE BQ76952PFBR, l’équi
 
     let isChatOpen = false;
     let isWaiting = false;
+    let turnstileScriptPromise = null;
     let hasInteracted = false;
     let manualCancel = false;
     let hasShownCtaCard = false;
@@ -897,6 +899,7 @@ L’architecture embarquée utilise STM32H743VIT6, un AFE BQ76952PFBR, l’équi
                             <i data-lucide="square" class="w-3.5 h-3.5" aria-hidden="true"></i>
                         </button>
                     </form>
+                    <div id="chatbot-turnstile" class="mt-2 flex justify-center" aria-label="Human verification"></div>
                     <div class="text-[11px] leading-relaxed text-center text-slate-400 pt-3 mt-1 font-medium">${copy.mistakes} · ${copy.privacy}</div>
                 </div>
             </div>
@@ -1132,6 +1135,7 @@ L’architecture embarquée utilise STM32H743VIT6, un AFE BQ76952PFBR, l’équi
         const markdownReady = loadMarkdownLibs();
 
         try {
+            const turnstileToken = await getTurnstileToken(controller.signal);
             const res = await fetch(CONFIG.API_URL, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
@@ -1139,7 +1143,8 @@ L’architecture embarquée utilise STM32H743VIT6, un AFE BQ76952PFBR, l’équi
                     messages: history.slice(-CONFIG.MAX_HISTORY_SENT),
                     pageId: getChatbotPageId(),
                     contextUrl: window.location.href,
-                    lang: getClientLang()
+                    lang: getClientLang(),
+                    'cf-turnstile-response': turnstileToken
                 }),
                 signal: controller.signal
             });
@@ -1196,6 +1201,68 @@ L’architecture embarquée utilise STM32H743VIT6, un AFE BQ76952PFBR, l’équi
             setBusyUI(false);
             input.focus();
         }
+    }
+
+    function loadTurnstileScript() {
+        if (window.turnstile) return Promise.resolve(window.turnstile);
+        if (turnstileScriptPromise) return turnstileScriptPromise;
+        turnstileScriptPromise = new Promise(function (resolve, reject) {
+            const script = document.createElement('script');
+            const timeout = setTimeout(function () { reject(new Error('Turnstile could not load')); }, 10000);
+            script.src = 'https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit';
+            script.async = true;
+            script.onload = function () {
+                clearTimeout(timeout);
+                if (window.turnstile) resolve(window.turnstile);
+                else reject(new Error('Turnstile is unavailable'));
+            };
+            script.onerror = function () {
+                clearTimeout(timeout);
+                reject(new Error('Turnstile could not load'));
+            };
+            document.head.appendChild(script);
+        }).catch(function (error) {
+            turnstileScriptPromise = null;
+            throw error;
+        });
+        return turnstileScriptPromise;
+    }
+
+    async function getTurnstileToken(signal) {
+        if (!CONFIG.TURNSTILE_SITE_KEY) throw new Error('Turnstile sitekey is missing');
+        const turnstile = await loadTurnstileScript();
+        if (signal.aborted) throw new DOMException('Cancelled', 'AbortError');
+        const container = document.getElementById('chatbot-turnstile');
+        if (!container) throw new Error('Turnstile container is missing');
+
+        return new Promise(function (resolve, reject) {
+            let widgetId;
+            let settled = false;
+            function finish(error, token) {
+                if (settled) return;
+                settled = true;
+                signal.removeEventListener('abort', onAbort);
+                if (widgetId !== undefined) turnstile.remove(widgetId);
+                if (error) reject(error);
+                else resolve(token);
+            }
+            function onAbort() { finish(new DOMException('Cancelled', 'AbortError')); }
+            signal.addEventListener('abort', onAbort, { once: true });
+            try {
+                widgetId = turnstile.render(container, {
+                    sitekey: CONFIG.TURNSTILE_SITE_KEY,
+                    action: 'portfolio_chat',
+                    execution: 'execute',
+                    appearance: 'interaction-only',
+                    theme: 'dark',
+                    callback: function (token) { finish(null, token); },
+                    'error-callback': function () { finish(new Error('Turnstile verification failed')); }
+                });
+                turnstile.execute(widgetId);
+            } catch (error) {
+                finish(error);
+            }
+        });
     }
 
     function trapFocus(e) {
