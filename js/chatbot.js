@@ -629,6 +629,8 @@ L’architecture embarquée utilise STM32H743VIT6, un AFE BQ76952PFBR, l’équi
             /* Error state (red) */
             .bg-red-950\\/40 { background-color: rgba(69,10,10,0.4); }
             .border-red-500\\/30 { border-color: rgba(239,68,68,0.3); }
+            .text-red-100 { color: rgb(254,226,226); }
+            .text-red-200 { color: rgb(254,202,202); }
             .text-red-300 { color: rgb(252,165,165); }
             .text-red-400 { color: rgb(248,113,113); }
             .hover\\:text-red-200:hover { color: rgb(254,202,202); }
