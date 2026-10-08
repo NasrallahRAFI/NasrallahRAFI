@@ -328,10 +328,12 @@ L’architecture embarquée utilise STM32H743VIT6, un AFE BQ76952PFBR, l’équi
             unexpected: 'An unexpected error occurred. Please try again.',
             offlineError: 'You’re offline. Reconnect and try again.',
             cancelled: 'Message cancelled.',
-            dailyLimit: "I've reached my daily limits.",
+            dailyLimit: 'The daily chat limit has been reached. Please try again tomorrow.',
             rateLimit: "You're sending messages too fast.",
             tooManyRequests: 'Too many requests. Please try again later.',
             providerOverloaded: 'The AI provider is currently overloaded.',
+            chatBusy: 'Chat is busy right now. Please try again shortly.',
+            verificationError: 'Human verification could not finish. Please try again.',
             timeout: 'The request timed out. Please try again.',
             networkError: 'Network error. Please check your connection and try again.',
             errorFallback: 'In the meantime, feel free to email Rafi directly at',
@@ -375,10 +377,12 @@ L’architecture embarquée utilise STM32H743VIT6, un AFE BQ76952PFBR, l’équi
             unexpected: 'Une erreur inattendue s’est produite. Veuillez réessayer.',
             offlineError: 'Vous êtes hors ligne. Reconnectez-vous et réessayez.',
             cancelled: 'Message annulé.',
-            dailyLimit: "J'ai atteint mes limites quotidiennes.",
+            dailyLimit: 'La limite quotidienne du chat est atteinte. Veuillez réessayer demain.',
             rateLimit: 'Vous envoyez des messages trop rapidement.',
             tooManyRequests: 'Trop de requêtes. Veuillez réessayer plus tard.',
             providerOverloaded: 'Le fournisseur d’IA est actuellement surchargé.',
+            chatBusy: 'Le chat est occupé. Veuillez réessayer dans quelques instants.',
+            verificationError: 'La vérification humaine n’a pas pu se terminer. Veuillez réessayer.',
             timeout: 'La requête a expiré. Veuillez réessayer.',
             networkError: 'Erreur réseau. Veuillez vérifier votre connexion et réessayer.',
             errorFallback: 'En attendant, vous pouvez écrire directement à Rafi à l’adresse',
@@ -899,7 +903,7 @@ L’architecture embarquée utilise STM32H743VIT6, un AFE BQ76952PFBR, l’équi
                             <i data-lucide="square" class="w-3.5 h-3.5" aria-hidden="true"></i>
                         </button>
                     </form>
-                    <div id="chatbot-turnstile" class="mt-2 flex justify-center" aria-label="Human verification"></div>
+                    <div id="chatbot-turnstile" class="mt-2 flex justify-center" role="group" aria-label="Human verification"></div>
                     <div class="text-[11px] leading-relaxed text-center text-slate-400 pt-3 mt-1 font-medium">${copy.mistakes} · ${copy.privacy}</div>
                 </div>
             </div>
@@ -1133,9 +1137,12 @@ L’architecture embarquée utilise STM32H743VIT6, un AFE BQ76952PFBR, l’équi
         currentController = controller;
         const timeoutId = setTimeout(function () { controller.abort(); }, CONFIG.REQUEST_TIMEOUT_MS);
         const markdownReady = loadMarkdownLibs();
+        let awaitingVerification = false;
 
         try {
+            awaitingVerification = true;
             const turnstileToken = await getTurnstileToken(controller.signal);
+            awaitingVerification = false;
             const res = await fetch(CONFIG.API_URL, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
@@ -1155,11 +1162,16 @@ L’architecture embarquée utilise STM32H743VIT6, un AFE BQ76952PFBR, l’équi
 
             if (!res.ok) {
                 const err = await res.json().catch(function () { return {}; });
+                const code = err.error && typeof err.error === 'object' ? err.error.code : err.code;
                 let msg = copy.unexpected;
                 if (res.status === 429) {
-                    if (err.code === 'BUDGET_EXCEEDED') msg = copy.dailyLimit;
-                    else if (err.code === 'RATE_LIMIT_EXCEEDED') msg = copy.rateLimit;
+                    if (code === 'BUDGET_EXCEEDED') msg = copy.dailyLimit;
+                    else if (code === 'RATE_LIMIT_EXCEEDED') msg = copy.rateLimit;
                     else msg = copy.tooManyRequests;
+                } else if (code && code.startsWith('CAPTCHA_')) {
+                    msg = copy.verificationError;
+                } else if (code === 'CHAT_BUSY') {
+                    msg = copy.chatBusy;
                 } else if (res.status === 503) {
                     msg = copy.providerOverloaded;
                 } else if (err.error) {
@@ -1184,8 +1196,11 @@ L’architecture embarquée utilise STM32H743VIT6, un AFE BQ76952PFBR, l’équi
         } catch (err) {
             hideTyping();
             if (err.name === 'AbortError') {
-                const msg = manualCancel ? copy.cancelled : copy.timeout;
+                const msg = manualCancel ? copy.cancelled : awaitingVerification ? copy.verificationError : copy.timeout;
                 renderAssistantBubble(msg, { isError: true, retryText: text });
+                notifyUnreadMessage();
+            } else if (awaitingVerification) {
+                renderAssistantBubble(copy.verificationError, { isError: true, retryText: text });
                 notifyUnreadMessage();
             } else {
                 console.error('Chat API Error:', err);
