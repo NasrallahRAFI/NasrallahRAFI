@@ -3,7 +3,7 @@
 > PhD Researcher at University Mohammed VI Polytechnic (UM6P) and State Engineer in Electrical
 > Engineering (ENSET Mohammedia, 2026) specialising in next-generation Smart Battery Management Systems,
 > embedded hardware design, and IoT for electric mobility. Patent holder (OMPIC #65133). Based in Dar Bouazza, Morocco.
-> Last updated: 2026-07-22
+> Last updated: 2026-10-09
 
 Rafi Nasrallah is a Moroccan electrical engineer and doctoral researcher at UM6P whose work centres on
 battery intelligence: physical modelling of LiFePO4 cells, hybrid SOC/SOH estimation pipelines (ECM 3RC + UKF +
