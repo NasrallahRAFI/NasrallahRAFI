@@ -5,8 +5,8 @@
         names: Object.freeze(['theme-glass', 'theme-deepsea']),
         defaultTheme: 'theme-glass',
         metadata: Object.freeze({
-            'theme-glass': Object.freeze({ icon: 'sun', label: 'Classic' }),
-            'theme-deepsea': Object.freeze({ icon: 'moon', label: 'Deep Sea' })
+            'theme-glass': Object.freeze({ icon: 'sun', label: 'Classic', labelFr: 'Classique' }),
+            'theme-deepsea': Object.freeze({ icon: 'moon', label: 'Deep Sea', labelFr: 'Mer profonde' })
         }),
         colors: Object.freeze({
             'theme-glass': '#925C08',

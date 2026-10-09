@@ -2703,3 +2703,27 @@ body.smcv-motion-enabled .smcv-motion-section.smcv-motion-visible > :nth-child(3
     transform: translateY(-1px);
 }
 
+
+
+/* Keep longer French headings fully readable on narrow screens. */
+@media (max-width: 520px) {
+    html[lang="fr"] .theme-toggle-name {
+        max-width: none;
+    }
+
+    html[lang="fr"] .hero-name {
+        font-size: clamp(2.25rem, 10.5vw, 2.9rem);
+    }
+
+    html[lang="fr"] .content-section > h1 {
+        max-width: 100%;
+        font-size: clamp(1.55rem, 7.2vw, 2rem);
+        line-height: 1.18;
+        overflow-wrap: anywhere;
+    }
+}
+
+html[lang="fr"] header .theme-toggle-button,
+html[lang="fr"] header nav a {
+    color: var(--text-muted);
+}

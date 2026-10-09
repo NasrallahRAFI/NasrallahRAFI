@@ -84,13 +84,20 @@ function updateThemeIcon(theme) {
     const buttonEl = document.getElementById('theme-toggle-button');
     const themeMeta = THEME_META[theme] || THEME_META[DEFAULT_THEME];
 
+    const isFrench = document.documentElement.lang.toLowerCase().startsWith('fr');
+    const themeLabel = isFrench ? (themeMeta.labelFr || themeMeta.label) : themeMeta.label;
+
     if (labelEl) {
-        labelEl.textContent = themeMeta.label;
+        labelEl.textContent = themeLabel;
     }
 
     if (buttonEl) {
-        buttonEl.setAttribute('aria-label', `Change theme. Current theme: ${themeMeta.label}`);
-        buttonEl.setAttribute('title', `Change theme. Current: ${themeMeta.label}`);
+        buttonEl.setAttribute('aria-label', isFrench
+            ? `Changer de thème. Thème actuel : ${themeLabel}`
+            : `Change theme. Current theme: ${themeLabel}`);
+        buttonEl.setAttribute('title', isFrench
+            ? `Changer de thème. Actuellement : ${themeLabel}`
+            : `Change theme. Current: ${themeLabel}`);
     }
 
     if (iconEl && window.lucide) {

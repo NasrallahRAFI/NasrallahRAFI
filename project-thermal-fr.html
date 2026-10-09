@@ -2,30 +2,30 @@
 
 <html lang="fr">
 <head>
-<script src="js/theme-config.js"></script>
+<script src="js/theme-config.js?v=7"></script>
 <script src="js/theme-init.js"></script>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Analyse Thermique Transitoire : LCM vs FEA (ANSYS) | Rafi Nasrallah</title>
-<meta content="Projet d'analyse thermique transitoire comparant la modélisation à paramètres localisés et la simulation FEA sous ANSYS pour l'optimisation du processus d'insertion d'écrous à chaud." name="description"/>
-<meta content="Rafi Nasrallah, thermal analysis, FEA, ANSYS, Fusion 360, lumped capacitance model, transient heat transfer, nut insertion, polycarbonate, engineering simulation" name="keywords"/>
-<link href="https://nasrallahrafi.me/project-thermal.html" rel="canonical"/>
+<title>Analyse thermique transitoire pour l’optimisation du procédé : modèle à capacité concentrée et simulation par éléments finis | Rafi Nasrallah</title>
+<meta content="Étude thermique transitoire comparant le modèle à capacité concentrée (LCM) à une simulation par éléments finis sous ANSYS afin de valider le temps de chauffe nécessaire à l’insertion automatisée d’écrous en laiton dans le polycarbonate." name="description"/>
+<meta content="Rafi Nasrallah, analyse thermique, éléments finis, ANSYS, Fusion 360, modèle à capacité concentrée, transfert thermique transitoire, insertion d’écrous, polycarbonate, simulation en ingénierie" name="keywords"/>
+<link rel="canonical" href="https://nasrallahrafi.me/project-thermal-fr.html">
 <link href="https://nasrallahrafi.me/project-thermal.html" hreflang="en" rel="alternate"/>
 <link href="https://nasrallahrafi.me/project-thermal-fr.html" hreflang="fr" rel="alternate"/>
 <link href="https://nasrallahrafi.me/project-thermal.html" hreflang="x-default" rel="alternate"/>
 
 <meta content="website" property="og:type"/>
-<meta content="Rafi Nasrallah Portfolio" property="og:site_name"/>
-<meta content="Analyse Thermique Transitoire : LCM vs FEA (ANSYS) | Rafi Nasrallah" property="og:title"/>
-<meta content="Projet d'analyse thermique transitoire comparant la modélisation à paramètres localisés et la simulation FEA sous ANSYS pour l'optimisation du processus d'insertion d'écrous à chaud." property="og:description"/>
+<meta content="Portfolio de Rafi Nasrallah" property="og:site_name"/>
+<meta content="Analyse thermique transitoire : comparaison du modèle LCM et de la simulation par éléments finis sous ANSYS | Rafi Nasrallah" property="og:title"/>
+<meta content="Étude thermique transitoire comparant le modèle à capacité concentrée (LCM) à une simulation par éléments finis sous ANSYS afin de valider le temps de chauffe nécessaire à l’insertion automatisée d’écrous en laiton dans le polycarbonate. Elle comprend l’analyse du maillage, des flux thermiques, de la sensibilité et du refroidissement transitoire." property="og:description"/>
 <meta content="https://nasrallahrafi.me/assets/img/Profile_picture.png" property="og:image"/>
 <meta property="og:image:width" content="1254"/>
 <meta property="og:image:height" content="1254"/>
-<meta content="https://nasrallahrafi.me/project-thermal.html" property="og:url"/>
+<meta content="https://nasrallahrafi.me/project-thermal-fr.html" property="og:url"/>
 <meta content="fr_FR" property="og:locale"/>
 <meta content="summary_large_image" name="twitter:card"/>
-<meta content="Analyse Thermique Transitoire : LCM vs FEA (ANSYS) | Rafi Nasrallah" name="twitter:title"/>
-<meta content="Projet d'analyse thermique transitoire comparant la modélisation à paramètres localisés et la simulation FEA sous ANSYS pour l'optimisation du processus d'insertion d'écrous à chaud." name="twitter:description"/>
+<meta content="Analyse thermique transitoire : comparaison du modèle LCM et de la simulation par éléments finis sous ANSYS | Rafi Nasrallah" name="twitter:title"/>
+<meta content="Étude thermique transitoire comparant le modèle à capacité concentrée (LCM) à une simulation par éléments finis sous ANSYS afin de valider le temps de chauffe nécessaire à l’insertion automatisée d’écrous en laiton dans le polycarbonate. Elle comprend l’analyse du maillage, des flux thermiques, de la sensibilité et du refroidissement transitoire." name="twitter:description"/>
 <meta content="https://nasrallahrafi.me/assets/img/Profile_picture.png" name="twitter:image"/>
 <meta content="@RafiNasrallah" name="twitter:creator"/>
 <meta content="@RafiNasrallah" name="twitter:site"/>
@@ -39,26 +39,26 @@
     {
       "@type": "BreadcrumbList",
       "itemListElement": [
-        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://nasrallahrafi.me/" },
-        { "@type": "ListItem", "position": 2, "name": "Projects", "item": "https://nasrallahrafi.me/#projects" },
-        { "@type": "ListItem", "position": 3, "name": "Transient Thermal Analysis — FEA vs LCM", "item": "https://nasrallahrafi.me/project-thermal.html" }
+        { "@type": "ListItem", "position": 1, "name": "Accueil", "item": "https://nasrallahrafi.me/" },
+        { "@type": "ListItem", "position": 2, "name": "Projets", "item": "https://nasrallahrafi.me/#projects" },
+        { "@type": "ListItem", "position": 3, "name": "Analyse thermique transitoire — éléments finis et modèle LCM", "item": "https://nasrallahrafi.me/project-thermal-fr.html" }
       ]
     },
     {
       "@type": "TechArticle",
-      "@id": "https://nasrallahrafi.me/project-thermal.html#article",
-      "headline": "Transient Thermal Analysis of Hot-Nut Insertion in Polycarbonate — FEA vs Lumped Capacitance Model",
-      "description": "Comparative engineering study using Lumped Capacitance Modelling (LCM) and ANSYS FEA (Fusion 360) to validate the heating cycle time for automated hot brass nut insertion into polycarbonate. Includes mesh refinement analysis, heat flux mapping, sensitivity analysis, and transient cooling curves.",
-      "url": "https://nasrallahrafi.me/project-thermal.html",
+      "@id": "https://nasrallahrafi.me/project-thermal-fr.html#article",
+      "headline": "Analyse thermique transitoire de l’insertion à chaud d’écrous dans le polycarbonate — éléments finis et modèle à capacité concentrée",
+      "description": "Étude d’ingénierie comparant le modèle à capacité concentrée (LCM) à une simulation par éléments finis sous ANSYS afin de valider le temps de chauffe nécessaire à l’insertion automatisée d’écrous en laiton dans le polycarbonate. Elle comprend l’analyse du maillage, des flux thermiques, de la sensibilité et du refroidissement transitoire.",
+      "url": "https://nasrallahrafi.me/project-thermal-fr.html",
       "author": { "@id": "https://nasrallahrafi.me/#rafi-nasrallah" },
       "datePublished": "2025-06-01",
-      "inLanguage": "en",
-      "keywords": ["ANSYS thermal simulation", "FEA", "lumped capacitance model", "transient thermal analysis", "heat flux", "polycarbonate", "brass insert nut", "Fusion 360"],
+      "inLanguage": "fr",
+      "keywords": ["simulation thermique ANSYS", "éléments finis", "modèle à capacité concentrée", "analyse thermique transitoire", "flux thermique", "polycarbonate", "écrou en laiton", "Fusion 360"],
       "about": [
-        { "@type": "Thing", "name": "Finite Element Analysis" },
-        { "@type": "Thing", "name": "Lumped Capacitance Model" },
-        { "@type": "Thing", "name": "Transient Heat Transfer" },
-        { "@type": "Thing", "name": "Industrial Process Validation" }
+        { "@type": "Thing", "name": "Analyse par éléments finis" },
+        { "@type": "Thing", "name": "Modèle à capacité concentrée" },
+        { "@type": "Thing", "name": "Transfert thermique transitoire" },
+        { "@type": "Thing", "name": "Validation de processus industriel" }
       ],
       "proficiencyLevel": "Expert",
       "image": "https://nasrallahrafi.me/assets/img/Final_Temperature_Distribution_Nut_Stack.jpg",
@@ -74,20 +74,20 @@
 <link href="css/tailwind.min.css" rel="stylesheet"/>
 <script crossorigin="anonymous" defer integrity="sha384-vEpkK5oidsrH6UhRc6tAPlgJZ/qXFwumFY+Kx8vBSeZ7NBag809YZCSmxFYGe/pt" src="https://unpkg.com/lucide@1.20.0/dist/umd/lucide.min.js"></script>
 <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&amp;family=JetBrains+Mono:wght@500;600&amp;display=swap" rel="stylesheet"/>
-<link href="css/style.min.css?v=6" rel="stylesheet"/>
-<script src="js/theme.js?v=6" defer></script>
+<link href="css/style.min.css?v=9" rel="stylesheet"/>
+<script src="js/theme.js?v=7" defer></script>
 <script src="js/site-shell.js" defer></script>
 </head>
 <body class="antialiased selection:bg-cyan-500 selection:theme-text-main">
 <!-- Header -->
 <header class="sticky top-0 z-50 glass transition-colors duration-300">
 <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center gap-4">
-<a class="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 to-cyan-200 hover:text-cyan-300 transition-colors truncate" href="index-fr.html#hero">Rafi Nasrallah</a>
+<a class="text-2xl font-bold text-accent hover:text-cyan-300 transition-colors truncate" href="index-fr.html#hero">Rafi Nasrallah</a>
 <nav class="hidden lg:flex space-x-6"><a class="theme-text-light hover:text-accent font-medium transition-colors" href="index-fr.html#about">Profil</a> <a class="theme-text-light hover:text-accent font-medium transition-colors" href="index-fr.html#experience">Parcours</a> <a class="theme-text-light hover:text-accent font-medium transition-colors" href="index-fr.html#projects">Projets</a> <a class="theme-text-light hover:text-accent font-medium transition-colors" href="index-fr.html#skills">Comp&eacute;tences</a> <a class="theme-text-light hover:text-accent font-medium transition-colors" href="index-fr.html#patents">Brevet</a> <a class="theme-text-light hover:text-accent font-medium transition-colors" href="index-fr.html#dev-focus">D&eacute;veloppement</a></nav>
 <div class="flex items-center space-x-2 sm:space-x-4">
-<button aria-label="Th&egrave;me" class="theme-toggle-button theme-text-main transition-colors flex items-center justify-center" id="theme-toggle-button" type="button"><i class="w-4 h-4" data-lucide="palette" id="theme-toggle-icon"></i><span class="theme-toggle-copy">Th&egrave;me</span><span class="theme-toggle-name" id="theme-toggle-name">Glass</span></button>
+<button aria-label="Th&egrave;me" class="theme-toggle-button theme-text-main transition-colors flex items-center justify-center" id="theme-toggle-button" type="button"><i class="w-4 h-4" data-lucide="palette" id="theme-toggle-icon"></i><span class="theme-toggle-copy">Th&egrave;me</span><span class="theme-toggle-name" id="theme-toggle-name">Classique</span></button>
 <a aria-label="Voir la version anglaise" class="language-toggle-button theme-text-main transition-colors flex items-center justify-center" href="project-thermal.html" hreflang="en" lang="en" title="Version anglaise"><i aria-hidden="true" class="language-toggle-icon" data-lucide="languages"></i><span class="language-toggle-current">FR</span><span aria-hidden="true" class="language-toggle-arrow">&rarr;</span><span class="language-toggle-target">EN</span></a>
-<a class="inline-flex items-center theme-text-light hover:text-accent font-medium transition-colors text-sm" href="index-fr.html#projects"><i class="w-4 h-4 mr-2" data-lucide="arrow-left"></i><span class="hidden sm:inline">Retour</span></a>
+<a aria-label="Retour aux projets" class="inline-flex items-center theme-text-light hover:text-accent font-medium transition-colors text-sm" href="index-fr.html#projects"><i class="w-4 h-4 mr-2" data-lucide="arrow-left"></i><span class="hidden sm:inline">Retour</span></a>
 </div>
 </div>
 </header>
@@ -98,22 +98,18 @@
 </div>
 <!-- 1. Clear Identification -->
 <section aria-labelledby="transient-thermal-analysis-for-process-optimization-a-comparative-study-of-lumped-capacitance-modeling-and-finite-element-simulation" class="content-section text-center relative z-10">
-<span class="text-xs font-bold theme-text-main bg-cyan-600/80 px-4 py-1.5 rounded-full uppercase tracking-wider mb-6 inline-block shadow-lg shadow-cyan-500/20">Self-Initiated
-                    Study</span>
-<h1 class="text-3xl md:text-4xl font-extrabold theme-text-main mb-4 leading-tight" id="transient-thermal-analysis-for-process-optimization-a-comparative-study-of-lumped-capacitance-modeling-and-finite-element-simulation">
-                    Transient Thermal Analysis for Process Optimization: A Comparative Study of Lumped Capacitance
-                    Modeling and Finite Element Simulation
-                </h1>
+<span class="text-xs font-bold theme-text-main bg-cyan-600/80 px-4 py-1.5 rounded-full uppercase tracking-wider mb-6 inline-block shadow-lg shadow-cyan-500/20">Étude menée à titre personnel</span>
+<h1 class="text-3xl md:text-4xl font-extrabold theme-text-main mb-4 leading-tight" id="transient-thermal-analysis-for-process-optimization-a-comparative-study-of-lumped-capacitance-modeling-and-finite-element-simulation">Analyse thermique transitoire pour l’optimisation du procédé : étude comparative du modèle à capacité concentrée et de la simulation par éléments finis</h1>
 <p class="text-lg font-medium text-cyan-200 mb-2">
-                    Insertion Automatisée à Chaud d'Écrous dans des Composants en Polycarbonate
+                    Insertion à chaud automatisée d’écrous dans des composants en polycarbonate
                 </p>
 <p class="text-base font-medium theme-text-muted mb-8">
-                    Rafi NASRALAH, ENSET Mohammedia
-                    <span class="text-xs block italic mt-1">(Dans le prolongement de l'expérience de stage SMCV)</span>
+                    Rafi Nasrallah, École normale supérieure de l’enseignement technique (ENSET) de Mohammedia
+                    <span class="text-xs block italic mt-1">(Dans le prolongement de mon stage chez SMCV)</span>
 </p>
 <!-- Report Link -->
 <a class="inline-flex items-center font-bold px-6 py-3 bg-red-600 theme-text-main rounded-full hover:bg-red-700 transition-colors shadow-lg hover:shadow-red-500/30 text-sm" href="assets/pdf/Thermal_Analysis_Full_Report.pdf" rel="noopener noreferrer" target="_blank">
-<i class="w-5 h-5 mr-2" data-lucide="file-text"></i> Télécharger le Rapport Complet de l'Étude (PDF)
+<i class="w-5 h-5 mr-2" data-lucide="file-text"></i> Télécharger le rapport complet de l’étude (PDF)
                 </a>
 </section>
 <!-- 2. Le Problème Central -->
@@ -122,24 +118,18 @@
 <div class="p-2 bg-cyan-500/10 rounded-lg">
 <i class="w-6 h-6 text-accent" data-lucide="target"></i>
 </div>
-<span>Énoncé du Problème</span>
+<span>Problématique</span>
 </h2>
 <h3 class="text-2xl font-bold theme-text-main mb-6 flex items-center space-x-3">
 <div class="p-2 bg-yellow-500/10 rounded-lg">
 <i class="w-6 h-6 text-yellow-400" data-lucide="alert-circle"></i>
 </div>
-<span>Le Problème Central</span>
+<span>Problème central</span>
 </h3>
 <div class="highlight-box border-yellow-500 bg-yellow-900/20">
 <p class="text-base theme-text-light leading-relaxed">
-                        Le problème central abordé par cette recherche personnelle est l' <strong>quantifiable
-                            uncertainty</strong> du temps de cycle du processus d'insertion à chaud et le risque associé de
-                        <strong>dommages thermiques</strong> to the polycarbonate component. The fundamental question being
-                        answered is: "What is the temps réel et validé required for the brass insert nut to reach the
-                        optimal insertion temperature of $170\degreeC$ while stacked in the automated feeder?" This
-                        required replacing the simplistic, unreliable theoretical estimate with a high-fidelity
-                        numerical prediction.
-                     L'étude compare un calcul simplifié à paramètres localisés avec une simulation thermique transitoire sous ANSYS afin de juger le chronométrage du processus avec des hypothèses de transfert de chaleur plus réalistes. La comparaison qui en résulte soutient une stratégie de chauffage pratique pour le flux de travail d'insertion automatisée d'écrous introduit lors du stage chez SMCV.</p>
+                        Le problème central étudié dans ce travail mené à titre personnel est l’incertitude quantifiable sur la durée du cycle d’insertion à chaud et le risque de détérioration thermique du composant en polycarbonate. L’étude cherche à répondre à la question suivante : « Quel est le temps réel et validé nécessaire pour que l’écrou en laiton atteigne sa température optimale d’insertion (170 °C) lorsqu’il est empilé dans le distributeur automatique ? » Il a donc fallu remplacer l’estimation théorique simpliste et peu fiable par une prédiction numérique de haute fidélité. L’étude compare un calcul simplifié à capacité concentrée à une simulation thermique transitoire sous ANSYS, afin d’évaluer le temps de cycle à partir d’hypothèses de transfert thermique plus réalistes. Cette comparaison étaye une stratégie de chauffage adaptée au processus automatisé d’insertion d’écrous mis en place pendant le stage à la Société Marocaine des Compteurs (SMCV).
+                    </p>
 </div>
 </section>
 <!-- 3. Objectif de l'Étude -->
@@ -150,58 +140,40 @@
 </div>
 <span>Objectif de l'Étude</span>
 </h3>
-<p class="theme-text-light leading-relaxed mb-6">
-                    L'objectif principal de cette exploration est de déterminer le <strong>temps réel et validé</strong>
-                    required for the brass insert nut to reach the optimal insertion temperature
-                    ($\mathbf{170\degreeC}$) while stacked in the automated feeder.
-                </p>
+<p class="theme-text-light leading-relaxed mb-6">L’objectif principal de cette étude est de déterminer la <strong>durée réelle et validée</strong> nécessaire pour que l’écrou en laiton atteigne sa température optimale d’insertion ($\mathbf{170\degreeC}$) lorsqu’il est empilé dans le distributeur automatique.</p>
 <div class="theme-card-bg p-8 md:p-10 rounded-xl border theme-border-main">
-<h4 class="font-bold text-lg theme-text-main mb-3">Sous-Objectifs :</h4>
+<h4 class="font-bold text-lg theme-text-main mb-3">Sous-objectifs :</h4>
 <ul class="list-disc ml-5 text-sm theme-text-light space-y-3">
-<li><strong>Quantifier les failles analytiques :</strong> Mathematically derive the heating curve using the
-                            Lumped Capacitance Model (LCM) to establish a theoretical $t_{\text{LCM}}$.</li>
-<li><strong>Modéliser la physique réelle :</strong> Develop a high-fidelity Transient Thermal FEA
-                            model in ANSYS explicitly accounting for 3D geometry and contact physics.</li>
-<li><strong>Valider et optimiser :</strong> Compare numerical and theoretical curves to
-                            establish the validated minimum heating time.</li>
+<li><strong>Quantifier les limites analytiques :</strong> établir mathématiquement la courbe de chauffe à l’aide du modèle à capacité concentrée (LCM) afin de déterminer le temps théorique $t_{\text{LCM}}$.</li>
+<li><strong>Modéliser les conditions physiques réelles :</strong> construire dans ANSYS un modèle thermique transitoire de haute fidélité par éléments finis, tenant explicitement compte de la géométrie 3D et des phénomènes de contact.</li>
+<li><strong>Valider et optimiser :</strong> comparer les courbes numériques et théoriques afin d’établir la durée minimale de chauffe validée.</li>
 </ul>
 </div>
 </section>
 <!-- 4. The Comparative Analysis -->
 <section aria-labelledby="section-fea-simulation-approach" class="content-section relative z-10">
-<h2 class="text-2xl font-bold theme-text-main mb-6 flex items-center space-x-3" id="section-fea-simulation-approach"><i class="w-8 h-8 text-accent" data-lucide="box"></i><span>Approche par Simulation FEA</span></h2>
+<h2 class="text-2xl font-bold theme-text-main mb-6 flex items-center space-x-3" id="section-fea-simulation-approach"><i class="w-8 h-8 text-accent" data-lucide="box"></i><span>Approche par simulation aux éléments finis</span></h2>
 <h3 class="text-2xl font-bold theme-text-main mb-6 flex items-center space-x-3" id="comparative-analysis-theory-vs-simulation">
 <div class="p-2 bg-cyan-500/10 rounded-lg">
 <i class="w-6 h-6 text-accent" data-lucide="scale"></i>
 </div>
-<span>Analyse Comparative : Théorie vs Simulation</span>
+<span>Analyse comparative : théorie et simulation</span>
 </h3>
 <div class="grid md:grid-cols-2 gap-8 mb-8">
 <div class="theme-card-bg p-8 md:p-10 rounded-xl border theme-border-main">
-<h4 class="font-bold text-lg theme-text-main mb-3">Méthode 1 : Modèle à Paramètres Localisés (LCM)</h4>
-<p class="text-sm theme-text-light leading-relaxed mb-3">
-                            A simplified theoretical approach assuming uniform internal temperature. Relied on an
-                            estimated effective heat transfer coefficient.
-                        </p>
+<h4 class="font-bold text-lg theme-text-main mb-3">Méthode 1 : Modèle à capacité concentrée (LCM)</h4>
+<p class="text-sm theme-text-light leading-relaxed mb-3">Approche théorique simplifiée fondée sur l’hypothèse d’une température interne uniforme et sur un coefficient de transfert thermique effectif estimé.</p>
 <p class="text-lg font-bold text-accent">$t_{\text{LCM}} = 4.22\text{ s}$</p>
 </div>
 <div class="theme-card-bg p-8 md:p-10 rounded-xl border theme-border-main">
-<h4 class="font-bold text-lg theme-text-main mb-3">Méthode 2 : Analyse par Éléments Finis (FEA)</h4>
-<p class="text-sm theme-text-light leading-relaxed mb-3">
-                            A high-fidelity numerical simulation (ANSYS Mechanical) accounting for transient heat
-                            transfer, actual 3D geometry, and contact thermal resistance.
-                        </p>
+<h4 class="font-bold text-lg theme-text-main mb-3">Méthode 2 : analyse par éléments finis (EF)</h4>
+<p class="text-sm theme-text-light leading-relaxed mb-3">Simulation numérique de haute fidélité réalisée sous ANSYS Mechanical, qui prend en compte le transfert thermique transitoire, la géométrie 3D réelle et la résistance thermique de contact.</p>
 <p class="text-lg font-bold text-green-400">$t_{\text{ANSYS}} = \mathbf{3.28\text{ s}}$</p>
 </div>
 </div>
 <div class="highlight-box border-yellow-500 bg-yellow-900/20">
-<h4 class="font-bold text-lg mb-2 text-yellow-400">Découverte Clé : L'Écart</h4>
-<p class="text-sm theme-text-light leading-relaxed">
-                        The FEA revealed significantly faster heating ($\approx$ <strong>28.7% quicker</strong>) than
-                        the LCM predicted. Analysis of heat flux vectors (see gallery) confirmed that <strong>axial heat
-                            conduction</strong> between stacked nuts provided a major secondary heat path, a factor
-                        ignored by the simplified LCM.
-                    </p>
+<h4 class="font-bold text-lg mb-2 text-yellow-400">Résultat clé : l’écart entre les modèles</h4>
+<p class="text-sm theme-text-light leading-relaxed">L’analyse par éléments finis prévoit une durée de chauffe nettement inférieure à celle estimée par le modèle LCM ; ce dernier surestime la durée validée de <strong>28,7 %</strong>. L’analyse des vecteurs de flux thermique (voir la galerie) confirme que la <strong>conduction thermique axiale</strong> entre les écrous empilés constitue une voie secondaire importante de transfert de chaleur, ignorée par le modèle LCM simplifié.</p>
 </div>
 </section>
 <!-- 5. Visual Evidence -->
@@ -211,14 +183,14 @@
 <div class="p-2 bg-cyan-500/10 rounded-lg">
 <i class="w-6 h-6 text-accent" data-lucide="image"></i>
 </div>
-<span>Galerie de Preuves Visuelles</span>
+<span>Galerie des résultats</span>
 </h3>
 <div class="grid grid-cols-1 gap-12">
-<img alt="3D model of heating collar and adapting cylinder for hot nut insertion study" class="gallery-image" decoding="async" height="413" loading="lazy" src="assets/img/3D_model_of_heating_color_and_adapting_cylinder.jpg" width="338"/>
-<img alt="Comparative heating curves for lumped capacitance model and ANSYS FEA" class="gallery-image" decoding="async" height="625" loading="lazy" src="assets/img/Comparative_Heating_Curves.jpg" width="949"/>
-<img alt="Final temperature distribution in stacked insert nuts from ANSYS thermal simulation" class="gallery-image" decoding="async" height="1079" loading="lazy" src="assets/img/Final_Temperature_Distribution_Nut_Stack.jpg" width="1919"/>
-<img alt="Heating cycle sensitivity analysis for nut insertion thermal study" class="gallery-image" decoding="async" height="749" loading="lazy" src="assets/img/Heating_Cycle_Sensitivity_Analysis.jpg" width="1586"/>
-<img alt="Heat flux visualization in stacked insert nuts from ANSYS thermal simulation" class="gallery-image" decoding="async" height="1079" loading="lazy" src="assets/img/Nut_Stack_Heat_Flux.jpg" width="1919"/>
+<img alt="Modèle 3D de la bague chauffante et du cylindre d’adaptation pour l’étude de l’insertion à chaud des écrous" class="gallery-image" decoding="async" height="413" loading="lazy" src="assets/img/3D_model_of_heating_color_and_adapting_cylinder.jpg" width="338"/>
+<img alt="Courbes de chauffe comparant le modèle à capacité concentrée et la simulation par éléments finis sous ANSYS" class="gallery-image" decoding="async" height="625" loading="lazy" src="assets/img/Comparative_Heating_Curves.jpg" width="949"/>
+<img alt="Répartition finale de la température dans les écrous empilés, selon la simulation thermique sous ANSYS" class="gallery-image" decoding="async" height="1079" loading="lazy" src="assets/img/Final_Temperature_Distribution_Nut_Stack.jpg" width="1919"/>
+<img alt="Analyse de sensibilité du cycle de chauffe pour l’insertion à chaud des écrous" class="gallery-image" decoding="async" height="749" loading="lazy" src="assets/img/Heating_Cycle_Sensitivity_Analysis.jpg" width="1586"/>
+<img alt="Visualisation du flux thermique dans les écrous empilés, selon la simulation sous ANSYS" class="gallery-image" decoding="async" height="1079" loading="lazy" src="assets/img/Nut_Stack_Heat_Flux.jpg" width="1919"/>
 </div>
 </section>
 <!-- 6. Résumé des Résultats Quantifiés -->
@@ -234,17 +206,17 @@
 <thead>
 <tr>
 <th>Paramètre</th>
-<th>$t_{\text{LCM}}$ (Theoretical)</th>
-<th>$t_{\text{ANSYS}}$ (Validated FEA)</th>
-<th class="text-red-400">Erreur du LCM</th>
+<th>$t_{\text{LCM}}$ (théorique)</th>
+<th>$t_{\text{ANSYS}}$ (simulation EF validée)</th>
+<th class="text-red-400">Écart du modèle LCM</th>
 </tr>
 </thead>
 <tbody class="theme-text-light">
 <tr>
-<td class="font-medium">Temps pour atteindre $170\degreeC$</td>
+<td class="font-medium">Durée pour atteindre $170\degreeC$</td>
 <td>$4.22\text{ s}$</td>
 <td class="font-bold text-lg text-green-400">$\mathbf{3.28\text{ s}}$</td>
-<td class="font-medium text-red-400">+28,7 % (Surestimé)</td>
+<td class="font-medium text-red-400">+28,7 % (surestimé)</td>
 </tr>
 </tbody>
 </table>
@@ -256,31 +228,18 @@
 <div class="p-2 bg-cyan-500/10 rounded-lg">
 <i class="w-6 h-6 text-accent" data-lucide="settings-2"></i>
 </div>
-<span>Impact en Ingénierie & Stratégie Finale</span>
+<span>Apport pour l’ingénierie et stratégie retenue</span>
 </h3>
-<p class="theme-text-light leading-relaxed mb-6">
-                    La contribution technique centrale de ce travail est la capacité de <strong>simplify the process
-                        control</strong> sur la base des données validées :
-                </p>
-<div class="bg-green-900/20 p-8 md:p-10 rounded-xl border-l-4 border-green-500">
+<p class="theme-text-light leading-relaxed mb-6">La principale contribution de ce travail à l’ingénierie réside dans la possibilité de <strong>simplifier la commande du processus</strong> à partir des données validées :</p>
+<div class="bg-green-900/20 p-8 md:p-10 rounded-xl border-green-500">
 <ul class="list-none space-y-4">
 <li class="flex items-start">
 <i class="w-5 h-5 text-green-400 mr-3 mt-1 flex-shrink-0" data-lucide="check-circle"></i>
-<div>
-<strong class="text-green-300 block mb-1">Validation de la cadence du processus :</strong>
-                                The validated heating time ($\mathbf{3.28}$ s) is far less than the cycle time (15 s),
-                                confirming heating is not a bottleneck.
-                            </div>
+<div><strong class="text-green-300 block mb-1">Validation de la cadence du processus :</strong>La durée de chauffe validée ($\mathbf{3.28}$ s) est largement inférieure à la durée du cycle (15 s), ce qui confirme que la chauffe ne constitue pas un goulot d’étranglement.</div>
 </li>
 <li class="flex items-start">
 <i class="w-5 h-5 text-green-400 mr-3 mt-1 flex-shrink-0" data-lucide="check-circle"></i>
-<div>
-<strong class="text-green-300 block mb-1">Simplified &amp; Reliable Control
-                                    Strategy:</strong>
-                                We implemented a robust strategy where the heating element is constantly ON, and safety
-                                is managed by limiting the source temperature ($T_{\infty} = 180\degreeC$) to prevent
-                                material degradation.
-                            </div>
+<div><strong class="text-green-300 block mb-1">Commande simple et fiable :</strong>Nous avons mis en œuvre une stratégie robuste dans laquelle l’élément chauffant reste constamment allumé. La sécurité est assurée en limitant la température de la source ($T_{\infty} = 180\degreeC$), afin d’éviter toute dégradation du matériau.</div>
 </li>
 </ul>
 </div>
@@ -291,32 +250,26 @@
 <div class="p-2 bg-cyan-500/10 rounded-lg">
 <i class="w-6 h-6 text-accent" data-lucide="arrow-right-circle"></i>
 </div>
-<span>Recommandations et Travaux Futurs</span>
+<span>Recommandations et travaux futurs</span>
 </h3>
 <div class="space-y-6">
 <!-- A. Experimental Validation -->
 <div class="theme-card-bg p-8 md:p-10 rounded-xl border theme-border-main">
 <h4 class="font-bold text-lg theme-text-main mb-2">A. Protocole de Validation Expérimentale Proposé</h4>
-<p class="text-sm theme-text-light leading-relaxed mb-2">
-                            Recommended real-world test using high-speed thermal imaging (IR camera) and embedded
-                            thermocouples to validate $t_{\text{ANSYS}}$.
-                        </p>
+<p class="text-sm theme-text-light leading-relaxed mb-2">Il est recommandé de réaliser un essai en conditions réelles, à l’aide d’une caméra thermique à haute vitesse et de thermocouples intégrés, afin de valider $t_{\text{ANSYS}}$.</p>
 </div>
 <!-- C. Required Simulation Elements -->
 <div class="theme-card-bg p-8 md:p-10 rounded-xl border theme-border-main">
-<h4 class="font-bold text-lg theme-text-main mb-2">B. Investigation Future : Analyse Thermomécanique
+<h4 class="font-bold text-lg theme-text-main mb-2">B. Étude à venir : analyse thermomécanique
                         </h4>
-<p class="text-sm theme-text-light leading-relaxed mb-3">
-                            Next step: Answer "What happens during physical insertion?" using a **Coupled
-                            Thermal-Structural Analysis** (Viscoplastic Material Model, Large Deformation).
-                        </p>
+<p class="text-sm theme-text-light leading-relaxed mb-3">L’étape suivante consistera à étudier ce qui se produit pendant l’insertion physique au moyen d’une analyse thermomécanique couplée, avec un modèle de matériau viscoplastique et de grandes déformations.</p>
 </div>
 </div>
 </section>
 <!-- 9. Navigation -->
-<section aria-labelledby="section-9" class="text-center pt-8 relative z-10"><h2 class="sr-only" id="section-9">Section 9</h2>
+<section aria-labelledby="section-9" class="text-center pt-8 relative z-10"><h2 class="sr-only" id="section-9">Retour au portfolio principal</h2>
 <a class="inline-flex items-center font-bold theme-text-main bg-gradient-to-r from-cyan-600 to-blue-600 py-3 px-8 rounded-full shadow-lg hover:shadow-cyan-500/30 hover:-translate-y-1 transition-all" href="index-fr.html#projects">
-<i class="w-5 h-5 mr-2" data-lucide="arrow-left"></i> Retour au Portfolio Principal
+<i class="w-5 h-5 mr-2" data-lucide="arrow-left"></i> Retour au portfolio principal
                 </a>
 </section>
 </article>

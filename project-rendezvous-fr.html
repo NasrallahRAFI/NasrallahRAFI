@@ -2,30 +2,30 @@
 
 <html lang="fr">
 <head>
-<script src="js/theme-config.js"></script>
+<script src="js/theme-config.js?v=7"></script>
 <script src="js/theme-init.js"></script>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Contrôle de Rendez-vous Orbital Basé sur Luenberger | Rafi Nasrallah</title>
-<meta content="Projet de contrôle de rendez-vous orbital de Luenberger utilisant des données angulaires uniques, le retour d'état, la conception d'observateur, la normalisation et la simulation MATLAB/Simulink." name="description"/>
-<meta content="Rafi Nasrallah, Luenberger observer, satellite rendezvous, orbital mechanics, state feedback control, angle-only measurements, MATLAB, control systems" name="keywords"/>
-<link href="https://nasrallahrafi.me/project-rendezvous.html" rel="canonical"/>
+<title>Commande de rendez-vous orbital par observateur de Luenberger | Rafi Nasrallah</title>
+<meta content="Projet de commande de rendez-vous orbital à partir de la seule mesure angulaire, combinant un observateur d’état de Luenberger, une commande par retour d’état, la normalisation du modèle et des simulations sous MATLAB/Simulink." name="description"/>
+<meta content="Rafi Nasrallah, observateur de Luenberger, rendez-vous orbital, mécanique orbitale, commande par retour d’état, mesures angulaires, MATLAB, systèmes de commande" name="keywords"/>
+<link rel="canonical" href="https://nasrallahrafi.me/project-rendezvous-fr.html">
 <link href="https://nasrallahrafi.me/project-rendezvous.html" hreflang="en" rel="alternate"/>
 <link href="https://nasrallahrafi.me/project-rendezvous-fr.html" hreflang="fr" rel="alternate"/>
 <link href="https://nasrallahrafi.me/project-rendezvous.html" hreflang="x-default" rel="alternate"/>
 
 <meta content="website" property="og:type"/>
-<meta content="Rafi Nasrallah Portfolio" property="og:site_name"/>
-<meta content="Contrôle de Rendez-vous Orbital Basé sur Luenberger | Rafi Nasrallah" property="og:title"/>
-<meta content="Projet de contrôle de rendez-vous orbital de Luenberger utilisant des données angulaires uniques, le retour d'état, la conception d'observateur, la normalisation et la simulation MATLAB/Simulink." property="og:description"/>
+<meta content="Portfolio de Rafi Nasrallah" property="og:site_name"/>
+<meta content="Commande de rendez-vous orbital par observateur de Luenberger | Rafi Nasrallah" property="og:title"/>
+<meta content="Projet de commande de rendez-vous orbital à partir de la seule mesure angulaire, combinant un observateur d’état de Luenberger, une commande par retour d’état, la normalisation du modèle et des simulations sous MATLAB/Simulink." property="og:description"/>
 <meta content="https://nasrallahrafi.me/assets/img/Profile_picture.png" property="og:image"/>
 <meta property="og:image:width" content="1254"/>
 <meta property="og:image:height" content="1254"/>
-<meta content="https://nasrallahrafi.me/project-rendezvous.html" property="og:url"/>
+<meta content="https://nasrallahrafi.me/project-rendezvous-fr.html" property="og:url"/>
 <meta content="fr_FR" property="og:locale"/>
 <meta content="summary_large_image" name="twitter:card"/>
-<meta content="Contrôle de Rendez-vous Orbital Basé sur Luenberger | Rafi Nasrallah" name="twitter:title"/>
-<meta content="Projet de contrôle de rendez-vous orbital de Luenberger utilisant des données angulaires uniques, le retour d'état, la conception d'observateur, la normalisation et la simulation MATLAB/Simulink." name="twitter:description"/>
+<meta content="Commande de rendez-vous orbital par observateur de Luenberger | Rafi Nasrallah" name="twitter:title"/>
+<meta content="Projet de commande de rendez-vous orbital à partir de la seule mesure angulaire, combinant un observateur d’état de Luenberger, une commande par retour d’état, la normalisation du modèle et des simulations sous MATLAB/Simulink." name="twitter:description"/>
 <meta content="https://nasrallahrafi.me/assets/img/Profile_picture.png" name="twitter:image"/>
 <meta content="@RafiNasrallah" name="twitter:creator"/>
 <meta content="@RafiNasrallah" name="twitter:site"/>
@@ -60,26 +60,26 @@
     {
       "@type": "BreadcrumbList",
       "itemListElement": [
-        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://nasrallahrafi.me/" },
-        { "@type": "ListItem", "position": 2, "name": "Projects", "item": "https://nasrallahrafi.me/#projects" },
-        { "@type": "ListItem", "position": 3, "name": "Luenberger-Based Orbital Rendezvous Control", "item": "https://nasrallahrafi.me/project-rendezvous.html" }
+        { "@type": "ListItem", "position": 1, "name": "Accueil", "item": "https://nasrallahrafi.me/" },
+        { "@type": "ListItem", "position": 2, "name": "Projets", "item": "https://nasrallahrafi.me/#projects" },
+        { "@type": "ListItem", "position": 3, "name": "Commande de rendez-vous orbital par observateur de Luenberger", "item": "https://nasrallahrafi.me/project-rendezvous-fr.html" }
       ]
     },
     {
       "@type": "TechArticle",
-      "@id": "https://nasrallahrafi.me/project-rendezvous.html#article",
-      "headline": "Luenberger Observer-Based Orbital Rendezvous Control Using Angle-Only Mesures",
-      "description": "Design and MATLAB/Simulink simulation of a full autopilot system combining a Luenberger state observer and state-feedback controller to achieve orbital rendezvous using only angular measurements (y=θ). System normalisation is applied to overcome numerical instability in the observability matrix. Convergence validated through phase-plot trajectory and estimation error analysis.",
-      "url": "https://nasrallahrafi.me/project-rendezvous.html",
+      "@id": "https://nasrallahrafi.me/project-rendezvous-fr.html#article",
+      "headline": "Commande du rendez-vous orbital par observateur de Luenberger à partir de mesures angulaires uniquement",
+      "description": "Conception et simulation sous MATLAB/Simulink d’un système de pilotage automatique complet associant un observateur d’état de Luenberger et une commande par retour d’état afin de réaliser un rendez-vous orbital à partir de mesures angulaires uniquement (y=θ). La normalisation du système permet de réduire l’instabilité numérique de la matrice d’observabilité. La convergence est vérifiée à l’aide du portrait de phase de la trajectoire et de l’analyse de l’erreur d’estimation.",
+      "url": "https://nasrallahrafi.me/project-rendezvous-fr.html",
       "author": { "@id": "https://nasrallahrafi.me/#rafi-nasrallah" },
       "datePublished": "2024-01-01",
-      "inLanguage": "en",
-      "keywords": ["Luenberger observer", "orbital rendezvous", "satellite control", "angle-only measurements", "state feedback", "MATLAB Simulink", "control systems", "orbital mechanics"],
+      "inLanguage": "fr",
+      "keywords": ["observateur de Luenberger", "rendez-vous orbital", "commande de satellite", "mesures angulaires", "retour d’état", "MATLAB Simulink", "systèmes de commande", "mécanique orbitale"],
       "about": [
-        { "@type": "Thing", "name": "Luenberger State Observer" },
-        { "@type": "Thing", "name": "Orbital Rendezvous" },
-        { "@type": "Thing", "name": "State Feedback Control" },
-        { "@type": "Thing", "name": "Angle-Only Navigation" }
+        { "@type": "Thing", "name": "Observateur d’état de Luenberger" },
+        { "@type": "Thing", "name": "Rendez-vous orbital" },
+        { "@type": "Thing", "name": "Commande par retour d’état" },
+        { "@type": "Thing", "name": "Navigation par mesures angulaires uniquement" }
       ],
       "proficiencyLevel": "Expert",
       "image": "https://nasrallahrafi.me/assets/img/Rendezvous_Trajectory_(Phase_Plot).jpg",
@@ -95,20 +95,20 @@
 <link href="css/tailwind.min.css" rel="stylesheet"/>
 <script crossorigin="anonymous" defer integrity="sha384-vEpkK5oidsrH6UhRc6tAPlgJZ/qXFwumFY+Kx8vBSeZ7NBag809YZCSmxFYGe/pt" src="https://unpkg.com/lucide@1.20.0/dist/umd/lucide.min.js"></script>
 <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&amp;family=JetBrains+Mono:wght@500;600&amp;display=swap" rel="stylesheet"/>
-<link href="css/style.min.css?v=6" rel="stylesheet"/>
-<script src="js/theme.js?v=6" defer></script>
+<link href="css/style.min.css?v=9" rel="stylesheet"/>
+<script src="js/theme.js?v=7" defer></script>
 <script src="js/site-shell.js" defer></script>
 </head>
 <body class="antialiased selection:bg-cyan-500 selection:theme-text-main">
 <!-- Header -->
 <header class="sticky top-0 z-50 glass transition-colors duration-300">
 <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center gap-4">
-<a class="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 to-cyan-200 hover:text-cyan-300 transition-colors truncate" href="index-fr.html#hero">Rafi Nasrallah</a>
+<a class="text-2xl font-bold text-accent hover:text-cyan-300 transition-colors truncate" href="index-fr.html#hero">Rafi Nasrallah</a>
 <nav class="hidden lg:flex space-x-6"><a class="theme-text-light hover:text-accent font-medium transition-colors" href="index-fr.html#about">Profil</a> <a class="theme-text-light hover:text-accent font-medium transition-colors" href="index-fr.html#experience">Parcours</a> <a class="theme-text-light hover:text-accent font-medium transition-colors" href="index-fr.html#projects">Projets</a> <a class="theme-text-light hover:text-accent font-medium transition-colors" href="index-fr.html#skills">Comp&eacute;tences</a> <a class="theme-text-light hover:text-accent font-medium transition-colors" href="index-fr.html#patents">Brevet</a> <a class="theme-text-light hover:text-accent font-medium transition-colors" href="index-fr.html#dev-focus">D&eacute;veloppement</a></nav>
 <div class="flex items-center space-x-2 sm:space-x-4">
-<button aria-label="Th&egrave;me" class="theme-toggle-button theme-text-main transition-colors flex items-center justify-center" id="theme-toggle-button" type="button"><i class="w-4 h-4" data-lucide="palette" id="theme-toggle-icon"></i><span class="theme-toggle-copy">Th&egrave;me</span><span class="theme-toggle-name" id="theme-toggle-name">Glass</span></button>
+<button aria-label="Th&egrave;me" class="theme-toggle-button theme-text-main transition-colors flex items-center justify-center" id="theme-toggle-button" type="button"><i class="w-4 h-4" data-lucide="palette" id="theme-toggle-icon"></i><span class="theme-toggle-copy">Th&egrave;me</span><span class="theme-toggle-name" id="theme-toggle-name">Classique</span></button>
 <a aria-label="Voir la version anglaise" class="language-toggle-button theme-text-main transition-colors flex items-center justify-center" href="project-rendezvous.html" hreflang="en" lang="en" title="Version anglaise"><i aria-hidden="true" class="language-toggle-icon" data-lucide="languages"></i><span class="language-toggle-current">FR</span><span aria-hidden="true" class="language-toggle-arrow">&rarr;</span><span class="language-toggle-target">EN</span></a>
-<a class="inline-flex items-center theme-text-light hover:text-accent font-medium transition-colors text-sm" href="index-fr.html#projects"><i class="w-4 h-4 mr-2" data-lucide="arrow-left"></i><span class="hidden sm:inline">Retour</span></a>
+<a aria-label="Retour aux projets" class="inline-flex items-center theme-text-light hover:text-accent font-medium transition-colors text-sm" href="index-fr.html#projects"><i class="w-4 h-4 mr-2" data-lucide="arrow-left"></i><span class="hidden sm:inline">Retour</span></a>
 </div>
 </div>
 </header>
@@ -120,19 +120,19 @@
 <!-- Title & Metadata -->
 <section aria-labelledby="luenberger-based-rendezvous-control-with-angle-only-data" class="content-section text-center relative z-10">
 <span class="text-xs font-bold theme-text-main bg-cyan-600/80 px-4 py-1.5 rounded-full uppercase tracking-wider mb-6 inline-block shadow-lg shadow-cyan-500/20">
-                    Systèmes et Contrôle Avancés
+                    Systèmes et commande avancés
                 </span>
 <h1 class="text-3xl md:text-5xl font-extrabold theme-text-main mb-4 leading-tight" id="luenberger-based-rendezvous-control-with-angle-only-data">
-                    Contrôle de Rendez-vous Basé sur Luenberger avec Mesures Angulaires Uniques
+                    Commande de rendez-vous orbital par observateur de Luenberger, à partir de la seule mesure angulaire
                 </h1>
 <p class="text-lg theme-text-light leading-relaxed max-w-3xl mx-auto mb-6">
-                    Contrôleur de rendez-vous par retour de sortie pour un satellite chasseur n'utilisant que la mesure de l'angle de ligne de visée, avec reconstruction d'état via un observateur de Luenberger et validation MATLAB/Simulink.
+                    Commande par retour de sortie d’un satellite chasseur utilisant uniquement la mesure de l’angle de ligne de visée. L’état complet est reconstruit à l’aide d’un observateur de Luenberger, puis le système est validé sous MATLAB/Simulink.
                 </p>
 <p class="text-base font-medium text-cyan-200 mb-8">
-                    Projet académique | Conception d'observateur, retour d'état normalisé, simulation orbitale
+                    Projet académique | Observateur d’état, commande par retour d’état normalisée et simulation orbitale
                 </p>
 <a class="inline-flex items-center font-bold px-6 py-3 bg-red-600 theme-text-main rounded-full hover:bg-red-700 transition-colors shadow-lg hover:shadow-red-500/30 text-sm" href="assets/pdf/Luenberger_Based_Rendezvous_Control_with_Angle_Only_Data.pdf" rel="noopener noreferrer" target="_blank">
-<i class="w-5 h-5 mr-2" data-lucide="file-text"></i> Télécharger le Rapport Complet (PDF)
+<i class="w-5 h-5 mr-2" data-lucide="file-text"></i> Télécharger le rapport complet (PDF)
                 </a>
 <div class="grid grid-cols-1 md:grid-cols-4 gap-4 text-left mt-8">
 <div class="theme-card-bg p-4 rounded-xl border theme-border-main">
@@ -169,24 +169,24 @@
 <div class="theme-card-bg p-8 md:p-10 rounded-xl border theme-border-main">
 <h3 class="font-bold theme-text-main mb-3">Rendez-vous par retour de sortie</h3>
 <p class="theme-text-light leading-relaxed">
-                            Le contrôleur nécessite l'état relatif complet x = [r, r_dot, theta, theta_dot]^T, mais la seule sortie capteur disponible est l'angle y = theta. La position radiale et la vitesse manquantes doivent être estimées avant que le contrôle par retour d'état ne puisse fonctionner.
+                            Le contrôleur nécessite l’état relatif complet x = [r, r_dot, theta, theta_dot]^T, alors que le seul signal mesuré est l’angle y = theta. L’observateur doit donc estimer la position radiale et la vitesse avant que la commande par retour d’état puisse être appliquée.
                         </p>
 </div>
-<div class="bg-yellow-900/20 p-8 md:p-10 rounded-xl border-l-4 border-yellow-500">
+<div class="bg-yellow-900/20 p-8 md:p-10 rounded-xl border-yellow-500">
 <h3 class="font-bold text-yellow-200 mb-3">Problème de conditionnement numérique</h3>
 <p class="text-sm text-yellow-100 leading-relaxed">
-                            Le modèle physique en mètres et secondes produisait des gains irréalistes de l'ordre de 10^15. Le projet a donc eu recours à la normalisation avant la conception du contrôleur et de l'observateur pour obtenir un comportement numérique exploitable.
+                            Le modèle exprimé en mètres et en secondes produisait des gains irréalistes, de l’ordre de 10^15. Le modèle a donc été normalisé avant la conception du contrôleur et de l’observateur afin d’obtenir des calculs numériquement stables.
                         </p>
 </div>
 </div>
 </section>
-<!-- Architecture de Contrôle -->
+<!-- Architecture de commande -->
 <section aria-labelledby="control-architecture" class="content-section relative z-10">
 <h2 class="text-2xl font-bold theme-text-main mb-6 flex items-center space-x-3" id="control-architecture">
 <div class="p-2 bg-cyan-500/10 rounded-lg">
 <i class="w-6 h-6 text-accent" data-lucide="cpu"></i>
 </div>
-<span>Architecture de Contrôle</span>
+<span>Architecture de commande</span>
 </h2>
 <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
 <div class="milestone-card group">
@@ -199,8 +199,8 @@
 </div>
 <div class="milestone-card group">
 <span class="text-xs font-bold text-accent tracking-wider">ÉTAPE 2</span>
-<h3 class="font-bold text-lg theme-text-main mt-2 group-hover:text-cyan-300 transition-colors">Conception de gain normalisé</h3>
-<p class="text-sm theme-text-light mt-2">Conception de gains K_norm et L_norm stables après adimensionnement, avec une dynamique d'observateur fixée plus rapide que celle du contrôleur.</p>
+<h3 class="font-bold text-lg theme-text-main mt-2 group-hover:text-cyan-300 transition-colors">Conception de gains normalisés</h3>
+<p class="text-sm theme-text-light mt-2">Conception de gains K_norm et L_norm stables après adimensionnement, avec une dynamique d’observateur plus rapide que celle du contrôleur.</p>
 <div class="mt-3 flex items-center text-green-400 text-xs font-bold uppercase tracking-wider">
 <i class="w-4 h-4 mr-1" data-lucide="check-circle"></i> Atteint
                     </div>
@@ -208,7 +208,7 @@
 <div class="milestone-card group">
 <span class="text-xs font-bold text-accent tracking-wider">ÉTAPE 3</span>
 <h3 class="font-bold text-lg theme-text-main mt-2 group-hover:text-cyan-300 transition-colors">Validation de l'observateur</h3>
-<p class="text-sm theme-text-light mt-2">Confirmation de la convergence de l'erreur d'estimation e_x(t) -> 0, prouvant que les états estimés suivent fiablement les états réels.</p>
+<p class="text-sm theme-text-light mt-2">Confirmation de la convergence de l'erreur d'estimation e_x(t) -> 0, montrant que les états estimés suivent fidèlement les états réels.</p>
 <div class="mt-3 flex items-center text-green-400 text-xs font-bold uppercase tracking-wider">
 <i class="w-4 h-4 mr-1" data-lucide="check-circle"></i> Atteint
                     </div>
@@ -223,15 +223,15 @@
 </div>
 </div>
 </section>
-<!-- Preuves de Simulation -->
+<!-- Résultats de simulation -->
 <section aria-labelledby="simulation-evidence" class="content-section relative z-10">
 <h2 class="text-2xl font-bold theme-text-main mb-6 flex items-center space-x-3" id="simulation-evidence">
 <div class="p-2 bg-cyan-500/10 rounded-lg">
 <i class="w-6 h-6 text-accent" data-lucide="chart-line"></i>
 </div>
-<span>Preuves de Simulation</span>
+<span>Résultats de simulation</span>
 </h2>
-<div class="bg-cyan-900/20 p-8 md:p-10 rounded-xl border-l-4 border-cyan-500 mb-6">
+<div class="bg-cyan-900/20 p-8 md:p-10 rounded-xl border-cyan-500 mb-6">
 <h3 class="font-bold theme-text-main mb-3">Ce que confirment les graphiques</h3>
 <p class="text-sm theme-text-light leading-relaxed">
                         Les estimations de l'observateur convergent vers les états réels, l'erreur d'estimation tend vers zéro, les états physiques du satellite convergent vers la cible de rendez-vous et l'effort de commande se stabilise une fois la manœuvre terminée.
@@ -239,47 +239,47 @@
 </div>
 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
 <figure class="group">
-<img alt="Plot comparing real satellite states with Luenberger observer estimated states." class="gallery-image transition-transform group-hover:scale-[1.02]" decoding="async" height="677" loading="lazy" src="assets/img/Real_vs_Estimated_(x).jpg" width="1074"/>
+<img alt="Comparaison des états réels du satellite et des états estimés par l’observateur de Luenberger." class="gallery-image transition-transform group-hover:scale-[1.02]" decoding="async" height="677" loading="lazy" src="assets/img/Real_vs_Estimated_(x).jpg" width="1074"/>
 <figcaption class="text-xs text-center theme-text-muted mt-3">Validation de l'observateur : les états estimés convergent vers les états réels.</figcaption>
 </figure>
 <figure class="group">
-<img alt="Plot of Luenberger observer estimation error versus time." class="gallery-image transition-transform group-hover:scale-[1.02]" decoding="async" height="672" loading="lazy" src="assets/img/Estimation_Error_vs_time.jpg" width="1070"/>
+<img alt="Évolution temporelle de l’erreur d’estimation de l’observateur de Luenberger." class="gallery-image transition-transform group-hover:scale-[1.02]" decoding="async" height="672" loading="lazy" src="assets/img/Estimation_Error_vs_time.jpg" width="1070"/>
 <figcaption class="text-xs text-center theme-text-muted mt-3">Performance de l'observateur : les quatre erreurs d'estimation convergent vers zéro.</figcaption>
 </figure>
 <figure class="group">
-<img alt="Plot of real satellite rendezvous state convergence versus time." class="gallery-image transition-transform group-hover:scale-[1.02]" decoding="async" height="675" loading="lazy" src="assets/img/Real_Satellite_state_vs_time.jpg" width="1070"/>
+<img alt="Convergence temporelle de l’état réel du satellite pendant le rendez-vous orbital." class="gallery-image transition-transform group-hover:scale-[1.02]" decoding="async" height="675" loading="lazy" src="assets/img/Real_Satellite_state_vs_time.jpg" width="1070"/>
 <figcaption class="text-xs text-center theme-text-muted mt-3">Validation en boucle fermée : les états réels sont conduits vers la cible de rendez-vous.</figcaption>
 </figure>
 <figure class="group">
-<img alt="Phase plot of the rendezvous trajectory converging to the origin." class="gallery-image transition-transform group-hover:scale-[1.02]" decoding="async" height="672" loading="lazy" src="assets/img/Rendezvous_Trajectory_(Phase_Plot).jpg" width="1078"/>
+<img alt="Portrait de phase de la trajectoire de rendez-vous convergeant vers l’origine." class="gallery-image transition-transform group-hover:scale-[1.02]" decoding="async" height="672" loading="lazy" src="assets/img/Rendezvous_Trajectory_(Phase_Plot).jpg" width="1078"/>
 <figcaption class="text-xs text-center theme-text-muted mt-3">Portrait de phase de la trajectoire : le chasseur converge vers l'origine.</figcaption>
 </figure>
 <figure class="group md:col-span-2 max-w-lg mx-auto">
-<img alt="Plot of rendezvous control effort converging over time." class="gallery-image transition-transform group-hover:scale-[1.02]" decoding="async" height="674" loading="lazy" src="assets/img/Control_Effort_vs_time.jpg" width="1075"/>
+<img alt="Convergence temporelle de l’effort de commande du rendez-vous orbital." class="gallery-image transition-transform group-hover:scale-[1.02]" decoding="async" height="674" loading="lazy" src="assets/img/Control_Effort_vs_time.jpg" width="1075"/>
 <figcaption class="text-xs text-center theme-text-muted mt-3">Effort de commande : l'entrée commandée converge une fois le rendez-vous atteint.</figcaption>
 </figure>
 </div>
 </section>
-<!-- Conclusion et Prochaines Étapes -->
+<!-- Conclusion et prochaines étapes -->
 <section aria-labelledby="conclusion-and-next-steps" class="content-section relative z-10">
 <h2 class="text-2xl font-bold theme-text-main mb-6 flex items-center space-x-3" id="conclusion-and-next-steps">
 <div class="p-2 bg-cyan-500/10 rounded-lg">
 <i class="w-6 h-6 text-accent" data-lucide="award"></i>
 </div>
-<span>Conclusion et Prochaines Étapes</span>
+<span>Conclusion et prochaines étapes</span>
 </h2>
 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-<div class="bg-blue-900/20 p-8 md:p-10 rounded-xl border-l-4 border-blue-500">
+<div class="bg-blue-900/20 p-8 md:p-10 rounded-xl border-blue-500">
 <h3 class="font-bold theme-text-main mb-3">Résultat</h3>
 <p class="text-sm theme-text-light leading-relaxed">
-                            La simulation démontre qu'une architecture observateur-contrôleur de rendez-vous peut stabiliser un modèle de mouvement relatif 2D en utilisant uniquement des mesures angulaires. La normalisation a été l'étape clé rendant la conception numérique physiquement utilisable.
+                            La simulation montre qu’une architecture associant un observateur et un contrôleur peut stabiliser un modèle de mouvement relatif à deux dimensions à partir des seules mesures angulaires. La normalisation a été déterminante pour obtenir une conception numériquement stable et physiquement exploitable.
                         </p>
 </div>
 <div class="theme-card-bg p-8 md:p-10 rounded-xl border theme-border-main">
 <h3 class="font-bold theme-text-main mb-3">Extension logique</h3>
 <ul class="list-disc ml-5 text-sm theme-text-light space-y-2">
-<li>Étendre le modèle à une formulation à 13 états et 6 DDL.</li>
-<li>Remplacer l'observateur linéaire par une fusion de capteurs EKF ou UKF.</li>
+<li>Étendre le modèle à une formulation à 13 états et six degrés de liberté (DDL).</li>
+<li>Remplacer l'observateur linéaire par un filtre de Kalman étendu (EKF) ou non parfumé (UKF) pour la fusion des capteurs.</li>
 <li>Contrôler simultanément les forces de translation F et les couples d'attitude tau.</li>
 </ul>
 </div>
