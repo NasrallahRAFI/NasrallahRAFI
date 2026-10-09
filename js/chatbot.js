@@ -476,7 +476,7 @@ L’architecture embarquée utilise STM32H743VIT6, un AFE BQ76952PFBR, l’équi
         var path = window.location.pathname.toLowerCase();
         var mappings = [
             ['internship-smcv', 'internship-smcv'], ['internship-onee', 'internship-onee'],
-            ['apprenticeship-rafi', 'apprenticeship'], ['pfe-gantt', 'pfe-gantt'],
+            ['apprenticeship-rafi', 'apprenticeship'],
             ['project-smart-bms', 'project-smart-bms'], ['project-thermal', 'project-thermal'],
             ['project-waveguide', 'project-waveguide'], ['project-rendezvous', 'project-rendezvous']
         ];

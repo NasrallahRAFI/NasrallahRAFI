@@ -12,7 +12,6 @@ export const pageFiles = [
     'apprenticeship-rafi.html', 'apprenticeship-rafi-fr.html',
     'internship-onee.html', 'internship-onee-fr.html',
     'internship-smcv.html', 'internship-smcv-fr.html',
-    'pfe-gantt.html', 'pfe-gantt-fr.html',
     'project-rendezvous.html', 'project-rendezvous-fr.html',
     'project-smart-bms.html', 'project-smart-bms-fr.html',
     'project-thermal.html', 'project-thermal-fr.html',

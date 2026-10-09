@@ -74,24 +74,6 @@
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://nasrallahrafi.me/pfe-gantt.html</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://nasrallahrafi.me/pfe-gantt.html"/>
-    <xhtml:link rel="alternate" hreflang="fr" href="https://nasrallahrafi.me/pfe-gantt-fr.html"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://nasrallahrafi.me/pfe-gantt.html"/>
-    <lastmod>2026-06-17</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.3</priority>
-  </url>
-  <url>
-    <loc>https://nasrallahrafi.me/pfe-gantt-fr.html</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://nasrallahrafi.me/pfe-gantt.html"/>
-    <xhtml:link rel="alternate" hreflang="fr" href="https://nasrallahrafi.me/pfe-gantt-fr.html"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://nasrallahrafi.me/pfe-gantt.html"/>
-    <lastmod>2026-06-17</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.3</priority>
-  </url>
-  <url>
     <loc>https://nasrallahrafi.me/project-smart-bms.html</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://nasrallahrafi.me/project-smart-bms.html"/>
     <xhtml:link rel="alternate" hreflang="fr" href="https://nasrallahrafi.me/project-smart-bms-fr.html"/>

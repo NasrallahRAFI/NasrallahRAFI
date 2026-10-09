@@ -36,12 +36,6 @@ for (const fileName of pageFiles) {
         source = source.replace(/<script(?![^>]*src=)[^>]*>\s*\/\/ Initialize Lucide icons[\s\S]*?<\/script>\s*/i, '');
     }
     source = source.replace(/onclick="toggleTheme\(\)"\s*/gi, '');
-    if (fileName.startsWith('pfe-gantt')) {
-        source = source.replace(/onclick="triggerPrint\(\)"/i, 'id="print-button"');
-        source = source.replace(/document\.getElementById\('print-button'\)\?\.addEventListener\('click', triggerPrint\);\s*/g, '');
-        source = source.replace(/function triggerPrint\(\)\s*\{/, "document.getElementById('print-button')?.addEventListener('click', triggerPrint);\n\nfunction triggerPrint() {");
-    }
-
     if (!fileName.startsWith('index')) {
         const headerPattern = /<header\b[^>]*>[\s\S]*?<\/header>/i;
         if (headerPattern.test(source)) source = source.replace(headerPattern, detailHeader(fileName));
