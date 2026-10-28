@@ -23,6 +23,26 @@ const warnings = [];
 const externalScriptSources = new Set();
 const inlineScriptFiles = new Set();
 const inlineHandlerFiles = new Set();
+const chatbotEnabledPages = new Set([
+    'apprenticeship-rafi-fr.html',
+    'apprenticeship-rafi.html',
+    'index-fr.html',
+    'index.html',
+    'internship-onee-fr.html',
+    'internship-onee.html',
+    'internship-smcv-fr.html',
+    'internship-smcv.html',
+    'project-rendezvous-fr.html',
+    'project-rendezvous.html',
+    'project-smart-bms-fr.html',
+    'project-smart-bms.html',
+    'project-smart-water-meter-fr.html',
+    'project-smart-water-meter.html',
+    'project-thermal-fr.html',
+    'project-thermal.html',
+    'project-waveguide-fr.html',
+    'project-waveguide.html'
+]);
 const allowedExternalScripts = new Map([
     ['https://unpkg.com/lucide@1.20.0/dist/umd/lucide.min.js', 'sha384-vEpkK5oidsrH6UhRc6tAPlgJZ/qXFwumFY+Kx8vBSeZ7NBag809YZCSmxFYGe/pt'],
     ['https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-svg.js', 'sha384-KKWa9jJ1MZvssLeOoXG6FiOAZfAgmzsIIfw8BXwI9+kYm0lPCbC6yTQPBC00F1/L']
@@ -60,7 +80,12 @@ for (const fileName of htmlFiles) {
     const source = fs.readFileSync(path.join(root, fileName), 'utf8');
     const scripts = [...source.matchAll(/<script\b[^>]*>/gi)];
     const chatbotCount = (source.match(/<script\b[^>]*src=["']js\/chatbot\.js(?:\?[^"']*)?["'][^>]*>/gi) || []).length;
-    if (chatbotCount !== 1) reportFailure(`${fileName}: expected exactly one chatbot.js script, found ${chatbotCount}`);
+    const expectsChatbot = chatbotEnabledPages.has(fileName);
+    if (expectsChatbot && chatbotCount !== 1) {
+        reportFailure(`${fileName}: expected exactly one chatbot.js script, found ${chatbotCount}`);
+    } else if (!expectsChatbot && chatbotCount !== 0) {
+        reportFailure(`${fileName}: chatbot.js is included, but this page is not configured to use the chatbot`);
+    }
 
     const language = source.match(/<html\b[^>]*\blang=["']([^"']+)["']/i)?.[1];
     if (!language) reportFailure(`${fileName}: missing html lang attribute`);

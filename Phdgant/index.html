@@ -418,30 +418,51 @@
 
     .chart-status strong { font-weight: 600; }
 
+    .mobile-roadmap { display: none; }
+
     @keyframes draw-bar {
       from { transform: scaleX(.03); opacity: .45; }
       to { transform: scaleX(1); opacity: 1; }
     }
 
     @media (max-width: 760px) {
-      :root { --month: 17px; --label: 220px; --range: 64px; }
-      .page { width: calc(100% - 32px); padding: 30px 0 38px; }
-      .masthead { display: block; padding-bottom: 21px; }
-      .masthead p { max-width: 34ch; font-size: 14px; }
-      .period { padding-top: 16px; }
-      .legend { gap: 9px 16px; padding: 15px 0 13px; }
-      .legend-label { flex-basis: 100%; }
-      .legend-item { min-height: 32px; padding: 0 7px; font-size: 10px; }
-      .year-nav { gap: 5px; }
-      .year-button { padding: 0 8px; font-size: 10px; }
-      .pdf-button { flex-basis: 100%; margin: 5px 0 0; }
-      .year-head { min-height: 40px; }
-      .year { padding-left: 6px; font-size: 10px; }
-      .year span { display: none; }
-      .group-label small { display: none; }
-      .month-head { font-size: 8px; }
-      .task-name { padding-left: 9px; font-size: 11px; }
-      .task-range { font-size: 9px; }
+      .page { width: min(100% - 36px, 520px); padding: 22px 0 32px; }
+      .masthead { display: block; padding-bottom: 14px; }
+      h1 { font-size: clamp(31px, 9vw, 40px); line-height: 1.04; }
+      .masthead p { max-width: 32ch; margin-top: 8px; font-size: 13px; line-height: 1.4; }
+      .period { padding-top: 10px; font-size: 11px; }
+      .legend { gap: 5px; padding: 10px 0 9px; overflow-x: auto; flex-wrap: nowrap; scrollbar-width: none; }
+      .legend::-webkit-scrollbar { display: none; }
+      .legend-label { flex: none; margin-right: 2px; }
+      .legend-item { flex: none; min-height: 31px; padding: 0 8px; font-size: 10px; white-space: nowrap; }
+      .legend-item .swatch { width: 12px; }
+      .year-nav { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 6px; margin-bottom: 14px; }
+      .year-nav-label { grid-column: 1 / -1; margin: 1px 0 0; font-size: 11px; }
+      .year-button { min-height: 38px; padding: 0 4px; font-size: 11px; white-space: nowrap; }
+      .year-button[data-year="all"] { grid-column: span 2; }
+      .pdf-button { grid-column: span 2; min-height: 38px; margin: 0; padding: 0 8px; font-size: 11px; }
+      .chart-scroll { display: none; }
+      .mobile-roadmap { display: block; border-top: 1px solid var(--rule); }
+      .mobile-year-title { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; padding: 13px 1px 11px; border-bottom: 1px solid var(--rule); }
+      .mobile-year-title strong { font-size: 14px; letter-spacing: .02em; }
+      .mobile-year-title span { color: var(--muted); font-size: 11px; text-align: right; }
+      .mobile-group { margin: 0; }
+      .mobile-group-title { margin: 0; padding: 15px 1px 8px; border-bottom: 1px solid var(--rule); color: var(--ink); font-size: 11px; font-weight: 700; letter-spacing: .11em; text-transform: uppercase; }
+      .mobile-task { position: relative; display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 7px 12px; padding: 12px 1px 13px; border-bottom: 1px solid rgba(202, 212, 204, .8); }
+      .mobile-task-title { grid-column: 1 / -1; display: flex; align-items: flex-start; gap: 9px; color: #203d3a; font-size: 13px; font-weight: 500; line-height: 1.35; }
+      .mobile-task-dot { flex: none; width: 8px; height: 8px; margin-top: 5px; border-radius: 2px; background: var(--shared); }
+      .mobile-task[data-track="one"] .mobile-task-dot { background: var(--blue); }
+      .mobile-task[data-track="two"] .mobile-task-dot { background: var(--teal); }
+      .mobile-task[data-track="thesis"] .mobile-task-dot { background: var(--ochre); }
+      .mobile-task-meta { color: var(--muted); font-size: 11px; }
+      .mobile-task-duration { align-self: start; padding: 2px 7px; border-radius: 3px; background: #e5ebe5; color: var(--ink); font-size: 11px; font-weight: 600; white-space: nowrap; }
+      .mobile-task-track { grid-column: 1 / -1; display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); height: 5px; margin-top: 1px; overflow: hidden; border-radius: 4px; background: #e3e8e2; }
+      .mobile-task-span { grid-column: var(--mobile-start) / var(--mobile-end); min-width: 4px; border-radius: 4px; background: var(--shared); }
+      .mobile-task[data-track="one"] .mobile-task-span { background: var(--blue); }
+      .mobile-task[data-track="two"] .mobile-task-span { background: var(--teal); }
+      .mobile-task[data-track="thesis"] .mobile-task-span { background: var(--ochre); }
+      .mobile-empty { padding: 18px 2px; color: var(--muted); font-size: 12px; }
+      .chart-status { min-height: 0; padding-top: 10px; font-size: 11px; }
       .chart-footer { display: block; }
       .chart-footer span { display: block; margin-top: 4px; }
     }
@@ -512,6 +533,8 @@
       }
       .swatch { width: 4mm; height: 1.5mm; }
       .chart-scroll { overflow: visible; border-top-width: .25mm; border-bottom-width: .25mm; }
+      .mobile-roadmap { display: none !important; }
+      .chart-scroll { display: block !important; }
       .chart { width: 286.4mm; min-width: 286.4mm; padding: 0; }
       .year-head, .month-head, .task-row {
         grid-template-columns: var(--label) var(--range) repeat(48, var(--month));
@@ -647,6 +670,8 @@
       </div>
     </section>
 
+    <section class="mobile-roadmap" aria-label="PhD roadmap by academic year" aria-live="polite"></section>
+
     <p id="chart-status" class="chart-status" aria-live="polite">Select a phase bar to focus it and see its time allocation.</p>
     <footer class="chart-footer">
       <span>Month ranges follow the proposed 48-month schedule.</span>
@@ -662,6 +687,7 @@
       const filters = [...document.querySelectorAll("[data-filter]")];
       const yearButtons = [...document.querySelectorAll(".year-button")];
       const yearHeads = [...document.querySelectorAll("[data-year-head]")];
+      const mobileRoadmap = document.querySelector(".mobile-roadmap");
       const status = document.querySelector("#chart-status");
       const printSummary = document.querySelector("#print-summary");
       document.querySelector("#save-pdf").addEventListener("click", () => window.print());
@@ -685,6 +711,7 @@
           row.classList.toggle("is-filtered", muted);
         });
         bars.forEach(bar => bar.classList.toggle("is-muted", filter !== "all" && bar.dataset.track !== filter));
+        renderMobileRoadmap();
       }
 
       function updateYear(year) {
@@ -702,7 +729,51 @@
           const overlaps = all || (start <= yearEnd && end >= yearStart);
           bar.classList.toggle("is-year-muted", !overlaps);
         });
+        renderMobileRoadmap();
       }
+
+      function renderMobileRoadmap() {
+        if (!mobileRoadmap) return;
+        const titles = ["Predoctoral year", "Doctoral Year 1", "Doctoral Year 2", "Doctoral Year 3"];
+        const yearTitle = yearButtons.find(button => button.dataset.year === activeYear)?.textContent.trim() || "Full plan";
+        const description = activeYear === "all" ? "Complete 48-month view" : titles[Number(activeYear)];
+        const firstMonth = activeYear === "all" ? 1 : Number(activeYear) * 12 + 1;
+        const lastMonth = activeYear === "all" ? 48 : firstMonth + 11;
+        let markup = `<header class="mobile-year-title"><strong>${yearTitle}</strong><span>${description}</span></header>`;
+        let activeGroup = null;
+        let groupMarkup = "";
+        let visibleCount = 0;
+        for (const row of rows) {
+          const bar = row.querySelector(".bar");
+          const start = Number(bar.dataset.start);
+          const end = Number(bar.dataset.end);
+          const overlaps = start <= lastMonth && end >= firstMonth;
+          if (!overlaps || (activeFilter !== "all" && row.dataset.track !== activeFilter)) continue;
+          const group = row.dataset.track;
+          if (group !== activeGroup) {
+            if (activeGroup !== null) markup += `<section class="mobile-group" data-track="${activeGroup}"><h2 class="mobile-group-title">${groupMarkup}</h2>${groupMarkupRows}</section>`;
+            activeGroup = group;
+            groupMarkup = ({ shared: "Shared research foundation", one: "Paper 1", two: "Paper 2", thesis: "Thesis completion" })[group];
+            groupMarkupRows = "";
+          }
+          const name = row.querySelector(".task-name").textContent.trim();
+          const range = row.querySelector(".task-range").textContent.trim();
+          const clippedStart = Math.max(start, firstMonth);
+          const clippedEnd = Math.min(end, lastMonth);
+          const scale = activeYear === "all" ? 48 : 12;
+          const offset = activeYear === "all" ? 0 : firstMonth - 1;
+          const gridStart = clippedStart - offset;
+          const gridEnd = clippedEnd - offset + 1;
+          const duration = bar.dataset.duration;
+          groupMarkupRows += `<article class="mobile-task" data-track="${group}"><div class="mobile-task-title"><i class="mobile-task-dot" aria-hidden="true"></i><span>${name}</span></div><span class="mobile-task-meta">${range}${activeYear === "all" ? "" : ` · Months ${clippedStart}–${clippedEnd}`}</span><span class="mobile-task-duration">${duration}</span><div class="mobile-task-track" style="grid-template-columns:repeat(${scale},minmax(0,1fr))" role="img" aria-label="${name}: months ${start} to ${end} of 48"><i class="mobile-task-span" style="--mobile-start:${gridStart};--mobile-end:${gridEnd}"></i></div></article>`;
+          visibleCount++;
+        }
+        if (activeGroup !== null) markup += `<section class="mobile-group" data-track="${activeGroup}"><h2 class="mobile-group-title">${groupMarkup}</h2>${groupMarkupRows}</section>`;
+        if (!visibleCount) markup += `<p class="mobile-empty">No roadmap activities match these selections.</p>`;
+        mobileRoadmap.innerHTML = markup;
+      }
+
+      let groupMarkupRows = "";
 
       function selectBar(bar) {
         if (activeBar === bar) {
@@ -738,6 +809,8 @@
         const left = index * 12 * monthWidth;
         viewport.scrollTo({ left, behavior: event.detail === 0 || reduceMotion.matches ? "instant" : "smooth" });
       }));
+      if (matchMedia("(max-width: 760px)").matches) updateYear("0");
+      else renderMobileRoadmap();
     })();
   </script>
 </body>
