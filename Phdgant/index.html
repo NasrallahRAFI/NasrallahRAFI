@@ -419,6 +419,7 @@
     .chart-status strong { font-weight: 600; }
 
     .mobile-roadmap { display: none; }
+    .mobile-filter-row { display: none; }
 
     @keyframes draw-bar {
       from { transform: scaleX(.03); opacity: .45; }
@@ -431,11 +432,11 @@
       h1 { font-size: clamp(31px, 9vw, 40px); line-height: 1.04; }
       .masthead p { max-width: 32ch; margin-top: 8px; font-size: 13px; line-height: 1.4; }
       .period { padding-top: 10px; font-size: 11px; }
-      .legend { gap: 5px; padding: 10px 0 9px; overflow-x: auto; flex-wrap: nowrap; scrollbar-width: none; }
-      .legend::-webkit-scrollbar { display: none; }
-      .legend-label { flex: none; margin-right: 2px; }
-      .legend-item { flex: none; min-height: 31px; padding: 0 8px; font-size: 10px; white-space: nowrap; }
-      .legend-item .swatch { width: 12px; }
+      .legend { display: none; }
+      .mobile-filter-row { display: grid; grid-template-columns: minmax(0, 1fr) minmax(150px, 58%); align-items: center; gap: 12px; padding: 12px 0 8px; }
+      .mobile-filter-row label { color: var(--muted); font-size: 11px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; }
+      .mobile-filter-row select { width: 100%; min-height: 40px; padding: 0 30px 0 11px; border: 1px solid var(--rule); border-radius: 4px; background: #e9eee8; color: var(--ink); font: inherit; font-size: 12px; font-weight: 600; }
+      .mobile-filter-row select:focus-visible { outline: 3px solid #315fae; outline-offset: 2px; }
       .year-nav { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 6px; margin-bottom: 14px; }
       .year-nav-label { grid-column: 1 / -1; margin: 1px 0 0; font-size: 11px; }
       .year-button { min-height: 38px; padding: 0 4px; font-size: 11px; white-space: nowrap; }
@@ -443,26 +444,27 @@
       .pdf-button { grid-column: span 2; min-height: 38px; margin: 0; padding: 0 8px; font-size: 11px; }
       .chart-scroll { display: none; }
       .mobile-roadmap { display: block; border-top: 1px solid var(--rule); }
-      .mobile-year-title { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; padding: 13px 1px 11px; border-bottom: 1px solid var(--rule); }
+      .mobile-year-title { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; padding: 13px 1px 6px; }
       .mobile-year-title strong { font-size: 14px; letter-spacing: .02em; }
       .mobile-year-title span { color: var(--muted); font-size: 11px; text-align: right; }
+      .mobile-scale { display: flex; justify-content: space-between; padding: 0 1px 9px; border-bottom: 1px solid var(--rule); color: var(--muted); font-size: 11px; }
       .mobile-group { margin: 0; }
       .mobile-group-title { margin: 0; padding: 15px 1px 8px; border-bottom: 1px solid var(--rule); color: var(--ink); font-size: 11px; font-weight: 700; letter-spacing: .11em; text-transform: uppercase; }
       .mobile-task { position: relative; display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 7px 12px; padding: 12px 1px 13px; border-bottom: 1px solid rgba(202, 212, 204, .8); }
-      .mobile-task-title { grid-column: 1 / -1; display: flex; align-items: flex-start; gap: 9px; color: #203d3a; font-size: 13px; font-weight: 500; line-height: 1.35; }
+      .mobile-task-title { grid-column: 1 / -1; display: flex; align-items: flex-start; gap: 9px; color: #203d3a; font-size: 14px; font-weight: 500; line-height: 1.35; }
       .mobile-task-dot { flex: none; width: 8px; height: 8px; margin-top: 5px; border-radius: 2px; background: var(--shared); }
       .mobile-task[data-track="one"] .mobile-task-dot { background: var(--blue); }
       .mobile-task[data-track="two"] .mobile-task-dot { background: var(--teal); }
       .mobile-task[data-track="thesis"] .mobile-task-dot { background: var(--ochre); }
-      .mobile-task-meta { color: var(--muted); font-size: 11px; }
+      .mobile-task-meta { color: var(--muted); font-size: 12px; }
       .mobile-task-duration { align-self: start; padding: 2px 7px; border-radius: 3px; background: #e5ebe5; color: var(--ink); font-size: 11px; font-weight: 600; white-space: nowrap; }
-      .mobile-task-track { grid-column: 1 / -1; display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); height: 5px; margin-top: 1px; overflow: hidden; border-radius: 4px; background: #e3e8e2; }
+      .mobile-task-track { grid-column: 1 / -1; display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); height: 7px; margin-top: 1px; overflow: hidden; border-radius: 4px; background: #e3e8e2; }
       .mobile-task-span { grid-column: var(--mobile-start) / var(--mobile-end); min-width: 4px; border-radius: 4px; background: var(--shared); }
       .mobile-task[data-track="one"] .mobile-task-span { background: var(--blue); }
       .mobile-task[data-track="two"] .mobile-task-span { background: var(--teal); }
       .mobile-task[data-track="thesis"] .mobile-task-span { background: var(--ochre); }
       .mobile-empty { padding: 18px 2px; color: var(--muted); font-size: 12px; }
-      .chart-status { min-height: 0; padding-top: 10px; font-size: 11px; }
+      .chart-status { display: none; }
       .chart-footer { display: block; }
       .chart-footer span { display: block; margin-top: 4px; }
     }
@@ -508,7 +510,7 @@
       h1 { max-width: none; font-size: 18pt; line-height: 1; }
       .masthead p { margin-top: 1.5mm; font-size: 8pt; }
       .period { padding: 0; font-size: 7pt; }
-      .year-nav, .chart-status, .chart-footer { display: none !important; }
+      .year-nav, .chart-status, .chart-footer, .mobile-filter-row { display: none !important; }
       .print-summary {
         display: block;
         margin: 0 0 1.2mm;
@@ -613,6 +615,17 @@
       <button class="legend-item" type="button" data-filter="thesis" aria-pressed="false"><i class="swatch thesis" aria-hidden="true"></i>Thesis</button>
     </nav>
 
+    <div class="mobile-filter-row">
+      <label for="mobile-filter">Highlight phase</label>
+      <select id="mobile-filter" aria-label="Highlight roadmap phase">
+        <option value="all">All phases</option>
+        <option value="shared">Shared foundation</option>
+        <option value="one">Paper 1</option>
+        <option value="two">Paper 2</option>
+        <option value="thesis">Thesis</option>
+      </select>
+    </div>
+
     <nav class="year-nav" aria-label="Jump to academic year">
       <span class="year-nav-label">View year</span>
       <button class="year-button" type="button" data-year="0" aria-pressed="false">2026–27</button>
@@ -670,12 +683,12 @@
       </div>
     </section>
 
-    <section class="mobile-roadmap" aria-label="PhD roadmap by academic year" aria-live="polite"></section>
+    <section class="mobile-roadmap" aria-label="PhD roadmap by academic year"></section>
 
     <p id="chart-status" class="chart-status" aria-live="polite">Select a phase bar to focus it and see its time allocation.</p>
     <footer class="chart-footer">
-      <span>Month ranges follow the proposed 48-month schedule.</span>
-      <span>On smaller screens, choose a year or scroll across the timeline.</span>
+      <span>Month ranges use the full 48-month PhD timeline.</span>
+      <span>Choose a year to focus on the activities planned during that period.</span>
     </footer>
   </main>
   <script>
@@ -685,6 +698,7 @@
       const bars = [...document.querySelectorAll(".bar")];
       const rows = [...document.querySelectorAll(".task-row")];
       const filters = [...document.querySelectorAll("[data-filter]")];
+      const mobileFilter = document.querySelector("#mobile-filter");
       const yearButtons = [...document.querySelectorAll(".year-button")];
       const yearHeads = [...document.querySelectorAll("[data-year-head]")];
       const mobileRoadmap = document.querySelector(".mobile-roadmap");
@@ -705,6 +719,7 @@
       function updateFilter(filter) {
         activeFilter = filter;
         updatePrintSummary();
+        if (mobileFilter) mobileFilter.value = filter;
         filters.forEach(button => button.setAttribute("aria-pressed", String(button.dataset.filter === filter)));
         rows.forEach(row => {
           const muted = filter !== "all" && row.dataset.track !== filter;
@@ -739,7 +754,8 @@
         const description = activeYear === "all" ? "Complete 48-month view" : titles[Number(activeYear)];
         const firstMonth = activeYear === "all" ? 1 : Number(activeYear) * 12 + 1;
         const lastMonth = activeYear === "all" ? 48 : firstMonth + 11;
-        let markup = `<header class="mobile-year-title"><strong>${yearTitle}</strong><span>${description}</span></header>`;
+        const scaleEnd = activeYear === "all" ? 48 : 12;
+        let markup = `<header class="mobile-year-title"><strong>${yearTitle}</strong><span>${description}</span></header><div class="mobile-scale" aria-hidden="true"><span>Month 1</span><span>Month ${scaleEnd}</span></div>`;
         let activeGroup = null;
         let groupMarkup = "";
         let visibleCount = 0;
@@ -765,7 +781,11 @@
           const gridStart = clippedStart - offset;
           const gridEnd = clippedEnd - offset + 1;
           const duration = bar.dataset.duration;
-          groupMarkupRows += `<article class="mobile-task" data-track="${group}"><div class="mobile-task-title"><i class="mobile-task-dot" aria-hidden="true"></i><span>${name}</span></div><span class="mobile-task-meta">${range}${activeYear === "all" ? "" : ` · Months ${clippedStart}–${clippedEnd}`}</span><span class="mobile-task-duration">${duration}</span><div class="mobile-task-track" style="grid-template-columns:repeat(${scale},minmax(0,1fr))" role="img" aria-label="${name}: months ${start} to ${end} of 48"><i class="mobile-task-span" style="--mobile-start:${gridStart};--mobile-end:${gridEnd}"></i></div></article>`;
+          const visibleMonths = clippedEnd - clippedStart + 1;
+          const totalMonths = end - start + 1;
+          const partialLabel = activeYear !== "all" && visibleMonths < totalMonths ? ` · ${visibleMonths} mo in this year` : "";
+          const selectedYearLabel = activeYear === "all" ? "full plan" : yearTitle;
+          groupMarkupRows += `<article class="mobile-task" data-track="${group}"><div class="mobile-task-title"><i class="mobile-task-dot" aria-hidden="true"></i><span>${name}</span></div><span class="mobile-task-meta">${range}${partialLabel}</span><span class="mobile-task-duration" aria-label="${totalMonths} months total">${duration}</span><div class="mobile-task-track" style="grid-template-columns:repeat(${scale},minmax(0,1fr))" role="img" aria-label="${name}: shown in ${selectedYearLabel}, month ${gridStart} to ${gridEnd}; overall PhD months ${start} to ${end}"><i class="mobile-task-span" style="--mobile-start:${gridStart};--mobile-end:${gridEnd}"></i></div></article>`;
           visibleCount++;
         }
         if (activeGroup !== null) markup += `<section class="mobile-group" data-track="${activeGroup}"><h2 class="mobile-group-title">${groupMarkup}</h2>${groupMarkupRows}</section>`;
@@ -796,6 +816,7 @@
       }
 
       filters.forEach(button => button.addEventListener("click", () => updateFilter(button.dataset.filter)));
+      mobileFilter?.addEventListener("change", () => updateFilter(mobileFilter.value));
       bars.forEach(bar => bar.addEventListener("click", () => selectBar(bar)));
       yearButtons.forEach(button => button.addEventListener("click", event => {
         const year = button.dataset.year;
